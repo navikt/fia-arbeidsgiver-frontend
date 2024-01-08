@@ -1,7 +1,10 @@
+import TestIncrementer from "./components/TestIncrementer";
 import styles from "./page.module.css";
 
 export default function Home() {
-  const lintererror = "lintererror";
-
-  return <main className={styles.main}>test</main>;
+  return (
+    <main className={styles.main}>
+      <TestIncrementer />
+    </main>
+  );
 }
