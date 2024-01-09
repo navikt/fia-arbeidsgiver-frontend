@@ -5,6 +5,6 @@ export const metadata: Metadata = {
   description: "Her kan du delta på litt litt kartlegging da",
 };
 
-export default function Deltaker() {
-  return <main>Deltaker</main>;
+export default function Spørsmålsside() {
+  return <main>Her kan du svare på spørsmål</main>;
 }
