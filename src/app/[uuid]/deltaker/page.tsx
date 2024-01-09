@@ -5,10 +5,10 @@ export const metadata: Metadata = {
   description: "Her kan du delta på litt litt kartlegging da",
 };
 
-export default function Host() {
+export default function Deltaker() {
   return (
     <main>
-      Hosting
+      Deltaker
     </main>
   );
 }
