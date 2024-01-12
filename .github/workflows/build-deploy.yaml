@@ -9,6 +9,9 @@ on:
       - "**.md"
       - "**/**.md"
 
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -26,8 +29,6 @@ jobs:
       - uses: oven-sh/setup-bun@v1
       - name: Install dependencies
         run: bun install --frozen-lockfile
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Lint
         run: bun lint
       - name: Run tests
