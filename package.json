@@ -14,8 +14,8 @@
     ]
   },
   "dependencies": {
-    "@navikt/ds-css": "^5.12.4",
-    "@navikt/ds-react": "^5.12.4",
+    "@navikt/ds-css": "^5.13.0",
+    "@navikt/ds-react": "^5.13.0",
     "next": "14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
