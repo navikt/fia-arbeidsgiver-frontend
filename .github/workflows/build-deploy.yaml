@@ -34,7 +34,7 @@ jobs:
       - name: Run tests
         run: bun test
       - name: Build
-        run: bun build
+        run: bun run build
       - name: Push to Google Artifact Registry
         if: ${{ github.actor != 'dependabot[bot]' }}
         uses: nais/docker-build-push@v0
