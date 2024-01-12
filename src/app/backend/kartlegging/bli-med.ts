@@ -39,3 +39,11 @@ export default async function POST(
     path: "/fia-arbeidsgiver/kartlegging/bli-med",
   });
 }
+
+export const config = {
+  api: {
+    bodyParser: false,
+    externalResolver: true,
+  },
+};
+
