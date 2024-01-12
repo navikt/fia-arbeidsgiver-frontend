@@ -1,0 +1,50 @@
+.banner {
+  color: var(--a-text-on-inverted);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.spørsmålsheader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+
+  font-weight: 600;
+}
+
+.spørsmålsheader :first-child {
+  margin-right: 2rem;
+  flex-shrink: 0;
+}
+
+.svaralternativknapp {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.tilbakeknapp {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.spørsmålsseksjon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-grow: 1;
+}
+
+.spørsmålssideblokk {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.spørsmålstekst {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
