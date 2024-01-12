@@ -1,0 +1,20 @@
+apiVersion: nais.io/v1alpha1
+kind: Application
+metadata:
+  labels:
+    team: pia
+  name: fia-arbeidsgiver-frontend
+  namespace: pia
+spec:
+  ingresses:
+    - https://fia-arbeidsgiver.intern.dev.nav.no
+  image: {{image}}
+  port: 3000
+  ttl: 3h
+  replicas:
+    max: 2
+    min: 2
+  resources:
+    requests:
+      cpu: 50m
+      memory: 32Mi
