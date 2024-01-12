@@ -2,4 +2,4 @@
 preload = "./happydom.ts"
 
 [install.scopes]
-"@navikt" = {token="$npm_token", url="https://npm.pkg.github.com/"}
+"@navikt" = {token="$READER_TOKEN", url="https://npm.pkg.github.com/"}
