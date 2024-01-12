@@ -1,10 +1,10 @@
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
-  labels:
-    team: pia
   name: fia-arbeidsgiver-frontend
   namespace: pia
+  labels:
+    team: pia
 spec:
   ingresses:
     - https://fia-arbeidsgiver.intern.dev.nav.no
@@ -25,3 +25,8 @@ spec:
     outbound:
       rules:
         - application: fia-arbeidsgiver
+  env:
+    - name: FIA_ARBEIDSGIVER_HOSTNAME
+      value: fia-arbeidsgiver.pia.svc.cluster.local
+    - name: FIA_ARBEIDSGIVER_AUDIENCE
+      value: dev-gcp:pia:fia-arbeidsgiver
