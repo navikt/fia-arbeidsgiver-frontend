@@ -18,3 +18,10 @@ spec:
     requests:
       cpu: 50m
       memory: 32Mi
+  accessPolicy:
+    inbound:
+      rules:
+        - application: fia-arbeidsgiver
+    outbound:
+      rules:
+        - application: fia-arbeidsgiver
