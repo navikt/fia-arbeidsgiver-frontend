@@ -20,12 +20,11 @@ jobs:
   docker-build-push:
     name: Build, test and push docker image
     permissions:
-      contents: read
       id-token: write
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1
       - name: Install dependencies
         run: bun install --frozen-lockfile
@@ -52,10 +51,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v3
-      - uses: nais/deploy/actions/deploy@v1
+      - uses: actions/checkout@v4
+      - uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: dev-gcp
           IMAGE: ${{ needs.docker-build-push.outputs.image }}
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: .nais/dev.yaml
