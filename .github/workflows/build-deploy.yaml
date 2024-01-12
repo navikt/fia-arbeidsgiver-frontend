@@ -20,6 +20,8 @@ jobs:
   docker-build-push:
     name: Build, test and push docker image
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
