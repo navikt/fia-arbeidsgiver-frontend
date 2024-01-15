@@ -2,10 +2,10 @@
 
 import React from "react";
 import { Spørsmål } from "./Spørsmål";
-import { SpørsmålType } from "./typer";
-import { spørsmålsliste } from "./dummydata";
 import styles from "./spørsmålsside.module.css";
 import { Button } from "@navikt/ds-react";
+import { SpørsmålType } from "@/utils/typer";
+import { spørsmålsliste } from "@/utils/dummydata";
 
 export default function Spørsmålsseksjon() {
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] = React.useState(0);

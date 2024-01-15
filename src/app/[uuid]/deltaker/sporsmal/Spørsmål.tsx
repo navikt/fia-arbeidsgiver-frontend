@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import { Button } from "@navikt/ds-react";
-import { SpørsmålType } from "./typer";
 
 import styles from "./spørsmålsside.module.css";
+import { SpørsmålType } from "@/utils/typer";
 
 export function Spørsmål({
   spørsmål,

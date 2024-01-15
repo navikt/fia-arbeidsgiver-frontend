@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import Spørsmålsseksjon from "./Spørsmålsseksjon";
+import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import { Bleed, Box, Detail, Heading, Page } from "@navikt/ds-react";
 
 import styles from "./spørsmålsside.module.css";

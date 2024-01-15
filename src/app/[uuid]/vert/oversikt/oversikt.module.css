@@ -1,0 +1,43 @@
+
+
+.oversikt{
+    padding: 0 5rem 5rem;
+}
+
+.tekst-overskrift {
+    font-weight: normal;
+    padding-top: 2rem;
+}
+.tekst-stor {
+    font-size: large;
+}
+.tekst-liten {
+    font-size: small;
+}
+
+.deltakere{
+    font-size: 6rem;
+}
+.bleed-innhold {
+    align-items: center;
+    color: var(--a-bg-default);
+    justify-content: space-between;
+}
+
+.kartlegging-kategori {
+    padding-left: 4rem;
+    justify-content: center;
+}
+
+.estimat-og-knapper {
+    padding-right: 4rem;
+    align-items: center;
+}
+
+.knapp-hvit-bakgrunn {
+    background: var(--a-bg-default)
+}
+
+.knapper-meny {
+    padding: 3rem;
+}
