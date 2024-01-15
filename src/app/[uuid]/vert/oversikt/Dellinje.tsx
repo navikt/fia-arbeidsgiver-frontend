@@ -1,8 +1,15 @@
 "use client";
 
-import React from "react";
-import { Bleed, Box, Button, HStack, VStack } from "@navikt/ds-react";
-import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import {
+  Bleed,
+  BodyShort,
+  Box,
+  Button,
+  Detail,
+  HStack,
+  VStack,
+} from "@navikt/ds-react";
 import styles from "./oversikt.module.css";
 export default function Dellinje({
   delnummer,
@@ -15,35 +22,69 @@ export default function Dellinje({
   punkter: number;
   tid: number;
 }) {
-  const router = useRouter();
+  type TilstandType = "HoppOver" | "Klar" | "Ferdig";
 
-  const disableBleed = () => {};
+  const [tilstand, setTilstand] = useState<TilstandType>("Klar");
+
+  // Translate state to a corresponding CSS class
+  const tilstandStyle = (tilstand: TilstandType): string => {
+    switch (tilstand) {
+      case "HoppOver":
+        return styles["bleed-hoppet-over"];
+      case "Ferdig":
+        return styles["bleed-ferdig"];
+      default:
+        return styles["bleed-klar"];
+    }
+  };
 
   return (
     <Bleed marginInline="full" asChild>
-      <Box padding="5" background="surface-alt-3-strong">
-        <HStack justify={"space-between"} className={styles["bleed-innhold"]}>
-          <VStack className={styles["kartlegging-kategori"]}>
-            <span className={styles["tekst-liten"]}>Del {delnummer}</span>
-            <div>{delnavn}</div>
+      <Box padding="5" className={tilstandStyle(tilstand)}>
+        <HStack className={styles["bleed-innhold"]}>
+          <VStack>
+            <BodyShort size="medium">Del {delnummer}</BodyShort>
+            <BodyShort size="large">{delnavn}</BodyShort>
           </VStack>
-          <HStack gap={"5"} className={styles["estimat-og-knapper"]}>
-            <div>{punkter} punkter</div>
-            <div>Beregnet tid: {tid} min</div>
-            <Button
-              variant={"secondary"}
-              onClick={() => router.push("sporsmal")}
-              className={styles["knapp-hvit-bakgrunn"]}
-            >
-              Start
-            </Button>
-            <Button
-              variant={"secondary"}
-              onClick={disableBleed}
-              className={styles["knapp-hvit-bakgrunn"]}
-            >
-              Hopp over
-            </Button>
+          <HStack gap={"4"}>
+            <Detail>{punkter} punkter</Detail>
+            <Detail>Beregnet tid: {tid} min</Detail>
+            {tilstand === "Klar" && (
+              <>
+                <Button
+                  variant={"secondary"}
+                  onClick={() => setTilstand("Ferdig")}
+                  // onClick={() => router.push("sporsmal")}
+                  className={styles["knapp-hvit-bakgrunn-bred"]}
+                >
+                  Start
+                </Button>
+                <Button
+                  variant={"secondary"}
+                  onClick={() => setTilstand("HoppOver")}
+                  className={styles["knapp-hvit-bakgrunn"]}
+                >
+                  Hopp over
+                </Button>
+              </>
+            )}
+            {tilstand === "HoppOver" && (
+              <>
+                <Detail>Hoppet over</Detail>
+                <Button
+                  variant={"secondary"}
+                  onClick={() => setTilstand("Klar")}
+                  className={styles["knapp-hvit-bakgrunn"]}
+                >
+                  Angre
+                </Button>
+              </>
+            )}
+            {tilstand === "Ferdig" && (
+              <>
+                <Detail>Fullført</Detail>
+              </>
+            )}
           </HStack>
         </HStack>
       </Box>
