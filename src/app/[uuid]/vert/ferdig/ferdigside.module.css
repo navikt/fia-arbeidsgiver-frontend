@@ -1,0 +1,32 @@
+.bleedFerdig {
+    background:var(--a-green-200);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.bleedInnhold {
+    justify-content:space-between;
+    padding-left: 10rem;
+    padding-right: 4rem;
+}
+
+.bleedInnhold :last-child {
+    align-items: center;
+}
+
+.knappHvit {
+    background: var(--a-bg-default);
+}
+
+.knappHvitBred {
+    background: var(--a-bg-default);
+    width: 17rem;
+}
+
+.ferdigBody {
+    align-items: center;
+    margin-bottom: 40px;
+}

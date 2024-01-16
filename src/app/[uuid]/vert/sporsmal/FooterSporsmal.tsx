@@ -16,7 +16,7 @@ export default function FooterSporsmal() {
         </Button>
         <Button
           variant={"secondary"}
-          onClick={() => router.push("ferdig")}
+          onClick={() => router.push("oversikt")}
           className={styles.knappHvitBred}
         >
           Avslutt
