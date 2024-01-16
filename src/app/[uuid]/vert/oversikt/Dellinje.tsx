@@ -11,6 +11,8 @@ import {
   VStack,
 } from "@navikt/ds-react";
 import styles from "./oversikt.module.css";
+import { useRouter } from "next/navigation";
+
 export default function Dellinje({
   delnummer,
   delnavn,
@@ -24,24 +26,26 @@ export default function Dellinje({
 }) {
   type TilstandType = "HoppOver" | "Klar" | "Ferdig";
 
+  const router = useRouter();
+
   const [tilstand, setTilstand] = useState<TilstandType>("Klar");
 
   // Translate state to a corresponding CSS class
   const tilstandStyle = (tilstand: TilstandType): string => {
     switch (tilstand) {
       case "HoppOver":
-        return styles["bleed-hoppet-over"];
+        return styles.bleedHoppetOver;
       case "Ferdig":
-        return styles["bleed-ferdig"];
+        return styles.bleedFerdig;
       default:
-        return styles["bleed-klar"];
+        return styles.bleedKlar;
     }
   };
 
   return (
     <Bleed marginInline="full" asChild>
       <Box padding="5" className={tilstandStyle(tilstand)}>
-        <HStack className={styles["bleed-innhold"]}>
+        <HStack className={styles.bleedInnhold}>
           <VStack>
             <BodyShort size="medium">Del {delnummer}</BodyShort>
             <BodyShort size="large">{delnavn}</BodyShort>
@@ -53,16 +57,16 @@ export default function Dellinje({
               <>
                 <Button
                   variant={"secondary"}
-                  onClick={() => setTilstand("Ferdig")}
-                  // onClick={() => router.push("sporsmal")}
-                  className={styles["knapp-hvit-bakgrunn-bred"]}
+                  // onClick={() => setTilstand("Ferdig")}
+                  onClick={() => router.push("sporsmal")}
+                  className={styles.knappHvitBred}
                 >
                   Start
                 </Button>
                 <Button
                   variant={"secondary"}
                   onClick={() => setTilstand("HoppOver")}
-                  className={styles["knapp-hvit-bakgrunn"]}
+                  className={styles.knappHvit}
                 >
                   Hopp over
                 </Button>
@@ -74,7 +78,7 @@ export default function Dellinje({
                 <Button
                   variant={"secondary"}
                   onClick={() => setTilstand("Klar")}
-                  className={styles["knapp-hvit-bakgrunn"]}
+                  className={styles.knappHvit}
                 >
                   Angre
                 </Button>
