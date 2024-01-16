@@ -30,7 +30,6 @@ export default function Dellinje({
 
   const [tilstand, setTilstand] = useState<TilstandType>("Klar");
 
-  // Translate state to a corresponding CSS class
   const tilstandStyle = (tilstand: TilstandType): string => {
     switch (tilstand) {
       case "HoppOver":

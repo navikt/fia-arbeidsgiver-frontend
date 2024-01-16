@@ -4,30 +4,32 @@ import React from "react";
 import { Spørsmål } from "./Spørsmål";
 import styles from "./spørsmålsside.module.css";
 import { Button } from "@navikt/ds-react";
-import { SpørsmålType } from "@/utils/typer";
-import { spørsmålsliste } from "@/utils/dummydata";
+import { partssamarbeid } from "@/utils/dummydata";
+import { KartleggingKategoriType } from "@/utils/typer";
 
 export default function Spørsmålsseksjon() {
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] = React.useState(0);
   const [svar, setSvar] = React.useState({} as Record<string, string>);
-  const spørsmål: SpørsmålType[] = spørsmålsliste;
+  const kartleggingsKategori: KartleggingKategoriType = partssamarbeid;
 
   return (
     <>
       <Spørsmålsheader
-        tilgjengeligeSpørsmål={spørsmål?.length}
+        tilgjengeligeSpørsmål={kartleggingsKategori?.spørsmål.length}
         aktivtSpørsmålindex={aktivtSpørsmålindex}
       />
       <div className={styles.spørsmålsseksjon}>
         <Spørsmål
-          spørsmål={spørsmål[aktivtSpørsmålindex]}
+          spørsmål={kartleggingsKategori.spørsmål[aktivtSpørsmålindex]}
           velgSvar={(spørsmålid, svaralternativid) =>
             setSvar((gamleSvar) => ({
               ...gamleSvar,
               [spørsmålid]: svaralternativid,
             }))
           }
-          valgtSvar={svar[spørsmål[aktivtSpørsmålindex]?.id]}
+          valgtSvar={
+            svar[kartleggingsKategori.spørsmål[aktivtSpørsmålindex]?.id]
+          }
         />
         <Button
           variant="secondary"
@@ -43,7 +45,9 @@ export default function Spørsmålsseksjon() {
         variant="secondary"
         className={styles.tilbakeknapp}
         onClick={() =>
-          setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length)
+          setAktivtSpørsmålindex(
+            (aktivtSpørsmålindex + 1) % kartleggingsKategori.spørsmål.length,
+          )
         }
       >
         DUMMY! neste

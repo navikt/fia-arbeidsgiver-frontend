@@ -10,42 +10,54 @@ import {
 } from "@navikt/ds-react";
 import styles from "./spørsmålsside.module.css";
 import React from "react";
-import Spørsmålsseksjon from "@/app/[uuid]/vert/sporsmal/Sporsmalsseksjon";
 import HeaderVert from "@/app/_components/HeaderVert";
 import FooterSporsmal from "@/app/[uuid]/vert/sporsmal/FooterSporsmal";
+import { hardkodetKartlegging } from "@/utils/dummydata";
+import SporsmalUtenSvar from "@/app/[uuid]/vert/sporsmal/SporsmalUtenSvar";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
   description: "Her kan du hoste litt kartlegging da",
 };
 
-export default function Oversiktside() {
+export default function Spørsmålsside() {
   const deltakere = 6;
-  const delnavn = "Partssamarbeid";
-  const delnummer = 1;
-  const tid = 10;
-  const punkter = 10;
+  const minPerSpørsmål = 2;
+  const kartlegging = hardkodetKartlegging;
+  const dummyIndex = 0;
+
   return (
     <Page contentBlockPadding="none" footer={<FooterSporsmal />}>
-      <HeaderVert deltakere={deltakere} />
+      <HeaderVert
+        deltakere={deltakere}
+        møtenr={kartlegging.møtenr}
+        virksomhetsnavn={kartlegging.virksomhetsnavn}
+      />
       <Page.Block as={"main"}>
         <Bleed marginInline="full" asChild>
           <Box padding="5" className={styles.bleedSpørsmål}>
             <HStack className={styles.bleedInnhold}>
               <VStack>
-                <BodyShort size="medium">Del {delnummer}</BodyShort>
-                <BodyShort size="large">{delnavn}</BodyShort>
+                <BodyShort size="medium">Del {dummyIndex + 1}</BodyShort>
+                <BodyShort size="large">
+                  {kartlegging.kategori[dummyIndex].hensikt}
+                </BodyShort>
               </VStack>
               <HStack gap={"4"}>
-                <Detail>{punkter} punkter</Detail>
-                <Detail>Beregnet tid: {tid} min</Detail>
+                <Detail>
+                  {kartlegging.kategori[dummyIndex].spørsmål.length} punkter
+                </Detail>
+                <Detail>
+                  Beregnet tid:{" "}
+                  {minPerSpørsmål *
+                    kartlegging.kategori[dummyIndex].spørsmål.length}{" "}
+                  min
+                </Detail>
               </HStack>
             </HStack>
           </Box>
         </Bleed>
-        <VStack gap="4" className={styles.spørsmålBody}>
-          <Spørsmålsseksjon />
-        </VStack>
+        <SporsmalUtenSvar kartleggingskategori={kartlegging.kategori[0]} />
       </Page.Block>
     </Page>
   );
