@@ -3,7 +3,7 @@
 import React from "react";
 import styles from "./spørsmålsside.module.css";
 import { BodyShort, Button, Heading, VStack } from "@navikt/ds-react";
-import { KartleggingsKategori, SpørsmålType } from "@/utils/typer";
+import { KartleggingsKategori } from "@/utils/typer";
 
 export default function SporsmalUtenSvar({
   kartleggingskategori,
