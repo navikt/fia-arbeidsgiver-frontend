@@ -7,10 +7,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { usePathname } from "next/navigation";
 
 export default function Logininformasjon() {
-  const lenke: string = usePathname().replace(
-    "vert/start",
-    "deltaker/sporsmal",
-  );
+  const lenke: string = usePathname().replace("vert/start", "deltaker/landing");
   const kode = "12345";
   return (
     <div className={styles.logininformasjon}>
