@@ -6,11 +6,14 @@ import styles from "./spørsmålsside.module.css";
 import { Button } from "@navikt/ds-react";
 import { partssamarbeid } from "@/utils/dummydata";
 import { KartleggingsType } from "@/utils/typer";
+import { useRouter } from "next/navigation";
 
 export default function Spørsmålsseksjon() {
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] = React.useState(0);
   const [svar, setSvar] = React.useState({} as Record<string, string>);
   const kartleggingsKategori: KartleggingsType = partssamarbeid;
+
+  const router = useRouter();
 
   return (
     <>
@@ -44,13 +47,16 @@ export default function Spørsmålsseksjon() {
       <Button
         variant="secondary"
         className={styles.tilbakeknapp}
-        onClick={() =>
-          setAktivtSpørsmålindex(
-            (aktivtSpørsmålindex + 1) % kartleggingsKategori.spørsmål.length,
-          )
-        }
+        onClick={() => {
+          aktivtSpørsmålindex + 1 === kartleggingsKategori.spørsmål.length
+            ? router.push("ferdig")
+            : setAktivtSpørsmålindex(
+                (aktivtSpørsmålindex + 1) %
+                  kartleggingsKategori.spørsmål.length,
+              );
+        }}
       >
-        DUMMY! neste
+        Neste
       </Button>
     </>
   );
