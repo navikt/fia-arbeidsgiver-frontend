@@ -1,15 +1,17 @@
+"use client";
+
 import React from "react";
 import styles from "./startside.module.css";
 import { Heading } from "@navikt/ds-react";
 import { QRCodeSVG } from "qrcode.react";
+import { usePathname } from "next/navigation";
 
-export default function Logininformasjon({
-  lenke,
-  kode,
-}: {
-  lenke: string;
-  kode: string;
-}) {
+export default function Logininformasjon() {
+  const lenke: string = usePathname().replace(
+    "vert/start",
+    "deltaker/sporsmal",
+  );
+  const kode = "12345";
   return (
     <div className={styles.logininformasjon}>
       <Heading level="2" size="medium">

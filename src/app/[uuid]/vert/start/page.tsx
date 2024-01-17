@@ -1,6 +1,5 @@
 import { Heading, Page } from "@navikt/ds-react";
 import type { Metadata } from "next";
-
 import styles from "./startside.module.css";
 import Logininformasjon from "./Logininformasjon";
 import Status from "./Status";
@@ -12,8 +11,6 @@ export const metadata: Metadata = {
 
 export default function Startside() {
   const antallDeltakere = 2;
-  const lenke = "https://www.nrk.no";
-  const kode = "12345";
 
   return (
     <Page className={styles.startside}>
@@ -26,7 +23,7 @@ export default function Startside() {
         </Heading>
       </Page.Block>
       <Page.Block gutters width="xl" className={styles.sideinnhold}>
-        <Logininformasjon lenke={lenke} kode={kode} />
+        <Logininformasjon />
         <Status antallDeltakere={antallDeltakere} />
       </Page.Block>
     </Page>
