@@ -11,15 +11,9 @@ export const metadata: Metadata = {
 
 export default function Ferdigside() {
   const deltakere = 6;
-  const møtenr = 1;
-  const virksomhetsnavn = "todo- hent navn";
   return (
     <Page contentBlockPadding="none">
-      <HeaderVert
-        deltakere={deltakere}
-        møtenr={møtenr}
-        virksomhetsnavn={virksomhetsnavn}
-      />
+      <HeaderVert deltakere={deltakere} />
       <FerdigInnhold />
     </Page>
   );

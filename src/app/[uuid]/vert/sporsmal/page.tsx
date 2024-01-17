@@ -12,8 +12,8 @@ import styles from "./spørsmålsside.module.css";
 import React from "react";
 import HeaderVert from "@/app/_components/HeaderVert";
 import FooterSporsmal from "@/app/[uuid]/vert/sporsmal/FooterSporsmal";
-import { hardkodetKartlegging } from "@/utils/dummydata";
 import SporsmalUtenSvar from "@/app/[uuid]/vert/sporsmal/SporsmalUtenSvar";
+import { partssamarbeid, sykefraværsarbeid } from "@/utils/dummydata";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -23,16 +23,12 @@ export const metadata: Metadata = {
 export default function Spørsmålsside() {
   const deltakere = 6;
   const minPerSpørsmål = 2;
-  const kartlegging = hardkodetKartlegging;
+  const kartlegginger = [partssamarbeid, sykefraværsarbeid, partssamarbeid];
   const dummyIndex = 0;
 
   return (
     <Page contentBlockPadding="none" footer={<FooterSporsmal />}>
-      <HeaderVert
-        deltakere={deltakere}
-        møtenr={kartlegging.møtenr}
-        virksomhetsnavn={kartlegging.virksomhetsnavn}
-      />
+      <HeaderVert deltakere={deltakere} />
       <Page.Block as={"main"}>
         <Bleed marginInline="full" asChild>
           <Box padding="5" className={styles.bleedSpørsmål}>
@@ -40,24 +36,23 @@ export default function Spørsmålsside() {
               <VStack>
                 <BodyShort size="medium">Del {dummyIndex + 1}</BodyShort>
                 <BodyShort size="large">
-                  {kartlegging.kategori[dummyIndex].hensikt}
+                  {kartlegginger[dummyIndex].hensikt}
                 </BodyShort>
               </VStack>
               <HStack gap={"4"}>
                 <Detail>
-                  {kartlegging.kategori[dummyIndex].spørsmål.length} punkter
+                  {kartlegginger[dummyIndex].spørsmål.length} punkter
                 </Detail>
                 <Detail>
                   Beregnet tid:{" "}
-                  {minPerSpørsmål *
-                    kartlegging.kategori[dummyIndex].spørsmål.length}{" "}
+                  {minPerSpørsmål * kartlegginger[dummyIndex].spørsmål.length}{" "}
                   min
                 </Detail>
               </HStack>
             </HStack>
           </Box>
         </Bleed>
-        <SporsmalUtenSvar kartleggingskategori={kartlegging.kategori[0]} />
+        <SporsmalUtenSvar kartleggingskategori={kartlegginger[0]} />
       </Page.Block>
     </Page>
   );

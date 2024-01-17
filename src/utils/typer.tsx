@@ -1,12 +1,6 @@
 "use client";
 
-export type Kartlegging = {
-  møtenr: number;
-  virksomhetsnavn: string;
-  kategori: KartleggingsKategori[];
-};
-
-export type KartleggingsKategori = {
+export type KartleggingsType = {
   tiltak: string;
   hensikt: string;
   spørsmål: SpørsmålType[];

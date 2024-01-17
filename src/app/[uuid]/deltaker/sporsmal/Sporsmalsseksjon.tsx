@@ -5,12 +5,12 @@ import { Spørsmål } from "./Spørsmål";
 import styles from "./spørsmålsside.module.css";
 import { Button } from "@navikt/ds-react";
 import { partssamarbeid } from "@/utils/dummydata";
-import { KartleggingsKategori } from "@/utils/typer";
+import { KartleggingsType } from "@/utils/typer";
 
 export default function Spørsmålsseksjon() {
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] = React.useState(0);
   const [svar, setSvar] = React.useState({} as Record<string, string>);
-  const kartleggingsKategori: KartleggingsKategori = partssamarbeid;
+  const kartleggingsKategori: KartleggingsType = partssamarbeid;
 
   return (
     <>

@@ -3,12 +3,12 @@
 import React from "react";
 import styles from "./spørsmålsside.module.css";
 import { BodyShort, Button, Heading, VStack } from "@navikt/ds-react";
-import { KartleggingsKategori } from "@/utils/typer";
+import { KartleggingsType } from "@/utils/typer";
 
 export default function SporsmalUtenSvar({
   kartleggingskategori,
 }: {
-  kartleggingskategori: KartleggingsKategori;
+  kartleggingskategori: KartleggingsType;
 }) {
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] = React.useState(0);
   const spørsmål = kartleggingskategori;
