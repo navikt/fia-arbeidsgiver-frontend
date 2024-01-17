@@ -1,7 +1,7 @@
-import { BodyShort, Heading, Page } from "@navikt/ds-react";
+import { Heading, Page } from "@navikt/ds-react";
 import styles from "./vert.module.css";
-import { PersonGroupIcon } from "@navikt/aksel-icons";
 import React from "react";
+import { Deltakere } from "@/app/_components/Deltakere";
 
 export default function HeaderVert({ deltakere }: { deltakere: number }) {
   return (
@@ -9,10 +9,7 @@ export default function HeaderVert({ deltakere }: { deltakere: number }) {
       <Heading spacing level={"1"} size={"large"}>
         IA kartleggingsmøte
       </Heading>
-      <BodyShort className={styles.deltakere}>
-        <PersonGroupIcon />
-        {deltakere}
-      </BodyShort>
+      <Deltakere deltakere={deltakere} />
     </Page.Block>
   );
 }

@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { PersonGroupIcon } from "@navikt/aksel-icons";
 import { Button, Heading } from "@navikt/ds-react";
 
 import styles from "./startside.module.css";
 import { useRouter } from "next/navigation";
+import { Deltakere } from "@/app/_components/Deltakere";
 
 export default function Status({
   antallDeltakere,
@@ -15,10 +15,7 @@ export default function Status({
   const router = useRouter();
   return (
     <div className={styles.status}>
-      <span>
-        <PersonGroupIcon title="personer" fontSize={"3rem"} />
-        {antallDeltakere}
-      </span>
+      <Deltakere deltakere={antallDeltakere} />
       <Heading level="2" size="medium" spacing>
         Venter på deltakere...
       </Heading>
