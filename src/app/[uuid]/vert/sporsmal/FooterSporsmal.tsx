@@ -11,7 +11,11 @@ export default function FooterSporsmal() {
   return (
     <Page.Block as="footer">
       <VStack gap={"4"} className={styles.footer}>
-        <Button variant={"secondary"} className={styles.knappHvitBred}>
+        <Button
+          variant={"secondary"}
+          className={styles.knappHvitBred}
+          onClick={() => router.push("oversikt")}
+        >
           Tilbake
         </Button>
         <Button
