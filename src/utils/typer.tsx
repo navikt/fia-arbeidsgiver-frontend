@@ -12,7 +12,7 @@ export type KartleggingsKategori = {
   spørsmål: SpørsmålType[];
 };
 
-type SpørsmålType = {
+export type SpørsmålType = {
   id: string;
   spørsmål: string;
   svaralternativer: Svaralternativ[];

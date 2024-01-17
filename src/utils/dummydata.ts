@@ -1,4 +1,4 @@
-import { Kartlegging, KartleggingKategoriType, SpørsmålType } from "./typer";
+import { Kartlegging, KartleggingsKategori, SpørsmålType } from "./typer";
 
 export const spørsmålsliste: SpørsmålType[] = [
   {
@@ -48,7 +48,7 @@ export const eksempelFraBackend: SpørsmålType[] = [
   },
 ];
 
-export const partssamarbeid: KartleggingKategoriType = {
+export const partssamarbeid: KartleggingsKategori = {
   tiltak: "Partssamarbeid",
   hensikt:
     "Få et bilde av hvordan partsgruppen jobber med det forebyggende sykefraværsarbeidet",
@@ -80,7 +80,7 @@ export const partssamarbeid: KartleggingKategoriType = {
   ],
 };
 
-export const sykefraværsarbeid: KartleggingKategoriType = {
+export const sykefraværsarbeid: KartleggingsKategori = {
   tiltak: "Sykefravæversarbeid",
   hensikt:
     "Få et bilde av hvordan partsgruppen jobber med det forebyggende sykefraværsarbeidet",
@@ -113,6 +113,6 @@ export const sykefraværsarbeid: KartleggingKategoriType = {
 
 export const hardkodetKartlegging: Kartlegging = {
   møtenr: 1,
-  virksomhetsnavn: "flyttpåtingDotCom",
+  virksomhetsnavn: "Test virksomet A",
   kategori: [partssamarbeid, sykefraværsarbeid, partssamarbeid],
 };
