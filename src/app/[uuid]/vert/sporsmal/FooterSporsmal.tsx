@@ -13,13 +13,6 @@ export default function FooterSporsmal() {
       <VStack gap={"4"} className={styles.footer}>
         <Button
           variant={"secondary"}
-          className={styles.knappHvitBred}
-          onClick={() => router.push("oversikt")}
-        >
-          Tilbake
-        </Button>
-        <Button
-          variant={"secondary"}
           onClick={() => router.push("oversikt")}
           className={styles.knappHvitBred}
         >

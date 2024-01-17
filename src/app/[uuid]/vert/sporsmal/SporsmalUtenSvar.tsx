@@ -11,29 +11,46 @@ export default function SporsmalUtenSvar({
   kartleggingskategori: KartleggingsType;
 }) {
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] = React.useState(0);
-  const spørsmål = kartleggingskategori;
 
   return (
     <VStack gap="4" className={styles.spørsmålBody}>
       <VStack align={"center"}>
         <Heading level={"2"} size={"small"} spacing>
-          {aktivtSpørsmålindex + 1}/{spørsmål?.spørsmål.length}{" "}
+          {aktivtSpørsmålindex + 1}/{kartleggingskategori?.spørsmål.length}{" "}
           {kartleggingskategori.tiltak} i virksomheten
         </Heading>
         <BodyShort size={"large"} spacing>
-          {spørsmål.spørsmål[aktivtSpørsmålindex].spørsmål}
+          {kartleggingskategori.spørsmål[aktivtSpørsmålindex].spørsmål}
         </BodyShort>
-        <Button
-          variant="secondary"
-          className={styles.knappHvitBred}
-          onClick={() =>
-            setAktivtSpørsmålindex(
-              (aktivtSpørsmålindex + 1) % spørsmål.spørsmål.length,
-            )
-          }
-        >
-          Neste
-        </Button>
+        {aktivtSpørsmålindex + 1 < kartleggingskategori.spørsmål.length && (
+          <Button
+            variant="secondary"
+            className={styles.knappHvitBred}
+            onClick={() => {
+              setAktivtSpørsmålindex(
+                (aktivtSpørsmålindex + 1) %
+                  kartleggingskategori.spørsmål.length,
+              );
+            }}
+          >
+            Neste
+          </Button>
+        )}
+
+        {aktivtSpørsmålindex + 1 > 1 && (
+          <Button
+            variant="secondary"
+            className={styles.knappHvitBred}
+            onClick={() => {
+              setAktivtSpørsmålindex(
+                (aktivtSpørsmålindex - 1) %
+                  kartleggingskategori.spørsmål.length,
+              );
+            }}
+          >
+            Tilbake
+          </Button>
+        )}
       </VStack>
     </VStack>
   );

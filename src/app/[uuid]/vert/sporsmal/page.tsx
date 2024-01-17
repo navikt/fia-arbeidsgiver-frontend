@@ -13,7 +13,11 @@ import React from "react";
 import HeaderVert from "@/app/_components/HeaderVert";
 import FooterSporsmal from "@/app/[uuid]/vert/sporsmal/FooterSporsmal";
 import SporsmalUtenSvar from "@/app/[uuid]/vert/sporsmal/SporsmalUtenSvar";
-import { partssamarbeid, sykefraværsarbeid } from "@/utils/dummydata";
+import {
+  dummySpørsmål,
+  partssamarbeid,
+  sykefraværsarbeid,
+} from "@/utils/dummydata";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -23,8 +27,8 @@ export const metadata: Metadata = {
 export default function Spørsmålsside() {
   const deltakere = 6;
   const minPerSpørsmål = 2;
-  const kartlegginger = [partssamarbeid, sykefraværsarbeid, partssamarbeid];
-  const dummyIndex = 0;
+  const kartlegginger = [partssamarbeid, sykefraværsarbeid, dummySpørsmål];
+  const dummyIndex = 2;
 
   return (
     <Page contentBlockPadding="none" footer={<FooterSporsmal />}>
@@ -52,7 +56,7 @@ export default function Spørsmålsside() {
             </HStack>
           </Box>
         </Bleed>
-        <SporsmalUtenSvar kartleggingskategori={kartlegginger[0]} />
+        <SporsmalUtenSvar kartleggingskategori={kartlegginger[dummyIndex]} />
       </Page.Block>
     </Page>
   );

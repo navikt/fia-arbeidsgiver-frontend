@@ -14,6 +14,49 @@ import styles from "./oversikt.module.css";
 import { useRouter } from "next/navigation";
 
 type TilstandType = "HoppOver" | "Klar" | "Ferdig";
+
+export default function Dellinje({
+  delnummer,
+  delnavn,
+  punkter,
+  tid,
+}: {
+  delnummer: number;
+  delnavn: string;
+  punkter: number;
+  tid: number;
+}) {
+  const [tilstand, setTilstand] = useState<TilstandType>("Klar");
+
+  const tilstandStyle = (tilstand: TilstandType): string => {
+    switch (tilstand) {
+      case "HoppOver":
+        return styles.bleedHoppetOver;
+      case "Ferdig":
+        return styles.bleedFerdig;
+      default:
+        return styles.bleedKlar;
+    }
+  };
+
+  return (
+    <Bleed marginInline="full" asChild>
+      <Box padding="5" className={tilstandStyle(tilstand)}>
+        <HStack className={styles.bleedInnhold}>
+          <VStack>
+            <BodyShort size="medium">Del {delnummer}</BodyShort>
+            <BodyShort size="large">{delnavn}</BodyShort>
+          </VStack>
+          <HStack gap={"4"}>
+            <Detail>{punkter} punkter</Detail>
+            <Detail>Beregnet tid: {tid} min</Detail>
+            <DellinjeMedState tilstand={tilstand} setTilstand={setTilstand} />
+          </HStack>
+        </HStack>
+      </Box>
+    </Bleed>
+  );
+}
 function DellinjeMedState({
   tilstand,
   setTilstand,
@@ -56,48 +99,5 @@ function DellinjeMedState({
       )}
       {tilstand === "Ferdig" && <Detail>Fullført</Detail>}
     </>
-  );
-}
-
-export default function Dellinje({
-  delnummer,
-  delnavn,
-  punkter,
-  tid,
-}: {
-  delnummer: number;
-  delnavn: string;
-  punkter: number;
-  tid: number;
-}) {
-  const [tilstand, setTilstand] = useState<TilstandType>("Klar");
-
-  const tilstandStyle = (tilstand: TilstandType): string => {
-    switch (tilstand) {
-      case "HoppOver":
-        return styles.bleedHoppetOver;
-      case "Ferdig":
-        return styles.bleedFerdig;
-      default:
-        return styles.bleedKlar;
-    }
-  };
-
-  return (
-    <Bleed marginInline="full" asChild>
-      <Box padding="5" className={tilstandStyle(tilstand)}>
-        <HStack className={styles.bleedInnhold}>
-          <VStack>
-            <BodyShort size="medium">Del {delnummer}</BodyShort>
-            <BodyShort size="large">{delnavn}</BodyShort>
-          </VStack>
-          <HStack gap={"4"}>
-            <Detail>{punkter} punkter</Detail>
-            <Detail>Beregnet tid: {tid} min</Detail>
-            <DellinjeMedState tilstand={tilstand} setTilstand={setTilstand} />
-          </HStack>
-        </HStack>
-      </Box>
-    </Bleed>
   );
 }

@@ -4,7 +4,11 @@ import { Page, VStack } from "@navikt/ds-react";
 import React from "react";
 import FooterOversikt from "@/app/[uuid]/vert/oversikt/FooterOversikt";
 import HeaderVert from "@/app/_components/HeaderVert";
-import { partssamarbeid, sykefraværsarbeid } from "@/utils/dummydata";
+import {
+  dummySpørsmål,
+  partssamarbeid,
+  sykefraværsarbeid,
+} from "@/utils/dummydata";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -14,7 +18,7 @@ export const metadata: Metadata = {
 export default function Oversiktside() {
   const deltakere = 6;
   const minPerSpørsmål = 2;
-  const kartlegginger = [partssamarbeid, sykefraværsarbeid, partssamarbeid];
+  const kartlegginger = [partssamarbeid, sykefraværsarbeid, dummySpørsmål];
 
   return (
     <Page contentBlockPadding="none">
