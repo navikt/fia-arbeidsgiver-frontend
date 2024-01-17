@@ -13,6 +13,52 @@ import {
 import styles from "./oversikt.module.css";
 import { useRouter } from "next/navigation";
 
+type TilstandType = "HoppOver" | "Klar" | "Ferdig";
+function DellinjeMedState({
+  tilstand,
+  setTilstand,
+}: {
+  tilstand: TilstandType;
+  setTilstand: React.Dispatch<React.SetStateAction<TilstandType>>;
+}) {
+  const router = useRouter();
+  return (
+    <>
+      {tilstand === "Klar" && (
+        <>
+          <Button
+            variant={"secondary"}
+            onClick={() => router.push("sporsmal")}
+            className={styles.knappHvitBred}
+          >
+            Start
+          </Button>
+          <Button
+            variant={"secondary"}
+            onClick={() => setTilstand("HoppOver")}
+            className={styles.knappHvit}
+          >
+            Hopp over
+          </Button>
+        </>
+      )}
+      {tilstand === "HoppOver" && (
+        <>
+          <Detail>Hoppet over</Detail>
+          <Button
+            variant={"secondary"}
+            onClick={() => setTilstand("Klar")}
+            className={styles.knappHvit}
+          >
+            Angre
+          </Button>
+        </>
+      )}
+      {tilstand === "Ferdig" && <Detail>Fullført</Detail>}
+    </>
+  );
+}
+
 export default function Dellinje({
   delnummer,
   delnavn,
@@ -24,10 +70,6 @@ export default function Dellinje({
   punkter: number;
   tid: number;
 }) {
-  type TilstandType = "HoppOver" | "Klar" | "Ferdig";
-
-  const router = useRouter();
-
   const [tilstand, setTilstand] = useState<TilstandType>("Klar");
 
   const tilstandStyle = (tilstand: TilstandType): string => {
@@ -52,42 +94,7 @@ export default function Dellinje({
           <HStack gap={"4"}>
             <Detail>{punkter} punkter</Detail>
             <Detail>Beregnet tid: {tid} min</Detail>
-            {tilstand === "Klar" && (
-              <>
-                <Button
-                  variant={"secondary"}
-                  // onClick={() => setTilstand("Ferdig")}
-                  onClick={() => router.push("sporsmal")}
-                  className={styles.knappHvitBred}
-                >
-                  Start
-                </Button>
-                <Button
-                  variant={"secondary"}
-                  onClick={() => setTilstand("HoppOver")}
-                  className={styles.knappHvit}
-                >
-                  Hopp over
-                </Button>
-              </>
-            )}
-            {tilstand === "HoppOver" && (
-              <>
-                <Detail>Hoppet over</Detail>
-                <Button
-                  variant={"secondary"}
-                  onClick={() => setTilstand("Klar")}
-                  className={styles.knappHvit}
-                >
-                  Angre
-                </Button>
-              </>
-            )}
-            {tilstand === "Ferdig" && (
-              <>
-                <Detail>Fullført</Detail>
-              </>
-            )}
+            <DellinjeMedState tilstand={tilstand} setTilstand={setTilstand} />
           </HStack>
         </HStack>
       </Box>
