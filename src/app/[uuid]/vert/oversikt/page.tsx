@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Dellinje from "./Dellinje";
 import { Page, VStack } from "@navikt/ds-react";
 import React from "react";
-import FooterOversikt from "@/app/[uuid]/vert/oversikt/FooterOversikt";
+import FooterOversikt from "./FooterOversikt";
 import HeaderVert from "@/app/_components/HeaderVert";
 import {
   dummySpørsmål,

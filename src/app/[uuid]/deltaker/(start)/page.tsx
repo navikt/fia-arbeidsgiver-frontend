@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BodyShort, Heading, Page, VStack } from "@navikt/ds-react";
 import React from "react";
-import StartsideBody from "@/app/[uuid]/deltaker/(start)/StartsideBody";
+import StartsideBody from "./StartsideBody";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",

@@ -1,5 +1,5 @@
 import { Heading, Page } from "@navikt/ds-react";
-import styles from "./vert.module.css";
+import styles from "./komponenter.module.css";
 import React from "react";
 import { Deltakere } from "@/app/_components/Deltakere";
 

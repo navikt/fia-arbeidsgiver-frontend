@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
-import {
-  Bleed,
-  BodyShort,
-  Box,
-  Detail,
-  HStack,
-  Page,
-  VStack,
-} from "@navikt/ds-react";
-import styles from "./spørsmålsside.module.css";
+import { Bleed, BodyShort, Box, HStack, Page, VStack } from "@navikt/ds-react";
+import spørsmålStyles from "./spørsmålsside.module.css";
+import vertStyles from "../vert.module.css";
 import React from "react";
 import HeaderVert from "@/app/_components/HeaderVert";
-import FooterSporsmal from "@/app/[uuid]/vert/sporsmal/FooterSporsmal";
-import SporsmalUtenSvar from "@/app/[uuid]/vert/sporsmal/SporsmalUtenSvar";
+import FooterSporsmal from "./FooterSporsmal";
+import SporsmalUtenSvar from "./SporsmalUtenSvar";
 import {
   dummySpørsmål,
   partssamarbeid,
@@ -25,34 +18,23 @@ export const metadata: Metadata = {
 };
 
 export default function Spørsmålsside() {
-  const deltakere = 6;
-  const minPerSpørsmål = 2;
   const kartlegginger = [partssamarbeid, sykefraværsarbeid, dummySpørsmål];
   const dummyIndex = 2;
+  const deltakere = 6;
 
   return (
     <Page contentBlockPadding="none" footer={<FooterSporsmal />}>
       <HeaderVert deltakere={deltakere} />
       <Page.Block as={"main"}>
         <Bleed marginInline="full" asChild>
-          <Box padding="5" className={styles.bleedSpørsmål}>
-            <HStack className={styles.bleedInnhold}>
+          <Box padding="5" className={vertStyles.bleedKlar}>
+            <HStack className={spørsmålStyles.bleedInnhold}>
               <VStack>
                 <BodyShort size="medium">Del {dummyIndex + 1}</BodyShort>
                 <BodyShort size="large">
                   {kartlegginger[dummyIndex].hensikt}
                 </BodyShort>
               </VStack>
-              <HStack gap={"4"}>
-                <Detail>
-                  {kartlegginger[dummyIndex].spørsmål.length} punkter
-                </Detail>
-                <Detail>
-                  Beregnet tid:{" "}
-                  {minPerSpørsmål * kartlegginger[dummyIndex].spørsmål.length}{" "}
-                  min
-                </Detail>
-              </HStack>
             </HStack>
           </Box>
         </Bleed>

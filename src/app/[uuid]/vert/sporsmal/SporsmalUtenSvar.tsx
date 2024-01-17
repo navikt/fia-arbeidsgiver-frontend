@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import styles from "./spørsmålsside.module.css";
+import vertStyles from "../vert.module.css";
 import { BodyShort, Button, Heading, VStack } from "@navikt/ds-react";
 import { KartleggingsType } from "@/utils/typer";
 
@@ -13,7 +13,7 @@ export default function SporsmalUtenSvar({
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] = React.useState(0);
 
   return (
-    <VStack gap="4" className={styles.spørsmålBody}>
+    <VStack gap="4">
       <VStack align={"center"}>
         <Heading level={"2"} size={"small"} spacing>
           {aktivtSpørsmålindex + 1}/{kartleggingskategori?.spørsmål.length}{" "}
@@ -25,7 +25,7 @@ export default function SporsmalUtenSvar({
         {aktivtSpørsmålindex + 1 < kartleggingskategori.spørsmål.length && (
           <Button
             variant="secondary"
-            className={styles.knappHvitBred}
+            className={vertStyles.knappHvitBred}
             onClick={() => {
               setAktivtSpørsmålindex(
                 (aktivtSpørsmålindex + 1) %
@@ -36,11 +36,10 @@ export default function SporsmalUtenSvar({
             Neste
           </Button>
         )}
-
         {aktivtSpørsmålindex + 1 > 1 && (
           <Button
             variant="secondary"
-            className={styles.knappHvitBred}
+            className={vertStyles.knappHvitBred}
             onClick={() => {
               setAktivtSpørsmålindex(
                 (aktivtSpørsmålindex - 1) %

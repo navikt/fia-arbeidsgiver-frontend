@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Bleed, Box, Heading, HStack, Page } from "@navikt/ds-react";
 import React from "react";
-import styles from "@/app/[uuid]/vert/oversikt/oversikt.module.css";
-import { FerdigInnhold } from "@/app/[uuid]/deltaker/ferdig/ferdigInnhold";
+import deltakerStyles from "../deltaker.module.css";
+import { FerdigInnhold } from "./ferdigInnhold";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -13,13 +13,13 @@ export default function Ferdigside() {
   return (
     <Page contentBlockPadding="none">
       <Page.Block gutters width="lg">
-        <Heading level="1" size="medium">
+        <Heading level="1" size="large">
           IA kartleggingsmøte
         </Heading>
         <Bleed marginInline="full" asChild>
-          <Box padding="5" className={styles.bleedFerdig}>
-            <HStack className={styles.bleedInnhold}>
-              <Heading level={"2"} size={"large"}>
+          <Box padding="5" className={deltakerStyles.bleedFerdig}>
+            <HStack justify={"center"}>
+              <Heading level={"2"} size={"medium"}>
                 Fullført
               </Heading>
             </HStack>

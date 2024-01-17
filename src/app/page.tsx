@@ -1,14 +1,11 @@
-import styles from "./page.module.css";
-
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main>
       <h1>Arbeidsgiverkartlegging - Testsider:</h1>
       <ol>
         <li>
           <a href="/karglegging-id/vert">Vert (start)</a>
         </li>
-
         <li>
           <a href="/karglegging-id/deltaker">Deltaker (start)</a>
         </li>
