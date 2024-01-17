@@ -12,7 +12,7 @@ export function FerdigInnhold() {
         Bra jobbet! IA kartleggingen er fullført. Rådgiveren sier litt om hva
         som skjer videre.
       </BodyShort>
-      <Button variant={"secondary"} onClick={() => router.push("landing")}>
+      <Button variant={"secondary"} onClick={() => router.push("../deltaker")}>
         Lukk vindu
       </Button>
     </VStack>

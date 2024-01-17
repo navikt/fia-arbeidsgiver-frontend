@@ -19,7 +19,10 @@ export default function Status({
       <Heading level="2" size="medium" spacing>
         Venter på deltakere...
       </Heading>
-      <Button variant={"secondary"} onClick={() => router.push("oversikt")}>
+      <Button
+        variant={"secondary"}
+        onClick={() => router.push("vert/oversikt")}
+      >
         Kom i gang
       </Button>
     </div>

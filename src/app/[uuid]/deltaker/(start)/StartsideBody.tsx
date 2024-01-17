@@ -2,10 +2,10 @@
 
 import { Button, HStack, TextField } from "@navikt/ds-react";
 import React, { useState } from "react";
-import styles from "./landingsside.module.css";
+import styles from "./startside.module.css";
 import { useRouter } from "next/navigation";
 
-export default function LandingssideBody() {
+export default function StartsideBody() {
   const router = useRouter();
   const [inputVerdier, setInputVerdier] = useState({
     input1: "",
@@ -84,7 +84,7 @@ export default function LandingssideBody() {
         variant={"secondary"}
         onClick={() => {
           håndterPinkode();
-          router.push("sporsmal");
+          router.push("deltaker/sporsmal");
         }}
       >
         Bli med!

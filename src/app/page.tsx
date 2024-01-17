@@ -6,13 +6,17 @@ export default function Home() {
       <h1>Arbeidsgiverkartlegging - Testsider:</h1>
       <ol>
         <li>
+          <a href="/karglegging-id/vert">Vert (start)</a>
+        </li>
+
+        <li>
+          <a href="/karglegging-id/deltaker">Deltaker (start)</a>
+        </li>
+        <li>
           <a href="/karglegging-id/deltaker/ferdig">Deltaker/Ferdig</a>
         </li>
         <li>
           <a href="/karglegging-id/deltaker/sporsmal">Deltaker/Sporsmal</a>
-        </li>
-        <li>
-          <a href="/karglegging-id/deltaker/landing">Deltaker/landing</a>
         </li>
         <li>
           <a href="/karglegging-id/vert/ferdig">Vert/Ferdig</a>
@@ -22,9 +26,6 @@ export default function Home() {
         </li>
         <li>
           <a href="/karglegging-id/vert/sporsmal">Vert/Sporsmal</a>
-        </li>
-        <li>
-          <a href="/karglegging-id/vert/start">Vert/Start</a>
         </li>
       </ol>
     </main>

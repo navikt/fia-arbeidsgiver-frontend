@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BodyShort, Heading, Page, VStack } from "@navikt/ds-react";
 import React from "react";
-import LandingssideBody from "@/app/[uuid]/deltaker/landing/landingssideBody";
+import StartsideBody from "@/app/[uuid]/deltaker/(start)/StartsideBody";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -17,7 +17,7 @@ export default function Landingsside() {
             IA kartleggingsmøte
           </Heading>
           <BodyShort>Skriv in koden du ser på rådgivers skjerm</BodyShort>
-          <LandingssideBody />
+          <StartsideBody />
         </VStack>
       </Page.Block>
     </Page>
