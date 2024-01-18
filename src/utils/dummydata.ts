@@ -1,4 +1,40 @@
+import { spørreundersøkelseDTO } from "@/app/_types/spørreundersøkelseDTO";
 import { KartleggingsType } from "./typer";
+import { bliMedDTO } from "@/app/_types/bliMedDTO";
+
+export const dummySpørreundersøkelse: spørreundersøkelseDTO = [
+  {
+    id: "3-1",
+    spørsmål: "Et spørsmål med to alternativer",
+    svaralternativer: [
+      { id: "3-1-1", tekst: "A" },
+      { id: "3-1-2", tekst: "B" },
+    ],
+  },
+  {
+    id: "3-2",
+    spørsmål: "Ananas på pizza?",
+    svaralternativer: [
+      { id: "3-2-1", tekst: "JA" },
+      { id: "3-2-2", tekst: "NEI" },
+    ],
+  },
+  {
+    id: "3-3",
+    spørsmål: "A, B, C eller D?",
+    svaralternativer: [
+      { id: "3-3-1", tekst: "A" },
+      { id: "3-3-2", tekst: "B" },
+      { id: "3-3-3", tekst: "C" },
+      { id: "3-3-4", tekst: "D" },
+    ],
+  },
+];
+
+export const dummyBliMed: bliMedDTO = {
+  spørreundersøkelseId: "f7065ba4-56ed-4f61-8215-7579e3d208de",
+  sesjonsId: "790fba4d-1c9f-4c20-a019-d574d9542421",
+};
 
 export const dummySpørsmål: KartleggingsType = {
   tiltak: "Testspørsmål",
