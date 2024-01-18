@@ -2,14 +2,14 @@ import React from "react";
 import { Button } from "@navikt/ds-react";
 
 import styles from "./spørsmålsside.module.css";
-import { SpørsmålType } from "@/utils/typer";
+import { spørsmålDTO } from "@/app/_types/spørreundersøkelseDTO";
 
 export function Spørsmål({
   spørsmål,
   velgSvar,
   valgtSvar,
 }: {
-  spørsmål: SpørsmålType;
+  spørsmål: spørsmålDTO;
   velgSvar: (spørsmålId: string, svaralternativId: string) => void;
   valgtSvar?: string;
 }) {

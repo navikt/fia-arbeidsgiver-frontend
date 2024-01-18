@@ -4,8 +4,13 @@ import { Button, HStack, TextField } from "@navikt/ds-react";
 import React, { useState } from "react";
 import styles from "./startside.module.css";
 import { useRouter } from "next/navigation";
+import { fetchBliMed } from "@/app/_api_hooks/bliMed";
 
-export default function StartsideBody() {
+export default function StartsideBody({
+  undersøkelsesID,
+}: {
+  undersøkelsesID: string;
+}) {
   const router = useRouter();
   const [inputVerdier, setInputVerdier] = useState({
     input1: "",
@@ -26,6 +31,7 @@ export default function StartsideBody() {
     const verdier = Object.values(inputVerdier).join("");
     console.log(`Pinkode skrevet : ${verdier}`);
   };
+
   return (
     <>
       <HStack wrap={false} justify={"center"} gap={"3"}>
@@ -84,6 +90,7 @@ export default function StartsideBody() {
         variant={"secondary"}
         onClick={() => {
           håndterPinkode();
+          fetchBliMed(undersøkelsesID);
           router.push("deltaker/sporsmal");
         }}
       >

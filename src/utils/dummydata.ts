@@ -4,29 +4,29 @@ import { bliMedDTO } from "@/app/_types/bliMedDTO";
 
 export const dummySpørreundersøkelse: spørreundersøkelseDTO = [
   {
-    id: "3-1",
+    id: "ab0fa573-2fde-4bdb-8913-aa3ef7d774df",
     spørsmål: "Et spørsmål med to alternativer",
     svaralternativer: [
-      { id: "3-1-1", tekst: "A" },
-      { id: "3-1-2", tekst: "B" },
+      { id: "cab2214b-975b-412b-9524-7f9e908c6f31", tekst: "A" },
+      { id: "fb8bc8e5-ad82-4de8-860e-21a218cdac13", tekst: "B" },
     ],
   },
   {
-    id: "3-2",
+    id: "a9f2d339-bbcd-4651-9794-fa5740c4edb8",
     spørsmål: "Ananas på pizza?",
     svaralternativer: [
-      { id: "3-2-1", tekst: "JA" },
-      { id: "3-2-2", tekst: "NEI" },
+      { id: "be9c44d6-f4bb-44fb-b4e4-d363e13f39f1", tekst: "JA" },
+      { id: "517f047a-91c9-44ed-950a-c1f628118a69", tekst: "NEI" },
     ],
   },
   {
-    id: "3-3",
+    id: "903371a4-14cf-4a03-8e00-a50392bf351e",
     spørsmål: "A, B, C eller D?",
     svaralternativer: [
-      { id: "3-3-1", tekst: "A" },
-      { id: "3-3-2", tekst: "B" },
-      { id: "3-3-3", tekst: "C" },
-      { id: "3-3-4", tekst: "D" },
+      { id: "710f032f-7d50-4b0c-af98-aed20706f9f0", tekst: "A" },
+      { id: "1d50bd61-ca2a-4173-84ee-24ee742e0cf0", tekst: "B" },
+      { id: "4be0b0a5-28e8-4403-8392-414ec290e473", tekst: "C" },
+      { id: "56aa0482-da92-416d-88ac-1e96d96d20a3", tekst: "D" },
     ],
   },
 ];

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Her kan du delta på litt litt kartlegging da",
 };
 
-export default function Landingsside() {
+export default function Landingsside({ params }: { params: { uuid: string } }) {
   return (
     <Page contentBlockPadding="none">
       <Page.Block gutters width="lg">
@@ -17,7 +17,7 @@ export default function Landingsside() {
             IA kartleggingsmøte
           </Heading>
           <BodyShort>Skriv in koden du ser på rådgivers skjerm</BodyShort>
-          <StartsideBody />
+          <StartsideBody undersøkelsesID={params?.uuid} />
         </VStack>
       </Page.Block>
     </Page>
