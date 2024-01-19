@@ -2,9 +2,11 @@ import React from "react";
 import type { Metadata } from "next";
 import SpørsmålBody from "./SporsmalBody";
 import { getCookies } from "cookies-next";
-import { SESSION_ID_STORAGE_KEY } from "@/app/_api_hooks/bliMed";
-import { SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY } from "@/app/_api_hooks/enkeltSvar";
 import { cookies } from "next/headers";
+import {
+  SESSION_ID_STORAGE_KEY,
+  SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
+} from "@/utils/consts";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",

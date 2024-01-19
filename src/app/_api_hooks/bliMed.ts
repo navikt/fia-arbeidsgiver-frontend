@@ -1,8 +1,7 @@
 import { dummyBliMed } from "@/utils/dummydata";
 import { bliMedDTO } from "../_types/bliMedDTO";
 import { setCookie } from "cookies-next";
-
-export const SESSION_ID_STORAGE_KEY = "sessionID";
+import { COOKIE_MAX_AGE, SESSION_ID_STORAGE_KEY } from "@/utils/consts";
 
 export function fetchBliMed(spørreundersøkelseId: string): {
   data: bliMedDTO | null;
@@ -13,7 +12,7 @@ export function fetchBliMed(spørreundersøkelseId: string): {
 
   const response = dummyBliMed; //TODO: fetch from API
   const nySessionID = response.sesjonsId;
-  setCookie(SESSION_ID_STORAGE_KEY, nySessionID);
+  setCookie(SESSION_ID_STORAGE_KEY, nySessionID, { maxAge: COOKIE_MAX_AGE });
 
   return {
     data: response,

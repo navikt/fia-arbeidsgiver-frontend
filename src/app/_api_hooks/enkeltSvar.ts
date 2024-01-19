@@ -1,7 +1,9 @@
 import { getCookie, setCookie } from "cookies-next";
-import { SESSION_ID_STORAGE_KEY } from "./bliMed";
-
-export const SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY = "sisteSvarteID";
+import {
+  SESSION_ID_STORAGE_KEY,
+  SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
+  COOKIE_MAX_AGE,
+} from "@/utils/consts";
 
 export function postEnkeltSvar({
   spørreundersøkelseId,
@@ -19,5 +21,7 @@ export function postEnkeltSvar({
     spørsmålId,
     svarId,
   });
-  setCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY, spørsmålId);
+  setCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY, spørsmålId, {
+    maxAge: COOKIE_MAX_AGE,
+  });
 }

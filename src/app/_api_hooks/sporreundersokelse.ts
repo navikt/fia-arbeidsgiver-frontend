@@ -1,7 +1,7 @@
 import { dummySpørreundersøkelse } from "@/utils/dummydata";
 import { spørreundersøkelseDTO } from "../_types/sporreundersokelseDTO";
-import { SESSION_ID_STORAGE_KEY } from "./bliMed";
 import { getCookie } from "cookies-next";
+import { SESSION_ID_STORAGE_KEY } from "@/utils/consts";
 
 export function useSpørreundersøkelse(spørreundersøkelseId: string): {
   data: spørreundersøkelseDTO | null;

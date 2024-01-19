@@ -3,9 +3,11 @@
 import { BodyShort, Button, VStack } from "@navikt/ds-react";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { SESSION_ID_STORAGE_KEY } from "@/app/_api_hooks/bliMed";
-import { SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY } from "@/app/_api_hooks/enkeltSvar";
 import { deleteCookie } from "cookies-next";
+import {
+  SESSION_ID_STORAGE_KEY,
+  SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
+} from "@/utils/consts";
 
 export function FerdigInnhold() {
   const router = useRouter();
