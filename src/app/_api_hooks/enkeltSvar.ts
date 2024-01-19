@@ -1,3 +1,4 @@
+import { getCookie, setCookie } from "cookies-next";
 import { SESSION_ID_STORAGE_KEY } from "./bliMed";
 
 export const SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY = "sisteSvarteID";
@@ -11,12 +12,12 @@ export function postEnkeltSvar({
   spørsmålId: string;
   svarId: string;
 }) {
-  const sesjonsId = localStorage.getItem(SESSION_ID_STORAGE_KEY);
+  const sesjonsId = getCookie(SESSION_ID_STORAGE_KEY);
   console.log("postEnkeltSvar", {
     spørreundersøkelseId,
     sesjonsId,
     spørsmålId,
     svarId,
   });
-  localStorage.setItem(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY, spørsmålId);
+  setCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY, spørsmålId);
 }

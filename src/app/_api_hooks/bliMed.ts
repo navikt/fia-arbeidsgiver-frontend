@@ -1,5 +1,6 @@
 import { dummyBliMed } from "@/utils/dummydata";
 import { bliMedDTO } from "../_types/bliMedDTO";
+import { setCookie } from "cookies-next";
 
 export const SESSION_ID_STORAGE_KEY = "sessionID";
 
@@ -12,7 +13,7 @@ export function fetchBliMed(spørreundersøkelseId: string): {
 
   const response = dummyBliMed; //TODO: fetch from API
   const nySessionID = response.sesjonsId;
-  localStorage.setItem(SESSION_ID_STORAGE_KEY, nySessionID);
+  setCookie(SESSION_ID_STORAGE_KEY, nySessionID);
 
   return {
     data: response,

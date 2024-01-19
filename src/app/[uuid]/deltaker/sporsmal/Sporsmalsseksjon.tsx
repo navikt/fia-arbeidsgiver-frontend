@@ -6,21 +6,19 @@ import styles from "./sporsmalsside.module.css";
 import { Button } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
-import {
-  SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
-  postEnkeltSvar,
-} from "@/app/_api_hooks/enkeltSvar";
+import { postEnkeltSvar } from "@/app/_api_hooks/enkeltSvar";
 
-function finnSpørsmålIndexFraLocalstorage(
-  spørsmål: spørreundersøkelseDTO | null
+function finnSpørsmålSomMatcherIndex(
+  spørsmål: spørreundersøkelseDTO | null,
+  storedSisteSvarteID?: string
 ) {
-  const id = localStorage.getItem(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY);
-
-  if (!spørsmål || !id) {
+  if (!spørsmål || !storedSisteSvarteID) {
     return 0;
   }
 
-  const funnetIndex = spørsmål?.findIndex?.((spm) => spm.id === id);
+  const funnetIndex = spørsmål?.findIndex?.(
+    (spm) => spm.id === storedSisteSvarteID
+  );
 
   return funnetIndex !== undefined && funnetIndex !== null
     ? Math.min(funnetIndex + 1, spørsmål.length - 1)
@@ -30,11 +28,16 @@ function finnSpørsmålIndexFraLocalstorage(
 export default function Spørsmålsseksjon({
   spørsmål,
   undersøkelsesId,
+  storedSisteSvarteID,
 }: {
   spørsmål: spørreundersøkelseDTO | null;
   undersøkelsesId: string;
+  storedSisteSvarteID?: string;
 }) {
-  const funnetIndex = finnSpørsmålIndexFraLocalstorage(spørsmål);
+  const funnetIndex = finnSpørsmålSomMatcherIndex(
+    spørsmål,
+    storedSisteSvarteID
+  );
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] =
     React.useState(funnetIndex);
   const [svar, setSvar] = React.useState({} as Record<string, string>);

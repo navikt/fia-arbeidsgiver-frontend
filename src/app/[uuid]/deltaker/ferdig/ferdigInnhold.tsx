@@ -5,13 +5,16 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { SESSION_ID_STORAGE_KEY } from "@/app/_api_hooks/bliMed";
 import { SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY } from "@/app/_api_hooks/enkeltSvar";
+import { deleteCookie } from "cookies-next";
 
 export function FerdigInnhold() {
   const router = useRouter();
+
   React.useEffect(() => {
-    localStorage.removeItem(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY);
-    localStorage.removeItem(SESSION_ID_STORAGE_KEY);
+    deleteCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY);
+    deleteCookie(SESSION_ID_STORAGE_KEY);
   });
+
   return (
     <VStack gap={"4"} align={"center"}>
       <BodyShort>

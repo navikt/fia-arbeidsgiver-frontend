@@ -3,7 +3,6 @@
 import React from "react";
 import { Bleed, Box, Detail, Heading, Page } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
-import { SESSION_ID_STORAGE_KEY } from "@/app/_api_hooks/bliMed";
 
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import styles from "./sporsmalsside.module.css";
@@ -11,8 +10,12 @@ import { useSpørreundersøkelse } from "@/app/_api_hooks/sporreundersokelse";
 
 export default function SpørsmålBody({
   undersøkelsesId,
+  storedSessionID,
+  storedSisteSvarteID,
 }: {
   undersøkelsesId: string;
+  storedSessionID?: string;
+  storedSisteSvarteID?: string;
 }) {
   const del = 1;
   const delnavn = "Partssamarbeidet";
@@ -21,9 +24,8 @@ export default function SpørsmålBody({
   const { data: spørsmål } = useSpørreundersøkelse(undersøkelsesId);
 
   React.useEffect(() => {
-    localStorage.getItem(SESSION_ID_STORAGE_KEY);
-
-    if (!localStorage.getItem(SESSION_ID_STORAGE_KEY)) {
+    console.log("storedSessionID :>> ", storedSessionID);
+    if (!storedSessionID) {
       router.push("../deltaker");
     }
   });
@@ -45,6 +47,7 @@ export default function SpørsmålBody({
         <Spørsmålsseksjon
           spørsmål={spørsmål}
           undersøkelsesId={undersøkelsesId}
+          storedSisteSvarteID={storedSisteSvarteID}
         />
       </Page.Block>
     </Page>
