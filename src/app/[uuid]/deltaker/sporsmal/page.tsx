@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import SpørsmålBody from "./SpørsmålBody";
+import SpørsmålBody from "./SporsmalBody";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",

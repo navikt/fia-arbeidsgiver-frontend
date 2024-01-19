@@ -1,4 +1,4 @@
-import { spørreundersøkelseDTO } from "@/app/_types/spørreundersøkelseDTO";
+import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
 import { KartleggingsType } from "./typer";
 import { bliMedDTO } from "@/app/_types/bliMedDTO";
 

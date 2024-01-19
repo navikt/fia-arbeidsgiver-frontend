@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { Spørsmål } from "./Spørsmål";
-import styles from "./spørsmålsside.module.css";
+import { Spørsmål } from "./Sporsmal";
+import styles from "./sporsmalsside.module.css";
 import { Button } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
-import { spørreundersøkelseDTO } from "@/app/_types/spørreundersøkelseDTO";
+import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
 import {
   SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
   postEnkeltSvar,

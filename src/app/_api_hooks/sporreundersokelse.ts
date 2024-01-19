@@ -1,5 +1,5 @@
 import { dummySpørreundersøkelse } from "@/utils/dummydata";
-import { spørreundersøkelseDTO } from "../_types/spørreundersøkelseDTO";
+import { spørreundersøkelseDTO } from "../_types/sporreundersokelseDTO";
 import { SESSION_ID_STORAGE_KEY } from "./bliMed";
 
 export function useSpørreundersøkelse(spørreundersøkelseId: string): {

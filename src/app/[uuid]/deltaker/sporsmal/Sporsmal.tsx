@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "@navikt/ds-react";
 
-import styles from "./spørsmålsside.module.css";
-import { spørsmålDTO } from "@/app/_types/spørreundersøkelseDTO";
+import styles from "./sporsmalsside.module.css";
+import { spørsmålDTO } from "@/app/_types/sporreundersokelseDTO";
 
 export function Spørsmål({
   spørsmål,

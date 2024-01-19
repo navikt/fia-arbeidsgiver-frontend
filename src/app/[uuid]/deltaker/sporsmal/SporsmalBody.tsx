@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import { SESSION_ID_STORAGE_KEY } from "@/app/_api_hooks/bliMed";
 
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
-import styles from "./spørsmålsside.module.css";
-import { useSpørreundersøkelse } from "@/app/_api_hooks/spørreundersøkelse";
+import styles from "./sporsmalsside.module.css";
+import { useSpørreundersøkelse } from "@/app/_api_hooks/sporreundersokelse";
 
 export default function SpørsmålBody({
   undersøkelsesId,

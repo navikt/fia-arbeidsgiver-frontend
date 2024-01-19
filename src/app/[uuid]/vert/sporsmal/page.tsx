@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Bleed, BodyShort, Box, HStack, Page, VStack } from "@navikt/ds-react";
-import spørsmålStyles from "./spørsmålsside.module.css";
+import spørsmålStyles from "./sporsmalsside.module.css";
 import vertStyles from "../vert.module.css";
 import React from "react";
 import HeaderVert from "@/app/_components/HeaderVert";
