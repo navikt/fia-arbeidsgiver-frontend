@@ -1,20 +1,23 @@
-import { dummySpørreundersøkelse } from "@/utils/dummydata";
 import { spørreundersøkelseDTO } from "../_types/sporreundersokelseDTO";
 import { getCookie } from "cookies-next";
 import { SESSION_ID_STORAGE_KEY } from "@/utils/consts";
+import useSWR, { SWRResponse } from "swr";
 
-export function useSpørreundersøkelse(spørreundersøkelseId: string): {
-  data: spørreundersøkelseDTO | null;
-  error: string | null;
-  isLoading: boolean;
-} {
+export function useSpørreundersøkelse(
+  spørreundersøkelseId: string
+): SWRResponse<spørreundersøkelseDTO> {
   const sesjonsId = getCookie(SESSION_ID_STORAGE_KEY);
+  const fetcher = (url: string) =>
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        spørreundersøkelseId,
+        sesjonsId,
+      }),
+    }).then((res) => res.json());
 
-  console.log("useSpørreundersøkelse", { sesjonsId, spørreundersøkelseId });
-
-  return {
-    data: dummySpørreundersøkelse,
-    error: null,
-    isLoading: false,
-  };
+  return useSWR<spørreundersøkelseDTO>("/api/sporreundersokelse", fetcher);
 }

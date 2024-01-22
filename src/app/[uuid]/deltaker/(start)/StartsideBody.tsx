@@ -90,8 +90,9 @@ export default function StartsideBody({
         variant={"secondary"}
         onClick={() => {
           håndterPinkode();
-          fetchBliMed(undersøkelsesID);
-          router.push("deltaker/sporsmal");
+          fetchBliMed(undersøkelsesID).then(() => {
+            router.push("deltaker/sporsmal");
+          });
         }}
       >
         Bli med!

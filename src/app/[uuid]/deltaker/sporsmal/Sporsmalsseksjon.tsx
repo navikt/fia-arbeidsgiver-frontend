@@ -9,7 +9,7 @@ import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
 import { postEnkeltSvar } from "@/app/_api_hooks/enkeltSvar";
 
 function finnSpørsmålSomMatcherIndex(
-  spørsmål: spørreundersøkelseDTO | null,
+  spørsmål: spørreundersøkelseDTO | undefined,
   storedSisteSvarteID?: string
 ) {
   if (!spørsmål || !storedSisteSvarteID) {
@@ -20,7 +20,7 @@ function finnSpørsmålSomMatcherIndex(
     (spm) => spm.id === storedSisteSvarteID
   );
 
-  return funnetIndex !== undefined && funnetIndex !== null
+  return funnetIndex !== undefined && funnetIndex !== undefined
     ? Math.min(funnetIndex + 1, spørsmål.length - 1)
     : 0;
 }
@@ -30,7 +30,7 @@ export default function Spørsmålsseksjon({
   undersøkelsesId,
   storedSisteSvarteID,
 }: {
-  spørsmål: spørreundersøkelseDTO | null;
+  spørsmål: spørreundersøkelseDTO | undefined;
   undersøkelsesId: string;
   storedSisteSvarteID?: string;
 }) {
@@ -40,6 +40,11 @@ export default function Spørsmålsseksjon({
   );
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] =
     React.useState(funnetIndex);
+  React.useEffect(() => {
+    if (aktivtSpørsmålindex === 0 && funnetIndex !== 0) {
+      setAktivtSpørsmålindex(funnetIndex);
+    }
+  }, [funnetIndex, aktivtSpørsmålindex]);
   const [svar, setSvar] = React.useState({} as Record<string, string>);
 
   const router = useRouter();
@@ -52,13 +57,14 @@ export default function Spørsmålsseksjon({
       spørreundersøkelseId: undersøkelsesId,
       spørsmålId: spørsmål[aktivtSpørsmålindex].id,
       svarId: svar[spørsmål[aktivtSpørsmålindex].id],
+    }).then(() => {
+      // TODO: Sjekk at svar har funka før du går videre
+      if (aktivtSpørsmålindex + 1 === spørsmål.length) {
+        router.push("ferdig");
+      } else {
+        setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
+      }
     });
-    // TODO: Sjekk at svar har funka før du går videre
-    if (aktivtSpørsmålindex + 1 === spørsmål.length) {
-      router.push("ferdig");
-    } else {
-      setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
-    }
   };
 
   if (!spørsmål) {

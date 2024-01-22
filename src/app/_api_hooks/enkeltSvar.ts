@@ -21,7 +21,24 @@ export function postEnkeltSvar({
     spørsmålId,
     svarId,
   });
-  setCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY, spørsmålId, {
-    maxAge: COOKIE_MAX_AGE,
-  });
+
+  const fetcher = () =>
+    fetch("/api/enkelt-svar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        spørreundersøkelseId,
+        sesjonsId,
+        spørsmålId,
+        svarId,
+      }),
+    }).then(() => {
+      setCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY, spørsmålId, {
+        maxAge: COOKIE_MAX_AGE,
+      });
+    });
+
+  return fetcher();
 }

@@ -24,7 +24,6 @@ export default function SpørsmålBody({
   const { data: spørsmål } = useSpørreundersøkelse(undersøkelsesId);
 
   React.useEffect(() => {
-    console.log("storedSessionID :>> ", storedSessionID);
     if (!storedSessionID) {
       router.push("../deltaker");
     }
