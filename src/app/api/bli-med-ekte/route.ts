@@ -4,13 +4,8 @@
 // Mer enn det er ikke laget enda.
 
 // sesjonID lages av bliMed-endepunktet
-// settes sikert i localstorage
 // sesjonsID må sendes som body i spørsmål-og-svar-endepunktet
 
-import {
-  exchangeIdportenSubjectToken,
-  isInvalidToken,
-} from "@/utils/tokenx-utils";
 import { NextRequest } from "next/server";
 
 // Denne forventer en body av typen.
@@ -18,30 +13,12 @@ import { NextRequest } from "next/server";
 //      val spørreundersøkelseId: String,
 //    }
 export async function POST(request: NextRequest) {
-  const { FIA_ARBEIDSGIVER_AUDIENCE, FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
+  const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
 
-  if (FIA_ARBEIDSGIVER_AUDIENCE === undefined) {
-    return new Response(
-      JSON.stringify({ error: "authentication failed: missing audience" }),
-      { status: 500 }
-    );
-  }
   if (FIA_ARBEIDSGIVER_HOSTNAME === undefined) {
     return new Response(
       JSON.stringify({ error: "missing hostname in config" }),
       { status: 500 }
-    );
-  }
-
-  const newAuthToken = await exchangeIdportenSubjectToken(
-    request,
-    FIA_ARBEIDSGIVER_AUDIENCE
-  );
-
-  if (isInvalidToken(newAuthToken)) {
-    return new Response(
-      JSON.stringify({ error: "authentication failed: invalid auth token" }),
-      { status: 401 }
     );
   }
 
@@ -53,7 +30,6 @@ export async function POST(request: NextRequest) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${newAuthToken}`,
       },
       body: JSON.stringify({
         spørreundersøkelseId,
