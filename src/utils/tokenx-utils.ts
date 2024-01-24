@@ -3,46 +3,7 @@ import {
   isInvalidTokenSet,
   validateIdportenToken,
 } from "@navikt/next-auth-wonderwall";
-import { IncomingMessage } from "http";
-import { NextApiRequest, NextApiResponse } from "next";
-import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
-
-export default async function proxyRequestWithTokenExchange({
-  request,
-  response,
-  audience,
-  hostname,
-  path,
-}: {
-  request: NextApiRequest;
-  response: NextApiResponse;
-  path: string;
-  hostname: string;
-  audience: string | undefined;
-}) {
-  if (audience === undefined) {
-    return response
-      .status(500)
-      .json({ error: "authentication failed: missing audience" });
-  }
-
-  const newAuthToken = await exchangeIdportenSubjectToken(request, audience);
-
-  if (isInvalidToken(newAuthToken)) {
-    return response
-      .status(401)
-      .json({ error: "authentication failed: invalid auth token" });
-  }
-
-  await proxyApiRouteRequest({
-    req: request,
-    res: response,
-    hostname: hostname,
-    path: path,
-    bearerToken: newAuthToken,
-    https: false,
-  });
-}
+import { NextRequest } from "next/server";
 
 export type TokenXError = {
   errorType:
@@ -54,16 +15,16 @@ export type TokenXError = {
 };
 
 export function isInvalidToken(
-  tokenXResult: TokenXError | string,
+  tokenXResult: TokenXError | string
 ): tokenXResult is TokenXError {
   return typeof tokenXResult !== "string";
 }
 
 export async function exchangeIdportenSubjectToken(
-  request: IncomingMessage,
-  audience: string,
+  request: NextRequest,
+  audience: string
 ): Promise<TokenXError | string> {
-  const authHeader = request.headers["authorization"];
+  const authHeader = request.headers.get("authorization");
 
   if (!authHeader) {
     console.log("No token found in authorization header.");
@@ -76,7 +37,7 @@ export async function exchangeIdportenSubjectToken(
   const validationResult = await validateIdportenToken(authHeader);
   if (validationResult !== "valid") {
     console.log(
-      `Failed to validate due to: ${validationResult.errorType} ${validationResult.message}`,
+      `Failed to validate due to: ${validationResult.errorType} ${validationResult.message}`
     );
     return {
       errorType: "IDPORTEN_TOKEN_INVALID",
@@ -90,7 +51,7 @@ export async function exchangeIdportenSubjectToken(
   const grantResult = await grantTokenXOboToken(validSubjectToken, audience);
   if (isInvalidTokenSet(grantResult)) {
     console.error(
-      `TokenX failed: ${grantResult.errorType} ${grantResult.message}`,
+      `TokenX failed: ${grantResult.errorType} ${grantResult.message}`
     );
     return {
       errorType: "TOKENX_FAILED",

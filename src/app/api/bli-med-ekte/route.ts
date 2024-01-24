@@ -7,17 +7,17 @@
 // settes sikert i localstorage
 // sesjonsID må sendes som body i spørsmål-og-svar-endepunktet
 
-import { NextApiRequest } from "next";
 import {
   exchangeIdportenSubjectToken,
   isInvalidToken,
 } from "@/utils/tokenx-utils";
+import { NextRequest } from "next/server";
 
 // Denne forventer en body av typen.
 //   {
 //      val spørreundersøkelseId: String,
 //    }
-export async function POST(request: NextApiRequest) {
+export async function POST(request: NextRequest) {
   const { FIA_ARBEIDSGIVER_AUDIENCE, FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
 
   if (FIA_ARBEIDSGIVER_AUDIENCE === undefined) {
@@ -45,6 +45,8 @@ export async function POST(request: NextApiRequest) {
     );
   }
 
+  const { spørreundersøkelseId } = await request.json();
+
   return fetch(
     `${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/kartlegging/bli-med`,
     {
@@ -54,7 +56,7 @@ export async function POST(request: NextApiRequest) {
         Authorization: `Bearer ${newAuthToken}`,
       },
       body: JSON.stringify({
-        spørreundersøkelseId: request.body.spørreundersøkelseId,
+        spørreundersøkelseId,
       }),
     }
   );
