@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
   const { spørreundersøkelseId } = await request.json();
 
   return fetch(
-    `https://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/kartlegging/bli-med`,
+    `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/kartlegging/bli-med`,
     {
       method: "POST",
       headers: {
