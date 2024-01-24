@@ -3,7 +3,6 @@
 import { bliMedDTO } from "../_types/bliMedDTO";
 import { setCookie } from "cookies-next";
 import { COOKIE_MAX_AGE, SESSION_ID_STORAGE_KEY } from "@/utils/consts";
-import setupMSW from "../../utils/mocks/setupMSW";
 
 export function fetchBliMed(spørreundersøkelseId: string) {
   const fetcher = () =>
@@ -25,7 +24,5 @@ export function fetchBliMed(spørreundersøkelseId: string) {
         return nySessionID;
       });
 
-  return setupMSW().then(() => {
-    return fetcher();
-  });
+  return fetcher();
 }
