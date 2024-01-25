@@ -3,14 +3,16 @@ import { NextRequest } from "next/server";
 
 // Denne forventer en body av typen.
 //   {
-//      val spørreundersøkelseId: String,
-//    }
+//     spørreundersøkelseId,
+//     sesjonsId,
+//   }
 export async function POST(request: NextRequest) {
-  const { spørreundersøkelseId } = await request.json();
+  const { spørreundersøkelseId, sesjonsId } = await request.json();
   const fetcher = useFetchFromArbeidsgiverApi(
-    "bli-med",
+    "sporreundersokelse",
     JSON.stringify({
       spørreundersøkelseId,
+      sesjonsId,
     })
   );
 
