@@ -18,20 +18,24 @@ export const metadata: Metadata = {
 export default function Oversiktside() {
   const deltakere = 6;
   const minPerSpørsmål = 2;
-  const kartlegginger = [partssamarbeid, sykefraværsarbeid, dummySpørsmål];
+  const spørreundersøkelser = [
+    partssamarbeid,
+    sykefraværsarbeid,
+    dummySpørsmål,
+  ];
 
   return (
     <Page contentBlockPadding="none">
       <HeaderVert deltakere={deltakere} />
       <Page.Block as={"main"}>
         <VStack gap="4">
-          {kartlegginger.map((item, index) => (
+          {spørreundersøkelser.map((item, index) => (
             <Dellinje
               key={index}
               delnummer={index + 1}
-              delnavn={kartlegginger[index].tiltak}
-              punkter={kartlegginger[index].spørsmål.length}
-              tid={minPerSpørsmål * kartlegginger[index].spørsmål.length}
+              delnavn={spørreundersøkelser[index].tiltak}
+              punkter={spørreundersøkelser[index].spørsmål.length}
+              tid={minPerSpørsmål * spørreundersøkelser[index].spørsmål.length}
             />
           ))}
         </VStack>

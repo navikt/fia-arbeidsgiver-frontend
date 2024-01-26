@@ -3,12 +3,12 @@
 import React from "react";
 import vertStyles from "../vert.module.css";
 import { BodyShort, Button, Heading, VStack } from "@navikt/ds-react";
-import { KartleggingsType } from "@/utils/typer";
+import { SpørreundersøkelseType } from "@/utils/typer";
 
 export default function SporsmalUtenSvar({
-  kartleggingskategori,
+  spørreundersøkelseskategori,
 }: {
-  kartleggingskategori: KartleggingsType;
+  spørreundersøkelseskategori: SpørreundersøkelseType;
 }) {
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] = React.useState(0);
 
@@ -16,20 +16,22 @@ export default function SporsmalUtenSvar({
     <VStack gap="4">
       <VStack align={"center"}>
         <Heading level={"2"} size={"small"} spacing>
-          {aktivtSpørsmålindex + 1}/{kartleggingskategori?.spørsmål.length}{" "}
-          {kartleggingskategori.tiltak} i virksomheten
+          {aktivtSpørsmålindex + 1}/
+          {spørreundersøkelseskategori?.spørsmål.length}{" "}
+          {spørreundersøkelseskategori.tiltak} i virksomheten
         </Heading>
         <BodyShort size={"large"} spacing>
-          {kartleggingskategori.spørsmål[aktivtSpørsmålindex].spørsmål}
+          {spørreundersøkelseskategori.spørsmål[aktivtSpørsmålindex].spørsmål}
         </BodyShort>
-        {aktivtSpørsmålindex + 1 < kartleggingskategori.spørsmål.length && (
+        {aktivtSpørsmålindex + 1 <
+          spørreundersøkelseskategori.spørsmål.length && (
           <Button
             variant="secondary"
             className={vertStyles.knappHvitBred}
             onClick={() => {
               setAktivtSpørsmålindex(
                 (aktivtSpørsmålindex + 1) %
-                  kartleggingskategori.spørsmål.length,
+                  spørreundersøkelseskategori.spørsmål.length
               );
             }}
           >
@@ -43,7 +45,7 @@ export default function SporsmalUtenSvar({
             onClick={() => {
               setAktivtSpørsmålindex(
                 (aktivtSpørsmålindex - 1) %
-                  kartleggingskategori.spørsmål.length,
+                  spørreundersøkelseskategori.spørsmål.length
               );
             }}
           >

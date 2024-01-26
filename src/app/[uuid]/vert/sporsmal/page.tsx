@@ -18,7 +18,11 @@ export const metadata: Metadata = {
 };
 
 export default function Spørsmålsside() {
-  const kartlegginger = [partssamarbeid, sykefraværsarbeid, dummySpørsmål];
+  const spørreundersøkelser = [
+    partssamarbeid,
+    sykefraværsarbeid,
+    dummySpørsmål,
+  ];
   const dummyIndex = 2;
   const deltakere = 6;
 
@@ -32,13 +36,15 @@ export default function Spørsmålsside() {
               <VStack>
                 <BodyShort size="medium">Del {dummyIndex + 1}</BodyShort>
                 <BodyShort size="large">
-                  {kartlegginger[dummyIndex].hensikt}
+                  {spørreundersøkelser[dummyIndex].hensikt}
                 </BodyShort>
               </VStack>
             </HStack>
           </Box>
         </Bleed>
-        <SporsmalUtenSvar kartleggingskategori={kartlegginger[dummyIndex]} />
+        <SporsmalUtenSvar
+          spørreundersøkelseskategori={spørreundersøkelser[dummyIndex]}
+        />
       </Page.Block>
     </Page>
   );

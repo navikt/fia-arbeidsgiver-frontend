@@ -19,5 +19,5 @@ export function useSpørreundersøkelse(
       }),
     }).then((res) => res.json());
 
-  return useSWR<spørreundersøkelseDTO>("/api/sporreundersokelse", fetcher);
+  return useSWR<spørreundersøkelseDTO>("/api/sporsmal-og-svar", fetcher);
 }

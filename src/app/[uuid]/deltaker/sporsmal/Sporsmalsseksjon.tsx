@@ -6,7 +6,7 @@ import styles from "./sporsmalsside.module.css";
 import { Button } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
-import { postEnkeltSvar } from "@/app/_api_hooks/enkeltSvar";
+import { postEnkeltSvar } from "@/app/_api_hooks/svar";
 
 function finnSpørsmålSomMatcherIndex(
   spørsmål: spørreundersøkelseDTO | undefined,

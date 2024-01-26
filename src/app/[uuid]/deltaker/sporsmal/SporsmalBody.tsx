@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import styles from "./sporsmalsside.module.css";
-import { useSpørreundersøkelse } from "@/app/_api_hooks/sporreundersokelse";
+import { useSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
 
 export default function SpørsmålBody({
   undersøkelsesId,

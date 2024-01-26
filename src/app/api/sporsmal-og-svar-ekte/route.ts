@@ -9,7 +9,7 @@ import { NextRequest } from "next/server";
 export async function POST(request: NextRequest) {
   const { spørreundersøkelseId, sesjonsId } = await request.json();
   const fetcher = useFetchFromArbeidsgiverApi(
-    "sporreundersokelse",
+    "sporsmal-og-svar",
     JSON.stringify({
       spørreundersøkelseId,
       sesjonsId,

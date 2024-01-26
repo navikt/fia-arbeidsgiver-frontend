@@ -1,5 +1,5 @@
 import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
-import { KartleggingsType } from "./typer";
+import { SpørreundersøkelseType } from "./typer";
 import { bliMedDTO } from "@/app/_types/bliMedDTO";
 
 export const dummySpørreundersøkelse: spørreundersøkelseDTO = [
@@ -61,7 +61,7 @@ export const dummyBliMed: bliMedDTO = {
   sesjonsId: "790fba4d-1c9f-4c20-a019-d574d9542421",
 };
 
-export const dummySpørsmål: KartleggingsType = {
+export const dummySpørsmål: SpørreundersøkelseType = {
   tiltak: "Testspørsmål",
   hensikt: "Hensikt bak hvorfor vi spør om disse spørsmålene",
   spørsmål: [
@@ -94,7 +94,7 @@ export const dummySpørsmål: KartleggingsType = {
   ],
 };
 
-export const partssamarbeid: KartleggingsType = {
+export const partssamarbeid: SpørreundersøkelseType = {
   tiltak: "Partssamarbeid",
   hensikt:
     "Få et bilde av hvordan partsgruppen jobber med det forebyggende sykefraværsarbeidet",
@@ -126,7 +126,7 @@ export const partssamarbeid: KartleggingsType = {
   ],
 };
 
-export const sykefraværsarbeid: KartleggingsType = {
+export const sykefraværsarbeid: SpørreundersøkelseType = {
   tiltak: "Sykefravæversarbeid",
   hensikt:
     "Få et bilde av hvordan partsgruppen jobber med det forebyggende sykefraværsarbeidet",

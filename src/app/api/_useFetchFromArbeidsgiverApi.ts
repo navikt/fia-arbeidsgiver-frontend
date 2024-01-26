@@ -12,7 +12,7 @@ export function useFetchFromArbeidsgiverApi(
   }
   return () =>
     fetch(
-      `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/kartlegging/${endpoint}`,
+      `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/sporreundersokelse/${endpoint}`,
       {
         method: "POST",
         headers: {

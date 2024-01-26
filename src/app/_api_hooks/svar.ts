@@ -16,7 +16,7 @@ export function postEnkeltSvar({
 }) {
   const sesjonsId = getCookie(SESSION_ID_STORAGE_KEY);
   const fetcher = () =>
-    fetch("/api/enkelt-svar", {
+    fetch("/api/svar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
