@@ -3,8 +3,11 @@
 import { bliMedDTO } from "../_types/bliMedDTO";
 import { setCookie } from "cookies-next";
 import { COOKIE_MAX_AGE, SESSION_ID_STORAGE_KEY } from "@/utils/consts";
+import setupMSWForBrowser from "@/utils/mocks/setupMSWForBrowser";
 
 export function fetchBliMed(spørreundersøkelseId: string) {
+  setupMSWForBrowser();
+
   const fetcher = () =>
     fetch("/api/bli-med", {
       method: "POST",

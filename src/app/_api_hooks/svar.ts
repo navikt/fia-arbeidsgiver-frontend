@@ -4,6 +4,7 @@ import {
   SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
   COOKIE_MAX_AGE,
 } from "@/utils/consts";
+import setupMSWForBrowser from "@/utils/mocks/setupMSWForBrowser";
 
 export function postEnkeltSvar({
   spørreundersøkelseId,
@@ -14,6 +15,8 @@ export function postEnkeltSvar({
   spørsmålId: string;
   svarId: string;
 }) {
+  setupMSWForBrowser();
+
   const sesjonsId = getCookie(SESSION_ID_STORAGE_KEY);
   const fetcher = () =>
     fetch("/api/svar", {
