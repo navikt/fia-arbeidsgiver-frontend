@@ -26,11 +26,11 @@ export default function Logininformasjon() {
 function LinkDisplay({ lenke }: { lenke: string }) {
   return (
     <div className={styles.linkDisplay}>
-      <QRCodeSVG value={lenke} />
+      <QRCodeSVG value={location.protocol + '//' + location.host + lenke} />
       <p>
         <b>Eller</b> følg denne lenken:
       </p>
-      <a href={lenke}>{lenke}</a>
+      <a href={location.protocol + '//' + location.host + lenke}>{lenke}</a>
     </div>
   );
 }
