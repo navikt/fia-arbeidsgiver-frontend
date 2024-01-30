@@ -74,8 +74,8 @@ export default function Spørsmålsseksjon({
   return (
     <>
       <Spørsmålsheader
-        tilgjengeligeSpørsmål={spørsmål.length}
         aktivtSpørsmålindex={aktivtSpørsmålindex}
+        spørsmål={spørsmål}
       />
       <div className={styles.spørsmålsseksjon}>
         <Spørsmål
@@ -110,20 +110,18 @@ export default function Spørsmålsseksjon({
 }
 
 function Spørsmålsheader({
-  tilgjengeligeSpørsmål,
+  spørsmål,
   aktivtSpørsmålindex,
 }: {
-  tilgjengeligeSpørsmål: number;
+  spørsmål: spørreundersøkelseDTO;
   aktivtSpørsmålindex: number;
 }) {
   return (
     <div className={styles.spørsmålsheader}>
       <span>
-        {aktivtSpørsmålindex + 1}/{tilgjengeligeSpørsmål}
+        {aktivtSpørsmålindex + 1}/{spørsmål.length}
       </span>
-      <span>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-      </span>
+      <span>{spørsmål[aktivtSpørsmålindex].spørsmål}</span>
     </div>
   );
 }

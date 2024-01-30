@@ -24,4 +24,6 @@ export default async function setupMSWForBrowser() {
 
     return worker.start();
   }
+
+  return Promise.resolve();
 }

@@ -15,26 +15,26 @@ export function postEnkeltSvar({
   spørsmålId: string;
   svarId: string;
 }) {
-  setupMSWForBrowser();
-
   const sesjonsId = getCookie(SESSION_ID_STORAGE_KEY);
   const fetcher = () =>
-    fetch("/api/svar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        spørreundersøkelseId,
-        sesjonsId,
-        spørsmålId,
-        svarId,
-      }),
-    }).then(() => {
-      setCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY, spørsmålId, {
-        maxAge: COOKIE_MAX_AGE,
-      });
-    });
+    setupMSWForBrowser().then(() =>
+      fetch("/api/svar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          spørreundersøkelseId,
+          sesjonsId,
+          spørsmålId,
+          svarId,
+        }),
+      }).then(() => {
+        setCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY, spørsmålId, {
+          maxAge: COOKIE_MAX_AGE,
+        });
+      })
+    );
 
   return fetcher();
 }

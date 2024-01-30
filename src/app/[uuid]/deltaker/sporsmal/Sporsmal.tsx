@@ -15,7 +15,6 @@ export function Spørsmål({
 }) {
   return (
     <div>
-      <div className={styles.spørsmålstekst}>{spørsmål.spørsmål}</div>
       {spørsmål.svaralternativer.map((svaralternativ) => (
         <div key={svaralternativ.id}>
           <Button

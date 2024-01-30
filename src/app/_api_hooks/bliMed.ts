@@ -6,8 +6,6 @@ import { COOKIE_MAX_AGE, SESSION_ID_STORAGE_KEY } from "@/utils/consts";
 import setupMSWForBrowser from "@/utils/mocks/setupMSWForBrowser";
 
 export function fetchBliMed(spørreundersøkelseId: string) {
-  setupMSWForBrowser();
-
   const fetcher = () =>
     fetch("/api/bli-med", {
       method: "POST",
@@ -27,5 +25,5 @@ export function fetchBliMed(spørreundersøkelseId: string) {
         return nySessionID;
       });
 
-  return fetcher();
+  return setupMSWForBrowser().then(() => fetcher());
 }
