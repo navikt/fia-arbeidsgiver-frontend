@@ -7,7 +7,7 @@ metadata:
     team: pia
 spec:
   ingresses:
-    - https://fia-arbeidsgiver.intern.dev.nav.no
+    - https://fia-arbeidsgiver.ekstern.dev.nav.no
   image: {{image}}
   port: 3000
   replicas:
