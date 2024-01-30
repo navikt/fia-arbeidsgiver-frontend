@@ -19,14 +19,9 @@ spec:
       cpu: 50m
       memory: 64Mi
   accessPolicy:
-    inbound:
-      rules:
-        - application: fia-arbeidsgiver
     outbound:
       rules:
         - application: fia-arbeidsgiver
   env:
     - name: FIA_ARBEIDSGIVER_HOSTNAME
-      value: fia-arbeidsgiver.pia.svc.cluster.local
-    - name: FIA_ARBEIDSGIVER_AUDIENCE
-      value: dev-gcp:pia:fia-arbeidsgiver
+      value: fia-arbeidsgiver
