@@ -10,7 +10,6 @@ spec:
     - https://fia-arbeidsgiver.intern.dev.nav.no
   image: {{image}}
   port: 3000
-  ttl: 3h
   replicas:
     max: 2
     min: 2
