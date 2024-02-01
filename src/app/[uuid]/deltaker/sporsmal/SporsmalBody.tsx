@@ -32,7 +32,7 @@ export default function SpørsmålBody({
   return (
     <Page contentBlockPadding="none">
       <Page.Block gutters width="lg" className={styles.spørsmålssideblokk}>
-        <Heading level="1" size="medium">
+        <Heading level="1" size="medium" className={styles.pageHeading}>
           IA kartleggingsmøte
         </Heading>
         <Bleed marginInline="24 24" asChild reflectivePadding>

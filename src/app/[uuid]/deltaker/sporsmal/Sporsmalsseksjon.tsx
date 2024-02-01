@@ -3,7 +3,7 @@
 import React from "react";
 import { Spørsmål } from "./Sporsmal";
 import styles from "./sporsmalsside.module.css";
-import { Button } from "@navikt/ds-react";
+import { Button, VStack } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
 import { postEnkeltSvar } from "@/app/_api_hooks/svar";
@@ -89,22 +89,24 @@ export default function Spørsmålsseksjon({
           valgtSvar={svar[spørsmål[aktivtSpørsmålindex]?.id]}
         />
       </div>
-      <Button
-        variant="secondary"
-        className={styles.tilbakeknapp}
-        onClick={() =>
-          setAktivtSpørsmålindex(Math.max(aktivtSpørsmålindex - 1, 0))
-        }
-      >
-        Tilbake
-      </Button>
-      <Button
-        variant="secondary"
-        className={styles.tilbakeknapp}
-        onClick={sendSvar}
-      >
-        Neste
-      </Button>
+      <VStack align="center">
+        <Button
+          variant="primary"
+          className={styles.nesteknapp}
+          onClick={sendSvar}
+        >
+          Neste
+        </Button>
+        <Button
+          variant="secondary"
+          className={styles.tilbakeknapp}
+          onClick={() =>
+            setAktivtSpørsmålindex(Math.max(aktivtSpørsmålindex - 1, 0))
+          }
+        >
+          Tilbake
+        </Button>
+      </VStack>
     </>
   );
 }

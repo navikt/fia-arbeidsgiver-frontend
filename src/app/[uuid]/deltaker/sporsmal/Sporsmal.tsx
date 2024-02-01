@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@navikt/ds-react";
+import { Button, VStack } from "@navikt/ds-react";
 
 import styles from "./sporsmalsside.module.css";
 import { spørsmålDTO } from "@/app/_types/sporreundersokelseDTO";
@@ -14,19 +14,18 @@ export function Spørsmål({
   valgtSvar?: string;
 }) {
   return (
-    <div>
+    <VStack align="center">
       {spørsmål.svaralternativer.map((svaralternativ) => (
-        <div key={svaralternativ.id}>
-          <Button
-            variant={valgtSvar === svaralternativ.id ? "primary" : "secondary"}
-            id={svaralternativ.id}
-            onClick={() => velgSvar(spørsmål.id, svaralternativ.id)}
-            className={styles.svaralternativknapp}
-          >
-            {svaralternativ.tekst}
-          </Button>
-        </div>
+        <Button
+          key={svaralternativ.id}
+          variant={valgtSvar === svaralternativ.id ? "primary" : "secondary"}
+          id={svaralternativ.id}
+          onClick={() => velgSvar(spørsmål.id, svaralternativ.id)}
+          className={styles.svaralternativknapp}
+        >
+          {svaralternativ.tekst}
+        </Button>
       ))}
-    </div>
+    </VStack>
   );
 }
