@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import styles from "./sporsmalsside.module.css";
 import { useSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
+import Kartleggingsmøtetittel from "../Kartleggingsmøtetittel";
 
 export default function SpørsmålBody({
   undersøkelsesId,
@@ -32,9 +33,7 @@ export default function SpørsmålBody({
   return (
     <Page contentBlockPadding="none">
       <Page.Block gutters width="lg" className={styles.spørsmålssideblokk}>
-        <Heading level="1" size="medium" className={styles.pageHeading}>
-          IA kartleggingsmøte
-        </Heading>
+        <Kartleggingsmøtetittel />
         <Bleed marginInline="24 24" asChild reflectivePadding>
           <Box background="surface-alt-3-strong" className={styles.banner}>
             <Detail>Del {del}</Detail>
