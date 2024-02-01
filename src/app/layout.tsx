@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Arbeidsgiverkartlegging",
   description: "Her skal det komme arbeidsgiverkartlegging etterhvert",
+  other: {
+    ["google"]: "notranslate"
+  }
 };
 
 export default function RootLayout({
@@ -16,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="no" className="notranslate" translate="no">
       <body className={inter.className}>{children}</body>
     </html>
   );
