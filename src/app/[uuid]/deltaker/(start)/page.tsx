@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BodyShort, Heading, Page, VStack } from "@navikt/ds-react";
+import { BodyShort, Page, VStack } from "@navikt/ds-react";
 import React from "react";
 import BliMedKnapp from "./BliMedKnapp";
 import styles from "./startside.module.css";
