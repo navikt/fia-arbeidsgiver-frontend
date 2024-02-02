@@ -1,4 +1,4 @@
-export function useFetchFromArbeidsgiverApi(
+export function arbeidsgiverApiFetcher(
   endpoint: string,
   body: BodyInit | null = null
 ) {
