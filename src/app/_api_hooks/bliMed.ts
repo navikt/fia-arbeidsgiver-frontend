@@ -4,6 +4,7 @@ import { bliMedDTO } from "../_types/bliMedDTO";
 import { deleteCookie, setCookie } from "cookies-next";
 import {
   COOKIE_MAX_AGE,
+  KARTLEGGING_FERDIG_ERROR,
   SESSION_ID_STORAGE_KEY,
   SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
 } from "@/utils/consts";
@@ -20,7 +21,21 @@ export function fetchBliMed(spørreundersøkelseId: string) {
         spørreundersøkelseId,
       }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 410) {
+          throw new Error(KARTLEGGING_FERDIG_ERROR);
+        }
+        if (res.status === 403) {
+          throw new Error(
+            "Vi får ikke koblet til spørreundersøkelsen. Er du sikker på at du skrev inn riktig lenke?"
+          );
+        }
+        if (!res.ok) {
+          throw new Error("Noe gikk galt.");
+        }
+
+        return res.json();
+      })
       .then((data: bliMedDTO) => {
         const nySessionID = data.sesjonsId;
         setCookie(SESSION_ID_STORAGE_KEY, nySessionID, {
