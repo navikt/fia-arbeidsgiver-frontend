@@ -10,10 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default function Ferdigside() {
-  const deltakere = 6;
   return (
     <Page contentBlockPadding="none">
-      <HeaderVert deltakere={deltakere} />
+      <HeaderVert />
       <FerdigInnhold />
     </Page>
   );
