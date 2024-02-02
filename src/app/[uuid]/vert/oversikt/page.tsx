@@ -16,7 +16,6 @@ export const metadata: Metadata = {
 };
 
 export default function Oversiktside() {
-  const deltakere = 6;
   const minPerSpørsmål = 2;
   const spørreundersøkelser = [
     partssamarbeid,
@@ -26,7 +25,7 @@ export default function Oversiktside() {
 
   return (
     <Page contentBlockPadding="none">
-      <HeaderVert deltakere={deltakere} />
+      <HeaderVert />
       <Page.Block as={"main"}>
         <VStack gap="4">
           {spørreundersøkelser.map((item, index) => (

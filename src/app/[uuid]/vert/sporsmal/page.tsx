@@ -24,11 +24,10 @@ export default function Spørsmålsside() {
     dummySpørsmål,
   ];
   const dummyIndex = 2;
-  const deltakere = 6;
 
   return (
     <Page contentBlockPadding="none" footer={<FooterSporsmal />}>
-      <HeaderVert deltakere={deltakere} />
+      <HeaderVert />
       <Page.Block as={"main"}>
         <Bleed marginInline="full" asChild>
           <Box padding="5" className={vertStyles.bleedKlar}>
