@@ -10,8 +10,6 @@ export const metadata: Metadata = {
 };
 
 export default function Startside() {
-  const antallDeltakere = 2;
-
   return (
     <Page className={styles.startside}>
       <Page.Block gutters width="xl">
@@ -24,7 +22,7 @@ export default function Startside() {
       </Page.Block>
       <Page.Block gutters width="xl" className={styles.sideinnhold}>
         <Logininformasjon />
-        <Status antallDeltakere={antallDeltakere} />
+        <Status />
       </Page.Block>
     </Page>
   );

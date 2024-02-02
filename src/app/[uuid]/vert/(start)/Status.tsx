@@ -7,15 +7,11 @@ import styles from "./startside.module.css";
 import { useRouter } from "next/navigation";
 import { Deltakere } from "@/app/_components/Deltakere";
 
-export default function Status({
-  antallDeltakere,
-}: {
-  antallDeltakere: number;
-}) {
+export default function Status() {
   const router = useRouter();
   return (
     <div className={styles.status}>
-      <Deltakere deltakere={antallDeltakere} />
+      <Deltakere />
       <Heading level="2" size="medium" spacing>
         Venter på deltakere...
       </Heading>
