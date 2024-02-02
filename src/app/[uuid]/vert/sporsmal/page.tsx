@@ -8,17 +8,15 @@ export const metadata: Metadata = {
 };
 
 export default function Spørsmålsside({
-                                          params,
-                                      }: {
-    params: { uuid: string };
+  params,
+}: {
+  params: { uuid: string };
 }) {
-
-
   return (
-      <SpørsmålBody
-          undersøkelsesId={params.uuid}
-          del={1}
-          delnavn={"Partssamarbeid"}
-      />
+    <SpørsmålBody
+      undersøkelsesId={params.uuid}
+      del={1}
+      delnavn={"Partssamarbeid"}
+    />
   );
 }

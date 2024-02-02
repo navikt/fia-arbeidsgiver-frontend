@@ -25,25 +25,22 @@ export default function OversiktBody({
   const minPerSpørsmål = 2;
   const { data: spørreundersøkelse } = useSpørreundersøkelse(undersøkelsesId);
 
-  if (!spørreundersøkelse) return <div>Mangler spørreundersøkelse</div>;
-
-  const spørreundersøkelser = [spørreundersøkelse];
   return (
-    <Page contentBlockPadding="none" footer={<FooterOversikt />}>
-      <HeaderVert />
-      <Page.Block as={"main"}>
-        <VStack gap="4">
-          {spørreundersøkelser.map((item) => (
+    spørreundersøkelse && (
+      <Page contentBlockPadding="none" footer={<FooterOversikt />}>
+        <HeaderVert />
+        <Page.Block as={"main"}>
+          <VStack gap="4">
             <Dellinje
-              key={item[0].id}
+              key={spørreundersøkelse[0].id}
               delnummer={del}
               delnavn={delnavn}
-              punkter={item.length}
-              tid={minPerSpørsmål * item.length}
+              punkter={spørreundersøkelse.length}
+              tid={minPerSpørsmål * spørreundersøkelse.length}
             />
-          ))}
-        </VStack>
-      </Page.Block>
-    </Page>
+          </VStack>
+        </Page.Block>
+      </Page>
+    )
   );
 }
