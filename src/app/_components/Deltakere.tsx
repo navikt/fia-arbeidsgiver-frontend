@@ -7,7 +7,7 @@ export function Deltakere(props: { deltakere: number }) {
   return (
     <BodyShort className={styles.deltakere}>
       <PersonGroupIcon />
-      {props.deltakere}
+      {/* props.deltakere */}
     </BodyShort>
   );
 }

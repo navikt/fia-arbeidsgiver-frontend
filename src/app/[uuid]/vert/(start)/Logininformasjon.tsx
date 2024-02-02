@@ -8,34 +8,35 @@ import { usePathname } from "next/navigation";
 
 export default function Logininformasjon() {
   const lenke: string = usePathname().replace("vert", "deltaker");
-  const kode = "12345";
+  /* const kode = "12345"; */
   return (
     <div className={styles.logininformasjon}>
       <Heading level="2" size="medium">
         Følg qr-koden:
       </Heading>
       <LinkDisplay lenke={lenke} />
-      <Heading level="2" size="medium">
+      {/* <Heading level="2" size="medium">
         Skriv så inn inn følgende kode:
-      </Heading>
-      <PinDisplay kode={kode} />
+      </Heading> */}
+      {/* <PinDisplay kode={kode} /> */}
     </div>
   );
 }
 
 function LinkDisplay({ lenke }: { lenke: string }) {
+  const fullLenke = `${location.protocol}//${location.host}${lenke}`;
   return (
     <div className={styles.linkDisplay}>
-      <QRCodeSVG value={location.protocol + '//' + location.host + lenke} />
+      <QRCodeSVG value={fullLenke} />
       <p>
         <b>Eller</b> følg denne lenken:
       </p>
-      <a href={location.protocol + '//' + location.host + lenke}>{lenke}</a>
+      <a href={fullLenke}>{fullLenke}</a>
     </div>
   );
 }
 
-function PinDisplay({
+/* function PinDisplay({
   kode,
   maxLength = 5,
 }: {
@@ -55,4 +56,4 @@ function PinDisplay({
 
 function Siffer({ siffer }: { siffer: string }) {
   return <div className={styles.siffer}>{siffer}</div>;
-}
+} */
