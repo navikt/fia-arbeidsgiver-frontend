@@ -28,6 +28,9 @@
     background: var(--a-bg-default);
     width: 17rem;
 }
+.knappBred {
+    width: 17rem;
+}
 
 .footer {
     display: flex;
