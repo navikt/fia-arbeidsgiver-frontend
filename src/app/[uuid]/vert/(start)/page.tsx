@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Her kan du hoste litt kartlegging da",
 };
 
-export default function Startside() {
+export default function Startside({ params }: { params: { uuid: string } }) {
   return (
     <Page className={styles.startside}>
       <Page.Block gutters width="xl">
@@ -22,7 +22,7 @@ export default function Startside() {
       </Page.Block>
       <Page.Block gutters width="xl" className={styles.sideinnhold}>
         <Logininformasjon />
-        <Status />
+        <Status undersøkelsesID={params.uuid} />
       </Page.Block>
     </Page>
   );

@@ -6,9 +6,14 @@ import vertStyles from "../vert.module.css";
 import React from "react";
 import { useRouter } from "next/navigation";
 import HeaderVert from "@/app/_components/HeaderVert";
+import { deleteCookie } from "cookies-next";
+import { SESSION_ID_STORAGE_KEY } from "@/utils/consts";
 
 export default function FerdigInnhold() {
   const router = useRouter();
+  React.useEffect(() => {
+    deleteCookie(SESSION_ID_STORAGE_KEY);
+  });
 
   return (
     <Page
