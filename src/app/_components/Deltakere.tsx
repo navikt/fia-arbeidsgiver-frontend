@@ -7,7 +7,7 @@ export function Deltakere() {
   return (
     <BodyShort className={styles.deltakere}>
       <PersonGroupIcon />
-      {/*{props.deltakere}*/}
+      {/*antallDeltakere*/}
     </BodyShort>
   );
 }
