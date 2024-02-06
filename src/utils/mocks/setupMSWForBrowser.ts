@@ -19,6 +19,9 @@ export default async function setupMSWForBrowser() {
       http.post(`/api/sporsmal-og-svar`, () => {
         return new Response(JSON.stringify(dummySpørreundersøkelse));
       }),
+      http.post(`/api/vert/sporsmal-og-svar`, () => {
+        return new Response(JSON.stringify(dummySpørreundersøkelse));
+      }),
     ];
     const worker = setupWorker(...handlers);
 

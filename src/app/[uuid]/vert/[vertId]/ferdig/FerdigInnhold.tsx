@@ -24,7 +24,7 @@ export default function FerdigInnhold() {
             <Button
               variant="secondary"
               className={vertStyles.knappHvitBred}
-              onClick={() => router.push("../../")}
+              onClick={() => router.push("../../../")}
             >
               Lukk kartlegging
             </Button>

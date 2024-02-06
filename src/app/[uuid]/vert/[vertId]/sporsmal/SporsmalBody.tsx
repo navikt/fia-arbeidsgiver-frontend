@@ -14,21 +14,23 @@ import React from "react";
 
 import spørsmålStyles from "./sporsmalsside.module.css";
 import vertStyles from "../vert.module.css";
-import { useSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
-import SpørsmålValg from "@/app/[uuid]/vert/sporsmal/SporsmalValg";
+import { useVertSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
+import SpørsmålValg from "./SporsmalValg";
 import { useRouter } from "next/navigation";
 
 export default function SpørsmålBody({
   undersøkelsesId,
+  vertId,
   del,
   delnavn,
 }: {
   undersøkelsesId: string;
+  vertId: string;
   del: number;
   delnavn: string;
 }) {
   const { data: spørreundersøkelse, isLoading: lasterSpørsmål } =
-    useSpørreundersøkelse(undersøkelsesId);
+    useVertSpørreundersøkelse(undersøkelsesId, vertId);
 
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] = React.useState(0);
   const router = useRouter();

@@ -1,5 +1,5 @@
 import { Button, VStack } from "@navikt/ds-react";
-import vertStyles from "@/app/[uuid]/vert/vert.module.css";
+import vertStyles from "@/app/[uuid]/vert/[vertId]/vert.module.css";
 import spørsmålStyles from "./sporsmalsside.module.css";
 
 import React from "react";

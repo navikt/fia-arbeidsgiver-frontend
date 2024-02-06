@@ -6,7 +6,7 @@ import { Page, VStack } from "@navikt/ds-react";
 import React from "react";
 import FooterOversikt from "./FooterOversikt";
 import HeaderVert from "@/app/_components/HeaderVert";
-import { useSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
+import { useVertSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -15,15 +15,20 @@ export const metadata: Metadata = {
 
 export default function OversiktBody({
   undersøkelsesId,
+  vertId,
   del,
   delnavn,
 }: {
   undersøkelsesId: string;
+  vertId: string;
   del: number;
   delnavn: string;
 }) {
   const minPerSpørsmål = 2;
-  const { data: spørreundersøkelse } = useSpørreundersøkelse(undersøkelsesId);
+  const { data: spørreundersøkelse } = useVertSpørreundersøkelse(
+    undersøkelsesId,
+    vertId,
+  );
 
   return (
     spørreundersøkelse && (

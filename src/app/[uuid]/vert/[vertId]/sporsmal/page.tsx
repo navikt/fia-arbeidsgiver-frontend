@@ -1,19 +1,23 @@
 import type { Metadata } from "next";
 import React from "react";
-import OversiktBody from "@/app/[uuid]/vert/oversikt/OversiktBody";
+import SpørsmålBody from "./SporsmalBody";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
   description: "Her kan du hoste litt kartlegging da",
 };
 
-export default function Oversiktside({ params }: { params: { uuid: string } }) {
-
+export default function Spørsmålsside({
+  params,
+}: {
+  params: { uuid: string; vertId: string };
+}) {
   return (
-    <OversiktBody
+    <SpørsmålBody
+      undersøkelsesId={params.uuid}
+      vertId={params.vertId}
       del={1}
       delnavn={"Partssamarbeid"}
-      undersøkelsesId={params.uuid}
     />
   );
 }
