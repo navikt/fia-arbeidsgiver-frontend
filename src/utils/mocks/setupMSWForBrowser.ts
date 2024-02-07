@@ -4,6 +4,7 @@ import {
   dummyAntallDeltakere,
 } from "@/utils/dummydata";
 import { http } from "msw";
+import { spørsmålIndeksDTO } from "@/app/_types/sporreundersokelseDTO";
 
 export default async function setupMSWForBrowser() {
   if (
@@ -12,6 +13,10 @@ export default async function setupMSWForBrowser() {
       window?.location?.hostname?.includes("127.0.0.1"))
   ) {
     const { setupWorker } = await import("msw/browser");
+    const dummySpørsmålIndeks: spørsmålIndeksDTO = {
+      spørreundersøkelseId: "ef4d406d-abc2-4ed6-8de7-72a7feb40326",
+      indeks: 0,
+    };
 
     const handlers = [
       http.post(`/api/bli-med`, () => {
@@ -28,6 +33,15 @@ export default async function setupMSWForBrowser() {
       }),
       http.post(`/api/vert/antall-deltakere`, () => {
         return new Response(JSON.stringify(dummyAntallDeltakere));
+      }),
+      http.post(`/api/gjeldende-sporsmal`, () => {
+        return new Response(JSON.stringify(dummySpørsmålIndeks));
+      }),
+      http.post(`/api/vert/gjeldende-sporsmal`, () => {
+        return new Response(JSON.stringify(dummySpørsmålIndeks));
+      }),
+      http.post(`/api/vert/neste-sporsmal`, () => {
+        return new Response(JSON.stringify(dummySpørsmålIndeks));
       }),
     ];
     const worker = setupWorker(...handlers);

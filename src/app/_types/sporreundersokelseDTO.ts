@@ -6,6 +6,11 @@ export type spørsmålDTO = {
   svaralternativer: svaralternativDTO[];
 };
 
+export type spørsmålIndeksDTO = {
+  spørreundersøkelseId: string;
+  indeks: number;
+};
+
 export type svaralternativDTO = {
   id: string;
   tekst: string;

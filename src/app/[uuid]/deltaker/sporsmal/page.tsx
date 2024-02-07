@@ -25,7 +25,7 @@ export default function Spørsmålsside({
 
   return (
     <SpørsmålBody
-      undersøkelsesId={params.uuid}
+      spørreundersøkelsesId={params.uuid}
       storedSessionID={storedSessionID}
       storedSisteSvarteID={storedSisteSvarteID}
     />

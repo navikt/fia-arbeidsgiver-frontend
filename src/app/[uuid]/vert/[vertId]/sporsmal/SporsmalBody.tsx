@@ -10,37 +10,46 @@ import {
   VStack,
 } from "@navikt/ds-react";
 import HeaderVert from "@/app/_components/HeaderVert";
-import React from "react";
+import React, { useEffect } from "react";
 
 import spørsmålStyles from "./sporsmalsside.module.css";
 import vertStyles from "../vert.module.css";
-import { useVertSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
-import SpørsmålValg from "./SporsmalValg";
-import { useRouter } from "next/navigation";
+import SpørsmålNavigasjon from "./SpørsmålNavigasjon";
 import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
+import {
+  postVertNesteSpørsmål,
+  useVertSpørreundersøkelse,
+  useVertSpørsmålIndeks,
+} from "@/app/_api_hooks/sporsmalOgSvar";
 
 export default function SpørsmålBody({
-  undersøkelsesId,
+  spørreundersøkelseId,
   vertId,
   del,
   delnavn,
 }: {
-  undersøkelsesId: string;
+  spørreundersøkelseId: string;
   vertId: string;
   del: number;
   delnavn: string;
 }) {
   const { data: spørreundersøkelse, isLoading: lasterSpørsmål } =
-    useVertSpørreundersøkelse(undersøkelsesId, vertId);
+    useVertSpørreundersøkelse(spørreundersøkelseId, vertId);
 
   const { data: antallDeltakereData, isLoading: antallDeltakereLaster } =
     useAntallDeltakere({
       vertId,
-      spørreundersøkelseId: undersøkelsesId,
+      spørreundersøkelseId: spørreundersøkelseId,
     });
 
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] = React.useState(0);
-  const router = useRouter();
+  const { data } = useVertSpørsmålIndeks(spørreundersøkelseId, vertId);
+
+  useEffect(() => {
+    if (data && aktivtSpørsmålindex >= data?.indeks) {
+      postVertNesteSpørsmål(spørreundersøkelseId, vertId);
+    }
+  }, [aktivtSpørsmålindex, data]);
 
   return (
     !lasterSpørsmål &&
@@ -50,19 +59,12 @@ export default function SpørsmålBody({
         footer={
           <Box as="footer" padding="8">
             <Page.Block gutters width="2xl">
-              <SpørsmålValg
-                index={aktivtSpørsmålindex}
-                antallSpørsmål={spørreundersøkelse.length}
-                byttSpørsmål={(nesteindeks: number) => {
-                  if (
-                    nesteindeks === spørreundersøkelse.length ||
-                    nesteindeks < 0
-                  ) {
-                    router.push("oversikt");
-                  } else {
-                    setAktivtSpørsmålindex(Math.max(nesteindeks, 0));
-                  }
-                }}
+              <SpørsmålNavigasjon
+                erViPåSisteSpørsmål={
+                  aktivtSpørsmålindex >= spørreundersøkelse.length - 1
+                }
+                aktivtSpørsmålindex={aktivtSpørsmålindex}
+                setAktivtSpørsmålindex={setAktivtSpørsmålindex}
               />
             </Page.Block>
           </Box>

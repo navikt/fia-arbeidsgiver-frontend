@@ -14,7 +14,7 @@ export default function Spørsmålsside({
 }) {
   return (
     <SpørsmålBody
-      undersøkelsesId={params.uuid}
+      spørreundersøkelseId={params.uuid}
       vertId={params.vertId}
       del={1}
       delnavn={"Partssamarbeid"}
