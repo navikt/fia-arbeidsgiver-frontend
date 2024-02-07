@@ -2,6 +2,8 @@ import useSWR, { SWRConfiguration, SWRResponse } from "swr";
 import setupMSWForBrowser from "@/utils/mocks/setupMSWForBrowser";
 import { antallDeltakereDTO } from "@/app/_types/antallDeltakereDTO";
 
+const ONE_SECOND_MS = 1000;
+
 export function useAntallDeltakere({
   vertId,
   spørreundersøkelseId,
@@ -25,6 +27,7 @@ export function useAntallDeltakere({
   };
 
   const swrConfig: SWRConfiguration = {
+    refreshInterval: ONE_SECOND_MS,
     revalidateIfStale: true,
   };
 
