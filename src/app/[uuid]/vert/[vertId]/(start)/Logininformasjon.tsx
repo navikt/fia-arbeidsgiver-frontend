@@ -2,7 +2,7 @@
 
 import React from "react";
 import styles from "./startside.module.css";
-import { Heading } from "@navikt/ds-react";
+import { Heading, Loader } from "@navikt/ds-react";
 import { QRCodeSVG } from "qrcode.react";
 import { usePathname } from "next/navigation";
 
@@ -11,9 +11,6 @@ export default function Logininformasjon() {
   /* const kode = "12345"; */
   return (
     <div className={styles.logininformasjon}>
-      <Heading level="2" size="medium">
-        Følg qr-koden:
-      </Heading>
       <LinkDisplay lenke={lenke} />
       {/* <Heading level="2" size="medium">
         Skriv så inn inn følgende kode:
@@ -24,15 +21,37 @@ export default function Logininformasjon() {
 }
 
 function LinkDisplay({ lenke }: { lenke: string }) {
-  const fullLenke = `${location.protocol}//${location.host}${lenke}`;
+  const [fullLenke, setFullLenke] = React.useState("");
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      setFullLenke(
+        `${window.location.protocol}//${window.location.host}${lenke}`
+      );
+    }
+  }, [lenke]);
+
+  if (fullLenke === "") {
+    return (
+      <div className={styles.linkDisplay}>
+        <Loader size="3xlarge" />
+      </div>
+    );
+  }
+
   return (
-    <div className={styles.linkDisplay}>
-      <QRCodeSVG value={fullLenke} />
-      <p>
-        <b>Eller</b> følg denne lenken:
-      </p>
-      <a href={fullLenke}>{fullLenke}</a>
-    </div>
+    <>
+      <Heading level="2" size="medium">
+        Følg qr-koden:
+      </Heading>
+      <div className={styles.linkDisplay}>
+        <QRCodeSVG value={fullLenke} />
+        <p>
+          <b>Eller</b> følg denne lenken:
+        </p>
+        <a href={fullLenke}>{fullLenke}</a>
+      </div>
+    </>
   );
 }
 
