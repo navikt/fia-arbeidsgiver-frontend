@@ -3,7 +3,7 @@ import vertStyles from "@/app/[uuid]/vert/[vertId]/vert.module.css";
 import spørsmålStyles from "./sporsmalsside.module.css";
 
 import React from "react";
-import { router } from "next/client";
+import { useRouter } from "next/navigation";
 
 export enum RETNING {
   NESTE,
@@ -20,6 +20,7 @@ export default function SpørsmålNavigasjon({
   aktivtSpørsmålindex: number;
   setAktivtSpørsmålindex: (index: number) => void;
 }) {
+  const router = useRouter();
   const naviger = (retning: RETNING) => {
     switch (retning) {
       case RETNING.FULLFØR:
