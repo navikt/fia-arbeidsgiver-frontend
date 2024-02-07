@@ -8,12 +8,12 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  const { spørreundersøkelseId, sesjonsId } = await request.json();
+  const { spørreundersøkelseId, vertId } = await request.json();
   const fetcher = arbeidsgiverApiFetcher(
-    "sporsmal-og-svar",
+    "vert/gjeldende-sporsmal",
     JSON.stringify({
       spørreundersøkelseId,
-      sesjonsId,
+      vertId,
     }),
   );
 

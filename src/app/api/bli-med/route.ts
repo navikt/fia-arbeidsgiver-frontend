@@ -1,12 +1,7 @@
 import { arbeidsgiverApiFetcher } from "@/app/api/_arbeidsgiverApiFetcher";
 import { NextRequest } from "next/server";
 
-// Denne forventer en body av typen.
-//   {
-//      val spørreundersøkelseId: String,
-//    }
 export async function POST(request: NextRequest) {
-
   if (request.headers.get("content-type") != "application/json") {
     return new Response(JSON.stringify({ error: "Invalid content-type" }), {
       status: 400,

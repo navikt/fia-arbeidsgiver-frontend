@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
 
   const { spørreundersøkelseId, sesjonsId } = await request.json();
   const fetcher = arbeidsgiverApiFetcher(
-    "sporsmal-og-svar",
+    "gjeldende-sporsmal",
     JSON.stringify({
       spørreundersøkelseId,
       sesjonsId,
