@@ -46,7 +46,7 @@ export default function SpørsmålBody({
   const { data } = useVertSpørsmålIndeks(spørreundersøkelseId, vertId);
 
   useEffect(() => {
-    if (data && aktivtSpørsmålindex >= data?.indeks) {
+    if (data && aktivtSpørsmålindex > data?.indeks) {
       postVertNesteSpørsmål(spørreundersøkelseId, vertId);
     }
   }, [aktivtSpørsmålindex, data, spørreundersøkelseId, vertId]);
