@@ -49,7 +49,7 @@ export default function SpørsmålBody({
     if (data && aktivtSpørsmålindex >= data?.indeks) {
       postVertNesteSpørsmål(spørreundersøkelseId, vertId);
     }
-  }, [aktivtSpørsmålindex, data]);
+  }, [aktivtSpørsmålindex, data, spørreundersøkelseId, vertId]);
 
   return (
     !lasterSpørsmål &&
