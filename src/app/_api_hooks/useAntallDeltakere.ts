@@ -25,7 +25,6 @@ export function useAntallDeltakere({
   };
 
   const swrConfig: SWRConfiguration = {
-    refreshInterval: 2000,
     revalidateIfStale: true,
   };
 
