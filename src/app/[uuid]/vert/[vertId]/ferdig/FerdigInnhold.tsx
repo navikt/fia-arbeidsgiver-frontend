@@ -8,12 +8,25 @@ import { useRouter } from "next/navigation";
 import HeaderVert from "@/app/_components/HeaderVert";
 import { deleteCookie } from "cookies-next";
 import { SESSION_ID_STORAGE_KEY } from "@/utils/consts";
+import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
 
-export default function FerdigInnhold() {
+export default function FerdigInnhold({
+  undersøkelsesId,
+  vertId,
+}: {
+  undersøkelsesId: string;
+  vertId: string;
+}) {
   const router = useRouter();
   React.useEffect(() => {
     deleteCookie(SESSION_ID_STORAGE_KEY);
   });
+
+  const { data: antallDeltakereData, isLoading: antallDeltakereLaster } =
+    useAntallDeltakere({
+      vertId,
+      spørreundersøkelseId: undersøkelsesId,
+    });
 
   return (
     <Page
@@ -32,7 +45,10 @@ export default function FerdigInnhold() {
         </Box>
       }
     >
-      <HeaderVert />
+      <HeaderVert
+        antallDeltakere={antallDeltakereData?.antallDeltakere}
+        antallDeltakereLaster={antallDeltakereLaster}
+      />
       <Page.Block as={"main"}>
         <Bleed marginInline="full" asChild>
           <Box padding="5" className={vertStyles.bleedFerdig}>

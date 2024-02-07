@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   description: "Her kan du hoste litt kartlegging da",
 };
 
-export default function Ferdigside() {
-  return <FerdigInnhold />;
+export default function Ferdigside({
+  params,
+}: {
+  params: { uuid: string; vertId: string };
+}) {
+  return <FerdigInnhold undersøkelsesId={params.uuid} vertId={params.vertId} />;
 }

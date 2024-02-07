@@ -7,6 +7,7 @@ import React from "react";
 import FooterOversikt from "./FooterOversikt";
 import HeaderVert from "@/app/_components/HeaderVert";
 import { useVertSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
+import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -27,13 +28,22 @@ export default function OversiktBody({
   const minPerSpørsmål = 2;
   const { data: spørreundersøkelse } = useVertSpørreundersøkelse(
     undersøkelsesId,
-    vertId,
+    vertId
   );
+
+  const { data: antallDeltakereData, isLoading: antallDeltakereLaster } =
+    useAntallDeltakere({
+      vertId,
+      spørreundersøkelseId: undersøkelsesId,
+    });
 
   return (
     spørreundersøkelse && (
       <Page contentBlockPadding="none" footer={<FooterOversikt />}>
-        <HeaderVert />
+        <HeaderVert
+          antallDeltakere={antallDeltakereData?.antallDeltakere}
+          antallDeltakereLaster={antallDeltakereLaster}
+        />
         <Page.Block as={"main"}>
           <VStack gap="4">
             <Dellinje

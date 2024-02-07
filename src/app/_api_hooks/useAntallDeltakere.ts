@@ -2,11 +2,11 @@ import useSWR, { SWRConfiguration, SWRResponse } from "swr";
 import setupMSWForBrowser from "@/utils/mocks/setupMSWForBrowser";
 import { antallDeltakereDTO } from "@/app/_types/antallDeltakereDTO";
 
-export function useAntallDeltalkere({
-  vertsId,
+export function useAntallDeltakere({
+  vertId,
   spørreundersøkelseId,
 }: {
-  vertsId: string;
+  vertId: string;
   spørreundersøkelseId: string;
 }): SWRResponse<antallDeltakereDTO> {
   const fetcher = (url: string) => {
@@ -18,7 +18,7 @@ export function useAntallDeltalkere({
         },
         body: JSON.stringify({
           spørreundersøkelseId,
-          vertsId,
+          vertId,
         }),
       }).then((res) => res.json());
     });
@@ -30,8 +30,8 @@ export function useAntallDeltalkere({
   };
 
   return useSWR<antallDeltakereDTO>(
-    "/api/antall-deltakere",
+    "/api/vert/antall-deltakere",
     fetcher,
-    swrConfig,
+    swrConfig
   );
 }

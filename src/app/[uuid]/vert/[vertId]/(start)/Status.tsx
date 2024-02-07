@@ -5,6 +5,7 @@ import { Button, Heading } from "@navikt/ds-react";
 import styles from "./startside.module.css";
 import { useRouter } from "next/navigation";
 import { Deltakere } from "@/app/_components/Deltakere";
+import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
 
 export default function Status({
   undersøkelsesID,
@@ -14,9 +15,16 @@ export default function Status({
   vertId: string;
 }) {
   const router = useRouter();
+  const { data, isLoading } = useAntallDeltakere({
+    vertId,
+    spørreundersøkelseId: undersøkelsesID,
+  });
   return (
     <div className={styles.status}>
-      <Deltakere />
+      <Deltakere
+        antallDeltakere={data?.antallDeltakere}
+        isLoading={isLoading}
+      />
       <Heading level="2" size="medium" spacing>
         Venter på deltakere...
       </Heading>

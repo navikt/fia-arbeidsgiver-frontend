@@ -1,6 +1,7 @@
 import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
 import { SpørreundersøkelseType } from "./typer";
 import { bliMedDTO } from "@/app/_types/bliMedDTO";
+import { antallDeltakereDTO } from "@/app/_types/antallDeltakereDTO";
 
 export const dummySpørreundersøkelse: spørreundersøkelseDTO = [
   {
@@ -155,4 +156,8 @@ export const sykefraværsarbeid: SpørreundersøkelseType = {
       ],
     },
   ],
+};
+
+export const dummyAntallDeltakere: antallDeltakereDTO = {
+  antallDeltakere: 3,
 };

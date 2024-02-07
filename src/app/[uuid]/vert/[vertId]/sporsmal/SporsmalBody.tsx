@@ -17,6 +17,7 @@ import vertStyles from "../vert.module.css";
 import { useVertSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
 import SpørsmålValg from "./SporsmalValg";
 import { useRouter } from "next/navigation";
+import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
 
 export default function SpørsmålBody({
   undersøkelsesId,
@@ -31,6 +32,12 @@ export default function SpørsmålBody({
 }) {
   const { data: spørreundersøkelse, isLoading: lasterSpørsmål } =
     useVertSpørreundersøkelse(undersøkelsesId, vertId);
+
+  const { data: antallDeltakereData, isLoading: antallDeltakereLaster } =
+    useAntallDeltakere({
+      vertId,
+      spørreundersøkelseId: undersøkelsesId,
+    });
 
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] = React.useState(0);
   const router = useRouter();
@@ -61,7 +68,10 @@ export default function SpørsmålBody({
           </Box>
         }
       >
-        <HeaderVert />
+        <HeaderVert
+          antallDeltakere={antallDeltakereData?.antallDeltakere}
+          antallDeltakereLaster={antallDeltakereLaster}
+        />
         <Page.Block as={"main"}>
           <Bleed marginInline="full" asChild>
             <Box padding="5" className={vertStyles.bleedKlar}>

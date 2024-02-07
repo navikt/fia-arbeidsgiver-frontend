@@ -1,4 +1,8 @@
-import { dummyBliMed, dummySpørreundersøkelse } from "@/utils/dummydata";
+import {
+  dummyBliMed,
+  dummySpørreundersøkelse,
+  dummyAntallDeltakere,
+} from "@/utils/dummydata";
 import { http } from "msw";
 
 export default async function setupMSWForBrowser() {
@@ -21,6 +25,9 @@ export default async function setupMSWForBrowser() {
       }),
       http.post(`/api/vert/sporsmal-og-svar`, () => {
         return new Response(JSON.stringify(dummySpørreundersøkelse));
+      }),
+      http.post(`/api/vert/antall-deltakere`, () => {
+        return new Response(JSON.stringify(dummyAntallDeltakere));
       }),
     ];
     const worker = setupWorker(...handlers);
