@@ -1,6 +1,6 @@
 export default function Home() {
-  const spørreundersøkelseId = "f7065ba4-56ed-4f61-8215-7579e3d208de";
-  const vertId = "f7065ba4-56ed-4f61-8215-7579e3d208dl";
+  const spørreundersøkelseId = "e2f863df-309e-4314-9c7e-c584237fd90a";
+  const vertId = "86701b0e-a786-406a-881b-08af5b9ddb93";
 
   return (
     <main>
