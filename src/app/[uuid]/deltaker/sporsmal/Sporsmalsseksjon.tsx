@@ -20,7 +20,7 @@ function finnSpørsmålSomMatcherIndex(
     (spm) => spm.id === storedSisteSvarteID,
   );
 
-  return funnetIndex !== undefined && funnetIndex !== undefined
+  return funnetIndex !== undefined
     ? Math.min(funnetIndex + 1, spørsmål.length - 1)
     : 0;
 }
