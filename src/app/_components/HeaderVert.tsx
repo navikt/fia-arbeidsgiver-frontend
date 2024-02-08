@@ -6,9 +6,11 @@ import { Deltakere } from "@/app/_components/Deltakere";
 export default function HeaderVert({
   antallDeltakere,
   antallDeltakereLaster,
+  antallSvarMottatt,
 }: {
   antallDeltakere: number | undefined;
   antallDeltakereLaster: boolean | undefined;
+  antallSvarMottatt: number | undefined;
 }) {
   return (
     <Page.Block as={"header"} className={styles.header}>
@@ -17,6 +19,7 @@ export default function HeaderVert({
       </Heading>
       <Deltakere
         antallDeltakere={antallDeltakere}
+        antallSvarMottatt={antallSvarMottatt}
         isLoading={antallDeltakereLaster}
       />
     </Page.Block>

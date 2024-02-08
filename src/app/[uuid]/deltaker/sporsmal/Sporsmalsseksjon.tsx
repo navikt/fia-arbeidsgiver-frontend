@@ -1,9 +1,8 @@
 "use client";
 
 import React from "react";
-import { Spørsmål } from "./Sporsmal";
 import styles from "./sporsmalsside.module.css";
-import { Button, VStack } from "@navikt/ds-react";
+import { Button, Radio, RadioGroup, VStack } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
 import { postEnkeltSvar } from "@/app/_api_hooks/svar";
@@ -79,6 +78,11 @@ export default function Spørsmålsseksjon({
   if (!spørsmål) {
     return <div>VI HAR IKKE SPØRSMÅL!!!</div>;
   }
+  const velgSvar = (spørsmålid: string, svaralternativid: string) =>
+    setSvar((gamleSvar) => ({
+      ...gamleSvar,
+      [spørsmålid]: svaralternativid,
+    }));
 
   return (
     <>
@@ -86,19 +90,24 @@ export default function Spørsmålsseksjon({
         aktivtSpørsmålindex={aktivtSpørsmålindex}
         spørsmål={spørsmål}
       />
-      <div className={styles.spørsmålsseksjon}>
-        <Spørsmål
-          spørsmål={spørsmål[aktivtSpørsmålindex]}
-          velgSvar={(spørsmålid, svaralternativid) =>
-            setSvar((gamleSvar) => ({
-              ...gamleSvar,
-              [spørsmålid]: svaralternativid,
-            }))
-          }
-          valgtSvar={svar[spørsmål[aktivtSpørsmålindex]?.id]}
-        />
-      </div>
       <VStack align="center">
+        <RadioGroup
+          legend="Velg ett alternativ"
+          onChange={(valgtSvarId: string) =>
+            velgSvar(spørsmål[aktivtSpørsmålindex].id, valgtSvarId)
+          }
+          defaultValue={svar[spørsmål[aktivtSpørsmålindex]?.id]}
+          hideLegend
+          className={styles.spørsmålsseksjon}
+        >
+          {spørsmål[aktivtSpørsmålindex].svaralternativer.map(
+            (svaralternativ) => (
+              <Radio key={svaralternativ.id} value={svaralternativ.id}>
+                {svaralternativ.tekst}
+              </Radio>
+            ),
+          )}
+        </RadioGroup>
         <Button
           variant="primary"
           className={styles.nesteknapp}
