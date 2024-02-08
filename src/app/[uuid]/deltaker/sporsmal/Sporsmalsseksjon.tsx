@@ -1,23 +1,22 @@
 "use client";
 
 import React from "react";
-import { Spørsmål } from "./Sporsmal";
 import styles from "./sporsmalsside.module.css";
-import { Button, VStack } from "@navikt/ds-react";
+import { Button, Radio, RadioGroup, VStack } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
 import { postEnkeltSvar } from "@/app/_api_hooks/svar";
 
 function finnSpørsmålSomMatcherIndex(
   spørsmål: spørreundersøkelseDTO | undefined,
-  storedSisteSvarteID?: string
+  storedSisteSvarteID?: string,
 ) {
   if (!spørsmål || !storedSisteSvarteID) {
     return 0;
   }
 
   const funnetIndex = spørsmål?.findIndex?.(
-    (spm) => spm.id === storedSisteSvarteID
+    (spm) => spm.id === storedSisteSvarteID,
   );
 
   return funnetIndex !== undefined && funnetIndex !== undefined
@@ -38,7 +37,7 @@ export default function Spørsmålsseksjon({
 }) {
   const funnetIndex = finnSpørsmålSomMatcherIndex(
     spørsmål,
-    storedSisteSvarteID
+    storedSisteSvarteID,
   );
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] =
     React.useState(funnetIndex);
@@ -68,7 +67,7 @@ export default function Spørsmålsseksjon({
         console.log("Trykket neste");
         if (aktivtSpørsmålindex < gjeldendeSpørsmålindex) {
           console.log(
-            "AktivtSpørsmålindex er mindre enn gjeldendeSpørsmålindex"
+            "AktivtSpørsmålindex er mindre enn gjeldendeSpørsmålindex",
           );
           setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
         }
@@ -79,6 +78,11 @@ export default function Spørsmålsseksjon({
   if (!spørsmål) {
     return <div>VI HAR IKKE SPØRSMÅL!!!</div>;
   }
+  const velgSvar = (spørsmålid: string, svaralternativid: string) =>
+    setSvar((gamleSvar) => ({
+      ...gamleSvar,
+      [spørsmålid]: svaralternativid,
+    }));
 
   return (
     <>
@@ -86,19 +90,24 @@ export default function Spørsmålsseksjon({
         aktivtSpørsmålindex={aktivtSpørsmålindex}
         spørsmål={spørsmål}
       />
-      <div className={styles.spørsmålsseksjon}>
-        <Spørsmål
-          spørsmål={spørsmål[aktivtSpørsmålindex]}
-          velgSvar={(spørsmålid, svaralternativid) =>
-            setSvar((gamleSvar) => ({
-              ...gamleSvar,
-              [spørsmålid]: svaralternativid,
-            }))
-          }
-          valgtSvar={svar[spørsmål[aktivtSpørsmålindex]?.id]}
-        />
-      </div>
       <VStack align="center">
+        <RadioGroup
+          legend="Velg ett alternativ"
+          onChange={(valgtSvarId: string) =>
+            velgSvar(spørsmål[aktivtSpørsmålindex].id, valgtSvarId)
+          }
+          defaultValue={svar[spørsmål[aktivtSpørsmålindex]?.id]}
+          hideLegend
+          className={styles.spørsmålsseksjon}
+        >
+          {spørsmål[aktivtSpørsmålindex].svaralternativer.map(
+            (svaralternativ) => (
+              <Radio key={svaralternativ.id} value={svaralternativ.id}>
+                {svaralternativ.tekst}
+              </Radio>
+            ),
+          )}
+        </RadioGroup>
         <Button
           variant="primary"
           className={styles.nesteknapp}
