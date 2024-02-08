@@ -12,7 +12,6 @@ export function Deltakelsesstatus({
   antallSvarMottatt?: number | undefined;
   isLoading?: boolean;
 }) {
-
   const skalViseAntallSvar = antallSvarMottatt !== undefined;
 
   return (

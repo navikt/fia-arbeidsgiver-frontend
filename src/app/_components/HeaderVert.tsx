@@ -10,7 +10,7 @@ export default function HeaderVert({
 }: {
   antallDeltakere: number | undefined;
   antallDeltakereLaster: boolean | undefined;
-  antallSvarMottatt: number | undefined;
+  antallSvarMottatt?: number | undefined;
 }) {
   return (
     <Page.Block as={"header"} className={styles.header}>
