@@ -42,10 +42,10 @@ function LinkDisplay({ lenke }: { lenke: string }) {
   return (
     <>
       <Heading level="2" size="medium">
-        Følg qr-koden:
+        Følge qr-koden:
       </Heading>
       <div className={styles.linkDisplay}>
-        <QRCodeSVG value={fullLenke} />
+        <QRCodeSVG value={fullLenke} className={styles.qrcode} />
         <p>
           <b>Eller</b> følg denne lenken:
         </p>
