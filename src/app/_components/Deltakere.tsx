@@ -5,14 +5,17 @@ import React from "react";
 
 export function Deltakere({
   antallDeltakere,
+  antallSvarMottatt,
   isLoading,
 }: {
   antallDeltakere?: number;
+  antallSvarMottatt: number | undefined;
   isLoading?: boolean;
 }) {
   return (
     <BodyShort className={styles.deltakere}>
       <PersonGroupIcon />
+      {antallSvarMottatt !== undefined && `${antallSvarMottatt} av `}
       {antallDeltakere}
       {isLoading &&
         (antallDeltakere === undefined || antallDeltakere === null) && (

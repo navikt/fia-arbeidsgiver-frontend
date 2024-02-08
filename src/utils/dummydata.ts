@@ -62,4 +62,9 @@ export const dummyBliMed: bliMedDTO = {
 };
 export const dummyAntallDeltakere: antallDeltakereDTO = {
   antallDeltakere: 3,
+  antallSvar: [
+    { spørsmålId: "fbc953f1-e7fe-472d-b069-7698c4cae0a5", antall: 0 },
+    { spørsmålId: "153e4d26-3c89-4097-9ddb-5cfef99bc4e9", antall: 3 },
+    { spørsmålId: "37294476-815b-4ed5-90ea-8189a6bc48e8", antall: 2 },
+  ],
 };

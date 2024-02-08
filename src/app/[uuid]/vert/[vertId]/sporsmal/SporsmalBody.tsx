@@ -73,6 +73,9 @@ export default function SpørsmålBody({
         <HeaderVert
           antallDeltakere={antallDeltakereData?.antallDeltakere}
           antallDeltakereLaster={antallDeltakereLaster}
+          antallSvarMottatt={
+            antallDeltakereData?.antallSvar[aktivtSpørsmålindex].antall
+          }
         />
         <Page.Block as={"main"}>
           <Bleed marginInline="full" asChild>
