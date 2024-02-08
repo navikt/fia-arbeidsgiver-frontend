@@ -1,7 +1,7 @@
 import {
+  dummyAntallDeltakere,
   dummyBliMed,
   dummySpørreundersøkelse,
-  dummyAntallDeltakere,
 } from "@/utils/dummydata";
 import { http } from "msw";
 import { spørsmålIndeksDTO } from "@/app/_types/sporreundersokelseDTO";
@@ -15,7 +15,7 @@ export default async function setupMSWForBrowser() {
     const { setupWorker } = await import("msw/browser");
     const dummySpørsmålIndeks: spørsmålIndeksDTO = {
       spørreundersøkelseId: "ef4d406d-abc2-4ed6-8de7-72a7feb40326",
-      indeks: 0,
+      indeks: 2,
     };
 
     const handlers = [

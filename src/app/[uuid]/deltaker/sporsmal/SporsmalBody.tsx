@@ -47,11 +47,14 @@ export default function SpørsmålBody({
             </Heading>
           </Box>
         </Bleed>
-        <Spørsmålsseksjon
-          spørsmål={spørsmål}
-          undersøkelsesId={spørreundersøkelsesId}
-          storedSisteSvarteID={storedSisteSvarteID}
-        />
+        {spørsmålIndeks && (
+          <Spørsmålsseksjon
+            spørsmål={spørsmål}
+            undersøkelsesId={spørreundersøkelsesId}
+            storedSisteSvarteID={storedSisteSvarteID}
+            gjeldendeSpørsmålindex={spørsmålIndeks.indeks}
+          />
+        )}
       </Page.Block>
     </Page>
   );

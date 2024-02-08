@@ -10,14 +10,14 @@ import { postEnkeltSvar } from "@/app/_api_hooks/svar";
 
 function finnSpørsmålSomMatcherIndex(
   spørsmål: spørreundersøkelseDTO | undefined,
-  storedSisteSvarteID?: string
+  storedSisteSvarteID?: string,
 ) {
   if (!spørsmål || !storedSisteSvarteID) {
     return 0;
   }
 
   const funnetIndex = spørsmål?.findIndex?.(
-    (spm) => spm.id === storedSisteSvarteID
+    (spm) => spm.id === storedSisteSvarteID,
   );
 
   return funnetIndex !== undefined && funnetIndex !== undefined
@@ -29,14 +29,16 @@ export default function Spørsmålsseksjon({
   spørsmål,
   undersøkelsesId,
   storedSisteSvarteID,
+  gjeldendeSpørsmålindex,
 }: {
   spørsmål: spørreundersøkelseDTO | undefined;
   undersøkelsesId: string;
   storedSisteSvarteID?: string;
+  gjeldendeSpørsmålindex: number;
 }) {
   const funnetIndex = finnSpørsmålSomMatcherIndex(
     spørsmål,
-    storedSisteSvarteID
+    storedSisteSvarteID,
   );
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] =
     React.useState(funnetIndex);
@@ -46,7 +48,6 @@ export default function Spørsmålsseksjon({
     }
   }, [funnetIndex, aktivtSpørsmålindex]);
   const [svar, setSvar] = React.useState({} as Record<string, string>);
-
   const router = useRouter();
 
   const sendSvar = () => {
@@ -62,7 +63,9 @@ export default function Spørsmålsseksjon({
       if (aktivtSpørsmålindex + 1 === spørsmål.length) {
         router.push("ferdig");
       } else {
-        setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
+        if (aktivtSpørsmålindex < gjeldendeSpørsmålindex) {
+          setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
+        }
       }
     });
   };
