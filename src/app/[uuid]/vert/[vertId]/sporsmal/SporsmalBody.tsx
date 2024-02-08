@@ -98,6 +98,19 @@ export default function SpørsmålBody({
             >
               {spørreundersøkelse[aktivtSpørsmålindex].spørsmål}
             </BodyShort>
+            <VStack>
+              {spørreundersøkelse[aktivtSpørsmålindex].svaralternativer.map(
+                (svaralternativ) => (
+                  <BodyShort
+                    size={"large"}
+                    spacing
+                    className={spørsmålStyles.innhold}
+                  >
+                    {svaralternativ.tekst}
+                  </BodyShort>
+                ),
+              )}
+            </VStack>
           </VStack>
         </Page.Block>
       </Page>
