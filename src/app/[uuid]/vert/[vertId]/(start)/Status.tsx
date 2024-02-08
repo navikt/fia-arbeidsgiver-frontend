@@ -4,7 +4,7 @@ import React from "react";
 import { Button, Heading } from "@navikt/ds-react";
 import styles from "./startside.module.css";
 import { useRouter } from "next/navigation";
-import { Deltakere } from "@/app/_components/Deltakere";
+import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
 import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
 
 export default function Status({
@@ -21,7 +21,7 @@ export default function Status({
   });
   return (
     <div className={styles.status}>
-      <Deltakere
+      <Deltakelsesstatus
         antallDeltakere={data?.antallDeltakere}
         isLoading={isLoading}
       />

@@ -1,7 +1,7 @@
 import { Heading, Page } from "@navikt/ds-react";
 import styles from "./komponenter.module.css";
 import React from "react";
-import { Deltakere } from "@/app/_components/Deltakere";
+import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
 
 export default function HeaderVert({
   antallDeltakere,
@@ -17,7 +17,7 @@ export default function HeaderVert({
       <Heading spacing level={"1"} size={"large"}>
         IA kartleggingsmøte
       </Heading>
-      <Deltakere
+      <Deltakelsesstatus
         antallDeltakere={antallDeltakere}
         antallSvarMottatt={antallSvarMottatt}
         isLoading={antallDeltakereLaster}
