@@ -46,7 +46,9 @@ export function useSpørsmålIndeks(
       }).then((res) => res.json()),
     );
 
-  return useSWR<spørsmålIndeksDTO>("/api/gjeldende-sporsmal", fetcher);
+  return useSWR<spørsmålIndeksDTO>("/api/gjeldende-sporsmal", fetcher, {
+    refreshInterval: 1000,
+  });
 }
 
 export function useVertSpørsmålIndeks(

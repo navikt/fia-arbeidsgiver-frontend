@@ -23,6 +23,8 @@ export default function Spørsmålsside({
   const storedSisteSvarteID =
     cookievalues[SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY];
 
+  console.log("storedSisteSvarteID :>> ", storedSisteSvarteID);
+
   return (
     <SpørsmålBody
       spørreundersøkelsesId={params.uuid}
