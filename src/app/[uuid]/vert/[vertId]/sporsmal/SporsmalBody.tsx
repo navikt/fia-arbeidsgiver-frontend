@@ -109,7 +109,6 @@ export default function SpørsmålBody({
                     size={"large"}
                     spacing
                     className={spørsmålStyles.innhold}
-                    key={svaralternativ.id}
                   >
                     {svaralternativ.tekst}
                   </BodyShort>
