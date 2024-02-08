@@ -28,7 +28,7 @@ export default function OversiktBody({
   const minPerSpørsmål = 2;
   const { data: spørreundersøkelse } = useVertSpørreundersøkelse(
     undersøkelsesId,
-    vertId
+    vertId,
   );
 
   const { data: antallDeltakereData, isLoading: antallDeltakereLaster } =

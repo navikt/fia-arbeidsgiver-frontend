@@ -34,6 +34,6 @@ export function useAntallDeltakere({
   return useSWR<antallDeltakereDTO>(
     "/api/vert/antall-deltakere",
     fetcher,
-    swrConfig
+    swrConfig,
   );
 }

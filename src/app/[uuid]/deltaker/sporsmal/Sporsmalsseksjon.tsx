@@ -10,14 +10,14 @@ import { postEnkeltSvar } from "@/app/_api_hooks/svar";
 
 function finnSpørsmålSomMatcherIndex(
   spørsmål: spørreundersøkelseDTO | undefined,
-  storedSisteSvarteID?: string
+  storedSisteSvarteID?: string,
 ) {
   if (!spørsmål || !storedSisteSvarteID) {
     return 0;
   }
 
   const funnetIndex = spørsmål?.findIndex?.(
-    (spm) => spm.id === storedSisteSvarteID
+    (spm) => spm.id === storedSisteSvarteID,
   );
 
   return funnetIndex !== undefined && funnetIndex !== undefined
@@ -38,7 +38,7 @@ export default function Spørsmålsseksjon({
 }) {
   const funnetIndex = finnSpørsmålSomMatcherIndex(
     spørsmål,
-    storedSisteSvarteID
+    storedSisteSvarteID,
   );
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] =
     React.useState(funnetIndex);
@@ -68,7 +68,7 @@ export default function Spørsmålsseksjon({
         console.log("Trykket neste");
         if (aktivtSpørsmålindex < gjeldendeSpørsmålindex) {
           console.log(
-            "AktivtSpørsmålindex er mindre enn gjeldendeSpørsmålindex"
+            "AktivtSpørsmålindex er mindre enn gjeldendeSpørsmålindex",
           );
           setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
         }

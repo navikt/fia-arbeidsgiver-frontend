@@ -1,14 +1,14 @@
 .header {
-    padding-left: 10rem;
-    padding-right: 4rem;
-    padding-top: 6rem;
+  padding-left: 10rem;
+  padding-right: 4rem;
+  padding-top: 6rem;
 }
 
 .deltakere {
-    font-size: 2rem;
-    padding-bottom: 2rem;
-    padding-top: 2rem;
-    text-decoration: underline;
-    display: flex;
-    align-items: center;
+  font-size: 2rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  text-decoration: underline;
+  display: flex;
+  align-items: center;
 }

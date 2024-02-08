@@ -1,6 +1,6 @@
 export function arbeidsgiverApiFetcher(
   endpoint: string,
-  body: BodyInit | null = null
+  body: BodyInit | null = null,
 ) {
   const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
 
@@ -19,6 +19,6 @@ export function arbeidsgiverApiFetcher(
           "Content-Type": "application/json",
         },
         body,
-      }
+      },
     );
 }

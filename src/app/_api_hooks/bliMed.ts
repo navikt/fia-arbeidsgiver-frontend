@@ -27,7 +27,7 @@ export function fetchBliMed(spørreundersøkelseId: string) {
         }
         if (res.status === 403) {
           throw new Error(
-            "Vi får ikke koblet til spørreundersøkelsen. Er du sikker på at du skrev inn riktig lenke?"
+            "Vi får ikke koblet til spørreundersøkelsen. Er du sikker på at du skrev inn riktig lenke?",
           );
         }
         if (!res.ok) {

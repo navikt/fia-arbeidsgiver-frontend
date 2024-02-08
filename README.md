@@ -26,11 +26,9 @@ nvm install 18.18.2
 nvm use 18.18.2
 ```
 
-
 ## Getting Started
 
 1. Sett opp en miljøvariabel som heter `NODE_AUTH_TOKEN=<token-med-leserettigheter-i-gpr`.
 2. Installer avhengigheter med `bun install`
 3. Start utviklingsserveren med `bun dev`
-4. Åpne appen ved å gå til  [http://localhost:3000](http://localhost:3000) 
-
+4. Åpne appen ved å gå til [http://localhost:3000](http://localhost:3000)

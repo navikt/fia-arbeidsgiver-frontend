@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   title: "Arbeidsgiverkartlegging",
   description: "Her skal det komme arbeidsgiverkartlegging etterhvert",
   other: {
-    ["google"]: "notranslate"
-  }
+    ["google"]: "notranslate",
+  },
 };
 
 export default function RootLayout({

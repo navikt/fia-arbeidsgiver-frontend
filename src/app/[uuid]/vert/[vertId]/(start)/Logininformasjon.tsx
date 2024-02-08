@@ -26,7 +26,7 @@ function LinkDisplay({ lenke }: { lenke: string }) {
   React.useEffect(() => {
     if (typeof window !== "undefined") {
       setFullLenke(
-        `${window.location.protocol}//${window.location.host}${lenke}`
+        `${window.location.protocol}//${window.location.host}${lenke}`,
       );
     }
   }, [lenke]);
