@@ -32,7 +32,6 @@ export function postEnkeltSvar({
       }).then(() => {
         setCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY, spørsmålId, {
           maxAge: COOKIE_MAX_AGE,
-          sameSite: "strict",
         });
       })
     );

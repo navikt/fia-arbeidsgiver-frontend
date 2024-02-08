@@ -40,7 +40,6 @@ export function fetchBliMed(spørreundersøkelseId: string) {
         const nySessionID = data.sesjonsId;
         setCookie(SESSION_ID_STORAGE_KEY, nySessionID, {
           maxAge: COOKIE_MAX_AGE,
-          sameSite: "strict",
         });
         deleteCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY);
         return nySessionID;
