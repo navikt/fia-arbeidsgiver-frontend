@@ -13,6 +13,7 @@ import {
 import { useRouter } from "next/navigation";
 import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
 import { postEnkeltSvar } from "@/app/_api_hooks/svar";
+import { useSpørsmålIndeks } from "@/app/_api_hooks/sporsmalOgSvar";
 
 function finnSpørsmålSomMatcherIndex(
   spørsmål: spørreundersøkelseDTO | undefined,
@@ -33,70 +34,88 @@ function finnSpørsmålSomMatcherIndex(
 
 export default function Spørsmålsseksjon({
   spørsmål,
-  undersøkelsesId,
+  spørreundersøkelsesId,
   storedSisteSvarteID,
-  gjeldendeSpørsmålindex,
 }: {
   spørsmål: spørreundersøkelseDTO | undefined;
-  undersøkelsesId: string;
+  spørreundersøkelsesId: string;
   storedSisteSvarteID?: string;
-  gjeldendeSpørsmålindex: number;
 }) {
+  const router = useRouter();
   const funnetIndex = finnSpørsmålSomMatcherIndex(
     spørsmål,
     storedSisteSvarteID,
   );
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] =
     React.useState(funnetIndex);
-  const [loadingSkjerm, setLoadingSkjerm] = React.useState(false);
 
+  const { data: gjeldendeSpørsmål } = useSpørsmålIndeks(spørreundersøkelsesId);
   React.useEffect(() => {
     if (aktivtSpørsmålindex === 0 && funnetIndex !== 0) {
       setAktivtSpørsmålindex(funnetIndex);
     }
   }, [funnetIndex, aktivtSpørsmålindex]);
-  const [svar, setSvar] = React.useState({} as Record<string, string>);
-  const router = useRouter();
 
-  const sendSvar = () => {
-    if (!spørsmål) {
-      console.log("Ingen spørsmål");
+  const [venterPåVert, setVenterPåVert] = React.useState(false);
+  React.useEffect(() => {
+    if (gjeldendeSpørsmål === undefined) {
+      console.log("Har ikke et gjeldende spørsmål");
       return;
     }
-    postEnkeltSvar({
-      spørreundersøkelseId: undersøkelsesId,
-      spørsmålId: spørsmål[aktivtSpørsmålindex].id,
-      svarId: svar[spørsmål[aktivtSpørsmålindex].id],
-    }).then(() => {
-      // TODO: Sjekk at svar har funka før du går videre
-      if (aktivtSpørsmålindex + 1 === spørsmål.length) {
-        console.log("Siste spørsmål");
-        router.push("ferdig");
-      } else {
-        console.log("Trykket neste");
-        if (aktivtSpørsmålindex < gjeldendeSpørsmålindex) {
-          console.log(
-            "AktivtSpørsmålindex er mindre enn gjeldendeSpørsmålindex",
-          );
-          setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
-          setLoadingSkjerm(false);
-        } else {
-          setLoadingSkjerm(true);
-        }
-      }
-    });
-  };
+    console.log("Setter loading til false");
+    sendSvar();
+  }, [gjeldendeSpørsmål]);
 
-  if (!spørsmål) {
-    return <div>VI HAR IKKE SPØRSMÅL!!!</div>;
-  }
+  const [svar, setSvar] = React.useState({} as Record<string, string>);
   const velgSvar = (spørsmålid: string, svaralternativid: string) =>
     setSvar((gamleSvar) => ({
       ...gamleSvar,
       [spørsmålid]: svaralternativid,
     }));
 
-  return !loadingSkjerm ? (
+  const sendSvar = () => {
+    if (!spørsmål) {
+      console.log("Ingen spørsmål");
+      return;
+    }
+    if (gjeldendeSpørsmål === undefined) {
+      console.log(`gjeldende spørsmål er undefined`);
+      return;
+    }
+    postEnkeltSvar({
+      spørreundersøkelseId: spørreundersøkelsesId,
+      spørsmålId: spørsmål[aktivtSpørsmålindex].id,
+      svarId: svar[spørsmål[aktivtSpørsmålindex].id],
+    }).then(() => {
+      if (aktivtSpørsmålindex + 1 === spørsmål.length) {
+        console.log("Siste spørsmål");
+        router.push("ferdig");
+      } else {
+        console.log("Trykket neste");
+        if (aktivtSpørsmålindex < gjeldendeSpørsmål.indeks) {
+          console.log(
+            "AktivtSpørsmålindex er mindre enn gjeldendeSpørsmål.indeks",
+          );
+          setVenterPåVert(false);
+          setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
+          console.log("Setter loading til false");
+        } else {
+          setVenterPåVert(true);
+          console.log("Setter loading til true");
+        }
+      }
+    });
+  };
+
+  if (!spørsmål) {
+    return (
+      <VStack gap={"4"} align={"center"}>
+        <Loader size="3xlarge" title="Laster..." />
+      </VStack>
+    );
+  }
+
+  return !venterPåVert ? (
     <>
       <Spørsmålsheader
         aktivtSpørsmålindex={aktivtSpørsmålindex}
@@ -139,9 +158,21 @@ export default function Spørsmålsseksjon({
       </VStack>
     </>
   ) : (
+    // ) : gjeldendeSpørsmål?.indeks === 0 ? (
+    //   <VStack gap={"4"} align={"center"}>
+    //     <Heading size={"large"}>Venter på at verten skal starte</Heading>
+    //     <Loader size="3xlarge" title="Venter..." />
+    //   </VStack>
     <VStack gap={"4"} align={"center"}>
       <Heading size={"large"}>Venter på at andre skal svare</Heading>
       <Loader size="3xlarge" title="Venter..." />
+      <Button
+        variant="secondary"
+        className={styles.tilbakeknapp}
+        onClick={() => setVenterPåVert(false)}
+      >
+        Tilbake
+      </Button>
     </VStack>
   );
 }
