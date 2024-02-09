@@ -1,5 +1,5 @@
 import { Button, VStack } from "@navikt/ds-react";
-import vertStyles from "@/app/[uuid]/vert/[vertId]/vert.module.css";
+import styles from "../../../kartlegging.module.css";
 import spørsmålStyles from "./sporsmalsside.module.css";
 
 import React from "react";
@@ -39,7 +39,7 @@ export default function SpørsmålNavigasjon({
     <VStack align={"center"} className={spørsmålStyles.footer} gap={"4"}>
       {!erViPåSisteSpørsmål ? (
         <Button
-          className={vertStyles.knappBred}
+          className={styles.knappBred}
           onClick={() => {
             naviger(RETNING.NESTE);
           }}
@@ -48,7 +48,7 @@ export default function SpørsmålNavigasjon({
         </Button>
       ) : erViPåSisteSpørsmål ? (
         <Button
-          className={vertStyles.knappBred}
+          className={styles.knappBred}
           onClick={() => {
             naviger(RETNING.FULLFØR);
           }}
@@ -61,7 +61,7 @@ export default function SpørsmålNavigasjon({
 
       <Button
         variant="secondary"
-        className={vertStyles.knappHvitBred}
+        className={styles.knappHvitBred}
         onClick={() => {
           naviger(RETNING.TILBAKE);
         }}

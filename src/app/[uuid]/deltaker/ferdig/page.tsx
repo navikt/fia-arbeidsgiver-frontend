@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Bleed, Box, Heading, HStack, Page } from "@navikt/ds-react";
 import React from "react";
-import styles from "./ferdig.module.css";
+import styles from "../../kartlegging.module.css";
 import { FerdigInnhold } from "./ferdigInnhold";
 import Kartleggingsmøtetittel from "../Kartleggingsmøtetittel";
 

@@ -11,8 +11,8 @@ import {
   VStack,
 } from "@navikt/ds-react";
 
-import vertStyles from "../vert.module.css";
 import oversiktStyles from "./oversikt.module.css";
+import styles from "../../../kartlegging.module.css";
 import { useRouter } from "next/navigation";
 
 type TilstandType = "HoppOver" | "Klar" | "Ferdig";
@@ -33,11 +33,11 @@ export default function Dellinje({
   const tilstandStyle = (tilstand: TilstandType): string => {
     switch (tilstand) {
       case "HoppOver":
-        return vertStyles.bleedHoppetOver;
+        return styles.bleedHoppetOver;
       case "Ferdig":
-        return vertStyles.bleedFerdig;
+        return styles.bleedFerdig;
       default:
-        return vertStyles.bleedKlar;
+        return styles.bleedKlar;
     }
   };
 
@@ -74,14 +74,14 @@ function DellinjeMedState({
           <Button
             variant={"secondary"}
             onClick={() => router.push("sporsmal")}
-            className={vertStyles.knappHvitBred}
+            className={styles.knappHvitBred}
           >
             Start
           </Button>
           <Button
             variant={"secondary"}
             onClick={() => setTilstand("HoppOver")}
-            className={vertStyles.knappHvit}
+            className={styles.knappHvit}
           >
             Hopp over
           </Button>
@@ -93,7 +93,7 @@ function DellinjeMedState({
           <Button
             variant={"secondary"}
             onClick={() => setTilstand("Klar")}
-            className={vertStyles.knappHvit}
+            className={styles.knappHvit}
           >
             Angre
           </Button>

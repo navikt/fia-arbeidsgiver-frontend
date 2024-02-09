@@ -13,7 +13,7 @@ import HeaderVert from "@/app/_components/HeaderVert";
 import React, { useEffect } from "react";
 
 import spørsmålStyles from "./sporsmalsside.module.css";
-import vertStyles from "../vert.module.css";
+import styles from "../../../kartlegging.module.css";
 import SpørsmålNavigasjon from "./SpørsmålNavigasjon";
 import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
 import {
@@ -79,7 +79,7 @@ export default function SpørsmålBody({
         />
         <Page.Block as={"main"}>
           <Bleed marginInline="full" asChild>
-            <Box padding="5" className={vertStyles.bleedKlar}>
+            <Box padding="5" className={styles.bleedKlar}>
               <HStack className={spørsmålStyles.bleedInnhold}>
                 <VStack>
                   <BodyShort size="medium">Del {del}</BodyShort>

@@ -1,8 +1,16 @@
 "use client";
 
-import { Bleed, BodyShort, Box, Button, Page, VStack } from "@navikt/ds-react";
+import {
+  Bleed,
+  BodyShort,
+  Box,
+  Button,
+  Heading,
+  Page,
+  VStack,
+} from "@navikt/ds-react";
 import ferdigStyles from "./ferdigside.module.css";
-import vertStyles from "../vert.module.css";
+import styles from "../../../kartlegging.module.css";
 import React from "react";
 import { useRouter } from "next/navigation";
 import HeaderVert from "@/app/_components/HeaderVert";
@@ -33,10 +41,10 @@ export default function FerdigInnhold({
       contentBlockPadding="none"
       footer={
         <Box as="footer" padding="8">
-          <Page.Block gutters width="2xl" className={vertStyles.footer}>
+          <Page.Block gutters width="2xl" className={styles.footer}>
             <Button
               variant="secondary"
-              className={vertStyles.knappHvitBred}
+              className={styles.knappHvitBred}
               onClick={() => router.push("../../../")}
             >
               Lukk kartlegging
@@ -51,10 +59,10 @@ export default function FerdigInnhold({
       />
       <Page.Block as={"main"}>
         <Bleed marginInline="full" asChild>
-          <Box padding="5" className={vertStyles.bleedFerdig}>
-            <BodyShort size={"large"} className={ferdigStyles.bleedInnhold}>
+          <Box padding="5" className={styles.bleedFerdig}>
+            <Heading size={"large"} className={ferdigStyles.bleedInnhold}>
               Ferdig!
-            </BodyShort>
+            </Heading>
           </Box>
         </Bleed>
         <VStack gap="4">

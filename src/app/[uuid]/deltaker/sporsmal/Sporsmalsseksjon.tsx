@@ -2,7 +2,14 @@
 
 import React from "react";
 import styles from "./sporsmalsside.module.css";
-import { Button, Radio, RadioGroup, VStack } from "@navikt/ds-react";
+import {
+  Button,
+  Heading,
+  Loader,
+  Radio,
+  RadioGroup,
+  VStack,
+} from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
 import { postEnkeltSvar } from "@/app/_api_hooks/svar";
@@ -41,6 +48,8 @@ export default function Spørsmålsseksjon({
   );
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] =
     React.useState(funnetIndex);
+  const [loadingSkjerm, setLoadingSkjerm] = React.useState(false);
+
   React.useEffect(() => {
     if (aktivtSpørsmålindex === 0 && funnetIndex !== 0) {
       setAktivtSpørsmålindex(funnetIndex);
@@ -70,6 +79,9 @@ export default function Spørsmålsseksjon({
             "AktivtSpørsmålindex er mindre enn gjeldendeSpørsmålindex",
           );
           setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
+          setLoadingSkjerm(false);
+        } else {
+          setLoadingSkjerm(true);
         }
       }
     });
@@ -84,7 +96,7 @@ export default function Spørsmålsseksjon({
       [spørsmålid]: svaralternativid,
     }));
 
-  return (
+  return !loadingSkjerm ? (
     <>
       <Spørsmålsheader
         aktivtSpørsmålindex={aktivtSpørsmålindex}
@@ -126,6 +138,11 @@ export default function Spørsmålsseksjon({
         </Button>
       </VStack>
     </>
+  ) : (
+    <VStack gap={"4"} align={"center"}>
+      <Heading size={"large"}>Venter på at andre skal svare</Heading>
+      <Loader size="3xlarge" title="Venter..." />
+    </VStack>
   );
 }
 

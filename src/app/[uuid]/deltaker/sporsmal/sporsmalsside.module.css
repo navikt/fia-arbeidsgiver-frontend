@@ -1,10 +1,3 @@
-.banner {
-  color: var(--a-text-on-inverted);
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
 
 .spørsmålsheader {
   display: flex;
@@ -62,3 +55,14 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+.lasterhjul {
+  display: flex;
+  justify-content: center;
+}
+
+.bleedInnhold {
+  padding-left: 1rem;
+}
+
+
