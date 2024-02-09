@@ -1,4 +1,7 @@
-import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
+import {
+  spørreundersøkelseDTO,
+  spørsmålIndeksDTO,
+} from "@/app/_types/sporreundersokelseDTO";
 import { bliMedDTO } from "@/app/_types/bliMedDTO";
 import { antallDeltakereDTO } from "@/app/_types/antallDeltakereDTO";
 
@@ -67,4 +70,9 @@ export const dummyAntallDeltakere: antallDeltakereDTO = {
     { spørsmålId: "153e4d26-3c89-4097-9ddb-5cfef99bc4e9", antall: 3 },
     { spørsmålId: "37294476-815b-4ed5-90ea-8189a6bc48e8", antall: 2 },
   ],
+};
+
+export const dummySpørsmålIndeks: spørsmålIndeksDTO = {
+  spørreundersøkelseId: "ef4d406d-abc2-4ed6-8de7-72a7feb40326",
+  indeks: 1,
 };
