@@ -62,14 +62,14 @@ export default function Spørsmålsseksjon({
       console.log("Har ikke et gjeldende spørsmål");
       return;
     }
-    if (aktivtSpørsmålindex < gjeldendeSpørsmål.indeks) {
+    if (aktivtSpørsmålindex <= gjeldendeSpørsmål.indeks) {
       console.log("Setter loading til false");
       setVenterPåVert(false);
     } else {
       console.log("Setter loading til true");
       setVenterPåVert(true);
     }
-  }, [gjeldendeSpørsmål]);
+  }, [gjeldendeSpørsmål, aktivtSpørsmålindex]);
 
   const [svar, setSvar] = React.useState({} as Record<string, string>);
   const velgSvar = (spørsmålid: string, svaralternativid: string) =>
@@ -102,12 +102,12 @@ export default function Spørsmålsseksjon({
           console.log(
             "AktivtSpørsmålindex er mindre enn gjeldendeSpørsmål.indeks",
           );
+          setVenterPåVert(false);
           setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
           console.log("Setter loading til false");
-          setVenterPåVert(false);
         } else {
-          console.log("Setter loading til true");
           setVenterPåVert(true);
+          console.log("Setter loading til true");
         }
       }
     });
@@ -155,9 +155,7 @@ export default function Spørsmålsseksjon({
         <Button
           variant="secondary"
           className={styles.tilbakeknapp}
-          onClick={() =>
-            setAktivtSpørsmålindex(Math.max(aktivtSpørsmålindex - 1, 0))
-          }
+          onClick={() => setVenterPåVert(false)}
         >
           Tilbake
         </Button>
