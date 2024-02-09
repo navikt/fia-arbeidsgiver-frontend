@@ -5,6 +5,8 @@ metadata:
   namespace: pia
   labels:
     team: pia
+  annotations:
+    nginx.ingress.kubernetes.io/limit-rpm: 1
 spec:
   ingresses:
     - https://fia-arbeidsgiver.ekstern.dev.nav.no
