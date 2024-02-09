@@ -6,7 +6,7 @@ metadata:
   labels:
     team: pia
   annotations:
-    nginx.ingress.kubernetes.io/limit-rpm: "1"
+    nginx.ingress.kubernetes.io/limit-rpm: "250"
 spec:
   ingresses:
     - https://fia-arbeidsgiver.ekstern.dev.nav.no
