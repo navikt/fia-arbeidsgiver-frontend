@@ -6,10 +6,7 @@ import { useRouter } from "next/navigation";
 
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import styles from "./sporsmalsside.module.css";
-import {
-  useSpørreundersøkelse,
-  useSpørsmålIndeks,
-} from "@/app/_api_hooks/sporsmalOgSvar";
+import { useSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
 import Kartleggingsmøtetittel from "../Kartleggingsmøtetittel";
 import globalStyles from "../../kartlegging.module.css";
 
@@ -27,10 +24,8 @@ export default function SpørsmålBody({
   const router = useRouter();
 
   const { data: spørsmål } = useSpørreundersøkelse(spørreundersøkelsesId);
-  const { data: spørsmålIndeks } = useSpørsmålIndeks(spørreundersøkelsesId);
 
   React.useEffect(() => {
-    console.log(`Spørsmålindeks er: ${spørsmålIndeks?.indeks}`);
     if (!storedSessionID) {
       router.push("../deltaker");
     }
@@ -50,14 +45,11 @@ export default function SpørsmålBody({
             </HStack>
           </Box>
         </Bleed>
-        {spørsmålIndeks && (
-          <Spørsmålsseksjon
-            spørsmål={spørsmål}
-            undersøkelsesId={spørreundersøkelsesId}
-            storedSisteSvarteID={storedSisteSvarteID}
-            gjeldendeSpørsmålindex={spørsmålIndeks.indeks}
-          />
-        )}
+        <Spørsmålsseksjon
+          spørsmål={spørsmål}
+          spørreundersøkelsesId={spørreundersøkelsesId}
+          storedSisteSvarteID={storedSisteSvarteID}
+        />
       </Page.Block>
     </Page>
   );
