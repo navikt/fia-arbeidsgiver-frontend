@@ -17,11 +17,8 @@ export default function Startside({
   return (
     <Page className={styles.startside}>
       <Page.Block gutters width="xl">
-        <Heading level="1" size="medium">
+        <Heading level="1" size="medium" spacing>
           Velkommen til kartleggingsmøte!
-        </Heading>
-        <Heading level="2" size="medium">
-          Du logger inn ved å...
         </Heading>
       </Page.Block>
       <Page.Block gutters width="xl" className={styles.sideinnhold}>
