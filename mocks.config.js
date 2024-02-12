@@ -49,7 +49,7 @@ module.exports = {
     },
     collections: {
       // Selected collection
-      //selected: "base",
+      selected: "base",
     },
   },
   server: {
@@ -97,6 +97,16 @@ module.exports = {
       // Options for @babel/register
       options: {
         presets: ["@babel/env", "@babel/preset-typescript"],
+        plugins: [
+          [
+            "module-resolver",
+            {
+              alias: {
+                "@": "./src",
+              },
+            },
+          ],
+        ],
       },
     },
   },

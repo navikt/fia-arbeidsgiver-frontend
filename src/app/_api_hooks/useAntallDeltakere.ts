@@ -1,5 +1,4 @@
 import useSWR, { SWRConfiguration, SWRResponse } from "swr";
-import setupMSWForBrowser from "@/utils/mocks/setupMSWForBrowser";
 import { antallDeltakereDTO } from "@/app/_types/antallDeltakereDTO";
 
 const ONE_SECOND_MS = 1000;
@@ -12,18 +11,16 @@ export function useAntallDeltakere({
   spørreundersøkelseId: string;
 }): SWRResponse<antallDeltakereDTO> {
   const fetcher = (url: string) => {
-    return setupMSWForBrowser().then(() => {
-      return fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          spørreundersøkelseId,
-          vertId,
-        }),
-      }).then((res) => res.json());
-    });
+    return fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        spørreundersøkelseId,
+        vertId,
+      }),
+    }).then((res) => res.json());
   };
 
   const swrConfig: SWRConfiguration = {

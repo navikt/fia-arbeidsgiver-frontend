@@ -1,11 +1,4 @@
-import {
-  spørreundersøkelseDTO,
-  spørsmålIndeksDTO,
-} from "@/app/_types/sporreundersokelseDTO";
-import { bliMedDTO } from "@/app/_types/bliMedDTO";
-import { antallDeltakereDTO } from "@/app/_types/antallDeltakereDTO";
-
-export const dummySpørreundersøkelse: spørreundersøkelseDTO = [
+const dummySpørreundersøkelse = [
   {
     id: "ef4d406d-abc2-4ed6-8de7-72a7feb40326",
     spørsmål:
@@ -59,11 +52,11 @@ export const dummySpørreundersøkelse: spørreundersøkelseDTO = [
   },
 ];
 
-export const dummyBliMed: bliMedDTO = {
+const dummyBliMed = {
   spørreundersøkelseId: "f7065ba4-56ed-4f61-8215-7579e3d208de",
   sesjonsId: "790fba4d-1c9f-4c20-a019-d574d9542421",
 };
-export const dummyAntallDeltakere: antallDeltakereDTO = {
+const dummyAntallDeltakere = {
   antallDeltakere: 3,
   antallSvar: [
     { spørsmålId: "fbc953f1-e7fe-472d-b069-7698c4cae0a5", antall: 0 },
@@ -72,7 +65,14 @@ export const dummyAntallDeltakere: antallDeltakereDTO = {
   ],
 };
 
-export const dummySpørsmålIndeks: spørsmålIndeksDTO = {
+const dummySpørsmålIndeks = {
   spørreundersøkelseId: "ef4d406d-abc2-4ed6-8de7-72a7feb40326",
-  indeks: 1,
+  indeks: 4,
+};
+
+module.exports = {
+  dummySpørreundersøkelse,
+  dummyBliMed,
+  dummyAntallDeltakere,
+  dummySpørsmålIndeks,
 };
