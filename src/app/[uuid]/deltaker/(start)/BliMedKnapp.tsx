@@ -5,22 +5,38 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { fetchBliMed } from "@/app/_api_hooks/bliMed";
 import styles from "./startside.module.css";
-import { KARTLEGGING_FERDIG_ERROR } from "@/utils/consts";
+import {
+  KARTLEGGING_FERDIG_ERROR,
+  SESSION_ID_STORAGE_KEY,
+  SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
+  SPØRREUNDERSØKELSE_ID_STORAGE_KEY,
+} from "@/utils/consts";
+import { deleteCookie } from "cookies-next";
 
 export default function BliMedKnapp({
-  undersøkelsesID,
+  spørreundersøkelseId,
+  slettCookies,
 }: {
-  undersøkelsesID: string;
+  spørreundersøkelseId: string;
+  slettCookies: boolean;
 }) {
   const [error, setError] = React.useState<string | null>(null);
   const router = useRouter();
+
+  React.useEffect(() => {
+    if (slettCookies) {
+      deleteCookie(SPØRREUNDERSØKELSE_ID_STORAGE_KEY);
+      deleteCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY);
+      deleteCookie(SESSION_ID_STORAGE_KEY);
+    }
+  });
 
   return (
     <>
       <Button
         variant={"secondary"}
         onClick={() => {
-          fetchBliMed(undersøkelsesID)
+          fetchBliMed(spørreundersøkelseId)
             .then(() => {
               setError(null);
               router.push("deltaker/sporsmal");

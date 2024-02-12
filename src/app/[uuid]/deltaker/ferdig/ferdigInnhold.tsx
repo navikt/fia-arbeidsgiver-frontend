@@ -6,11 +6,13 @@ import { deleteCookie } from "cookies-next";
 import {
   SESSION_ID_STORAGE_KEY,
   SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
+  SPØRREUNDERSØKELSE_ID_STORAGE_KEY,
 } from "@/utils/consts";
 
 export function FerdigInnhold() {
   React.useEffect(() => {
     deleteCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY);
+    deleteCookie(SPØRREUNDERSØKELSE_ID_STORAGE_KEY);
     deleteCookie(SESSION_ID_STORAGE_KEY);
   });
 
