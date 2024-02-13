@@ -3,16 +3,16 @@ const { dummySpørsmålIndeks } = require("@/utils/dummydata");
 
 const nesteSporsmalRoutes = [
   {
-    id: "neste-sporsmal-route", // route id
-    url: "/fia-arbeidsgiver/sporreundersokelse/vert/neste-sporsmal", // url in express format
-    method: "POST", // HTTP method
+    id: "neste-sporsmal-route",
+    url: "/fia-arbeidsgiver/sporreundersokelse/vert/neste-sporsmal",
+    method: "POST",
     variants: [
       {
-        id: "success", // variant id
-        type: "json", // variant handler id
+        id: "success",
+        type: "json",
         options: {
-          status: 200, // status to send
-          body: dummySpørsmålIndeks, // body to send
+          status: 200,
+          body: dummySpørsmålIndeks,
         },
       },
     ],

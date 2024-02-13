@@ -3,16 +3,16 @@ const { dummyAntallDeltakere } = require("@/utils/dummydata");
 
 const antallDeltakereRoutes = [
   {
-    id: "antall-deltakere-route", // route id
-    url: "/fia-arbeidsgiver/sporreundersokelse/vert/antall-deltakere", // url in express format
-    method: "POST", // HTTP method
+    id: "antall-deltakere-route",
+    url: "/fia-arbeidsgiver/sporreundersokelse/vert/antall-deltakere",
+    method: "POST",
     variants: [
       {
-        id: "success", // variant id
-        type: "json", // variant handler id
+        id: "success",
+        type: "json",
         options: {
-          status: 200, // status to send
-          body: dummyAntallDeltakere, // body to send
+          status: 200,
+          body: dummyAntallDeltakere,
         },
       },
     ],

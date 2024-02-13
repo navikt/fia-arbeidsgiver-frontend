@@ -3,16 +3,16 @@ const { dummySpørsmålIndeks } = require("@/utils/dummydata");
 
 const gjeldendeSporsmalRoutes = [
   {
-    id: "gjeldende-sporsmal-route", // route id
-    url: "/fia-arbeidsgiver/sporreundersokelse(/vert)?/gjeldende-sporsmal", // url in express format
-    method: "POST", // HTTP method
+    id: "gjeldende-sporsmal-route",
+    url: "/fia-arbeidsgiver/sporreundersokelse(/vert)?/gjeldende-sporsmal",
+    method: "POST",
     variants: [
       {
-        id: "success", // variant id
-        type: "json", // variant handler id
+        id: "success",
+        type: "json",
         options: {
-          status: 200, // status to send
-          body: dummySpørsmålIndeks, // body to send
+          status: 200,
+          body: dummySpørsmålIndeks,
         },
       },
     ],
