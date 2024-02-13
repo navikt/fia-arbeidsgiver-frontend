@@ -30,5 +30,5 @@ nvm use 18.18.2
 
 1. Sett opp en miljøvariabel som heter `NODE_AUTH_TOKEN=<token-med-leserettigheter-i-gpr`.
 2. Installer avhengigheter med `bun install`
-3. Start utviklingsserveren med `bun dev`
+3. Start utviklingsserveren med `./run.sh` eller `bun dev` og `bun run mocks` i separate terminaler.
 4. Åpne appen ved å gå til [http://localhost:3000](http://localhost:3000)

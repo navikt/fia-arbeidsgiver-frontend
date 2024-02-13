@@ -9,7 +9,6 @@ import {
   SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
   SPØRREUNDERSØKELSE_ID_STORAGE_KEY,
 } from "@/utils/consts";
-import setupMSWForBrowser from "@/utils/mocks/setupMSWForBrowser";
 
 export function fetchBliMed(spørreundersøkelseId: string) {
   const fetcher = () =>
@@ -49,5 +48,5 @@ export function fetchBliMed(spørreundersøkelseId: string) {
         return nySessionID;
       });
 
-  return setupMSWForBrowser().then(() => fetcher());
+  return fetcher();
 }
