@@ -40,16 +40,6 @@ export default function OversiktBody({
               delnummer={del}
               delnavn={delnavn}
             />
-            <Dellinje
-              key={spørreundersøkelse[0].id}
-              delnummer={del}
-              delnavn={delnavn}
-            />
-            <Dellinje
-              key={spørreundersøkelse[0].id}
-              delnummer={del}
-              delnavn={delnavn}
-            />
           </VStack>
         </Page.Block>
       </Page>
