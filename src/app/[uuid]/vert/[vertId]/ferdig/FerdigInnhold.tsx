@@ -15,25 +15,12 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { deleteCookie } from "cookies-next";
 import { SESSION_ID_STORAGE_KEY } from "@/utils/consts";
-import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
 
-export default function FerdigInnhold({
-  undersøkelsesId,
-  vertId,
-}: {
-  undersøkelsesId: string;
-  vertId: string;
-}) {
+export default function FerdigInnhold() {
   const router = useRouter();
   React.useEffect(() => {
     deleteCookie(SESSION_ID_STORAGE_KEY);
   });
-
-  const { data: antallDeltakereData, isLoading: antallDeltakereLaster } =
-    useAntallDeltakere({
-      vertId,
-      spørreundersøkelseId: undersøkelsesId,
-    });
 
   return (
     <Page
