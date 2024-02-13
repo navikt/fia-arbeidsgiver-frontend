@@ -158,11 +158,6 @@ export default function Spørsmålsseksjon({
       </VStack>
     </>
   ) : (
-    // ) : gjeldendeSpørsmål?.indeks === 0 ? (
-    //   <VStack gap={"4"} align={"center"}>
-    //     <Heading size={"large"}>Venter på at verten skal starte</Heading>
-    //     <Loader size="3xlarge" title="Venter..." />
-    //   </VStack>
     <VStack gap={"4"} align={"center"}>
       <Heading size={"large"}>Venter på at andre skal svare</Heading>
       <Loader size="3xlarge" title="Venter..." />

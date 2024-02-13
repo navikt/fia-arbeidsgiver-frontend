@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function HomeBody({
   spørreundersøkelseId,
@@ -10,6 +11,8 @@ export default function HomeBody({
   vertId: string;
 }) {
   const router = useRouter();
-  router.push(`/${spørreundersøkelseId}/vert/${vertId}`);
+  useEffect(() => {
+    router.push(`/${spørreundersøkelseId}/vert/${vertId}`);
+  });
   return <></>;
 }
