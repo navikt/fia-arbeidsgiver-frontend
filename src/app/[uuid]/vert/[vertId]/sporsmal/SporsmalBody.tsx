@@ -9,7 +9,6 @@ import {
   Page,
   VStack,
 } from "@navikt/ds-react";
-import HeaderVert from "@/app/_components/HeaderVert";
 import React, { useEffect } from "react";
 
 import spørsmålStyles from "./sporsmalsside.module.css";
@@ -21,6 +20,7 @@ import {
   useVertSpørreundersøkelse,
   useVertSpørsmålIndeks,
 } from "@/app/_api_hooks/sporsmalOgSvar";
+import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,
@@ -57,8 +57,8 @@ export default function SpørsmålBody({
       <Page
         contentBlockPadding="none"
         footer={
-          <Box as="footer" padding="8">
-            <Page.Block gutters width="2xl">
+          <Box as="footer" padding="24">
+            <Page.Block width="2xl">
               <SpørsmålNavigasjon
                 erViPåSisteSpørsmål={
                   aktivtSpørsmålindex >= spørreundersøkelse.length - 1
@@ -70,51 +70,47 @@ export default function SpørsmålBody({
           </Box>
         }
       >
-        <HeaderVert
-          antallDeltakere={antallDeltakereData?.antallDeltakere}
-          antallDeltakereLaster={antallDeltakereLaster}
-          antallSvarMottatt={
-            antallDeltakereData?.antallSvar[aktivtSpørsmålindex].antall
-          }
-        />
         <Page.Block as={"main"}>
           <Bleed marginInline="full" asChild>
             <Box padding="5" className={styles.bleedKlar}>
-              <HStack className={spørsmålStyles.bleedInnhold}>
+              <HStack
+                className={spørsmålStyles.bleedInnhold}
+                justify={"space-between"}
+              >
                 <VStack>
                   <BodyShort size="medium">Del {del}</BodyShort>
-                  <BodyShort size="large">{delnavn}</BodyShort>
+                  <Heading size={"medium"}>
+                    {delnavn} i virksomheten {aktivtSpørsmålindex + 1}/
+                    {spørreundersøkelse.length}
+                  </Heading>
                 </VStack>
+                <Deltakelsesstatus
+                  antallDeltakere={antallDeltakereData?.antallDeltakere}
+                  antallSvarMottatt={
+                    antallDeltakereData?.antallSvar[aktivtSpørsmålindex].antall
+                  }
+                  isLoading={antallDeltakereLaster}
+                />
               </HStack>
             </Box>
           </Bleed>
 
-          <VStack gap="4" align={"center"}>
+          <VStack gap="4" className={spørsmålStyles.spørsmålInnhold}>
             <Heading level={"2"} size={"small"} spacing>
-              {aktivtSpørsmålindex + 1}/{spørreundersøkelse.length} {delnavn} i
-              virksomheten
-            </Heading>
-            <BodyShort
-              size={"large"}
-              spacing
-              className={spørsmålStyles.innhold}
-            >
               {spørreundersøkelse[aktivtSpørsmålindex].spørsmål}
-            </BodyShort>
-            <VStack>
-              {spørreundersøkelse[aktivtSpørsmålindex].svaralternativer.map(
-                (svaralternativ) => (
-                  <BodyShort
-                    key={svaralternativ.id}
-                    size={"large"}
-                    spacing
-                    className={spørsmålStyles.innhold}
-                  >
-                    {svaralternativ.tekst}
-                  </BodyShort>
-                ),
-              )}
-            </VStack>
+            </Heading>
+            {spørreundersøkelse[aktivtSpørsmålindex].svaralternativer.map(
+              (svaralternativ) => (
+                <BodyShort
+                  key={svaralternativ.id}
+                  size={"large"}
+                  spacing
+                  className={spørsmålStyles.innholdSvar}
+                >
+                  {svaralternativ.tekst}
+                </BodyShort>
+              ),
+            )}
           </VStack>
         </Page.Block>
       </Page>

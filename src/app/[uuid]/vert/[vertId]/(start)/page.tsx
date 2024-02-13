@@ -1,4 +1,4 @@
-import { Heading, Page } from "@navikt/ds-react";
+import { Page } from "@navikt/ds-react";
 import type { Metadata } from "next";
 import styles from "./startside.module.css";
 import Logininformasjon from "./Logininformasjon";
@@ -16,11 +16,6 @@ export default function Startside({
 }) {
   return (
     <Page className={styles.startside}>
-      <Page.Block gutters width="xl">
-        <Heading level="1" size="medium" spacing>
-          Velkommen til kartleggingsmøte!
-        </Heading>
-      </Page.Block>
       <Page.Block gutters width="xl" className={styles.sideinnhold}>
         <Logininformasjon />
         <Status undersøkelsesID={params.uuid} vertId={params.vertId} />

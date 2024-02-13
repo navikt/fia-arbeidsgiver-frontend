@@ -1,4 +1,4 @@
-import { Button, VStack } from "@navikt/ds-react";
+import { Button, HStack } from "@navikt/ds-react";
 import styles from "../../../kartlegging.module.css";
 import spørsmålStyles from "./sporsmalsside.module.css";
 
@@ -30,13 +30,25 @@ export default function SpørsmålNavigasjon({
         setAktivtSpørsmålindex(aktivtSpørsmålindex + 1);
         break;
       case RETNING.TILBAKE:
+        if (aktivtSpørsmålindex === 0) {
+          router.push("oversikt");
+        }
         setAktivtSpørsmålindex(Math.max(aktivtSpørsmålindex - 1, 0));
         break;
     }
   };
 
   return (
-    <VStack align={"center"} className={spørsmålStyles.footer} gap={"4"}>
+    <HStack className={spørsmålStyles.footer} gap={"4"}>
+      <Button
+        variant="secondary"
+        className={styles.knappHvitBred}
+        onClick={() => {
+          naviger(RETNING.TILBAKE);
+        }}
+      >
+        Tilbake
+      </Button>
       {!erViPåSisteSpørsmål ? (
         <Button
           className={styles.knappBred}
@@ -58,16 +70,6 @@ export default function SpørsmålNavigasjon({
       ) : (
         <></>
       )}
-
-      <Button
-        variant="secondary"
-        className={styles.knappHvitBred}
-        onClick={() => {
-          naviger(RETNING.TILBAKE);
-        }}
-      >
-        Tilbake
-      </Button>
-    </VStack>
+    </HStack>
   );
 }

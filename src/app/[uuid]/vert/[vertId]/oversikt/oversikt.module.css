@@ -1,9 +1,16 @@
 .bleedInnhold {
   justify-content: space-between;
   padding-left: 10rem;
-  padding-right: 4rem;
+  padding-right: 10rem;
 }
 
 .bleedInnhold :last-child {
   align-items: center;
+}
+
+.qrcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

@@ -20,13 +20,9 @@ type TilstandType = "HoppOver" | "Klar" | "Ferdig";
 export default function Dellinje({
   delnummer,
   delnavn,
-  punkter,
-  tid,
 }: {
   delnummer: number;
   delnavn: string;
-  punkter: number;
-  tid: number;
 }) {
   const [tilstand, setTilstand] = useState<TilstandType>("Klar");
 
@@ -50,8 +46,6 @@ export default function Dellinje({
             <BodyShort size="large">{delnavn}</BodyShort>
           </VStack>
           <HStack gap={"4"}>
-            <Detail>{punkter} punkter</Detail>
-            <Detail>Beregnet tid: {tid} min</Detail>
             <DellinjeMedState tilstand={tilstand} setTilstand={setTilstand} />
           </HStack>
         </HStack>
@@ -77,13 +71,6 @@ function DellinjeMedState({
             className={styles.knappHvitBred}
           >
             Start
-          </Button>
-          <Button
-            variant={"secondary"}
-            onClick={() => setTilstand("HoppOver")}
-            className={styles.knappHvit}
-          >
-            Hopp over
           </Button>
         </>
       )}

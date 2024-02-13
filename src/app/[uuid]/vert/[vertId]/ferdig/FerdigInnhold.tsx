@@ -13,7 +13,6 @@ import ferdigStyles from "./ferdigside.module.css";
 import styles from "../../../kartlegging.module.css";
 import React from "react";
 import { useRouter } from "next/navigation";
-import HeaderVert from "@/app/_components/HeaderVert";
 import { deleteCookie } from "cookies-next";
 import { SESSION_ID_STORAGE_KEY } from "@/utils/consts";
 import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
@@ -53,10 +52,6 @@ export default function FerdigInnhold({
         </Box>
       }
     >
-      <HeaderVert
-        antallDeltakere={antallDeltakereData?.antallDeltakere}
-        antallDeltakereLaster={antallDeltakereLaster}
-      />
       <Page.Block as={"main"}>
         <Bleed marginInline="full" asChild>
           <Box padding="5" className={styles.bleedFerdig}>

@@ -1,27 +1,36 @@
-import { Heading, Page } from "@navikt/ds-react";
+import { Heading, HStack, Loader, Page } from "@navikt/ds-react";
 import styles from "./komponenter.module.css";
 import React from "react";
-import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
+import { QRCodeSVG } from "qrcode.react";
+import { usePathname } from "next/navigation";
 
-export default function HeaderVert({
-  antallDeltakere,
-  antallDeltakereLaster,
-  antallSvarMottatt,
-}: {
-  antallDeltakere: number | undefined;
-  antallDeltakereLaster: boolean | undefined;
-  antallSvarMottatt?: number | undefined;
-}) {
+export default function HeaderVert() {
+  const [fullLenke, setFullLenke] = React.useState("");
+  const lenke: string = usePathname()
+    .replace("/oversikt", "")
+    .slice(0, -37)
+    .replace("vert", "deltaker");
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      setFullLenke(
+        `${window.location.protocol}//${window.location.host}${lenke}`,
+      );
+    }
+  }, [lenke]);
+
   return (
     <Page.Block as={"header"} className={styles.header}>
-      <Heading spacing level={"1"} size={"large"}>
-        IA kartleggingsmøte
-      </Heading>
-      <Deltakelsesstatus
-        antallDeltakere={antallDeltakere}
-        antallSvarMottatt={antallSvarMottatt}
-        isLoading={antallDeltakereLaster}
-      />
+      <HStack justify={"space-between"}>
+        <Heading spacing level={"1"} size={"large"}>
+          IA kartleggingsmøte
+        </Heading>
+        {fullLenke !== "" ? (
+          <QRCodeSVG value={fullLenke} className={styles.qrcode} />
+        ) : (
+          <Loader size="3xlarge" />
+        )}
+      </HStack>
     </Page.Block>
   );
 }
