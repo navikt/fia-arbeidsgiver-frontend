@@ -13,7 +13,7 @@ import {
 import { useRouter } from "next/navigation";
 import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
 import { postEnkeltSvar } from "@/app/_api_hooks/svar";
-import { useSpørsmålIndeks } from "@/app/_api_hooks/sporsmalOgSvar";
+import { useKategoristatus } from "@/app/_api_hooks/sporsmalOgSvar";
 
 function finnSpørsmålSomMatcherIndex(
   spørsmål: spørreundersøkelseDTO | undefined,
@@ -49,7 +49,7 @@ export default function Spørsmålsseksjon({
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] =
     React.useState(funnetIndex);
 
-  const { data: gjeldendeSpørsmål } = useSpørsmålIndeks(spørreundersøkelsesId);
+  const { data: kategoristatus } = useKategoristatus(spørreundersøkelsesId);
   React.useEffect(() => {
     if (aktivtSpørsmålindex === 0 && funnetIndex !== 0) {
       setAktivtSpørsmålindex(funnetIndex);
@@ -58,13 +58,13 @@ export default function Spørsmålsseksjon({
 
   const [venterPåVert, setVenterPåVert] = React.useState(false);
   React.useEffect(() => {
-    if (gjeldendeSpørsmål === undefined) {
+    if (kategoristatus === undefined) {
       console.log("Har ikke et gjeldende spørsmål");
       return;
     }
     console.log("Setter loading til false");
     sendSvar();
-  }, [gjeldendeSpørsmål]);
+  }, [kategoristatus]);
 
   const [svar, setSvar] = React.useState({} as Record<string, string>);
   const velgSvar = (spørsmålid: string, svaralternativid: string) =>
@@ -78,7 +78,7 @@ export default function Spørsmålsseksjon({
       console.log("Ingen spørsmål");
       return;
     }
-    if (gjeldendeSpørsmål === undefined) {
+    if (kategoristatus === undefined) {
       console.log(`gjeldende spørsmål er undefined`);
       return;
     }
@@ -92,9 +92,9 @@ export default function Spørsmålsseksjon({
         router.push("ferdig");
       } else {
         console.log("Trykket neste");
-        if (aktivtSpørsmålindex < gjeldendeSpørsmål.indeks) {
+        if (aktivtSpørsmålindex < kategoristatus.spørsmålindeks) {
           console.log(
-            "AktivtSpørsmålindex er mindre enn gjeldendeSpørsmål.indeks",
+            `AktivtSpørsmålindex ${aktivtSpørsmålindex} er mindre enn kategoristatus.spørsmålindeks ${kategoristatus.spørsmålindeks}`,
           );
           setVenterPåVert(false);
           setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
@@ -107,7 +107,8 @@ export default function Spørsmålsseksjon({
     });
   };
 
-  if (!spørsmål) {
+  if (!spørsmål || !kategoristatus) {
+    console.log(!spørsmål ? "spørsmål mangler" : "kategoristatus mangler");
     return (
       <VStack gap={"4"} align={"center"}>
         <Loader size="3xlarge" title="Laster..." />
@@ -115,7 +116,57 @@ export default function Spørsmålsseksjon({
     );
   }
 
-  return !venterPåVert ? (
+  if (kategoristatus.status === "OPPRETTET") {
+    return (
+      <VStack gap={"4"} align={"center"}>
+        <Heading size={"large"}>
+          Venter på at verten skal starte kartlegging i Fia
+        </Heading>
+        <Loader size="3xlarge" title="Venter..." />
+        <Button
+          variant="secondary"
+          className={styles.tilbakeknapp}
+          onClick={() => setVenterPåVert(false)}
+        >
+          Tilbake
+        </Button>
+      </VStack>
+    );
+  }
+
+  if (kategoristatus.status === "IKKE_PÅBEGYNT") {
+    return (
+      <VStack gap={"4"} align={"center"}>
+        <Heading size={"large"}>Venter på at verten skal starte</Heading>
+        <Loader size="3xlarge" title="Venter..." />
+        <Button
+          variant="secondary"
+          className={styles.tilbakeknapp}
+          onClick={() => setVenterPåVert(false)}
+        >
+          Tilbake
+        </Button>
+      </VStack>
+    );
+  }
+
+  if (venterPåVert) {
+    return (
+      <VStack gap={"4"} align={"center"}>
+        <Heading size={"large"}>Venter på at verten skal fortsette</Heading>
+        <Loader size="3xlarge" title="Venter..." />
+        <Button
+          variant="secondary"
+          className={styles.tilbakeknapp}
+          onClick={() => setVenterPåVert(false)}
+        >
+          Tilbake
+        </Button>
+      </VStack>
+    );
+  }
+
+  return (
     <>
       <Spørsmålsheader
         aktivtSpørsmålindex={aktivtSpørsmålindex}
@@ -157,18 +208,6 @@ export default function Spørsmålsseksjon({
         </Button>
       </VStack>
     </>
-  ) : (
-    <VStack gap={"4"} align={"center"}>
-      <Heading size={"large"}>Venter på at andre skal svare</Heading>
-      <Loader size="3xlarge" title="Venter..." />
-      <Button
-        variant="secondary"
-        className={styles.tilbakeknapp}
-        onClick={() => setVenterPåVert(false)}
-      >
-        Tilbake
-      </Button>
-    </VStack>
   );
 }
 

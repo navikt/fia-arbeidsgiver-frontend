@@ -6,10 +6,7 @@ import { useRouter } from "next/navigation";
 
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import styles from "./sporsmalsside.module.css";
-import {
-  useKategoristatus,
-  useSpørreundersøkelse,
-} from "@/app/_api_hooks/sporsmalOgSvar";
+import { useSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
 import Kartleggingsmøtetittel from "../Kartleggingsmøtetittel";
 import globalStyles from "../../kartlegging.module.css";
 
@@ -27,13 +24,11 @@ export default function SpørsmålBody({
   const router = useRouter();
 
   const { data: spørsmål } = useSpørreundersøkelse(spørreundersøkelsesId);
-  const { data: kategoristatus } = useKategoristatus(spørreundersøkelsesId);
 
   React.useEffect(() => {
     if (!storedSessionID) {
       router.push("../deltaker");
     }
-    console.log(`Kategoristatus er ${kategoristatus?.status}`);
   });
 
   return (
