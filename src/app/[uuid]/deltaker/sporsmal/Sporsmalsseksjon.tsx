@@ -92,16 +92,19 @@ export default function Spørsmålsseksjon({
         router.push("ferdig");
       } else {
         console.log("Trykket neste");
-        if (aktivtSpørsmålindex < kategoristatus.spørsmålindeks) {
+        if (
+          kategoristatus.spørsmålindeks === null ||
+          aktivtSpørsmålindex >= kategoristatus.spørsmålindeks
+        ) {
+          setVenterPåVert(true);
+          console.log("Setter loading til true");
+        } else {
           console.log(
             `AktivtSpørsmålindex ${aktivtSpørsmålindex} er mindre enn kategoristatus.spørsmålindeks ${kategoristatus.spørsmålindeks}`,
           );
           setVenterPåVert(false);
           setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
           console.log("Setter loading til false");
-        } else {
-          setVenterPåVert(true);
-          console.log("Setter loading til true");
         }
       }
     });
