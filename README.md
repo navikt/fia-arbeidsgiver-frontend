@@ -26,6 +26,17 @@ nvm install 18.18.2
 nvm use 18.18.2
 ```
 
+### Set opp env.local-fil i root
+
+Lag en fil i root som heter "env.local"
+
+Den skal inneholde
+
+```
+FIA_ARBEIDSGIVER_HOSTNAME=localhost:3100
+FIA_ARBEIDSGIVER_AUDIENCE=fiaArbeidsgiverAudience
+```
+
 ## Getting Started
 
 1. Sett opp en miljøvariabel som heter `NODE_AUTH_TOKEN=<token-med-leserettigheter-i-gpr`.
