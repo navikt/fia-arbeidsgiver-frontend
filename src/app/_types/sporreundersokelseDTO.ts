@@ -1,7 +1,7 @@
 export type spørreundersøkelseDTO = spørsmålDTO[];
 
 export type spørsmålDTO = {
-  id: string;
+  spørsmålId: string;
   spørsmål: string;
   svaralternativer: svaralternativDTO[];
 };
@@ -12,7 +12,7 @@ export type spørsmålIndeksDTO = {
 };
 
 export type svaralternativDTO = {
-  id: string;
+  svarId: string;
   tekst: string;
 };
 

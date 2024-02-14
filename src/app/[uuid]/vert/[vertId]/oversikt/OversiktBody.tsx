@@ -14,18 +14,18 @@ export const metadata: Metadata = {
 };
 
 export default function OversiktBody({
-  undersøkelsesId,
+  spørreundersøkelseId,
   vertId,
   del,
   delnavn,
 }: {
-  undersøkelsesId: string;
+  spørreundersøkelseId: string;
   vertId: string;
   del: number;
   delnavn: string;
 }) {
   const { data: spørreundersøkelse } = useVertSpørreundersøkelse(
-    undersøkelsesId,
+    spørreundersøkelseId,
     vertId,
   );
 
@@ -36,7 +36,9 @@ export default function OversiktBody({
         <Page.Block as={"main"}>
           <VStack gap="4">
             <Dellinje
-              key={spørreundersøkelse[0].id}
+              key={spørreundersøkelse[0].spørsmålId}
+              spørreundersøkelseId={spørreundersøkelseId}
+              vertId={vertId}
               delnummer={del}
               delnavn={delnavn}
             />

@@ -16,11 +16,11 @@ import styles from "../../../kartlegging.module.css";
 import SpørsmålNavigasjon from "./SpørsmålNavigasjon";
 import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
 import {
-  postVertNesteSpørsmål,
   useVertSpørreundersøkelse,
   useVertSpørsmålIndeks,
 } from "@/app/_api_hooks/sporsmalOgSvar";
 import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
+import { inkrementerSpørsmål } from "@/app/_api_hooks/inkrementerSpørsmål";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,
@@ -47,7 +47,7 @@ export default function SpørsmålBody({
 
   useEffect(() => {
     if (data && aktivtSpørsmålindex > data?.indeks) {
-      postVertNesteSpørsmål(spørreundersøkelseId, vertId);
+      inkrementerSpørsmål(spørreundersøkelseId, vertId);
     }
   }, [aktivtSpørsmålindex, data, spørreundersøkelseId, vertId]);
 
@@ -102,7 +102,7 @@ export default function SpørsmålBody({
             {spørreundersøkelse[aktivtSpørsmålindex].svaralternativer.map(
               (svaralternativ) => (
                 <BodyShort
-                  key={svaralternativ.id}
+                  key={svaralternativ.svarId}
                   size={"large"}
                   spacing
                   className={spørsmålStyles.innholdSvar}

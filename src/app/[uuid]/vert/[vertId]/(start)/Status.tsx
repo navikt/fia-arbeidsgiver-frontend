@@ -6,6 +6,7 @@ import styles from "./startside.module.css";
 import { useRouter } from "next/navigation";
 import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
 import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
+import { startKategori } from "@/app/_api_hooks/startKategori";
 
 export default function Status({
   undersøkelsesID,
@@ -19,6 +20,16 @@ export default function Status({
     vertId,
     spørreundersøkelseId: undersøkelsesID,
   });
+
+  function komIGang() {
+    startKategori({
+      vertId,
+      spørreundersøkelseId: undersøkelsesID,
+    }).then(() =>
+      router.push(`../../${undersøkelsesID}/vert/${vertId}/oversikt`),
+    );
+  }
+
   return (
     <div className={styles.status}>
       <Deltakelsesstatus
@@ -31,9 +42,7 @@ export default function Status({
       <>
         <Button
           variant={"secondary"}
-          onClick={() =>
-            router.push(`../../${undersøkelsesID}/vert/${vertId}/oversikt`)
-          }
+          onClick={() => komIGang()}
           className={styles.bliMedKnapp}
         >
           Kom i gang

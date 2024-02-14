@@ -24,7 +24,7 @@ function finnSpørsmålSomMatcherIndex(
   }
 
   const funnetIndex = spørsmål?.findIndex?.(
-    (spm) => spm.id === storedSisteSvarteID,
+    (spm) => spm.spørsmålId === storedSisteSvarteID,
   );
 
   return funnetIndex !== undefined
@@ -84,8 +84,8 @@ export default function Spørsmålsseksjon({
     }
     postEnkeltSvar({
       spørreundersøkelseId: spørreundersøkelsesId,
-      spørsmålId: spørsmål[aktivtSpørsmålindex].id,
-      svarId: svar[spørsmål[aktivtSpørsmålindex].id],
+      spørsmålId: spørsmål[aktivtSpørsmålindex].spørsmålId,
+      svarId: svar[spørsmål[aktivtSpørsmålindex].spørsmålId],
     }).then(() => {
       if (aktivtSpørsmålindex + 1 === spørsmål.length) {
         console.log("Siste spørsmål");
@@ -181,13 +181,13 @@ export default function Spørsmålsseksjon({
           onChange={(valgtSvarId: string) =>
             velgSvar(spørsmål[aktivtSpørsmålindex].id, valgtSvarId)
           }
-          defaultValue={svar[spørsmål[aktivtSpørsmålindex]?.id]}
+          defaultValue={svar[spørsmål[aktivtSpørsmålindex]?.spørsmålId]}
           hideLegend
           className={styles.spørsmålsseksjon}
         >
           {spørsmål[aktivtSpørsmålindex].svaralternativer.map(
             (svaralternativ) => (
-              <Radio key={svaralternativ.id} value={svaralternativ.id}>
+              <Radio key={svaralternativ.svarId} value={svaralternativ.svarId}>
                 {svaralternativ.tekst}
               </Radio>
             ),

@@ -1,44 +1,44 @@
 .bleedFerdig {
-  background: var(--a-green-200);
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  padding: 2rem 0;
-  min-height: 112px;
+    background: var(--a-green-200);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+    min-height: 112px;
 }
 
 .bleedKlar {
-  color: var(--a-text-on-inverted);
-  background: var(--a-purple-800);
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  padding: 2rem 0;
-  min-height: 112px;
+    color: var(--a-text-on-inverted);
+    background: var(--a-purple-800);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+    min-height: 112px;
 }
 
 .bleedHoppetOver {
-  background: var(--a-gray-400);
-  padding: 2rem 0;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  min-height: 112px;
+    background: var(--a-gray-400);
+    padding: 2rem 0;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    min-height: 112px;
 }
 
 .knappHvit {
-  background: var(--a-bg-default);
+    background: var(--a-bg-default);
 }
 
 .knappHvitBred {
-  background: var(--a-bg-default);
-  min-width: 10rem;
+    background: var(--a-bg-default);
+    min-width: 10rem;
 }
 
 .knappBred {
-  min-width: 10rem;
+    min-width: 10rem;
 }
 
 .footer {
-  display: flex;
-  justify-content: end;
-  margin-bottom: 4rem;
-  padding-right: 10rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 4rem;
+    padding-right: 10rem;
 }

@@ -1,26 +1,26 @@
 .bleedInnhold {
-  padding-left: 10rem;
-  padding-right: 10rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
 }
 
 .spørsmålInnhold {
-  padding-left: 10rem;
-  padding-right: 10rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
 }
 
 
 .innholdSvar {
-  padding-left: 2rem;
+    padding-left: 2rem;
 }
 
 .deltakere {
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
 }
 
 .footer {
-  margin-right: -5rem;
-  display: flex;
-  justify-content: end;
+    margin-right: -5rem;
+    display: flex;
+    justify-content: flex-end;
 }

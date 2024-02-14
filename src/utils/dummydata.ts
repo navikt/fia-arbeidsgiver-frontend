@@ -70,6 +70,12 @@ const dummySpørsmålIndeks = {
   indeks: 4,
 };
 
+const startKategoriResult = {
+  kategori: "PARTSSAMARBEID",
+  status: "OPPRETTET",
+  spørsmålindeks: null,
+};
+
 const dummyKartleggingStatusOpprettet = {
   kategori: "PARTSSAMARBEID",
   status: "OPPRETTET",
@@ -96,4 +102,5 @@ module.exports = {
   dummyKartleggingStatusOpprettet,
   dummyKartleggingStatusIkkePåbegynt,
   dummyKartleggingStatusPåbegynt,
+  startKategoriResult,
 };
