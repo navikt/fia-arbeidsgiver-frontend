@@ -18,7 +18,7 @@ export default function Startside({
     <Page className={styles.startside}>
       <Page.Block gutters width="xl" className={styles.sideinnhold}>
         <Logininformasjon />
-        <Status undersøkelsesID={params.uuid} vertId={params.vertId} />
+        <Status spørreundersøkelseId={params.uuid} vertId={params.vertId} />
       </Page.Block>
     </Page>
   );

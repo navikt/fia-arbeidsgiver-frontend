@@ -9,24 +9,21 @@ import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
 import { startKategori } from "@/app/_api_hooks/startKategori";
 
 export default function Status({
-  undersøkelsesID,
+  spørreundersøkelseId,
   vertId,
 }: {
-  undersøkelsesID: string;
+  spørreundersøkelseId: string;
   vertId: string;
 }) {
   const router = useRouter();
   const { data, isLoading } = useAntallDeltakere({
     vertId,
-    spørreundersøkelseId: undersøkelsesID,
+    spørreundersøkelseId,
   });
 
   function komIGang() {
-    startKategori({
-      vertId,
-      spørreundersøkelseId: undersøkelsesID,
-    }).then(() =>
-      router.push(`../../${undersøkelsesID}/vert/${vertId}/oversikt`),
+    startKategori(vertId, spørreundersøkelseId).then(() =>
+      router.push(`../../${spørreundersøkelseId}/vert/${vertId}/oversikt`),
     );
   }
 

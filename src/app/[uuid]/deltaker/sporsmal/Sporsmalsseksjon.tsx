@@ -179,7 +179,7 @@ export default function Spørsmålsseksjon({
         <RadioGroup
           legend="Velg ett alternativ"
           onChange={(valgtSvarId: string) =>
-            velgSvar(spørsmål[aktivtSpørsmålindex].id, valgtSvarId)
+            velgSvar(spørsmål[aktivtSpørsmålindex].spørsmålId, valgtSvarId)
           }
           defaultValue={svar[spørsmål[aktivtSpørsmålindex]?.spørsmålId]}
           hideLegend
