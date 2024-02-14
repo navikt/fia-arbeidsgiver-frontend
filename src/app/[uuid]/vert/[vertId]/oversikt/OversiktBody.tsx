@@ -7,6 +7,7 @@ import React from "react";
 import FooterOversikt from "./FooterOversikt";
 import HeaderVert from "@/app/_components/HeaderVert";
 import { useVertSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
+import { KategoriType } from "@/app/_types/sporreundersokelseDTO";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -17,12 +18,12 @@ export default function OversiktBody({
   spørreundersøkelseId,
   vertId,
   del,
-  delnavn,
+  kategori,
 }: {
   spørreundersøkelseId: string;
   vertId: string;
   del: number;
-  delnavn: string;
+  kategori: KategoriType;
 }) {
   const { data: spørreundersøkelse } = useVertSpørreundersøkelse(
     spørreundersøkelseId,
@@ -40,7 +41,7 @@ export default function OversiktBody({
               spørreundersøkelseId={spørreundersøkelseId}
               vertId={vertId}
               delnummer={del}
-              delnavn={delnavn}
+              kategori={kategori}
             />
           </VStack>
         </Page.Block>

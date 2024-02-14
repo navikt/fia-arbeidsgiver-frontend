@@ -15,7 +15,7 @@ export default function Oversiktside({
   return (
     <OversiktBody
       del={1}
-      delnavn={"Partssamarbeid i virksomheten"}
+      kategori={"PARTSSAMARBEID"}
       spørreundersøkelseId={params.uuid}
       vertId={params.vertId}
     />

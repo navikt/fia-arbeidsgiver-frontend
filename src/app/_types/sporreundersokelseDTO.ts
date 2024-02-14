@@ -1,3 +1,11 @@
+export type KategoriType = "PARTSSAMARBEID";
+
+export type StatusType =
+  | "OPPRETTET"
+  | "HOPP_OVER" // kun frontend ? fjern?
+  | "IKKE_PÅBEGYNT"
+  | "PÅBEGYNT"
+  | "FERDIG"; // kun frontend? fjern?
 export type spørreundersøkelseDTO = spørsmålDTO[];
 
 export type spørsmålDTO = {
@@ -17,7 +25,7 @@ export type svaralternativDTO = {
 };
 
 export type kategoristatusDTO = {
-  kategori: string;
-  status: string;
+  kategori: KategoriType;
+  status: StatusType;
   spørsmålindeks: number | null;
 };
