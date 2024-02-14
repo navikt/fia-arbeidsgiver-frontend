@@ -26,9 +26,9 @@ nvm install 18.18.2
 nvm use 18.18.2
 ```
 
-### Set opp env.local-fil i root
+### Set opp .env.local-fil i root
 
-Lag en fil i root som heter "env.local"
+Lag en fil i root som heter ".env.local"
 
 Den skal inneholde
 
