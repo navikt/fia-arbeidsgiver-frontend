@@ -15,3 +15,9 @@ export type svaralternativDTO = {
   id: string;
   tekst: string;
 };
+
+export type kategoristatusDTO = {
+  kategori: string;
+  status: string;
+  spørsmålindeks: number | null;
+};

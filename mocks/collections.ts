@@ -8,6 +8,7 @@ const collections = [
       "sporsmal-og-svar-route:success",
       "antall-deltakere-route:success",
       "neste-sporsmal-route:success",
+      "kategoristatus-route:påbegynt",
     ],
   },
 ];

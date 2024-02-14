@@ -1,4 +1,12 @@
-const dummySpørreundersøkelse = [
+import {
+  kategoristatusDTO,
+  spørreundersøkelseDTO,
+  spørsmålIndeksDTO,
+} from "@/app/_types/sporreundersokelseDTO";
+import { bliMedDTO } from "@/app/_types/bliMedDTO";
+import { antallDeltakereDTO } from "@/app/_types/antallDeltakereDTO";
+
+const dummySpørreundersøkelse: spørreundersøkelseDTO = [
   {
     id: "ef4d406d-abc2-4ed6-8de7-72a7feb40326",
     spørsmål:
@@ -52,11 +60,11 @@ const dummySpørreundersøkelse = [
   },
 ];
 
-const dummyBliMed = {
+const dummyBliMed: bliMedDTO = {
   spørreundersøkelseId: "f7065ba4-56ed-4f61-8215-7579e3d208de",
   sesjonsId: "790fba4d-1c9f-4c20-a019-d574d9542421",
 };
-const dummyAntallDeltakere = {
+const dummyAntallDeltakere: antallDeltakereDTO = {
   antallDeltakere: 3,
   antallSvar: [
     { spørsmålId: "fbc953f1-e7fe-472d-b069-7698c4cae0a5", antall: 0 },
@@ -65,9 +73,27 @@ const dummyAntallDeltakere = {
   ],
 };
 
-const dummySpørsmålIndeks = {
+const dummySpørsmålIndeks: spørsmålIndeksDTO = {
   spørreundersøkelseId: "ef4d406d-abc2-4ed6-8de7-72a7feb40326",
   indeks: 4,
+};
+
+const dummyKartleggingStatusOpprettet: kategoristatusDTO = {
+  kategori: "PARTSSAMARBEID",
+  status: "OPPRETTET",
+  spørsmålindeks: null,
+};
+
+const dummyKartleggingStatusIkkePåbegynt: kategoristatusDTO = {
+  kategori: "PARTSSAMARBEID",
+  status: "IKKE_PÅBEGYNT",
+  spørsmålindeks: null,
+};
+
+const dummyKartleggingStatusPåbegynt: kategoristatusDTO = {
+  kategori: "PARTSSAMARBEID",
+  status: "PÅBEGYNT",
+  spørsmålindeks: 1,
 };
 
 module.exports = {
@@ -75,4 +101,7 @@ module.exports = {
   dummyBliMed,
   dummyAntallDeltakere,
   dummySpørsmålIndeks,
+  dummyKartleggingStatusOpprettet,
+  dummyKartleggingStatusIkkePåbegynt,
+  dummyKartleggingStatusPåbegynt,
 };

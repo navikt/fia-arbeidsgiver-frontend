@@ -1,4 +1,5 @@
 import {
+  kategoristatusDTO,
   spørreundersøkelseDTO,
   spørsmålIndeksDTO,
 } from "../_types/sporreundersokelseDTO";
@@ -25,6 +26,9 @@ export function useSpørreundersøkelse(
   return useSWR<spørreundersøkelseDTO>("/api/sporsmal-og-svar", fetcher);
 }
 
+/**
+ * @deprecated The method should not be used
+ */
 export function useSpørsmålIndeks(
   spørreundersøkelseId: string,
 ): SWRResponse<spørsmålIndeksDTO> {
@@ -42,6 +46,27 @@ export function useSpørsmålIndeks(
     }).then((res) => res.json());
 
   return useSWR<spørsmålIndeksDTO>("/api/gjeldende-sporsmal", fetcher, {
+    refreshInterval: 1000,
+  });
+}
+
+export function useKategoristatus(
+  spørreundersøkelseId: string,
+): SWRResponse<kategoristatusDTO> {
+  const sesjonsId = getCookie(SESSION_ID_STORAGE_KEY);
+  const fetcher = (url: string) =>
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        spørreundersøkelseId,
+        sesjonsId,
+      }),
+    }).then((res) => res.json());
+
+  return useSWR<kategoristatusDTO>("/api/kategoristatus", fetcher, {
     refreshInterval: 1000,
   });
 }
