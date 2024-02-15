@@ -50,6 +50,7 @@ export default function Spørsmålsseksjon({
     React.useState(funnetIndex);
 
   const { data: kategoristatus } = useKategoristatus(spørreundersøkelsesId);
+
   React.useEffect(() => {
     if (aktivtSpørsmålindex === 0 && funnetIndex !== 0) {
       setAktivtSpørsmålindex(funnetIndex);
@@ -63,8 +64,18 @@ export default function Spørsmålsseksjon({
       return;
     }
     console.log("Setter loading til false");
-    sendSvar();
-  }, [kategoristatus]);
+
+    if (
+      kategoristatus.spørsmålindeks === null ||
+      aktivtSpørsmålindex >= kategoristatus.spørsmålindeks
+    ) {
+      setVenterPåVert(true);
+      console.log("Setter loading til true");
+    } else {
+      setVenterPåVert(false);
+      console.log("Setter loading til false");
+    }
+  }, [aktivtSpørsmålindex, kategoristatus]);
 
   const [svar, setSvar] = React.useState({} as Record<string, string>);
   const velgSvar = (spørsmålid: string, svaralternativid: string) =>
@@ -93,18 +104,13 @@ export default function Spørsmålsseksjon({
       } else {
         console.log("Trykket neste");
         if (
-          kategoristatus.spørsmålindeks === null ||
-          aktivtSpørsmålindex >= kategoristatus.spørsmålindeks
+          kategoristatus.spørsmålindeks !== null &&
+          aktivtSpørsmålindex < kategoristatus.spørsmålindeks
         ) {
-          setVenterPåVert(true);
-          console.log("Setter loading til true");
-        } else {
           console.log(
             `AktivtSpørsmålindex ${aktivtSpørsmålindex} er mindre enn kategoristatus.spørsmålindeks ${kategoristatus.spørsmålindeks}`,
           );
-          setVenterPåVert(false);
           setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
-          console.log("Setter loading til false");
         }
       }
     });
@@ -196,7 +202,7 @@ export default function Spørsmålsseksjon({
         <Button
           variant="primary"
           className={styles.nesteknapp}
-          onClick={sendSvar}
+          onClick={() => sendSvar()}
         >
           Neste
         </Button>
