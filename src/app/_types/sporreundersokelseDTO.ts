@@ -6,21 +6,17 @@ export type StatusType =
   | "IKKE_PÅBEGYNT"
   | "PÅBEGYNT"
   | "FERDIG"; // kun frontend? fjern?
+
 export type spørreundersøkelseDTO = spørsmålDTO[];
 
 export type spørsmålDTO = {
-  spørsmålId: string;
+  id: string;
   spørsmål: string;
   svaralternativer: svaralternativDTO[];
 };
 
-export type spørsmålIndeksDTO = {
-  spørreundersøkelseId: string;
-  indeks: number;
-};
-
 export type svaralternativDTO = {
-  svarId: string;
+  id: string;
   tekst: string;
 };
 
@@ -28,4 +24,9 @@ export type kategoristatusDTO = {
   kategori: KategoriType;
   status: StatusType;
   spørsmålindeks: number | null;
+};
+
+export type spørsmålIndeksDTO = {
+  spørreundersøkelseId: string;
+  indeks: number;
 };

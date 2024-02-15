@@ -102,7 +102,7 @@ export default function SpørsmålBody({
             {spørreundersøkelse[aktivtSpørsmålindex].svaralternativer.map(
               (svaralternativ) => (
                 <BodyShort
-                  key={svaralternativ.svarId}
+                  key={svaralternativ.id}
                   size={"large"}
                   spacing
                   className={spørsmålStyles.innholdSvar}

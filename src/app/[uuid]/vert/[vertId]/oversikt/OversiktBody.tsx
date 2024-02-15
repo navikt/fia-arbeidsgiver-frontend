@@ -37,7 +37,7 @@ export default function OversiktBody({
         <Page.Block as={"main"}>
           <VStack gap="4">
             <Dellinje
-              key={spørreundersøkelse[0].spørsmålId}
+              key={spørreundersøkelse[0].id}
               spørreundersøkelseId={spørreundersøkelseId}
               vertId={vertId}
               delnummer={del}
