@@ -54,7 +54,7 @@ export default function Dellinje({
   const router = useRouter();
 
   function startKartlegging() {
-    startKategori(vertId, spørreundersøkelseId, kategori).then(() =>
+    startKategori(spørreundersøkelseId, vertId, kategori).then(() =>
       inkrementerSpørsmål(spørreundersøkelseId, vertId).then(() =>
         router.push("sporsmal"),
       ),
