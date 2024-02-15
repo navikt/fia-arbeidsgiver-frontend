@@ -125,36 +125,16 @@ export default function Spørsmålsseksjon({
     );
   }
 
-  if (kategoristatus.status === "OPPRETTET") {
+  if (
+    kategoristatus.status === "OPPRETTET" ||
+    kategoristatus.status === "IKKE_PÅBEGYNT"
+  ) {
     return (
       <VStack gap={"4"} align={"center"}>
         <Heading size={"large"}>
-          Venter på at verten skal starte kartlegging i Fia
+          Venter på at verten skal starte kartlegging
         </Heading>
         <Loader size="3xlarge" title="Venter..." />
-        <Button
-          variant="secondary"
-          className={styles.tilbakeknapp}
-          onClick={() => setVenterPåVert(false)}
-        >
-          Tilbake
-        </Button>
-      </VStack>
-    );
-  }
-
-  if (kategoristatus.status === "IKKE_PÅBEGYNT") {
-    return (
-      <VStack gap={"4"} align={"center"}>
-        <Heading size={"large"}>Venter på at verten skal starte</Heading>
-        <Loader size="3xlarge" title="Venter..." />
-        <Button
-          variant="secondary"
-          className={styles.tilbakeknapp}
-          onClick={() => setVenterPåVert(false)}
-        >
-          Tilbake
-        </Button>
       </VStack>
     );
   }
