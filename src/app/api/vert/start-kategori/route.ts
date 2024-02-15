@@ -8,12 +8,13 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  const { spørreundersøkelseId, vertId } = await request.json();
+  const { spørreundersøkelseId, vertId, kategori } = await request.json();
   const fetcher = arbeidsgiverApiFetcher(
     "vert/start-kategori",
     JSON.stringify({
       spørreundersøkelseId,
       vertId,
+      kategori,
     }),
   );
 
