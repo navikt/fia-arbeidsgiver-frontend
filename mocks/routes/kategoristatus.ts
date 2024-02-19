@@ -3,7 +3,6 @@ const {
   dummyKartleggingStatusOpprettet,
   dummyKartleggingStatusIkkePåbegynt,
   dummyKartleggingStatusKanFullføre,
-  generatePåbegyntKartleggingStatus,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require("@/utils/dummydata");
 
@@ -44,7 +43,7 @@ const kategoristatusRoutes = [
           status: 200,
           body: {
             ...dummyKartleggingStatusPåbegynt,
-            spørsmålIndex: 0,
+            spørsmålindeks: 0,
           },
         },
       },
@@ -55,7 +54,7 @@ const kategoristatusRoutes = [
           status: 200,
           body: {
             ...dummyKartleggingStatusPåbegynt,
-            spørsmålIndex: 1,
+            spørsmålindeks: 1,
           },
         },
       },
@@ -66,7 +65,7 @@ const kategoristatusRoutes = [
           status: 200,
           body: {
             ...dummyKartleggingStatusPåbegynt,
-            spørsmålIndex: 2,
+            spørsmålindeks: 2,
           },
         },
       },
@@ -77,7 +76,7 @@ const kategoristatusRoutes = [
           status: 200,
           body: {
             ...dummyKartleggingStatusPåbegynt,
-            spørsmålIndex: 3,
+            spørsmålindeks: 3,
           },
         },
       },
@@ -88,7 +87,7 @@ const kategoristatusRoutes = [
           status: 200,
           body: {
             ...dummyKartleggingStatusPåbegynt,
-            spørsmålIndex: 4,
+            spørsmålindeks: 4,
           },
         },
       },
