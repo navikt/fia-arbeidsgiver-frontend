@@ -6,14 +6,26 @@ import { useRouter } from "next/navigation";
 import { fetchBliMed } from "@/app/_api_hooks/bliMed";
 import styles from "./startside.module.css";
 import { KARTLEGGING_FERDIG_ERROR } from "@/utils/consts";
+import CookieHandler from "@/utils/CookieHandler";
 
 export default function BliMedKnapp({
   spørreundersøkelseId,
 }: {
   spørreundersøkelseId: string;
 }) {
-  const [error, setError] = React.useState<string | null>(null);
+  const cookieHandler = new CookieHandler(spørreundersøkelseId);
+
   const router = useRouter();
+
+  React.useEffect(() => {
+    if (cookieHandler.finnesFraFør) {
+      router.push(
+        `deltaker/sporsmal/${cookieHandler.sisteSvarteSpørsmålId}/neste`,
+      );
+    }
+  });
+
+  const [error, setError] = React.useState<string | null>(null);
   return (
     <>
       <Button
@@ -22,7 +34,7 @@ export default function BliMedKnapp({
           fetchBliMed(spørreundersøkelseId)
             .then(() => {
               setError(null);
-              router.push("deltaker/sporsmal");
+              router.push("deltaker/sporsmal/initialLoad/neste");
             })
             .catch((error) => {
               if (error.message === KARTLEGGING_FERDIG_ERROR) {

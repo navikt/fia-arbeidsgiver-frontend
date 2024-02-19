@@ -7,13 +7,15 @@ import { useRouter } from "next/navigation";
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import styles from "./sporsmalsside.module.css";
 import { useSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
-import globalStyles from "../../kartlegging.module.css";
+import globalStyles from "../../../kartlegging.module.css";
 import CookieHandler from "@/utils/CookieHandler";
 
 export default function SpørsmålBody({
   spørreundersøkelsesId,
+  spørsmålId,
 }: {
   spørreundersøkelsesId: string;
+  spørsmålId: string;
 }) {
   const del = 1;
   const delnavn = "Partssamarbeidet";
@@ -21,13 +23,12 @@ export default function SpørsmålBody({
   const cookieHandler = new CookieHandler(spørreundersøkelsesId);
 
   const storedSessionID = cookieHandler.sesjonsID;
-  const storedSisteSvarteID = cookieHandler.sisteSvarteSpørsmålId;
 
   const { data: spørsmål } = useSpørreundersøkelse(spørreundersøkelsesId);
 
   React.useEffect(() => {
     if (!storedSessionID) {
-      router.push("../deltaker");
+      router.push("../../deltaker");
     }
   });
 
@@ -46,8 +47,8 @@ export default function SpørsmålBody({
         </Bleed>
         <Spørsmålsseksjon
           spørsmål={spørsmål}
+          spørsmålId={spørsmålId}
           spørreundersøkelsesId={spørreundersøkelsesId}
-          storedSisteSvarteID={storedSisteSvarteID}
         />
       </Page.Block>
     </Page>

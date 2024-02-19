@@ -15,48 +15,37 @@ import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
 import { postEnkeltSvar } from "@/app/_api_hooks/svar";
 import { useKategoristatus } from "@/app/_api_hooks/sporsmalOgSvar";
 
-export function finnSpørsmålSomMatcherIndex(
+function finnSpørsmålFraId(
   spørsmål: spørreundersøkelseDTO | undefined,
-  storedSisteSvarteID?: string,
+  spørsmålId: string,
 ) {
-  if (!spørsmål || !storedSisteSvarteID) {
+  if (!spørsmål) {
+    return undefined;
+  }
+  return spørsmål.find((spm) => spm.id === spørsmålId);
+}
+function finnSpørsmålIndexFraId(
+  spørsmål: spørreundersøkelseDTO | undefined,
+  spørsmålId: string,
+) {
+  if (!spørsmål) {
     return 0;
   }
-
-  const funnetIndex = spørsmål?.findIndex?.(
-    (spm) => spm.id === storedSisteSvarteID,
-  );
-
-  return funnetIndex !== undefined
-    ? Math.min(funnetIndex + 1, spørsmål.length - 1)
-    : 0;
+  return spørsmål.findIndex((spm) => spm.id === spørsmålId);
 }
 
 export default function Spørsmålsseksjon({
   spørsmål,
+  spørsmålId,
   spørreundersøkelsesId,
-  storedSisteSvarteID,
 }: {
   spørsmål: spørreundersøkelseDTO | undefined;
+  spørsmålId: string;
   spørreundersøkelsesId: string;
-  storedSisteSvarteID?: string;
 }) {
+  const aktivtSpørsmål = finnSpørsmålFraId(spørsmål, spørsmålId);
   const [visFeilmelding, setVisFeilmelding] = React.useState(false);
   const router = useRouter();
-  const funnetIndex = finnSpørsmålSomMatcherIndex(
-    spørsmål,
-    storedSisteSvarteID,
-  );
-  const [aktivtSpørsmålindex, setAktivtSpørsmålindex] =
-    React.useState(funnetIndex);
-
-  const { data: kategoristatus } = useKategoristatus(spørreundersøkelsesId);
-
-  React.useEffect(() => {
-    if (aktivtSpørsmålindex === 0 && funnetIndex !== 0) {
-      setAktivtSpørsmålindex(funnetIndex);
-    }
-  }, [funnetIndex, aktivtSpørsmålindex]);
 
   const [svar, setSvar] = React.useState({} as Record<string, string>);
   const velgSvar = (spørsmålid: string, svaralternativid: string) =>
@@ -71,8 +60,8 @@ export default function Spørsmålsseksjon({
     }
     postEnkeltSvar({
       spørreundersøkelseId: spørreundersøkelsesId,
-      spørsmålId: spørsmål[aktivtSpørsmålindex].id,
-      svarId: svar[spørsmål[aktivtSpørsmålindex].id],
+      spørsmålId,
+      svarId: svar[spørsmålId],
     }).then((success) => {
       if (!success) {
         setVisFeilmelding(true);
@@ -84,7 +73,7 @@ export default function Spørsmålsseksjon({
     });
   };
 
-  if (!spørsmål || !kategoristatus) {
+  if (!spørsmål) {
     return (
       <VStack gap={"4"} align={"center"}>
         <Loader size="3xlarge" title="Laster..." />
@@ -95,26 +84,22 @@ export default function Spørsmålsseksjon({
   return (
     <>
       <Spørsmålsheader
-        aktivtSpørsmålindex={aktivtSpørsmålindex}
+        aktivtSpørsmålindex={finnSpørsmålIndexFraId(spørsmål, spørsmålId)}
         spørsmål={spørsmål}
       />
       <VStack align="center">
         <RadioGroup
           legend="Velg ett alternativ"
-          onChange={(valgtSvarId: string) =>
-            velgSvar(spørsmål[aktivtSpørsmålindex].id, valgtSvarId)
-          }
-          defaultValue={svar[spørsmål[aktivtSpørsmålindex]?.id]}
+          onChange={(valgtSvarId: string) => velgSvar(spørsmålId, valgtSvarId)}
+          defaultValue={svar[spørsmålId]}
           hideLegend
           className={styles.spørsmålsseksjon}
         >
-          {spørsmål[aktivtSpørsmålindex].svaralternativer.map(
-            (svaralternativ) => (
-              <Radio key={svaralternativ.id} value={svaralternativ.id}>
-                {svaralternativ.tekst}
-              </Radio>
-            ),
-          )}
+          {aktivtSpørsmål?.svaralternativer.map((svaralternativ) => (
+            <Radio key={svaralternativ.id} value={svaralternativ.id}>
+              {svaralternativ.tekst}
+            </Radio>
+          ))}
         </RadioGroup>
         {visFeilmelding && (
           <Alert
@@ -135,9 +120,9 @@ export default function Spørsmålsseksjon({
         <Button
           variant="secondary"
           className={styles.tilbakeknapp}
-          onClick={() =>
-            setAktivtSpørsmålindex(Math.max(aktivtSpørsmålindex - 1, 0))
-          }
+          onClick={() => {
+            // TODO: Gå tilbake til forrige spørsmål
+          }}
         >
           Tilbake
         </Button>

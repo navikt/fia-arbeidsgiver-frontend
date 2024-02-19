@@ -10,7 +10,12 @@ export const metadata: Metadata = {
 export default function Spørsmålsside({
   params,
 }: {
-  params: { uuid: string };
+  params: { uuid: string; sporsmalId: string };
 }) {
-  return <SpørsmålBody spørreundersøkelsesId={params.uuid} />;
+  return (
+    <SpørsmålBody
+      spørreundersøkelsesId={params.uuid}
+      spørsmålId={params.sporsmalId}
+    />
+  );
 }
