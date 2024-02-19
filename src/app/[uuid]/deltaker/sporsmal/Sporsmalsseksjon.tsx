@@ -5,7 +5,6 @@ import styles from "./sporsmalsside.module.css";
 import {
   Alert,
   Button,
-  Heading,
   Loader,
   Radio,
   RadioGroup,
@@ -16,7 +15,7 @@ import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
 import { postEnkeltSvar } from "@/app/_api_hooks/svar";
 import { useKategoristatus } from "@/app/_api_hooks/sporsmalOgSvar";
 
-function finnSpørsmålSomMatcherIndex(
+export function finnSpørsmålSomMatcherIndex(
   spørsmål: spørreundersøkelseDTO | undefined,
   storedSisteSvarteID?: string,
 ) {
@@ -31,10 +30,6 @@ function finnSpørsmålSomMatcherIndex(
   return funnetIndex !== undefined
     ? Math.min(funnetIndex + 1, spørsmål.length - 1)
     : 0;
-}
-
-function måVentePåVert(vertIndeks: number | null, deltakerIndeks: number) {
-  return vertIndeks !== null && deltakerIndeks < vertIndeks;
 }
 
 export default function Spørsmålsseksjon({
@@ -63,17 +58,6 @@ export default function Spørsmålsseksjon({
     }
   }, [funnetIndex, aktivtSpørsmålindex]);
 
-  const [venterPåVert, setVenterPåVert] = React.useState(false);
-  React.useEffect(() => {
-    if (kategoristatus === undefined) {
-      console.log("Kunne ikke hente status");
-      return;
-    }
-    setVenterPåVert(
-      måVentePåVert(kategoristatus.spørsmålindeks, aktivtSpørsmålindex),
-    );
-  }, [aktivtSpørsmålindex, kategoristatus]);
-
   const [svar, setSvar] = React.useState({} as Record<string, string>);
   const velgSvar = (spørsmålid: string, svaralternativid: string) =>
     setSvar((gamleSvar) => ({
@@ -83,12 +67,7 @@ export default function Spørsmålsseksjon({
 
   const sendSvar = () => {
     if (!spørsmål) {
-      console.log("Ingen spørsmål");
-      return;
-    }
-    if (kategoristatus === undefined) {
-      console.log(`gjeldende spørsmål er undefined`);
-      return;
+      throw new Error("Spørsmål mangler");
     }
     postEnkeltSvar({
       spørreundersøkelseId: spørreundersøkelsesId,
@@ -100,13 +79,8 @@ export default function Spørsmålsseksjon({
         return;
       }
       setVisFeilmelding(false);
-      if (aktivtSpørsmålindex + 1 === spørsmål.length) {
-        router.push("ferdig");
-      } else {
-        if (måVentePåVert(kategoristatus.spørsmålindeks, aktivtSpørsmålindex)) {
-          setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
-        }
-      }
+
+      router.push("./sporsmal/neste");
     });
   };
 
@@ -114,36 +88,6 @@ export default function Spørsmålsseksjon({
     return (
       <VStack gap={"4"} align={"center"}>
         <Loader size="3xlarge" title="Laster..." />
-      </VStack>
-    );
-  }
-
-  if (
-    kategoristatus.status === "OPPRETTET" ||
-    kategoristatus.status === "IKKE_PÅBEGYNT"
-  ) {
-    return (
-      <VStack gap={"4"} align={"center"}>
-        <Heading size={"large"}>
-          Venter på at verten skal starte kartlegging
-        </Heading>
-        <Loader size="3xlarge" title="Venter..." />
-      </VStack>
-    );
-  }
-
-  if (venterPåVert) {
-    return (
-      <VStack gap={"4"} align={"center"}>
-        <Heading size={"large"}>Venter på at verten skal fortsette</Heading>
-        <Loader size="3xlarge" title="Venter..." />
-        <Button
-          variant="secondary"
-          className={styles.tilbakeknapp}
-          onClick={() => setVenterPåVert(false)}
-        >
-          Tilbake
-        </Button>
       </VStack>
     );
   }
@@ -184,7 +128,7 @@ export default function Spørsmålsseksjon({
         <Button
           variant="primary"
           className={styles.nesteknapp}
-          onClick={() => sendSvar()}
+          onClick={sendSvar}
         >
           Neste
         </Button>
