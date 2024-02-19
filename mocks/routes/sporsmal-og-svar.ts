@@ -15,6 +15,13 @@ const sporsmalOgSvarRoutes = [
           body: dummySpørreundersøkelse,
         },
       },
+      {
+        id: "bad-request",
+        type: "status",
+        options: {
+          status: 400,
+        },
+      },
     ],
   },
 ];
