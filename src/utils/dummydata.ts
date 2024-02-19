@@ -91,7 +91,7 @@ const dummyKartleggingStatusIkkePåbegynt = {
 const dummyKartleggingStatusPåbegynt = {
   kategori: "PARTSSAMARBEID",
   status: "PÅBEGYNT",
-  spørsmålindeks: 1,
+  spørsmålindeks: 2,
 };
 
 const dummyKartleggingStatusKanFullføre = {

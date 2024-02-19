@@ -3,6 +3,7 @@
 import React from "react";
 import styles from "./sporsmalsside.module.css";
 import {
+  Alert,
   Button,
   Heading,
   Loader,
@@ -32,6 +33,10 @@ function finnSpørsmålSomMatcherIndex(
     : 0;
 }
 
+function måVentePåVert(vertIndeks: number | null, deltakerIndeks: number) {
+  return vertIndeks !== null && deltakerIndeks < vertIndeks;
+}
+
 export default function Spørsmålsseksjon({
   spørsmål,
   spørreundersøkelsesId,
@@ -41,6 +46,7 @@ export default function Spørsmålsseksjon({
   spørreundersøkelsesId: string;
   storedSisteSvarteID?: string;
 }) {
+  const [visFeilmelding, setVisFeilmelding] = React.useState(false);
   const router = useRouter();
   const funnetIndex = finnSpørsmålSomMatcherIndex(
     spørsmål,
@@ -60,21 +66,12 @@ export default function Spørsmålsseksjon({
   const [venterPåVert, setVenterPåVert] = React.useState(false);
   React.useEffect(() => {
     if (kategoristatus === undefined) {
-      console.log("Har ikke et gjeldende spørsmål");
+      console.log("Kunne ikke hente status");
       return;
     }
-    console.log("Setter loading til false");
-
-    if (
-      kategoristatus.spørsmålindeks === null ||
-      aktivtSpørsmålindex >= kategoristatus.spørsmålindeks
-    ) {
-      setVenterPåVert(true);
-      console.log("Setter loading til true");
-    } else {
-      setVenterPåVert(false);
-      console.log("Setter loading til false");
-    }
+    setVenterPåVert(
+      måVentePåVert(kategoristatus.spørsmålindeks, aktivtSpørsmålindex),
+    );
   }, [aktivtSpørsmålindex, kategoristatus]);
 
   const [svar, setSvar] = React.useState({} as Record<string, string>);
@@ -97,19 +94,16 @@ export default function Spørsmålsseksjon({
       spørreundersøkelseId: spørreundersøkelsesId,
       spørsmålId: spørsmål[aktivtSpørsmålindex].id,
       svarId: svar[spørsmål[aktivtSpørsmålindex].id],
-    }).then(() => {
+    }).then((success) => {
+      if (!success) {
+        setVisFeilmelding(true);
+        return;
+      }
+      setVisFeilmelding(false);
       if (aktivtSpørsmålindex + 1 === spørsmål.length) {
-        console.log("Siste spørsmål");
         router.push("ferdig");
       } else {
-        console.log("Trykket neste");
-        if (
-          kategoristatus.spørsmålindeks !== null &&
-          aktivtSpørsmålindex < kategoristatus.spørsmålindeks
-        ) {
-          console.log(
-            `AktivtSpørsmålindex ${aktivtSpørsmålindex} er mindre enn kategoristatus.spørsmålindeks ${kategoristatus.spørsmålindeks}`,
-          );
+        if (måVentePåVert(kategoristatus.spørsmålindeks, aktivtSpørsmålindex)) {
           setAktivtSpørsmålindex((aktivtSpørsmålindex + 1) % spørsmål.length);
         }
       }
@@ -117,7 +111,6 @@ export default function Spørsmålsseksjon({
   };
 
   if (!spørsmål || !kategoristatus) {
-    console.log(!spørsmål ? "spørsmål mangler" : "kategoristatus mangler");
     return (
       <VStack gap={"4"} align={"center"}>
         <Loader size="3xlarge" title="Laster..." />
@@ -179,6 +172,15 @@ export default function Spørsmålsseksjon({
             ),
           )}
         </RadioGroup>
+        {visFeilmelding && (
+          <Alert
+            variant="error"
+            closeButton
+            onClose={() => setVisFeilmelding(false)}
+          >
+            Svar ble ikke sendt
+          </Alert>
+        )}
         <Button
           variant="primary"
           className={styles.nesteknapp}

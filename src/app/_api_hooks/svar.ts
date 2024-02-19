@@ -11,21 +11,23 @@ export function postEnkeltSvar({
 }) {
   const cookieHandler = new CookieHandler(spørreundersøkelseId);
   const sesjonsId = cookieHandler.sesjonsID;
-  const fetcher = () =>
-    fetch("/api/svar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        spørreundersøkelseId,
-        sesjonsId,
-        spørsmålId,
-        svarId,
-      }),
-    }).then(() => {
+  return fetch("/api/svar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      spørreundersøkelseId,
+      sesjonsId,
+      spørsmålId,
+      svarId,
+    }),
+  }).then((res) => {
+    if (res.ok) {
       cookieHandler.oppdaterSisteSvarteSpørsmål(spørsmålId);
-    });
-
-  return fetcher();
+      return true;
+    } else {
+      return false;
+    }
+  });
 }

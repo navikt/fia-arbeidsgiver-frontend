@@ -6,10 +6,23 @@ const svarRoutes = [
     variants: [
       {
         id: "success",
-        type: "json",
+        type: "status",
         options: {
           status: 200,
-          body: {},
+        },
+      },
+      {
+        id: "feil-formatert-uuid",
+        type: "status",
+        options: {
+          status: 400,
+        },
+      },
+      {
+        id: "feil-id",
+        type: "status",
+        options: {
+          status: 403,
         },
       },
     ],
