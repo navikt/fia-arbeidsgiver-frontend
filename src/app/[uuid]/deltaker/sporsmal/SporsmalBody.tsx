@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import styles from "./sporsmalsside.module.css";
 import { useSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
-import Kartleggingsmøtetittel from "../Kartleggingsmøtetittel";
 import globalStyles from "../../kartlegging.module.css";
 
 export default function SpørsmålBody({
@@ -34,7 +33,6 @@ export default function SpørsmålBody({
   return (
     <Page contentBlockPadding="none">
       <Page.Block gutters width="lg" className={styles.spørsmålssideblokk}>
-        <Kartleggingsmøtetittel />
         <Bleed marginInline="full" asChild reflectivePadding>
           <Box padding="5" className={globalStyles.bleedKlar}>
             <HStack className={styles.bleedInnhold}>
