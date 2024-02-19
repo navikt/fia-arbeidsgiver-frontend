@@ -4,12 +4,12 @@ import { Heading, Loader, Page } from "@navikt/ds-react";
 import styles from "./startside.module.css";
 import Logininformasjon from "./Logininformasjon";
 import Status from "./Status";
-import { useSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
+import { useVertSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
 
 export default function StartsideBody({ spørreundersøkelseId, vertId }: {
      spørreundersøkelseId: string; vertId: string
 }) {
-    const { data, isLoading } = useSpørreundersøkelse(spørreundersøkelseId);
+    const { data, isLoading } = useVertSpørreundersøkelse(spørreundersøkelseId, vertId);
 
     if (isLoading) {
         return <Loader />
