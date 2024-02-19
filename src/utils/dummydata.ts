@@ -88,17 +88,17 @@ const dummyKartleggingStatusIkkePåbegynt = {
   spørsmålindeks: null,
 };
 
-function generatePåbegyntKartleggingStatus(spørsmålindeks: number) {
-  return {
-    kategori: "PARTSSAMARBEID",
-    status: "PÅBEGYNT",
-    spørsmålindeks,
-  };
-}
+const dummyKartleggingStatusPåbegynt = {
+  kategori: "PARTSSAMARBEID",
+  status: "PÅBEGYNT",
+  spørsmålindeks: 1,
+};
 
-const dummyKartleggingStatusPåbegynt = generatePåbegyntKartleggingStatus(1);
-
-const dummyKartleggingStatusKanFullføre = generatePåbegyntKartleggingStatus(3);
+const dummyKartleggingStatusKanFullføre = {
+  kategori: "PARTSSAMARBEID",
+  status: "PÅBEGYNT",
+  spørsmålindeks: 3,
+};
 
 module.exports = {
   dummySpørreundersøkelse,
@@ -109,6 +109,5 @@ module.exports = {
   dummyKartleggingStatusIkkePåbegynt,
   dummyKartleggingStatusPåbegynt,
   dummyKartleggingStatusKanFullføre,
-  generatePåbegyntKartleggingStatus,
   startKategoriResult,
 };

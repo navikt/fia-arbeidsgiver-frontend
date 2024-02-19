@@ -42,7 +42,10 @@ const kategoristatusRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: generatePåbegyntKartleggingStatus(0),
+          body: {
+            ...dummyKartleggingStatusPåbegynt,
+            spørsmålIndex: 0,
+          },
         },
       },
       {
@@ -50,7 +53,10 @@ const kategoristatusRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: generatePåbegyntKartleggingStatus(1),
+          body: {
+            ...dummyKartleggingStatusPåbegynt,
+            spørsmålIndex: 1,
+          },
         },
       },
       {
@@ -58,7 +64,10 @@ const kategoristatusRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: generatePåbegyntKartleggingStatus(2),
+          body: {
+            ...dummyKartleggingStatusPåbegynt,
+            spørsmålIndex: 2,
+          },
         },
       },
       {
@@ -66,7 +75,10 @@ const kategoristatusRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: generatePåbegyntKartleggingStatus(3),
+          body: {
+            ...dummyKartleggingStatusPåbegynt,
+            spørsmålIndex: 3,
+          },
         },
       },
       {
@@ -74,7 +86,10 @@ const kategoristatusRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: generatePåbegyntKartleggingStatus(4),
+          body: {
+            ...dummyKartleggingStatusPåbegynt,
+            spørsmålIndex: 4,
+          },
         },
       },
       {
