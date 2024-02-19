@@ -4,12 +4,12 @@ import { Bleed, BodyShort, Box, Heading, Page, VStack } from "@navikt/ds-react";
 import ferdigStyles from "./ferdigside.module.css";
 import styles from "../../../kartlegging.module.css";
 import React from "react";
-import { deleteCookie } from "cookies-next";
-import { SESSION_ID_STORAGE_KEY } from "@/utils/consts";
+import CookieHandler from "@/utils/CookieHandler";
 
 export default function FerdigInnhold() {
   React.useEffect(() => {
-    deleteCookie(SESSION_ID_STORAGE_KEY);
+    //Clear cookies når vi laster siden.
+    CookieHandler.clear();
   });
 
   return (

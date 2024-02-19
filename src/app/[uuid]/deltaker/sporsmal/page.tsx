@@ -1,12 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import SpørsmålBody from "./SporsmalBody";
-import { getCookies } from "cookies-next";
-import { cookies } from "next/headers";
-import {
-  SESSION_ID_STORAGE_KEY,
-  SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
-} from "@/utils/consts";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -18,16 +12,5 @@ export default function Spørsmålsside({
 }: {
   params: { uuid: string };
 }) {
-  const cookievalues = getCookies({ cookies });
-  const storedSessionID = cookievalues[SESSION_ID_STORAGE_KEY];
-  const storedSisteSvarteID =
-    cookievalues[SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY];
-
-  return (
-    <SpørsmålBody
-      spørreundersøkelsesId={params.uuid}
-      storedSessionID={storedSessionID}
-      storedSisteSvarteID={storedSisteSvarteID}
-    />
-  );
+  return <SpørsmålBody spørreundersøkelsesId={params.uuid} />;
 }

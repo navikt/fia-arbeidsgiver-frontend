@@ -3,14 +3,14 @@ import {
   spørreundersøkelseDTO,
   spørsmålIndeksDTO,
 } from "../_types/sporreundersokelseDTO";
-import { getCookie } from "cookies-next";
-import { SESSION_ID_STORAGE_KEY } from "@/utils/consts";
 import useSWR, { SWRResponse } from "swr";
+import CookieHandler from "@/utils/CookieHandler";
 
 export function useSpørreundersøkelse(
   spørreundersøkelseId: string,
 ): SWRResponse<spørreundersøkelseDTO> {
-  const sesjonsId = getCookie(SESSION_ID_STORAGE_KEY);
+  const cookieHandler = new CookieHandler(spørreundersøkelseId);
+  const sesjonsId = cookieHandler.sesjonsID;
   const fetcher = (url: string) =>
     fetch(url, {
       method: "POST",
@@ -29,7 +29,8 @@ export function useSpørreundersøkelse(
 export function useKategoristatus(
   spørreundersøkelseId: string,
 ): SWRResponse<kategoristatusDTO> {
-  const sesjonsId = getCookie(SESSION_ID_STORAGE_KEY);
+  const cookieHandler = new CookieHandler(spørreundersøkelseId);
+  const sesjonsId = cookieHandler.sesjonsID;
   const fetcher = (url: string) =>
     fetch(url, {
       method: "POST",

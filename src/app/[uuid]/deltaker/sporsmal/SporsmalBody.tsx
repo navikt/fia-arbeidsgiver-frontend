@@ -8,19 +8,20 @@ import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import styles from "./sporsmalsside.module.css";
 import { useSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
 import globalStyles from "../../kartlegging.module.css";
+import CookieHandler from "@/utils/CookieHandler";
 
 export default function SpørsmålBody({
   spørreundersøkelsesId,
-  storedSessionID,
-  storedSisteSvarteID,
 }: {
   spørreundersøkelsesId: string;
-  storedSessionID?: string;
-  storedSisteSvarteID?: string;
 }) {
   const del = 1;
   const delnavn = "Partssamarbeidet";
   const router = useRouter();
+  const cookieHandler = new CookieHandler(spørreundersøkelsesId);
+
+  const storedSessionID = cookieHandler.sesjonsID;
+  const storedSisteSvarteID = cookieHandler.sisteSvarteSpørsmålId;
 
   const { data: spørsmål } = useSpørreundersøkelse(spørreundersøkelsesId);
 

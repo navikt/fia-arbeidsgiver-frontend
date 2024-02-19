@@ -1,9 +1,4 @@
-import { getCookie, setCookie } from "cookies-next";
-import {
-  SESSION_ID_STORAGE_KEY,
-  SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
-  COOKIE_MAX_AGE,
-} from "@/utils/consts";
+import CookieHandler from "@/utils/CookieHandler";
 
 export function postEnkeltSvar({
   spørreundersøkelseId,
@@ -14,7 +9,8 @@ export function postEnkeltSvar({
   spørsmålId: string;
   svarId: string;
 }) {
-  const sesjonsId = getCookie(SESSION_ID_STORAGE_KEY);
+  const cookieHandler = new CookieHandler(spørreundersøkelseId);
+  const sesjonsId = cookieHandler.sesjonsID;
   const fetcher = () =>
     fetch("/api/svar", {
       method: "POST",
@@ -28,9 +24,7 @@ export function postEnkeltSvar({
         svarId,
       }),
     }).then(() => {
-      setCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY, spørsmålId, {
-        maxAge: COOKIE_MAX_AGE,
-      });
+      cookieHandler.oppdaterSisteSvarteSpørsmål(spørsmålId);
     });
 
   return fetcher();

@@ -1,16 +1,12 @@
 "use client";
 
 import { bliMedDTO } from "../_types/bliMedDTO";
-import { deleteCookie, setCookie } from "cookies-next";
-import {
-  COOKIE_MAX_AGE,
-  KARTLEGGING_FERDIG_ERROR,
-  SESSION_ID_STORAGE_KEY,
-  SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
-  SPØRREUNDERSØKELSE_ID_STORAGE_KEY,
-} from "@/utils/consts";
+import { KARTLEGGING_FERDIG_ERROR } from "@/utils/consts";
+import CookieHandler from "@/utils/CookieHandler";
 
 export function fetchBliMed(spørreundersøkelseId: string) {
+  const cookieHandler = new CookieHandler(spørreundersøkelseId);
+
   const fetcher = () =>
     fetch("/api/bli-med", {
       method: "POST",
@@ -38,13 +34,9 @@ export function fetchBliMed(spørreundersøkelseId: string) {
       })
       .then((data: bliMedDTO) => {
         const nySessionID = data.sesjonsId;
-        setCookie(SESSION_ID_STORAGE_KEY, nySessionID, {
-          maxAge: COOKIE_MAX_AGE,
-        });
-        setCookie(SPØRREUNDERSØKELSE_ID_STORAGE_KEY, spørreundersøkelseId, {
-          maxAge: COOKIE_MAX_AGE,
-        });
-        deleteCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY);
+
+        cookieHandler.nyUndersøkelse(nySessionID);
+
         return nySessionID;
       });
 
