@@ -13,7 +13,6 @@ import {
 import { useRouter } from "next/navigation";
 import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
 import { postEnkeltSvar } from "@/app/_api_hooks/svar";
-import { useKategoristatus } from "@/app/_api_hooks/sporsmalOgSvar";
 
 function finnSpørsmålFraId(
   spørsmål: spørreundersøkelseDTO | undefined,
