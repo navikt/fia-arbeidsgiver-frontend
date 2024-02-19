@@ -10,7 +10,7 @@ const collections = [
       "antall-deltakere-route:success",
       "neste-sporsmal-route:success",
       "inkrementer-sporsmal-route:success",
-      "kategoristatus-route:påbegynt",
+      "kategoristatus-route:kan-fullføre",
     ],
   },
 ];
