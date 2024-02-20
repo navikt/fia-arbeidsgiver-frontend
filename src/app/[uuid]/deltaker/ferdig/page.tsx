@@ -3,7 +3,6 @@ import { Bleed, Box, Heading, HStack, Page } from "@navikt/ds-react";
 import React from "react";
 import styles from "../../kartlegging.module.css";
 import { FerdigInnhold } from "./ferdigInnhold";
-import Kartleggingsmøtetittel from "../Kartleggingsmøtetittel";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -14,7 +13,6 @@ export default function Ferdigside() {
   return (
     <Page contentBlockPadding="none">
       <Page.Block gutters width="lg">
-        <Kartleggingsmøtetittel />
         <Bleed marginInline="full" asChild>
           <Box padding="5" className={styles.bleedFerdig}>
             <HStack justify={"center"}>
