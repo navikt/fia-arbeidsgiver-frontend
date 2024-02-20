@@ -1,6 +1,5 @@
 .bleedFerdig {
     background: var(--a-green-200);
-    margin-top: 2rem;
     margin-bottom: 2rem;
     padding: 2rem 0;
     min-height: 112px;
@@ -16,9 +15,8 @@
 
 .bleedHoppetOver {
     background: var(--a-gray-400);
-    padding: 2rem 0;
-    margin-top: 2rem;
     margin-bottom: 2rem;
+    padding: 2rem 0;
     min-height: 112px;
 }
 
