@@ -15,6 +15,20 @@ const bliMedRoutes = [
           body: dummyBliMed,
         },
       },
+      {
+        id: "feil-formatert-uuid",
+        type: "status",
+        options: {
+          status: 400,
+        },
+      },
+      {
+        id: "feil-id",
+        type: "status",
+        options: {
+          status: 403,
+        },
+      },
     ],
   },
 ];

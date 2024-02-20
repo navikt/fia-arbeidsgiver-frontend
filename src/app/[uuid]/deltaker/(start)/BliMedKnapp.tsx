@@ -5,7 +5,6 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { fetchBliMed } from "@/app/_api_hooks/bliMed";
 import styles from "./startside.module.css";
-import { KARTLEGGING_FERDIG_ERROR } from "@/utils/consts";
 import CookieHandler from "@/utils/CookieHandler";
 
 export default function BliMedKnapp({
@@ -37,11 +36,7 @@ export default function BliMedKnapp({
               router.push("deltaker/sporsmal/initialLoad/neste");
             })
             .catch((error) => {
-              if (error.message === KARTLEGGING_FERDIG_ERROR) {
-                setError("Kartleggingen er allerede ferdig");
-              } else {
-                setError(error.message);
-              }
+              setError(error.message);
             });
         }}
         className={styles.bliMedKnapp}
