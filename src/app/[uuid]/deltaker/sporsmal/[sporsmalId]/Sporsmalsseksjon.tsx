@@ -23,6 +23,7 @@ function finnSpørsmålFraId(
   }
   return spørsmål.find((spm) => spm.id === spørsmålId);
 }
+
 function finnSpørsmålIndexFraId(
   spørsmål: spørreundersøkelseDTO | undefined,
   spørsmålId: string,
@@ -43,7 +44,8 @@ export default function Spørsmålsseksjon({
   spørreundersøkelsesId: string;
 }) {
   const aktivtSpørsmål = finnSpørsmålFraId(spørsmål, spørsmålId);
-  const [visFeilmelding, setVisFeilmelding] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+
   const router = useRouter();
 
   const [svar, setSvar] = React.useState({} as Record<string, string>);
@@ -61,15 +63,14 @@ export default function Spørsmålsseksjon({
       spørreundersøkelseId: spørreundersøkelsesId,
       spørsmålId,
       svarId: svar[spørsmålId],
-    }).then((success) => {
-      if (!success) {
-        setVisFeilmelding(true);
-        return;
-      }
-      setVisFeilmelding(false);
-
-      router.push("./sporsmal/neste");
-    });
+    })
+      .then(() => {
+        setError(null);
+        router.push("./sporsmal/neste");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   };
 
   if (!spørsmål) {
@@ -100,15 +101,11 @@ export default function Spørsmålsseksjon({
             </Radio>
           ))}
         </RadioGroup>
-        {visFeilmelding && (
-          <Alert
-            variant="error"
-            closeButton
-            onClose={() => setVisFeilmelding(false)}
-          >
-            Svar ble ikke sendt
+        {error !== null ? (
+          <Alert variant="error" closeButton onClose={() => setError(null)}>
+            {error}
           </Alert>
-        )}
+        ) : null}
         <Button
           variant="primary"
           className={styles.nesteknapp}

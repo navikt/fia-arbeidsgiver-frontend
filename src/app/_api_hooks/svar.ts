@@ -23,11 +23,13 @@ export function postEnkeltSvar({
       svarId,
     }),
   }).then((res) => {
-    if (res.ok) {
-      cookieHandler.oppdaterSisteSvarteSpørsmål(spørsmålId);
-      return true;
+    if (res.status === 403) {
+      throw new Error("Ukjent id");
+    }
+    if (!res.ok) {
+      throw new Error("Kunne ikke sende svar");
     } else {
-      return false;
+      cookieHandler.oppdaterSisteSvarteSpørsmål(spørsmålId);
     }
   });
 }
