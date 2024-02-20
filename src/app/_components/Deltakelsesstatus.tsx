@@ -1,34 +1,53 @@
-import { BodyShort, Loader } from "@navikt/ds-react";
+import { Alert, BodyShort, Loader } from "@navikt/ds-react";
 import styles from "@/app/_components/komponenter.module.css";
 import spørsmålStyles from "../[uuid]/vert/[vertId]/sporsmal/sporsmalsside.module.css";
 import { PersonGroupIcon } from "@navikt/aksel-icons";
 import React from "react";
+import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
 
 export function Deltakelsesstatus({
-  antallDeltakere,
-  antallSvarMottatt,
-  isLoading,
+  spørreundersøkelseId,
+  vertId,
+  visAntallSvarIndeks = null,
 }: {
-  antallDeltakere?: number;
-  antallSvarMottatt?: number | undefined;
-  isLoading?: boolean;
+  spørreundersøkelseId: string;
+  vertId: string;
+  visAntallSvarIndeks?: number | null;
 }) {
-  const skalViseAntallSvar = antallSvarMottatt !== undefined;
+  const { data, isLoading, error } = useAntallDeltakere({
+    vertId,
+    spørreundersøkelseId,
+  });
+
+  if (error !== undefined && !isLoading) {
+    return (
+      <BodyShort className={styles.deltakere}>
+        <PersonGroupIcon />
+
+        <Alert variant={"warning"} inline>
+          {error.message}
+        </Alert>
+      </BodyShort>
+    );
+  }
+
+  if (visAntallSvarIndeks === null) {
+    return (
+      <BodyShort className={styles.deltakere}>
+        <PersonGroupIcon />
+        {isLoading ? <Loader /> : data?.antallDeltakere}
+      </BodyShort>
+    );
+  }
 
   return (
-    <BodyShort
-      className={
-        skalViseAntallSvar ? spørsmålStyles.deltakere : styles.deltakere
-      }
-    >
+    <BodyShort className={spørsmålStyles.deltakere}>
       <PersonGroupIcon />
-      {isLoading &&
-        (antallDeltakere === undefined || antallDeltakere === null) && (
-          <Loader />
-        )}
-      {skalViseAntallSvar && `${antallSvarMottatt} av `}
-      {antallDeltakere}
-      {skalViseAntallSvar && " har svart"}
+      {isLoading ? (
+        <Loader variant={"inverted"} />
+      ) : (
+        `${data?.antallSvar[visAntallSvarIndeks].antall} av ${data?.antallDeltakere} har svart`
+      )}
     </BodyShort>
   );
 }

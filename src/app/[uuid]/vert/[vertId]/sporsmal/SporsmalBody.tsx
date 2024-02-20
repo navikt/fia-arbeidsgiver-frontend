@@ -14,7 +14,6 @@ import React, { useEffect } from "react";
 import spørsmålStyles from "./sporsmalsside.module.css";
 import styles from "../../../kartlegging.module.css";
 import SpørsmålNavigasjon from "./SpørsmålNavigasjon";
-import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
 import {
   useVertSpørreundersøkelse,
   useVertSpørsmålIndeks,
@@ -35,12 +34,6 @@ export default function SpørsmålBody({
 }) {
   const { data: spørreundersøkelse, isLoading: lasterSpørsmål } =
     useVertSpørreundersøkelse(spørreundersøkelseId, vertId);
-
-  const { data: antallDeltakereData, isLoading: antallDeltakereLaster } =
-    useAntallDeltakere({
-      vertId,
-      spørreundersøkelseId: spørreundersøkelseId,
-    });
 
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] = React.useState(0);
   const { data } = useVertSpørsmålIndeks(spørreundersøkelseId, vertId);
@@ -85,11 +78,9 @@ export default function SpørsmålBody({
                   </Heading>
                 </VStack>
                 <Deltakelsesstatus
-                  antallDeltakere={antallDeltakereData?.antallDeltakere}
-                  antallSvarMottatt={
-                    antallDeltakereData?.antallSvar[aktivtSpørsmålindex].antall
-                  }
-                  isLoading={antallDeltakereLaster}
+                  vertId={vertId}
+                  spørreundersøkelseId={spørreundersøkelseId}
+                  visAntallSvarIndeks={aktivtSpørsmålindex}
                 />
               </HStack>
             </Box>

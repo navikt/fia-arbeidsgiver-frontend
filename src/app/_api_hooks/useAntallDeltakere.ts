@@ -20,7 +20,12 @@ export function useAntallDeltakere({
         spørreundersøkelseId,
         vertId,
       }),
-    }).then((res) => res.json());
+    }).then((res) => {
+      if (!res.ok) {
+        throw new Error("Kunne ikke laste antall deltakere");
+      }
+      return res.json();
+    });
   };
 
   const swrConfig: SWRConfiguration = {

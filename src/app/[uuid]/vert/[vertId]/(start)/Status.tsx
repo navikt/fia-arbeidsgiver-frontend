@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import { Button, Heading } from "@navikt/ds-react";
+import { Button, Heading, VStack } from "@navikt/ds-react";
 import styles from "./startside.module.css";
 import { useRouter } from "next/navigation";
 import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
-import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
 
 export default function Status({
   spørreundersøkelseId,
@@ -15,31 +14,24 @@ export default function Status({
   vertId: string;
 }) {
   const router = useRouter();
-  const { data, isLoading } = useAntallDeltakere({
-    vertId,
-    spørreundersøkelseId,
-  });
 
   return (
-    <div className={styles.status}>
+    <VStack className={styles.status} align={"center"} justify={"center"}>
       <Deltakelsesstatus
-        antallDeltakere={data?.antallDeltakere}
-        isLoading={isLoading}
+        vertId={vertId}
+        spørreundersøkelseId={spørreundersøkelseId}
       />
       <Heading level="2" size="medium" spacing>
         Venter på deltakere...
       </Heading>
-      <>
-        <Button
-          variant={"secondary"}
-          onClick={() =>
-            router.push(`../../${spørreundersøkelseId}/vert/${vertId}/oversikt`)
-          }
-          className={styles.bliMedKnapp}
-        >
-          Kom i gang
-        </Button>
-      </>
-    </div>
+      <Button
+        variant={"secondary"}
+        onClick={() =>
+          router.push(`../../${spørreundersøkelseId}/vert/${vertId}/oversikt`)
+        }
+      >
+        Kom i gang
+      </Button>
+    </VStack>
   );
 }

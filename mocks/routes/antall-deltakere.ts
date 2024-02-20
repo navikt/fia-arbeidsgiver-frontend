@@ -15,6 +15,20 @@ const antallDeltakereRoutes = [
           body: dummyAntallDeltakere,
         },
       },
+      {
+        id: "feil-formatert-uuid",
+        type: "status",
+        options: {
+          status: 400,
+        },
+      },
+      {
+        id: "ugyldig-id",
+        type: "status",
+        options: {
+          status: 403,
+        },
+      },
     ],
   },
 ];
