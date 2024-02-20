@@ -4,7 +4,6 @@ const collections = [
     routes: [
       "start-kategori-route:success",
       "bli-med-route:kan-bli-med",
-      "gjeldende-sporsmal-route:success",
       "svar-route:success",
       "sporsmal-og-svar-route:success",
       "sporsmal-og-svar-id-route:success",

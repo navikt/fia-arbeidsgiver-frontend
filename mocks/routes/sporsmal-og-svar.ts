@@ -19,10 +19,24 @@ const sporsmalOgSvarRoutes = [
         },
       },
       {
-        id: "bad-request",
+        id: "feil-i-uuid",
         type: "status",
         options: {
           status: 400,
+        },
+      },
+      {
+        id: "har-ikke-tilgang",
+        type: "status",
+        options: {
+          status: 403,
+        },
+      },
+      {
+        id: "avsluttet",
+        type: "status",
+        options: {
+          status: 410,
         },
       },
     ],

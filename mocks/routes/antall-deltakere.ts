@@ -16,7 +16,7 @@ const antallDeltakereRoutes = [
         },
       },
       {
-        id: "feil-formatert-uuid",
+        id: "feil-i-uuid",
         type: "status",
         options: {
           status: 400,
