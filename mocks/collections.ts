@@ -7,6 +7,7 @@ const collections = [
       "gjeldende-sporsmal-route:success",
       "svar-route:success",
       "sporsmal-og-svar-route:success",
+      "sporsmal-og-svar-id-route:success",
       "antall-deltakere-route:success",
       "vert-neste-sporsmal-route:success",
       "neste-sporsmal-route:åpen",
