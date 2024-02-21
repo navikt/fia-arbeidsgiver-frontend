@@ -21,7 +21,7 @@ export default function HeaderVert() {
 
   return (
     <Page.Block as={"header"} className={styles.header}>
-      <HStack justify={"space-between"}>
+      <HStack className={styles.overskrift}>
         <Heading spacing level={"1"} size={"large"}>
           IA kartleggingsmøte
         </Heading>

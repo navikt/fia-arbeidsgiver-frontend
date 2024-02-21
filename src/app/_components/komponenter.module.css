@@ -1,13 +1,17 @@
 .header {
-  padding-left: 10rem;
-  padding-right: 4rem;
-  padding-top: 6rem;
+    padding: 2rem 10rem;
+}
+
+.overskrift {
+    justify-content: space-between;
+    align-items: center;
+    min-height: 128px;
 }
 
 .deltakere {
-  font-size: 2rem;
-  padding-bottom: 2rem;
-  padding-top: 2rem;
-  display: flex;
-  align-items: center;
+    font-size: 2rem;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    display: flex;
+    align-items: center;
 }
