@@ -55,7 +55,7 @@ function generateMiddleware(erNesteÅpnetAvVert: boolean) {
       res.send({
         hvaErNesteSteg: "NYTT_SPØRSMÅL",
         erNesteÅpnetAvVert,
-        nesteSporsmalId: dummySpørreundersøkelse[0].id,
+        nesteSpørsmålId: dummySpørreundersøkelse[0].id,
         forrigeSporsmalId: null,
       });
     } else if (
@@ -67,7 +67,7 @@ function generateMiddleware(erNesteÅpnetAvVert: boolean) {
       res.send({
         hvaErNesteSteg: "FERDIG",
         erNesteÅpnetAvVert: false,
-        nesteSporsmalId: null,
+        nesteSpørsmålId: null,
         forrigeSporsmalId:
           dummySpørreundersøkelse[dummySpørreundersøkelse.length - 2].id,
       });
@@ -85,7 +85,7 @@ function generateMiddleware(erNesteÅpnetAvVert: boolean) {
         res.send({
           hvaErNesteSteg: "NYTT_SPØRSMÅL",
           erNesteÅpnetAvVert,
-          nesteSporsmalId: dummySpørreundersøkelse[indexOfSpørsmål + 1].id,
+          nesteSpørsmålId: dummySpørreundersøkelse[indexOfSpørsmål + 1].id,
           forrigeSporsmalId:
             indexOfSpørsmål === 0
               ? null

@@ -29,7 +29,7 @@ export default function TilbakeBody({
     if (nesteSpørsmål.data?.forrigeSporsmalId !== null) {
       router.push(`../${nesteSpørsmål.data?.forrigeSporsmalId}`);
     } else if (
-      nesteSpørsmål.data?.nesteSporsmalId !== null &&
+      nesteSpørsmål.data?.nesteSpørsmålId !== null &&
       spørsmålId !== undefined
     ) {
       router.push(`.`);

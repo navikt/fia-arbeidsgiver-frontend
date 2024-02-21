@@ -33,10 +33,10 @@ export default function NesteBody({
       router.push(`../../ferdig`);
     } else if (
       nesteSpørsmål.data?.hvaErNesteSteg === "NYTT_SPØRSMÅL" &&
-      nesteSpørsmål.data?.nesteSporsmalId !== null &&
+      nesteSpørsmål.data?.nesteSpørsmålId !== null &&
       nesteSpørsmål.data?.erNesteÅpnetAvVert
     ) {
-      router.push(`../${nesteSpørsmål.data.nesteSporsmalId}`);
+      router.push(`../${nesteSpørsmål.data.nesteSpørsmålId}`);
     }
   }, [nesteSpørsmål.data, router]);
 
