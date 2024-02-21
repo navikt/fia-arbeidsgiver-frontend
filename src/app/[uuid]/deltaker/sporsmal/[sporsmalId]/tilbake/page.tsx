@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 
-import NesteBody from "./NesteBody";
+import TilbakeBody from "./TilbakeBody";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -14,7 +14,7 @@ export default function Nesteside({
   params: { uuid: string; sporsmalId: string };
 }) {
   return (
-    <NesteBody
+    <TilbakeBody
       spørreundersøkelsesId={params.uuid}
       spørsmålId={params.sporsmalId}
     />

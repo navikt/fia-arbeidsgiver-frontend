@@ -20,12 +20,6 @@ export type svaralternativDTO = {
   tekst: string;
 };
 
-export type kategoristatusDTO = {
-  kategori: KategoriType;
-  status: StatusType;
-  spørsmålindeks: number | null;
-};
-
 export type spørsmålIndeksDTO = {
   spørreundersøkelseId: string;
   indeks: number;

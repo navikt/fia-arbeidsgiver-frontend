@@ -66,7 +66,7 @@ export default function Spørsmålsseksjon({
     })
       .then(() => {
         setError(null);
-        router.push("./sporsmal/neste");
+        router.push(`./${spørsmålId}/neste`);
       })
       .catch((error) => {
         setError(error.message);
@@ -117,7 +117,7 @@ export default function Spørsmålsseksjon({
           variant="secondary"
           className={styles.tilbakeknapp}
           onClick={() => {
-            // TODO: Gå tilbake til forrige spørsmål
+            router.push(`./${spørsmålId}/tilbake`);
           }}
         >
           Tilbake

@@ -12,7 +12,6 @@ const collections = [
       "vert-neste-sporsmal-route:success",
       "neste-sporsmal-route:åpen",
       "inkrementer-sporsmal-route:success",
-      "kategoristatus-route:kan-fullføre",
     ],
   },
 ];

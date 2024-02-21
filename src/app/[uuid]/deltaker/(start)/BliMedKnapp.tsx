@@ -19,7 +19,9 @@ export default function BliMedKnapp({
   React.useEffect(() => {
     if (cookieHandler.finnesFraFør) {
       router.push(
-        `deltaker/sporsmal/${cookieHandler.sisteSvarteSpørsmålId}/neste`,
+        `deltaker/sporsmal/${
+          cookieHandler.sisteSvarteSpørsmålId || "START"
+        }/neste`,
       );
     }
   });
@@ -33,7 +35,7 @@ export default function BliMedKnapp({
           fetchBliMed(spørreundersøkelseId)
             .then(() => {
               setError(null);
-              router.push("deltaker/sporsmal/initialLoad/neste");
+              router.push("deltaker/sporsmal/START/neste");
             })
             .catch((error) => {
               setError(error.message);

@@ -1,4 +1,4 @@
-const kategoristatusRoutes = [
+const startKategoriRoutes = [
   {
     id: "start-kategori-route",
     url: "/fia-arbeidsgiver/sporreundersokelse/vert/start-kategori",
@@ -15,4 +15,4 @@ const kategoristatusRoutes = [
   },
 ];
 
-export default kategoristatusRoutes;
+export default startKategoriRoutes;

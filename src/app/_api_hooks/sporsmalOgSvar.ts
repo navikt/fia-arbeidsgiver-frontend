@@ -1,5 +1,4 @@
 import {
-  kategoristatusDTO,
   spørreundersøkelseDTO,
   spørsmålIndeksDTO,
 } from "../_types/sporreundersokelseDTO";
@@ -24,28 +23,6 @@ export function useSpørreundersøkelse(
     }).then((res) => res.json());
 
   return useSWR<spørreundersøkelseDTO>("/api/sporsmal-og-svar", fetcher);
-}
-
-export function useKategoristatus(
-  spørreundersøkelseId: string,
-): SWRResponse<kategoristatusDTO> {
-  const cookieHandler = new CookieHandler(spørreundersøkelseId);
-  const sesjonsId = cookieHandler.sesjonsID;
-  const fetcher = (url: string) =>
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        spørreundersøkelseId,
-        sesjonsId,
-      }),
-    }).then((res) => res.json());
-
-  return useSWR<kategoristatusDTO>("/api/kategoristatus", fetcher, {
-    refreshInterval: 1000,
-  });
 }
 
 export function useVertSpørsmålIndeks(
