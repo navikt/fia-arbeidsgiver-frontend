@@ -15,6 +15,11 @@ export type spørsmålDTO = {
   svaralternativer: svaralternativDTO[];
 };
 
+export interface spørsmålOgSvarDTO extends spørsmålDTO {
+  spørsmålIndeks: number;
+  sisteSpørsmålIndeks: number;
+}
+
 export type svaralternativDTO = {
   id: string;
   tekst: string;

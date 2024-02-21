@@ -1,12 +1,20 @@
 "use client";
 
 import React from "react";
-import { Bleed, BodyShort, Box, HStack, Page, VStack } from "@navikt/ds-react";
+import {
+  Bleed,
+  BodyShort,
+  Box,
+  HStack,
+  Loader,
+  Page,
+  VStack,
+} from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import styles from "./sporsmalsside.module.css";
-import { useSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
+import { useSpørsmålOgSvar } from "@/app/_api_hooks/sporsmalOgSvar";
 import globalStyles from "../../../kartlegging.module.css";
 import CookieHandler from "@/utils/CookieHandler";
 
@@ -24,7 +32,7 @@ export default function SpørsmålBody({
 
   const storedSessionID = cookieHandler.sesjonsID;
 
-  const { data: spørsmål } = useSpørreundersøkelse(spørreundersøkelsesId);
+  const spørsmålOgSvar = useSpørsmålOgSvar(spørreundersøkelsesId, spørsmålId);
 
   React.useEffect(() => {
     if (!storedSessionID) {
@@ -45,11 +53,17 @@ export default function SpørsmålBody({
             </HStack>
           </Box>
         </Bleed>
-        <Spørsmålsseksjon
-          spørsmål={spørsmål}
-          spørsmålId={spørsmålId}
-          spørreundersøkelsesId={spørreundersøkelsesId}
-        />
+        {spørsmålOgSvar.isLoading || spørsmålOgSvar.data === undefined ? (
+          <VStack gap={"4"} align={"center"}>
+            <Loader size="3xlarge" title="Laster..." />
+          </VStack>
+        ) : (
+          <Spørsmålsseksjon
+            spørsmålOgSvar={spørsmålOgSvar.data}
+            spørsmålId={spørsmålId}
+            spørreundersøkelsesId={spørreundersøkelsesId}
+          />
+        )}
       </Page.Block>
     </Page>
   );

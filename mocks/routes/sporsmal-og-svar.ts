@@ -7,7 +7,7 @@ import { Request, Response } from "express";
 const sporsmalOgSvarRoutes = [
   {
     id: "sporsmal-og-svar-route",
-    url: "/fia-arbeidsgiver/sporreundersokelse(/vert)?/sporsmal-og-svar",
+    url: "/fia-arbeidsgiver/sporreundersokelse/vert/sporsmal-og-svar",
     method: "POST",
     variants: [
       {
@@ -37,12 +37,16 @@ const sporsmalOgSvarRoutes = [
         type: "middleware",
         options: {
           middleware: (req: Request, res: Response) => {
-            const spm = dummySpørreundersøkelse.find(
+            const spmIndex = dummySpørreundersøkelse.findIndex(
               (sporsmal: spørsmålDTO) => sporsmal.id === req.params.id,
             );
-            if (spm) {
+            if (spmIndex !== -1) {
               res.status(200);
-              res.send(spm);
+              res.send({
+                ...dummySpørreundersøkelse[spmIndex],
+                spørsmålIndeks: spmIndex,
+                sisteSpørsmålIndeks: dummySpørreundersøkelse.length - 1,
+              });
             } else {
               res.status(404);
               res.send(`Spørsmål med id ${req.params.id} ble ikke funnet`);

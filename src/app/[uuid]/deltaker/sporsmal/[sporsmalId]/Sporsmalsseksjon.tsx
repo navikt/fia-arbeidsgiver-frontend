@@ -2,67 +2,35 @@
 
 import React from "react";
 import styles from "./sporsmalsside.module.css";
-import {
-  Alert,
-  Button,
-  Loader,
-  Radio,
-  RadioGroup,
-  VStack,
-} from "@navikt/ds-react";
+import { Alert, Button, Radio, RadioGroup, VStack } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
-import { spørreundersøkelseDTO } from "@/app/_types/sporreundersokelseDTO";
+import { spørsmålOgSvarDTO } from "@/app/_types/sporreundersokelseDTO";
 import { postEnkeltSvar } from "@/app/_api_hooks/svar";
 
-function finnSpørsmålFraId(
-  spørsmål: spørreundersøkelseDTO | undefined,
-  spørsmålId: string,
-) {
-  if (!spørsmål) {
-    return undefined;
-  }
-  return spørsmål.find((spm) => spm.id === spørsmålId);
-}
-
-function finnSpørsmålIndexFraId(
-  spørsmål: spørreundersøkelseDTO | undefined,
-  spørsmålId: string,
-) {
-  if (!spørsmål) {
-    return 0;
-  }
-  return spørsmål.findIndex((spm) => spm.id === spørsmålId);
-}
-
 export default function Spørsmålsseksjon({
-  spørsmål,
   spørsmålId,
   spørreundersøkelsesId,
+  spørsmålOgSvar,
 }: {
-  spørsmål: spørreundersøkelseDTO | undefined;
   spørsmålId: string;
   spørreundersøkelsesId: string;
+  spørsmålOgSvar: spørsmålOgSvarDTO;
 }) {
-  const aktivtSpørsmål = finnSpørsmålFraId(spørsmål, spørsmålId);
   const [error, setError] = React.useState<string | null>(null);
 
   const router = useRouter();
 
-  const [svar, setSvar] = React.useState({} as Record<string, string>);
-  const velgSvar = (spørsmålid: string, svaralternativid: string) =>
-    setSvar((gamleSvar) => ({
-      ...gamleSvar,
-      [spørsmålid]: svaralternativid,
-    }));
+  const [svar, setSvar] = React.useState("");
+  const velgSvar = (svaralternativid: string) => setSvar(svaralternativid);
 
   const sendSvar = () => {
-    if (!spørsmål) {
+    if (!spørsmålOgSvar) {
       throw new Error("Spørsmål mangler");
     }
     postEnkeltSvar({
       spørreundersøkelseId: spørreundersøkelsesId,
       spørsmålId,
-      svarId: svar[spørsmålId],
+      svarId: svar,
     })
       .then(() => {
         setError(null);
@@ -73,29 +41,18 @@ export default function Spørsmålsseksjon({
       });
   };
 
-  if (!spørsmål) {
-    return (
-      <VStack gap={"4"} align={"center"}>
-        <Loader size="3xlarge" title="Laster..." />
-      </VStack>
-    );
-  }
-
   return (
     <>
-      <Spørsmålsheader
-        aktivtSpørsmålindex={finnSpørsmålIndexFraId(spørsmål, spørsmålId)}
-        spørsmål={spørsmål}
-      />
+      <Spørsmålsheader spørsmålOgSvar={spørsmålOgSvar} />
       <VStack align="center">
         <RadioGroup
           legend="Velg ett alternativ"
-          onChange={(valgtSvarId: string) => velgSvar(spørsmålId, valgtSvarId)}
-          defaultValue={svar[spørsmålId]}
+          onChange={velgSvar}
+          value={svar}
           hideLegend
           className={styles.spørsmålsseksjon}
         >
-          {aktivtSpørsmål?.svaralternativer.map((svaralternativ) => (
+          {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
             <Radio key={svaralternativ.id} value={svaralternativ.id}>
               {svaralternativ.tekst}
             </Radio>
@@ -128,18 +85,17 @@ export default function Spørsmålsseksjon({
 }
 
 function Spørsmålsheader({
-  spørsmål,
-  aktivtSpørsmålindex,
+  spørsmålOgSvar,
 }: {
-  spørsmål: spørreundersøkelseDTO;
-  aktivtSpørsmålindex: number;
+  spørsmålOgSvar: spørsmålOgSvarDTO;
 }) {
   return (
     <div className={styles.spørsmålsheader}>
       <span>
-        {aktivtSpørsmålindex + 1}/{spørsmål.length}
+        {spørsmålOgSvar.spørsmålIndeks + 1}/
+        {spørsmålOgSvar.sisteSpørsmålIndeks + 1}
       </span>
-      <span>{spørsmål[aktivtSpørsmålindex].spørsmål}</span>
+      <span>{spørsmålOgSvar.spørsmål}</span>
     </div>
   );
 }
