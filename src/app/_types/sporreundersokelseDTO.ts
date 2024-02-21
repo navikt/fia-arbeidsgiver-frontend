@@ -1,11 +1,15 @@
+export type StatusType = "OPPRETTET" | "IKKE_PÅBEGYNT" | "PÅBEGYNT";
+
 export type KategoriType = "PARTSSAMARBEID";
 
-export type StatusType =
-  | "OPPRETTET"
-  | "HOPP_OVER" // kun frontend ? fjern?
-  | "IKKE_PÅBEGYNT"
-  | "PÅBEGYNT"
-  | "FERDIG"; // kun frontend? fjern?
+export function finskrivKategori(kategori: KategoriType) {
+  switch (kategori) {
+    case "PARTSSAMARBEID":
+      return "Partssamarbeid i virksomheten";
+    default:
+      return `Beskrivelse mangler for: ${kategori}`;
+  }
+}
 
 export type spørreundersøkelseDTO = spørsmålDTO[];
 
@@ -13,6 +17,12 @@ export type spørsmålDTO = {
   id: string;
   spørsmål: string;
   svaralternativer: svaralternativDTO[];
+};
+
+export type kategoristatusDTO = {
+  kategori: KategoriType;
+  status: StatusType;
+  spørsmålindeks: number | null;
 };
 
 export interface spørsmålOgSvarDTO extends spørsmålDTO {
@@ -23,9 +33,4 @@ export interface spørsmålOgSvarDTO extends spørsmålDTO {
 export type svaralternativDTO = {
   id: string;
   tekst: string;
-};
-
-export type spørsmålIndeksDTO = {
-  spørreundersøkelseId: string;
-  indeks: number;
 };

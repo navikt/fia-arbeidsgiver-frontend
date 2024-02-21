@@ -1,5 +1,6 @@
 import useSWR, { SWRResponse } from "swr";
 import { kategoristatusDTO } from "@/app/_types/sporreundersokelseDTO";
+import { ETT_SEKUND_MS } from "@/utils/consts";
 
 export function useVertKategoristatus(
   spørreundersøkelseId: string,
@@ -20,7 +21,7 @@ export function useVertKategoristatus(
         throw new Error("Får ikke hentet status på spørreundersøkelsen"); //
       }
       if (res.status === 410) {
-        throw new Error("Denne kategorien er avsluttet");
+        throw new Error("Denne spørreundersøkelsen er avsluttet");
       }
       if (res.status === 500) {
         throw new Error("Kunne ikke hente kategori: Mangler status");
@@ -33,6 +34,6 @@ export function useVertKategoristatus(
     });
 
   return useSWR<kategoristatusDTO>("/api/vert/kategoristatus", fetcher, {
-    refreshInterval: 1000,
+    refreshInterval: ETT_SEKUND_MS,
   });
 }

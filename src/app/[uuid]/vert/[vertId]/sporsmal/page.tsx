@@ -13,11 +13,6 @@ export default function Spørsmålsside({
   params: { uuid: string; vertId: string };
 }) {
   return (
-    <SpørsmålBody
-      spørreundersøkelseId={params.uuid}
-      vertId={params.vertId}
-      del={1}
-      delnavn={"Partssamarbeid"}
-    />
+    <SpørsmålBody spørreundersøkelseId={params.uuid} vertId={params.vertId} />
   );
 }

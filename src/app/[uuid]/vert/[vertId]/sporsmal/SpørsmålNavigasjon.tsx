@@ -1,5 +1,5 @@
 import { Button, HStack } from "@navikt/ds-react";
-import styles from "../../../kartlegging.module.css";
+import kartleggingStyles from "@/app/kartlegging.module.css";
 import spørsmålStyles from "./sporsmalsside.module.css";
 
 import React from "react";
@@ -42,7 +42,7 @@ export default function SpørsmålNavigasjon({
     <HStack className={spørsmålStyles.footer} gap={"4"}>
       <Button
         variant="secondary"
-        className={styles.knappHvitBred}
+        className={kartleggingStyles.knappHvitBred}
         onClick={() => {
           naviger(RETNING.TILBAKE);
         }}
@@ -51,7 +51,7 @@ export default function SpørsmålNavigasjon({
       </Button>
       {!erViPåSisteSpørsmål ? (
         <Button
-          className={styles.knappBred}
+          className={kartleggingStyles.knappBred}
           onClick={() => {
             naviger(RETNING.NESTE);
           }}
@@ -60,7 +60,7 @@ export default function SpørsmålNavigasjon({
         </Button>
       ) : erViPåSisteSpørsmål ? (
         <Button
-          className={styles.knappBred}
+          className={kartleggingStyles.knappBred}
           onClick={() => {
             naviger(RETNING.FULLFØR);
           }}

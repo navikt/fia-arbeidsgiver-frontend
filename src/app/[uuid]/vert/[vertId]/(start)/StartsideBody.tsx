@@ -1,34 +1,44 @@
 "use client";
 
-import { Heading, Loader, Page } from "@navikt/ds-react";
-import styles from "./startside.module.css";
+import { Heading, Loader, Page, VStack } from "@navikt/ds-react";
+import startsideStyles from "./startside.module.css";
 import Logininformasjon from "./Logininformasjon";
 import Status from "./Status";
-import { useVertSpørreundersøkelse } from "@/app/_api_hooks/sporsmalOgSvar";
+import React from "react";
+import { useVertSpørreundersøkelse } from "@/app/_api_hooks/useVertSpørreundersøkelse";
+import { Feilside } from "@/app/_components/Feilside";
 
-export default function StartsideBody({ spørreundersøkelseId, vertId }: {
-     spørreundersøkelseId: string; vertId: string
+export default function StartsideBody({
+  spørreundersøkelseId,
+  vertId,
+}: {
+  spørreundersøkelseId: string;
+  vertId: string;
 }) {
-    const { data, isLoading } = useVertSpørreundersøkelse(spørreundersøkelseId, vertId);
+  const { isLoading, error } = useVertSpørreundersøkelse(
+    spørreundersøkelseId,
+    vertId,
+  );
 
-    if (isLoading) {
-        return <Loader />
-    }
-
-    if (data === undefined) {
-        return (
-            <Page className={styles.startside}>
-                <Heading size="large" level="1"> Ukjent spørreundersøkelse </Heading>
-            </Page>
-        )
-    }
-
+  if (isLoading) {
     return (
-        <Page className={styles.startside}>
-            <Page.Block gutters width="xl" className={styles.sideinnhold}>
-                <Logininformasjon />
-                <Status spørreundersøkelseId={spørreundersøkelseId} vertId={vertId} />
-            </Page.Block>
-        </Page>
+      <Page.Block gutters width="xl">
+        <VStack gap={"4"} align={"center"}>
+          <Heading size={"large"}>Laster spørreundersøkelse</Heading>
+          <Loader size="3xlarge" title="Venter..." />
+        </VStack>
+      </Page.Block>
     );
+  }
+
+  if (error) {
+    return <Feilside feiltekst={error.message}></Feilside>;
+  }
+
+  return (
+    <Page.Block gutters width="xl" className={startsideStyles.sideinnhold}>
+      <Logininformasjon />
+      <Status spørreundersøkelseId={spørreundersøkelseId} vertId={vertId} />
+    </Page.Block>
+  );
 }

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import React from "react";
 import StartsideBody from "@/app/[uuid]/vert/[vertId]/(start)/StartsideBody";
+import { Page } from "@navikt/ds-react";
+import startsideStyles from "./startside.module.css";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -8,14 +10,16 @@ export const metadata: Metadata = {
 };
 
 export default function Startside({
-    params
-} : {
-    params: { uuid: string; vertId: string };
+  params,
+}: {
+  params: { uuid: string; vertId: string };
 }) {
   return (
+    <Page className={startsideStyles.startside}>
       <StartsideBody
-          spørreundersøkelseId={params.uuid}
-          vertId={params.vertId}
+        spørreundersøkelseId={params.uuid}
+        vertId={params.vertId}
       />
+    </Page>
   );
 }

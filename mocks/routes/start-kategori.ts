@@ -26,7 +26,7 @@ const startKategoriRoutes = [
         },
       },
       {
-        id: "er-i-feil-status",
+        id: "er-allerede-startet",
         type: "status",
         options: {
           status: 409,

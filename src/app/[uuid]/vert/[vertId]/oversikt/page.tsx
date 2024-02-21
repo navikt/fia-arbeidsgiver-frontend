@@ -13,11 +13,6 @@ export default function Oversiktside({
   params: { uuid: string; vertId: string };
 }) {
   return (
-    <OversiktBody
-      del={1}
-      kategori={"PARTSSAMARBEID"}
-      spørreundersøkelseId={params.uuid}
-      vertId={params.vertId}
-    />
+    <OversiktBody spørreundersøkelseId={params.uuid} vertId={params.vertId} />
   );
 }

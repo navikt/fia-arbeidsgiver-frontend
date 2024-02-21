@@ -1,6 +1,8 @@
 .bleedInnhold {
     padding-left: 10rem;
     padding-right: 10rem;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .spørsmålInnhold {

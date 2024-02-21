@@ -15,7 +15,7 @@ export default function Nesteside({
 }) {
   return (
     <NesteBody
-      spørreundersøkelsesId={params.uuid}
+      spørreundersøkelseId={params.uuid}
       spørsmålId={params.sporsmalId}
     />
   );

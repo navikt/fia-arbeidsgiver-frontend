@@ -9,17 +9,17 @@ import { useNesteSpørsmål } from "@/app/_api_hooks/navigasjon/nesteSpørsmål"
 import styles from "../sporsmalsside.module.css";
 
 export default function TilbakeBody({
-  spørreundersøkelsesId,
+  spørreundersøkelseId,
   spørsmålId,
 }: {
-  spørreundersøkelsesId: string;
+  spørreundersøkelseId: string;
   spørsmålId: string;
 }) {
   const router = useRouter();
-  const cookieHandler = new CookieHandler(spørreundersøkelsesId);
+  const cookieHandler = new CookieHandler(spørreundersøkelseId);
   const storedSessionID = cookieHandler.sesjonsID;
 
-  const nesteSpørsmål = useNesteSpørsmål(spørreundersøkelsesId, spørsmålId);
+  const nesteSpørsmål = useNesteSpørsmål(spørreundersøkelseId, spørsmålId);
 
   React.useEffect(() => {
     if (!storedSessionID) {

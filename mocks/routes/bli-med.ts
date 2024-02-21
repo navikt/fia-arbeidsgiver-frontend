@@ -23,7 +23,14 @@ const bliMedRoutes = [
         },
       },
       {
-        id: "har-ikke-tilgang",
+        id: "ukjent-spørreundersøkelse",
+        type: "status",
+        options: {
+          status: 403,
+        },
+      },
+      {
+        id: "spørreundersøkelse-i-feil-status",
         type: "status",
         options: {
           status: 403,

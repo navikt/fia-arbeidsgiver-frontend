@@ -1,28 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const {
-  dummySpørsmålIndeks,
-  dummySpørreundersøkelse,
-} = require("@/utils/dummydata");
+const { dummySpørreundersøkelse } = require("@/utils/dummydata");
 
 import { spørsmålDTO } from "@/app/_types/sporreundersokelseDTO";
 import { Request, Response } from "express";
 
 const nesteSporsmalRoutes = [
-  {
-    id: "vert-neste-sporsmal-route",
-    url: "/fia-arbeidsgiver/sporreundersokelse/vert/neste-sporsmal",
-    method: "POST",
-    variants: [
-      {
-        id: "success",
-        type: "json",
-        options: {
-          status: 200,
-          body: dummySpørsmålIndeks,
-        },
-      },
-    ],
-  },
   {
     id: "neste-sporsmal-route",
     url: "/fia-arbeidsgiver/sporreundersokelse/neste-sporsmal",

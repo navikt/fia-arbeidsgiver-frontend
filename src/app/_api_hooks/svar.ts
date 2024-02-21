@@ -23,13 +23,12 @@ export function postEnkeltSvar({
       svarId,
     }),
   }).then((res) => {
-    if (res.status === 403) {
-      throw new Error("Ukjent id");
+    if (res.status === 400 || res.status === 403) {
+      throw new Error("Kunne ikke sende svar, prøv igjen");
     }
     if (!res.ok) {
-      throw new Error("Kunne ikke sende svar");
-    } else {
-      cookieHandler.oppdaterSisteSvarteSpørsmål(spørsmålId);
+      throw new Error("Noe gikk galt.");
     }
+    cookieHandler.oppdaterSisteSvarteSpørsmål(spørsmålId);
   });
 }

@@ -15,7 +15,7 @@ export default function Nesteside({
 }) {
   return (
     <TilbakeBody
-      spørreundersøkelsesId={params.uuid}
+      spørreundersøkelseId={params.uuid}
       spørsmålId={params.sporsmalId}
     />
   );

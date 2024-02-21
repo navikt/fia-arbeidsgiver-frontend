@@ -1,108 +1,79 @@
 "use client";
 
-import {
-  Bleed,
-  BodyShort,
-  Box,
-  Heading,
-  HStack,
-  Page,
-  VStack,
-} from "@navikt/ds-react";
-import React, { useEffect } from "react";
-
-import spørsmålStyles from "./sporsmalsside.module.css";
-import styles from "../../../kartlegging.module.css";
-import SpørsmålNavigasjon from "./SpørsmålNavigasjon";
-import {
-  useVertSpørreundersøkelse,
-  useVertSpørsmålIndeks,
-} from "@/app/_api_hooks/sporsmalOgSvar";
-import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
-import { inkrementerSpørsmål } from "@/app/_api_hooks/inkrementerSpørsmål";
+import { Heading, Loader, Page, VStack } from "@navikt/ds-react";
+import React from "react";
+import { useVertSpørreundersøkelse } from "@/app/_api_hooks/useVertSpørreundersøkelse";
+import { SpørsmålFooterVert } from "@/app/[uuid]/vert/[vertId]/sporsmal/SpørsmålFooterVert";
+import { SpørsmålBleedVert } from "@/app/[uuid]/vert/[vertId]/sporsmal/SpørsmålBleedVert";
+import { SpørsmålInnhold } from "@/app/[uuid]/vert/[vertId]/sporsmal/SpørsmålInnhold";
+import { Feilside } from "@/app/_components/Feilside";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,
   vertId,
-  del,
-  delnavn,
 }: {
   spørreundersøkelseId: string;
   vertId: string;
-  del: number;
-  delnavn: string;
 }) {
-  const { data: spørreundersøkelse, isLoading: lasterSpørsmål } =
-    useVertSpørreundersøkelse(spørreundersøkelseId, vertId);
+  const {
+    data: spørreundersøkelse,
+    isLoading: lasterSpørreundersøkelse,
+    error: feilSpørreundersøkelse,
+  } = useVertSpørreundersøkelse(spørreundersøkelseId, vertId);
 
   const [aktivtSpørsmålindex, setAktivtSpørsmålindex] = React.useState(0);
-  const { data } = useVertSpørsmålIndeks(spørreundersøkelseId, vertId);
 
-  useEffect(() => {
-    if (data && aktivtSpørsmålindex > data?.indeks) {
-      inkrementerSpørsmål(spørreundersøkelseId, vertId);
-    }
-  }, [aktivtSpørsmålindex, data, spørreundersøkelseId, vertId]);
+  if (lasterSpørreundersøkelse) {
+    return (
+      <Page contentBlockPadding="none">
+        <Page.Block as={"main"}>
+          <SpørsmålBleedVert
+            aktivtSpørsmålindex={aktivtSpørsmålindex}
+            antallSpørsmål={10000} //TODO: Fix
+            vertId={vertId}
+            spørreundersøkelseId={spørreundersøkelseId}
+          />
+          <VStack gap={"4"} align={"center"}>
+            <Heading size={"large"}>Laster spørreundersøkelse</Heading>
+            <Loader size="3xlarge" title="Venter..." />
+          </VStack>
+        </Page.Block>
+      </Page>
+    );
+  }
+
+  if (feilSpørreundersøkelse) {
+    return (
+      <Page contentBlockPadding="none">
+        <Feilside feiltekst={feilSpørreundersøkelse.message} />
+      </Page>
+    );
+  }
 
   return (
-    !lasterSpørsmål &&
     spørreundersøkelse && (
       <Page
         contentBlockPadding="none"
         footer={
-          <Box as="footer" padding="24">
-            <Page.Block width="2xl">
-              <SpørsmålNavigasjon
-                erViPåSisteSpørsmål={
-                  aktivtSpørsmålindex >= spørreundersøkelse.length - 1
-                }
-                aktivtSpørsmålindex={aktivtSpørsmålindex}
-                setAktivtSpørsmålindex={setAktivtSpørsmålindex}
-              />
-            </Page.Block>
-          </Box>
+          <SpørsmålFooterVert
+            aktivtSpørsmålindex={aktivtSpørsmålindex}
+            erViPåSisteSpørsmål={
+              aktivtSpørsmålindex >= spørreundersøkelse.length - 1
+            }
+            setAktivtSpørsmålindex={setAktivtSpørsmålindex}
+          />
         }
       >
         <Page.Block as={"main"}>
-          <Bleed marginInline="full" asChild>
-            <Box padding="5" className={styles.bleedKlar}>
-              <HStack
-                className={spørsmålStyles.bleedInnhold}
-                justify={"space-between"}
-              >
-                <VStack>
-                  <BodyShort size="medium">Del {del}</BodyShort>
-                  <Heading size={"medium"}>
-                    {delnavn} i virksomheten {aktivtSpørsmålindex + 1}/
-                    {spørreundersøkelse.length}
-                  </Heading>
-                </VStack>
-                <Deltakelsesstatus
-                  vertId={vertId}
-                  spørreundersøkelseId={spørreundersøkelseId}
-                  visAntallSvarIndeks={aktivtSpørsmålindex}
-                />
-              </HStack>
-            </Box>
-          </Bleed>
-
-          <VStack gap="4" className={spørsmålStyles.spørsmålInnhold}>
-            <Heading level={"2"} size={"small"} spacing>
-              {spørreundersøkelse[aktivtSpørsmålindex].spørsmål}
-            </Heading>
-            {spørreundersøkelse[aktivtSpørsmålindex].svaralternativer.map(
-              (svaralternativ) => (
-                <BodyShort
-                  key={svaralternativ.id}
-                  size={"large"}
-                  spacing
-                  className={spørsmålStyles.innholdSvar}
-                >
-                  {svaralternativ.tekst}
-                </BodyShort>
-              ),
-            )}
-          </VStack>
+          <SpørsmålBleedVert
+            aktivtSpørsmålindex={aktivtSpørsmålindex}
+            antallSpørsmål={spørreundersøkelse.length}
+            vertId={vertId}
+            spørreundersøkelseId={spørreundersøkelseId}
+          />
+          <SpørsmålInnhold
+            spørsmålDto={spørreundersøkelse[aktivtSpørsmålindex]}
+          />
         </Page.Block>
       </Page>
     )

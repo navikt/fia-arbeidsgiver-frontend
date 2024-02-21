@@ -1,9 +1,10 @@
 import { Alert, BodyShort, Loader } from "@navikt/ds-react";
-import styles from "@/app/_components/komponenter.module.css";
+import komponenterStyles from "./komponenter.module.css";
 import spørsmålStyles from "../[uuid]/vert/[vertId]/sporsmal/sporsmalsside.module.css";
 import { PersonGroupIcon } from "@navikt/aksel-icons";
 import React from "react";
 import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
+import kartleggingStyles from "@/app/kartlegging.module.css";
 
 export function Deltakelsesstatus({
   spørreundersøkelseId,
@@ -21,10 +22,14 @@ export function Deltakelsesstatus({
 
   if (error !== undefined && !isLoading) {
     return (
-      <BodyShort className={styles.deltakere}>
+      <BodyShort className={komponenterStyles.deltakere}>
         <PersonGroupIcon />
 
-        <Alert variant={"warning"} inline>
+        <Alert
+          variant={"warning"}
+          inline
+          className={kartleggingStyles.alertWarning}
+        >
           {error.message}
         </Alert>
       </BodyShort>
@@ -33,7 +38,7 @@ export function Deltakelsesstatus({
 
   if (visAntallSvarIndeks === null) {
     return (
-      <BodyShort className={styles.deltakere}>
+      <BodyShort className={komponenterStyles.deltakere}>
         <PersonGroupIcon />
         {isLoading ? <Loader /> : data?.antallDeltakere}
       </BodyShort>

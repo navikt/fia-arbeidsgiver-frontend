@@ -4,7 +4,7 @@ import { Alert, Button } from "@navikt/ds-react";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { fetchBliMed } from "@/app/_api_hooks/bliMed";
-import styles from "./startside.module.css";
+import startsideStyles from "./startside.module.css";
 import CookieHandler from "@/utils/CookieHandler";
 
 export default function BliMedKnapp({
@@ -41,7 +41,7 @@ export default function BliMedKnapp({
               setError(error.message);
             });
         }}
-        className={styles.bliMedKnapp}
+        className={startsideStyles.bliMedKnapp}
       >
         Bli med!
       </Button>

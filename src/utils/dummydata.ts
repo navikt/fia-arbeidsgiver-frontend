@@ -65,11 +65,6 @@ const dummyAntallDeltakere = {
   ],
 };
 
-const dummySpørsmålIndeks = {
-  spørreundersøkelseId: "ef4d406d-abc2-4ed6-8de7-72a7feb40326",
-  indeks: 4,
-};
-
 const dummyKartleggingStatusOpprettet = {
   kategori: "PARTSSAMARBEID",
   status: "OPPRETTET",
@@ -92,7 +87,6 @@ module.exports = {
   dummySpørreundersøkelse,
   dummyBliMed,
   dummyAntallDeltakere,
-  dummySpørsmålIndeks,
   dummyKartleggingStatusOpprettet,
   dummyKartleggingStatusIkkePåbegynt,
   dummyKartleggingStatusPåbegynt,

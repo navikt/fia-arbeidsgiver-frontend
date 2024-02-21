@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button, Heading, VStack } from "@navikt/ds-react";
-import styles from "./startside.module.css";
+import startsideStyles from "./startside.module.css";
 import { useRouter } from "next/navigation";
 import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
 
@@ -16,7 +16,11 @@ export default function Status({
   const router = useRouter();
 
   return (
-    <VStack className={styles.status} align={"center"} justify={"center"}>
+    <VStack
+      className={startsideStyles.status}
+      align={"center"}
+      justify={"center"}
+    >
       <Deltakelsesstatus
         vertId={vertId}
         spørreundersøkelseId={spørreundersøkelseId}

@@ -20,6 +20,11 @@
     min-height: 112px;
 }
 
+.alertWarning > svg {
+    /* Fikser hvit bakgrunn bak advarselikon om inline */
+    background: radial-gradient(circle at 50% 54%, var(--a-surface-default) 25%, 0, transparent) !important;
+}
+
 .knappHvit {
     background: var(--a-bg-default);
 }

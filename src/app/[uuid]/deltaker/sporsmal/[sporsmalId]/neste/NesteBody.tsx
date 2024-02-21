@@ -5,23 +5,23 @@ import { useRouter } from "next/navigation";
 
 import CookieHandler from "@/utils/CookieHandler";
 import { Button, Heading, Loader, VStack } from "@navikt/ds-react";
-import styles from "../sporsmalsside.module.css";
+import spørsmålStyles from "../sporsmalsside.module.css";
 import { useNesteSpørsmål } from "@/app/_api_hooks/navigasjon/nesteSpørsmål";
 import { SWRResponse } from "swr";
 import { nesteSpørsmålDTO } from "@/app/_types/nesteSpørsmålDTO";
 
 export default function NesteBody({
-  spørreundersøkelsesId,
+  spørreundersøkelseId,
   spørsmålId,
 }: {
-  spørreundersøkelsesId: string;
+  spørreundersøkelseId: string;
   spørsmålId: string;
 }) {
   const router = useRouter();
-  const cookieHandler = new CookieHandler(spørreundersøkelsesId);
+  const cookieHandler = new CookieHandler(spørreundersøkelseId);
   const storedSessionID = cookieHandler.sesjonsID;
 
-  const nesteSpørsmål = useNesteSpørsmål(spørreundersøkelsesId, spørsmålId);
+  const nesteSpørsmål = useNesteSpørsmål(spørreundersøkelseId, spørsmålId);
 
   React.useEffect(() => {
     if (!storedSessionID) {
@@ -52,7 +52,7 @@ export default function NesteBody({
       {spørsmålId === "START" ? null : (
         <Button
           variant="secondary"
-          className={styles.tilbakeknapp}
+          className={spørsmålStyles.tilbakeknapp}
           onClick={() => {
             router.push(".");
           }}

@@ -1,7 +1,6 @@
 import useSWR, { SWRConfiguration, SWRResponse } from "swr";
 import { antallDeltakereDTO } from "@/app/_types/antallDeltakereDTO";
-
-const ONE_SECOND_MS = 1000;
+import { ETT_SEKUND_MS } from "@/utils/consts";
 
 export function useAntallDeltakere({
   vertId,
@@ -29,7 +28,7 @@ export function useAntallDeltakere({
   };
 
   const swrConfig: SWRConfiguration = {
-    refreshInterval: ONE_SECOND_MS,
+    refreshInterval: ETT_SEKUND_MS,
     revalidateIfStale: true,
   };
 

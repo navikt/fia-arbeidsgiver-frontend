@@ -1,5 +1,5 @@
 import { Heading, HStack, Loader, Page } from "@navikt/ds-react";
-import styles from "./komponenter.module.css";
+import komponenterStyles from "./komponenter.module.css";
 import React from "react";
 import { QRCodeSVG } from "qrcode.react";
 import { usePathname } from "next/navigation";
@@ -20,13 +20,13 @@ export default function HeaderVert() {
   }, [lenke]);
 
   return (
-    <Page.Block as={"header"} className={styles.header}>
-      <HStack className={styles.overskrift}>
+    <Page.Block as={"header"} className={komponenterStyles.header}>
+      <HStack className={komponenterStyles.overskrift}>
         <Heading spacing level={"1"} size={"large"}>
           IA kartleggingsmøte
         </Heading>
         {fullLenke !== "" ? (
-          <QRCodeSVG value={fullLenke} className={styles.qrcode} />
+          <QRCodeSVG value={fullLenke} className={komponenterStyles.qrcode} />
         ) : (
           <Loader size="3xlarge" />
         )}

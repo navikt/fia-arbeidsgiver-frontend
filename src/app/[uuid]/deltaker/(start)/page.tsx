@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BodyShort, Heading, Page, VStack } from "@navikt/ds-react";
 import React from "react";
 import BliMedKnapp from "./BliMedKnapp";
-import styles from "./startside.module.css";
+import startsideStyles from "./startside.module.css";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -17,12 +17,12 @@ export default function Landingsside({ params }: { params: { uuid: string } }) {
           <Heading
             level="1"
             size="medium"
-            className={styles.kartleggingsmøtetittel}
+            className={startsideStyles.kartleggingsmøtetittel}
             align="center"
           >
             IA kartleggingsmøte
           </Heading>
-          <BodyShort align="center" className={styles.sidetekst}>
+          <BodyShort align="center" className={startsideStyles.sidetekst}>
             Klikk på &quot;Bli med!&quot; for å delta på kartleggingsmøtet.
           </BodyShort>
           <BliMedKnapp spørreundersøkelseId={params?.uuid} />

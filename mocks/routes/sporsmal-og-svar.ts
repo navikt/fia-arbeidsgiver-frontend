@@ -6,7 +6,7 @@ import { Request, Response } from "express";
 
 const sporsmalOgSvarRoutes = [
   {
-    id: "sporsmal-og-svar-route",
+    id: "sporsmal-og-svar-vert-route",
     url: "/fia-arbeidsgiver/sporreundersokelse/vert/sporsmal-og-svar",
     method: "POST",
     variants: [
