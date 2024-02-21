@@ -8,7 +8,7 @@ const antallDeltakereRoutes = [
     method: "POST",
     variants: [
       {
-        id: "success",
+        id: "har-deltakere",
         type: "json",
         options: {
           status: 200,

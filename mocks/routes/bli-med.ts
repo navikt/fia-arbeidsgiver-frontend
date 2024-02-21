@@ -8,7 +8,7 @@ const bliMedRoutes = [
     method: "POST",
     variants: [
       {
-        id: "success",
+        id: "kan-bli-med",
         type: "json",
         options: {
           status: 200,

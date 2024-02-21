@@ -59,21 +59,15 @@ const dummyBliMed = {
 const dummyAntallDeltakere = {
   antallDeltakere: 3,
   antallSvar: [
-    { spørsmålId: "fbc953f1-e7fe-472d-b069-7698c4cae0a5", antall: 0 },
+    { spørsmålId: "fbc953f1-e7fe-472d-b069-7698c4cae0a5", antall: 1 },
     { spørsmålId: "153e4d26-3c89-4097-9ddb-5cfef99bc4e9", antall: 3 },
-    { spørsmålId: "37294476-815b-4ed5-90ea-8189a6bc48e8", antall: 2 },
+    { spørsmålId: "37294476-815b-4ed5-90ea-8189a6bc48e8", antall: 0 },
   ],
 };
 
 const dummySpørsmålIndeks = {
   spørreundersøkelseId: "ef4d406d-abc2-4ed6-8de7-72a7feb40326",
   indeks: 4,
-};
-
-const startKategoriResult = {
-  kategori: "PARTSSAMARBEID",
-  status: "OPPRETTET",
-  spørsmålindeks: null,
 };
 
 const dummyKartleggingStatusOpprettet = {
@@ -91,13 +85,7 @@ const dummyKartleggingStatusIkkePåbegynt = {
 const dummyKartleggingStatusPåbegynt = {
   kategori: "PARTSSAMARBEID",
   status: "PÅBEGYNT",
-  spørsmålindeks: 2,
-};
-
-const dummyKartleggingStatusKanFullføre = {
-  kategori: "PARTSSAMARBEID",
-  status: "PÅBEGYNT",
-  spørsmålindeks: 3,
+  spørsmålindeks: 0,
 };
 
 module.exports = {
@@ -108,6 +96,4 @@ module.exports = {
   dummyKartleggingStatusOpprettet,
   dummyKartleggingStatusIkkePåbegynt,
   dummyKartleggingStatusPåbegynt,
-  dummyKartleggingStatusKanFullføre,
-  startKategoriResult,
 };
