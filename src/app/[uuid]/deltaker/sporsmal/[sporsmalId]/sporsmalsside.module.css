@@ -63,3 +63,8 @@
 .bleedInnhold {
   padding-left: 1rem;
 }
+
+.nesteStack {
+  height: 100vh;
+  padding: 2rem;
+}

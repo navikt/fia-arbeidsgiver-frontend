@@ -41,7 +41,12 @@ export default function NesteBody({
   }, [nesteSpørsmål.data, router]);
 
   return (
-    <VStack gap={"4"} align={"center"}>
+    <VStack
+      gap={"12"}
+      align={"center"}
+      justify={"center"}
+      className={styles.nesteStack}
+    >
       <NesteHeading nesteSpørsmål={nesteSpørsmål} spørsmålId={spørsmålId} />
       <Loader size="3xlarge" title="Venter..." />
       {spørsmålId === "START" ? null : (
@@ -68,14 +73,22 @@ function NesteHeading({
 }) {
   if (spørsmålId === "START") {
     return (
-      <Heading size={"large"}>
+      <Heading align="center" size={"large"}>
         Venter på at verten skal starte kartlegging
       </Heading>
     );
   }
   if (!nesteSpørsmål.data?.erNesteÅpnetAvVert) {
-    return <Heading size={"large"}>Venter på at verten skal fortsette</Heading>;
+    return (
+      <Heading align="center" size={"large"}>
+        Venter på at verten skal fortsette
+      </Heading>
+    );
   }
 
-  return <Heading size={"large"}>Laster</Heading>;
+  return (
+    <Heading align="center" size={"large"}>
+      Laster
+    </Heading>
+  );
 }
