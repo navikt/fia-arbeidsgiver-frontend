@@ -1,70 +1,79 @@
 .spørsmålsheader {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-  margin-right: auto;
-  margin-left: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    margin-right: auto;
+    margin-left: auto;
 
-  font-weight: 600;
-  max-width: 42rem;
+    font-weight: 600;
+    max-width: 42rem;
 }
 
 .spørsmålsheader :first-child {
-  margin-right: 2rem;
-  flex-shrink: 0;
+    margin-right: 2rem;
+    flex-shrink: 0;
 }
 
 .svaralternativknapp {
-  width: 100%;
-  max-width: 28rem;
-  margin-bottom: 1rem;
+    width: 100%;
+    max-width: 28rem;
+    margin-bottom: 1rem;
 }
 
 .tilbakeknapp {
-  width: 100%;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  max-width: 28rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    max-width: 28rem;
 }
 
 .nesteknapp {
-  width: 100%;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  max-width: 28rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    max-width: 28rem;
 }
 
 .spørsmålsseksjon {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  flex-grow: 1;
-  margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-grow: 1;
 }
 
 .spørsmålssideblokk {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .spørsmålstekst {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .lasterhjul {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .bleedInnhold {
-  padding-left: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    align-self: center;
 }
 
 .nesteStack {
-  height: 100vh;
-  padding: 2rem;
+    height: 100vh;
+    padding: 2rem;
+}
+
+.radioStack {
+    padding: 1rem;
+}
+
+.knappeStack {
+    margin-top: 1rem;
 }

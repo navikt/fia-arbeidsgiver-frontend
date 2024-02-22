@@ -4,6 +4,7 @@ import React from "react";
 import spørsmålStyles from "./sporsmalsside.module.css";
 import {
   Alert,
+  BodyShort,
   Button,
   Heading,
   Loader,
@@ -12,7 +13,6 @@ import {
   VStack,
 } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
-import { spørsmålOgSvarDTO } from "@/app/_types/sporreundersokelseDTO";
 import { postEnkeltSvar } from "@/app/_api_hooks/svar";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/useSpørsmålOgSvar";
 
@@ -73,9 +73,8 @@ export default function Spørsmålsseksjon({
   return (
     spørsmålOgSvar && (
       <>
-        <Spørsmålsheader spørsmålOgSvar={spørsmålOgSvar} />
-        {/*<Spørsmålsheader aktivtSpørsmålindex={finnSpørsmålIndexFraId(spørsmål, spørsmålId)} spørsmål={spørsmål} />*/}
-        <VStack align="center">
+        <BodyShort weight={"semibold"}>{spørsmålOgSvar.spørsmål}</BodyShort>
+        <VStack className={spørsmålStyles.radioStack}>
           <RadioGroup
             legend="Velg ett alternativ"
             onChange={velgSvar}
@@ -98,40 +97,26 @@ export default function Spørsmålsseksjon({
               {feilSendSvar}
             </Alert>
           ) : null}
-          <Button
-            variant="primary"
-            className={spørsmålStyles.nesteknapp}
-            onClick={sendSvar}
-          >
-            Neste
-          </Button>
-          <Button
-            variant="secondary"
-            className={spørsmålStyles.tilbakeknapp}
-            onClick={() => {
-              router.push(`./${spørsmålId}/tilbake`);
-            }}
-          >
-            Tilbake
-          </Button>
+          <VStack className={spørsmålStyles.knappeStack}>
+            <Button
+              variant="primary"
+              className={spørsmålStyles.nesteknapp}
+              onClick={sendSvar}
+            >
+              Svar
+            </Button>
+            <Button
+              variant="secondary"
+              className={spørsmålStyles.tilbakeknapp}
+              onClick={() => {
+                router.push(`./${spørsmålId}/tilbake`);
+              }}
+            >
+              Tilbake
+            </Button>
+          </VStack>
         </VStack>
       </>
     )
-  );
-}
-
-function Spørsmålsheader({
-  spørsmålOgSvar,
-}: {
-  spørsmålOgSvar: spørsmålOgSvarDTO;
-}) {
-  return (
-    <div className={spørsmålStyles.spørsmålsheader}>
-      <span>
-        {spørsmålOgSvar.spørsmålIndeks + 1}/
-        {spørsmålOgSvar.sisteSpørsmålIndeks + 1}
-      </span>
-      <span>{spørsmålOgSvar.spørsmål}</span>
-    </div>
   );
 }

@@ -17,6 +17,7 @@ import React, { useState } from "react";
 import { inkrementerSpørsmål } from "@/app/_api_hooks/inkrementerSpørsmål";
 import { startKategori } from "@/app/_api_hooks/startKategori";
 import { useRouter } from "next/navigation";
+import { Feilside } from "@/app/_components/Feilside";
 
 export function SpørsmålBleedOversikt({
   spørreundersøkelseId,
@@ -70,15 +71,12 @@ export function SpørsmålBleedOversikt({
 
   if (feilStatus) {
     return (
-      <Bleed marginInline="full" asChild reflectivePadding>
-        <Box padding="5" className={kartleggingStyles.bleedKlar}>
-          <HStack justify={"center"} align={"center"}>
-            <Alert variant={"error"} inline>
-              {feilStatus.message}
-            </Alert>
-          </HStack>
-        </Box>
-      </Bleed>
+      <>
+        <Bleed marginInline="full" asChild reflectivePadding>
+          <Box padding="5" className={kartleggingStyles.bleedKlar} />
+        </Bleed>
+        <Feilside feiltekst={feilStatus.message} />
+      </>
     );
   }
 

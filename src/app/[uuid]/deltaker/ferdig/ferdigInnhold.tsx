@@ -11,9 +11,7 @@ export function FerdigInnhold() {
 
   return (
     <VStack gap={"4"} align={"center"}>
-      <BodyShort>Bra jobbet! IA kartleggingen er fullført.</BodyShort>
-      <BodyShort>Takk for deltakelsen!</BodyShort>
-      <BodyShort>Rådgiveren sier litt om hva som skjer videre.</BodyShort>
+      <BodyShort>Takk for ditt bidrag!</BodyShort>
     </VStack>
   );
 }

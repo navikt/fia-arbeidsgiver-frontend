@@ -1,7 +1,7 @@
-import { Alert, BodyShort, Loader } from "@navikt/ds-react";
+import { Alert, BodyShort, HStack, Loader } from "@navikt/ds-react";
 import komponenterStyles from "./komponenter.module.css";
 import spørsmålStyles from "../[uuid]/vert/[vertId]/sporsmal/sporsmalsside.module.css";
-import { PersonGroupIcon } from "@navikt/aksel-icons";
+import { PersonGroupFillIcon } from "@navikt/aksel-icons";
 import React from "react";
 import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
 import kartleggingStyles from "@/app/kartlegging.module.css";
@@ -23,8 +23,7 @@ export function Deltakelsesstatus({
   if (error !== undefined && !isLoading) {
     return (
       <BodyShort className={komponenterStyles.deltakere}>
-        <PersonGroupIcon />
-
+        <PersonGroupFillIcon />
         <Alert
           variant={"warning"}
           inline
@@ -39,20 +38,22 @@ export function Deltakelsesstatus({
   if (visAntallSvarIndeks === null) {
     return (
       <BodyShort className={komponenterStyles.deltakere}>
-        <PersonGroupIcon />
+        <PersonGroupFillIcon />
         {isLoading ? <Loader /> : data?.antallDeltakere}
       </BodyShort>
     );
   }
 
   return (
-    <BodyShort className={spørsmålStyles.deltakere}>
-      <PersonGroupIcon />
+    <HStack className={spørsmålStyles.deltakere}>
+      <PersonGroupFillIcon />
       {isLoading ? (
         <Loader variant={"inverted"} />
       ) : (
-        `${data?.antallSvar[visAntallSvarIndeks].antall} av ${data?.antallDeltakere} har svart`
+        <BodyShort>
+          {`${data?.antallSvar[visAntallSvarIndeks].antall} av ${data?.antallDeltakere} har svart`}
+        </BodyShort>
       )}
-    </BodyShort>
+    </HStack>
   );
 }

@@ -4,8 +4,8 @@ import { useKategoristatus } from "@/app/_api_hooks/useKategoristatus";
 import {
   Alert,
   Bleed,
-  BodyShort,
   Box,
+  Heading,
   HStack,
   Loader,
   VStack,
@@ -25,7 +25,6 @@ export function SpørsmålBleedDeltaker({
     isLoading: lasterStatus,
     error: feilStatus,
   } = useKategoristatus(spørreundersøkelseId);
-  const statusDelnummer = 1;
 
   if (lasterStatus) {
     return (
@@ -43,7 +42,7 @@ export function SpørsmålBleedDeltaker({
       <Bleed marginInline="full" asChild reflectivePadding>
         <Box padding="5" className={kartleggingStyles.bleedKlar}>
           <HStack className={deltakerStyles.bleedInnhold}>
-            <VStack>
+            <VStack align={"center"}>
               {feilStatus && (
                 <Alert
                   variant={"warning"}
@@ -64,12 +63,7 @@ export function SpørsmålBleedDeltaker({
       <Bleed marginInline="full" asChild reflectivePadding>
         <Box padding="5" className={kartleggingStyles.bleedKlar}>
           <HStack className={deltakerStyles.bleedInnhold}>
-            <VStack>
-              <BodyShort size="medium">Del {statusDelnummer}</BodyShort>
-              <BodyShort size="large">
-                {finskrivKategori(status.kategori)}
-              </BodyShort>
-            </VStack>
+            <Heading size="small">{finskrivKategori(status.kategori)}</Heading>
           </HStack>
         </Box>
       </Bleed>
