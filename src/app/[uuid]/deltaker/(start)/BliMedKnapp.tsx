@@ -23,6 +23,14 @@ export default function BliMedKnapp({
           cookieHandler.sisteSvarteSpørsmålId || "START"
         }/neste`,
       );
+    } else {
+      fetchBliMed(spørreundersøkelseId)
+        .then(() => {
+          router.push("deltaker/sporsmal/START/neste");
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
     }
   });
 
