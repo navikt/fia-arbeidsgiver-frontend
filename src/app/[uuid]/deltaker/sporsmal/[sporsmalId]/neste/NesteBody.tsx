@@ -45,7 +45,7 @@ export default function NesteBody({
       gap={"12"}
       align={"center"}
       justify={"center"}
-      className={styles.nesteStack}
+      className={spørsmålStyles.nesteStack}
     >
       <NesteHeading nesteSpørsmål={nesteSpørsmål} spørsmålId={spørsmålId} />
       <Loader size="3xlarge" title="Venter..." />

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import CookieHandler from "@/utils/CookieHandler";
 import { Heading, Loader, VStack } from "@navikt/ds-react";
 import { useNesteSpørsmål } from "@/app/_api_hooks/navigasjon/nesteSpørsmål";
-import styles from "../sporsmalsside.module.css";
+import spørsmålStyles from "../sporsmalsside.module.css";
 
 export default function TilbakeBody({
   spørreundersøkelseId,
@@ -47,7 +47,7 @@ export default function TilbakeBody({
       gap={"4"}
       align={"center"}
       justify={"center"}
-      className={styles.nesteStack}
+      className={spørsmålStyles.nesteStack}
     >
       <Heading size={"large"}>Laster</Heading>
       <Loader size="3xlarge" title="Venter..." />
