@@ -1,5 +1,7 @@
+/**
+ * @jest-environment node
+ */
 import { POST } from "@/app/api/bli-med/route";
-import { expect, test } from "bun:test";
 import { NextRequest } from "next/server";
 
 test("validerer content-type", async () => {

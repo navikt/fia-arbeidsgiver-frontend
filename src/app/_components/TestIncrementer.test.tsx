@@ -1,5 +1,4 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { expect, it, describe } from "bun:test";
 import React from "react";
 import TestIncrementer from "./TestIncrementer";
 

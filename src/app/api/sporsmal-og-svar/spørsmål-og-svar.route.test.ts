@@ -1,5 +1,8 @@
+/**
+ * @jest-environment node
+ */
+
 import { POST } from "@/app/api/sporsmal-og-svar/route";
-import { expect, test } from "bun:test";
 import { NextRequest } from "next/server";
 
 test("validerer content-type", async () => {

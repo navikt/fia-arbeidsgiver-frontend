@@ -1,5 +1,9 @@
+/**
+ * @jest-environment node
+ */
+
+import "@testing-library/jest-dom";
 import { POST } from "@/app/api/vert/antall-deltakere/route";
-import { expect, test } from "bun:test";
 import { NextRequest } from "next/server";
 
 test("validerer content-type", async () => {
