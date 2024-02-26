@@ -7,13 +7,8 @@ import { axe, toHaveNoViolations } from "jest-axe";
 import { svaralternativDTO } from "@/app/_types/sporreundersokelseDTO";
 import { postEnkeltSvar } from "@/app/_api_hooks/svar";
 import { useRouter } from "next/navigation";
+import mockCookieHandler from "@/utils/jest-mocks/CookieHandler";
 
-// @ts-ignore
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    json: () => Promise.resolve(dummySpørreundersøkelse[0]),
-  }),
-);
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(() => ({
     prefetch: () => null,
@@ -29,18 +24,7 @@ jest.mock("@/app/_api_hooks/useSpørsmålOgSvar", () => ({
   }),
 }));
 
-jest.mock("@/utils/CookieHandler", () => {
-  return jest.fn().mockImplementation(() => {
-    return {
-      sesjonsID: "a",
-      sisteSvarteSporsmalId: jest.fn(),
-      clear: jest.fn(),
-      nyUndersokelse: jest.fn(),
-      oppdaterSisteSvarteSporsmal: jest.fn(),
-      finnesFraFør: false,
-    };
-  });
-});
+mockCookieHandler();
 
 jest.mock("@/app/_api_hooks/svar", () => ({
   postEnkeltSvar: jest.fn(() => Promise.resolve()),
@@ -81,8 +65,13 @@ describe("Spørsmålsside", () => {
 
   it("klikk på tilbake", async () => {
     const pushFunction = jest.fn();
-    (useRouter as jest.Mock).mockReturnValue({
+    jest.mocked(useRouter).mockReturnValue({
       push: pushFunction,
+      back: jest.fn(),
+      prefetch: jest.fn(),
+      forward: jest.fn(),
+      replace: jest.fn(),
+      refresh: jest.fn(),
     });
     render(<Spørsmålsside params={{ uuid: "a", sporsmalId: "b" }} />);
     expect(pushFunction).toHaveBeenCalledTimes(0);
