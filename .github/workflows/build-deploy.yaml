@@ -33,7 +33,7 @@ jobs:
       - name: Lint
         run: bun lint
       - name: Run tests
-        run: bun test
+        run: bun run test
       - name: Build
         run: bun run build
       - name: Push to Google Artifact Registry
