@@ -3,8 +3,8 @@
 import React from "react";
 import startsideStyles from "./startside.module.css";
 import { Heading, Loader } from "@navikt/ds-react";
-import { QRCodeSVG } from "qrcode.react";
 import { usePathname } from "next/navigation";
+import { QRCodeSVG } from "qrcode.react";
 
 export default function Logininformasjon() {
   const lenke: string = usePathname().slice(0, -37).replace("vert", "deltaker");
