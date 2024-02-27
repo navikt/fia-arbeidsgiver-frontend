@@ -3,8 +3,8 @@ import komponenterStyles from "./komponenter.module.css";
 import spørsmålStyles from "../[uuid]/vert/[vertId]/sporsmal/sporsmalsside.module.css";
 import { PersonGroupFillIcon } from "@navikt/aksel-icons";
 import React from "react";
-import { useAntallDeltakere } from "@/app/_api_hooks/useAntallDeltakere";
 import kartleggingStyles from "@/app/kartlegging.module.css";
+import { useAntallDeltakere } from "@/app/_api_hooks/vert/useAntallDeltakere";
 
 export function Deltakelsesstatus({
   spørreundersøkelseId,

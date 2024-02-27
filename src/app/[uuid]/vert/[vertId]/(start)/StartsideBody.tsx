@@ -5,8 +5,8 @@ import startsideStyles from "./startside.module.css";
 import Logininformasjon from "./Logininformasjon";
 import Status from "./Status";
 import React from "react";
-import { useVertSpørreundersøkelse } from "@/app/_api_hooks/useVertSpørreundersøkelse";
 import { Feilside } from "@/app/_components/Feilside";
+import { useVertSpørreundersøkelse } from "@/app/_api_hooks/vert/useVertSpørreundersøkelse";
 
 export default function StartsideBody({
   spørreundersøkelseId,

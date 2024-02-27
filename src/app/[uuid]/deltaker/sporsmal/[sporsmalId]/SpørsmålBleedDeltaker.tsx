@@ -1,6 +1,5 @@
 "use client";
 
-import { useKategoristatus } from "@/app/_api_hooks/useKategoristatus";
 import {
   Alert,
   Bleed,
@@ -14,6 +13,7 @@ import kartleggingStyles from "@/app/kartlegging.module.css";
 import deltakerStyles from "@/app/[uuid]/deltaker/sporsmal/[sporsmalId]/sporsmalsside.module.css";
 import { finskrivKategori } from "@/app/_types/sporreundersokelseDTO";
 import React from "react";
+import { useKategoristatus } from "@/app/_api_hooks/deltaker/useKategoristatus";
 
 export function SpørsmålBleedDeltaker({
   spørreundersøkelseId,

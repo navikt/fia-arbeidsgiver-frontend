@@ -1,7 +1,7 @@
 "use client";
 
-import { bliMedDTO } from "../_types/bliMedDTO";
 import CookieHandler from "@/utils/CookieHandler";
+import { bliMedDTO } from "@/app/_types/bliMedDTO";
 
 export function fetchBliMed(spørreundersøkelseId: string) {
   const cookieHandler = new CookieHandler(spørreundersøkelseId);

@@ -13,8 +13,8 @@ import {
   VStack,
 } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
-import { postEnkeltSvar } from "@/app/_api_hooks/svar";
-import { useSpørsmålOgSvar } from "@/app/_api_hooks/useSpørsmålOgSvar";
+import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
+import { postEnkeltSvar } from "@/app/_api_hooks/deltaker/svar";
 
 export default function Spørsmålsseksjon({
   spørsmålId,

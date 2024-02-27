@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 
 import CookieHandler from "@/utils/CookieHandler";
 import { Heading, Loader, VStack } from "@navikt/ds-react";
-import { useNesteSpørsmål } from "@/app/_api_hooks/navigasjon/nesteSpørsmål";
 import spørsmålStyles from "../sporsmalsside.module.css";
+import { useNesteSpørsmål } from "@/app/_api_hooks/deltaker/navigasjon/nesteSpørsmål";
 
 export default function TilbakeBody({
   spørreundersøkelseId,

@@ -2,11 +2,11 @@
 
 import { Heading, Loader, Page, VStack } from "@navikt/ds-react";
 import React from "react";
-import { useVertSpørreundersøkelse } from "@/app/_api_hooks/useVertSpørreundersøkelse";
 import { SpørsmålFooterVert } from "@/app/[uuid]/vert/[vertId]/sporsmal/SpørsmålFooterVert";
 import { SpørsmålBleedVert } from "@/app/[uuid]/vert/[vertId]/sporsmal/SpørsmålBleedVert";
 import { SpørsmålInnhold } from "@/app/[uuid]/vert/[vertId]/sporsmal/SpørsmålInnhold";
 import { Feilside } from "@/app/_components/Feilside";
+import { useVertSpørreundersøkelse } from "@/app/_api_hooks/vert/useVertSpørreundersøkelse";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,

@@ -1,4 +1,3 @@
-import { useVertKategoristatus } from "@/app/_api_hooks/useVertKategoristatus";
 import {
   Alert,
   Bleed,
@@ -14,10 +13,11 @@ import kartleggingStyles from "@/app/kartlegging.module.css";
 import vertStyles from "@/app/[uuid]/vert/[vertId]/sporsmal/sporsmalsside.module.css";
 import { finskrivKategori } from "@/app/_types/sporreundersokelseDTO";
 import React, { useState } from "react";
-import { inkrementerSpørsmål } from "@/app/_api_hooks/inkrementerSpørsmål";
-import { startKategori } from "@/app/_api_hooks/startKategori";
 import { useRouter } from "next/navigation";
 import { Feilside } from "@/app/_components/Feilside";
+import { useVertKategoristatus } from "@/app/_api_hooks/vert/useVertKategoristatus";
+import { startKategori } from "@/app/_api_hooks/vert/startKategori";
+import { inkrementerSpørsmål } from "@/app/_api_hooks/vert/inkrementerSpørsmål";
 
 export function SpørsmålBleedOversikt({
   spørreundersøkelseId,

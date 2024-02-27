@@ -3,9 +3,9 @@
 import { Alert, Button } from "@navikt/ds-react";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { fetchBliMed } from "@/app/_api_hooks/bliMed";
 import startsideStyles from "./startside.module.css";
 import CookieHandler from "@/utils/CookieHandler";
+import { fetchBliMed } from "@/app/_api_hooks/deltaker/bliMed";
 
 export default function BliMedKnapp({
   spørreundersøkelseId,

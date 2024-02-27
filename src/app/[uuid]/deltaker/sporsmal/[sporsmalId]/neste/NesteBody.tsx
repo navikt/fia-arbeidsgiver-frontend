@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 import CookieHandler from "@/utils/CookieHandler";
 import { Button, Heading, Loader, VStack } from "@navikt/ds-react";
 import spørsmålStyles from "../sporsmalsside.module.css";
-import { useNesteSpørsmål } from "@/app/_api_hooks/navigasjon/nesteSpørsmål";
 import { SWRResponse } from "swr";
 import { nesteSpørsmålDTO } from "@/app/_types/nesteSpørsmålDTO";
+import { useNesteSpørsmål } from "@/app/_api_hooks/deltaker/navigasjon/nesteSpørsmål";
 
 export default function NesteBody({
   spørreundersøkelseId,

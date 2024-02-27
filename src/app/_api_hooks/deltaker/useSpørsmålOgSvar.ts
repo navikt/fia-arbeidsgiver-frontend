@@ -1,6 +1,6 @@
-import { spørsmålOgSvarDTO } from "../_types/sporreundersokelseDTO";
 import useSWR, { SWRResponse } from "swr";
 import CookieHandler from "@/utils/CookieHandler";
+import { spørsmålOgSvarDTO } from "@/app/_types/sporreundersokelseDTO";
 
 export function useSpørsmålOgSvar(
   spørreundersøkelseId: string,
