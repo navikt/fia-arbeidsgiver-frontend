@@ -50,7 +50,7 @@ export function SpørsmålBleedOversikt({
         inkrementerSpørsmål(spørreundersøkelseId, vertId)
           .then(() => {
             setFeilStart(null);
-            router.push("sporsmal");
+            router.push("sporsmal"); // TODO: push til spørsmål/{spørreundersøkelseId} etter refactor
           })
           .catch((error) => setFeilStart(error.message));
       })
@@ -102,8 +102,10 @@ export function SpørsmålBleedOversikt({
                 onClick={() => startKartlegging()}
                 className={kartleggingStyles.knappHvitBred}
               >
-                {status.status === "PÅBEGYNT"
-                  ? `Fortsett ${status.spørsmålindeks}/${status.antallSpørsmål}`
+                {status.status === "PÅBEGYNT" && status.spørsmålindeks !== null
+                  ? `Fortsett på spørsmål ${status.spørsmålindeks + 1}/${
+                      status.antallSpørsmål
+                    }`
                   : "Start"}
               </Button>
             </HStack>
