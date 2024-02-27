@@ -23,6 +23,7 @@ export type kategoristatusDTO = {
   kategori: KategoriType;
   status: StatusType;
   spørsmålindeks: number | null;
+  antallSpørsmål: number;
 };
 
 export interface spørsmålOgSvarDTO extends spørsmålDTO {

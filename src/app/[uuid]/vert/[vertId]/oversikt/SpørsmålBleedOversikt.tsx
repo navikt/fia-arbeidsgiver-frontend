@@ -102,7 +102,9 @@ export function SpørsmålBleedOversikt({
                 onClick={() => startKartlegging()}
                 className={kartleggingStyles.knappHvitBred}
               >
-                {status.status === "PÅBEGYNT" ? "Fortsett" : "Start"}
+                {status.status === "PÅBEGYNT"
+                  ? `Fortsett ${status.spørsmålindeks}/${status.antallSpørsmål}`
+                  : "Start"}
               </Button>
             </HStack>
           </HStack>

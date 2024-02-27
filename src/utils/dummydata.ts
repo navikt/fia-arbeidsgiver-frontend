@@ -69,18 +69,21 @@ const dummyKartleggingStatusOpprettet = {
   kategori: "PARTSSAMARBEID",
   status: "OPPRETTET",
   spørsmålindeks: null,
+  antallSpørsmål: 3,
 };
 
 const dummyKartleggingStatusIkkePåbegynt = {
   kategori: "PARTSSAMARBEID",
   status: "IKKE_PÅBEGYNT",
   spørsmålindeks: null,
+  antallSpørsmål: 3,
 };
 
 const dummyKartleggingStatusPåbegynt = {
   kategori: "PARTSSAMARBEID",
   status: "PÅBEGYNT",
   spørsmålindeks: 0,
+  antallSpørsmål: 3,
 };
 
 module.exports = {
