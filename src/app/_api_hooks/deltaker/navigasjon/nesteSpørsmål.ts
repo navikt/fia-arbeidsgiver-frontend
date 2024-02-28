@@ -5,7 +5,7 @@ import useSWR, { SWRResponse } from "swr";
 
 export function useNesteSpørsmål(
   spørreundersøkelseId: string,
-  nåværrendeSpørsmålId: string,
+  nåværendeSpørsmålId: string,
 ): SWRResponse<nesteSpørsmålDTO> {
   const cookieHandler = new CookieHandler(spørreundersøkelseId);
   const sesjonsId = cookieHandler.sesjonsID;
@@ -20,7 +20,7 @@ export function useNesteSpørsmål(
       body: JSON.stringify({
         spørreundersøkelseId,
         sesjonsId,
-        nåværrendeSpørsmålId,
+        nåværendeSpørsmålId,
       }),
     }).then((res) => res.json());
 

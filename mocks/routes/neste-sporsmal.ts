@@ -30,7 +30,7 @@ const nesteSporsmalRoutes = [
 
 function generateMiddleware(erNesteÅpnetAvVert: boolean) {
   return (req: Request, res: Response) => {
-    const idOfSpørsmål = req.body.nåværrendeSpørsmålId;
+    const idOfSpørsmål = req.body.nåværendeSpørsmålId;
     if (idOfSpørsmål === "START") {
       res.status(200);
 

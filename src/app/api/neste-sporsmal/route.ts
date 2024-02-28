@@ -8,14 +8,14 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  const { spørreundersøkelseId, sesjonsId, nåværrendeSpørsmålId } =
+  const { spørreundersøkelseId, sesjonsId, nåværendeSpørsmålId } =
     await request.json();
   const fetcher = arbeidsgiverApiFetcher(
     "neste-sporsmal",
     JSON.stringify({
       spørreundersøkelseId,
       sesjonsId,
-      nåværrendeSpørsmålId,
+      nåværendeSpørsmålId,
     }),
   );
 
