@@ -29,10 +29,10 @@ export default function TilbakeBody({
   React.useEffect(() => {
     if (nesteSpørsmål.data !== undefined && nesteSpørsmål.data !== null) {
       if (
-        nesteSpørsmål.data?.forrigeSporsmalId !== null &&
-        nesteSpørsmål.data?.forrigeSporsmalId !== undefined
+        nesteSpørsmål.data?.forrigeSpørsmålId !== null &&
+        nesteSpørsmål.data?.forrigeSpørsmålId !== undefined
       ) {
-        router.push(`../${nesteSpørsmål.data?.forrigeSporsmalId}`);
+        router.push(`../${nesteSpørsmål.data?.forrigeSpørsmålId}`);
       } else if (
         nesteSpørsmål.data?.nesteSpørsmålId !== null &&
         spørsmålId !== undefined

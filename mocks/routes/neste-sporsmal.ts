@@ -38,7 +38,7 @@ function generateMiddleware(erNesteÅpnetAvVert: boolean) {
         hvaErNesteSteg: "NYTT_SPØRSMÅL",
         erNesteÅpnetAvVert,
         nesteSpørsmålId: dummySpørreundersøkelse[0].id,
-        forrigeSporsmalId: null,
+        forrigeSpørsmålId: null,
       });
     } else if (
       idOfSpørsmål ===
@@ -50,7 +50,7 @@ function generateMiddleware(erNesteÅpnetAvVert: boolean) {
         hvaErNesteSteg: "FERDIG",
         erNesteÅpnetAvVert: false,
         nesteSpørsmålId: null,
-        forrigeSporsmalId:
+        forrigeSpørsmålId:
           dummySpørreundersøkelse[dummySpørreundersøkelse.length - 2].id,
       });
     } else {
@@ -68,7 +68,7 @@ function generateMiddleware(erNesteÅpnetAvVert: boolean) {
           hvaErNesteSteg: "NYTT_SPØRSMÅL",
           erNesteÅpnetAvVert,
           nesteSpørsmålId: dummySpørreundersøkelse[indexOfSpørsmål + 1].id,
-          forrigeSporsmalId:
+          forrigeSpørsmålId:
             indexOfSpørsmål === 0
               ? null
               : dummySpørreundersøkelse[indexOfSpørsmål - 1].id,

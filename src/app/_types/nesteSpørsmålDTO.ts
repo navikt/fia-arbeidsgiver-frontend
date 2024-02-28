@@ -4,5 +4,5 @@ export type nesteSpørsmålDTO = {
   hvaErNesteSteg: nesteStegType;
   erNesteÅpnetAvVert: boolean;
   nesteSpørsmålId: string | null;
-  forrigeSporsmalId: string | null;
+  forrigeSpørsmålId: string | null;
 };
