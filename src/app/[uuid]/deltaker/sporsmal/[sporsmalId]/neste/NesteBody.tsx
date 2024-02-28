@@ -8,7 +8,7 @@ import { Button, Heading, Loader, VStack } from "@navikt/ds-react";
 import spørsmålStyles from "../sporsmalsside.module.css";
 import { SWRResponse } from "swr";
 import { nesteSpørsmålDTO } from "@/app/_types/nesteSpørsmålDTO";
-import { useNesteSpørsmål } from "@/app/_api_hooks/deltaker/navigasjon/nesteSpørsmål";
+import { useNesteSpørsmål } from "@/app/_api_hooks/deltaker/useNesteSpørsmål";
 
 export default function NesteBody({
   spørreundersøkelseId,

@@ -2,15 +2,14 @@ const collections = [
   {
     id: "base",
     routes: [
-      "start-kategori-route:success",
-      "bli-med-route:kan-bli-med",
+      "bli-med-route:success",
+      "neste-sporsmal-deltaker-route:åpen",
+      "sporsmal-og-svar-deltaker-route:success",
       "svar-route:success",
+      "antall-svar-route:success",
+      "kartleggingstatus-route:success",
+      "neste-sporsmal-vert-route:åpen",
       "sporsmal-og-svar-vert-route:success",
-      "sporsmal-og-svar-id-route:success",
-      "antall-deltakere-route:har-deltakere",
-      "neste-sporsmal-route:åpen",
-      "inkrementer-sporsmal-route:success",
-      "kategoristatus-route:opprettet",
     ],
   },
 ];

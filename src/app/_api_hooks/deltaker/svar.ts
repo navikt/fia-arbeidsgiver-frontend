@@ -1,6 +1,6 @@
 import CookieHandler from "@/utils/CookieHandler";
 
-export function postEnkeltSvar({
+export function svar({
   spørreundersøkelseId,
   spørsmålId,
   svarId,

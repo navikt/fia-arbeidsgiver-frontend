@@ -2,6 +2,7 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import Startside from "./page";
 import { axe, toHaveNoViolations } from "jest-axe";
+import { dummyKartleggingStatus } from "../../../../../../mocks/dummydata";
 
 expect.extend(toHaveNoViolations);
 
@@ -12,27 +13,14 @@ jest.mock("next/navigation", () => ({
   })),
   usePathname: jest.fn(() => "/"),
 }));
-jest.mock("@/app/_api_hooks/useVertSpørreundersøkelse", () => ({
-  useVertSpørreundersøkelse: () => ({
-    data: [
-      {
-        spørreundersøkelse: {
-          id: "id",
-          spørsmål: "spørsmål",
-          svaralternativer: [
-            {
-              id: "id",
-              tekst: "tekst",
-            },
-          ],
-        },
-      },
-    ],
+jest.mock("@/app/_api_hooks/vert/useKartleggingstatus", () => ({
+  useKartleggingstatus: () => ({
+    data: dummyKartleggingStatus,
     isLoading: false,
     error: undefined,
   }),
 }));
-jest.mock("@/app/_api_hooks/useAntallDeltakere", () => ({
+jest.mock("@/app/_api_hooks/vert/useAntallSvar", () => ({
   useAntallDeltakere: () => ({
     data: {
       antallDeltakere: 0,

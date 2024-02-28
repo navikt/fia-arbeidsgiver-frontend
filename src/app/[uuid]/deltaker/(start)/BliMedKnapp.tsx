@@ -5,7 +5,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import startsideStyles from "./startside.module.css";
 import CookieHandler from "@/utils/CookieHandler";
-import { fetchBliMed } from "@/app/_api_hooks/deltaker/bliMed";
+import { fetchBliMed } from "@/app/_api_hooks/deltaker/fetchBliMed";
 
 export default function BliMedKnapp({
   spørreundersøkelseId,

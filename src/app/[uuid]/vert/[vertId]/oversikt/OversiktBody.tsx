@@ -1,11 +1,12 @@
 "use client";
 
 import type { Metadata } from "next";
-import { Page, VStack } from "@navikt/ds-react";
+import { Alert, Loader, Page, VStack } from "@navikt/ds-react";
 import React from "react";
 import FooterOversikt from "./FooterOversikt";
 import HeaderVert from "@/app/_components/HeaderVert";
 import { SpørsmålBleedOversikt } from "@/app/[uuid]/vert/[vertId]/oversikt/SpørsmålBleedOversikt";
+import { useKartleggingstatus } from "@/app/_api_hooks/vert/useKartleggingstatus";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -19,20 +20,41 @@ export default function OversiktBody({
   spørreundersøkelseId: string;
   vertId: string;
 }) {
-  const statusDelnummer = 1; //TODO: hent i Dellinje
+  const {
+    data: kartleggingStatus,
+    isLoading: lasterStatus,
+    error: feilStatus,
+  } = useKartleggingstatus(spørreundersøkelseId, vertId);
+
+  if (lasterStatus) {
+    return <Loader />;
+  }
+
+  if (feilStatus) {
+    return <Alert variant={"error"}>{feilStatus.message}</Alert>;
+  }
+
   return (
-    <Page contentBlockPadding="none" footer={<FooterOversikt />}>
-      <HeaderVert />
-      <Page.Block as={"main"}>
-        <VStack gap="4">
-          <SpørsmålBleedOversikt
-            key={statusDelnummer}
-            vertId={vertId}
-            statusDelnummer={statusDelnummer}
-            spørreundersøkelseId={spørreundersøkelseId}
-          />
-        </VStack>
-      </Page.Block>
-    </Page>
+    kartleggingStatus !== undefined && (
+      <Page contentBlockPadding="none" footer={<FooterOversikt />}>
+        <HeaderVert />
+        <Page.Block as={"main"}>
+          <VStack gap="4">
+            {kartleggingStatus.temaer.map((tema, index) => (
+              <SpørsmålBleedOversikt
+                key={index}
+                vertId={vertId}
+                delnummer={index + 1}
+                spørreundersøkelseId={spørreundersøkelseId}
+                tittel={tema.tittel}
+                status={tema.status}
+                gjeldendeSpørsmålnummer={tema.gjeldendeSpørsmålnummer}
+                antallSpørsmål={tema.antallSpørsmål}
+              />
+            ))}
+          </VStack>
+        </Page.Block>
+      </Page>
+    )
   );
 }

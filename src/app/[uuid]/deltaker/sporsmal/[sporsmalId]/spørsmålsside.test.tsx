@@ -2,12 +2,12 @@ import "@testing-library/jest-dom";
 import { act, render, screen } from "@testing-library/react";
 import Spørsmålsside from "./page";
 // @ts-ignore
-import { dummySpørreundersøkelse } from "@/utils/dummydata";
 import { axe, toHaveNoViolations } from "jest-axe";
-import { svaralternativDTO } from "@/app/_types/sporreundersokelseDTO";
-import { postEnkeltSvar } from "@/app/_api_hooks/svar";
 import { useRouter } from "next/navigation";
 import mockCookieHandler from "@/utils/jest-mocks/CookieHandler";
+import { dummySpørreundersøkelse } from "../../../../../../mocks/dummydata";
+import { SvaralternativDTO } from "@/app/_types/SpørsmålDTO";
+import { svar } from "@/app/_api_hooks/deltaker/svar";
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(() => ({
@@ -16,7 +16,7 @@ jest.mock("next/navigation", () => ({
   })),
 }));
 
-jest.mock("@/app/_api_hooks/useSpørsmålOgSvar", () => ({
+jest.mock("@/app/_api_hooks/deltaker/useSpørsmålOgSvar", () => ({
   useSpørsmålOgSvar: () => ({
     data: dummySpørreundersøkelse[0],
     isLoading: false,
@@ -26,8 +26,8 @@ jest.mock("@/app/_api_hooks/useSpørsmålOgSvar", () => ({
 
 mockCookieHandler();
 
-jest.mock("@/app/_api_hooks/svar", () => ({
-  postEnkeltSvar: jest.fn(() => Promise.resolve()),
+jest.mock("@/app/_api_hooks/deltaker/svar", () => ({
+  svar: jest.fn(() => Promise.resolve()),
 }));
 
 expect.extend(toHaveNoViolations);
@@ -38,13 +38,15 @@ describe("Spørsmålsside", () => {
   it("render fungerer", async () => {
     render(<Spørsmålsside params={{ uuid: "a", sporsmalId: "b" }} />);
 
-    const tittel = await screen.findByText(dummySpørreundersøkelse[0].spørsmål);
+    const tittel = await screen.findByText(
+      dummySpørreundersøkelse[0].spørsmåltekst,
+    );
 
     expect(tittel).toBeInTheDocument();
 
     dummySpørreundersøkelse[0].svaralternativer.forEach(
-      (svar: svaralternativDTO) => {
-        expect(screen.getByText(svar.tekst)).toBeInTheDocument();
+      (svar: SvaralternativDTO) => {
+        expect(screen.getByText(svar.svartekst)).toBeInTheDocument();
       },
     );
   });
@@ -52,15 +54,15 @@ describe("Spørsmålsside", () => {
   it("klikk på svaralternativ", async () => {
     render(<Spørsmålsside params={{ uuid: "a", sporsmalId: "b" }} />);
 
-    const svar = await screen.findByText(
-      dummySpørreundersøkelse[0].svaralternativer[0].tekst,
+    const svartekst = await screen.findByText(
+      dummySpørreundersøkelse[0].svaralternativer[0].svartekst,
     );
-    act(() => svar.click());
+    act(() => svartekst.click());
 
     const neste = await screen.findByRole("button", { name: /Svar/i });
     await act(async () => neste.click());
 
-    expect(postEnkeltSvar).toHaveBeenCalledTimes(1);
+    expect(svar).toHaveBeenCalledTimes(1);
   });
 
   it("klikk på tilbake", async () => {

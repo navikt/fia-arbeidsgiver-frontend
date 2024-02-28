@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import CookieHandler from "@/utils/CookieHandler";
 import { SpørsmålBleedDeltaker } from "@/app/[uuid]/deltaker/sporsmal/[sporsmalId]/SpørsmålBleedDeltaker";
+import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
+import { Heading, Loader, VStack } from "@navikt/ds-react";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,
@@ -25,13 +27,39 @@ export default function SpørsmålBody({
     }
   });
 
+  const {
+    data: spørsmålOgSvar,
+    isLoading: lasterSpørsmål,
+    error: feilSpørsmål,
+  } = useSpørsmålOgSvar(spørreundersøkelseId, spørsmålId);
+
+  if (lasterSpørsmål) {
+    return (
+      <VStack gap={"4"} align={"center"}>
+        <Loader size="3xlarge" title="Laster..." />
+      </VStack>
+    );
+  }
+
+  if (feilSpørsmål) {
+    return (
+      <Heading size="large" level="1">
+        {feilSpørsmål.message}
+      </Heading>
+    );
+  }
+
   return (
-    <>
-      <SpørsmålBleedDeltaker spørreundersøkelseId={spørreundersøkelseId} />
-      <Spørsmålsseksjon
-        spørsmålId={spørsmålId}
-        spørreundersøkelseId={spørreundersøkelseId}
-      />
-    </>
+    spørsmålOgSvar && (
+      <>
+        <SpørsmålBleedDeltaker tematittel={spørsmålOgSvar.tematittel} />
+        <Spørsmålsseksjon
+          spørsmålId={spørsmålId}
+          spørreundersøkelseId={spørreundersøkelseId}
+          svaralternativer={spørsmålOgSvar.svaralternativer}
+          spørsmåltekst={spørsmålOgSvar.spørsmåltekst}
+        />
+      </>
+    )
   );
 }

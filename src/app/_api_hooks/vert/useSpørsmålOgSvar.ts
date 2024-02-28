@@ -1,12 +1,11 @@
 import useSWR, { SWRResponse } from "swr";
-import CookieHandler from "@/utils/CookieHandler";
 import { SpørsmålDTO } from "@/app/_types/SpørsmålDTO";
 
 export function useSpørsmålOgSvar(
   spørreundersøkelseId: string,
   spørsmålId: string,
+  vertId: string,
 ): SWRResponse<SpørsmålDTO> {
-  const cookieHandler = new CookieHandler(spørreundersøkelseId);
   const fetcher = (url: string) =>
     fetch(url, {
       method: "POST",
@@ -14,10 +13,10 @@ export function useSpørsmålOgSvar(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        sesjonsId: cookieHandler.sesjonsID,
         spørreundersøkelseId,
+        vertId,
       }),
     }).then((res) => res.json());
 
-  return useSWR(`/api/sporsmal-og-svar/${spørsmålId}`, fetcher);
+  return useSWR(`/api/vert/sporsmal-og-svar/${spørsmålId}`, fetcher);
 }
