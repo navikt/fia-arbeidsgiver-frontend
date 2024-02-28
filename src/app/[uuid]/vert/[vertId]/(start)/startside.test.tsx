@@ -12,7 +12,7 @@ jest.mock("next/navigation", () => ({
   })),
   usePathname: jest.fn(() => "/"),
 }));
-jest.mock("@/app/_api_hooks/useVertSpørreundersøkelse", () => ({
+jest.mock("@/app/_api_hooks/vert/useVertSpørreundersøkelse", () => ({
   useVertSpørreundersøkelse: () => ({
     data: [
       {
@@ -32,7 +32,7 @@ jest.mock("@/app/_api_hooks/useVertSpørreundersøkelse", () => ({
     error: undefined,
   }),
 }));
-jest.mock("@/app/_api_hooks/useAntallDeltakere", () => ({
+jest.mock("@/app/_api_hooks/vert/useAntallDeltakere", () => ({
   useAntallDeltakere: () => ({
     data: {
       antallDeltakere: 0,

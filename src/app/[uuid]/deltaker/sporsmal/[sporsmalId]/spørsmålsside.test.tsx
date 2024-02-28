@@ -5,7 +5,7 @@ import Spørsmålsside from "./page";
 import { dummySpørreundersøkelse } from "@/utils/dummydata";
 import { axe, toHaveNoViolations } from "jest-axe";
 import { svaralternativDTO } from "@/app/_types/sporreundersokelseDTO";
-import { postEnkeltSvar } from "@/app/_api_hooks/svar";
+import { postEnkeltSvar } from "@/app/_api_hooks/deltaker/svar";
 import { useRouter } from "next/navigation";
 import mockCookieHandler from "@/utils/jest-mocks/CookieHandler";
 
@@ -16,7 +16,7 @@ jest.mock("next/navigation", () => ({
   })),
 }));
 
-jest.mock("@/app/_api_hooks/useSpørsmålOgSvar", () => ({
+jest.mock("@/app/_api_hooks/deltaker/useSpørsmålOgSvar", () => ({
   useSpørsmålOgSvar: () => ({
     data: dummySpørreundersøkelse[0],
     isLoading: false,
@@ -26,7 +26,7 @@ jest.mock("@/app/_api_hooks/useSpørsmålOgSvar", () => ({
 
 mockCookieHandler();
 
-jest.mock("@/app/_api_hooks/svar", () => ({
+jest.mock("@/app/_api_hooks/deltaker/svar", () => ({
   postEnkeltSvar: jest.fn(() => Promise.resolve()),
 }));
 
