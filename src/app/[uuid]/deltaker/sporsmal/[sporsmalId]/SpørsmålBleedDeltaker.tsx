@@ -13,18 +13,20 @@ import kartleggingStyles from "@/app/kartlegging.module.css";
 import deltakerStyles from "@/app/[uuid]/deltaker/sporsmal/[sporsmalId]/sporsmalsside.module.css";
 import { finskrivKategori } from "@/app/_types/sporreundersokelseDTO";
 import React from "react";
-import { useKategoristatus } from "@/app/_api_hooks/deltaker/useKategoristatus";
+import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
 
 export function SpørsmålBleedDeltaker({
   spørreundersøkelseId,
+  spørsmålId,
 }: {
   spørreundersøkelseId: string;
+  spørsmålId: string;
 }) {
   const {
-    data: status,
+    data: spørsmålOgSvar,
     isLoading: lasterStatus,
     error: feilStatus,
-  } = useKategoristatus(spørreundersøkelseId);
+  } = useSpørsmålOgSvar(spørreundersøkelseId, spørsmålId);
 
   if (lasterStatus) {
     return (
@@ -59,11 +61,11 @@ export function SpørsmålBleedDeltaker({
     );
   }
   return (
-    status && (
+      spørsmålOgSvar && (
       <Bleed marginInline="full" asChild reflectivePadding>
         <Box padding="5" className={kartleggingStyles.bleedKlar}>
           <HStack className={deltakerStyles.bleedInnhold}>
-            <Heading size="small">{finskrivKategori(status.kategori)}</Heading>
+            <Heading size="small">{finskrivKategori(spørsmålOgSvar.kategori)}</Heading>
           </HStack>
         </Box>
       </Bleed>

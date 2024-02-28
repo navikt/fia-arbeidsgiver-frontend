@@ -29,6 +29,7 @@ export type kategoristatusDTO = {
 export interface spørsmålOgSvarDTO extends spørsmålDTO {
   spørsmålIndeks: number;
   sisteSpørsmålIndeks: number;
+  kategori: KategoriType;
 }
 
 export type svaralternativDTO = {

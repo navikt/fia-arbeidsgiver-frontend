@@ -27,10 +27,13 @@ export default function SpørsmålBody({
 
   return (
     <>
-      <SpørsmålBleedDeltaker spørreundersøkelseId={spørreundersøkelseId} />
+      <SpørsmålBleedDeltaker
+          spørreundersøkelseId={spørreundersøkelseId}
+          spørsmålId={spørsmålId}
+      />
       <Spørsmålsseksjon
-        spørsmålId={spørsmålId}
         spørreundersøkelseId={spørreundersøkelseId}
+        spørsmålId={spørsmålId}
       />
     </>
   );
