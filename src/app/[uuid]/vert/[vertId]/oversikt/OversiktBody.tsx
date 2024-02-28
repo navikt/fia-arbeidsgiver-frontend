@@ -23,7 +23,7 @@ export default function OversiktBody({
   return (
     <Page contentBlockPadding="none" footer={<FooterOversikt />}>
       <HeaderVert />
-      <Page.Block as={"main"}>
+      <Page.Block>
         <VStack gap="4">
           <SpørsmålBleedOversikt
             key={statusDelnummer}
