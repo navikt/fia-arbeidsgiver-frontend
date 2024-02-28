@@ -200,4 +200,39 @@ describe("vert/spørsmålside", () => {
     });
     expect(results).toHaveNoViolations();
   });
+
+  it("axe UU-test for alle spørsmål", async () => {
+    const { container } = render(
+      <Spørsmålsside
+        params={{
+          uuid: "ef4d406d-abc2-4ed6-8de7-72a7feb40326",
+          vertId: "vertId",
+        }}
+      />,
+    );
+
+    for (const dummySpørreundersøkelseElement of dummySpørreundersøkelse) {
+      const førsteTittel = await screen.findByText(
+        dummySpørreundersøkelseElement.spørsmål,
+      );
+      expect(førsteTittel).toBeInTheDocument();
+
+      const nesteKnapp = screen.getByText(
+        dummySpørreundersøkelse.indexOf(dummySpørreundersøkelseElement) !==
+          dummySpørreundersøkelse.length - 1
+          ? "Neste"
+          : "Fullfør",
+      );
+      expect(nesteKnapp).toBeInTheDocument();
+      act(() => {
+        nesteKnapp.click();
+      });
+      const results = await axe(container, {
+        rules: {
+          "svg-img-alt": { enabled: false }, // TODO: Fiks alt-tekst på svg (qr-kode) før denne testen kan slås på.
+        },
+      });
+      expect(results).toHaveNoViolations();
+    }
+  });
 });

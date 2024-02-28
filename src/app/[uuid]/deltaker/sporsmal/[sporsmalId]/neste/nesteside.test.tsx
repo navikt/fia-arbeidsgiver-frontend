@@ -24,11 +24,24 @@ describe("deltaker/Nesteside", () => {
     expect(tittel).toBeInTheDocument();
   });
 
-  it("axe UU-test", async () => {
-    const { container } = render(
-      <Nesteside params={{ uuid: "a", sporsmalId: "b" }} />,
+  it("render fungerer fra start", async () => {
+    render(<Nesteside params={{ uuid: "a", sporsmalId: "START" }} />);
+    const tittel = await screen.findByText(
+      "Venter på at verten skal starte kartlegging",
     );
-    const results = await axe(container);
+    expect(tittel).toBeInTheDocument();
+  });
+
+  it("axe UU-test", async () => {
+    let results = await axe(
+      render(<Nesteside params={{ uuid: "a", sporsmalId: "b" }} />).container,
+    );
+    expect(results).toHaveNoViolations();
+
+    results = await axe(
+      render(<Nesteside params={{ uuid: "START", sporsmalId: "b" }} />)
+        .container,
+    );
     expect(results).toHaveNoViolations();
   });
 });

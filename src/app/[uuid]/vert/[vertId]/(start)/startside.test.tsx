@@ -1,7 +1,8 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import Startside from "./page";
 import { axe, toHaveNoViolations } from "jest-axe";
+import { useRouter } from "next/navigation";
 
 expect.extend(toHaveNoViolations);
 
@@ -52,6 +53,26 @@ describe("Startside", () => {
       "Skann QR-koden for å bli med i undersøkelsen",
     );
     expect(tittel).toBeInTheDocument();
+  });
+
+  it("Klikk på kom i gang", async () => {
+    const pushFunction = jest.fn();
+    jest.mocked(useRouter).mockReturnValue({
+      push: pushFunction,
+      back: jest.fn(),
+      prefetch: jest.fn(),
+      forward: jest.fn(),
+      replace: jest.fn(),
+      refresh: jest.fn(),
+    });
+    render(<Startside params={{ uuid: "uuid", vertId: "vertId" }} />);
+
+    const komIGang = await screen.findByRole("button", { name: /Kom i gang/i });
+    act(() => komIGang.click());
+    expect(pushFunction).toHaveBeenCalledTimes(1);
+    expect(pushFunction).toHaveBeenCalledWith(
+      `../../uuid/vert/vertId/oversikt`,
+    );
   });
 
   it("axe UU-test", async () => {
