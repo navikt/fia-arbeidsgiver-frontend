@@ -22,3 +22,23 @@ export default function mockCookieHandler() {
     .spyOn(CookieHandler.prototype, "sisteSvarteSpørsmålId", "get")
     .mockImplementation(() => "b");
 }
+
+export const mockCookieHandlerEmpty = () => {
+  jest.spyOn(CookieHandler, "clear").mockImplementation(() => {});
+
+  jest
+    .spyOn(CookieHandler.prototype, "nyUndersøkelse")
+    .mockImplementation(() => {});
+  jest
+    .spyOn(CookieHandler.prototype, "oppdaterSisteSvarteSpørsmål")
+    .mockImplementation(() => {});
+  jest
+    .spyOn(CookieHandler.prototype, "finnesFraFør", "get")
+    .mockImplementation(() => false);
+  jest
+    .spyOn(CookieHandler.prototype, "sesjonsID", "get")
+    .mockImplementation(() => "");
+  jest
+    .spyOn(CookieHandler.prototype, "sisteSvarteSpørsmålId", "get")
+    .mockImplementation(() => "");
+};
