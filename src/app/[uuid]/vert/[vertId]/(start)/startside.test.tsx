@@ -47,7 +47,7 @@ describe("Startside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  it("render fungerer", async () => {
+  test("render fungerer", async () => {
     render(<Startside params={{ uuid: "uuid", vertId: "vertId" }} />);
     const tittel = await screen.findByText(
       "Skann QR-koden for å bli med i undersøkelsen",
@@ -55,7 +55,7 @@ describe("Startside", () => {
     expect(tittel).toBeInTheDocument();
   });
 
-  it("Klikk på kom i gang", async () => {
+  test("Klikk på kom i gang", async () => {
     const pushFunction = jest.fn();
     jest.mocked(useRouter).mockReturnValue({
       push: pushFunction,
@@ -75,7 +75,7 @@ describe("Startside", () => {
     );
   });
 
-  it("axe UU-test", async () => {
+  test("axe UU-test", async () => {
     const { container } = render(
       <Startside params={{ uuid: "uuid", vertId: "vertId" }} />,
     );

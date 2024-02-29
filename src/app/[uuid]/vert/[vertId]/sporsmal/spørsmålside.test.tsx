@@ -66,7 +66,7 @@ describe("vert/spørsmålside", () => {
     jest.clearAllMocks();
   });
 
-  it("render fungerer", async () => {
+  test("render fungerer", async () => {
     render(
       <Spørsmålsside
         params={{
@@ -86,7 +86,7 @@ describe("vert/spørsmålside", () => {
     }
   });
 
-  it("klikk gjennom neste og fullfør", async () => {
+  test("klikk gjennom neste og fullfør", async () => {
     const pushFunction = jest.fn();
     jest.mocked(useRouter).mockReturnValue({
       push: pushFunction,
@@ -127,7 +127,7 @@ describe("vert/spørsmålside", () => {
     expect(pushFunction).toHaveBeenCalledWith("oversikt");
   });
 
-  it("klikk på tilbake", async () => {
+  test("klikk på tilbake", async () => {
     const pushFunction = jest.fn();
     jest.mocked(useRouter).mockReturnValue({
       push: pushFunction,
@@ -183,7 +183,7 @@ describe("vert/spørsmålside", () => {
     expect(pushFunction).toHaveBeenCalledWith("oversikt");
   });
 
-  it("axe UU-test", async () => {
+  test("axe UU-test", async () => {
     const { container } = render(
       <Spørsmålsside
         params={{
@@ -201,7 +201,7 @@ describe("vert/spørsmålside", () => {
     expect(results).toHaveNoViolations();
   });
 
-  it("axe UU-test for alle spørsmål", async () => {
+  test("axe UU-test for alle spørsmål", async () => {
     const { container } = render(
       <Spørsmålsside
         params={{

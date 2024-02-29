@@ -48,13 +48,13 @@ describe("Oversiktside", () => {
     jest.clearAllMocks();
   });
 
-  it("render fungerer", async () => {
+  test("render fungerer", async () => {
     render(<Oversiktside params={{ uuid: "uuid", vertId: "vertId" }} />);
     const tittel = await screen.findByText("IA kartleggingsmøte");
     expect(tittel).toBeInTheDocument();
   });
 
-  it("axe UU-test", async () => {
+  test("axe UU-test", async () => {
     const { container } = render(
       <Oversiktside params={{ uuid: "uuid", vertId: "vertId" }} />,
     );

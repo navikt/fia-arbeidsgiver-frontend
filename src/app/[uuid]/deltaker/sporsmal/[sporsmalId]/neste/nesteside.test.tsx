@@ -16,7 +16,7 @@ describe("deltaker/Nesteside", () => {
     jest.clearAllMocks();
   });
 
-  it("render fungerer", async () => {
+  test("render fungerer", async () => {
     render(<Nesteside params={{ uuid: "a", sporsmalId: "b" }} />);
     const tittel = await screen.findByText(
       "Venter på at verten skal fortsette",
@@ -24,7 +24,7 @@ describe("deltaker/Nesteside", () => {
     expect(tittel).toBeInTheDocument();
   });
 
-  it("render fungerer fra start", async () => {
+  test("render fungerer fra start", async () => {
     render(<Nesteside params={{ uuid: "a", sporsmalId: "START" }} />);
     const tittel = await screen.findByText(
       "Venter på at verten skal starte kartlegging",
@@ -32,7 +32,7 @@ describe("deltaker/Nesteside", () => {
     expect(tittel).toBeInTheDocument();
   });
 
-  it("axe UU-test", async () => {
+  test("axe UU-test", async () => {
     let results = await axe(
       render(<Nesteside params={{ uuid: "a", sporsmalId: "b" }} />).container,
     );

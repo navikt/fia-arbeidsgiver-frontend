@@ -12,19 +12,19 @@ describe("Ferdigside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  it("render fungerer", async () => {
+  test("render fungerer", async () => {
     render(<Ferdigside />);
     const tittel = await screen.findByText("Takk for ditt bidrag!");
     expect(tittel).toBeInTheDocument();
   });
 
-  it("axe UU-test", async () => {
+  test("axe UU-test", async () => {
     const { container } = render(<Ferdigside />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
-  it("clearer cookies når siden rendres", () => {
+  test("clearer cookies når siden rendres", () => {
     expect(CookieHandler.clear).toHaveBeenCalledTimes(0);
     render(<Ferdigside />);
     expect(CookieHandler.clear).toHaveBeenCalledTimes(1);

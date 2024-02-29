@@ -17,13 +17,13 @@ describe("deltaker/Tilbakeside", () => {
     jest.clearAllMocks();
   });
 
-  it("render fungerer", async () => {
+  test("render fungerer", async () => {
     render(<Tilbakeside params={{ uuid: "a", sporsmalId: "b" }} />);
     const tittel = await screen.findByText("Laster");
     expect(tittel).toBeInTheDocument();
   });
 
-  it("axe UU-test", async () => {
+  test("axe UU-test", async () => {
     const { container } = render(
       <Tilbakeside params={{ uuid: "a", sporsmalId: "b" }} />,
     );

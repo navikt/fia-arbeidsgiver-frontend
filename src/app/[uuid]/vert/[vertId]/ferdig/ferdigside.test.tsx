@@ -10,7 +10,7 @@ describe("Ferdigside", () => {
     jest.clearAllMocks();
   });
 
-  it("render fungerer", async () => {
+  test("render fungerer", async () => {
     render(<Ferdigside />);
     const tittel = await screen.findByText(
       "Bra jobbet! Da har alle svar blitt logget og sendt til Fia. Rådgiveren sier litt om prosessen videre.",
@@ -18,7 +18,7 @@ describe("Ferdigside", () => {
     expect(tittel).toBeInTheDocument();
   });
 
-  it("axe UU-test", async () => {
+  test("axe UU-test", async () => {
     const { container } = render(<Ferdigside />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
