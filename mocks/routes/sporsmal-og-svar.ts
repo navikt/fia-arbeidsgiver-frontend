@@ -1,4 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+import Temastatus from "./temastatus";
+
 const { dummySpørreundersøkelse } = require("@/utils/dummydata");
 
 import { spørsmålDTO } from "@/app/_types/sporreundersokelseDTO";
@@ -60,6 +62,7 @@ const sporsmalOgSvarRoutes = [
                 ...dummySpørreundersøkelse[spmIndex],
                 spørsmålIndeks: spmIndex,
                 sisteSpørsmålIndeks: dummySpørreundersøkelse.length - 1,
+                tema: "PARTSSAMARBEID"
               });
             } else {
               res.status(404);

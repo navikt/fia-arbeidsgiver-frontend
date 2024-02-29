@@ -1,11 +1,11 @@
-import { KategoriType } from "@/app/_types/sporreundersokelseDTO";
+import { TemaType } from "@/app/_types/sporreundersokelseDTO";
 
-export function startKategori(
+export function startTema(
   spørreundersøkelseId: string,
   vertId: string,
-  kategori: KategoriType,
+  tema: TemaType,
 ) {
-  return fetch("/api/vert/start-kategori", {
+  return fetch("/api/vert/start-tema", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -13,7 +13,7 @@ export function startKategori(
     body: JSON.stringify({
       spørreundersøkelseId,
       vertId,
-      kategori,
+      tema,
     }),
   }).then((res) => {
     if (res.status === 400 || res.status === 403) {

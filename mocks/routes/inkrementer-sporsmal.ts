@@ -37,7 +37,7 @@ const nesteSporsmalRoutes = [
         },
       },
       {
-        id: "mangler-kategoristatus",
+        id: "mangler-temastatus",
         type: "status",
         options: {
           status: 500,

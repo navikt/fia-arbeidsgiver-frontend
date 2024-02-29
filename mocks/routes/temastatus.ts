@@ -5,10 +5,10 @@ const {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require("@/utils/dummydata");
 
-const kategoristatusRoutes = [
+const temastatusRoutes = [
   {
-    id: "kategoristatus-route",
-    url: "/fia-arbeidsgiver/sporreundersokelse(/vert)?/kategoristatus",
+    id: "temastatus-route",
+    url: "/fia-arbeidsgiver/sporreundersokelse(/vert)?/temastatus",
     method: "POST",
     variants: [
       {
@@ -115,7 +115,7 @@ const kategoristatusRoutes = [
         },
       },
       {
-        id: "mangler-kategoristatus",
+        id: "mangler-temastatus",
         type: "status",
         options: {
           status: 500,
@@ -125,4 +125,4 @@ const kategoristatusRoutes = [
   },
 ];
 
-export default kategoristatusRoutes;
+export default temastatusRoutes;

@@ -1,11 +1,11 @@
 import useSWR, { SWRResponse } from "swr";
-import { kategoristatusDTO } from "@/app/_types/sporreundersokelseDTO";
+import { temastatusDTO } from "@/app/_types/sporreundersokelseDTO";
 import CookieHandler from "@/utils/CookieHandler";
 import { ETT_SEKUND_MS } from "@/utils/consts";
 
-export function useKategoristatus(
+export function useTemastatus(
   spørreundersøkelseId: string,
-): SWRResponse<kategoristatusDTO> {
+): SWRResponse<temastatusDTO> {
   const cookieHandler = new CookieHandler(spørreundersøkelseId);
   const sesjonsId = cookieHandler.sesjonsID;
   const fetcher = (url: string) =>
@@ -26,7 +26,7 @@ export function useKategoristatus(
         throw new Error("Denne spørreundersøkelsen er avsluttet");
       }
       if (res.status === 500) {
-        throw new Error("Kunne ikke hente kategori: Mangler status");
+        throw new Error("Kunne ikke hente tema: Mangler status");
       }
       if (!res.ok) {
         throw new Error(`Noe gikk galt. ${res.status}`);
@@ -35,7 +35,7 @@ export function useKategoristatus(
       return res.json();
     });
 
-  return useSWR<kategoristatusDTO>("/api/kategoristatus", fetcher, {
+  return useSWR<temastatusDTO>("/api/temastatus", fetcher, {
     refreshInterval: ETT_SEKUND_MS,
   });
 }

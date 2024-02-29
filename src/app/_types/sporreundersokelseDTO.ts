@@ -1,13 +1,13 @@
 export type StatusType = "OPPRETTET" | "IKKE_PÅBEGYNT" | "PÅBEGYNT";
 
-export type KategoriType = "PARTSSAMARBEID";
+export type TemaType = "PARTSSAMARBEID";
 
-export function finskrivKategori(kategori: KategoriType) {
-  switch (kategori) {
+export function finskrivTema(tema: TemaType) {
+  switch (tema) {
     case "PARTSSAMARBEID":
       return "Partssamarbeid i virksomheten";
     default:
-      return `Beskrivelse mangler for: ${kategori}`;
+      return `Beskrivelse mangler for: ${tema}`;
   }
 }
 
@@ -19,8 +19,8 @@ export type spørsmålDTO = {
   svaralternativer: svaralternativDTO[];
 };
 
-export type kategoristatusDTO = {
-  kategori: KategoriType;
+export type temastatusDTO = {
+  tema: TemaType;
   status: StatusType;
   spørsmålindeks: number | null;
   antallSpørsmål: number;
@@ -29,7 +29,7 @@ export type kategoristatusDTO = {
 export interface spørsmålOgSvarDTO extends spørsmålDTO {
   spørsmålIndeks: number;
   sisteSpørsmålIndeks: number;
-  kategori: KategoriType;
+  tema: TemaType;
 }
 
 export type svaralternativDTO = {

@@ -11,7 +11,7 @@ import {
 } from "@navikt/ds-react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import deltakerStyles from "@/app/[uuid]/deltaker/sporsmal/[sporsmalId]/sporsmalsside.module.css";
-import { finskrivKategori } from "@/app/_types/sporreundersokelseDTO";
+import { finskrivTema } from "@/app/_types/sporreundersokelseDTO";
 import React from "react";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
 
@@ -65,7 +65,7 @@ export function SpørsmålBleedDeltaker({
       <Bleed marginInline="full" asChild reflectivePadding>
         <Box padding="5" className={kartleggingStyles.bleedKlar}>
           <HStack className={deltakerStyles.bleedInnhold}>
-            <Heading size="small">{finskrivKategori(spørsmålOgSvar.kategori)}</Heading>
+            <Heading size="small">{finskrivTema(spørsmålOgSvar.tema)}</Heading>
           </HStack>
         </Box>
       </Bleed>

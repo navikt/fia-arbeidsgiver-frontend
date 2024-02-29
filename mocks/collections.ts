@@ -2,7 +2,7 @@ const collections = [
   {
     id: "base",
     routes: [
-      "start-kategori-route:success",
+      "start-tema-route:success",
       "bli-med-route:kan-bli-med",
       "svar-route:success",
       "sporsmal-og-svar-vert-route:success",
@@ -10,7 +10,7 @@ const collections = [
       "antall-deltakere-route:har-deltakere",
       "neste-sporsmal-route:åpen",
       "inkrementer-sporsmal-route:success",
-      "kategoristatus-route:opprettet",
+      "temastatus-route:opprettet",
     ],
   },
 ];

@@ -11,10 +11,10 @@ import {
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import vertStyles from "@/app/[uuid]/vert/[vertId]/sporsmal/sporsmalsside.module.css";
 import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
-import { finskrivKategori } from "@/app/_types/sporreundersokelseDTO";
+import { finskrivTema } from "@/app/_types/sporreundersokelseDTO";
 import React, { useEffect } from "react";
 import { inkrementerSpørsmål } from "@/app/_api_hooks/vert/inkrementerSpørsmål";
-import { useVertKategoristatus } from "@/app/_api_hooks/vert/useVertKategoristatus";
+import { useVertTemastatus } from "@/app/_api_hooks/vert/useVertTemastatus";
 
 export function SpørsmålBleedVert({
   spørreundersøkelseId,
@@ -33,7 +33,7 @@ export function SpørsmålBleedVert({
     data: status,
     isLoading: lasterStatus,
     error: feilStatus,
-  } = useVertKategoristatus(spørreundersøkelseId, vertId);
+  } = useVertTemastatus(spørreundersøkelseId, vertId);
 
   useEffect(() => {
     if (
@@ -93,7 +93,7 @@ export function SpørsmålBleedVert({
             <VStack>
               <BodyShort size="medium">Del {statusDelnummer}</BodyShort>
               <Heading size="medium">
-                {`${finskrivKategori(status.kategori)} - ${
+                {`${finskrivTema(status.tema)} - ${
                   aktivtSpørsmålindex + 1
                 }/${antallSpørsmål}`}
               </Heading>

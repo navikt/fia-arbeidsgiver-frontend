@@ -46,11 +46,11 @@ jest.mock("@/app/_api_hooks/vert/useAntallDeltakere", () => ({
   }),
 }));
 
-jest.mock("@/app/_api_hooks/vert/useVertKategoristatus", () => ({
-  useVertKategoristatus: () => ({
+jest.mock("@/app/_api_hooks/vert/useVertTemastatus", () => ({
+  useVertTemastatus: () => ({
     data: {
-      kategori: "PARTSSAMARBEID",
-      kategoristatus: [
+      tema: "PARTSSAMARBEID",
+      temastatus: [
         {
           antall: 1,
           antallSvar: 1,

@@ -1,7 +1,7 @@
-const startKategoriRoutes = [
+const startTemaRoutes = [
   {
-    id: "start-kategori-route",
-    url: "/fia-arbeidsgiver/sporreundersokelse/vert/start-kategori",
+    id: "start-tema-route",
+    url: "/fia-arbeidsgiver/sporreundersokelse/vert/start-tema",
     method: "POST",
     variants: [
       {
@@ -33,7 +33,7 @@ const startKategoriRoutes = [
         },
       },
       {
-        id: "mangler-kategoristatus",
+        id: "mangler-temastatus",
         type: "status",
         options: {
           status: 500,
@@ -43,4 +43,4 @@ const startKategoriRoutes = [
   },
 ];
 
-export default startKategoriRoutes;
+export default startTemaRoutes;

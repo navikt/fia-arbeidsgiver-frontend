@@ -11,12 +11,12 @@ import {
 } from "@navikt/ds-react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import vertStyles from "@/app/[uuid]/vert/[vertId]/sporsmal/sporsmalsside.module.css";
-import { finskrivKategori } from "@/app/_types/sporreundersokelseDTO";
+import { finskrivTema } from "@/app/_types/sporreundersokelseDTO";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Feilside } from "@/app/_components/Feilside";
-import { useVertKategoristatus } from "@/app/_api_hooks/vert/useVertKategoristatus";
-import { startKategori } from "@/app/_api_hooks/vert/startKategori";
+import { useVertTemastatus } from "@/app/_api_hooks/vert/useVertTemastatus";
+import { startTema } from "@/app/_api_hooks/vert/startTema";
 import { inkrementerSpørsmål } from "@/app/_api_hooks/vert/inkrementerSpørsmål";
 
 export function SpørsmålBleedOversikt({
@@ -37,14 +37,14 @@ export function SpørsmålBleedOversikt({
     data: status,
     isLoading: lasterStatus,
     error: feilStatus,
-  } = useVertKategoristatus(spørreundersøkelseId, vertId);
+  } = useVertTemastatus(spørreundersøkelseId, vertId);
 
   function startKartlegging() {
-    if (status === undefined || status.kategori === undefined) {
+    if (status === undefined || status.tema === undefined) {
       return;
     }
 
-    startKategori(spørreundersøkelseId, vertId, status.kategori)
+    startTema(spørreundersøkelseId, vertId, status.tema)
       .then(() => {
         setFeilStart(null);
         inkrementerSpørsmål(spørreundersøkelseId, vertId)
@@ -88,7 +88,7 @@ export function SpørsmålBleedOversikt({
             <VStack>
               <BodyShort size="medium">Del {statusDelnummer}</BodyShort>
               <Heading size="medium">
-                {finskrivKategori(status.kategori)}
+                {finskrivTema(status.tema)}
               </Heading>
             </VStack>
             <HStack gap={"4"}>
