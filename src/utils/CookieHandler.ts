@@ -4,6 +4,7 @@ import {
   SESSION_ID_STORAGE_KEY,
   SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
   SPØRREUNDERSØKELSE_ID_STORAGE_KEY,
+  SVAR_PÅ_SPØRSMÅL_ID_STORAGE_KEY,
 } from "./consts";
 
 export default class CookieHandler {
@@ -12,6 +13,13 @@ export default class CookieHandler {
     deleteCookie(SESSION_ID_STORAGE_KEY);
     deleteCookie(SPØRREUNDERSØKELSE_ID_STORAGE_KEY);
     deleteCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY);
+    deleteCookie(SVAR_PÅ_SPØRSMÅL_ID_STORAGE_KEY);
+  }
+
+  static svarPåSpørsmål(spørsmålId: string): string | undefined {
+    return JSON.parse(getCookie(SVAR_PÅ_SPØRSMÅL_ID_STORAGE_KEY) || "{}")?.[
+      spørsmålId
+    ];
   }
 
   constructor(spørreundersøkelseId: string) {
@@ -33,12 +41,34 @@ export default class CookieHandler {
       maxAge: COOKIE_MAX_AGE,
     });
     deleteCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY);
+    deleteCookie(SVAR_PÅ_SPØRSMÅL_ID_STORAGE_KEY);
   }
 
   oppdaterSisteSvarteSpørsmål(spørsmålId: string) {
     setCookie(SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY, spørsmålId, {
       maxAge: COOKIE_MAX_AGE,
     });
+  }
+
+  setSvarPåSpørsmål(spørsmålId: string, svarId: string) {
+    const svarPåSpørsmål = JSON.parse(
+      getCookie(SVAR_PÅ_SPØRSMÅL_ID_STORAGE_KEY) || "{}",
+    );
+    svarPåSpørsmål[spørsmålId] = svarId;
+    setCookie(SVAR_PÅ_SPØRSMÅL_ID_STORAGE_KEY, JSON.stringify(svarPåSpørsmål), {
+      maxAge: COOKIE_MAX_AGE,
+    });
+  }
+
+  setSvarPåSpørsmålOgMarkerSomSisteSvarte(spørsmålId: string, svarId: string) {
+    this.setSvarPåSpørsmål(spørsmålId, svarId);
+    this.oppdaterSisteSvarteSpørsmål(spørsmålId);
+  }
+
+  getSvarPåSpørsmål(spørsmålId: string): string | undefined {
+    return JSON.parse(getCookie(SVAR_PÅ_SPØRSMÅL_ID_STORAGE_KEY) || "{}")?.[
+      spørsmålId
+    ];
   }
 
   get finnesFraFør(): boolean {
