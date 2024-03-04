@@ -37,7 +37,7 @@ export default function StartsideBody({
 
   return (
     <Page.Block gutters width="xl" className={startsideStyles.sideinnhold}>
-      <Logininformasjon />
+      <Logininformasjon spørreundersøkelseId={spørreundersøkelseId} />
       <Status spørreundersøkelseId={spørreundersøkelseId} vertId={vertId} />
     </Page.Block>
   );

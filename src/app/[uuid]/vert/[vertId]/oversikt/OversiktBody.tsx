@@ -22,7 +22,7 @@ export default function OversiktBody({
   const statusDelnummer = 1; //TODO: hent i Dellinje
   return (
     <Page contentBlockPadding="none" footer={<FooterOversikt />}>
-      <HeaderVert />
+      <HeaderVert spørreundersøkelseId={spørreundersøkelseId} />
       <Page.Block>
         <VStack gap="4">
           <SpørsmålBleedOversikt

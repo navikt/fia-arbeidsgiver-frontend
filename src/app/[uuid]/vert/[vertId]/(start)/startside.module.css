@@ -28,18 +28,18 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
-    min-width: 350px;
+    min-width: 22rem;
 }
 
-.logininformasjon .qrcode {
+.qrcode {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-bottom: 2rem;
     margin-top: 2rem;
-    min-width: 350px;
-    min-height: 350px;
+    min-width: 22rem;
+    min-height: 22rem;
 }
 
 .logininformasjon .pinDisplay {

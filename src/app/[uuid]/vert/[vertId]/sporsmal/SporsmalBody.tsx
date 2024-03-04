@@ -7,6 +7,7 @@ import { SpørsmålBleedVert } from "@/app/[uuid]/vert/[vertId]/sporsmal/Spørsm
 import { SpørsmålInnhold } from "@/app/[uuid]/vert/[vertId]/sporsmal/SpørsmålInnhold";
 import { Feilside } from "@/app/_components/Feilside";
 import { useVertSpørreundersøkelse } from "@/app/_api_hooks/vert/useVertSpørreundersøkelse";
+import HeaderVert from "@/app/_components/HeaderVert";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,
@@ -64,6 +65,7 @@ export default function SpørsmålBody({
           />
         }
       >
+        <HeaderVert spørreundersøkelseId={spørreundersøkelseId} />
         <Page.Block as={"main"}>
           <SpørsmålBleedVert
             aktivtSpørsmålindex={aktivtSpørsmålindex}

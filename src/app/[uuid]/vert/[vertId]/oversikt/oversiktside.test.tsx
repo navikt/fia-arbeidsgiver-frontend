@@ -50,7 +50,7 @@ describe("Oversiktside", () => {
 
   test("render fungerer", async () => {
     render(<Oversiktside params={{ uuid: "uuid", vertId: "vertId" }} />);
-    const tittel = await screen.findByText("IA kartleggingsmøte");
+    const tittel = await screen.findByText("Vis QR-kode");
     expect(tittel).toBeInTheDocument();
   });
 
