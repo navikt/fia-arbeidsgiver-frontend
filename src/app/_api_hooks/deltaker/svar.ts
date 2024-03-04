@@ -29,6 +29,6 @@ export function postEnkeltSvar({
     if (!res.ok) {
       throw new Error("Noe gikk galt.");
     }
-    cookieHandler.oppdaterSisteSvarteSpørsmål(spørsmålId);
+    cookieHandler.setSvarPåSpørsmålOgMarkerSomSisteSvarte(spørsmålId, svarId);
   });
 }

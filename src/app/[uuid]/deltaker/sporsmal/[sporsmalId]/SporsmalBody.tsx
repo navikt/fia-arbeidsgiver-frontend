@@ -19,6 +19,8 @@ export default function SpørsmålBody({
 
   const storedSessionID = cookieHandler.sesjonsID;
 
+  const lagretSvar = cookieHandler.getSvarPåSpørsmål(spørsmålId);
+
   React.useEffect(() => {
     if (!storedSessionID) {
       router.push("../../deltaker");
@@ -28,12 +30,13 @@ export default function SpørsmålBody({
   return (
     <>
       <SpørsmålBleedDeltaker
-          spørreundersøkelseId={spørreundersøkelseId}
-          spørsmålId={spørsmålId}
+        spørreundersøkelseId={spørreundersøkelseId}
+        spørsmålId={spørsmålId}
       />
       <Spørsmålsseksjon
         spørreundersøkelseId={spørreundersøkelseId}
         spørsmålId={spørsmålId}
+        lagretSvar={lagretSvar}
       />
     </>
   );

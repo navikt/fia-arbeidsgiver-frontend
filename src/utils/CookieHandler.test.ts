@@ -132,9 +132,14 @@ describe("CookieHandler", () => {
       "sisteSvarteSpørsmålId123",
     );
   });
+
   test("Sjekk at lagring av svar fungerer", () => {
     const myCookieHandler = new CookieHandler("spørreundersøkelseId123");
     myCookieHandler.nyUndersøkelse("nySessionId123");
+
+    expect(myCookieHandler.getSvarPåSpørsmål("spm1")).toBe(undefined);
+    expect(myCookieHandler.getSvarPåSpørsmål("spm2")).toBe(undefined);
+    expect(myCookieHandler.getSvarPåSpørsmål("spm3")).toBe(undefined);
 
     myCookieHandler.setSvarPåSpørsmål("spm1", "svar1");
     myCookieHandler.oppdaterSisteSvarteSpørsmål("spm1");
@@ -154,5 +159,20 @@ describe("CookieHandler", () => {
     expect(myCookieHandler.sisteSvarteSpørsmålId).toBe("spm1");
 
     expect(myCookieHandler.getSvarPåSpørsmål("spm1")).toBe("svar4");
+  });
+
+  test("Sletting av svar fungerer", () => {
+    const myCookieHandler = new CookieHandler("spørreundersøkelseId123");
+    myCookieHandler.nyUndersøkelse("nySessionId123");
+
+    myCookieHandler.setSvarPåSpørsmålOgMarkerSomSisteSvarte("spm1", "svar1");
+
+    expect(myCookieHandler.getSvarPåSpørsmål("spm1")).toBe("svar1");
+    expect(myCookieHandler.sisteSvarteSpørsmålId).toBe("spm1");
+
+    CookieHandler.clear();
+
+    expect(myCookieHandler.getSvarPåSpørsmål("spm1")).toBe(undefined);
+    expect(myCookieHandler.sisteSvarteSpørsmålId).toBe("");
   });
 });

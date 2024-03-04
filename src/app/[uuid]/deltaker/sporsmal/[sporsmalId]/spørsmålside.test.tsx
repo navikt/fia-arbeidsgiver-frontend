@@ -10,6 +10,7 @@ import { postEnkeltSvar } from "@/app/_api_hooks/deltaker/svar";
 import { useRouter } from "next/navigation";
 import mockCookieHandler from "@/utils/jest-mocks/CookieHandler";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
+import CookieHandler from "@/utils/CookieHandler";
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(() => ({
@@ -19,11 +20,7 @@ jest.mock("next/navigation", () => ({
 }));
 
 jest.mock("@/app/_api_hooks/deltaker/useSpørsmålOgSvar", () => ({
-  useSpørsmålOgSvar: jest.fn(() => ({
-    data: dummySpørreundersøkelse[0],
-    isLoading: false,
-    error: null,
-  })),
+  useSpørsmålOgSvar: jest.fn(),
 }));
 
 mockCookieHandler();
@@ -36,6 +33,14 @@ expect.extend(toHaveNoViolations);
 describe("Spørsmålsside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+
+    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
+      data: dummySpørreundersøkelse[0],
+      isLoading: false,
+      error: null,
+      mutate: jest.fn(() => Promise.resolve(dummySpørreundersøkelse[0])),
+      isValidating: false,
+    });
   });
   test("render fungerer", async () => {
     render(<Spørsmålsside params={{ uuid: "a", sporsmalId: "b" }} />);
@@ -102,7 +107,7 @@ describe("Spørsmålsside", () => {
         data: undersøkelse,
         isLoading: false,
         error: null,
-        mutate: jest.fn(),
+        mutate: jest.fn(() => Promise.resolve(undersøkelse)),
         isValidating: false,
       });
       const pushFunction = jest.fn();
@@ -140,7 +145,7 @@ describe("Spørsmålsside", () => {
         data: undersøkelse,
         isLoading: false,
         error: null,
-        mutate: jest.fn(),
+        mutate: jest.fn(() => Promise.resolve(undersøkelse)),
         isValidating: false,
       });
 
@@ -154,4 +159,29 @@ describe("Spørsmålsside", () => {
       });
     },
   );
+
+  test("Bruker valgt svaralternativ fra cookieHandler", async () => {
+    const forhåndssvart = dummySpørreundersøkelse[0].svaralternativer[1];
+    jest
+      .spyOn(CookieHandler.prototype, "getSvarPåSpørsmål")
+      .mockImplementation(() => forhåndssvart.id);
+
+    render(
+      <Spørsmålsside
+        params={{ uuid: "a", sporsmalId: dummySpørreundersøkelse[0].id }}
+      />,
+    );
+
+    const svar = await screen.findByRole("radio", {
+      name: forhåndssvart.tekst,
+    });
+
+    expect(svar).toHaveAttribute("checked");
+
+    const feilSvar = await screen.findByRole("radio", {
+      name: dummySpørreundersøkelse[0].svaralternativer[0].tekst,
+    });
+
+    expect(feilSvar).not.toHaveAttribute("checked");
+  });
 });

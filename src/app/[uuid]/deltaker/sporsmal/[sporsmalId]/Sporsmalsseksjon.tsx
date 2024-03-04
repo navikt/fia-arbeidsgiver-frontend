@@ -19,9 +19,11 @@ import { postEnkeltSvar } from "@/app/_api_hooks/deltaker/svar";
 export default function Spørsmålsseksjon({
   spørsmålId,
   spørreundersøkelseId,
+  lagretSvar,
 }: {
   spørsmålId: string;
   spørreundersøkelseId: string;
+  lagretSvar?: string;
 }) {
   const [feilSendSvar, setFeilSendSvar] = React.useState<string | null>(null);
 
@@ -33,7 +35,7 @@ export default function Spørsmålsseksjon({
 
   const router = useRouter();
 
-  const [svar, setSvar] = React.useState("");
+  const [svar, setSvar] = React.useState(lagretSvar || "");
   const velgSvar = (svaralternativid: string) => setSvar(svaralternativid);
 
   const sendSvar = () => {

@@ -21,6 +21,9 @@ export default function mockCookieHandler() {
   jest
     .spyOn(CookieHandler.prototype, "sisteSvarteSpørsmålId", "get")
     .mockImplementation(() => "b");
+  jest
+    .spyOn(CookieHandler.prototype, "getSvarPåSpørsmål")
+    .mockImplementation(() => "c");
 }
 
 export const mockCookieHandlerEmpty = () => {
@@ -41,4 +44,7 @@ export const mockCookieHandlerEmpty = () => {
   jest
     .spyOn(CookieHandler.prototype, "sisteSvarteSpørsmålId", "get")
     .mockImplementation(() => "");
+  jest
+    .spyOn(CookieHandler.prototype, "getSvarPåSpørsmål")
+    .mockImplementation(() => undefined);
 };
