@@ -1,0 +1,47 @@
+.chartWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.barWrapper {
+    display: flex;
+    width: 100%;
+}
+
+.bar {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    border: 1px solid white;
+}
+
+.labelList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.label {
+    list-style-type: none;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.5rem;
+}
+
+.labelBox {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.spørsmåltekst {
+    margin-bottom: 1rem;
+}
