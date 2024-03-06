@@ -4,9 +4,9 @@ import { BodyShort, VStack } from "@navikt/ds-react";
 import React from "react";
 import CookieHandler from "@/utils/CookieHandler";
 
-export function FerdigInnhold() {
+export function FerdigInnhold({ uuid }: { uuid: string }) {
   React.useEffect(() => {
-    CookieHandler.clear();
+    new CookieHandler(uuid).setHarSvartAlleSpørsmål();
   });
 
   return (

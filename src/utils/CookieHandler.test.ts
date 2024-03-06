@@ -68,7 +68,7 @@ describe("CookieHandler", () => {
     expect(myCookieHandler).toBeInstanceOf(CookieHandler);
     expect(hasCookie).toHaveBeenCalledWith(SPØRREUNDERSØKELSE_ID_STORAGE_KEY);
     expect(getCookie).toHaveBeenCalledWith(SPØRREUNDERSØKELSE_ID_STORAGE_KEY);
-    expect(deleteCookie).toHaveBeenCalledTimes(4);
+    expect(deleteCookie).toHaveBeenCalledTimes(5);
     expect(deleteCookie).toHaveBeenCalledWith(SESSION_ID_STORAGE_KEY);
     expect(deleteCookie).toHaveBeenCalledWith(
       SPØRREUNDERSØKELSE_ID_STORAGE_KEY,
@@ -96,7 +96,7 @@ describe("CookieHandler", () => {
       { maxAge: COOKIE_MAX_AGE },
     );
 
-    expect(deleteCookie).toHaveBeenCalledTimes(2);
+    expect(deleteCookie).toHaveBeenCalledTimes(3);
     expect(deleteCookie).toHaveBeenCalledWith(
       SISTE_SVARTE_SPØRSMÅL_ID_STORAGE_KEY,
     );
@@ -173,6 +173,6 @@ describe("CookieHandler", () => {
     CookieHandler.clear();
 
     expect(myCookieHandler.getSvarPåSpørsmål("spm1")).toBe(undefined);
-    expect(myCookieHandler.sisteSvarteSpørsmålId).toBe("");
+    expect(myCookieHandler.sisteSvarteSpørsmålId).toBeUndefined();
   });
 });

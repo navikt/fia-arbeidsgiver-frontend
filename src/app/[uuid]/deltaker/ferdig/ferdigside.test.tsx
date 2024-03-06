@@ -11,22 +11,27 @@ expect.extend(toHaveNoViolations);
 describe("Ferdigside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.spyOn(CookieHandler.prototype, "setHarSvartAlleSpørsmål");
   });
   test("render fungerer", async () => {
-    render(<Ferdigside />);
+    render(<Ferdigside params={{ uuid: "asdf" }} />);
     const tittel = await screen.findByText("Takk for ditt bidrag!");
     expect(tittel).toBeInTheDocument();
   });
 
   test("axe UU-test", async () => {
-    const { container } = render(<Ferdigside />);
+    const { container } = render(<Ferdigside params={{ uuid: "asdf" }} />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
-  test("clearer cookies når siden rendres", () => {
-    expect(CookieHandler.clear).toHaveBeenCalledTimes(0);
-    render(<Ferdigside />);
-    expect(CookieHandler.clear).toHaveBeenCalledTimes(1);
+  test("setter harSvartPåAlleSpørsmål når en lander på siden", () => {
+    const harSvartAlleSpørsmål = jest.spyOn(
+      CookieHandler.prototype,
+      "setHarSvartAlleSpørsmål",
+    );
+    expect(harSvartAlleSpørsmål).toHaveBeenCalledTimes(0);
+    render(<Ferdigside params={{ uuid: "asdf" }} />);
+    expect(harSvartAlleSpørsmål).toHaveBeenCalledTimes(1);
   });
 });

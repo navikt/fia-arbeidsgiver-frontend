@@ -18,11 +18,7 @@ export default function BliMedKnapp({
 
   React.useEffect(() => {
     if (cookieHandler.finnesFraFør) {
-      router.push(
-        `deltaker/sporsmal/${
-          cookieHandler.sisteSvarteSpørsmålId || "START"
-        }/neste`,
-      );
+      router.push(`deltaker/sporsmal/${cookieHandler.spørsmålÅStartePå}/neste`);
     } else {
       fetchBliMed(spørreundersøkelseId)
         .then(() => {

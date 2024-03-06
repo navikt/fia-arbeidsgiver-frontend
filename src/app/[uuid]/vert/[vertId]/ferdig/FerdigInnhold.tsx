@@ -4,14 +4,8 @@ import { Bleed, BodyShort, Box, Heading, Page, VStack } from "@navikt/ds-react";
 import ferdigStyles from "./ferdigside.module.css";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import React from "react";
-import CookieHandler from "@/utils/CookieHandler";
 
 export default function FerdigInnhold() {
-  React.useEffect(() => {
-    //Clear cookies når vi laster siden.
-    CookieHandler.clear();
-  });
-
   return (
     <Page contentBlockPadding="none">
       <Page.Block as={"main"}>
