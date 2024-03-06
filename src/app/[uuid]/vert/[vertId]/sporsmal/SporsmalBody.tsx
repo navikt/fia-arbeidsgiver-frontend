@@ -65,7 +65,10 @@ export default function SpørsmålBody({
           />
         }
       >
-        <HeaderVert spørreundersøkelseId={spørreundersøkelseId} />
+        <HeaderVert
+          spørreundersøkelseId={spørreundersøkelseId}
+          vertId={vertId}
+        />
         <Page.Block as={"main"}>
           <SpørsmålBleedVert
             aktivtSpørsmålindex={aktivtSpørsmålindex}

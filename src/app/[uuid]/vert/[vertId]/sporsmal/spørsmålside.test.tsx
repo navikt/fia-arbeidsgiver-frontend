@@ -13,6 +13,7 @@ jest.mock("next/navigation", () => ({
     prefetch: () => null,
     push: jest.fn(() => null),
   })),
+  usePathname: jest.fn(() => "/"),
 }));
 
 jest.mock("@/app/_api_hooks/vert/useVertSpørreundersøkelse", () => ({
