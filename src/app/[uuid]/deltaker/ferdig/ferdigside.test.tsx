@@ -14,13 +14,13 @@ describe("Ferdigside", () => {
     jest.spyOn(CookieHandler, "setHarSvartAlleSpørsmål");
   });
   test("render fungerer", async () => {
-    render(<Ferdigside params={{ uuid: "asdf" }} />);
+    render(<Ferdigside />);
     const tittel = await screen.findByText("Takk for ditt bidrag!");
     expect(tittel).toBeInTheDocument();
   });
 
   test("axe UU-test", async () => {
-    const { container } = render(<Ferdigside params={{ uuid: "asdf" }} />);
+    const { container } = render(<Ferdigside />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
@@ -31,7 +31,7 @@ describe("Ferdigside", () => {
       "setHarSvartAlleSpørsmål",
     );
     expect(harSvartAlleSpørsmål).toHaveBeenCalledTimes(0);
-    render(<Ferdigside params={{ uuid: "asdf" }} />);
+    render(<Ferdigside />);
     expect(harSvartAlleSpørsmål).toHaveBeenCalledTimes(1);
   });
 });

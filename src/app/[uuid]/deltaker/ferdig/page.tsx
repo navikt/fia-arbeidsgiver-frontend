@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Her kan du delta på litt litt kartlegging da",
 };
 
-export default function Ferdigside({ params }: { params: { uuid: string } }) {
+export default function Ferdigside() {
   return (
     <Page contentBlockPadding="none">
       <Page.Block gutters width="lg">
@@ -23,7 +23,7 @@ export default function Ferdigside({ params }: { params: { uuid: string } }) {
             </HStack>
           </Box>
         </Bleed>
-        <FerdigInnhold uuid={params.uuid} />
+        <FerdigInnhold />
       </Page.Block>
     </Page>
   );
