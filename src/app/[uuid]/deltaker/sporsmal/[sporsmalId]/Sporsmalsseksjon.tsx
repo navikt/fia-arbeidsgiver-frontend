@@ -38,22 +38,27 @@ export default function Spørsmålsseksjon({
   const [svar, setSvar] = React.useState(lagretSvar || "");
   const velgSvar = (svaralternativid: string) => setSvar(svaralternativid);
 
-  const sendSvar = () => {
+  const erPåLagretSvar = svar === lagretSvar && lagretSvar?.length > 0;
+
+  const sendSvarEllerGåVidere = () => {
     if (!spørsmålOgSvar) {
       throw new Error("Spørsmål mangler");
-    }
-    postEnkeltSvar({
-      spørreundersøkelseId: spørreundersøkelseId,
-      spørsmålId,
-      svarId: svar,
-    })
-      .then(() => {
-        setFeilSendSvar(null);
-        router.push(`./${spørsmålId}/neste`);
+    } else if (erPåLagretSvar) {
+      router.push(`./${spørsmålId}/neste`);
+    } else {
+      postEnkeltSvar({
+        spørreundersøkelseId: spørreundersøkelseId,
+        spørsmålId,
+        svarId: svar,
       })
-      .catch((error) => {
-        setFeilSendSvar(error.message);
-      });
+        .then(() => {
+          setFeilSendSvar(null);
+          router.push(`./${spørsmålId}/neste`);
+        })
+        .catch((error) => {
+          setFeilSendSvar(error.message);
+        });
+    }
   };
 
   if (lasterSpørsmål) {
@@ -103,9 +108,12 @@ export default function Spørsmålsseksjon({
             <Button
               variant="primary"
               className={spørsmålStyles.nesteknapp}
-              onClick={sendSvar}
+              onClick={sendSvarEllerGåVidere}
             >
-              Svar
+              <SvarKnappTekst
+                erPåLagretSvar={erPåLagretSvar}
+                lagretSvar={lagretSvar}
+              />
             </Button>
             <Button
               variant="secondary"
@@ -121,4 +129,20 @@ export default function Spørsmålsseksjon({
       </>
     )
   );
+}
+
+function SvarKnappTekst({
+  erPåLagretSvar,
+  lagretSvar,
+}: {
+  erPåLagretSvar: boolean;
+  lagretSvar?: string;
+}) {
+  if (erPåLagretSvar) {
+    return "Neste";
+  } else if (lagretSvar) {
+    return "Endre svar";
+  }
+
+  return "Svar";
 }

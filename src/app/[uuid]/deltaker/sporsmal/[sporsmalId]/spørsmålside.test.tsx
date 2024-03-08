@@ -41,6 +41,10 @@ describe("Spørsmålsside", () => {
       mutate: jest.fn(() => Promise.resolve(dummySpørreundersøkelse[0])),
       isValidating: false,
     });
+
+    jest
+      .spyOn(CookieHandler, "getSvarPåSpørsmål")
+      .mockImplementation(() => undefined);
   });
   test("render fungerer", async () => {
     render(<Spørsmålsside params={{ uuid: "a", sporsmalId: "b" }} />);
@@ -183,5 +187,68 @@ describe("Spørsmålsside", () => {
     });
 
     expect(feilSvar).not.toHaveAttribute("checked");
+  });
+
+  test("Viser riktig tekst i svarknapp i forhold til lagret svar", async () => {
+    const forhåndssvart = dummySpørreundersøkelse[0].svaralternativer[1];
+    jest
+      .spyOn(CookieHandler, "getSvarPåSpørsmål")
+      .mockImplementation(() => forhåndssvart.id);
+
+    render(
+      <Spørsmålsside
+        params={{ uuid: "a", sporsmalId: dummySpørreundersøkelse[0].id }}
+      />,
+    );
+
+    expect(screen.getByRole("button", { name: /Neste/i })).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /Endre Svar/i }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /^Svar/i }),
+    ).not.toBeInTheDocument();
+
+    await screen
+      .findByRole("radio", {
+        name: dummySpørreundersøkelse[0].svaralternativer[0].tekst,
+      })
+      .then((radio) => {
+        act(() => radio.click());
+      });
+
+    expect(
+      screen.getByRole("button", { name: /Endre Svar/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /Neste/i }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /^Svar/i }),
+    ).not.toBeInTheDocument();
+  });
+
+  test("Viser riktig tekst i svarknapp uten lagret svar", async () => {
+    render(
+      <Spørsmålsside
+        params={{ uuid: "a", sporsmalId: dummySpørreundersøkelse[0].id }}
+      />,
+    );
+
+    await screen
+      .findByRole("radio", {
+        name: dummySpørreundersøkelse[0].svaralternativer[0].tekst,
+      })
+      .then((radio) => {
+        act(() => radio.click());
+      });
+
+    expect(screen.getByRole("button", { name: /^Svar/i })).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /Neste/i }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /Endre Svar/i }),
+    ).not.toBeInTheDocument();
   });
 });
