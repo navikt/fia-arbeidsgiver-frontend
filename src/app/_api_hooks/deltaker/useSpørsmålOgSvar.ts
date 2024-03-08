@@ -6,7 +6,6 @@ export function useSpørsmålOgSvar(
   spørreundersøkelseId: string,
   spørsmålId: string,
 ): SWRResponse<spørsmålOgSvarDTO> {
-  const cookieHandler = new CookieHandler(spørreundersøkelseId);
   const fetcher = (url: string) =>
     fetch(url, {
       method: "POST",
@@ -14,7 +13,7 @@ export function useSpørsmålOgSvar(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        sesjonsId: cookieHandler.sesjonsID,
+        sesjonsId: CookieHandler.sesjonsID,
         spørreundersøkelseId,
       }),
     }).then((res) => res.json());

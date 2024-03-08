@@ -15,11 +15,10 @@ export default function SpørsmålBody({
   spørsmålId: string;
 }) {
   const router = useRouter();
-  const cookieHandler = new CookieHandler(spørreundersøkelseId);
 
-  const storedSessionID = cookieHandler.sesjonsID;
+  const storedSessionID = CookieHandler.sesjonsID;
 
-  const lagretSvar = cookieHandler.getSvarPåSpørsmål(spørsmålId);
+  const lagretSvar = CookieHandler.getSvarPåSpørsmål(spørsmålId);
 
   React.useEffect(() => {
     if (!storedSessionID) {

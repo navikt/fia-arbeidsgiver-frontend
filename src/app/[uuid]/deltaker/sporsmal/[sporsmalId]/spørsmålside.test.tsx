@@ -163,7 +163,7 @@ describe("Spørsmålsside", () => {
   test("Bruker valgt svaralternativ fra cookieHandler", async () => {
     const forhåndssvart = dummySpørreundersøkelse[0].svaralternativer[1];
     jest
-      .spyOn(CookieHandler.prototype, "getSvarPåSpørsmål")
+      .spyOn(CookieHandler, "getSvarPåSpørsmål")
       .mockImplementation(() => forhåndssvart.id);
 
     render(

@@ -18,8 +18,7 @@ export default function NesteBody({
   spørsmålId: string;
 }) {
   const router = useRouter();
-  const cookieHandler = new CookieHandler(spørreundersøkelseId);
-  const storedSessionID = cookieHandler.sesjonsID;
+  const storedSessionID = CookieHandler.sesjonsID;
 
   const nesteSpørsmål = useNesteSpørsmål(spørreundersøkelseId, spørsmålId);
 

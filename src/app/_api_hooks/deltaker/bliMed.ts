@@ -4,8 +4,6 @@ import CookieHandler from "@/utils/CookieHandler";
 import { bliMedDTO } from "@/app/_types/bliMedDTO";
 
 export function fetchBliMed(spørreundersøkelseId: string) {
-  const cookieHandler = new CookieHandler(spørreundersøkelseId);
-
   const fetcher = () =>
     fetch("/api/bli-med", {
       method: "POST",
@@ -31,7 +29,7 @@ export function fetchBliMed(spørreundersøkelseId: string) {
       .then((data: bliMedDTO) => {
         const nySessionID = data.sesjonsId;
 
-        cookieHandler.nyUndersøkelse(nySessionID);
+        CookieHandler.nyUndersøkelse(spørreundersøkelseId, nySessionID);
 
         return nySessionID;
       });

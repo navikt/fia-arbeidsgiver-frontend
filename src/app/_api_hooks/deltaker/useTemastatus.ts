@@ -6,8 +6,7 @@ import { ETT_SEKUND_MS } from "@/utils/consts";
 export function useTemastatus(
   spørreundersøkelseId: string,
 ): SWRResponse<temastatusDTO> {
-  const cookieHandler = new CookieHandler(spørreundersøkelseId);
-  const sesjonsId = cookieHandler.sesjonsID;
+  const sesjonsId = CookieHandler.sesjonsID;
   const fetcher = (url: string) =>
     fetch(url, {
       method: "POST",

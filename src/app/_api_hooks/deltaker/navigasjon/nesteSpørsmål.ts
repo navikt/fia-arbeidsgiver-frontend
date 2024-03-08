@@ -7,8 +7,7 @@ export function useNesteSpørsmål(
   spørreundersøkelseId: string,
   nåværendeSpørsmålId: string,
 ): SWRResponse<nesteSpørsmålDTO> {
-  const cookieHandler = new CookieHandler(spørreundersøkelseId);
-  const sesjonsId = cookieHandler.sesjonsID;
+  const sesjonsId = CookieHandler.sesjonsID;
   const random = React.useRef(Date.now()); // Vi bruker random for å stoppe SWR fra å cache.
 
   const fetcher = ([url]: [string]) =>

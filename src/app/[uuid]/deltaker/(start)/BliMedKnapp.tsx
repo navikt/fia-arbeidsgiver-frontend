@@ -12,13 +12,11 @@ export default function BliMedKnapp({
 }: {
   spørreundersøkelseId: string;
 }) {
-  const cookieHandler = new CookieHandler(spørreundersøkelseId);
-
   const router = useRouter();
 
   React.useEffect(() => {
-    if (cookieHandler.finnesFraFør) {
-      router.push(`deltaker/sporsmal/${cookieHandler.spørsmålÅStartePå}/neste`);
+    if (CookieHandler.finnesFraFør(spørreundersøkelseId)) {
+      router.push(`deltaker/sporsmal/${CookieHandler.spørsmålÅStartePå}/neste`);
     } else {
       fetchBliMed(spørreundersøkelseId)
         .then(() => {

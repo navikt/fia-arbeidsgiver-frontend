@@ -11,7 +11,7 @@ expect.extend(toHaveNoViolations);
 describe("Ferdigside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    jest.spyOn(CookieHandler.prototype, "setHarSvartAlleSpørsmål");
+    jest.spyOn(CookieHandler, "setHarSvartAlleSpørsmål");
   });
   test("render fungerer", async () => {
     render(<Ferdigside params={{ uuid: "asdf" }} />);
@@ -27,7 +27,7 @@ describe("Ferdigside", () => {
 
   test("setter harSvartPåAlleSpørsmål når en lander på siden", () => {
     const harSvartAlleSpørsmål = jest.spyOn(
-      CookieHandler.prototype,
+      CookieHandler,
       "setHarSvartAlleSpørsmål",
     );
     expect(harSvartAlleSpørsmål).toHaveBeenCalledTimes(0);

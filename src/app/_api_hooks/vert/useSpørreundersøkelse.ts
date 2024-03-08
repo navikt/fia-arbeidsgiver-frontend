@@ -5,8 +5,7 @@ import CookieHandler from "@/utils/CookieHandler";
 export function useSpørreundersøkelse(
   spørreundersøkelseId: string,
 ): SWRResponse<spørreundersøkelseDTO> {
-  const cookieHandler = new CookieHandler(spørreundersøkelseId);
-  const sesjonsId = cookieHandler.sesjonsID;
+  const sesjonsId = CookieHandler.sesjonsID;
   const fetcher = (url: string) =>
     fetch(url, {
       method: "POST",

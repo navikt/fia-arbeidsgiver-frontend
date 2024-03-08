@@ -9,8 +9,7 @@ export function postEnkeltSvar({
   spørsmålId: string;
   svarId: string;
 }) {
-  const cookieHandler = new CookieHandler(spørreundersøkelseId);
-  const sesjonsId = cookieHandler.sesjonsID;
+  const sesjonsId = CookieHandler.sesjonsID;
   return fetch("/api/svar", {
     method: "POST",
     headers: {
@@ -29,6 +28,6 @@ export function postEnkeltSvar({
     if (!res.ok) {
       throw new Error("Noe gikk galt.");
     }
-    cookieHandler.setSvarPåSpørsmålOgMarkerSomSisteSvarte(spørsmålId, svarId);
+    CookieHandler.setSvarPåSpørsmålOgMarkerSomSisteSvarte(spørsmålId, svarId);
   });
 }
