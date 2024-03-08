@@ -4,6 +4,7 @@ import React from "react";
 import { VisQRModal } from "@/app/_components/VisQRModal";
 import { QRkodeVisning } from "@/app/_components/QRkodeVisning";
 import { usePathname, useRouter } from "next/navigation";
+import { ArrowLeftIcon } from "@navikt/aksel-icons";
 
 export default function HeaderVert({
   spørreundersøkelseId,
@@ -23,6 +24,7 @@ export default function HeaderVert({
       <HStack justify={"end"}>
         {!erPåOversiktSide && (
           <Button
+            icon={<ArrowLeftIcon aria-hidden />}
             variant="secondary"
             onClick={() =>
               router.push(`/${spørreundersøkelseId}/vert/${vertId}/oversikt`)
