@@ -80,7 +80,7 @@ function NesteHeading({
   if (!nesteSpørsmål.data?.erNesteÅpnetAvVert) {
     return (
       <Heading align="center" size={"large"}>
-        Venter på at verten skal fortsette
+        Venter på at verten skal åpne neste spørsmål
       </Heading>
     );
   }

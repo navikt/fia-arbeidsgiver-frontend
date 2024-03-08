@@ -39,7 +39,7 @@ describe("deltaker/Nesteside", () => {
   test("render fungerer", async () => {
     render(<Nesteside params={{ uuid: "a", sporsmalId: "b" }} />);
     const tittel = await screen.findByText(
-      "Venter på at verten skal fortsette",
+      "Venter på at verten skal åpne neste spørsmål",
     );
     expect(tittel).toBeInTheDocument();
     expect(pushFunction).not.toHaveBeenCalled();
