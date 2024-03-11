@@ -125,7 +125,7 @@ describe("vert/spørsmålside", () => {
       });
     }
     expect(pushFunction).toHaveBeenCalledTimes(1);
-    expect(pushFunction).toHaveBeenCalledWith("oversikt");
+    expect(pushFunction).toHaveBeenCalledWith("../../oversikt");
   });
 
   test("klikk på tilbake", async () => {
@@ -181,7 +181,7 @@ describe("vert/spørsmålside", () => {
 
     await act(async () => tilbake.click());
     expect(pushFunction).toHaveBeenCalledTimes(1);
-    expect(pushFunction).toHaveBeenCalledWith("oversikt");
+    expect(pushFunction).toHaveBeenCalledWith(".");
   });
 
   test("axe UU-test", async () => {
