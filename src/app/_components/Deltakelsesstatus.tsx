@@ -1,6 +1,6 @@
 import { Alert, BodyShort, HStack, Loader } from "@navikt/ds-react";
 import komponenterStyles from "./komponenter.module.css";
-import spørsmålStyles from "../[uuid]/vert/[vertId]/sporsmal/sporsmalsside.module.css";
+import spørsmålStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/sporsmal/sporsmalsside.module.css";
 import { PersonGroupFillIcon } from "@navikt/aksel-icons";
 import React from "react";
 import kartleggingStyles from "@/app/kartlegging.module.css";

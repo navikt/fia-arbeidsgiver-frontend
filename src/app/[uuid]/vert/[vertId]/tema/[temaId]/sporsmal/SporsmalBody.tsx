@@ -2,9 +2,9 @@
 
 import { Heading, Loader, Page, VStack } from "@navikt/ds-react";
 import React from "react";
-import { SpørsmålFooterVert } from "@/app/[uuid]/vert/[vertId]/sporsmal/SpørsmålFooterVert";
-import { SpørsmålBleedVert } from "@/app/[uuid]/vert/[vertId]/sporsmal/SpørsmålBleedVert";
-import { SpørsmålInnhold } from "@/app/[uuid]/vert/[vertId]/sporsmal/SpørsmålInnhold";
+import { SpørsmålFooterVert } from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/sporsmal/SpørsmålFooterVert";
+import { SpørsmålBleedVert } from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/sporsmal/SpørsmålBleedVert";
+import { SpørsmålInnhold } from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/sporsmal/SpørsmålInnhold";
 import { Feilside } from "@/app/_components/Feilside";
 import { useVertSpørreundersøkelse } from "@/app/_api_hooks/vert/useVertSpørreundersøkelse";
 import HeaderVert from "@/app/_components/HeaderVert";

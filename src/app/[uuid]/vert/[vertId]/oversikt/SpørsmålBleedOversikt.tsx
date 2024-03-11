@@ -10,7 +10,7 @@ import {
   VStack,
 } from "@navikt/ds-react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
-import vertStyles from "@/app/[uuid]/vert/[vertId]/sporsmal/sporsmalsside.module.css";
+import vertStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/sporsmal/sporsmalsside.module.css";
 import { finskrivTema } from "@/app/_types/sporreundersokelseDTO";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -50,7 +50,7 @@ export function SpørsmålBleedOversikt({
         inkrementerSpørsmål(spørreundersøkelseId, vertId)
           .then(() => {
             setFeilStart(null);
-            router.push("sporsmal"); // TODO: push til spørsmål/{spørreundersøkelseId} etter refactor
+            router.push(`tema/${status.tema}`);
           })
           .catch((error) => setFeilStart(error.message));
       })
@@ -87,9 +87,7 @@ export function SpørsmålBleedOversikt({
           <HStack className={vertStyles.bleedInnhold}>
             <VStack>
               <BodyShort size="medium">Del {statusDelnummer}</BodyShort>
-              <Heading size="medium">
-                {finskrivTema(status.tema)}
-              </Heading>
+              <Heading size="medium">{finskrivTema(status.tema)}</Heading>
             </VStack>
             <HStack gap={"4"}>
               {feilStart !== null && (
@@ -99,7 +97,7 @@ export function SpørsmålBleedOversikt({
               )}
               <Button
                 variant={"secondary"}
-                onClick={() => startKartlegging()}
+                onClick={startKartlegging}
                 className={kartleggingStyles.knappHvitBred}
               >
                 {status.status === "PÅBEGYNT" && status.spørsmålindeks !== null

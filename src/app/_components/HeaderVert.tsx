@@ -1,3 +1,4 @@
+"use client";
 import { Button, HStack, Page } from "@navikt/ds-react";
 import komponenterStyles from "./komponenter.module.css";
 import React from "react";

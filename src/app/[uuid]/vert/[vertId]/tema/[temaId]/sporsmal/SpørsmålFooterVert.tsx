@@ -1,5 +1,5 @@
 import { Box, Page } from "@navikt/ds-react";
-import SpørsmålNavigasjon from "@/app/[uuid]/vert/[vertId]/sporsmal/SpørsmålNavigasjon";
+import SpørsmålNavigasjon from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/sporsmal/SpørsmålNavigasjon";
 import React from "react";
 
 export function SpørsmålFooterVert({

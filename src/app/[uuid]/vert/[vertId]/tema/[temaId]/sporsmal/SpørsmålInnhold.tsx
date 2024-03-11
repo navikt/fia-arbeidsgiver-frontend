@@ -1,6 +1,6 @@
 import { spørsmålDTO } from "@/app/_types/sporreundersokelseDTO";
 import { BodyShort, Heading, VStack } from "@navikt/ds-react";
-import vertStyles from "@/app/[uuid]/vert/[vertId]/sporsmal/sporsmalsside.module.css";
+import vertStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/sporsmal/sporsmalsside.module.css";
 import React from "react";
 
 export function SpørsmålInnhold({ spørsmålDto }: { spørsmålDto: spørsmålDTO }) {
