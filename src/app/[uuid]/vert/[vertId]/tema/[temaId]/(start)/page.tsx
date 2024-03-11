@@ -1,3 +1,5 @@
+// noinspection HtmlUnknownTarget
+
 import React from "react";
 import type { Metadata } from "next";
 import { BodyLong, BodyShort, Box, Heading, Page } from "@navikt/ds-react";
