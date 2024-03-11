@@ -22,7 +22,7 @@ export default function HeaderVert({
 
   return (
     <Page.Block as={"header"} className={komponenterStyles.header}>
-      <HStack justify={"end"}>
+      <HStack justify={"space-between"}>
         {!erPåOversiktSide && (
           <Button
             icon={<ArrowLeftIcon aria-hidden />}
@@ -35,7 +35,7 @@ export default function HeaderVert({
           </Button>
         )}
         <Button
-          style={{ marginLeft: "1rem" }}
+          style={{ marginLeft: "auto" }}
           variant="secondary"
           onClick={() => setvisQRkodeModalÅpen(true)}
         >

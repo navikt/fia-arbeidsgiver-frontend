@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { BodyLong, BodyShort, Box, Heading, Page } from "@navikt/ds-react";
 import Startlenke from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/(start)/Startlenke";
 import HeaderBleed from "@/app/_components/HeaderBleed";
-import HeaderVert from "@/app/_components/HeaderVert";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -25,7 +24,6 @@ export default function Temastartside({
   return (
     <Page contentBlockPadding="none">
       <Page.Block gutters width="lg">
-        <HeaderVert spørreundersøkelseId={params.uuid} vertId={params.vertId} />
         <HeaderBleed>{sideinnhold.tittel}</HeaderBleed>
         <Infoblokk
           tittel={sideinnhold.tittel}

@@ -24,14 +24,14 @@ export default function SpørsmålNavigasjon({
   const naviger = (retning: RETNING) => {
     switch (retning) {
       case RETNING.FULLFØR:
-        router.push("oversikt");
+        router.push("../../oversikt");
         break;
       case RETNING.NESTE:
         setAktivtSpørsmålindex(aktivtSpørsmålindex + 1);
         break;
       case RETNING.TILBAKE:
         if (aktivtSpørsmålindex === 0) {
-          router.push("oversikt");
+          router.push(".");
         }
         setAktivtSpørsmålindex(Math.max(aktivtSpørsmålindex - 1, 0));
         break;
@@ -58,7 +58,7 @@ export default function SpørsmålNavigasjon({
         >
           Neste
         </Button>
-      ) : erViPåSisteSpørsmål ? (
+      ) : (
         <Button
           className={kartleggingStyles.knappBred}
           onClick={() => {
@@ -67,8 +67,6 @@ export default function SpørsmålNavigasjon({
         >
           Fullfør
         </Button>
-      ) : (
-        <></>
       )}
     </HStack>
   );
