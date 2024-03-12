@@ -50,7 +50,7 @@ jest.mock("@/app/_api_hooks/vert/useAntallDeltakere", () => ({
 jest.mock("@/app/_api_hooks/vert/useVertTemastatus", () => ({
   useVertTemastatus: () => ({
     data: {
-      tema: "PARTSSAMARBEID",
+      tema: "UTVIKLE_PARTSSAMARBEID",
       temastatus: [
         {
           antall: 1,

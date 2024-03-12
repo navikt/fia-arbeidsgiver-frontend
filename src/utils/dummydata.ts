@@ -66,21 +66,21 @@ const dummyAntallDeltakere = {
 };
 
 const dummyKartleggingStatusOpprettet = {
-  tema: "PARTSSAMARBEID",
+  tema: "UTVIKLE_PARTSSAMARBEID",
   status: "OPPRETTET",
   spørsmålindeks: null,
   antallSpørsmål: 3,
 };
 
 const dummyKartleggingStatusIkkePåbegynt = {
-  tema: "PARTSSAMARBEID",
+  tema: "UTVIKLE_PARTSSAMARBEID",
   status: "IKKE_PÅBEGYNT",
   spørsmålindeks: null,
   antallSpørsmål: 3,
 };
 
 const dummyKartleggingStatusPåbegynt = {
-  tema: "PARTSSAMARBEID",
+  tema: "UTVIKLE_PARTSSAMARBEID",
   status: "PÅBEGYNT",
   spørsmålindeks: 0,
   antallSpørsmål: 3,
