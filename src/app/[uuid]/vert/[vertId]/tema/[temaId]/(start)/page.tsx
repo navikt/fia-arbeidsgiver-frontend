@@ -2,9 +2,17 @@
 
 import React from "react";
 import type { Metadata } from "next";
-import { BodyLong, BodyShort, Box, Heading, Page } from "@navikt/ds-react";
+import {
+  BodyLong,
+  BodyShort,
+  Box,
+  Heading,
+  Page,
+  VStack,
+} from "@navikt/ds-react";
 import Startlenke from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/(start)/Startlenke";
 import HeaderBleed from "@/app/_components/HeaderBleed";
+import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -17,7 +25,8 @@ export default function Temastartside({
   params: { uuid: string; vertId: string; temaId: string };
 }) {
   const sideinnhold = {
-    tittel: "Partssammarbeid",
+    tittel: "Partssamarbeid",
+    delnummer: 1,
     undertittel:
       "Målet er å sammen identifisere virksomhetens behov og bli enige om hvilke av NAVs IA-tjenester som best kan bidra til å imøtekomme virksomhetens behov.",
     brødtekst:
@@ -26,7 +35,16 @@ export default function Temastartside({
   return (
     <Page contentBlockPadding="none">
       <Page.Block gutters width="lg">
-        <HeaderBleed>{sideinnhold.tittel}</HeaderBleed>
+        <HeaderBleed>
+          <VStack>
+            <BodyShort size="medium">Del {sideinnhold.delnummer}</BodyShort>
+            <Heading size="medium">{sideinnhold.tittel}</Heading>
+          </VStack>
+          <Deltakelsesstatus
+            spørreundersøkelseId={params.uuid}
+            vertId={params.vertId}
+          />
+        </HeaderBleed>
         <Infoblokk
           tittel={sideinnhold.tittel}
           undertittel={sideinnhold.undertittel}

@@ -1,5 +1,6 @@
+"use client";
+
 import { Alert, BodyShort, HStack, Loader } from "@navikt/ds-react";
-import komponenterStyles from "./komponenter.module.css";
 import spørsmålStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/sporsmal/sporsmalsside.module.css";
 import { PersonGroupFillIcon } from "@navikt/aksel-icons";
 import React from "react";
@@ -22,7 +23,7 @@ export function Deltakelsesstatus({
 
   if (error !== undefined && !isLoading) {
     return (
-      <BodyShort className={komponenterStyles.deltakere}>
+      <HStack className={spørsmålStyles.deltakere}>
         <PersonGroupFillIcon />
         <Alert
           variant={"warning"}
@@ -31,16 +32,20 @@ export function Deltakelsesstatus({
         >
           {error.message}
         </Alert>
-      </BodyShort>
+      </HStack>
     );
   }
 
   if (visAntallSvarIndeks === null) {
     return (
-      <BodyShort className={komponenterStyles.deltakere}>
+      <HStack className={spørsmålStyles.deltakere}>
         <PersonGroupFillIcon />
-        {isLoading ? <Loader /> : data?.antallDeltakere}
-      </BodyShort>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <BodyShort>{data?.antallDeltakere} Deltakere</BodyShort>
+        )}
+      </HStack>
     );
   }
 
