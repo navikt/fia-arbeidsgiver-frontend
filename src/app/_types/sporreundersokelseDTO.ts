@@ -2,17 +2,6 @@ export type StatusType = "OPPRETTET" | "IKKE_PÅBEGYNT" | "PÅBEGYNT";
 
 export type TemaType = "UTVIKLE_PARTSSAMARBEID" | "REDUSERE_SYKEFRAVÆR";
 
-export function finskrivTema(tema: TemaType) {
-  switch (tema) {
-    case "UTVIKLE_PARTSSAMARBEID":
-      return "Utvikle partsamarbeidet i virksomheten";
-    case "REDUSERE_SYKEFRAVÆR":
-      return "Redusere sykefravær i virksomheten"
-    default:
-      return `Beskrivelse mangler for: ${tema}`;
-  }
-}
-
 export type spørreundersøkelseDTO = spørsmålDTO[];
 
 export type spørsmålDTO = {

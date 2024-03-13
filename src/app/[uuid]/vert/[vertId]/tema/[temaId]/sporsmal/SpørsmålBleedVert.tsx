@@ -3,11 +3,11 @@
 import { Alert, BodyShort, Heading, Loader, VStack } from "@navikt/ds-react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
-import { finskrivTema } from "@/app/_types/sporreundersokelseDTO";
 import React, { useEffect } from "react";
 import { inkrementerSpørsmål } from "@/app/_api_hooks/vert/inkrementerSpørsmål";
 import { useVertTemastatus } from "@/app/_api_hooks/vert/useVertTemastatus";
 import HeaderBleed from "@/app/_components/HeaderBleed";
+import { finskrivTema } from "@/utils/spørreundersøkelsesUtils";
 
 export function SpørsmålBleedVert({
   spørreundersøkelseId,
