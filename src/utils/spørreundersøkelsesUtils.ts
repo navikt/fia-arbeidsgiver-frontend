@@ -1,10 +1,10 @@
-import { TemaType } from "@/app/_types/temaDTO";
+import { Tema } from "@/app/_types/temaDTO";
 
-export function finskrivTema(tema: TemaType) {
+export function finskrivTema(tema: Tema) {
   switch (tema) {
-    case "UTVIKLE_PARTSSAMARBEID":
+    case Tema.UTVIKLE_PARTSSAMARBEID:
       return "Utvikle partsamarbeidet i virksomheten";
-    case "REDUSERE_SYKEFRAVÆR":
+    case Tema.REDUSERE_SYKEFRAVÆR:
       return "Redusere sykefravær i virksomheten";
     default:
       return `Beskrivelse mangler for: ${tema}`;

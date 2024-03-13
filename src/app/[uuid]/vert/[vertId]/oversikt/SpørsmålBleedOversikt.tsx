@@ -11,13 +11,14 @@ import {
 } from "@navikt/ds-react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import vertStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/sporsmal/sporsmalsside.module.css";
-import { finskrivTema } from "@/app/_types/sporreundersokelseDTO";
+import { Status } from "@/app/_types/sporreundersokelseDTO";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Feilside } from "@/app/_components/Feilside";
 import { useVertTemastatus } from "@/app/_api_hooks/vert/useVertTemastatus";
 import { startTema } from "@/app/_api_hooks/vert/startTema";
 import { inkrementerSpørsmål } from "@/app/_api_hooks/vert/inkrementerSpørsmål";
+import { finskrivTema } from "@/utils/spørreundersøkelsesUtils";
 
 export function SpørsmålBleedOversikt({
   spørreundersøkelseId,
@@ -100,7 +101,8 @@ export function SpørsmålBleedOversikt({
                 onClick={startKartlegging}
                 className={kartleggingStyles.knappHvitBred}
               >
-                {status.status === "PÅBEGYNT" && status.spørsmålindeks !== null
+                {status.status === Status.PÅBEGYNT &&
+                status.spørsmålindeks !== null
                   ? `Fortsett på spørsmål ${status.spørsmålindeks + 1}/${
                       status.antallSpørsmål
                     }`

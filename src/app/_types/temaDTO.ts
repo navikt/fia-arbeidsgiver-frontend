@@ -1,13 +1,15 @@
-import { spørsmålDTO, StatusType } from "@/app/_types/sporreundersokelseDTO";
-
-export type TemaType = "UTVIKLE_PARTSSAMARBEID" | "REDUSERE_SYKEFRAVÆR";
+import { spørsmålDTO, Status } from "@/app/_types/sporreundersokelseDTO";
+export const enum Tema {
+  UTVIKLE_PARTSSAMARBEID = "UTVIKLE_PARTSSAMARBEID",
+  REDUSERE_SYKEFRAVÆR = "REDUSERE_SYKEFRAVÆR",
+}
 export type temaDTO = {
-  tema: TemaType;
+  tema: Tema;
   spørsmålOgSvaralternativer: spørsmålDTO[];
 };
 export type temastatusDTO = {
-  tema: TemaType;
-  status: StatusType;
+  tema: Tema;
+  status: Status;
   spørsmålindeks: number | null;
   antallSpørsmål: number;
 };

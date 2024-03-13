@@ -3,6 +3,7 @@ import { act, render, screen } from "@testing-library/react";
 import Spørsmålsside from "./page";
 import { axe, toHaveNoViolations } from "jest-axe";
 import { useRouter } from "next/navigation";
+import { Tema } from "@/app/_types/temaDTO";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { dummySpørreundersøkelse } = require("@/utils/dummydata");
@@ -50,7 +51,7 @@ jest.mock("@/app/_api_hooks/vert/useAntallDeltakere", () => ({
 jest.mock("@/app/_api_hooks/vert/useVertTemastatus", () => ({
   useVertTemastatus: () => ({
     data: {
-      tema: "UTVIKLE_PARTSSAMARBEID",
+      tema: Tema.UTVIKLE_PARTSSAMARBEID,
       temastatus: [
         {
           antall: 1,

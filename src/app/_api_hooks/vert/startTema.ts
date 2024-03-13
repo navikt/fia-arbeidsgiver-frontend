@@ -1,9 +1,9 @@
-import { TemaType } from "@/app/_types/temaDTO";
+import { Tema } from "@/app/_types/temaDTO";
 
 export function startTema(
   spørreundersøkelseId: string,
   vertId: string,
-  tema: TemaType,
+  tema: Tema,
 ) {
   return fetch("/api/vert/start-tema", {
     method: "POST",

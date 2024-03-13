@@ -1,6 +1,9 @@
-import { TemaType } from "@/app/_types/temaDTO";
-
-export type StatusType = "OPPRETTET" | "IKKE_PÅBEGYNT" | "PÅBEGYNT";
+import { Tema } from "@/app/_types/temaDTO";
+export const enum Status {
+  OPPRETTET = "OPPRETTET",
+  IKKE_PÅBEGYNT = "IKKE_PÅBEGYNT",
+  PÅBEGYNT = "PÅBEGYNT",
+}
 
 export type spørreundersøkelseDTO = spørsmålDTO[];
 
@@ -13,7 +16,7 @@ export type spørsmålDTO = {
 export interface spørsmålOgSvarDTO extends spørsmålDTO {
   spørsmålIndeks: number;
   sisteSpørsmålIndeks: number;
-  tema: TemaType;
+  tema: Tema;
 }
 
 export type svaralternativDTO = {
