@@ -1,6 +1,6 @@
-export type StatusType = "OPPRETTET" | "IKKE_PÅBEGYNT" | "PÅBEGYNT";
+import { TemaType } from "@/app/_types/temaDTO";
 
-export type TemaType = "UTVIKLE_PARTSSAMARBEID" | "REDUSERE_SYKEFRAVÆR";
+export type StatusType = "OPPRETTET" | "IKKE_PÅBEGYNT" | "PÅBEGYNT";
 
 export type spørreundersøkelseDTO = spørsmålDTO[];
 
@@ -8,13 +8,6 @@ export type spørsmålDTO = {
   id: string;
   spørsmål: string;
   svaralternativer: svaralternativDTO[];
-};
-
-export type temastatusDTO = {
-  tema: TemaType;
-  status: StatusType;
-  spørsmålindeks: number | null;
-  antallSpørsmål: number;
 };
 
 export interface spørsmålOgSvarDTO extends spørsmålDTO {

@@ -1,6 +1,6 @@
 import useSWR, { SWRResponse } from "swr";
-import { temastatusDTO } from "@/app/_types/sporreundersokelseDTO";
 import { ETT_SEKUND_MS } from "@/utils/consts";
+import { temastatusDTO } from "@/app/_types/temaDTO";
 
 export function useVertTemastatus(
   spørreundersøkelseId: string,
