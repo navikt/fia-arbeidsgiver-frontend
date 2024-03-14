@@ -2,14 +2,7 @@
 
 import React from "react";
 import type { Metadata } from "next";
-import {
-  BodyLong,
-  BodyShort,
-  Box,
-  Heading,
-  Page,
-  VStack,
-} from "@navikt/ds-react";
+import { BodyShort, Box, Heading, Page, VStack } from "@navikt/ds-react";
 import Startlenke from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/(start)/Startlenke";
 import HeaderBleed from "@/app/_components/HeaderBleed";
 import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
@@ -28,9 +21,7 @@ export default function Temastartside({
     tittel: "Partssamarbeid",
     delnummer: 1,
     undertittel:
-      "Målet er å sammen identifisere virksomhetens behov og bli enige om hvilke av NAVs IA-tjenester som best kan bidra til å imøtekomme virksomhetens behov.",
-    brødtekst:
-      "Partssamarbeidet er en ressurs for utvikling av arbeidsmiljøet og reduksjon av antall tapte dagsverk på den enkelte arbeidsplass.",
+      "Partssamarbeid er essensielt i virksomheter fordi det bidrar til et godt forebyggende arbeidsmiljø og reduksjon av antall tapte dagsverk. Partssamarbeidet anerkjenner og utnytter kompetansen og ansvarsområdene til verneombud, tillitsvalgte og ledere, noe som skaper en “utvidet ledelseskapasitet”.",
   };
   return (
     <Page contentBlockPadding="none">
@@ -48,7 +39,6 @@ export default function Temastartside({
         <Infoblokk
           tittel={sideinnhold.tittel}
           undertittel={sideinnhold.undertittel}
-          brødtekst={sideinnhold.brødtekst}
         />
         <Startlenke
           temaId={params.temaId}
@@ -63,11 +53,9 @@ export default function Temastartside({
 function Infoblokk({
   tittel,
   undertittel,
-  brødtekst,
 }: {
   tittel: string;
   undertittel: string;
-  brødtekst: string;
 }) {
   return (
     <Box borderRadius="xlarge" padding="12" background="surface-selected">
@@ -77,7 +65,6 @@ function Infoblokk({
       <BodyShort weight="semibold" spacing>
         {undertittel}
       </BodyShort>
-      <BodyLong>{brødtekst}</BodyLong>
     </Box>
   );
 }
