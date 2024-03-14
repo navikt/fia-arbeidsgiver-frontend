@@ -13,6 +13,18 @@ const collections = [
       "temastatus-route:opprettet",
     ],
   },
+  {
+    id: "api-rework",
+    routes: [
+      "vert-antall-med:en-har-svart",
+      "vert-liste-over-tema:success",
+      "vert-sporsmal-og-svar:success",
+      "vert-antall-som-har-svart:en-har-svart",
+      "deltaker-forste-sporsmal:success",
+      "deltaker-sporsmal-og-svar:success",
+      "deltaker-bli-med:success",
+    ],
+  },
 ];
 
 export default collections;
