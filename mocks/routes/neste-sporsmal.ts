@@ -7,7 +7,7 @@ import { Request, Response } from "express";
 const nesteSporsmalRoutes = [
   {
     id: "neste-sporsmal-route",
-    url: "/fia-arbeidsgiver/sporreundersokelse/neste-sporsmal",
+    url: "/fia-arbeidsgiver/sporreundersokelse/neste-sporsmal/:sporsmalId",
     method: "POST",
     variants: [
       {
@@ -30,7 +30,7 @@ const nesteSporsmalRoutes = [
 
 function generateMiddleware(erNesteÅpnetAvVert: boolean) {
   return (req: Request, res: Response) => {
-    const idOfSpørsmål = req.body.nåværendeSpørsmålId;
+    const idOfSpørsmål = req.params.sporsmalId;
     if (idOfSpørsmål === "START") {
       res.status(200);
 
