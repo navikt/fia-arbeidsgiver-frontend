@@ -2,7 +2,14 @@
 
 import React from "react";
 import type { Metadata } from "next";
-import { BodyShort, Box, Heading, Page, VStack } from "@navikt/ds-react";
+import {
+  BodyLong,
+  BodyShort,
+  Box,
+  Heading,
+  Page,
+  VStack,
+} from "@navikt/ds-react";
 import Startlenke from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/(start)/Startlenke";
 import HeaderBleed from "@/app/_components/HeaderBleed";
 import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
@@ -62,9 +69,7 @@ function Infoblokk({
       <Heading size="small" spacing>
         {tittel}
       </Heading>
-      <BodyShort weight="semibold" spacing>
-        {undertittel}
-      </BodyShort>
+      <BodyLong>{undertittel}</BodyLong>
     </Box>
   );
 }
