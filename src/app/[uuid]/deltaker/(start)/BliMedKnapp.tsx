@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import startsideStyles from "./startside.module.css";
 import CookieHandler from "@/utils/CookieHandler";
 import { fetchBliMed } from "@/app/_api_hooks/deltaker/bliMed";
+import { fetchDeltakerForsteSporsmal } from "@/app/_api_hooks/deltaker/forsteSporsmal";
 
 export default function BliMedKnapp({
   spørreundersøkelseId,
@@ -20,7 +21,10 @@ export default function BliMedKnapp({
     } else {
       fetchBliMed(spørreundersøkelseId)
         .then(() => {
-          router.push("deltaker/sporsmal/START/neste");
+          return fetchDeltakerForsteSporsmal(spørreundersøkelseId);
+        })
+        .then(({ spørsmålId }) => {
+          router.push(`deltaker/sporsmal/${spørsmålId}`);
         })
         .catch((error) => {
           setError(error.message);
@@ -36,8 +40,10 @@ export default function BliMedKnapp({
         onClick={() => {
           fetchBliMed(spørreundersøkelseId)
             .then(() => {
-              setError(null);
-              router.push("deltaker/sporsmal/START/neste");
+              return fetchDeltakerForsteSporsmal(spørreundersøkelseId);
+            })
+            .then(({ spørsmålId }) => {
+              router.push(`deltaker/sporsmal/${spørsmålId}`);
             })
             .catch((error) => {
               setError(error.message);
