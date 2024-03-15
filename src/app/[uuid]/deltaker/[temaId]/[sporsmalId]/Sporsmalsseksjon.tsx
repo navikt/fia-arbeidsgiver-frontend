@@ -15,6 +15,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
 import { postEnkeltSvar } from "@/app/_api_hooks/deltaker/svar";
+import { navigasjonstype } from "@/app/_types/nye-api/sporsmalOgSvarDTO";
 
 export default function Spørsmålsseksjon({
   spørsmålId,
@@ -42,11 +43,21 @@ export default function Spørsmålsseksjon({
 
   const erPåLagretSvar = svar === lagretSvar && lagretSvar?.length > 0;
 
+  const gåTilNesteSide = () => {
+    if (spørsmålOgSvar?.nesteType === navigasjonstype.SPØRSMÅL) {
+      router.push(`./${spørsmålOgSvar.nesteId}`);
+    } else if (spørsmålOgSvar?.nesteType === navigasjonstype.FULLFØRT) {
+      router.push(`../ferdig`);
+    } else {
+      setFeilSendSvar("Ugyldig nesteType fra backend");
+    }
+  };
+
   const sendSvarEllerGåVidere = () => {
     if (!spørsmålOgSvar) {
       throw new Error("Spørsmål mangler");
     } else if (erPåLagretSvar) {
-      router.push(`./${spørsmålId}/neste`);
+      gåTilNesteSide();
     } else {
       postEnkeltSvar({
         spørreundersøkelseId: spørreundersøkelseId,
@@ -55,7 +66,7 @@ export default function Spørsmålsseksjon({
       })
         .then(() => {
           setFeilSendSvar(null);
-          router.push(`./${spørsmålId}/neste`);
+          gåTilNesteSide();
         })
         .catch((error) => {
           setFeilSendSvar(error.message);
@@ -121,7 +132,14 @@ export default function Spørsmålsseksjon({
               variant="secondary"
               className={spørsmålStyles.tilbakeknapp}
               onClick={() => {
-                router.push(`./${spørsmålId}/tilbake`);
+                if (
+                  spørsmålOgSvar?.forrigeId &&
+                  spørsmålOgSvar?.forrigeType === navigasjonstype.SPØRSMÅL
+                ) {
+                  router.push(`./${spørsmålOgSvar?.forrigeId}`);
+                } else {
+                  setFeilSendSvar("Ugyldig forrigeType fra backend");
+                }
               }}
             >
               Tilbake
