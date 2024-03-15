@@ -1,12 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { dummyDeltakerFørsteSpørsmål } = require("@/utils/dummyData/deltaker");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_DELTAKER_UNDERSØKELSE_URL } = require("@/utils/urls");
 
 const listeOverTemaRoutes = [
   {
     id: "deltaker-forste-sporsmal",
-    url: API_DELTAKER_UNDERSØKELSE_URL(),
+    url: "/fia-arbeidsgiver/sporreundersokelse/deltaker/v2/:id",
     method: "POST",
     variants: [
       {

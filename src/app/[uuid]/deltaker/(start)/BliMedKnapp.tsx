@@ -4,7 +4,6 @@ import { Alert, Button } from "@navikt/ds-react";
 import React from "react";
 import { useRouter } from "next/navigation";
 import startsideStyles from "./startside.module.css";
-import CookieHandler from "@/utils/CookieHandler";
 import { fetchBliMed } from "@/app/_api_hooks/deltaker/bliMed";
 import { fetchDeltakerForsteSporsmal } from "@/app/_api_hooks/deltaker/forsteSporsmal";
 
@@ -15,13 +14,15 @@ export default function BliMedKnapp({
 }) {
   const router = useRouter();
 
+  /*
+  TODO: Fikse at man går tilbake til spørsmålet man var på.
   React.useEffect(() => {
     if (CookieHandler.finnesFraFør(spørreundersøkelseId)) {
-      router.push(`deltaker/sporsmal/${CookieHandler.spørsmålÅStartePå}/neste`);
+      router.push(`deltaker/sporsmal/${CookieHandler.spørsmålÅStartePå}`);
     } else {
       fetchBliMed(spørreundersøkelseId)
-        .then(() => {
-          return fetchDeltakerForsteSporsmal(spørreundersøkelseId);
+        .then((sesjonsId) => {
+          return fetchDeltakerForsteSporsmal(spørreundersøkelseId, sesjonsId);
         })
         .then(({ spørsmålId }) => {
           router.push(`deltaker/sporsmal/${spørsmålId}`);
@@ -30,7 +31,7 @@ export default function BliMedKnapp({
           setError(error.message);
         });
     }
-  });
+  });*/
 
   const [error, setError] = React.useState<string | null>(null);
   return (
@@ -39,8 +40,11 @@ export default function BliMedKnapp({
         variant={"secondary"}
         onClick={() => {
           fetchBliMed(spørreundersøkelseId)
-            .then(() => {
-              return fetchDeltakerForsteSporsmal(spørreundersøkelseId);
+            .then((sesjonsId) => {
+              return fetchDeltakerForsteSporsmal(
+                spørreundersøkelseId,
+                sesjonsId,
+              );
             })
             .then(({ spørsmålId }) => {
               router.push(`deltaker/sporsmal/${spørsmålId}`);

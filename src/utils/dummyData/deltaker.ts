@@ -3,8 +3,8 @@ const dummyDeltakerBliMed = {
 };
 
 const dummyDeltakerFørsteSpørsmål = {
-  startId: "ef4d406d-abc2-4ed6-8de7-72a7feb40327",
-  startType: "SPØRSMÅL",
+  spørsmålId: "ef4d406d-abc2-4ed6-8de7-72a7feb40326",
+  temaId: "1",
 };
 
 const dummyDeltakerSpørsmål = {
