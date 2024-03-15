@@ -1,6 +1,6 @@
 "use client";
 
-import { forsteSporsmalDTO } from "@/app/_types/forsteSporsmalDTO";
+import { forsteSporsmalDTO } from "@/app/_types/nye-api/forsteSporsmalDTO";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { API_DELTAKER_UNDERSØKELSE_URL } = require("@/utils/urls");
 
