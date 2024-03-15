@@ -19,10 +19,12 @@ import { postEnkeltSvar } from "@/app/_api_hooks/deltaker/svar";
 export default function Spørsmålsseksjon({
   spørsmålId,
   spørreundersøkelseId,
+  temaId,
   lagretSvar,
 }: {
   spørsmålId: string;
   spørreundersøkelseId: string;
+  temaId: string;
   lagretSvar?: string;
 }) {
   const [feilSendSvar, setFeilSendSvar] = React.useState<string | null>(null);
@@ -31,7 +33,7 @@ export default function Spørsmålsseksjon({
     data: spørsmålOgSvar,
     isLoading: lasterSpørsmål,
     error: feilSpørsmål,
-  } = useSpørsmålOgSvar(spørreundersøkelseId, spørsmålId);
+  } = useSpørsmålOgSvar(spørreundersøkelseId, temaId, spørsmålId);
 
   const router = useRouter();
 

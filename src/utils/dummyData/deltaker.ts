@@ -4,7 +4,7 @@ const dummyDeltakerBliMed = {
 
 const dummyDeltakerFørsteSpørsmål = {
   spørsmålId: "ef4d406d-abc2-4ed6-8de7-72a7feb40326",
-  temaId: "1",
+  temaId: "UTVIKLE_PARTSSAMARBEID",
 };
 
 const dummyDeltakerSpørsmål = {

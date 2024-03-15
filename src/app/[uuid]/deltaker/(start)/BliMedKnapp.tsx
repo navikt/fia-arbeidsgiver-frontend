@@ -46,8 +46,8 @@ export default function BliMedKnapp({
                 sesjonsId,
               );
             })
-            .then(({ spørsmålId }) => {
-              router.push(`deltaker/sporsmal/${spørsmålId}`);
+            .then(({ spørsmålId, temaId }) => {
+              router.push(`deltaker/${temaId}/${spørsmålId}`);
             })
             .catch((error) => {
               setError(error.message);

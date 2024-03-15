@@ -25,7 +25,9 @@ const collections = [
       "neste-sporsmal-route:åpen",
       "inkrementer-sporsmal-route:success",
       "temastatus-route:opprettet",
+      // -------- NYE UNDER --------
       "deltaker-forste-sporsmal:success",
+      "deltaker-sporsmal-og-svar:success",
     ],
   },
   {

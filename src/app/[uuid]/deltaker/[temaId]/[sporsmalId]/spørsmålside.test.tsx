@@ -1,16 +1,19 @@
 import "@testing-library/jest-dom";
 import { act, render, screen } from "@testing-library/react";
 import Spørsmålsside from "./page";
-import { spørsmålOgSvarDTO } from "@/app/_types/sporreundersokelseDTO";
+import {
+  spørsmålOgSvarDTO,
+  svaralternativDTO,
+} from "@/app/_types/sporreundersokelseDTO";
 // @ts-ignore
 import { dummySpørreundersøkelse } from "@/utils/dummydata";
 import { axe, toHaveNoViolations } from "jest-axe";
-import { svaralternativDTO } from "@/app/_types/sporreundersokelseDTO";
 import { postEnkeltSvar } from "@/app/_api_hooks/deltaker/svar";
 import { useRouter } from "next/navigation";
 import mockCookieHandler from "@/utils/jest-mocks/CookieHandler";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
 import CookieHandler from "@/utils/CookieHandler";
+import { Tema } from "@/app/_types/temaDTO";
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(() => ({
@@ -47,7 +50,15 @@ describe("Spørsmålsside", () => {
       .mockImplementation(() => undefined);
   });
   test("render fungerer", async () => {
-    render(<Spørsmålsside params={{ uuid: "a", sporsmalId: "b" }} />);
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: "a",
+          sporsmalId: "b",
+          temaId: Tema.REDUSERE_SYKEFRAVÆR,
+        }}
+      />,
+    );
 
     const tittel = await screen.findByText(dummySpørreundersøkelse[0].spørsmål);
 
@@ -63,7 +74,11 @@ describe("Spørsmålsside", () => {
   test("klikk på svaralternativ", async () => {
     render(
       <Spørsmålsside
-        params={{ uuid: "a", sporsmalId: dummySpørreundersøkelse[0].id }}
+        params={{
+          uuid: "a",
+          sporsmalId: dummySpørreundersøkelse[0].id,
+          temaId: Tema.REDUSERE_SYKEFRAVÆR,
+        }}
       />,
     );
 
@@ -93,7 +108,15 @@ describe("Spørsmålsside", () => {
       replace: jest.fn(),
       refresh: jest.fn(),
     });
-    render(<Spørsmålsside params={{ uuid: "a", sporsmalId: "b" }} />);
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: "a",
+          sporsmalId: "b",
+          temaId: Tema.REDUSERE_SYKEFRAVÆR,
+        }}
+      />,
+    );
     expect(pushFunction).toHaveBeenCalledTimes(0);
 
     const tilbake = await screen.findByRole("button", { name: /Tilbake/i });
@@ -124,7 +147,15 @@ describe("Spørsmålsside", () => {
         refresh: jest.fn(),
       });
 
-      render(<Spørsmålsside params={{ uuid: "a", sporsmalId: id }} />);
+      render(
+        <Spørsmålsside
+          params={{
+            uuid: "a",
+            sporsmalId: id,
+            temaId: Tema.REDUSERE_SYKEFRAVÆR,
+          }}
+        />,
+      );
 
       const svar = screen.getByText(svaralternativer[0].tekst);
       act(() => svar.click());
@@ -154,7 +185,13 @@ describe("Spørsmålsside", () => {
       });
 
       const { container } = render(
-        <Spørsmålsside params={{ uuid: "a", sporsmalId: id }} />,
+        <Spørsmålsside
+          params={{
+            uuid: "a",
+            sporsmalId: id,
+            temaId: Tema.REDUSERE_SYKEFRAVÆR,
+          }}
+        />,
       );
 
       await act(async () => {
@@ -197,7 +234,11 @@ describe("Spørsmålsside", () => {
 
     render(
       <Spørsmålsside
-        params={{ uuid: "a", sporsmalId: dummySpørreundersøkelse[0].id }}
+        params={{
+          uuid: "a",
+          sporsmalId: dummySpørreundersøkelse[0].id,
+          temaId: Tema.REDUSERE_SYKEFRAVÆR,
+        }}
       />,
     );
 
@@ -231,7 +272,11 @@ describe("Spørsmålsside", () => {
   test("Viser riktig tekst i svarknapp uten lagret svar", async () => {
     render(
       <Spørsmålsside
-        params={{ uuid: "a", sporsmalId: dummySpørreundersøkelse[0].id }}
+        params={{
+          uuid: "a",
+          sporsmalId: dummySpørreundersøkelse[0].id,
+          temaId: Tema.REDUSERE_SYKEFRAVÆR,
+        }}
       />,
     );
 

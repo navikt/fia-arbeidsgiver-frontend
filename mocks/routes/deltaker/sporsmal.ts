@@ -1,7 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { dummyVertSpørsmålListe } = require("@/utils/dummyData/vert");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_DELTAKER_UNDERSØKELSE_URL } = require("@/utils/urls");
 
 import { spørsmålDTO } from "@/app/_types/sporreundersokelseDTO";
 import { Request, Response } from "express";
@@ -9,7 +7,7 @@ import { Request, Response } from "express";
 const sporsmalOgSvarRoutes = [
   {
     id: "deltaker-sporsmal-og-svar",
-    url: API_DELTAKER_UNDERSØKELSE_URL(),
+    url: "/fia-arbeidsgiver/sporreundersokelse/deltaker/v2/:a/:b/:id",
     method: "POST",
     variants: [
       {

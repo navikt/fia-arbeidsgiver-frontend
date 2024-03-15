@@ -10,23 +10,26 @@ import {
   VStack,
 } from "@navikt/ds-react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
-import deltakerStyles from "@/app/[uuid]/deltaker/sporsmal/[sporsmalId]/sporsmalsside.module.css";
+import deltakerStyles from "@/app/[uuid]/deltaker/[temaId]/[sporsmalId]/sporsmalsside.module.css";
 import { finskrivTema } from "@/utils/spørreundersøkelsesUtils";
 import React from "react";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
+import { Tema } from "@/app/_types/temaDTO";
 
 export function SpørsmålBleedDeltaker({
   spørreundersøkelseId,
   spørsmålId,
+  temaId,
 }: {
   spørreundersøkelseId: string;
   spørsmålId: string;
+  temaId: Tema;
 }) {
   const {
     data: spørsmålOgSvar,
     isLoading: lasterStatus,
     error: feilStatus,
-  } = useSpørsmålOgSvar(spørreundersøkelseId, spørsmålId);
+  } = useSpørsmålOgSvar(spørreundersøkelseId, temaId, spørsmålId);
 
   if (lasterStatus) {
     return (
@@ -65,7 +68,7 @@ export function SpørsmålBleedDeltaker({
       <Bleed marginInline="full" asChild reflectivePadding>
         <Box padding="5" className={kartleggingStyles.bleedKlar}>
           <HStack className={deltakerStyles.bleedInnhold}>
-            <Heading size="small">{finskrivTema(spørsmålOgSvar.tema)}</Heading>
+            <Heading size="small">{finskrivTema(temaId)}</Heading>
           </HStack>
         </Box>
       </Bleed>
