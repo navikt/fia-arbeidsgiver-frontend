@@ -29,12 +29,13 @@ export default function Spørsmålsseksjon({
   lagretSvar?: string;
 }) {
   const [feilSendSvar, setFeilSendSvar] = React.useState<string | null>(null);
+  const [shouldPoll, setShouldPoll] = React.useState(true);
 
   const {
     data: spørsmålOgSvar,
     isLoading: lasterSpørsmål,
     error: feilSpørsmål,
-  } = useSpørsmålOgSvar(spørreundersøkelseId, temaId, spørsmålId);
+  } = useSpørsmålOgSvar(spørreundersøkelseId, temaId, spørsmålId, shouldPoll);
 
   const router = useRouter();
 
@@ -42,6 +43,21 @@ export default function Spørsmålsseksjon({
   const velgSvar = (svaralternativid: string) => setSvar(svaralternativid);
 
   const erPåLagretSvar = svar === lagretSvar && lagretSvar?.length > 0;
+  const erPåUåpnetSpørsmål = feilSpørsmål === "Spørsmål er ikke åpnet";
+
+  React.useEffect(() => {
+    if (spørsmålOgSvar && !erPåUåpnetSpørsmål) {
+      setShouldPoll(false);
+    }
+  }, [spørsmålOgSvar, erPåUåpnetSpørsmål]);
+
+  if (erPåUåpnetSpørsmål) {
+    return (
+      <VStack align="center" justify="center">
+        <Loader size="3xlarge" title="Venter..." />
+      </VStack>
+    );
+  }
 
   const gåTilNesteSide = () => {
     if (spørsmålOgSvar?.nesteType === navigasjonstype.SPØRSMÅL) {

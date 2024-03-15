@@ -30,6 +30,16 @@ const sporsmalOgSvarRoutes = [
           },
         },
       },
+      {
+        id: "ikke-åpnet",
+        type: "json",
+        options: {
+          status: 202,
+          body: {
+            melding: "Spørsmål er ikke åpnet",
+          },
+        },
+      },
     ],
   },
 ];
