@@ -15,23 +15,23 @@ export default function BliMedKnapp({
   const router = useRouter();
 
   /*
-  TODO: Fikse at man går tilbake til spørsmålet man var på.
-  React.useEffect(() => {
-    if (CookieHandler.finnesFraFør(spørreundersøkelseId)) {
-      router.push(`deltaker/sporsmal/${CookieHandler.spørsmålÅStartePå}`);
-    } else {
-      fetchBliMed(spørreundersøkelseId)
-        .then((sesjonsId) => {
-          return fetchDeltakerForsteSporsmal(spørreundersøkelseId, sesjonsId);
-        })
-        .then(({ spørsmålId }) => {
-          router.push(`deltaker/sporsmal/${spørsmålId}`);
-        })
-        .catch((error) => {
-          setError(error.message);
-        });
-    }
-  });*/
+      TODO: Fikse at man går tilbake til spørsmålet man var på.
+      React.useEffect(() => {
+        if (CookieHandler.finnesFraFør(spørreundersøkelseId)) {
+          router.push(`deltaker/sporsmal/${CookieHandler.spørsmålÅStartePå}`);
+        } else {
+          fetchBliMed(spørreundersøkelseId)
+            .then((sesjonsId) => {
+              return fetchDeltakerForsteSporsmal(spørreundersøkelseId, sesjonsId);
+            })
+            .then(({ spørsmålId }) => {
+              router.push(`deltaker/sporsmal/${spørsmålId}`);
+            })
+            .catch((error) => {
+              setError(error.message);
+            });
+        }
+      });*/
 
   const [error, setError] = React.useState<string | null>(null);
   return (
@@ -40,11 +40,8 @@ export default function BliMedKnapp({
         variant={"secondary"}
         onClick={() => {
           fetchBliMed(spørreundersøkelseId)
-            .then((sesjonsId) => {
-              return fetchDeltakerForsteSporsmal(
-                spørreundersøkelseId,
-                sesjonsId,
-              );
+            .then(() => {
+              return fetchDeltakerForsteSporsmal(spørreundersøkelseId);
             })
             .then(({ spørsmålId, temaId }) => {
               router.push(`deltaker/${temaId}/${spørsmålId}`);

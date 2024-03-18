@@ -1,6 +1,6 @@
 import useSWR, { SWRResponse } from "swr";
-import CookieHandler from "@/utils/CookieHandler";
 import { sporsmalOgSvarDTO } from "@/app/_types/nye-api/sporsmalOgSvarDTO";
+import React from "react";
 
 export function useSpørsmålOgSvar(
   spørreundersøkelseId: string,
@@ -8,15 +8,11 @@ export function useSpørsmålOgSvar(
   spørsmålId: string,
   shouldPoll = false,
 ): SWRResponse<sporsmalOgSvarDTO> {
-  const fetcher = (url: string) =>
+  const random = React.useRef(Date.now()); // Vi bruker random for å stoppe SWR fra å cache.
+
+  const fetcher = ([url]: [string]) =>
     fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        sesjonsId: CookieHandler.sesjonsID,
-      }),
+      method: "GET",
     }).then((res) => {
       if (res.status === 202) {
         throw "Spørsmål er ikke åpnet";
@@ -25,7 +21,7 @@ export function useSpørsmålOgSvar(
     });
 
   return useSWR(
-    `/api/deltaker/${spørreundersøkelseId}/${temaId}/${spørsmålId}`,
+    [`/api/deltaker/${spørreundersøkelseId}/${temaId}/${spørsmålId}`, random],
     fetcher,
     shouldPoll
       ? {

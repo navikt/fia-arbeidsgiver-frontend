@@ -1,19 +1,14 @@
-import { arbeidsgiverApiFetcher } from "@/app/api/_arbeidsgiverApiFetcher";
+import { arbeidsgiverApiFetcherDeltaker } from "@/app/api/_arbeidsgiverApiFetcherDeltaker";
 import { NextRequest } from "next/server";
 
-export async function POST(request: NextRequest) {
-  if (request.headers.get("content-type") != "application/json") {
-    return new Response(JSON.stringify({ error: "Invalid content-type" }), {
-      status: 400,
-    });
-  }
-
-  const { spørreundersøkelseId, sesjonsId } = await request.json();
-  const fetcher = arbeidsgiverApiFetcher(
-    `deltaker/v2/${spørreundersøkelseId}`,
-    JSON.stringify({
-      sesjonsId,
-    }),
+// GET /api/deltaker/[sporreundersokelseId] -> skal hente StartDto
+export async function GET(
+  _: NextRequest,
+  { params }: { params: { sporreundersokelseId: string } },
+) {
+  const spørreundersøkelseId = params.sporreundersokelseId;
+  const fetcher = arbeidsgiverApiFetcherDeltaker(
+    `deltaker/${spørreundersøkelseId}`,
   );
 
   return fetcher();

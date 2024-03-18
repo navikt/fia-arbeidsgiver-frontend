@@ -1,8 +1,8 @@
-import { arbeidsgiverApiFetcher } from "@/app/api/_arbeidsgiverApiFetcher";
 import { NextRequest } from "next/server";
+import { arbeidsgiverApiFetcherDeltaker } from "@/app/api/_arbeidsgiverApiFetcherDeltaker";
 
-export async function POST(
-  request: NextRequest,
+export async function GET(
+  _: NextRequest,
   {
     params: { sporreundersokelseId, temaId, sporsmalId },
   }: {
@@ -13,18 +13,8 @@ export async function POST(
     };
   },
 ) {
-  if (request.headers.get("content-type") != "application/json") {
-    return new Response(JSON.stringify({ error: "Invalid content-type" }), {
-      status: 400,
-    });
-  }
-  const { sesjonsId } = await request.json();
-
-  const fetcher = arbeidsgiverApiFetcher(
-    `deltaker/v2/${sporreundersokelseId}/${temaId}/${sporsmalId}`,
-    JSON.stringify({
-      sesjonsId,
-    }),
+  const fetcher = arbeidsgiverApiFetcherDeltaker(
+    `deltaker/${sporreundersokelseId}/${temaId}/${sporsmalId}`,
   );
 
   return fetcher();

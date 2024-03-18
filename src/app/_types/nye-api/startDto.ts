@@ -1,4 +1,4 @@
-export type forsteSporsmalDTO = {
+export type StartDto = {
   temaId: string;
   spørsmålId: string;
 };

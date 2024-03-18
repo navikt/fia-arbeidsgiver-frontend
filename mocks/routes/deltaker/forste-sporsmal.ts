@@ -1,18 +1,18 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { dummyDeltakerFørsteSpørsmål } = require("@/utils/dummyData/deltaker");
+const { dummyStartDto } = require("@/utils/dummyData/deltaker");
 
 const listeOverTemaRoutes = [
   {
     id: "deltaker-forste-sporsmal",
-    url: "/fia-arbeidsgiver/sporreundersokelse/deltaker/v2/:id",
-    method: "POST",
+    url: "/fia-arbeidsgiver/sporreundersokelse/deltaker/:id",
+    method: "GET",
     variants: [
       {
         id: "success",
         type: "json",
         options: {
           status: 200,
-          body: dummyDeltakerFørsteSpørsmål,
+          body: dummyStartDto,
         },
       },
       {

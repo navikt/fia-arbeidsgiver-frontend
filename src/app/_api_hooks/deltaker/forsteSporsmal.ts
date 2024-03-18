@@ -1,20 +1,13 @@
 "use client";
 
-import { forsteSporsmalDTO } from "@/app/_types/nye-api/forsteSporsmalDTO";
+import { StartDto } from "@/app/_types/nye-api/startDto";
 
 export function fetchDeltakerForsteSporsmal(
   spørreundersøkelseId: string,
-  sesjonsId: string,
-): Promise<forsteSporsmalDTO> {
+): Promise<StartDto> {
   const fetcher = () =>
     fetch(`/api/deltaker/${spørreundersøkelseId}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        sesjonsId,
-      }),
+      method: "GET",
     }).then((res) => {
       if (!res.ok) {
         throw new Error("Noe gikk galt med henting av første spørsmål.");

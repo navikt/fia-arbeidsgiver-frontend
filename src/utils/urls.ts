@@ -1,7 +1,7 @@
 // URLer for API (uten hostname)
 const API_BASE_URL = "/fia-arbeidsgiver/sporreundersokelse";
 const API_BASE_URL_VERT = `${API_BASE_URL}/vert/v2`;
-const API_BASE_URL_DELTAKER = `${API_BASE_URL}/deltaker/v2`;
+const API_BASE_URL_DELTAKER = `${API_BASE_URL}/deltaker`;
 
 const API_VERT_UNDERSØKELSE_URL = (
   sporreundersokelseId = ":sporreundersokelseId",
@@ -24,7 +24,6 @@ const API_VERT_ANTALL_SVARTE_URL = (
     sporreundersokelseId,
   )}/${temaId}/${sporsmalId}/status`;
 
-const API_DELTAKER_BLI_MED_URL = `${API_BASE_URL_DELTAKER}/bli-med`;
 const API_DELTAKER_UNDERSØKELSE_URL = (
   sporreundersokelseId = ":sporreundersokelseId",
 ) => `${API_BASE_URL_DELTAKER}/${sporreundersokelseId}`;
@@ -45,7 +44,6 @@ module.exports = {
   API_VERT_UNDERSØKELSE_STATUS_URL,
   API_VERT_SPØRSMÅL_URL,
   API_VERT_ANTALL_SVARTE_URL,
-  API_DELTAKER_BLI_MED_URL,
   API_DELTAKER_UNDERSØKELSE_URL,
   API_DELTAKER_SPØRSMÅL_URL,
 };

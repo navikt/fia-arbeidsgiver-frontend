@@ -7,8 +7,8 @@ import { Request, Response } from "express";
 const sporsmalOgSvarRoutes = [
   {
     id: "deltaker-sporsmal-og-svar",
-    url: "/fia-arbeidsgiver/sporreundersokelse/deltaker/v2/:a/:b/:id",
-    method: "POST",
+    url: "/fia-arbeidsgiver/sporreundersokelse/deltaker/:a/:b/:id",
+    method: "GET",
     variants: [
       {
         id: "success",
@@ -32,12 +32,9 @@ const sporsmalOgSvarRoutes = [
       },
       {
         id: "ikke-åpnet",
-        type: "json",
+        type: "status",
         options: {
           status: 202,
-          body: {
-            melding: "Spørsmål er ikke åpnet",
-          },
         },
       },
     ],

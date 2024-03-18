@@ -2,7 +2,7 @@ const dummyDeltakerBliMed = {
   sesjonsId: "790fba4d-1c9f-4c20-a019-d574d9542421",
 };
 
-const dummyDeltakerFørsteSpørsmål = {
+const dummyStartDto = {
   spørsmålId: "ef4d406d-abc2-4ed6-8de7-72a7feb40326",
   temaId: "UTVIKLE_PARTSSAMARBEID",
 };
@@ -27,6 +27,6 @@ const dummyDeltakerSpørsmål = {
 
 module.exports = {
   dummyDeltakerBliMed,
-  dummyDeltakerFørsteSpørsmål,
+  dummyStartDto,
   dummyDeltakerSpørsmål,
 };

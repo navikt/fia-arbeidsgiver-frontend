@@ -30,8 +30,6 @@ export function fetchBliMed(spørreundersøkelseId: string) {
         const nySessionID = data.sesjonsId;
 
         CookieHandler.nyUndersøkelse(spørreundersøkelseId, nySessionID);
-
-        return nySessionID;
       });
 
   return fetcher();
