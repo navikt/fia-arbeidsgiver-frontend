@@ -2,26 +2,27 @@ import CookieHandler from "@/utils/CookieHandler";
 
 export function postEnkeltSvar({
   spørreundersøkelseId,
+  temaId,
   spørsmålId,
   svarId,
 }: {
   spørreundersøkelseId: string;
+  temaId: string;
   spørsmålId: string;
   svarId: string;
 }) {
-  const sesjonsId = CookieHandler.sesjonsID;
-  return fetch("/api/svar", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
+  return fetch(
+    `/api/deltaker/${spørreundersøkelseId}/${temaId}/${spørsmålId}/svar`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        svarId,
+      }),
     },
-    body: JSON.stringify({
-      spørreundersøkelseId,
-      sesjonsId,
-      spørsmålId,
-      svarId,
-    }),
-  }).then((res) => {
+  ).then((res) => {
     if (res.status === 400 || res.status === 403) {
       throw new Error("Kunne ikke sende svar, prøv igjen");
     }

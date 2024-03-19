@@ -77,7 +77,8 @@ export default function Spørsmålsseksjon({
     } else {
       postEnkeltSvar({
         spørreundersøkelseId: spørreundersøkelseId,
-        spørsmålId,
+        temaId: temaId,
+        spørsmålId: spørsmålId,
         svarId: svar,
       })
         .then(() => {

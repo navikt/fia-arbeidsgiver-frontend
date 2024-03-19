@@ -1,7 +1,7 @@
 const svarRoutes = [
   {
     id: "svar-route",
-    url: "/fia-arbeidsgiver/sporreundersokelse/svar",
+    url: "/fia-arbeidsgiver/sporreundersokelse/deltaker/:a/:b/:c/svar",
     method: "POST",
     variants: [
       {

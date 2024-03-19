@@ -17,7 +17,6 @@ const collections = [
     id: "base-new",
     routes: [
       "start-tema-route:success",
-      "svar-route:success",
       "sporsmal-og-svar-vert-route:success",
       "sporsmal-og-svar-id-route:success",
       "antall-deltakere-route:har-deltakere",
@@ -28,6 +27,7 @@ const collections = [
       "deltaker-forste-sporsmal:success",
       "deltaker-sporsmal-og-svar:success",
       "bli-med-route:kan-bli-med", // TODO: Bytt ut med  "deltaker-bli-med:success" om vi endrer bli-med i backend også
+      "svar-route:success",
     ],
   },
   {

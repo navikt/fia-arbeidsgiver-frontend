@@ -93,6 +93,7 @@ describe("Spørsmålsside", () => {
     expect(postEnkeltSvar).toHaveBeenCalledTimes(1);
     expect(postEnkeltSvar).toHaveBeenCalledWith({
       spørreundersøkelseId: "a",
+      temaId: Tema.REDUSERE_SYKEFRAVÆR,
       spørsmålId: dummySpørreundersøkelse[0].id,
       svarId: dummySpørreundersøkelse[0].svaralternativer[0].id,
     });
@@ -169,6 +170,7 @@ describe("Spørsmålsside", () => {
       expect(postEnkeltSvar).toHaveBeenCalledWith({
         spørreundersøkelseId: "a",
         spørsmålId: id,
+        temaId: Tema.REDUSERE_SYKEFRAVÆR,
         svarId: svaralternativer[0].id,
       });
     },
