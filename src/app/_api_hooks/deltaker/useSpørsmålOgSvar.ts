@@ -15,7 +15,7 @@ export function useSpørsmålOgSvar(
       method: "GET",
     }).then((res) => {
       if (res.status === 202) {
-        throw "Spørsmål er ikke åpnet";
+        throw new Error("Spørsmål er ikke åpnet");
       }
       return res.json();
     });
