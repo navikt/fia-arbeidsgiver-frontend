@@ -8,7 +8,7 @@ import {
 // @ts-ignore
 import { dummySpørreundersøkelse } from "@/utils/dummydata";
 import { axe, toHaveNoViolations } from "jest-axe";
-import { postEnkeltSvar } from "@/app/_api_hooks/deltaker/svar";
+import { sendSvar } from "@/app/_api_hooks/deltaker/svar";
 import { useRouter } from "next/navigation";
 import mockCookieHandler from "@/utils/jest-mocks/CookieHandler";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
@@ -90,8 +90,8 @@ describe("Spørsmålsside", () => {
     const neste = await screen.findByRole("button", { name: /Svar/i });
     await act(async () => neste.click());
 
-    expect(postEnkeltSvar).toHaveBeenCalledTimes(1);
-    expect(postEnkeltSvar).toHaveBeenCalledWith({
+    expect(sendSvar).toHaveBeenCalledTimes(1);
+    expect(sendSvar).toHaveBeenCalledWith({
       spørreundersøkelseId: "a",
       temaId: Tema.REDUSERE_SYKEFRAVÆR,
       spørsmålId: dummySpørreundersøkelse[0].id,
@@ -166,8 +166,8 @@ describe("Spørsmålsside", () => {
       const neste = screen.getByRole("button", { name: /Svar/i });
       await act(async () => neste.click());
 
-      expect(postEnkeltSvar).toHaveBeenCalledTimes(1);
-      expect(postEnkeltSvar).toHaveBeenCalledWith({
+      expect(sendSvar).toHaveBeenCalledTimes(1);
+      expect(sendSvar).toHaveBeenCalledWith({
         spørreundersøkelseId: "a",
         spørsmålId: id,
         temaId: Tema.REDUSERE_SYKEFRAVÆR,

@@ -49,7 +49,7 @@ export default function Temastartside({
         />
         <Startlenke
           temaId={params.temaId}
-          uuid={params.uuid}
+          spørreundersøkelseId={params.uuid}
           vertId={params.vertId}
         />
       </Page.Block>

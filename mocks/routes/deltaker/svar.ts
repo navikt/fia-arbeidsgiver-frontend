@@ -1,7 +1,10 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { API_DELTAKER_SVAR_URL } = require("@/utils/urls");
+
 const svarRoutes = [
   {
-    id: "svar-route",
-    url: "/fia-arbeidsgiver/sporreundersokelse/deltaker/:a/:b/:c/svar",
+    id: "deltaker-svar",
+    url: API_DELTAKER_SVAR_URL(),
     method: "POST",
     variants: [
       {

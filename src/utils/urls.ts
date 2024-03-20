@@ -36,6 +36,14 @@ const API_DELTAKER_SPØRSMÅL_URL = (
   `${API_DELTAKER_UNDERSØKELSE_URL(
     sporreundersokelseId,
   )}/${temaId}/${sporsmalId}`;
+const API_DELTAKER_SVAR_URL = (
+  sporreundersokelseId = ":sporreundersokelseId",
+  temaId = ":temaId",
+  sporsmalId = ":sporsmalId",
+) =>
+  `${API_DELTAKER_UNDERSØKELSE_URL(
+    sporreundersokelseId,
+  )}/${temaId}/${sporsmalId}/svar`;
 
 module.exports = {
   API_BASE_URL,
@@ -47,5 +55,6 @@ module.exports = {
   API_VERT_ANTALL_SVAR_URL,
   API_DELTAKER_UNDERSØKELSE_URL,
   API_DELTAKER_SPØRSMÅL_URL,
+  API_DELTAKER_SVAR_URL,
   API_DELTAKER_BLI_MED_URL,
 };

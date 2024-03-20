@@ -1,7 +1,7 @@
 "use client";
 
 import { BodyShort, HStack } from "@navikt/ds-react";
-import spørsmålStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/sporsmal/sporsmalsside.module.css";
+import spørsmålStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/sporsmalsside.module.css";
 import { PersonGroupFillIcon } from "@navikt/aksel-icons";
 import React from "react";
 import { AntallSvar } from "@/app/_components/StatusPåDeltaker/AntallSvar";

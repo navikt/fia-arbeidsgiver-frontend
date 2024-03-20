@@ -14,8 +14,7 @@ import {
 } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
-import { postEnkeltSvar } from "@/app/_api_hooks/deltaker/svar";
-import { navigasjonstype } from "@/app/_types/nye-api/sporsmalOgSvarDTO";
+import { sendSvar } from "@/app/_api_hooks/deltaker/svar";
 
 export default function Spørsmålsseksjon({
   spørsmålId,
@@ -75,7 +74,7 @@ export default function Spørsmålsseksjon({
     } else if (erPåLagretSvar) {
       gåTilNesteSide();
     } else {
-      postEnkeltSvar({
+      sendSvar({
         spørreundersøkelseId: spørreundersøkelseId,
         temaId: temaId,
         spørsmålId: spørsmålId,
@@ -120,8 +119,8 @@ export default function Spørsmålsseksjon({
             className={spørsmålStyles.spørsmålsseksjon}
           >
             {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
-              <Radio key={svaralternativ.id} value={svaralternativ.id}>
-                {svaralternativ.tekst}
+              <Radio key={svaralternativ.svarId} value={svaralternativ.svarId}>
+                {svaralternativ.svartekst}
               </Radio>
             ))}
           </RadioGroup>

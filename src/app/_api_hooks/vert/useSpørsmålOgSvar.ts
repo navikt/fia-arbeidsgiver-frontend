@@ -1,32 +1,26 @@
 import useSWR, { SWRResponse } from "swr";
-import React from "react";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 
 export function useSpørsmålOgSvar(
   spørreundersøkelseId: string,
+  vertId: string,
   temaId: string,
   spørsmålId: string,
-  shouldPoll = false,
 ): SWRResponse<SpørsmålsoversiktDto> {
-  const random = React.useRef(Date.now()); // Vi bruker random for å stoppe SWR fra å cache.
-
-  const fetcher = ([url]: [string]) =>
+  const fetcher = (url: string) =>
     fetch(url, {
       method: "GET",
     }).then((res) => {
       if (res.status === 202) {
-        throw new Error("Spørsmål er ikke åpnet");
+        throw new Error(
+          "Spørsmål er ikke åpnet Dette burde ikke skje for vert, noe er galt",
+        );
       }
       return res.json();
     });
 
   return useSWR(
-    [`/api/deltaker/${spørreundersøkelseId}/${temaId}/${spørsmålId}`, random],
+    `/api/vert/${spørreundersøkelseId}/${vertId}/${temaId}/${spørsmålId}`,
     fetcher,
-    shouldPoll
-      ? {
-          refreshInterval: 1000,
-        }
-      : {},
   );
 }

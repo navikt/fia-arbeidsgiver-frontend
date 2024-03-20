@@ -1,16 +1,16 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { dummyBliMed } = require("@/utils/dummydata");
+const { dummyBliMed } = require("@/utils/dummydata/deltaker");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { API_DELTAKER_BLI_MED_URL } = require("@/utils/urls");
 
 const bliMedRoutes = [
   {
-    id: "bli-med-route",
+    id: "deltaker-bli-med",
     url: API_DELTAKER_BLI_MED_URL,
     method: "POST",
     variants: [
       {
-        id: "kan-bli-med",
+        id: "success",
         type: "json",
         options: {
           status: 200,
