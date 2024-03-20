@@ -1,5 +1,4 @@
 import useSWR, { SWRResponse } from "swr";
-import React from "react";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 
 export function useSpørsmålOgSvar(
@@ -8,9 +7,7 @@ export function useSpørsmålOgSvar(
   spørsmålId: string,
   shouldPoll = false,
 ): SWRResponse<SpørsmålsoversiktDto> {
-  const random = React.useRef(Date.now()); // Vi bruker random for å stoppe SWR fra å cache.
-
-  const fetcher = ([url]: [string]) =>
+  const fetcher = (url: string) =>
     fetch(url, {
       method: "GET",
     }).then((res) => {
@@ -21,7 +18,7 @@ export function useSpørsmålOgSvar(
     });
 
   return useSWR(
-    [`/api/deltaker/${spørreundersøkelseId}/${temaId}/${spørsmålId}`, random],
+    `/api/deltaker/${spørreundersøkelseId}/${temaId}/${spørsmålId}`,
     fetcher,
     shouldPoll
       ? {

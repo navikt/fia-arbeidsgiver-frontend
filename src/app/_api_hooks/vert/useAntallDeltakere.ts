@@ -1,6 +1,5 @@
 import useSWR, { SWRConfiguration, SWRResponse } from "swr";
 import { ETT_SEKUND_MS } from "@/utils/consts";
-import React from "react";
 
 export function useAntallDeltakere({
   vertId,
@@ -9,9 +8,7 @@ export function useAntallDeltakere({
   vertId: string;
   spørreundersøkelseId: string;
 }): SWRResponse<number> {
-  const random = React.useRef(Date.now()); // Vi bruker random for å stoppe SWR fra å cache.
-
-  const fetcher = ([url]: [string]) => {
+  const fetcher = (url: string) => {
     return fetch(url, {
       method: "GET",
     }).then((res) => {
@@ -27,7 +24,7 @@ export function useAntallDeltakere({
     revalidateIfStale: true,
   };
   return useSWR<number>(
-    [`/api/vert/${spørreundersøkelseId}/${vertId}/antall-deltakere`, random],
+    `/api/vert/${spørreundersøkelseId}/${vertId}/antall-deltakere`,
     fetcher,
     swrConfig,
   );
