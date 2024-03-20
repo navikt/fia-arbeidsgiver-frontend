@@ -16,14 +16,14 @@ const API_VERT_SPØRSMÅL_URL = (
   sporsmalId = ":sporsmalId",
 ) =>
   `${API_VERT_UNDERSØKELSE_URL(sporreundersokelseId)}/${temaId}/${sporsmalId}`;
-const API_VERT_ANTALL_SVARTE_URL = (
+const API_VERT_ANTALL_SVAR_URL = (
   sporreundersokelseId = ":sporreundersokelseId",
   temaId = ":temaId",
   sporsmalId = ":sporsmalId",
 ) =>
   `${API_VERT_UNDERSØKELSE_URL(
     sporreundersokelseId,
-  )}/${temaId}/${sporsmalId}/status`;
+  )}/${temaId}/${sporsmalId}/antall-svar`;
 
 const API_DELTAKER_UNDERSØKELSE_URL = (
   sporreundersokelseId = ":sporreundersokelseId",
@@ -44,7 +44,7 @@ module.exports = {
   API_VERT_UNDERSØKELSE_URL,
   API_VERT_ANTALL_DELTAKERE_URL,
   API_VERT_SPØRSMÅL_URL,
-  API_VERT_ANTALL_SVARTE_URL,
+  API_VERT_ANTALL_SVAR_URL,
   API_DELTAKER_UNDERSØKELSE_URL,
   API_DELTAKER_SPØRSMÅL_URL,
   API_DELTAKER_BLI_MED_URL,

@@ -4,7 +4,7 @@ import React from "react";
 import { Button, Heading, VStack } from "@navikt/ds-react";
 import startsideStyles from "./startside.module.css";
 import { useRouter } from "next/navigation";
-import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
+import { StatusPåDeltaker } from "@/app/_components/StatusPåDeltaker/StatusPåDeltaker";
 
 export default function Status({
   spørreundersøkelseId,
@@ -21,7 +21,7 @@ export default function Status({
       align={"center"}
       justify={"center"}
     >
-      <Deltakelsesstatus
+      <StatusPåDeltaker
         vertId={vertId}
         spørreundersøkelseId={spørreundersøkelseId}
       />

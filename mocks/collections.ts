@@ -27,6 +27,7 @@ const collections = [
       "bli-med-route:kan-bli-med",
       "svar-route:success",
       "vert-antall-deltakere:success",
+      "vert-antall-svar:success",
     ],
   },
   // {

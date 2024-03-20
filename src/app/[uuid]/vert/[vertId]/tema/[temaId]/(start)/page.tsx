@@ -12,7 +12,7 @@ import {
 } from "@navikt/ds-react";
 import Startlenke from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/(start)/Startlenke";
 import HeaderBleed from "@/app/_components/HeaderBleed";
-import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
+import { StatusPåDeltaker } from "@/app/_components/StatusPåDeltaker/StatusPåDeltaker";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -38,7 +38,7 @@ export default function Temastartside({
             <BodyShort size="medium">Del {sideinnhold.delnummer}</BodyShort>
             <Heading size="medium">{sideinnhold.tittel}</Heading>
           </VStack>
-          <Deltakelsesstatus
+          <StatusPåDeltaker
             spørreundersøkelseId={params.uuid}
             vertId={params.vertId}
           />

@@ -2,12 +2,12 @@
 
 import { Alert, BodyShort, Heading, Loader, VStack } from "@navikt/ds-react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
-import { Deltakelsesstatus } from "@/app/_components/Deltakelsesstatus";
 import React, { useEffect } from "react";
 import { inkrementerSpørsmål } from "@/app/_api_hooks/vert/inkrementerSpørsmål";
 import { useVertTemastatus } from "@/app/_api_hooks/vert/useVertTemastatus";
 import HeaderBleed from "@/app/_components/HeaderBleed";
 import { finskrivTema } from "@/utils/spørreundersøkelsesUtils";
+import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
 
 export function SpørsmålBleedVert({
   spørreundersøkelseId,
@@ -62,10 +62,12 @@ export function SpørsmålBleedVert({
             </Alert>
           )}
         </VStack>
-        <Deltakelsesstatus
-          vertId={vertId}
+
+        <StatusPåDeltakerMedSvar
+          spørsmålId={"a"}
           spørreundersøkelseId={spørreundersøkelseId}
-          visAntallSvarIndeks={aktivtSpørsmålindex}
+          temaId={"noe"}
+          vertId={vertId}
         />
       </HeaderBleed>
     );
@@ -82,10 +84,11 @@ export function SpørsmålBleedVert({
           </Heading>
         </VStack>
 
-        <Deltakelsesstatus
-          vertId={vertId}
+        <StatusPåDeltakerMedSvar
+          spørsmålId={"a"}
           spørreundersøkelseId={spørreundersøkelseId}
-          visAntallSvarIndeks={aktivtSpørsmålindex}
+          temaId={"noe"}
+          vertId={vertId}
         />
       </HeaderBleed>
     )
