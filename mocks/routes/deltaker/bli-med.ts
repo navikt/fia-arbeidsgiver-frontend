@@ -1,10 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { dummyBliMed } = require("@/utils/dummydata");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { API_DELTAKER_BLI_MED_URL } = require("@/utils/urls");
 
 const bliMedRoutes = [
   {
     id: "bli-med-route",
-    url: "/fia-arbeidsgiver/sporreundersokelse/bli-med",
+    url: API_DELTAKER_BLI_MED_URL,
     method: "POST",
     variants: [
       {

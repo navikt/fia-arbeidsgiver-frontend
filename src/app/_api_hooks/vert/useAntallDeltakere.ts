@@ -1,6 +1,6 @@
 import useSWR, { SWRConfiguration, SWRResponse } from "swr";
-import { antallDeltakereDTO } from "@/app/_types/antallDeltakereDTO";
 import { ETT_SEKUND_MS } from "@/utils/consts";
+import React from "react";
 
 export function useAntallDeltakere({
   vertId,
@@ -8,17 +8,12 @@ export function useAntallDeltakere({
 }: {
   vertId: string;
   spørreundersøkelseId: string;
-}): SWRResponse<antallDeltakereDTO> {
-  const fetcher = (url: string) => {
+}): SWRResponse<number> {
+  const random = React.useRef(Date.now()); // Vi bruker random for å stoppe SWR fra å cache.
+
+  const fetcher = ([url]: [string]) => {
     return fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        spørreundersøkelseId,
-        vertId,
-      }),
+      method: "GET",
     }).then((res) => {
       if (!res.ok) {
         throw new Error("Kunne ikke laste antall deltakere");
@@ -31,9 +26,8 @@ export function useAntallDeltakere({
     refreshInterval: ETT_SEKUND_MS,
     revalidateIfStale: true,
   };
-
-  return useSWR<antallDeltakereDTO>(
-    "/api/vert/antall-deltakere",
+  return useSWR<number>(
+    [`/api/vert/${spørreundersøkelseId}/${vertId}/antall-deltakere`, random],
     fetcher,
     swrConfig,
   );

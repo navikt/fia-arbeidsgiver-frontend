@@ -1,18 +1,18 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { dummyAntallDeltakere } = require("@/utils/dummydata");
+const { API_VERT_ANTALL_DELTAKERE_URL } = require("@/utils/urls");
 
 const antallDeltakereRoutes = [
   {
-    id: "antall-deltakere-route",
-    url: "/fia-arbeidsgiver/sporreundersokelse/vert/antall-deltakere",
-    method: "POST",
+    id: "vert-antall-deltakere",
+    url: API_VERT_ANTALL_DELTAKERE_URL(),
+    method: "GET",
     variants: [
       {
-        id: "har-deltakere",
-        type: "json",
+        id: "success",
+        type: "text",
         options: {
           status: 200,
-          body: dummyAntallDeltakere,
+          body: "20",
         },
       },
       {

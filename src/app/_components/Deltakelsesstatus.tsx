@@ -16,12 +16,16 @@ export function Deltakelsesstatus({
   vertId: string;
   visAntallSvarIndeks?: number | null;
 }) {
-  const { data, isLoading, error } = useAntallDeltakere({
+  const {
+    data: antallDeltakere,
+    isLoading: lasterAntallDeltakere,
+    error: feilAntallDeltakere,
+  } = useAntallDeltakere({
     vertId,
     spørreundersøkelseId,
   });
 
-  if (error !== undefined && !isLoading) {
+  if (feilAntallDeltakere !== undefined && !lasterAntallDeltakere) {
     return (
       <HStack className={spørsmålStyles.deltakere}>
         <PersonGroupFillIcon />
@@ -30,7 +34,7 @@ export function Deltakelsesstatus({
           inline
           className={kartleggingStyles.alertWarning}
         >
-          {error.message}
+          {feilAntallDeltakere.message}
         </Alert>
       </HStack>
     );
@@ -40,10 +44,10 @@ export function Deltakelsesstatus({
     return (
       <HStack className={spørsmålStyles.deltakere}>
         <PersonGroupFillIcon />
-        {isLoading ? (
+        {lasterAntallDeltakere ? (
           <Loader />
         ) : (
-          <BodyShort>{data?.antallDeltakere} Deltakere</BodyShort>
+          <BodyShort>{antallDeltakere} Deltakere</BodyShort>
         )}
       </HStack>
     );
@@ -52,11 +56,12 @@ export function Deltakelsesstatus({
   return (
     <HStack className={spørsmålStyles.deltakere}>
       <PersonGroupFillIcon />
-      {isLoading ? (
+      {lasterAntallDeltakere ? (
         <Loader variant={"inverted"} />
       ) : (
         <BodyShort>
-          {`${data?.antallSvar[visAntallSvarIndeks].antall} av ${data?.antallDeltakere} har svart`}
+          {/*todo ${data?.antallSvar[visAntallSvarIndeks].antall} */}
+          {`TODO av ${antallDeltakere} har svart`}
         </BodyShort>
       )}
     </HStack>

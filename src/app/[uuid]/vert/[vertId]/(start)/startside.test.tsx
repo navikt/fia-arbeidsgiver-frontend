@@ -35,9 +35,7 @@ jest.mock("@/app/_api_hooks/vert/useVertSpørreundersøkelse", () => ({
 }));
 jest.mock("@/app/_api_hooks/vert/useAntallDeltakere", () => ({
   useAntallDeltakere: () => ({
-    data: {
-      antallDeltakere: 0,
-    },
+    data: 0,
     isLoading: false,
     error: undefined,
   }),
