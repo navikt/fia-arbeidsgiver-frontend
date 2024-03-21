@@ -5,7 +5,8 @@ import { Page, VStack } from "@navikt/ds-react";
 import React from "react";
 import FooterOversikt from "./FooterOversikt";
 import HeaderVert from "@/app/_components/HeaderVert";
-import { SpørsmålBleedOversikt } from "@/app/[uuid]/vert/[vertId]/oversikt/SpørsmålBleedOversikt";
+import { OversiktBleedVert } from "@/app/[uuid]/vert/[vertId]/oversikt/OversiktBleedVert";
+import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -19,20 +20,30 @@ export default function OversiktBody({
   spørreundersøkelseId: string;
   vertId: string;
 }) {
-  const statusDelnummer = 1; //TODO: hent i Dellinje
+  const { data: listeOverTemaer } = useTemaoversikt(
+    spørreundersøkelseId,
+    vertId,
+  );
+
   return (
-    <Page contentBlockPadding="none" footer={<FooterOversikt />}>
-      <HeaderVert spørreundersøkelseId={spørreundersøkelseId} vertId={vertId} />
-      <Page.Block>
-        <VStack gap="4">
-          <SpørsmålBleedOversikt
-            key={statusDelnummer}
-            vertId={vertId}
-            statusDelnummer={statusDelnummer}
-            spørreundersøkelseId={spørreundersøkelseId}
-          />
-        </VStack>
-      </Page.Block>
-    </Page>
+    listeOverTemaer && (
+      <Page contentBlockPadding="none" footer={<FooterOversikt />}>
+        <HeaderVert
+          spørreundersøkelseId={spørreundersøkelseId}
+          vertId={vertId}
+        />
+        <Page.Block>
+          <VStack gap="4">
+            {listeOverTemaer.map((temaoversikt, index) => (
+              <OversiktBleedVert
+                key={index}
+                delnummer={index + 1}
+                temaoversikt={temaoversikt}
+              />
+            ))}
+          </VStack>
+        </Page.Block>
+      </Page>
+    )
   );
 }

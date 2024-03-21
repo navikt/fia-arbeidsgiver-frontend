@@ -1,10 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { dummyDeltakerFørsteSpørsmål } = require("@/utils/dummyData/deltaker");
-
+const { dummyBliMed } = require("@/utils/dummydata/deltaker");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { API_DELTAKER_BLI_MED_URL } = require("@/utils/urls");
 
-const listeOverTemaRoutes = [
+const bliMedRoutes = [
   {
     id: "deltaker-bli-med",
     url: API_DELTAKER_BLI_MED_URL,
@@ -15,18 +14,25 @@ const listeOverTemaRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: dummyDeltakerFørsteSpørsmål,
+          body: dummyBliMed,
         },
       },
       {
-        id: "feil",
+        id: "feil-i-uuid",
         type: "status",
         options: {
           status: 400,
         },
       },
       {
-        id: "ugyldig",
+        id: "ukjent-spørreundersøkelse",
+        type: "status",
+        options: {
+          status: 403,
+        },
+      },
+      {
+        id: "spørreundersøkelse-i-feil-status",
         type: "status",
         options: {
           status: 403,
@@ -36,4 +42,4 @@ const listeOverTemaRoutes = [
   },
 ];
 
-export default listeOverTemaRoutes;
+export default bliMedRoutes;

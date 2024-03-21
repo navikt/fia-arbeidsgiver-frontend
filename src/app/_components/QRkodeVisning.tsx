@@ -1,5 +1,5 @@
 "use client";
-import startsideStyles from "@/app/[uuid]/vert/[vertId]/(start)/startside.module.css";
+import startsideStyles from "@/app/[uuid]/vert/[vertId]/(startside)/startside.module.css";
 import { QRCodeSVG } from "qrcode.react";
 import React from "react";
 

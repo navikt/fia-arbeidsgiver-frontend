@@ -3,31 +3,24 @@ import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 
 export function useSpørsmålOgSvar(
   spørreundersøkelseId: string,
+  vertId: string,
   temaId: string,
   spørsmålId: string,
-  shouldPoll = false,
 ): SWRResponse<SpørsmålsoversiktDto> {
   const fetcher = (url: string) =>
     fetch(url, {
       method: "GET",
     }).then((res) => {
       if (res.status === 202) {
-        throw new Error("Spørsmål er ikke åpnet");
-      }
-
-      if (!res.ok) {
-        throw new Error("Noe gikk galt.");
+        throw new Error(
+          "Spørsmål er ikke åpnet Dette burde ikke skje for vert, noe er galt",
+        );
       }
       return res.json();
     });
 
   return useSWR(
-    `/api/${spørreundersøkelseId}/deltaker/${temaId}/${spørsmålId}`,
+    `/api/${spørreundersøkelseId}/vert/${vertId}/${temaId}/${spørsmålId}`,
     fetcher,
-    shouldPoll
-      ? {
-          refreshInterval: 1000,
-        }
-      : {},
   );
 }

@@ -1,4 +1,4 @@
-import { Tema } from "@/app/_types/temaDTO";
+import { Tema } from "@/app/_types/tema";
 
 export function finskrivTema(tema: Tema) {
   switch (tema) {

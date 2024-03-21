@@ -1,19 +1,23 @@
 import useSWR, { SWRConfiguration, SWRResponse } from "swr";
 import { ETT_SEKUND_MS } from "@/utils/consts";
 
-export function useAntallDeltakere({
+export function useAntallSvar({
   vertId,
   spørreundersøkelseId,
+  temaId,
+  spørsmålId,
 }: {
   vertId: string;
   spørreundersøkelseId: string;
+  temaId: string;
+  spørsmålId: string;
 }): SWRResponse<number> {
   const fetcher = (url: string) => {
     return fetch(url, {
       method: "GET",
     }).then((res) => {
       if (!res.ok) {
-        throw new Error("Kunne ikke laste antall deltakere");
+        throw new Error("Kunne ikke laste antall svar");
       }
       return res.json();
     });
@@ -24,7 +28,7 @@ export function useAntallDeltakere({
     revalidateIfStale: true,
   };
   return useSWR<number>(
-    `/api/${spørreundersøkelseId}/vert/${vertId}/antall-deltakere`,
+    `/api/${spørreundersøkelseId}/vert/${vertId}/${temaId}/${spørsmålId}/antall-svar`,
     fetcher,
     swrConfig,
   );

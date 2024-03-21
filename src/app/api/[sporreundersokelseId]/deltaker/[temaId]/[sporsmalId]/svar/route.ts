@@ -1,24 +1,35 @@
 import { NextRequest } from "next/server";
+import CookieHandler from "@/utils/CookieHandler";
 
-export async function POST(request: NextRequest) {
+export async function POST(
+  request: NextRequest,
+  {
+    params: { sporreundersokelseId, temaId, sporsmalId },
+  }: {
+    params: {
+      sporreundersokelseId: string;
+      temaId: string;
+      sporsmalId: string;
+    };
+  },
+) {
   if (request.headers.get("content-type") != "application/json") {
     return new Response(JSON.stringify({ error: "Invalid content-type" }), {
       status: 400,
     });
   }
+  const { svarId } = await request.json();
 
-  const { spørreundersøkelseId } = await request.json();
-  const fetcher = bliMedFetcher(
-    "bli-med",
+  const fetcher = poster(
+    `deltaker/${sporreundersokelseId}/${temaId}/${sporsmalId}/svar`,
     JSON.stringify({
-      spørreundersøkelseId,
+      svarId,
     }),
   );
-
   return fetcher();
 }
 
-function bliMedFetcher(endpoint: string, body: BodyInit | null = null) {
+function poster(endpoint: string, body: BodyInit) {
   const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
 
   if (FIA_ARBEIDSGIVER_HOSTNAME === undefined) {
@@ -34,8 +45,9 @@ function bliMedFetcher(endpoint: string, body: BodyInit | null = null) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "nav-fia-kartlegging-sesjon-id": CookieHandler.sesjonsID,
         },
-        body,
+        body: body,
       },
     );
 }
