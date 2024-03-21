@@ -1,10 +1,12 @@
 import useSWR, { SWRResponse } from "swr";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+import { Tema } from "@/app/_types/tema";
+import { utledTemaId } from "@/utils/spørreundersøkelsesUtils";
 
 export function useSpørsmålOgSvar(
   spørreundersøkelseId: string,
   vertId: string,
-  temaId: string,
+  tema: Tema,
   spørsmålId: string,
 ): SWRResponse<SpørsmålsoversiktDto> {
   const fetcher = (url: string) =>
@@ -20,7 +22,9 @@ export function useSpørsmålOgSvar(
     });
 
   return useSWR(
-    `/api/${spørreundersøkelseId}/vert/${vertId}/${temaId}/${spørsmålId}`,
+    `/api/${spørreundersøkelseId}/vert/${vertId}/${utledTemaId(
+      tema,
+    )}/${spørsmålId}`,
     fetcher,
   );
 }

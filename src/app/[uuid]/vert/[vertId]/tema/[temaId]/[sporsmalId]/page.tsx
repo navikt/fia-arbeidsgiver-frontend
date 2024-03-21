@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import React from "react";
 import SpørsmålBody from "./SporsmalBody";
-import { Tema } from "@/app/_types/tema";
+import { utledTema } from "@/utils/spørreundersøkelsesUtils";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -11,9 +11,8 @@ export const metadata: Metadata = {
 export default function Spørsmålsside({
   params,
 }: {
-  params: { uuid: string; vertId: string; temaId: Tema; sporsmalId: string };
+  params: { uuid: string; vertId: string; temaId: string; sporsmalId: string };
 }) {
-  // TODO: send disse fra backend:
   const spørsmålnummer = 42;
   const antallspørsmål = 42;
   const delnummer = 42;
@@ -21,7 +20,7 @@ export default function Spørsmålsside({
     <SpørsmålBody
       spørreundersøkelseId={params.uuid}
       vertId={params.vertId}
-      temaId={params.temaId}
+      tema={utledTema(params.temaId)}
       spørsmålId={params.sporsmalId}
       delnummer={delnummer}
       spørsmålnummer={spørsmålnummer}

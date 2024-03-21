@@ -14,16 +14,18 @@ import { useRouter } from "next/navigation";
 import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 import CookieHandler from "@/utils/CookieHandler";
+import { Tema } from "@/app/_types/tema";
+import { utledTemaId } from "@/utils/spørreundersøkelsesUtils";
 
 export default function Spørsmålsseksjon({
   spørsmålId,
   spørreundersøkelseId,
-  temaId,
+  tema,
   spørsmålOgSvar,
 }: {
   spørsmålId: string;
   spørreundersøkelseId: string;
-  temaId: string;
+  tema: Tema;
   spørsmålOgSvar: SpørsmålsoversiktDto;
 }) {
   const lagretSvar = CookieHandler.getSvarPåSpørsmål(spørsmålId);
@@ -46,7 +48,7 @@ export default function Spørsmålsseksjon({
       return;
     }
 
-    if (spørsmålOgSvar.nesteSpørsmål.temaId !== temaId) {
+    if (spørsmålOgSvar.nesteSpørsmål.temaId !== tema) {
       router.push(
         `../${spørsmålOgSvar.nesteSpørsmål.temaId}/${spørsmålOgSvar.nesteSpørsmål.spørsmålId}`,
       );
@@ -63,9 +65,11 @@ export default function Spørsmålsseksjon({
       return; // Kan ikke gå tilbake, så her gjør vi ingenting
     }
 
-    if (spørsmålOgSvar.forrigeSpørsmål.temaId !== temaId) {
+    if (spørsmålOgSvar.forrigeSpørsmål.temaId !== tema) {
       router.push(
-        `../${spørsmålOgSvar.forrigeSpørsmål.temaId}/${spørsmålOgSvar.forrigeSpørsmål.spørsmålId}`,
+        `../${utledTemaId(spørsmålOgSvar.forrigeSpørsmål.temaId)}/${
+          spørsmålOgSvar.forrigeSpørsmål.spørsmålId
+        }`,
       );
     } else {
       router.push(`./${spørsmålOgSvar.forrigeSpørsmål.spørsmålId}`);
@@ -82,7 +86,7 @@ export default function Spørsmålsseksjon({
     } else {
       sendSvar({
         spørreundersøkelseId: spørreundersøkelseId,
-        temaId: temaId,
+        tema: tema,
         spørsmålId: spørsmålId,
         svarId: svar,
       })

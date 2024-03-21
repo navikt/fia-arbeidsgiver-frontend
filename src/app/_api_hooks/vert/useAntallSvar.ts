@@ -1,15 +1,17 @@
 import useSWR, { SWRConfiguration, SWRResponse } from "swr";
 import { ETT_SEKUND_MS } from "@/utils/consts";
+import { Tema } from "@/app/_types/tema";
+import { utledTemaId } from "@/utils/spørreundersøkelsesUtils";
 
 export function useAntallSvar({
   vertId,
   spørreundersøkelseId,
-  temaId,
+  tema,
   spørsmålId,
 }: {
   vertId: string;
   spørreundersøkelseId: string;
-  temaId: string;
+  tema: Tema;
   spørsmålId: string;
 }): SWRResponse<number> {
   const fetcher = (url: string) => {
@@ -28,7 +30,9 @@ export function useAntallSvar({
     revalidateIfStale: true,
   };
   return useSWR<number>(
-    `/api/${spørreundersøkelseId}/vert/${vertId}/${temaId}/${spørsmålId}/antall-svar`,
+    `/api/${spørreundersøkelseId}/vert/${vertId}/${utledTemaId(
+      tema,
+    )}/${spørsmålId}/antall-svar`,
     fetcher,
     swrConfig,
   );

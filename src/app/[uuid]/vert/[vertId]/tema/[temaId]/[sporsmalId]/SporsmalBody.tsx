@@ -11,7 +11,7 @@ import { Tema } from "@/app/_types/tema";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,
-  temaId,
+  tema,
   vertId,
   spørsmålId,
   delnummer,
@@ -19,7 +19,7 @@ export default function SpørsmålBody({
   antallspørsmål,
 }: {
   spørreundersøkelseId: string;
-  temaId: Tema;
+  tema: Tema;
   vertId: string;
   spørsmålId: string;
   delnummer: number;
@@ -30,14 +30,14 @@ export default function SpørsmålBody({
     data: spørsmålOgSvar,
     isLoading: lasterSpørsmålOgSvar,
     error: feilSpørsmålOgSvar,
-  } = useSpørsmålOgSvar(spørreundersøkelseId, vertId, temaId, spørsmålId);
+  } = useSpørsmålOgSvar(spørreundersøkelseId, vertId, tema, spørsmålId);
 
   if (lasterSpørsmålOgSvar) {
     return (
       <Page contentBlockPadding="none">
         <Page.Block as={"main"}>
           <SpørsmålBleedVert
-            temaId={temaId}
+            tema={tema}
             spørreundersøkelseId={spørreundersøkelseId}
             vertId={vertId}
             spørsmålId={spørsmålId}
@@ -75,7 +75,7 @@ export default function SpørsmålBody({
       >
         <Page.Block as={"main"}>
           <SpørsmålBleedVert
-            temaId={temaId}
+            tema={tema}
             spørreundersøkelseId={spørreundersøkelseId}
             vertId={vertId}
             spørsmålId={spørsmålId}

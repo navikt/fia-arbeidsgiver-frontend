@@ -16,11 +16,11 @@ import kartleggingStyles from "@/app/kartlegging.module.css";
 export default function SpørsmålBody({
   spørreundersøkelseId,
   spørsmålId,
-  temaId,
+  tema,
 }: {
   spørreundersøkelseId: string;
   spørsmålId: string;
-  temaId: Tema;
+  tema: Tema;
 }) {
   const router = useRouter();
 
@@ -38,7 +38,7 @@ export default function SpørsmålBody({
     data: spørsmålOgSvar,
     isLoading: lasterSpørsmålOgSvar,
     error: feilSpørsmålOgSvar,
-  } = useSpørsmålOgSvar(spørreundersøkelseId, temaId, spørsmålId, shouldPoll);
+  } = useSpørsmålOgSvar(spørreundersøkelseId, tema, spørsmålId, shouldPoll);
 
   React.useEffect(() => {
     if (
@@ -73,7 +73,7 @@ export default function SpørsmålBody({
     if (shouldPoll) {
       return (
         <>
-          <SpørsmålBleedDeltaker overskrift={finskrivTema(temaId)} />
+          <SpørsmålBleedDeltaker overskrift={finskrivTema(tema)} />
           <VStack
             gap={"4"}
             align={"center"}
@@ -88,7 +88,7 @@ export default function SpørsmålBody({
     } else {
       return (
         <>
-          <SpørsmålBleedDeltaker overskrift={finskrivTema(temaId)} />
+          <SpørsmålBleedDeltaker overskrift={finskrivTema(tema)} />
           <VStack
             gap={"4"}
             align={"center"}
@@ -107,10 +107,10 @@ export default function SpørsmålBody({
   return (
     spørsmålOgSvar && (
       <>
-        <SpørsmålBleedDeltaker overskrift={finskrivTema(temaId)} />
+        <SpørsmålBleedDeltaker overskrift={finskrivTema(tema)} />
         <Spørsmålsseksjon
           spørreundersøkelseId={spørreundersøkelseId}
-          temaId={temaId}
+          tema={tema}
           spørsmålId={spørsmålId}
           spørsmålOgSvar={spørsmålOgSvar}
         />

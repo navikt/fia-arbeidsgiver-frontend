@@ -12,7 +12,7 @@ export function SpørsmålBleedVert({
   delnummer,
   spørsmålnummer,
   vertId,
-  temaId,
+  tema,
   spørsmålId,
   antallSpørsmål,
 }: {
@@ -20,7 +20,7 @@ export function SpørsmålBleedVert({
   delnummer: number;
   spørsmålnummer: number;
   vertId: string;
-  temaId: Tema;
+  tema: Tema;
   spørsmålId: string;
   antallSpørsmål: number;
 }) {
@@ -29,14 +29,14 @@ export function SpørsmålBleedVert({
       <VStack>
         <BodyShort size="medium">Del {delnummer}</BodyShort>
         <Heading size="medium">
-          {`${finskrivTema(temaId)} - ${spørsmålnummer}/${antallSpørsmål}`}
+          {`${finskrivTema(tema)} - ${spørsmålnummer}/${antallSpørsmål}`}
         </Heading>
       </VStack>
 
       <StatusPåDeltakerMedSvar
         spørsmålId={spørsmålId}
         spørreundersøkelseId={spørreundersøkelseId}
-        temaId={temaId}
+        tema={tema}
         vertId={vertId}
       />
     </HeaderBleed>

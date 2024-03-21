@@ -6,16 +6,17 @@ import { PersonGroupFillIcon } from "@navikt/aksel-icons";
 import React from "react";
 import { AntallSvar } from "@/app/_components/StatusPåDeltaker/AntallSvar";
 import { AntallDeltakere } from "@/app/_components/StatusPåDeltaker/AntallDeltakere";
+import { Tema } from "@/app/_types/tema";
 
 export function StatusPåDeltakerMedSvar({
   spørreundersøkelseId,
   vertId,
-  temaId,
+  tema,
   spørsmålId,
 }: {
   spørreundersøkelseId: string;
   vertId: string;
-  temaId: string;
+  tema: Tema;
   spørsmålId: string;
 }) {
   return (
@@ -25,7 +26,7 @@ export function StatusPåDeltakerMedSvar({
         <AntallSvar
           spørreundersøkelseId={spørreundersøkelseId}
           vertId={vertId}
-          temaId={temaId}
+          tema={tema}
           spørsmålId={spørsmålId}
         />
         av{" "}

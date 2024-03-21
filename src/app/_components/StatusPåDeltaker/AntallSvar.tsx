@@ -4,16 +4,17 @@ import { Alert, BodyShort, Loader } from "@navikt/ds-react";
 import React from "react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import { useAntallSvar } from "@/app/_api_hooks/vert/useAntallSvar";
+import { Tema } from "@/app/_types/tema";
 
 export function AntallSvar({
   spørreundersøkelseId,
   vertId,
-  temaId,
+  tema,
   spørsmålId,
 }: {
   spørreundersøkelseId: string;
   vertId: string;
-  temaId: string;
+  tema: Tema;
   spørsmålId: string;
 }) {
   const {
@@ -23,7 +24,7 @@ export function AntallSvar({
   } = useAntallSvar({
     vertId,
     spørreundersøkelseId,
-    temaId,
+    tema,
     spørsmålId,
   });
 

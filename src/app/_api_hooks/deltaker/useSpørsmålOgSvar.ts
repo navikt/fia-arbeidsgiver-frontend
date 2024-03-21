@@ -1,9 +1,11 @@
 import useSWR, { SWRResponse } from "swr";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+import { Tema } from "@/app/_types/tema";
+import { utledTemaId } from "@/utils/spørreundersøkelsesUtils";
 
 export function useSpørsmålOgSvar(
   spørreundersøkelseId: string,
-  temaId: string,
+  tema: Tema,
   spørsmålId: string,
   shouldPoll = false,
 ): SWRResponse<SpørsmålsoversiktDto> {
@@ -22,7 +24,7 @@ export function useSpørsmålOgSvar(
     });
 
   return useSWR(
-    `/api/${spørreundersøkelseId}/deltaker/${temaId}/${spørsmålId}`,
+    `/api/${spørreundersøkelseId}/deltaker/${utledTemaId(tema)}/${spørsmålId}`,
     fetcher,
     shouldPoll
       ? {
