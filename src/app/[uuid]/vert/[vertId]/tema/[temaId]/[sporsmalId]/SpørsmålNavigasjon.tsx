@@ -10,8 +10,8 @@ export default function SpørsmålNavigasjon({
   nesteSpørsmål,
   forrigeSpørsmål,
 }: {
-  nesteSpørsmål: IdentifiserbartSpørsmål;
-  forrigeSpørsmål: IdentifiserbartSpørsmål;
+  nesteSpørsmål: IdentifiserbartSpørsmål | null;
+  forrigeSpørsmål: IdentifiserbartSpørsmål | null;
 }) {
   const router = useRouter();
   return (

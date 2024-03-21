@@ -13,26 +13,6 @@ jest.mock("next/navigation", () => ({
   usePathname: jest.fn(() => "/"),
 }));
 
-jest.mock("@/app/_api_hooks/vert/useVertSpørreundersøkelse", () => ({
-  useVertSpørreundersøkelse: () => ({
-    data: [
-      {
-        spørreundersøkelse: {
-          id: "id",
-          spørsmål: "spørsmål",
-          svaralternativer: [
-            {
-              id: "id",
-              tekst: "tekst",
-            },
-          ],
-        },
-      },
-    ],
-    isLoading: false,
-    error: undefined,
-  }),
-}));
 jest.mock("@/app/_api_hooks/vert/useAntallDeltakere", () => ({
   useAntallDeltakere: () => ({
     data: {

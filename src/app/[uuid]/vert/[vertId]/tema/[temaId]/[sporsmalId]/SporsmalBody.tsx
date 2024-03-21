@@ -7,6 +7,7 @@ import { SpørsmålInnhold } from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[spo
 import { Feilside } from "@/app/_components/Feilside";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/vert/useSpørsmålOgSvar";
 import SpørsmålNavigasjon from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/SpørsmålNavigasjon";
+import { Tema } from "@/app/_types/tema";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,
@@ -18,7 +19,7 @@ export default function SpørsmålBody({
   antallspørsmål,
 }: {
   spørreundersøkelseId: string;
-  temaId: string;
+  temaId: Tema;
   vertId: string;
   spørsmålId: string;
   delnummer: number;

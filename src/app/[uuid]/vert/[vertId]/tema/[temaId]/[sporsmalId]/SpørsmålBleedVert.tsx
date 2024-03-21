@@ -5,6 +5,7 @@ import React from "react";
 import HeaderBleed from "@/app/_components/HeaderBleed";
 import { finskrivTema } from "@/utils/spørreundersøkelsesUtils";
 import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
+import { Tema } from "@/app/_types/tema";
 
 export function SpørsmålBleedVert({
   spørreundersøkelseId,
@@ -19,7 +20,7 @@ export function SpørsmålBleedVert({
   delnummer: number;
   spørsmålnummer: number;
   vertId: string;
-  temaId: string;
+  temaId: Tema;
   spørsmålId: string;
   antallSpørsmål: number;
 }) {
