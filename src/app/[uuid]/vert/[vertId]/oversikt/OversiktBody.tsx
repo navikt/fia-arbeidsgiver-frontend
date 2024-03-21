@@ -16,11 +16,9 @@ export const metadata: Metadata = {
 export default function OversiktBody({
   spørreundersøkelseId,
   vertId,
-  temaId,
 }: {
   spørreundersøkelseId: string;
   vertId: string;
-  temaId: string;
 }) {
   const { data: listeOverTemaer } = useTemaoversikt(
     spørreundersøkelseId,

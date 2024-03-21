@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import React from "react";
-import StartsideBody from "@/app/[uuid]/vert/[vertId]/(start)/StartsideBody";
+import StartsideBody from "@/app/[uuid]/vert/[vertId]/(startside)/StartsideBody";
 import { Page } from "@navikt/ds-react";
 import startsideStyles from "./startside.module.css";
 

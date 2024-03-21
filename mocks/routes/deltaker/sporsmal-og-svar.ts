@@ -3,7 +3,6 @@ const {
   dummyFjerdeSpørsmål,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require("@/utils/dummyData/dummyInnholdForSpørreundersøkelse");
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { API_DELTAKER_SPØRSMÅL_URL } = require("@/utils/urls");
 
@@ -29,27 +28,6 @@ const sporsmalOgSvarRoutes = [
           body: dummyFjerdeSpørsmål,
         },
       },
-      // TODO: Skriv om middleware til å håndtere rett mocking av overgang
-      // {
-      //   id: "success",
-      //   type: "middleware",
-      //   options: {
-      //     middleware: (req: Request, res: Response) => {
-      //       const spmIndex = dummySpørsmålOgSvarListeFørsteTema.findIndex(
-      //         (sporsmal: SpørsmålsoversiktDto) => sporsmal === req.params.sporsmalId,
-      //       );
-      //       if (spmIndex !== -1) {
-      //         res.status(200);
-      //         res.send({
-      //           ...dummySpørsmålOgSvarListeFørsteTema[spmIndex],
-      //         });
-      //       } else {
-      //         res.status(404);
-      //         res.send(`Spørsmål med id ${req.params.id} ble ikke funnet`);
-      //       }
-      //     },
-      //   },
-      // },
       {
         id: "ikke-åpnet",
         type: "status",

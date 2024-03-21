@@ -28,27 +28,6 @@ const sporsmalOgSvarRoutes = [
           body: dummyFjerdeSpørsmål,
         },
       },
-      //   TODO: ta i bruk middleware til å finne index for spørsmålid lagt inn, bør gå fint om dummyFørsteSpørsmål++ blir lagt i en liste
-      // {
-      //   id: "middle",
-      //   type: "middleware",
-      //   options: {
-      //     middleware: (req: Request, res: Response) => {
-      //       const spmIndex = dummyVertSpørsmålListe.findIndex(
-      //         (sporsmal: spørsmålDTO) => sporsmal.id === req.params.sporsmalId,
-      //       );
-      //       if (spmIndex !== -1) {
-      //         res.status(200);
-      //         res.send({
-      //           ...dummyVertSpørsmålListe[spmIndex],
-      //         });
-      //       } else {
-      //         res.status(404);
-      //         res.send(`Spørsmål med id ${req.params.id} ble ikke funnet`);
-      //       }
-      //     },
-      //   },
-      // },
       {
         id: "feil-i-uuid",
         type: "status",
