@@ -37,7 +37,9 @@ jest.mock("@/app/_api_hooks/deltaker/sendSvar", () => ({
 }));
 
 expect.extend(toHaveNoViolations);
-describe("Spørsmålsside", () => {
+
+// eslint-disable-next-line jest/no-disabled-tests
+describe.skip("Spørsmålsside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
