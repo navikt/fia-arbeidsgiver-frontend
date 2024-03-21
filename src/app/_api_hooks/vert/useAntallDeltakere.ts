@@ -24,7 +24,7 @@ export function useAntallDeltakere({
     revalidateIfStale: true,
   };
   return useSWR<number>(
-    `/api/vert/${spørreundersøkelseId}/${vertId}/antall-deltakere`,
+    `/api/${spørreundersøkelseId}/vert/${vertId}/antall-deltakere`,
     fetcher,
     swrConfig,
   );

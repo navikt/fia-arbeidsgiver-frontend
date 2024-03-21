@@ -6,7 +6,7 @@ export function fetchIdentifiserbartSpørsmål(
   spørreundersøkelseId: string,
 ): Promise<IdentifiserbartSpørsmål> {
   const fetcher = () =>
-    fetch(`/api/deltaker/${spørreundersøkelseId}`, {
+    fetch(`/api/${spørreundersøkelseId}/deltaker`, {
       method: "GET",
     }).then((res) => {
       if (!res.ok) {

@@ -1,4 +1,3 @@
-import { arbeidsgiverApiFetcher } from "@/app/api/_arbeidsgiverApiFetcher";
 import { NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -9,7 +8,7 @@ export async function POST(request: NextRequest) {
   }
 
   const { spørreundersøkelseId } = await request.json();
-  const fetcher = arbeidsgiverApiFetcher(
+  const fetcher = bliMedFetcher(
     "bli-med",
     JSON.stringify({
       spørreundersøkelseId,
@@ -17,4 +16,26 @@ export async function POST(request: NextRequest) {
   );
 
   return fetcher();
+}
+
+function bliMedFetcher(endpoint: string, body: BodyInit | null = null) {
+  const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
+
+  if (FIA_ARBEIDSGIVER_HOSTNAME === undefined) {
+    return () =>
+      new Response(JSON.stringify({ error: "missing hostname in config" }), {
+        status: 500,
+      });
+  }
+  return () =>
+    fetch(
+      `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/sporreundersokelse/${endpoint}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body,
+      },
+    );
 }

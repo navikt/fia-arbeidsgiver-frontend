@@ -3,10 +3,13 @@ const {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require("@/utils/dummyData/dummyInnholdForSpørreundersøkelse");
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { API_DELTAKER_SPØRSMÅL_URL } = require("@/utils/urls");
+
 const sporsmalOgSvarRoutes = [
   {
     id: "deltaker-sporsmal-og-svar",
-    url: "/fia-arbeidsgiver/sporreundersokelse/deltaker/:a/:b/:id",
+    url: API_DELTAKER_SPØRSMÅL_URL(),
     method: "GET",
     variants: [
       {

@@ -4,7 +4,7 @@ import { Alert, Button } from "@navikt/ds-react";
 import React from "react";
 import { useRouter } from "next/navigation";
 import startsideStyles from "./startside.module.css";
-import { fetchBliMed } from "@/app/_api_hooks/deltaker/bliMed";
+import { fetchBliMed } from "@/app/_api_hooks/deltaker/fetchBliMed";
 import { fetchIdentifiserbartSpørsmål } from "@/app/_api_hooks/deltaker/fetchIdentifiserbartSpørsmål";
 
 export default function BliMedKnapp({

@@ -3,6 +3,9 @@ const {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require("@/utils/dummyData/dummyInnholdForSpørreundersøkelse");
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { API_DELTAKER_UNDERSØKELSE_URL } = require("@/utils/urls");
+
 const identifiserbartsporsmalRoutes = [
   {
     id: "deltaker-identifiserbartsporsmal",

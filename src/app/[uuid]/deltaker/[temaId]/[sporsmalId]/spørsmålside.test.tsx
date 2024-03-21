@@ -8,7 +8,7 @@ import {
 // @ts-ignore
 import { dummySpørreundersøkelse } from "@/utils/dummydata";
 import { axe, toHaveNoViolations } from "jest-axe";
-import { sendSvar } from "@/app/_api_hooks/deltaker/svar";
+import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
 import { useRouter } from "next/navigation";
 import mockCookieHandler from "@/utils/jest-mocks/CookieHandler";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
@@ -28,7 +28,7 @@ jest.mock("@/app/_api_hooks/deltaker/useSpørsmålOgSvar", () => ({
 
 mockCookieHandler();
 
-jest.mock("@/app/_api_hooks/deltaker/svar", () => ({
+jest.mock("@/app/_api_hooks/deltaker/sendSvar", () => ({
   postEnkeltSvar: jest.fn(() => Promise.resolve()),
 }));
 

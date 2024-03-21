@@ -17,7 +17,7 @@ export function useTemaoversikt(
   };
 
   return useSWR<TemaoversiktDto[]>(
-    `/api/vert/${spørreundersøkelseId}/${vertId}`,
+    `/api/${spørreundersøkelseId}/vert/${vertId}`,
     fetcher,
   );
 }

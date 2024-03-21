@@ -28,7 +28,7 @@ export function useAntallSvar({
     revalidateIfStale: true,
   };
   return useSWR<number>(
-    `/api/vert/${spørreundersøkelseId}/${vertId}/${temaId}/${spørsmålId}/antall-svar`,
+    `/api/${spørreundersøkelseId}/vert/${vertId}/${temaId}/${spørsmålId}/antall-svar`,
     fetcher,
     swrConfig,
   );

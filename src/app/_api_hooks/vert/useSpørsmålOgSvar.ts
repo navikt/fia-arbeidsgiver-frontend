@@ -20,7 +20,7 @@ export function useSpørsmålOgSvar(
     });
 
   return useSWR(
-    `/api/vert/${spørreundersøkelseId}/${vertId}/${temaId}/${spørsmålId}`,
+    `/api/${spørreundersøkelseId}/vert/${vertId}/${temaId}/${spørsmålId}`,
     fetcher,
   );
 }

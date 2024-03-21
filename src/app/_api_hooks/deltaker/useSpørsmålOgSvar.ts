@@ -18,7 +18,7 @@ export function useSpørsmålOgSvar(
     });
 
   return useSWR(
-    `/api/deltaker/${spørreundersøkelseId}/${temaId}/${spørsmålId}`,
+    `/api/${spørreundersøkelseId}/deltaker/${temaId}/${spørsmålId}`,
     fetcher,
     shouldPoll
       ? {

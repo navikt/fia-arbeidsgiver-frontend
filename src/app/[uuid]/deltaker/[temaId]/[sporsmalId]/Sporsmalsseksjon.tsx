@@ -14,7 +14,7 @@ import {
 } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
-import { sendSvar } from "@/app/_api_hooks/deltaker/svar";
+import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
 
 export default function Spørsmålsseksjon({
   spørsmålId,
