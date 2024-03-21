@@ -1,3 +1,5 @@
+const dummySpørreundersøkelseId = "5164abc8-9e4c-408d-8790-ce7f7f3c4658";
+
 const førsteTemaFørsteSpørsmål = {
   temaId: "UTVIKLE_PARTSSAMARBEID",
   spørsmålId: "b16c4b1c-b45e-470d-a1a5-d6f87424d410",
@@ -130,6 +132,13 @@ const dummyFjerdeSpørsmål = {
   nesteSpørsmål: null,
 };
 
+const dummySpørsmålOgSvarListeFørsteTema = [
+  dummyFørsteSpørsmål,
+  dummyAndreSpørsmål,
+  dummyTredjeSpørsmål,
+];
+const dummySpørsmålOgSvarListeAndreTema = [dummyFjerdeSpørsmål];
+
 module.exports = {
   førsteTemaFørsteSpørsmål,
   førsteTemaAndreSpørsmål,
@@ -139,4 +148,7 @@ module.exports = {
   dummyAndreSpørsmål,
   dummyTredjeSpørsmål,
   dummyFjerdeSpørsmål,
+  dummySpørsmålOgSvarListeFørsteTema,
+  dummySpørsmålOgSvarListeAndreTema,
+  dummySpørreundersøkelseId,
 };

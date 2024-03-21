@@ -14,6 +14,10 @@ export function useSpørsmålOgSvar(
       if (res.status === 202) {
         throw new Error("Spørsmål er ikke åpnet");
       }
+
+      if (!res.ok) {
+        throw new Error("Noe gikk galt.");
+      }
       return res.json();
     });
 

@@ -4,7 +4,7 @@ import SpørsmålBody from "./SporsmalBody";
 import { Page } from "@navikt/ds-react";
 
 import spørsmålStyles from "./sporsmalsside.module.css";
-import { Tema } from "@/app/_types/temaDTO";
+import { Tema } from "@/app/_types/tema";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function Spørsmålsside({
   params,
 }: {
-  params: { uuid: string; sporsmalId: string; temaId: Tema };
+  params: { uuid: string; temaId: Tema; sporsmalId: string };
 }) {
   return (
     <Page contentBlockPadding="none">

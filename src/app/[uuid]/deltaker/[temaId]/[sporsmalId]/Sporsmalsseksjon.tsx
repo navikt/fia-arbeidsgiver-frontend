@@ -6,35 +6,28 @@ import {
   Alert,
   BodyShort,
   Button,
-  Heading,
-  Loader,
   Radio,
   RadioGroup,
   VStack,
 } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
-import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
 import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
+import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+import CookieHandler from "@/utils/CookieHandler";
 
 export default function Spørsmålsseksjon({
   spørsmålId,
   spørreundersøkelseId,
   temaId,
-  lagretSvar,
+  spørsmålOgSvar,
 }: {
   spørsmålId: string;
   spørreundersøkelseId: string;
   temaId: string;
-  lagretSvar?: string;
+  spørsmålOgSvar: SpørsmålsoversiktDto;
 }) {
+  const lagretSvar = CookieHandler.getSvarPåSpørsmål(spørsmålId);
   const [feilSendSvar, setFeilSendSvar] = React.useState<string | null>(null);
-  const [shouldPoll, setShouldPoll] = React.useState(true);
-
-  const {
-    data: spørsmålOgSvar,
-    isLoading: lasterSpørsmål,
-    error: feilSpørsmål,
-  } = useSpørsmålOgSvar(spørreundersøkelseId, temaId, spørsmålId, shouldPoll);
 
   const router = useRouter();
 
@@ -42,37 +35,50 @@ export default function Spørsmålsseksjon({
   const velgSvar = (svaralternativid: string) => setSvar(svaralternativid);
 
   const erPåLagretSvar = svar === lagretSvar && lagretSvar?.length > 0;
-  const erPåUåpnetSpørsmål = feilSpørsmål === "Spørsmål er ikke åpnet";
 
-  React.useEffect(() => {
-    if (spørsmålOgSvar && !erPåUåpnetSpørsmål) {
-      setShouldPoll(false);
+  const navigerNeste = () => {
+    if (!spørsmålOgSvar) {
+      throw new Error("Spørsmål mangler");
     }
-  }, [spørsmålOgSvar, erPåUåpnetSpørsmål]);
 
-  if (erPåUåpnetSpørsmål) {
-    return (
-      <VStack align="center" justify="center">
-        <Loader size="3xlarge" title="Venter..." />
-      </VStack>
-    );
-  }
-
-  const gåTilNesteSide = () => {
-    if (spørsmålOgSvar?.nesteType === navigasjonstype.SPØRSMÅL) {
-      router.push(`./${spørsmålOgSvar.nesteId}`);
-    } else if (spørsmålOgSvar?.nesteType === navigasjonstype.FULLFØRT) {
+    if (spørsmålOgSvar.nesteSpørsmål === null) {
       router.push(`../ferdig`);
+      return;
+    }
+
+    if (spørsmålOgSvar.nesteSpørsmål.temaId !== temaId) {
+      router.push(
+        `../${spørsmålOgSvar.nesteSpørsmål.temaId}/${spørsmålOgSvar.nesteSpørsmål.spørsmålId}`,
+      );
     } else {
-      setFeilSendSvar("Ugyldig nesteType fra backend");
+      router.push(`./${spørsmålOgSvar.nesteSpørsmål.spørsmålId}`);
+    }
+  };
+  const navigerTilbake = () => {
+    if (!spørsmålOgSvar) {
+      throw new Error("Spørsmål mangler");
+    }
+
+    if (spørsmålOgSvar.forrigeSpørsmål === null) {
+      return; // Kan ikke gå tilbake, så her gjør vi ingenting
+    }
+
+    if (spørsmålOgSvar.forrigeSpørsmål.temaId !== temaId) {
+      router.push(
+        `../${spørsmålOgSvar.forrigeSpørsmål.temaId}/${spørsmålOgSvar.forrigeSpørsmål.spørsmålId}`,
+      );
+    } else {
+      router.push(`./${spørsmålOgSvar.forrigeSpørsmål.spørsmålId}`);
     }
   };
 
-  const sendSvarEllerGåVidere = () => {
+  const håndterNesteknapp = () => {
     if (!spørsmålOgSvar) {
       throw new Error("Spørsmål mangler");
-    } else if (erPåLagretSvar) {
-      gåTilNesteSide();
+    }
+
+    if (erPåLagretSvar) {
+      navigerNeste();
     } else {
       sendSvar({
         spørreundersøkelseId: spørreundersøkelseId,
@@ -82,7 +88,7 @@ export default function Spørsmålsseksjon({
       })
         .then(() => {
           setFeilSendSvar(null);
-          gåTilNesteSide();
+          navigerNeste();
         })
         .catch((error) => {
           setFeilSendSvar(error.message);
@@ -90,80 +96,53 @@ export default function Spørsmålsseksjon({
     }
   };
 
-  if (lasterSpørsmål) {
-    return (
-      <VStack gap={"4"} align={"center"}>
-        <Loader size="3xlarge" title="Laster..." />
-      </VStack>
-    );
-  }
-
-  if (feilSpørsmål) {
-    return (
-      <Heading size="large" level="1">
-        {feilSpørsmål.message}
-      </Heading>
-    );
-  }
-
   return (
-    spørsmålOgSvar && (
-      <>
-        <BodyShort weight={"semibold"}>{spørsmålOgSvar.spørsmål}</BodyShort>
-        <VStack className={spørsmålStyles.radioStack}>
-          <RadioGroup
-            legend="Velg ett alternativ"
-            onChange={velgSvar}
-            value={svar}
-            hideLegend
-            className={spørsmålStyles.spørsmålsseksjon}
+    <>
+      <BodyShort weight={"semibold"}>{spørsmålOgSvar.spørsmålTekst}</BodyShort>
+      <VStack className={spørsmålStyles.radioStack}>
+        <RadioGroup
+          legend="Velg ett alternativ"
+          onChange={velgSvar}
+          value={svar}
+          hideLegend
+          className={spørsmålStyles.spørsmålsseksjon}
+        >
+          {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
+            <Radio key={svaralternativ.svarId} value={svaralternativ.svarId}>
+              {svaralternativ.svartekst}
+            </Radio>
+          ))}
+        </RadioGroup>
+        {feilSendSvar !== null ? (
+          <Alert
+            variant="error"
+            closeButton
+            onClose={() => setFeilSendSvar(null)}
           >
-            {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
-              <Radio key={svaralternativ.svarId} value={svaralternativ.svarId}>
-                {svaralternativ.svartekst}
-              </Radio>
-            ))}
-          </RadioGroup>
-          {feilSendSvar !== null ? (
-            <Alert
-              variant="error"
-              closeButton
-              onClose={() => setFeilSendSvar(null)}
-            >
-              {feilSendSvar}
-            </Alert>
-          ) : null}
-          <VStack className={spørsmålStyles.knappeStack}>
-            <Button
-              variant="primary"
-              className={spørsmålStyles.nesteknapp}
-              onClick={sendSvarEllerGåVidere}
-            >
-              <SvarKnappTekst
-                erPåLagretSvar={erPåLagretSvar}
-                lagretSvar={lagretSvar}
-              />
-            </Button>
-            <Button
-              variant="secondary"
-              className={spørsmålStyles.tilbakeknapp}
-              onClick={() => {
-                if (
-                  spørsmålOgSvar?.forrigeId &&
-                  spørsmålOgSvar?.forrigeType === navigasjonstype.SPØRSMÅL
-                ) {
-                  router.push(`./${spørsmålOgSvar?.forrigeId}`);
-                } else {
-                  setFeilSendSvar("Ugyldig forrigeType fra backend");
-                }
-              }}
-            >
-              Tilbake
-            </Button>
-          </VStack>
+            {feilSendSvar}
+          </Alert>
+        ) : null}
+        <VStack className={spørsmålStyles.knappeStack}>
+          <Button
+            variant="primary"
+            className={spørsmålStyles.nesteknapp}
+            onClick={håndterNesteknapp}
+          >
+            <SvarKnappTekst
+              erPåLagretSvar={erPåLagretSvar}
+              lagretSvar={lagretSvar}
+            />
+          </Button>
+          <Button
+            variant="secondary"
+            className={spørsmålStyles.tilbakeknapp}
+            onClick={navigerTilbake}
+          >
+            Tilbake
+          </Button>
         </VStack>
-      </>
-    )
+      </VStack>
+    </>
   );
 }
 

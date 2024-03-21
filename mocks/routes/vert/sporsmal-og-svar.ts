@@ -1,5 +1,6 @@
 const {
   dummyFørsteSpørsmål,
+  dummyFjerdeSpørsmål,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require("@/utils/dummyData/dummyInnholdForSpørreundersøkelse");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -16,8 +17,15 @@ const sporsmalOgSvarRoutes = [
         type: "json",
         options: {
           status: 200,
-
           body: dummyFørsteSpørsmål,
+        },
+      },
+      {
+        id: "tema-2-spm-1",
+        type: "json",
+        options: {
+          status: 200,
+          body: dummyFjerdeSpørsmål,
         },
       },
       //   TODO: ta i bruk middleware til å finne index for spørsmålid lagt inn, bør gå fint om dummyFørsteSpørsmål++ blir lagt i en liste
@@ -41,6 +49,20 @@ const sporsmalOgSvarRoutes = [
       //     },
       //   },
       // },
+      {
+        id: "feil-i-uuid",
+        type: "status",
+        options: {
+          status: 400,
+        },
+      },
+      {
+        id: "har-ikke-tilgang",
+        type: "status",
+        options: {
+          status: 403,
+        },
+      },
     ],
   },
 ];

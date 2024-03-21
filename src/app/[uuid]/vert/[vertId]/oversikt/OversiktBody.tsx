@@ -39,10 +39,7 @@ export default function OversiktBody({
             {listeOverTemaer.map((temaoversikt, index) => (
               <OversiktBleedVert
                 key={index}
-                vertId={vertId}
-                temaId={temaId}
                 delnummer={index + 1}
-                spørreundersøkelseId={spørreundersøkelseId}
                 temaoversikt={temaoversikt}
               />
             ))}

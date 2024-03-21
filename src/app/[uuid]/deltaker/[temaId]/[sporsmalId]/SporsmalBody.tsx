@@ -6,7 +6,12 @@ import { useRouter } from "next/navigation";
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import CookieHandler from "@/utils/CookieHandler";
 import { SpørsmålBleedDeltaker } from "@/app/[uuid]/deltaker/[temaId]/[sporsmalId]/SpørsmålBleedDeltaker";
-import { Tema } from "@/app/_types/temaDTO";
+import { Tema } from "@/app/_types/tema";
+import { Alert, Heading, Loader, VStack } from "@navikt/ds-react";
+import spørsmålStyles from "@/app/[uuid]/deltaker/[temaId]/[sporsmalId]/sporsmalsside.module.css";
+import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
+import { finskrivTema } from "@/utils/spørreundersøkelsesUtils";
+import kartleggingStyles from "@/app/kartlegging.module.css";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,
@@ -21,27 +26,95 @@ export default function SpørsmålBody({
 
   const storedSessionID = CookieHandler.sesjonsID;
 
-  const lagretSvar = CookieHandler.getSvarPåSpørsmål(spørsmålId);
-
   React.useEffect(() => {
     if (!storedSessionID) {
       router.push("../../deltaker");
     }
   });
 
+  const [shouldPoll, setShouldPoll] = React.useState(true);
+
+  const {
+    data: spørsmålOgSvar,
+    isLoading: lasterSpørsmålOgSvar,
+    error: feilSpørsmålOgSvar,
+  } = useSpørsmålOgSvar(spørreundersøkelseId, temaId, spørsmålId, shouldPoll);
+
+  React.useEffect(() => {
+    if (
+      feilSpørsmålOgSvar &&
+      feilSpørsmålOgSvar.message === "Spørsmål er ikke åpnet"
+    ) {
+      setShouldPoll(true);
+    } else if (
+      feilSpørsmålOgSvar &&
+      feilSpørsmålOgSvar.message !== "Spørsmål er ikke åpnet"
+    ) {
+      setShouldPoll(false);
+    } else if (spørsmålOgSvar) {
+      setShouldPoll(false);
+    }
+  }, [feilSpørsmålOgSvar, spørsmålOgSvar]);
+
+  if (lasterSpørsmålOgSvar) {
+    return (
+      <VStack
+        gap={"4"}
+        align={"center"}
+        justify={"center"}
+        className={spørsmålStyles.nesteStack}
+      >
+        <Heading size={"large"}>Laster spørsmål</Heading>
+        <Loader size="3xlarge" title="Venter..." />
+      </VStack>
+    );
+  }
+  if (feilSpørsmålOgSvar) {
+    if (shouldPoll) {
+      return (
+        <>
+          <SpørsmålBleedDeltaker overskrift={finskrivTema(temaId)} />
+          <VStack
+            gap={"4"}
+            align={"center"}
+            justify={"center"}
+            className={spørsmålStyles.nesteStack}
+          >
+            <Heading size={"large"}>Venter på vert</Heading>
+            <Loader size="3xlarge" title="Venter..." />
+          </VStack>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <SpørsmålBleedDeltaker overskrift={finskrivTema(temaId)} />
+          <VStack
+            gap={"4"}
+            align={"center"}
+            justify={"center"}
+            className={spørsmålStyles.nesteStack}
+          >
+            <Alert variant={"error"} className={kartleggingStyles.alertWarning}>
+              {feilSpørsmålOgSvar.message}
+            </Alert>
+          </VStack>
+        </>
+      );
+    }
+  }
+
   return (
-    <>
-      <SpørsmålBleedDeltaker
-        spørreundersøkelseId={spørreundersøkelseId}
-        spørsmålId={spørsmålId}
-        temaId={temaId}
-      />
-      <Spørsmålsseksjon
-        spørreundersøkelseId={spørreundersøkelseId}
-        temaId={temaId}
-        spørsmålId={spørsmålId}
-        lagretSvar={lagretSvar}
-      />
-    </>
+    spørsmålOgSvar && (
+      <>
+        <SpørsmålBleedDeltaker overskrift={finskrivTema(temaId)} />
+        <Spørsmålsseksjon
+          spørreundersøkelseId={spørreundersøkelseId}
+          temaId={temaId}
+          spørsmålId={spørsmålId}
+          spørsmålOgSvar={spørsmålOgSvar}
+        />
+      </>
+    )
   );
 }

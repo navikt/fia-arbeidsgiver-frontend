@@ -1,3 +1,5 @@
+const dummyVertId = "797bdcd0-98e7-40da-9cad-5f03a349517a";
+
 const dummyTemaoversikt = [
   {
     tittel: "UTVIKLE_PARTSSAMARBEID",
@@ -11,5 +13,6 @@ const dummyTemaoversikt = [
   },
 ];
 module.exports = {
+  dummyVertId,
   dummyTemaoversikt,
 };
