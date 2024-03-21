@@ -1,7 +1,7 @@
 import useSWR, { SWRResponse } from "swr";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 import { Tema } from "@/app/_types/tema";
-import { utledTemaId } from "@/utils/spørreundersøkelsesUtils";
+import { temaTilURL } from "@/utils/spørreundersøkelsesUtils";
 
 export function useSpørsmålOgSvar(
   spørreundersøkelseId: string,
@@ -24,7 +24,7 @@ export function useSpørsmålOgSvar(
     });
 
   return useSWR(
-    `/api/${spørreundersøkelseId}/deltaker/${utledTemaId(tema)}/${spørsmålId}`,
+    `/api/${spørreundersøkelseId}/deltaker/${temaTilURL(tema)}/${spørsmålId}`,
     fetcher,
     shouldPoll
       ? {

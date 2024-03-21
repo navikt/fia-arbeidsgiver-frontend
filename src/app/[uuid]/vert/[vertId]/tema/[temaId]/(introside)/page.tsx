@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Page } from "@navikt/ds-react";
 import { IntrosideBody } from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/(introside)/IntrosideBody";
-import { utledTema } from "@/utils/spørreundersøkelsesUtils";
+import { paramTilTema } from "@/utils/spørreundersøkelsesUtils";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -24,7 +24,7 @@ export default function Temastartside({
         <IntrosideBody
           spørreundersøkelseId={params.uuid}
           vertId={params.vertId}
-          temaId={utledTema(params.temaId)}
+          temaId={paramTilTema(params.temaId)}
           introtittel={HARDKODET_INTROTITTEL}
           delnummer={HARDKODET_DELNUMMER}
           introtekst={HARDKODET_INTROTEKST}

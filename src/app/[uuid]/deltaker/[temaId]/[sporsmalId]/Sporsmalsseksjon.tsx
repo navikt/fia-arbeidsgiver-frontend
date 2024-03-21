@@ -15,7 +15,7 @@ import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 import CookieHandler from "@/utils/CookieHandler";
 import { Tema } from "@/app/_types/tema";
-import { utledTemaId } from "@/utils/spørreundersøkelsesUtils";
+import { temaTilURL } from "@/utils/spørreundersøkelsesUtils";
 
 export default function Spørsmålsseksjon({
   spørsmålId,
@@ -50,7 +50,9 @@ export default function Spørsmålsseksjon({
 
     if (spørsmålOgSvar.nesteSpørsmål.temaId !== tema) {
       router.push(
-        `../${spørsmålOgSvar.nesteSpørsmål.temaId}/${spørsmålOgSvar.nesteSpørsmål.spørsmålId}`,
+        `../${temaTilURL(spørsmålOgSvar.nesteSpørsmål.temaId)}/${
+          spørsmålOgSvar.nesteSpørsmål.spørsmålId
+        }`,
       );
     } else {
       router.push(`./${spørsmålOgSvar.nesteSpørsmål.spørsmålId}`);
@@ -67,7 +69,7 @@ export default function Spørsmålsseksjon({
 
     if (spørsmålOgSvar.forrigeSpørsmål.temaId !== tema) {
       router.push(
-        `../${utledTemaId(spørsmålOgSvar.forrigeSpørsmål.temaId)}/${
+        `../${temaTilURL(spørsmålOgSvar.forrigeSpørsmål.temaId)}/${
           spørsmålOgSvar.forrigeSpørsmål.spørsmålId
         }`,
       );

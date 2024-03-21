@@ -11,7 +11,7 @@ export function finskrivTema(tema: Tema) {
   }
 }
 
-export function utledTema(temaId: string) {
+export function paramTilTema(temaId: string) {
   switch (decodeURI(temaId)) {
     case "UTVIKLE_PARTSSAMARBEID":
       return Tema.UTVIKLE_PARTSSAMARBEID;
@@ -22,7 +22,7 @@ export function utledTema(temaId: string) {
   }
 }
 
-export function utledTemaId(tema: Tema) {
+export function temaTilURL(tema: Tema) {
   switch (tema) {
     case Tema.UTVIKLE_PARTSSAMARBEID:
       return encodeURI("UTVIKLE_PARTSSAMARBEID");

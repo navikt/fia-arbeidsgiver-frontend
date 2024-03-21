@@ -1,7 +1,7 @@
 import useSWR, { SWRConfiguration, SWRResponse } from "swr";
 import { ETT_SEKUND_MS } from "@/utils/consts";
 import { Tema } from "@/app/_types/tema";
-import { utledTemaId } from "@/utils/spørreundersøkelsesUtils";
+import { temaTilURL } from "@/utils/spørreundersøkelsesUtils";
 
 export function useAntallSvar({
   vertId,
@@ -30,7 +30,7 @@ export function useAntallSvar({
     revalidateIfStale: true,
   };
   return useSWR<number>(
-    `/api/${spørreundersøkelseId}/vert/${vertId}/${utledTemaId(
+    `/api/${spørreundersøkelseId}/vert/${vertId}/${temaTilURL(
       tema,
     )}/${spørsmålId}/antall-svar`,
     fetcher,

@@ -11,7 +11,7 @@ import kartleggingStyles from "@/app/kartlegging.module.css";
 import vertStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/sporsmalsside.module.css";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { finskrivTema, utledTemaId } from "@/utils/spørreundersøkelsesUtils";
+import { finskrivTema, temaTilURL } from "@/utils/spørreundersøkelsesUtils";
 import { TemaoversiktDto } from "@/app/_types/temaoversiktDto";
 
 export function OversiktBleedVert({
@@ -38,7 +38,7 @@ export function OversiktBleedVert({
               <Button
                 variant={"secondary"}
                 onClick={() =>
-                  router.push(`./tema/${utledTemaId(temaoversikt.temaId)}`)
+                  router.push(`./tema/${temaTilURL(temaoversikt.temaId)}`)
                 }
                 className={kartleggingStyles.knappHvitBred}
               >

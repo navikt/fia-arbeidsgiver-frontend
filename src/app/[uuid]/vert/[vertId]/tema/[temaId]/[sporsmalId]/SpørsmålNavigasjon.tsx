@@ -5,6 +5,7 @@ import spørsmålStyles from "./sporsmalsside.module.css";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { IdentifiserbartSpørsmål } from "@/app/_types/identifiserbartSpørsmål";
+import { temaTilURL } from "@/utils/spørreundersøkelsesUtils";
 
 export default function SpørsmålNavigasjon({
   nesteSpørsmål,
@@ -24,7 +25,9 @@ export default function SpørsmålNavigasjon({
             onClick={() => {
               forrigeSpørsmål !== null
                 ? router.push(
-                    `../${forrigeSpørsmål.temaId}/${forrigeSpørsmål.spørsmålId}`,
+                    `../${temaTilURL(forrigeSpørsmål.temaId)}/${
+                      forrigeSpørsmål.spørsmålId
+                    }`,
                   )
                 : router.push(`./`);
             }}
@@ -39,7 +42,9 @@ export default function SpørsmålNavigasjon({
               {
                 nesteSpørsmål !== null
                   ? router.push(
-                      `../${nesteSpørsmål.temaId}/${nesteSpørsmål.spørsmålId}`,
+                      `../${temaTilURL(nesteSpørsmål.temaId)}/${
+                        nesteSpørsmål.spørsmålId
+                      }`,
                     )
                   : router.push("../../oversikt");
               }
