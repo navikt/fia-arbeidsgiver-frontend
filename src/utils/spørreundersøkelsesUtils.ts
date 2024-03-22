@@ -1,4 +1,5 @@
 import { Tema } from "@/app/_types/tema";
+import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 
 export function finskrivTema(tema: Tema) {
   switch (tema) {
@@ -31,4 +32,34 @@ export function temaTilURL(tema: Tema) {
     default:
       return encodeURI("UTVIKLE_PARTSSAMARBEID");
   }
+}
+
+export function urlNeste(spørsmålOgSvar: SpørsmålsoversiktDto): string {
+  if (!spørsmålOgSvar) {
+    throw new Error("Spørsmål mangler");
+  }
+
+  if (spørsmålOgSvar.nesteSpørsmål === null) {
+    return `../ferdig`;
+  }
+
+  return `../${temaTilURL(spørsmålOgSvar.nesteSpørsmål.temaId)}/${
+    spørsmålOgSvar.nesteSpørsmål.spørsmålId
+  }`;
+}
+
+export function urlTilbake(
+  spørsmålOgSvar: SpørsmålsoversiktDto,
+): string | null {
+  if (!spørsmålOgSvar) {
+    throw new Error("Spørsmål mangler");
+  }
+
+  if (spørsmålOgSvar.forrigeSpørsmål === null) {
+    return null;
+  }
+
+  return `../${temaTilURL(spørsmålOgSvar.forrigeSpørsmål.temaId)}/${
+    spørsmålOgSvar.forrigeSpørsmål.spørsmålId
+  }`;
 }

@@ -15,7 +15,7 @@ import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 import CookieHandler from "@/utils/CookieHandler";
 import { Tema } from "@/app/_types/tema";
-import { temaTilURL } from "@/utils/spørreundersøkelsesUtils";
+import { urlNeste, urlTilbake } from "@/utils/spørreundersøkelsesUtils";
 
 export default function Spørsmålsseksjon({
   spørsmålId,
@@ -31,52 +31,12 @@ export default function Spørsmålsseksjon({
   const lagretSvar = CookieHandler.getSvarPåSpørsmål(spørsmålId);
   const [feilSendSvar, setFeilSendSvar] = React.useState<string | null>(null);
 
-  const router = useRouter();
-
   const [svar, setSvar] = React.useState(lagretSvar || "");
   const velgSvar = (svaralternativid: string) => setSvar(svaralternativid);
 
   const erPåLagretSvar = svar === lagretSvar && lagretSvar?.length > 0;
 
-  const navigerNeste = () => {
-    if (!spørsmålOgSvar) {
-      throw new Error("Spørsmål mangler");
-    }
-
-    if (spørsmålOgSvar.nesteSpørsmål === null) {
-      router.push(`../ferdig`);
-      return;
-    }
-
-    if (spørsmålOgSvar.nesteSpørsmål.temaId !== tema) {
-      router.push(
-        `../${temaTilURL(spørsmålOgSvar.nesteSpørsmål.temaId)}/${
-          spørsmålOgSvar.nesteSpørsmål.spørsmålId
-        }`,
-      );
-    } else {
-      router.push(`./${spørsmålOgSvar.nesteSpørsmål.spørsmålId}`);
-    }
-  };
-  const navigerTilbake = () => {
-    if (!spørsmålOgSvar) {
-      throw new Error("Spørsmål mangler");
-    }
-
-    if (spørsmålOgSvar.forrigeSpørsmål === null) {
-      return; // Kan ikke gå tilbake, så her gjør vi ingenting
-    }
-
-    if (spørsmålOgSvar.forrigeSpørsmål.temaId !== tema) {
-      router.push(
-        `../${temaTilURL(spørsmålOgSvar.forrigeSpørsmål.temaId)}/${
-          spørsmålOgSvar.forrigeSpørsmål.spørsmålId
-        }`,
-      );
-    } else {
-      router.push(`./${spørsmålOgSvar.forrigeSpørsmål.spørsmålId}`);
-    }
-  };
+  const router = useRouter();
 
   const håndterNesteknapp = () => {
     if (!spørsmålOgSvar) {
@@ -84,7 +44,7 @@ export default function Spørsmålsseksjon({
     }
 
     if (erPåLagretSvar) {
-      navigerNeste();
+      router.push(urlNeste(spørsmålOgSvar));
     } else {
       sendSvar({
         spørreundersøkelseId: spørreundersøkelseId,
@@ -94,11 +54,21 @@ export default function Spørsmålsseksjon({
       })
         .then(() => {
           setFeilSendSvar(null);
-          navigerNeste();
+          router.push(urlNeste(spørsmålOgSvar));
         })
         .catch((error) => {
           setFeilSendSvar(error.message);
         });
+    }
+  };
+
+  const håndterTilbakeknapp = () => {
+    if (!spørsmålOgSvar) {
+      throw new Error("Spørsmål mangler");
+    }
+    const url = urlTilbake(spørsmålOgSvar);
+    if (url !== null) {
+      router.push(url);
     }
   };
 
@@ -142,7 +112,7 @@ export default function Spørsmålsseksjon({
           <Button
             variant="secondary"
             className={spørsmålStyles.tilbakeknapp}
-            onClick={navigerTilbake}
+            onClick={håndterTilbakeknapp}
           >
             Tilbake
           </Button>

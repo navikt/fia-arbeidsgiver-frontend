@@ -4,16 +4,34 @@ import spørsmålStyles from "./sporsmalsside.module.css";
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { IdentifiserbartSpørsmål } from "@/app/_types/identifiserbartSpørsmål";
-import { temaTilURL } from "@/utils/spørreundersøkelsesUtils";
+import { urlNeste, urlTilbake } from "@/utils/spørreundersøkelsesUtils";
+import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 
 export default function SpørsmålNavigasjon({
-  nesteSpørsmål,
-  forrigeSpørsmål,
+  spørsmålOgSvar,
 }: {
-  nesteSpørsmål: IdentifiserbartSpørsmål | null;
-  forrigeSpørsmål: IdentifiserbartSpørsmål | null;
+  spørsmålOgSvar: SpørsmålsoversiktDto;
 }) {
+  const håndterNesteknapp = () => {
+    if (!spørsmålOgSvar) {
+      throw new Error("Spørsmål mangler");
+    }
+
+    router.push(urlNeste(spørsmålOgSvar));
+  };
+
+  const håndterTilbakeknapp = () => {
+    if (!spørsmålOgSvar) {
+      throw new Error("Spørsmål mangler");
+    }
+    const url = urlTilbake(spørsmålOgSvar);
+    if (url !== null) {
+      router.push(url);
+    } else {
+      router.push("../../oversikt");
+    }
+  };
+
   const router = useRouter();
   return (
     <Box as="footer" padding="24">
@@ -22,35 +40,17 @@ export default function SpørsmålNavigasjon({
           <Button
             variant="secondary"
             className={kartleggingStyles.knappHvitBred}
-            onClick={() => {
-              forrigeSpørsmål !== null
-                ? router.push(
-                    `../${temaTilURL(forrigeSpørsmål.temaId)}/${
-                      forrigeSpørsmål.spørsmålId
-                    }`,
-                  )
-                : router.push(`./`);
-            }}
+            onClick={håndterTilbakeknapp}
           >
-            {forrigeSpørsmål !== null
+            {spørsmålOgSvar.forrigeSpørsmål !== null
               ? "Forrige spørsmål"
               : "Tilbake til temaside"}
           </Button>
           <Button
             className={kartleggingStyles.knappBred}
-            onClick={() => {
-              {
-                nesteSpørsmål !== null
-                  ? router.push(
-                      `../${temaTilURL(nesteSpørsmål.temaId)}/${
-                        nesteSpørsmål.spørsmålId
-                      }`,
-                    )
-                  : router.push("../../oversikt");
-              }
-            }}
+            onClick={håndterNesteknapp}
           >
-            {nesteSpørsmål !== null ? "Neste" : "Fullført"}
+            {spørsmålOgSvar.nesteSpørsmål !== null ? "Neste" : "Fullført"}
           </Button>
         </HStack>
       </Page.Block>

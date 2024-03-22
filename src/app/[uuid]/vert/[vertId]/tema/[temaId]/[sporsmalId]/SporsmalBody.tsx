@@ -66,12 +66,7 @@ export default function SpørsmålBody({
     spørsmålOgSvar && (
       <Page
         contentBlockPadding="none"
-        footer={
-          <SpørsmålNavigasjon
-            nesteSpørsmål={spørsmålOgSvar.nesteSpørsmål}
-            forrigeSpørsmål={spørsmålOgSvar.forrigeSpørsmål}
-          />
-        }
+        footer={<SpørsmålNavigasjon spørsmålOgSvar={spørsmålOgSvar} />}
       >
         <Page.Block as={"main"}>
           <SpørsmålBleedVert
