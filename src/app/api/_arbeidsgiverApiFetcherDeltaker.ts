@@ -14,13 +14,10 @@ export function arbeidsgiverApiFetcherDeltaker(
       });
   }
 
-  console.log("req.cookies:", req.cookies);
   const cookie = req.cookies.get(COOKIE_STORAGE_KEY);
-  console.log("cookie:", cookie);
   const parsetCookie = cookie ? JSON.parse(cookie.value) : undefined;
 
   const sesjonsId: string = parsetCookie.sesjonsID;
-  console.log("sesjonId:", sesjonsId);
   return () =>
     fetch(
       `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/sporreundersokelse/${endpoint}`,
