@@ -29,7 +29,7 @@ describe("Oversiktside", () => {
     jest.clearAllMocks();
   });
 
-  test("render fungerer", async () => {
+  test("rett innhold blir tegnet opp", async () => {
     render(<Oversiktside params={{ uuid: "uuid", vertId: "vertId" }} />);
     const tittel = await screen.findByText("Vis QR-kode");
     expect(tittel).toBeInTheDocument();

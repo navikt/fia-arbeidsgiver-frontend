@@ -15,9 +15,13 @@ import {
 } from "@/utils/dummyData/vert";
 // @ts-ignore
 import { dummyVertId } from "@/utils/dummyData/vert";
-const dummySpørsmålId = førsteTemaFørsteSpørsmål.spørsmålId;
-const dummyTemaId = førsteTemaFørsteSpørsmål.temaId;
-const dummySpørsmålOgSvar = dummyFørsteSpørsmål;
+import { Tema } from "@/app/_types/tema";
+import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+const dummySpørsmålId: string = førsteTemaFørsteSpørsmål.spørsmålId;
+const testTema: Tema = førsteTemaFørsteSpørsmål.temaId;
+const testSpørsmålOgSvar: SpørsmålsoversiktDto = dummyFørsteSpørsmål;
+const testAntallSvar = "3";
+const testAntallDeltakere = "4";
 
 expect.extend(toHaveNoViolations);
 jest.mock("next/navigation", () => ({
@@ -30,7 +34,7 @@ jest.mock("next/navigation", () => ({
 
 jest.mock("@/app/_api_hooks/vert/useAntallDeltakere", () => ({
   useAntallDeltakere: () => ({
-    data: "2",
+    data: testAntallDeltakere,
     isLoading: false,
     error: undefined,
   }),
@@ -38,7 +42,7 @@ jest.mock("@/app/_api_hooks/vert/useAntallDeltakere", () => ({
 
 jest.mock("@/app/_api_hooks/vert/useAntallSvar", () => ({
   useAntallSvar: () => ({
-    data: "3",
+    data: testAntallSvar,
     isLoading: false,
     error: undefined,
   }),
@@ -46,7 +50,7 @@ jest.mock("@/app/_api_hooks/vert/useAntallSvar", () => ({
 
 jest.mock("@/app/_api_hooks/vert/useSpørsmålOgSvar", () => ({
   useSpørsmålOgSvar: () => ({
-    data: dummySpørsmålOgSvar,
+    data: testSpørsmålOgSvar,
     isLoading: false,
     error: undefined,
   }),
@@ -65,22 +69,27 @@ describe("vert/spørsmålside", () => {
     jest.clearAllMocks();
   });
 
-  test("Spørsmålside får rett tekst for spørsmål og svaralternativer", async () => {
+  test("rett innhold blir tegnet opp", async () => {
     render(
       <Spørsmålsside
         params={{
           uuid: dummySpørreundersøkelseId,
           vertId: dummyVertId,
-          temaId: dummyTemaId,
+          temaId: testTema,
           sporsmalId: dummySpørsmålId,
         }}
       />,
     );
-    const tittel = await screen.findByText(dummySpørsmålOgSvar.spørsmålTekst);
+    const tittel = await screen.findByText(testSpørsmålOgSvar.spørsmålTekst);
 
     expect(tittel).toBeInTheDocument();
 
-    for (const svaralternativ of dummySpørsmålOgSvar.svaralternativer) {
+    //TODO: sjekk om svar av antalldeltakere tegnes opp
+    // expect(
+    //   screen.getByText(`${testAntallSvar} av ${testAntallDeltakere}`),
+    // ).toBeInTheDocument();
+
+    for (const svaralternativ of testSpørsmålOgSvar.svaralternativer) {
       const svar = await screen.findByText(svaralternativ.svartekst);
       expect(svar).toBeInTheDocument();
     }
@@ -93,7 +102,7 @@ describe("vert/spørsmålside", () => {
         params={{
           uuid: dummySpørreundersøkelseId,
           vertId: dummyVertId,
-          temaId: dummyTemaId,
+          temaId: testTema,
           sporsmalId: dummySpørsmålId,
         }}
       />,
@@ -108,7 +117,7 @@ describe("vert/spørsmålside", () => {
         params={{
           uuid: dummySpørreundersøkelseId,
           vertId: dummyVertId,
-          temaId: dummyTemaId,
+          temaId: testTema,
           sporsmalId: dummySpørsmålId,
         }}
       />,
@@ -123,7 +132,7 @@ describe("vert/spørsmålside", () => {
         params={{
           uuid: dummySpørreundersøkelseId,
           vertId: dummyVertId,
-          temaId: dummyTemaId,
+          temaId: testTema,
           sporsmalId: dummySpørsmålId,
         }}
       />,
@@ -138,7 +147,7 @@ describe("vert/spørsmålside", () => {
         params={{
           uuid: dummySpørreundersøkelseId,
           vertId: dummyVertId,
-          temaId: dummyTemaId,
+          temaId: testTema,
           sporsmalId: dummySpørsmålId,
         }}
       />,
@@ -152,7 +161,7 @@ describe("vert/spørsmålside", () => {
         params={{
           uuid: dummySpørreundersøkelseId,
           vertId: dummyVertId,
-          temaId: dummyTemaId,
+          temaId: testTema,
           sporsmalId: dummySpørsmålId,
         }}
       />,
@@ -172,19 +181,19 @@ describe("vert/spørsmålside", () => {
         params={{
           uuid: dummySpørreundersøkelseId,
           vertId: dummyVertId,
-          temaId: dummyTemaId,
+          temaId: testTema,
           sporsmalId: dummySpørsmålId,
         }}
       />,
     );
 
     const førsteTittel = await screen.findByText(
-      dummySpørsmålOgSvar.spørsmålTekst,
+      testSpørsmålOgSvar.spørsmålTekst,
     );
     expect(førsteTittel).toBeInTheDocument();
 
     const nesteKnapp = screen.getByText(
-      dummySpørsmålOgSvar.nesteSpørsmål !== null ? "Neste" : "Fullfør",
+      testSpørsmålOgSvar.nesteSpørsmål !== null ? "Neste" : "Fullfør",
     );
 
     expect(nesteKnapp).toBeInTheDocument();

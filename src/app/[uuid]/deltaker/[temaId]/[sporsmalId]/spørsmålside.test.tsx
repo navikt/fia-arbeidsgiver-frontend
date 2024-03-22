@@ -60,7 +60,7 @@ describe("deltaker/Spørsmålsside", () => {
       .mockImplementation(() => undefined);
   });
 
-  test("render fungerer", async () => {
+  test("rett innhold blir tegnet opp", async () => {
     render(
       <Spørsmålsside
         params={{

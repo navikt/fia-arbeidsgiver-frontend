@@ -10,7 +10,7 @@ describe("Ferdigside", () => {
     jest.clearAllMocks();
   });
 
-  test("render fungerer", async () => {
+  test("rett innhold blir tegnet opp", async () => {
     render(<Ferdigside />);
     const tittel = await screen.findByText(
       "Bra jobbet! Da har alle svar blitt logget og sendt til Fia. Rådgiveren sier litt om prosessen videre.",

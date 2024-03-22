@@ -25,7 +25,7 @@ describe("Startside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  test("render fungerer", async () => {
+  test("rett innhold blir tegnet opp", async () => {
     render(<Startside params={{ uuid: "uuid", vertId: "vertId" }} />);
     const tittel = await screen.findByText(
       "Skann QR-koden for å bli med i undersøkelsen",

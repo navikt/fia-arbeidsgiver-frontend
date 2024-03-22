@@ -13,7 +13,7 @@ describe("Ferdigside", () => {
     jest.clearAllMocks();
     jest.spyOn(CookieHandler, "setHarSvartAlleSpørsmål");
   });
-  test("render fungerer", async () => {
+  test("rett innhold blir tegnet opp", async () => {
     render(<Ferdigside />);
     const tittel = await screen.findByText("Takk for ditt bidrag!");
     expect(tittel).toBeInTheDocument();
