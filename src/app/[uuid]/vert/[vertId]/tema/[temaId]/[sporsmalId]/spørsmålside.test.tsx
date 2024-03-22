@@ -15,10 +15,9 @@ import {
 } from "@/utils/dummyData/vert";
 // @ts-ignore
 import { dummyVertId } from "@/utils/dummyData/vert";
-import { Tema } from "@/app/_types/tema";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 const dummySpørsmålId: string = førsteTemaFørsteSpørsmål.spørsmålId;
-const testTema: Tema = førsteTemaFørsteSpørsmål.temaId;
+const testTema = førsteTemaFørsteSpørsmål.tema;
 const testSpørsmålOgSvar: SpørsmålsoversiktDto = dummyFørsteSpørsmål;
 const testAntallSvar = "3";
 const testAntallDeltakere = "4";

@@ -21,7 +21,7 @@ import {
 
 const testSpørreundersøkelseId: string = dummySpørreundersøkelseId;
 const testSpørsmålId: string = førsteTemaFørsteSpørsmål.spørsmålId;
-const testTema: Tema = førsteTemaFørsteSpørsmål.temaId;
+const testTema: string = førsteTemaFørsteSpørsmål.tema;
 const testSpørsmålOgSvar: SpørsmålsoversiktDto = dummyFørsteSpørsmål;
 
 jest.mock("next/navigation", () => ({
@@ -86,7 +86,7 @@ describe("deltaker/Spørsmålsside", () => {
         params={{
           uuid: testSpørreundersøkelseId,
           sporsmalId: testSpørsmålId,
-          temaId: Tema.REDUSERE_SYKEFRAVÆR,
+          temaId: Tema.REDUSERE_SYKEFRAVÆR.valueOf(),
         }}
       />,
     );
@@ -218,7 +218,7 @@ describe("deltaker/Spørsmålsside", () => {
         params={{
           uuid: testSpørreundersøkelseId,
           sporsmalId: testSpørsmålId,
-          temaId: Tema.REDUSERE_SYKEFRAVÆR,
+          temaId: Tema.REDUSERE_SYKEFRAVÆR.valueOf(),
         }}
       />,
     );

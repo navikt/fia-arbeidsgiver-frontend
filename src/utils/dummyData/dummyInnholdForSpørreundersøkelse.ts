@@ -1,22 +1,22 @@
 const dummySpørreundersøkelseId = "5164abc8-9e4c-408d-8790-ce7f7f3c4658";
 
 const førsteTemaFørsteSpørsmål = {
-  temaId: "UTVIKLE_PARTSSAMARBEID",
+  tema: "UTVIKLE_PARTSSAMARBEID",
   spørsmålId: "b16c4b1c-b45e-470d-a1a5-d6f87424d410",
 };
 
 const førsteTemaAndreSpørsmål = {
-  temaId: "UTVIKLE_PARTSSAMARBEID",
+  tema: "UTVIKLE_PARTSSAMARBEID",
   spørsmålId: "61a9a84a-949b-4f46-97e5-c9b60e01d433",
 };
 
 const førsteTemaTredjeSpørsmål = {
-  temaId: "UTVIKLE_PARTSSAMARBEID",
+  tema: "UTVIKLE_PARTSSAMARBEID",
   spørsmålId: "62b3a863-cba3-4c92-8c7e-19d8b4688d49",
 };
 
 const andreTemaFørsteSpørsmål = {
-  temaId: "REDUSERE_SYKEFRAVÆR",
+  tema: "REDUSERE_SYKEFRAVÆR",
   spørsmålId: "5df90163-81e4-44c5-8e72-9b47f2added2",
 };
 
