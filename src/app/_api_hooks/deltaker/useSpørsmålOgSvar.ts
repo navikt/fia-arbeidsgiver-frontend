@@ -7,14 +7,13 @@ export function useSpørsmålOgSvar(
   spørreundersøkelseId: string,
   tema: Tema,
   spørsmålId: string,
-  shouldPoll = false,
 ): SWRResponse<SpørsmålsoversiktDto> {
   const fetcher = (url: string) =>
     fetch(url, {
       method: "GET",
     }).then((res) => {
       if (res.status === 202) {
-        throw new Error("Spørsmål er ikke åpnet");
+        return undefined;
       }
 
       if (!res.ok) {
@@ -26,10 +25,8 @@ export function useSpørsmålOgSvar(
   return useSWR(
     `/api/${spørreundersøkelseId}/deltaker/${temaTilURL(tema)}/${spørsmålId}`,
     fetcher,
-    shouldPoll
-      ? {
-          refreshInterval: 1000,
-        }
-      : {},
+    {
+      refreshInterval: 2000,
+    },
   );
 }

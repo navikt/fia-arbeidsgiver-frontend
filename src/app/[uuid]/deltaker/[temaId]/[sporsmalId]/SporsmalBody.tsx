@@ -32,76 +32,61 @@ export default function SpørsmålBody({
     }
   });
 
-  const [shouldPoll, setShouldPoll] = React.useState(true);
-
   const {
     data: spørsmålOgSvar,
     isLoading: lasterSpørsmålOgSvar,
     error: feilSpørsmålOgSvar,
-  } = useSpørsmålOgSvar(spørreundersøkelseId, tema, spørsmålId, shouldPoll);
-
-  React.useEffect(() => {
-    if (
-      feilSpørsmålOgSvar &&
-      feilSpørsmålOgSvar.message === "Spørsmål er ikke åpnet"
-    ) {
-      setShouldPoll(true);
-    } else if (
-      feilSpørsmålOgSvar &&
-      feilSpørsmålOgSvar.message !== "Spørsmål er ikke åpnet"
-    ) {
-      setShouldPoll(false);
-    } else if (spørsmålOgSvar) {
-      setShouldPoll(false);
-    }
-  }, [feilSpørsmålOgSvar, spørsmålOgSvar]);
+  } = useSpørsmålOgSvar(spørreundersøkelseId, tema, spørsmålId);
 
   if (lasterSpørsmålOgSvar) {
     return (
-      <VStack
-        gap={"4"}
-        align={"center"}
-        justify={"center"}
-        className={spørsmålStyles.nesteStack}
-      >
-        <Heading size={"large"}>Laster spørsmål</Heading>
-        <Loader size="3xlarge" title="Venter..." />
-      </VStack>
+      <>
+        <SpørsmålBleedDeltaker overskrift={finskrivTema(tema)} />
+        <VStack
+          gap={"4"}
+          align={"center"}
+          justify={"center"}
+          className={spørsmålStyles.nesteStack}
+        >
+          <Heading size={"large"}>Laster spørsmål</Heading>
+          <Loader size="3xlarge" title="Venter..." />
+        </VStack>
+      </>
     );
   }
   if (feilSpørsmålOgSvar) {
-    if (shouldPoll) {
-      return (
-        <>
-          <SpørsmålBleedDeltaker overskrift={finskrivTema(tema)} />
-          <VStack
-            gap={"4"}
-            align={"center"}
-            justify={"center"}
-            className={spørsmålStyles.nesteStack}
-          >
-            <Heading size={"large"}>Venter på vert</Heading>
-            <Loader size="3xlarge" title="Venter..." />
-          </VStack>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <SpørsmålBleedDeltaker overskrift={finskrivTema(tema)} />
-          <VStack
-            gap={"4"}
-            align={"center"}
-            justify={"center"}
-            className={spørsmålStyles.nesteStack}
-          >
-            <Alert variant={"error"} className={kartleggingStyles.alertWarning}>
-              {feilSpørsmålOgSvar.message}
-            </Alert>
-          </VStack>
-        </>
-      );
-    }
+    return (
+      <>
+        <SpørsmålBleedDeltaker overskrift={finskrivTema(tema)} />
+        <VStack
+          gap={"4"}
+          align={"center"}
+          justify={"center"}
+          className={spørsmålStyles.nesteStack}
+        >
+          <Alert variant={"error"} className={kartleggingStyles.alertWarning}>
+            {feilSpørsmålOgSvar.message}
+          </Alert>
+        </VStack>
+      </>
+    );
+  }
+
+  if (spørsmålOgSvar === undefined) {
+    return (
+      <>
+        <SpørsmålBleedDeltaker overskrift={finskrivTema(tema)} />
+        <VStack
+          gap={"4"}
+          align={"center"}
+          justify={"center"}
+          className={spørsmålStyles.nesteStack}
+        >
+          <Heading size={"large"}>Venter på vert</Heading>
+          <Loader size="3xlarge" title="Venter..." />
+        </VStack>
+      </>
+    );
   }
 
   return (
