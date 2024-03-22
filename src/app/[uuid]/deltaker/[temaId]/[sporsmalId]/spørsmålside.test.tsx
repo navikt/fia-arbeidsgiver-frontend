@@ -1,12 +1,6 @@
 import "@testing-library/jest-dom";
 import { act, render, screen } from "@testing-library/react";
 import Spørsmålsside from "./page";
-import {
-  dummySpørreundersøkelseId,
-  dummySpørsmålOgSvar,
-  førsteTemaFørsteSpørsmål,
-  // @ts-ignore
-} from "@/utils/dummyData/dummyInnholdForSpørreundersøkelse";
 import { axe, toHaveNoViolations } from "jest-axe";
 import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
 import { useRouter } from "next/navigation";
@@ -14,7 +8,21 @@ import mockCookieHandler from "@/utils/jest-mocks/CookieHandler";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
 import CookieHandler from "@/utils/CookieHandler";
 import { Tema } from "@/app/_types/tema";
-import { SvaralternativDto } from "@/app/_types/spørsmålsoversiktDto";
+import {
+  SpørsmålsoversiktDto,
+  SvaralternativDto,
+} from "@/app/_types/spørsmålsoversiktDto";
+import {
+  dummySpørreundersøkelseId,
+  dummyFørsteSpørsmål,
+  førsteTemaFørsteSpørsmål,
+  // @ts-ignore
+} from "@/utils/dummyData/dummyInnholdForSpørreundersøkelse";
+
+const testSpørreundersøkelseId: string = dummySpørreundersøkelseId;
+const testSpørsmålId: string = førsteTemaFørsteSpørsmål.spørsmålId;
+const testTema: Tema = førsteTemaFørsteSpørsmål.temaId;
+const testSpørsmålOgSvar: SpørsmålsoversiktDto = dummyFørsteSpørsmål;
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(() => ({
@@ -23,8 +31,9 @@ jest.mock("next/navigation", () => ({
   })),
 }));
 
-const dummySpørsmålId = førsteTemaFørsteSpørsmål.spørsmålId;
-const dummyTemaId = førsteTemaFørsteSpørsmål.temaId;
+jest.mock("@/app/_api_hooks/deltaker/sendSvar", () => ({
+  sendSvar: jest.fn(() => Promise.resolve()),
+}));
 
 jest.mock("@/app/_api_hooks/deltaker/useSpørsmålOgSvar", () => ({
   useSpørsmålOgSvar: jest.fn(),
@@ -32,22 +41,17 @@ jest.mock("@/app/_api_hooks/deltaker/useSpørsmålOgSvar", () => ({
 
 mockCookieHandler();
 
-jest.mock("@/app/_api_hooks/deltaker/sendSvar", () => ({
-  postEnkeltSvar: jest.fn(() => Promise.resolve()),
-}));
-
 expect.extend(toHaveNoViolations);
 
-// eslint-disable-next-line jest/no-disabled-tests
-describe.skip("Spørsmålsside", () => {
+describe("deltaker/Spørsmålsside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
     jest.mocked(useSpørsmålOgSvar).mockReturnValue({
-      data: dummySpørsmålOgSvar,
+      data: testSpørsmålOgSvar,
       isLoading: false,
       error: null,
-      mutate: jest.fn(() => Promise.resolve(dummySpørsmålOgSvar)),
+      mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
       isValidating: false,
     });
 
@@ -55,22 +59,23 @@ describe.skip("Spørsmålsside", () => {
       .spyOn(CookieHandler, "getSvarPåSpørsmål")
       .mockImplementation(() => undefined);
   });
+
   test("render fungerer", async () => {
     render(
       <Spørsmålsside
         params={{
-          uuid: dummySpørreundersøkelseId,
-          sporsmalId: dummySpørsmålId,
-          temaId: dummyTemaId,
+          uuid: testSpørreundersøkelseId,
+          sporsmalId: testSpørsmålId,
+          temaId: testTema,
         }}
       />,
     );
 
-    const tittel = await screen.findByText(dummySpørsmålOgSvar.spørsmålTekst);
+    expect(
+      screen.getByText(testSpørsmålOgSvar.spørsmålTekst),
+    ).toBeInTheDocument();
 
-    expect(tittel).toBeInTheDocument();
-
-    dummySpørsmålOgSvar.svaralternativer.forEach((svar: SvaralternativDto) => {
+    testSpørsmålOgSvar.svaralternativer.forEach((svar: SvaralternativDto) => {
       expect(screen.getByText(svar.svartekst)).toBeInTheDocument();
     });
   });
@@ -79,15 +84,15 @@ describe.skip("Spørsmålsside", () => {
     render(
       <Spørsmålsside
         params={{
-          uuid: dummySpørreundersøkelseId,
-          sporsmalId: dummySpørsmålId,
+          uuid: testSpørreundersøkelseId,
+          sporsmalId: testSpørsmålId,
           temaId: Tema.REDUSERE_SYKEFRAVÆR,
         }}
       />,
     );
 
     const svar = await screen.findByText(
-      dummySpørsmålOgSvar.svaralternativer[0].tekst,
+      testSpørsmålOgSvar.svaralternativer[0].svartekst,
     );
     act(() => svar.click());
 
@@ -96,19 +101,19 @@ describe.skip("Spørsmålsside", () => {
 
     expect(sendSvar).toHaveBeenCalledTimes(1);
     expect(sendSvar).toHaveBeenCalledWith({
-      spørreundersøkelseId: "a",
-      temaId: Tema.REDUSERE_SYKEFRAVÆR,
-      spørsmålId: dummySpørsmålOgSvar.id,
-      svarId: dummySpørsmålOgSvar.svaralternativer[0].svarId,
+      spørreundersøkelseId: testSpørreundersøkelseId,
+      tema: Tema.REDUSERE_SYKEFRAVÆR,
+      spørsmålId: testSpørsmålId,
+      svarId: testSpørsmålOgSvar.svaralternativer[0].svarId,
     });
   });
 
   test("Velg og send svar", async () => {
     jest.mocked(useSpørsmålOgSvar).mockReturnValue({
-      data: dummySpørsmålOgSvar,
+      data: testSpørsmålOgSvar,
       isLoading: false,
       error: null,
-      mutate: jest.fn(() => Promise.resolve(dummySpørsmålOgSvar)),
+      mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
       isValidating: false,
     });
     const pushFunction = jest.fn();
@@ -124,15 +129,15 @@ describe.skip("Spørsmålsside", () => {
     render(
       <Spørsmålsside
         params={{
-          uuid: dummySpørreundersøkelseId,
-          sporsmalId: dummySpørsmålId,
-          temaId: dummyTemaId,
+          uuid: testSpørreundersøkelseId,
+          sporsmalId: testSpørsmålId,
+          temaId: testTema,
         }}
       />,
     );
 
     const svar = screen.getByText(
-      dummySpørsmålOgSvar.svaralternativer[0].svartekst,
+      testSpørsmålOgSvar.svaralternativer[0].svartekst,
     );
     act(() => svar.click());
 
@@ -141,28 +146,28 @@ describe.skip("Spørsmålsside", () => {
 
     expect(sendSvar).toHaveBeenCalledTimes(1);
     expect(sendSvar).toHaveBeenCalledWith({
-      spørreundersøkelseId: dummySpørreundersøkelseId,
-      spørsmålId: dummySpørsmålId,
-      temaId: dummySpørsmålOgSvar,
-      svarId: dummySpørsmålOgSvar.svaralternativer[0].svarId,
+      spørreundersøkelseId: testSpørreundersøkelseId,
+      spørsmålId: testSpørsmålId,
+      tema: testTema,
+      svarId: testSpørsmålOgSvar.svaralternativer[0].svarId,
     });
   });
 
   test("axe UU-test", async () => {
     jest.mocked(useSpørsmålOgSvar).mockReturnValue({
-      data: dummySpørsmålOgSvar,
+      data: testSpørsmålOgSvar,
       isLoading: false,
       error: null,
-      mutate: jest.fn(() => Promise.resolve(dummySpørsmålOgSvar)),
+      mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
       isValidating: false,
     });
 
     const { container } = render(
       <Spørsmålsside
         params={{
-          uuid: dummySpørreundersøkelseId,
-          sporsmalId: dummySpørsmålId,
-          temaId: dummyTemaId,
+          uuid: testSpørreundersøkelseId,
+          sporsmalId: testSpørsmålId,
+          temaId: testTema,
         }}
       />,
     );
@@ -174,45 +179,45 @@ describe.skip("Spørsmålsside", () => {
   });
 
   test("Bruker valgt svaralternativ fra cookieHandler", async () => {
-    const forhåndssvart = dummySpørsmålOgSvar.svaralternativer[1];
+    const forhåndssvart = testSpørsmålOgSvar.svaralternativer[1];
     jest
       .spyOn(CookieHandler, "getSvarPåSpørsmål")
-      .mockImplementation(() => forhåndssvart.id);
+      .mockImplementation(() => forhåndssvart.svarId);
 
     render(
       <Spørsmålsside
         params={{
-          uuid: dummySpørreundersøkelseId,
-          temaId: dummyTemaId,
-          sporsmalId: dummySpørsmålId,
+          uuid: testSpørreundersøkelseId,
+          temaId: testTema,
+          sporsmalId: testSpørsmålId,
         }}
       />,
     );
 
     const svar = await screen.findByRole("radio", {
-      name: forhåndssvart.tekst,
+      name: forhåndssvart.svartekst,
     });
 
     expect(svar).toHaveAttribute("checked");
 
     const feilSvar = await screen.findByRole("radio", {
-      name: dummySpørsmålOgSvar.svaralternativer[0].tekst,
+      name: testSpørsmålOgSvar.svaralternativer[0].svartekst,
     });
 
     expect(feilSvar).not.toHaveAttribute("checked");
   });
 
   test("Viser riktig tekst i svarknapp i forhold til lagret svar", async () => {
-    const forhåndssvart = dummySpørsmålOgSvar.svaralternativer[1];
+    const forhåndssvart = testSpørsmålOgSvar.svaralternativer[1];
     jest
       .spyOn(CookieHandler, "getSvarPåSpørsmål")
-      .mockImplementation(() => forhåndssvart.id);
+      .mockImplementation(() => forhåndssvart.svarId);
 
     render(
       <Spørsmålsside
         params={{
-          uuid: dummySpørreundersøkelseId,
-          sporsmalId: dummySpørsmålId,
+          uuid: testSpørreundersøkelseId,
+          sporsmalId: testSpørsmålId,
           temaId: Tema.REDUSERE_SYKEFRAVÆR,
         }}
       />,
@@ -228,7 +233,7 @@ describe.skip("Spørsmålsside", () => {
 
     await screen
       .findByRole("radio", {
-        name: dummySpørsmålOgSvar.svaralternativer[0].tekst,
+        name: testSpørsmålOgSvar.svaralternativer[0].svartekst,
       })
       .then((radio) => {
         act(() => radio.click());
@@ -249,16 +254,16 @@ describe.skip("Spørsmålsside", () => {
     render(
       <Spørsmålsside
         params={{
-          uuid: dummySpørreundersøkelseId,
-          sporsmalId: dummySpørsmålId,
-          temaId: dummyTemaId,
+          uuid: testSpørreundersøkelseId,
+          sporsmalId: testSpørsmålId,
+          temaId: testTema,
         }}
       />,
     );
 
     await screen
       .findByRole("radio", {
-        name: dummySpørsmålOgSvar.svaralternativer[0].tekst,
+        name: testSpørsmålOgSvar.svaralternativer[0].svartekst,
       })
       .then((radio) => {
         act(() => radio.click());

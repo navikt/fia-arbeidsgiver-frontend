@@ -16,12 +16,10 @@ export function StatusPåDeltaker({
   return (
     <HStack className={spørsmålStyles.deltakere}>
       <PersonGroupFillIcon />
-      <BodyShort>
-        <AntallDeltakere
-          spørreundersøkelseId={spørreundersøkelseId}
-          vertId={vertId}
-        />
-      </BodyShort>
+      <AntallDeltakere
+        spørreundersøkelseId={spørreundersøkelseId}
+        vertId={vertId}
+      />
     </HStack>
   );
 }

@@ -18,16 +18,13 @@ jest.mock("next/navigation", () => ({
 
 jest.mock("@/app/_api_hooks/vert/useTemaoversikt", () => ({
   useTemaoversikt: () => ({
-    data: {
-      listeOverTemaer: dummyTemaoversikt,
-    },
+    data: dummyTemaoversikt,
     isLoading: false,
     error: undefined,
   }),
 }));
 
-// eslint-disable-next-line jest/no-disabled-tests
-describe.skip("Oversiktside", () => {
+describe("Oversiktside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

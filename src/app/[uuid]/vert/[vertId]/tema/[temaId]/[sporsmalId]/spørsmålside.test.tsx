@@ -2,19 +2,19 @@ import "@testing-library/jest-dom";
 import { act, render, screen } from "@testing-library/react";
 import Spørsmålsside from "./page";
 import { axe, toHaveNoViolations } from "jest-axe";
-import { useRouter } from "next/navigation";
 
 import {
   dummySpørreundersøkelseId,
   dummyFørsteSpørsmål,
-  dummyAndreSpørsmål,
-  dummyTredjeSpørsmål,
   førsteTemaFørsteSpørsmål,
   // @ts-ignore
 } from "@/utils/dummyData/dummyInnholdForSpørreundersøkelse";
+import {
+  dummyTemaoversikt,
+  // @ts-ignore
+} from "@/utils/dummyData/vert";
 // @ts-ignore
 import { dummyVertId } from "@/utils/dummyData/vert";
-
 const dummySpørsmålId = førsteTemaFørsteSpørsmål.spørsmålId;
 const dummyTemaId = førsteTemaFørsteSpørsmål.temaId;
 const dummySpørsmålOgSvar = dummyFørsteSpørsmål;
@@ -52,6 +52,14 @@ jest.mock("@/app/_api_hooks/vert/useSpørsmålOgSvar", () => ({
   }),
 }));
 
+jest.mock("@/app/_api_hooks/vert/useTemaoversikt", () => ({
+  useTemaoversikt: () => ({
+    data: dummyTemaoversikt,
+    isLoading: false,
+    error: undefined,
+  }),
+}));
+
 describe("vert/spørsmålside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -79,7 +87,7 @@ describe("vert/spørsmålside", () => {
   });
 
   test("vert blir routet til rett spørsmålside ved trykk på neste basert på IdentifiserbartSpørsmål", async () => {
-    //TODO: Test at man kan gå til neste spørsmålID ved trykk på neste
+    //TODO: implementer
     render(
       <Spørsmålsside
         params={{
@@ -94,7 +102,7 @@ describe("vert/spørsmålside", () => {
   });
 
   test("vert blir routet til oversikt om neste IdentifiserbartSpørsmål er null", async () => {
-    //TODO: Test at man kommer til overskt om neste IdentifiserbartSpørsmål er null
+    //TODO: implementer
     render(
       <Spørsmålsside
         params={{
@@ -109,7 +117,7 @@ describe("vert/spørsmålside", () => {
   });
 
   test("vert blir routet til rett spørsmålside ved trykk på forrige basert på IdentifiserbartSpørsmål", async () => {
-    //TODO: Test at man kan gå til forrige spørsmålID ved trykk på forrige
+    //TODO: implementer
     render(
       <Spørsmålsside
         params={{
@@ -123,18 +131,8 @@ describe("vert/spørsmålside", () => {
     expect(2).toBe(2);
   });
 
-  // eslint-disable-next-line jest/no-disabled-tests
-  test.skip("vert skal kunne trykke på tilbake", async () => {
-    const pushFunction = jest.fn();
-    jest.mocked(useRouter).mockReturnValue({
-      push: pushFunction,
-      back: jest.fn(),
-      prefetch: jest.fn(),
-      forward: jest.fn(),
-      replace: jest.fn(),
-      refresh: jest.fn(),
-    });
-
+  test("vert blir routet til temaside om forrige IdentifiserbartSpørsmål er null", async () => {
+    //TODO: implementer (usikker på om temaside eller oversikt er rett routing her)
     render(
       <Spørsmålsside
         params={{
@@ -145,41 +143,7 @@ describe("vert/spørsmålside", () => {
         }}
       />,
     );
-
-    expect(pushFunction).toHaveBeenCalledTimes(0);
-    expect(
-      await screen.findByText(dummyFørsteSpørsmål.spørsmålTekst),
-    ).toBeInTheDocument();
-
-    const neste = await screen.findByRole("button", { name: /Neste/i });
-    const tilbake = await screen.findByRole("button", { name: /Tilbake/i });
-    await act(async () => neste.click());
-    expect(pushFunction).toHaveBeenCalledTimes(0);
-    expect(
-      await screen.findByText(dummyAndreSpørsmål.spørsmålTekst),
-    ).toBeInTheDocument();
-
-    await act(async () => neste.click());
-    expect(pushFunction).toHaveBeenCalledTimes(0);
-    expect(
-      await screen.findByText(dummyTredjeSpørsmål.spørsmålTekst),
-    ).toBeInTheDocument();
-
-    await act(async () => tilbake.click());
-    expect(pushFunction).toHaveBeenCalledTimes(0);
-    expect(
-      await screen.findByText(dummyAndreSpørsmål.spørsmålTekst),
-    ).toBeInTheDocument();
-
-    await act(async () => tilbake.click());
-    expect(pushFunction).toHaveBeenCalledTimes(0);
-    expect(
-      await screen.findByText(dummyFørsteSpørsmål.spørsmålTekst),
-    ).toBeInTheDocument();
-
-    await act(async () => tilbake.click());
-    expect(pushFunction).toHaveBeenCalledTimes(1);
-    expect(pushFunction).toHaveBeenCalledWith(".");
+    expect(2).toBe(2);
   });
 
   test("axe UU-test", async () => {
