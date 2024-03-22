@@ -1,9 +1,9 @@
-import {NextRequest} from "next/server";
-import {COOKIE_STORAGE_KEY} from "@/utils/consts";
+import { NextRequest } from "next/server";
+import { COOKIE_STORAGE_KEY } from "@/utils/consts";
 
 export function arbeidsgiverApiFetcherDeltaker(
-    endpoint: string,
-    req: NextRequest,
+  endpoint: string,
+  req: NextRequest,
 ) {
   const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
 
@@ -14,10 +14,13 @@ export function arbeidsgiverApiFetcherDeltaker(
       });
   }
 
-  const cookie = req.cookies.get(COOKIE_STORAGE_KEY)
-  const parsetCookie = cookie ? JSON.parse(cookie.value) : undefined
-  const sesjonsId: string = parsetCookie.sesjonsId
+  console.log("req.cookies:", req.cookies);
+  const cookie = req.cookies.get(COOKIE_STORAGE_KEY);
+  console.log("cookie:", cookie);
+  const parsetCookie = cookie ? JSON.parse(cookie.value) : undefined;
 
+  const sesjonsId: string = parsetCookie.sesjonsID;
+  console.log("sesjonId:", sesjonsId);
   return () =>
     fetch(
       `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/sporreundersokelse/${endpoint}`,
@@ -26,7 +29,7 @@ export function arbeidsgiverApiFetcherDeltaker(
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "nav-fia-kartlegging-sesjon-id": sesjonsId
+          "nav-fia-kartlegging-sesjon-id": sesjonsId,
         },
       },
     );
