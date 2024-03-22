@@ -43,7 +43,7 @@ export function urlNeste(spørsmålOgSvar: SpørsmålsoversiktDto): string {
     return `../ferdig`;
   }
 
-  return `../${temaTilURL(spørsmålOgSvar.nesteSpørsmål.temaId)}/${
+  return `../${temaTilURL(spørsmålOgSvar.nesteSpørsmål.tema)}/${
     spørsmålOgSvar.nesteSpørsmål.spørsmålId
   }`;
 }
@@ -59,7 +59,7 @@ export function urlTilbake(
     return null;
   }
 
-  return `../${temaTilURL(spørsmålOgSvar.forrigeSpørsmål.temaId)}/${
+  return `../${temaTilURL(spørsmålOgSvar.forrigeSpørsmål.tema)}/${
     spørsmålOgSvar.forrigeSpørsmål.spørsmålId
   }`;
 }
