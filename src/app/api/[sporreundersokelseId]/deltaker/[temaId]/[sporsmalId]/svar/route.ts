@@ -42,7 +42,7 @@ function poster(endpoint: string, body: BodyInit, request: NextRequest) {
 
   const cookie = request.cookies.get(COOKIE_STORAGE_KEY);
   const parsetCookie = cookie ? JSON.parse(cookie.value) : undefined;
-  const sesjonsId: string = parsetCookie.sesjonsId;
+  const sesjonsId: string = parsetCookie.sesjonsID;
 
   return () =>
     fetch(
