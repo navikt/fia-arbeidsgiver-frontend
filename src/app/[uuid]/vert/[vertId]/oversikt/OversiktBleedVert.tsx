@@ -11,7 +11,7 @@ import kartleggingStyles from "@/app/kartlegging.module.css";
 import vertStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/sporsmalsside.module.css";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { finskrivTema, temaTilURL } from "@/utils/spørreundersøkelsesUtils";
+import { temaTilURL } from "@/utils/spørreundersøkelsesUtils";
 import { TemaoversiktDto } from "@/app/_types/temaoversiktDto";
 
 export function OversiktBleedVert({
@@ -30,9 +30,7 @@ export function OversiktBleedVert({
           <HStack className={vertStyles.bleedInnhold}>
             <VStack>
               <BodyShort size="medium">Del {delnummer}</BodyShort>
-              <Heading size="medium">
-                {finskrivTema(temaoversikt.temaId)}
-              </Heading>
+              <Heading size="medium">{temaoversikt.beskrivelse}</Heading>
             </VStack>
             <HStack gap={"4"}>
               <Button
