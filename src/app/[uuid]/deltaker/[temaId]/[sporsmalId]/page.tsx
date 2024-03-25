@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import SpørsmålBody from "./SporsmalBody";
 import { Page } from "@navikt/ds-react";
+import { PageBlock } from "@navikt/ds-react/Page";
 
 import spørsmålStyles from "./sporsmalsside.module.css";
 import { paramTilTema } from "@/utils/spørreundersøkelsesUtils";
@@ -18,7 +19,7 @@ export default function Spørsmålsside({
 }) {
   return (
     <Page contentBlockPadding="none">
-      <Page.Block
+      <PageBlock
         gutters
         width="lg"
         className={spørsmålStyles.spørsmålssideblokk}
@@ -28,7 +29,7 @@ export default function Spørsmålsside({
           spørreundersøkelseId={params.uuid}
           spørsmålId={params.sporsmalId}
         />
-      </Page.Block>
+      </PageBlock>
     </Page>
   );
 }

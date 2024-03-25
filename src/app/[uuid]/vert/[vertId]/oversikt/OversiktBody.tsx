@@ -2,6 +2,7 @@
 
 import type { Metadata } from "next";
 import { Page, VStack } from "@navikt/ds-react";
+import { PageBlock } from "@navikt/ds-react/Page";
 import React from "react";
 import FooterOversikt from "./FooterOversikt";
 import HeaderVert from "@/app/_components/HeaderVert";
@@ -32,7 +33,7 @@ export default function OversiktBody({
           spørreundersøkelseId={spørreundersøkelseId}
           vertId={vertId}
         />
-        <Page.Block>
+        <PageBlock>
           <VStack gap="4">
             {listeOverTemaer.map((temaoversikt, index) => (
               <OversiktBleedVert
@@ -42,7 +43,7 @@ export default function OversiktBody({
               />
             ))}
           </VStack>
-        </Page.Block>
+        </PageBlock>
       </Page>
     )
   );

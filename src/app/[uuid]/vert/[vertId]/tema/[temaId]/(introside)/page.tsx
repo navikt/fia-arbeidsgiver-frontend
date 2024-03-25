@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import { Page } from "@navikt/ds-react";
+import { PageBlock } from "@navikt/ds-react/Page";
 import { IntrosideBody } from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/(introside)/IntrosideBody";
 import { paramTilTema } from "@/utils/spørreundersøkelsesUtils";
 
@@ -20,7 +21,7 @@ export default function Temastartside({
   const HARDKODET_INTROTITTEL = "Partssamarbeid";
   return (
     <Page contentBlockPadding="none">
-      <Page.Block gutters width="lg">
+      <PageBlock gutters width="lg">
         <IntrosideBody
           spørreundersøkelseId={params.uuid}
           vertId={params.vertId}
@@ -29,7 +30,7 @@ export default function Temastartside({
           delnummer={HARDKODET_DELNUMMER}
           introtekst={HARDKODET_INTROTEKST}
         />
-      </Page.Block>
+      </PageBlock>
     </Page>
   );
 }

@@ -1,10 +1,10 @@
 "use client";
 
-import { Page } from "@navikt/ds-react";
 import startsideStyles from "./startside.module.css";
 import Logininformasjon from "./Logininformasjon";
 import Status from "./Status";
 import React from "react";
+import { PageBlock } from "@navikt/ds-react/Page";
 
 export default function StartsideBody({
   spørreundersøkelseId,
@@ -14,9 +14,9 @@ export default function StartsideBody({
   vertId: string;
 }) {
   return (
-    <Page.Block gutters width="xl" className={startsideStyles.sideinnhold}>
+    <PageBlock gutters width="xl" className={startsideStyles.sideinnhold}>
       <Logininformasjon spørreundersøkelseId={spørreundersøkelseId} />
       <Status spørreundersøkelseId={spørreundersøkelseId} vertId={vertId} />
-    </Page.Block>
+    </PageBlock>
   );
 }

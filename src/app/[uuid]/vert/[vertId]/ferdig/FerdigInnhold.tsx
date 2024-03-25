@@ -1,6 +1,7 @@
 "use client";
 
 import { Bleed, BodyShort, Box, Heading, Page, VStack } from "@navikt/ds-react";
+import { PageBlock } from "@navikt/ds-react/Page";
 import ferdigStyles from "./ferdigside.module.css";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import React from "react";
@@ -8,7 +9,7 @@ import React from "react";
 export default function FerdigInnhold() {
   return (
     <Page contentBlockPadding="none">
-      <Page.Block as={"main"}>
+      <PageBlock as={"main"}>
         <Bleed marginInline="full" asChild>
           <Box padding="5" className={kartleggingStyles.bleedFerdig}>
             <Heading size={"large"} className={ferdigStyles.bleedInnhold}>
@@ -24,7 +25,7 @@ export default function FerdigInnhold() {
             </BodyShort>
           </VStack>
         </VStack>
-      </Page.Block>
+      </PageBlock>
     </Page>
   );
 }

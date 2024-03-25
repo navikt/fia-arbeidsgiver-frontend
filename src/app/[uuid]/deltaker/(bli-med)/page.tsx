@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BodyShort, Heading, Page, VStack } from "@navikt/ds-react";
+import { PageBlock } from "@navikt/ds-react/Page";
 import React from "react";
 import BliMedKnapp from "./BliMedKnapp";
 import startsideStyles from "./startside.module.css";
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function Landingsside({ params }: { params: { uuid: string } }) {
   return (
     <Page contentBlockPadding="none">
-      <Page.Block gutters width="lg">
+      <PageBlock gutters width="lg">
         <VStack gap={"4"}>
           <Heading
             level="1"
@@ -27,7 +28,7 @@ export default function Landingsside({ params }: { params: { uuid: string } }) {
           </BodyShort>
           <BliMedKnapp spørreundersøkelseId={params?.uuid} />
         </VStack>
-      </Page.Block>
+      </PageBlock>
     </Page>
   );
 }

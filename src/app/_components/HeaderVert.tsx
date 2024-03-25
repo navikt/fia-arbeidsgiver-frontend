@@ -1,5 +1,6 @@
 "use client";
-import { Button, HStack, Page } from "@navikt/ds-react";
+import { Button, HStack } from "@navikt/ds-react";
+import { PageBlock } from "@navikt/ds-react/Page";
 import komponenterStyles from "./komponenter.module.css";
 import React from "react";
 import { VisQRModal } from "@/app/_components/VisQRModal";
@@ -21,7 +22,7 @@ export default function HeaderVert({
   const erPåOversiktSide = pathname.endsWith("oversikt");
 
   return (
-    <Page.Block as={"header"} className={komponenterStyles.header}>
+    <PageBlock as={"header"} className={komponenterStyles.header}>
       <HStack justify={"space-between"}>
         {!erPåOversiktSide && (
           <Button
@@ -51,6 +52,6 @@ export default function HeaderVert({
       >
         <QRkodeVisning spørreundersøkelseId={spørreundersøkelseId} />
       </VisQRModal>
-    </Page.Block>
+    </PageBlock>
   );
 }

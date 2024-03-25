@@ -1,4 +1,5 @@
-import { Box, Button, HStack, Page } from "@navikt/ds-react";
+import { Box, Button, HStack } from "@navikt/ds-react";
+import { PageBlock } from "@navikt/ds-react/Page";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import spørsmålStyles from "./sporsmalsside.module.css";
 
@@ -35,7 +36,7 @@ export default function SpørsmålNavigasjon({
   const router = useRouter();
   return (
     <Box as="footer" padding="24">
-      <Page.Block width="2xl">
+      <PageBlock width="2xl">
         <HStack className={spørsmålStyles.footer} gap={"4"}>
           <Button
             variant="secondary"
@@ -53,7 +54,7 @@ export default function SpørsmålNavigasjon({
             {spørsmålOgSvar.nesteSpørsmål !== null ? "Neste" : "Fullført"}
           </Button>
         </HStack>
-      </Page.Block>
+      </PageBlock>
     </Box>
   );
 }
