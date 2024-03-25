@@ -132,6 +132,13 @@ const dummyFjerdeSpørsmål = {
   nesteSpørsmål: null,
 };
 
+const dummySpørsmålSamling = {
+  [førsteTemaFørsteSpørsmål.spørsmålId]: dummyFørsteSpørsmål,
+  [førsteTemaAndreSpørsmål.spørsmålId]: dummyAndreSpørsmål,
+  [førsteTemaTredjeSpørsmål.spørsmålId]: dummyTredjeSpørsmål,
+  [andreTemaFørsteSpørsmål.spørsmålId]: dummyFjerdeSpørsmål,
+};
+
 module.exports = {
   førsteTemaFørsteSpørsmål,
   førsteTemaAndreSpørsmål,
@@ -142,4 +149,5 @@ module.exports = {
   dummyTredjeSpørsmål,
   dummyFjerdeSpørsmål,
   dummySpørreundersøkelseId,
+  dummySpørsmålSamling,
 };

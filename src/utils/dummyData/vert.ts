@@ -4,12 +4,12 @@ const dummyTemaoversikt = [
   {
     tittel: "UTVIKLE_PARTSSAMARBEID",
     temaId: "UTVIKLE_PARTSSAMARBEID",
-    førsteSpørsmålId: "878decb3-4cc7-46bd-b5dc-43db8b230cc3",
+    førsteSpørsmålId: "b16c4b1c-b45e-470d-a1a5-d6f87424d410",
   },
   {
     tittel: "REDUSERE_SYKEFRAVÆR",
     temaId: "REDUSERE_SYKEFRAVÆR",
-    førsteSpørsmålId: "faca998e-50ea-4475-bcc6-cdd34041439c",
+    førsteSpørsmålId: "5df90163-81e4-44c5-8e72-9b47f2added2",
   },
 ];
 module.exports = {
