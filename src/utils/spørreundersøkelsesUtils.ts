@@ -47,6 +47,19 @@ export function urlNeste(spørsmålOgSvar: SpørsmålsoversiktDto): string {
     spørsmålOgSvar.nesteSpørsmål.spørsmålId
   }`;
 }
+export function urlNesteVert(spørsmålOgSvar: SpørsmålsoversiktDto): string {
+  if (!spørsmålOgSvar) {
+    throw new Error("Spørsmål mangler");
+  }
+
+  if (spørsmålOgSvar.nesteSpørsmål === null) {
+    return `../../ferdig`;
+  }
+
+  return `../${temaTilURL(spørsmålOgSvar.nesteSpørsmål.tema)}/${
+    spørsmålOgSvar.nesteSpørsmål.spørsmålId
+  }`;
+}
 
 export function urlTilbake(
   spørsmålOgSvar: SpørsmålsoversiktDto,

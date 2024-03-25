@@ -5,7 +5,7 @@ import spørsmålStyles from "./sporsmalsside.module.css";
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { urlNeste, urlTilbake } from "@/utils/spørreundersøkelsesUtils";
+import { urlNesteVert, urlTilbake } from "@/utils/spørreundersøkelsesUtils";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 
 export default function SpørsmålNavigasjon({
@@ -18,7 +18,7 @@ export default function SpørsmålNavigasjon({
       throw new Error("Spørsmål mangler");
     }
 
-    router.push(urlNeste(spørsmålOgSvar));
+    router.push(urlNesteVert(spørsmålOgSvar));
   };
 
   const håndterTilbakeknapp = () => {
