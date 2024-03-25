@@ -8,6 +8,11 @@ const API_VERT_UNDERSØKELSE_URL = (
   sporreundersokelseId = ":sporreundersokelseId",
 ) => `${API_BASE_URL_VERT}/${sporreundersokelseId}`;
 
+const API_VERT_TEMAOVERSIKT_OVER_ETT_TEMA_URL = (
+  sporreundersokelseId = ":sporreundersokelseId",
+  temaId = ":temaId",
+) => `${API_BASE_URL_VERT}/${sporreundersokelseId}/tema/${temaId}`;
+
 const API_VERT_ANTALL_DELTAKERE_URL = (
   sporreundersokelseId = ":sporreundersokelseId",
 ) => `${API_VERT_UNDERSØKELSE_URL(sporreundersokelseId)}/antall-deltakere`;
@@ -55,6 +60,7 @@ module.exports = {
   API_BASE_URL_VERT,
   API_BASE_URL_DELTAKER,
   API_VERT_UNDERSØKELSE_URL,
+  API_VERT_TEMAOVERSIKT_OVER_ETT_TEMA_URL,
   API_VERT_ANTALL_DELTAKERE_URL,
   API_VERT_SPØRSMÅL_URL,
   API_VERT_ANTALL_SVAR_URL,

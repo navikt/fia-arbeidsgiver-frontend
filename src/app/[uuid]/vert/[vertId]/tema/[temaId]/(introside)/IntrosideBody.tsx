@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
 import HeaderBleed from "@/app/_components/HeaderBleed";
 import {
   BodyLong,
@@ -14,51 +13,48 @@ import {
 import { StatusPåDeltaker } from "@/app/_components/StatusPåDeltaker/StatusPåDeltaker";
 import temasideStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/(introside)/temaside.module.css";
 import React from "react";
+import { useTemaoversiktOverEttTema } from "@/app/_api_hooks/vert/useTemaoversiktOverEttTema";
 
 export function IntrosideBody({
   spørreundersøkelseId,
   vertId,
   temaId,
-  delnummer,
-  introtekst,
-  introtittel,
 }: {
   spørreundersøkelseId: string;
   vertId: string;
   temaId: string;
-  delnummer: number;
-  introtekst: string;
-  introtittel: string;
 }) {
+  const HARDKODET_DELNUMMER = 42;
+
   const router = useRouter();
 
-  const { data: listeOverTemaer } = useTemaoversikt(
+  const { data: temaoversikt } = useTemaoversiktOverEttTema(
     spørreundersøkelseId,
     vertId,
+    temaId,
   );
 
-  if (listeOverTemaer === undefined) {
+  if (temaoversikt === undefined) {
     return null;
   }
-
-  const temaoversikt = listeOverTemaer.find(
-    (temaoversikt) => temaoversikt.temaId == temaId,
-  );
 
   return (
     temaoversikt && (
       <>
         <HeaderBleed>
           <VStack>
-            <BodyShort size="medium">Del {delnummer}</BodyShort>
-            <Heading size="medium">{introtittel}</Heading>
+            <BodyShort size="medium">Del {HARDKODET_DELNUMMER}</BodyShort>
+            <Heading size="medium">{temaoversikt.beskrivelse}</Heading>
           </VStack>
           <StatusPåDeltaker
             spørreundersøkelseId={spørreundersøkelseId}
             vertId={vertId}
           />
         </HeaderBleed>
-        <Infoblokk tittel={introtittel} undertittel={introtekst} />
+        <Infoblokk
+          tittel={temaoversikt.beskrivelse}
+          undertittel={temaoversikt.introtekst}
+        />
         <Button
           variant={"secondary"}
           onClick={() =>

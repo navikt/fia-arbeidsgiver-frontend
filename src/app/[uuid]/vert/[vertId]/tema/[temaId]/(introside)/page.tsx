@@ -15,10 +15,6 @@ export default function Temastartside({
 }: {
   params: { uuid: string; vertId: string; temaId: string };
 }) {
-  const HARDKODET_DELNUMMER = 42;
-  const HARDKODET_INTROTEKST =
-    "Partssamarbeid er essensielt i virksomheter fordi det bidrar til et godt forebyggende arbeidsmiljø og reduksjon av antall tapte dagsverk. Partssamarbeidet anerkjenner og utnytter kompetansen og ansvarsområdene til verneombud, tillitsvalgte og ledere, noe som skaper en “utvidet ledelseskapasitet”.";
-  const HARDKODET_INTROTITTEL = "Partssamarbeid";
   return (
     <Page contentBlockPadding="none">
       <PageBlock gutters width="lg">
@@ -26,9 +22,6 @@ export default function Temastartside({
           spørreundersøkelseId={params.uuid}
           vertId={params.vertId}
           temaId={paramTilTema(params.temaId)}
-          introtittel={HARDKODET_INTROTITTEL}
-          delnummer={HARDKODET_DELNUMMER}
-          introtekst={HARDKODET_INTROTEKST}
         />
       </PageBlock>
     </Page>
