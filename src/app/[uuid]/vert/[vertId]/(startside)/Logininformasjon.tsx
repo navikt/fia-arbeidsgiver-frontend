@@ -3,7 +3,8 @@
 import React from "react";
 import startsideStyles from "./startside.module.css";
 import { Heading } from "@navikt/ds-react";
-import { LenkeFraId, QRkodeVisning } from "@/app/_components/QRkodeVisning";
+import { lenkeFraId, QRkodeVisning } from "@/app/_components/QRkodeVisning";
+import { HydrationSafeClientsideComponent } from "@/app/_components/HydrationSafeClientsideComponent";
 
 export default function Logininformasjon({
   spørreundersøkelseId,
@@ -11,17 +12,19 @@ export default function Logininformasjon({
   spørreundersøkelseId: string;
 }) {
   return (
-    <div className={startsideStyles.logininformasjon}>
-      <Heading level="2" size="medium">
-        Skann QR-koden for å bli med i undersøkelsen
-      </Heading>
-      <div className={startsideStyles.linkDisplay}>
-        <QRkodeVisning spørreundersøkelseId={spørreundersøkelseId} />
-        <p>Eller følg denne lenken:</p>
-        <a href={LenkeFraId(spørreundersøkelseId)}>
-          {LenkeFraId(spørreundersøkelseId)}
-        </a>
+    <HydrationSafeClientsideComponent>
+      <div className={startsideStyles.logininformasjon}>
+        <Heading level="2" size="medium">
+          Skann QR-koden for å bli med i undersøkelsen
+        </Heading>
+        <div className={startsideStyles.linkDisplay}>
+          <QRkodeVisning spørreundersøkelseId={spørreundersøkelseId} />
+          <p>Eller følg denne lenken:</p>
+          <a href={lenkeFraId(spørreundersøkelseId)}>
+            {lenkeFraId(spørreundersøkelseId)}
+          </a>
+        </div>
       </div>
-    </div>
+    </HydrationSafeClientsideComponent>
   );
 }
