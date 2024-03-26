@@ -1,5 +1,6 @@
 "use client";
 
+import kartleggingStyles from "@/app/kartlegging.module.css";
 import { useRouter } from "next/navigation";
 import HeaderBleed from "@/app/_components/HeaderBleed";
 import {
@@ -8,10 +9,10 @@ import {
   Box,
   Button,
   Heading,
+  HStack,
   VStack,
 } from "@navikt/ds-react";
 import { StatusPåDeltaker } from "@/app/_components/StatusPåDeltaker/StatusPåDeltaker";
-import temasideStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/(introside)/temaside.module.css";
 import React from "react";
 import { useTemaoversiktOverEttTema } from "@/app/_api_hooks/vert/useTemaoversiktOverEttTema";
 
@@ -55,17 +56,25 @@ export function IntrosideBody({
           tittel={temaoversikt.beskrivelse}
           undertittel={temaoversikt.introtekst}
         />
-        <Button
-          variant={"secondary"}
-          onClick={() =>
-            router.push(
-              `./${temaoversikt.temaId}/${temaoversikt.førsteSpørsmålId}`,
-            )
-          }
-          className={temasideStyles.startknapp}
-        >
-          Start
-        </Button>
+        <HStack className={kartleggingStyles.buttonFooter} gap="4">
+          <Button
+            variant="secondary"
+            className={kartleggingStyles.knappHvitBred}
+            onClick={() => router.push(`../oversikt`)}
+          >
+            Tilbake til oversikt
+          </Button>
+          <Button
+            onClick={() =>
+              router.push(
+                `./${temaoversikt.temaId}/${temaoversikt.førsteSpørsmålId}`,
+              )
+            }
+            className={kartleggingStyles.knappBred}
+          >
+            Start
+          </Button>
+        </HStack>
       </>
     )
   );

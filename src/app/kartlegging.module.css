@@ -44,3 +44,9 @@
     margin-bottom: 4rem;
     padding-right: 10rem;
 }
+
+.buttonFooter {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+}

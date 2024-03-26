@@ -1,5 +1,4 @@
-import { Box, Button, HStack } from "@navikt/ds-react";
-import { PageBlock } from "@navikt/ds-react/Page";
+import { Button, HStack } from "@navikt/ds-react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import spørsmålStyles from "./sporsmalsside.module.css";
 
@@ -34,34 +33,30 @@ export default function SpørsmålNavigasjon({
     if (url !== null) {
       router.push(url);
     } else {
-      router.push("../../oversikt");
+      router.push(".");
     }
   };
 
   const router = useRouter();
   return (
-    <Box as="footer" padding="24">
-      <PageBlock width="2xl">
-        <HStack className={spørsmålStyles.footer} gap={"4"}>
-          <Button
-            variant="secondary"
-            className={kartleggingStyles.knappHvitBred}
-            onClick={håndterTilbakeknapp}
-          >
-            {spørsmålOgSvar.forrigeSpørsmål !== null
-              ? "Forrige spørsmål"
-              : "Tilbake til temaside"}
-          </Button>
-          <Button
-            className={kartleggingStyles.knappBred}
-            onClick={håndterNesteknapp}
-          >
-            {spørsmålOgSvar.nesteSpørsmål !== null && !gåTilOversiktPåNeste
-              ? "Neste"
-              : "Oversikt"}
-          </Button>
-        </HStack>
-      </PageBlock>
-    </Box>
+    <HStack className={spørsmålStyles.footer} gap={"4"}>
+      <Button
+        variant="secondary"
+        className={kartleggingStyles.knappHvitBred}
+        onClick={håndterTilbakeknapp}
+      >
+        {spørsmålOgSvar.forrigeSpørsmål !== null
+          ? "Forrige spørsmål"
+          : "Tilbake til temaside"}
+      </Button>
+      <Button
+        className={kartleggingStyles.knappBred}
+        onClick={håndterNesteknapp}
+      >
+        {spørsmålOgSvar.nesteSpørsmål !== null && !gåTilOversiktPåNeste
+          ? "Neste"
+          : "Oversikt"}
+      </Button>
+    </HStack>
   );
 }

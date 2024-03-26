@@ -29,7 +29,7 @@ export default function SpørsmålBody({
   if (lasterSpørsmålOgSvar) {
     return (
       <Page contentBlockPadding="none">
-        <PageBlock as={"main"}>
+        <PageBlock gutters width="lg">
           <SpørsmålBleedVert
             temaId={temaId}
             spørreundersøkelseId={spørreundersøkelseId}
@@ -56,13 +56,8 @@ export default function SpørsmålBody({
 
   return (
     spørsmålOgSvar && (
-      <Page
-        contentBlockPadding="none"
-        footer={
-          <SpørsmålNavigasjon spørsmålOgSvar={spørsmålOgSvar} temaId={temaId} />
-        }
-      >
-        <PageBlock as={"main"}>
+      <Page contentBlockPadding="none">
+        <PageBlock gutters width="lg">
           <SpørsmålBleedVert
             temaId={temaId}
             spørreundersøkelseId={spørreundersøkelseId}
@@ -71,6 +66,7 @@ export default function SpørsmålBody({
             spørsmålOgSvar={spørsmålOgSvar}
           />
           <SpørsmålInnhold spørsmålOgSvar={spørsmålOgSvar} />
+          <SpørsmålNavigasjon spørsmålOgSvar={spørsmålOgSvar} temaId={temaId} />
         </PageBlock>
       </Page>
     )

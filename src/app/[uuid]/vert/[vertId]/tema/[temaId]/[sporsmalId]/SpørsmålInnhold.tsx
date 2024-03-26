@@ -1,4 +1,4 @@
-import { BodyShort, Heading, VStack } from "@navikt/ds-react";
+import { BodyShort, Box, Heading } from "@navikt/ds-react";
 import vertStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/sporsmalsside.module.css";
 import React from "react";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
@@ -10,7 +10,7 @@ export function SpørsmålInnhold({
 }) {
   return (
     spørsmålOgSvar && (
-      <VStack gap="4" className={vertStyles.spørsmålInnhold}>
+      <Box borderRadius="xlarge" padding="12" background="surface-selected">
         <Heading level={"2"} size={"small"} spacing>
           {spørsmålOgSvar.spørsmålTekst}
         </Heading>
@@ -24,7 +24,7 @@ export function SpørsmålInnhold({
             {svaralternativ.svartekst}
           </BodyShort>
         ))}
-      </VStack>
+      </Box>
     )
   );
 }
