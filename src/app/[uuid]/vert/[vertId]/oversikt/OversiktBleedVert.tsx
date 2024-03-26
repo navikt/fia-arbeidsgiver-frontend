@@ -14,10 +14,8 @@ import { useRouter } from "next/navigation";
 import { TemaoversiktDto } from "@/app/_types/temaoversiktDto";
 
 export function OversiktBleedVert({
-  delnummer,
   temaoversikt,
 }: {
-  delnummer: number;
   temaoversikt: TemaoversiktDto;
 }) {
   const router = useRouter();
@@ -28,7 +26,7 @@ export function OversiktBleedVert({
         <Box padding="5" className={kartleggingStyles.bleedKlar}>
           <HStack className={vertStyles.bleedInnhold}>
             <VStack>
-              <BodyShort size="medium">Del {delnummer}</BodyShort>
+              <BodyShort size="medium">Del {temaoversikt.del}</BodyShort>
               <Heading size="medium">{temaoversikt.beskrivelse}</Heading>
             </VStack>
             <HStack gap={"4"}>

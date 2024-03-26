@@ -25,8 +25,6 @@ export function IntrosideBody({
   vertId: string;
   temaId: number;
 }) {
-  const HARDKODET_DELNUMMER = 42;
-
   const router = useRouter();
 
   const { data: temaoversikt } = useTemaoversiktOverEttTema(
@@ -44,7 +42,7 @@ export function IntrosideBody({
       <>
         <HeaderBleed>
           <VStack>
-            <BodyShort size="medium">Del {HARDKODET_DELNUMMER}</BodyShort>
+            <BodyShort size="medium">Del {temaoversikt.del}</BodyShort>
             <Heading size="medium">{temaoversikt.beskrivelse}</Heading>
           </VStack>
           <StatusPåDeltaker

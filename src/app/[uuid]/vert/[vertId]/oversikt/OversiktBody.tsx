@@ -36,11 +36,7 @@ export default function OversiktBody({
         <PageBlock>
           <VStack gap="4">
             {listeOverTemaer.map((temaoversikt, index) => (
-              <OversiktBleedVert
-                key={index}
-                delnummer={index + 1}
-                temaoversikt={temaoversikt}
-              />
+              <OversiktBleedVert key={index} temaoversikt={temaoversikt} />
             ))}
           </VStack>
         </PageBlock>
