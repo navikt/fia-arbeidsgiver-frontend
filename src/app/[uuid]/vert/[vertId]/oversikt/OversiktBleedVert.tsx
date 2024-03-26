@@ -12,14 +12,13 @@ import vertStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/sp
 import React from "react";
 import { useRouter } from "next/navigation";
 import { TemaoversiktDto } from "@/app/_types/temaoversiktDto";
+import { TemaStatus } from "@/app/_types/tema";
 
 export function OversiktBleedVert({
   temaoversikt,
 }: {
   temaoversikt: TemaoversiktDto;
 }) {
-  const router = useRouter();
-
   return (
     temaoversikt && (
       <Bleed marginInline="full" asChild reflectivePadding>
@@ -30,17 +29,51 @@ export function OversiktBleedVert({
               <Heading size="medium">{temaoversikt.beskrivelse}</Heading>
             </VStack>
             <HStack gap={"4"}>
-              <Button
-                variant={"secondary"}
-                onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
-                className={kartleggingStyles.knappHvitBred}
-              >
-                Start
-              </Button>
+              <TemaActions temaoversikt={temaoversikt} />
             </HStack>
           </HStack>
         </Box>
       </Bleed>
     )
   );
+}
+
+function TemaActions({ temaoversikt }: { temaoversikt: TemaoversiktDto }) {
+  const router = useRouter();
+
+  switch (temaoversikt.status) {
+    case TemaStatus.ALLE_SPØRSMÅL_ÅPNET:
+      return (
+        <Button
+          variant="secondary"
+          onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
+          className={kartleggingStyles.knappHvitBred}
+        >
+          Gjenoppta
+        </Button>
+      );
+    case TemaStatus.ÅPNET:
+      return (
+        <Button
+          variant="secondary"
+          onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
+          className={kartleggingStyles.knappHvitBred}
+        >
+          Start
+        </Button>
+      );
+
+    case TemaStatus.IKKE_ÅPNET:
+    default:
+      return (
+        <Button
+          variant="secondary"
+          onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
+          className={kartleggingStyles.disabletBred}
+          disabled
+        >
+          Start
+        </Button>
+      );
+  }
 }

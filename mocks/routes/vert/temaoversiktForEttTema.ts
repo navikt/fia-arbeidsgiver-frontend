@@ -18,19 +18,17 @@ const listeOverTemaRoutes = [
         id: "success",
         type: "middleware",
         options: {
-          middleware: (req: Request, res: Response) => {
-            const tema = dummyTemaoversikt.find(
-              ({ temaId }: { temaId: number }) =>
-                temaId === Number(req.params.temaId),
-            );
-            if (tema !== undefined) {
-              res.status(200);
-              res.send(tema);
-            } else {
-              res.status(404);
-              res.send(`Tema med temaid ${req.params.temaId} ble ikke funnet`);
-            }
-          },
+          middleware: generateTemaMiddleware({ 1: "ÅPNET", 2: "IKKE_ÅPNET" }),
+        },
+      },
+      {
+        id: "success-første-besvart",
+        type: "middleware",
+        options: {
+          middleware: generateTemaMiddleware({
+            1: "ALLE_SPØRSMÅL_ÅPNET",
+            2: "ÅPNET",
+          }),
         },
       },
       {
@@ -58,5 +56,20 @@ const listeOverTemaRoutes = [
     ],
   },
 ];
+
+function generateTemaMiddleware(temastatuser: { [key: number]: string }) {
+  return (req: Request, res: Response) => {
+    const tema = dummyTemaoversikt.find(
+      ({ temaId }: { temaId: number }) => temaId === Number(req.params.temaId),
+    );
+    if (tema !== undefined) {
+      res.status(200);
+      res.send({ ...tema, statusssss: temastatuser[tema.temaId] });
+    } else {
+      res.status(404);
+      res.send(`Tema med temaid ${req.params.temaId} ble ikke funnet`);
+    }
+  };
+}
 
 export default listeOverTemaRoutes;

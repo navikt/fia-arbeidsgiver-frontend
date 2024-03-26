@@ -1,3 +1,6 @@
+import { Request, Response } from "express";
+import { TemaoversiktDto } from "@/app/_types/temaoversiktDto";
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { dummyTemaoversikt } = require("@/utils/dummyData/vert");
 
@@ -12,10 +15,19 @@ const listeOverTemaRoutes = [
     variants: [
       {
         id: "success",
-        type: "json",
+        type: "middleware",
         options: {
-          status: 200,
-          body: dummyTemaoversikt,
+          middleware: generateTemaMiddleware({ 1: "ÅPNET", 2: "IKKE_ÅPNET" }),
+        },
+      },
+      {
+        id: "success-første-besvart",
+        type: "middleware",
+        options: {
+          middleware: generateTemaMiddleware({
+            1: "ALLE_SPØRSMÅL_ÅPNET",
+            2: "ÅPNET",
+          }),
         },
       },
       {
@@ -35,5 +47,17 @@ const listeOverTemaRoutes = [
     ],
   },
 ];
+
+function generateTemaMiddleware(temastatuser: { [key: number]: string }) {
+  return (req: Request, res: Response) => {
+    res.status(200);
+    res.send(
+      dummyTemaoversikt.map((tema: TemaoversiktDto) => ({
+        ...tema,
+        status: temastatuser[tema.temaId],
+      })),
+    );
+  };
+}
 
 export default listeOverTemaRoutes;

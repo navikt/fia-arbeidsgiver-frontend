@@ -2,3 +2,10 @@ export const enum Tema {
   UTVIKLE_PARTSSAMARBEID = "UTVIKLE_PARTSSAMARBEID",
   REDUSERE_SYKEFRAVÆR = "REDUSERE_SYKEFRAVÆR",
 }
+
+export const enum TemaStatus {
+  ÅPNET = "ÅPNET",
+  IKKE_ÅPNET = "IKKE_ÅPNET",
+  ALLE_SPØRSMÅL_ÅPNET = "ALLE_SPØRSMÅL_ÅPNET",
+  //STENGT = "STENGT",
+}

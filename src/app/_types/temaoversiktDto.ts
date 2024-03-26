@@ -1,11 +1,12 @@
-import { Tema } from "@/app/_types/tema";
+import { TemaStatus } from "@/app/_types/tema";
 
 export type TemaoversiktDto = {
   tittel: string;
   temanavn: string;
-  temaId: Tema;
+  temaId: number;
   del: number;
   beskrivelse: string;
   introtekst: string;
   førsteSpørsmålId: string;
+  status: TemaStatus;
 };
