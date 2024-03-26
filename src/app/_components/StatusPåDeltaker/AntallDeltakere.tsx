@@ -1,6 +1,6 @@
 "use client";
 
-import { Alert, BodyShort, Loader } from "@navikt/ds-react";
+import { Alert, Loader } from "@navikt/ds-react";
 import React from "react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import { useAntallDeltakere } from "@/app/_api_hooks/vert/useAntallDeltakere";
@@ -37,5 +37,5 @@ export function AntallDeltakere({
     return <Loader />;
   }
 
-  return <BodyShort>{antallDeltakere}</BodyShort>;
+  return <>{antallDeltakere}</>;
 }

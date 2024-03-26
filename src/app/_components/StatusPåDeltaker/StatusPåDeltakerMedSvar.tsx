@@ -22,19 +22,17 @@ export function StatusPåDeltakerMedSvar({
   return (
     <HStack className={spørsmålStyles.deltakere}>
       <PersonGroupFillIcon />
-      <HStack>
-        <AntallSvar
-          spørreundersøkelseId={spørreundersøkelseId}
-          vertId={vertId}
-          tema={tema}
-          spørsmålId={spørsmålId}
-        />
-        av{" "}
-        <AntallDeltakere
-          spørreundersøkelseId={spørreundersøkelseId}
-          vertId={vertId}
-        />
-      </HStack>
+      <AntallSvar
+        spørreundersøkelseId={spørreundersøkelseId}
+        vertId={vertId}
+        tema={tema}
+        spørsmålId={spørsmålId}
+      />{" "}
+      av{" "}
+      <AntallDeltakere
+        spørreundersøkelseId={spørreundersøkelseId}
+        vertId={vertId}
+      />
     </HStack>
   );
 }

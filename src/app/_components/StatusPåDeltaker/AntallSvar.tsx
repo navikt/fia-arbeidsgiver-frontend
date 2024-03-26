@@ -1,6 +1,6 @@
 "use client";
 
-import { Alert, BodyShort, Loader } from "@navikt/ds-react";
+import { Alert, Loader } from "@navikt/ds-react";
 import React from "react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import { useAntallSvar } from "@/app/_api_hooks/vert/useAntallSvar";
@@ -44,5 +44,5 @@ export function AntallSvar({
     return <Loader />;
   }
 
-  return <BodyShort>{antallSvar}</BodyShort>;
+  return <>{antallSvar}</>;
 }
