@@ -14,17 +14,11 @@ export default function SpørsmålBody({
   temaId,
   vertId,
   spørsmålId,
-  delnummer,
-  spørsmålnummer,
-  antallspørsmål,
 }: {
   spørreundersøkelseId: string;
   temaId: number;
   vertId: string;
   spørsmålId: string;
-  delnummer: number;
-  spørsmålnummer: number;
-  antallspørsmål: number;
 }) {
   const {
     data: spørsmålOgSvar,
@@ -38,13 +32,10 @@ export default function SpørsmålBody({
         <PageBlock as={"main"}>
           <SpørsmålBleedVert
             temaId={temaId}
-            temabeskrivelse={"Laster"}
             spørreundersøkelseId={spørreundersøkelseId}
             vertId={vertId}
             spørsmålId={spørsmålId}
-            delnummer={delnummer}
-            spørsmålnummer={spørsmålnummer}
-            antallSpørsmål={antallspørsmål}
+            spørsmålOgSvar={spørsmålOgSvar}
           />
           <VStack gap={"4"} align={"center"}>
             <Heading size={"large"}>Laster spørreundersøkelse</Heading>
@@ -74,13 +65,10 @@ export default function SpørsmålBody({
         <PageBlock as={"main"}>
           <SpørsmålBleedVert
             temaId={temaId}
-            temabeskrivelse={spørsmålOgSvar.temabeskrivelse}
             spørreundersøkelseId={spørreundersøkelseId}
             vertId={vertId}
             spørsmålId={spørsmålId}
-            delnummer={delnummer}
-            spørsmålnummer={spørsmålnummer}
-            antallSpørsmål={antallspørsmål}
+            spørsmålOgSvar={spørsmålOgSvar}
           />
           <SpørsmålInnhold spørsmålOgSvar={spørsmålOgSvar} />
         </PageBlock>

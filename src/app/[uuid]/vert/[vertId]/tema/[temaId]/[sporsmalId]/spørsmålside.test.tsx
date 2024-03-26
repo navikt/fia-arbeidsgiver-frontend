@@ -191,8 +191,12 @@ describe("vert/spørsmålside", () => {
     );
     expect(førsteTittel).toBeInTheDocument();
 
+    const skalVæreOversikt =
+      testSpørsmålOgSvar.nesteSpørsmål === null ||
+      testSpørsmålOgSvar.nesteSpørsmål.temaId !== testTema;
+
     const nesteKnapp = screen.getByText(
-      testSpørsmålOgSvar.nesteSpørsmål !== null ? "Neste" : "Fullfør",
+      skalVæreOversikt ? "Oversikt" : "Neste",
     );
 
     expect(nesteKnapp).toBeInTheDocument();

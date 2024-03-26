@@ -12,18 +12,12 @@ export default function Spørsmålsside({
 }: {
   params: { uuid: string; vertId: string; temaId: number; sporsmalId: string };
 }) {
-  const spørsmålnummer = 42;
-  const antallspørsmål = 42;
-  const delnummer = 42;
   return (
     <SpørsmålBody
       spørreundersøkelseId={params.uuid}
       vertId={params.vertId}
       temaId={params.temaId}
       spørsmålId={params.sporsmalId}
-      delnummer={delnummer}
-      spørsmålnummer={spørsmålnummer}
-      antallspørsmål={antallspørsmål}
     />
   );
 }

@@ -39,7 +39,7 @@ export default function SpørsmålBody({
   if (lasterSpørsmålOgSvar) {
     return (
       <>
-        <SpørsmålBleedDeltaker overskrift={"Laster tema.."} />
+        <SpørsmålBleedDeltaker spørsmålOgSvar={spørsmålOgSvar} />
         <VStack
           gap={"4"}
           align={"center"}
@@ -55,7 +55,7 @@ export default function SpørsmålBody({
   if (feilSpørsmålOgSvar) {
     return (
       <>
-        <SpørsmålBleedDeltaker overskrift={feilSpørsmålOgSvar.message} />
+        <SpørsmålBleedDeltaker spørsmålOgSvar={spørsmålOgSvar} />
         <VStack
           gap={"4"}
           align={"center"}
@@ -73,7 +73,7 @@ export default function SpørsmålBody({
   if (spørsmålOgSvar === undefined) {
     return (
       <>
-        <SpørsmålBleedDeltaker overskrift={"Venter på vert"} />
+        <SpørsmålBleedDeltaker spørsmålOgSvar={spørsmålOgSvar} />
         <VStack
           gap={"4"}
           align={"center"}
@@ -90,7 +90,7 @@ export default function SpørsmålBody({
   return (
     spørsmålOgSvar && (
       <>
-        <SpørsmålBleedDeltaker overskrift={spørsmålOgSvar.temabeskrivelse} />
+        <SpørsmålBleedDeltaker spørsmålOgSvar={spørsmålOgSvar} />
         <Spørsmålsseksjon
           spørreundersøkelseId={spørreundersøkelseId}
           temaId={temaId}

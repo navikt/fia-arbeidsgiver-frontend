@@ -6,6 +6,10 @@ export type SpørsmålsoversiktDto = {
   svaralternativer: SvaralternativDto[];
   nesteSpørsmål: IdentifiserbartSpørsmål | null;
   forrigeSpørsmål: IdentifiserbartSpørsmål | null;
+  spørsmålnummer: number;
+  antallSpørsmål: number;
+  temanummer: number;
+  antallTema: number;
 };
 
 export type SvaralternativDto = {

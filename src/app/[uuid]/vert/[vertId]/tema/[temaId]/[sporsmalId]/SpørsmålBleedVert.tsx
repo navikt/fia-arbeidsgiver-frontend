@@ -1,44 +1,58 @@
 "use client";
 
-import { BodyShort, Heading, VStack } from "@navikt/ds-react";
+import { BodyShort, Heading, VStack, Loader } from "@navikt/ds-react";
 import React from "react";
 import HeaderBleed from "@/app/_components/HeaderBleed";
 import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
+import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 
 export function SpørsmålBleedVert({
   spørreundersøkelseId,
-  temabeskrivelse,
-  delnummer,
-  spørsmålnummer,
   vertId,
   temaId,
   spørsmålId,
-  antallSpørsmål,
+  spørsmålOgSvar,
 }: {
   spørreundersøkelseId: string;
-  temabeskrivelse: string;
-  delnummer: number;
-  spørsmålnummer: number;
   vertId: string;
   temaId: number;
   spørsmålId: string;
-  antallSpørsmål: number;
+  spørsmålOgSvar: SpørsmålsoversiktDto | undefined;
 }) {
+  if (spørsmålOgSvar === undefined) {
+    return (
+      <HeaderBleed>
+        <VStack>
+          <Loader />
+        </VStack>
+        <StatusPåDeltakerMedSvar
+          spørsmålId={spørsmålId}
+          spørreundersøkelseId={spørreundersøkelseId}
+          temaId={temaId}
+          vertId={vertId}
+        />
+      </HeaderBleed>
+    );
+  }
   return (
-    <HeaderBleed>
-      <VStack>
-        <BodyShort size="medium">Del {delnummer}</BodyShort>
-        <Heading size="medium">
-          {`${temabeskrivelse} - ${spørsmålnummer}/${antallSpørsmål}`}
-        </Heading>
-      </VStack>
+    spørsmålOgSvar && (
+      <HeaderBleed>
+        <VStack>
+          <BodyShort size="medium">
+            {`Del ${spørsmålOgSvar.temanummer}/${spørsmålOgSvar.antallTema}`}
+          </BodyShort>
+          <Heading size="medium">
+            {`${spørsmålOgSvar.temabeskrivelse} - ${spørsmålOgSvar.spørsmålnummer}/${spørsmålOgSvar.antallSpørsmål}`}
+          </Heading>
+        </VStack>
 
-      <StatusPåDeltakerMedSvar
-        spørsmålId={spørsmålId}
-        spørreundersøkelseId={spørreundersøkelseId}
-        temaId={temaId}
-        vertId={vertId}
-      />
-    </HeaderBleed>
+        <StatusPåDeltakerMedSvar
+          spørsmålId={spørsmålId}
+          spørreundersøkelseId={spørreundersøkelseId}
+          temaId={temaId}
+          vertId={vertId}
+        />
+      </HeaderBleed>
+    )
   );
 }

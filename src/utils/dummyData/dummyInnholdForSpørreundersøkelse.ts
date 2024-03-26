@@ -50,6 +50,10 @@ const dummyFørsteSpørsmål = {
   ],
   forrigeSpørsmål: null,
   nesteSpørsmål: førsteTemaAndreSpørsmål,
+  spørsmålnummer: 1,
+  antallSpørsmål: 3,
+  temanummer: 1,
+  antallTema: 2,
 };
 
 const dummyAndreSpørsmål = {
@@ -80,6 +84,10 @@ const dummyAndreSpørsmål = {
   ],
   forrigeSpørsmål: førsteTemaFørsteSpørsmål,
   nesteSpørsmål: førsteTemaTredjeSpørsmål,
+  spørsmålnummer: 2,
+  antallSpørsmål: 3,
+  temanummer: 1,
+  antallTema: 2,
 };
 
 const dummyTredjeSpørsmål = {
@@ -110,6 +118,10 @@ const dummyTredjeSpørsmål = {
   ],
   forrigeSpørsmål: førsteTemaAndreSpørsmål,
   nesteSpørsmål: andreTemaFørsteSpørsmål,
+  spørsmålnummer: 3,
+  antallSpørsmål: 3,
+  temanummer: 1,
+  antallTema: 2,
 };
 
 const dummyFjerdeSpørsmål = {
@@ -136,6 +148,10 @@ const dummyFjerdeSpørsmål = {
   ],
   forrigeSpørsmål: førsteTemaTredjeSpørsmål,
   nesteSpørsmål: null,
+  spørsmålnummer: 1,
+  antallSpørsmål: 1,
+  temanummer: 2,
+  antallTema: 2,
 };
 
 const dummySpørsmålSamling = {
