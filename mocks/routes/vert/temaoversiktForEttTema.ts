@@ -1,6 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   dummyTemaoversiktUtviklePartssamarbeid,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require("@/utils/dummyData/vert");
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
