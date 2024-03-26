@@ -18,7 +18,7 @@ export function urlNesteVert(spørsmålOgSvar: SpørsmålsoversiktDto): string {
   }
 
   if (spørsmålOgSvar.nesteSpørsmål === null) {
-    return `../../ferdig`;
+    return `../../oversikt`;
   }
 
   return `../${spørsmålOgSvar.nesteSpørsmål.temaId}/${spørsmålOgSvar.nesteSpørsmål.spørsmålId}`;

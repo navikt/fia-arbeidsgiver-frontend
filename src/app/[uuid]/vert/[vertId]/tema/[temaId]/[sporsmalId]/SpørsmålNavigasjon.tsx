@@ -51,7 +51,7 @@ export default function SpørsmålNavigasjon({
             className={kartleggingStyles.knappBred}
             onClick={håndterNesteknapp}
           >
-            {spørsmålOgSvar.nesteSpørsmål !== null ? "Neste" : "Fullført"}
+            {spørsmålOgSvar.nesteSpørsmål !== null ? "Neste" : "Oversikt"}
           </Button>
         </HStack>
       </PageBlock>

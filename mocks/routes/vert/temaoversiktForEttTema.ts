@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
-  dummyTemaoversiktRedusereSykefravær,
+  dummyTemaoversiktUtviklePartssamarbeid,
 } = require("@/utils/dummyData/vert");
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -17,7 +17,7 @@ const listeOverTemaRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: dummyTemaoversiktRedusereSykefravær,
+          body: dummyTemaoversiktUtviklePartssamarbeid,
         },
       },
       {
