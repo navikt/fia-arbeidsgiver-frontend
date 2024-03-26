@@ -67,7 +67,9 @@ export default function SpørsmålBody({
     spørsmålOgSvar && (
       <Page
         contentBlockPadding="none"
-        footer={<SpørsmålNavigasjon spørsmålOgSvar={spørsmålOgSvar} />}
+        footer={
+          <SpørsmålNavigasjon spørsmålOgSvar={spørsmålOgSvar} temaId={temaId} />
+        }
       >
         <PageBlock as={"main"}>
           <SpørsmålBleedVert

@@ -10,15 +10,20 @@ import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 
 export default function SpørsmålNavigasjon({
   spørsmålOgSvar,
+  temaId,
 }: {
   spørsmålOgSvar: SpørsmålsoversiktDto;
+  temaId: number;
 }) {
+  const gåTilOversiktPåNeste =
+    Number(spørsmålOgSvar.nesteSpørsmål?.temaId) !== Number(temaId);
+
   const håndterNesteknapp = () => {
     if (!spørsmålOgSvar) {
       throw new Error("Spørsmål mangler");
     }
 
-    router.push(urlNesteVert(spørsmålOgSvar));
+    router.push(urlNesteVert(spørsmålOgSvar, gåTilOversiktPåNeste));
   };
 
   const håndterTilbakeknapp = () => {
@@ -51,7 +56,9 @@ export default function SpørsmålNavigasjon({
             className={kartleggingStyles.knappBred}
             onClick={håndterNesteknapp}
           >
-            {spørsmålOgSvar.nesteSpørsmål !== null ? "Neste" : "Oversikt"}
+            {spørsmålOgSvar.nesteSpørsmål !== null && !gåTilOversiktPåNeste
+              ? "Neste"
+              : "Oversikt"}
           </Button>
         </HStack>
       </PageBlock>

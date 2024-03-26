@@ -12,12 +12,15 @@ export function urlNeste(spørsmålOgSvar: SpørsmålsoversiktDto): string {
   return `../${spørsmålOgSvar.nesteSpørsmål.temaId}/${spørsmålOgSvar.nesteSpørsmål.spørsmålId}`;
 }
 
-export function urlNesteVert(spørsmålOgSvar: SpørsmålsoversiktDto): string {
+export function urlNesteVert(
+  spørsmålOgSvar: SpørsmålsoversiktDto,
+  gåTilOversikt: boolean = false,
+): string {
   if (!spørsmålOgSvar) {
     throw new Error("Spørsmål mangler");
   }
 
-  if (spørsmålOgSvar.nesteSpørsmål === null) {
+  if (spørsmålOgSvar.nesteSpørsmål === null || gåTilOversikt) {
     return `../../oversikt`;
   }
 
