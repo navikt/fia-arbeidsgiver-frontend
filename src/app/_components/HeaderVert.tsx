@@ -28,6 +28,7 @@ export default function HeaderVert({
           <Button
             icon={<ArrowLeftIcon aria-hidden />}
             variant="secondary"
+            size="small"
             onClick={() =>
               router.push(`/${spørreundersøkelseId}/vert/${vertId}/oversikt`)
             }
@@ -38,6 +39,7 @@ export default function HeaderVert({
         <Button
           style={{ marginLeft: "auto" }}
           variant="secondary"
+          size="small"
           onClick={() => setvisQRkodeModalÅpen(true)}
         >
           Vis QR-kode
