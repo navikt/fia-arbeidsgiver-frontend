@@ -1,26 +1,29 @@
 const dummySpørreundersøkelseId = "5164abc8-9e4c-408d-8790-ce7f7f3c4658";
+const temabeskrivelsePartssamarbeid = "Utvikle partsamarbeidet i virksomheten";
+const temabeskrivelseSykefravær = "Redusere sykefravær i virksomheten";
 
 const førsteTemaFørsteSpørsmål = {
-  tema: "UTVIKLE_PARTSSAMARBEID",
+  temaId: 1,
   spørsmålId: "b16c4b1c-b45e-470d-a1a5-d6f87424d410",
 };
 
 const førsteTemaAndreSpørsmål = {
-  tema: "UTVIKLE_PARTSSAMARBEID",
+  temaId: 1,
   spørsmålId: "61a9a84a-949b-4f46-97e5-c9b60e01d433",
 };
 
 const førsteTemaTredjeSpørsmål = {
-  tema: "UTVIKLE_PARTSSAMARBEID",
+  temaId: 1,
   spørsmålId: "62b3a863-cba3-4c92-8c7e-19d8b4688d49",
 };
 
 const andreTemaFørsteSpørsmål = {
-  tema: "REDUSERE_SYKEFRAVÆR",
+  temaId: 2,
   spørsmålId: "5df90163-81e4-44c5-8e72-9b47f2added2",
 };
 
 const dummyFørsteSpørsmål = {
+  temabeskrivelse: temabeskrivelsePartssamarbeid,
   spørsmålTekst:
     "Hvilke av disse faktorene tror du har størst innflytelse på sykefraværet der du jobber?",
   svaralternativer: [
@@ -50,6 +53,7 @@ const dummyFørsteSpørsmål = {
 };
 
 const dummyAndreSpørsmål = {
+  temabeskrivelse: temabeskrivelsePartssamarbeid,
   spørsmålTekst:
     "Velg det tiltaket som du mener best kan bidra til å forebygge sykefraværet",
   svaralternativer: [
@@ -79,6 +83,7 @@ const dummyAndreSpørsmål = {
 };
 
 const dummyTredjeSpørsmål = {
+  temabeskrivelse: temabeskrivelsePartssamarbeid,
   spørsmålTekst:
     "Vi har kunnskap og ferdigheter til å gjennomføre forbedringstiltak i virksomheten (planlegge tiltak, gjennomføre og evaluere måloppnåelse)",
   svaralternativer: [
@@ -108,6 +113,7 @@ const dummyTredjeSpørsmål = {
 };
 
 const dummyFjerdeSpørsmål = {
+  temabeskrivelse: temabeskrivelseSykefravær,
   spørsmålTekst:
     "I hvilken grad jobber dere med tilrettelegging og tilpasning av arbeid?",
   svaralternativer: [

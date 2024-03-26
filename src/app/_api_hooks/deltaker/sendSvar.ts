@@ -1,22 +1,18 @@
 import CookieHandler from "@/utils/CookieHandler";
-import { Tema } from "@/app/_types/tema";
-import { temaTilURL } from "@/utils/spørreundersøkelsesUtils";
 
 export async function sendSvar({
   spørreundersøkelseId,
-  tema,
+  temaId,
   spørsmålId,
   svarId,
 }: {
   spørreundersøkelseId: string;
-  tema: Tema;
+  temaId: number;
   spørsmålId: string;
   svarId: string;
 }) {
   const res = await fetch(
-    `/api/${spørreundersøkelseId}/deltaker/${temaTilURL(
-      tema,
-    )}/${spørsmålId}/svar`,
+    `/api/${spørreundersøkelseId}/deltaker/${temaId}/${spørsmålId}/svar`,
     {
       method: "POST",
       headers: {

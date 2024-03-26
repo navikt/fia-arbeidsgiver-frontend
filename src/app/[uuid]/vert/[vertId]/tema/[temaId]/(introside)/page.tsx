@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Page } from "@navikt/ds-react";
 import { PageBlock } from "@navikt/ds-react/Page";
 import { IntrosideBody } from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/(introside)/IntrosideBody";
-import { paramTilTema } from "@/utils/spørreundersøkelsesUtils";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -13,7 +12,7 @@ export const metadata: Metadata = {
 export default function Temastartside({
   params,
 }: {
-  params: { uuid: string; vertId: string; temaId: string };
+  params: { uuid: string; vertId: string; temaId: number };
 }) {
   return (
     <Page contentBlockPadding="none">
@@ -21,7 +20,7 @@ export default function Temastartside({
         <IntrosideBody
           spørreundersøkelseId={params.uuid}
           vertId={params.vertId}
-          temaId={paramTilTema(params.temaId)}
+          temaId={params.temaId}
         />
       </PageBlock>
     </Page>

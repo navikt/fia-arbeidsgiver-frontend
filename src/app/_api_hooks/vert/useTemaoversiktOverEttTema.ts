@@ -4,7 +4,7 @@ import { TemaoversiktDto } from "@/app/_types/temaoversiktDto";
 export function useTemaoversiktOverEttTema(
   spørreundersøkelseId: string,
   vertId: string,
-  temaId: string,
+  temaId: number,
 ): SWRResponse<TemaoversiktDto> {
   const fetcher = async (url: string) => {
     const res = await fetch(url, {

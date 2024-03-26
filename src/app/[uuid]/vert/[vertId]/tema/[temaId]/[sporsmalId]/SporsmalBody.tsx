@@ -8,11 +8,10 @@ import { SpørsmålInnhold } from "./SpørsmålInnhold";
 import { Feilside } from "@/app/_components/Feilside";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/vert/useSpørsmålOgSvar";
 import SpørsmålNavigasjon from "./SpørsmålNavigasjon";
-import { Tema } from "@/app/_types/tema";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,
-  tema,
+  temaId,
   vertId,
   spørsmålId,
   delnummer,
@@ -20,7 +19,7 @@ export default function SpørsmålBody({
   antallspørsmål,
 }: {
   spørreundersøkelseId: string;
-  tema: Tema;
+  temaId: number;
   vertId: string;
   spørsmålId: string;
   delnummer: number;
@@ -31,14 +30,15 @@ export default function SpørsmålBody({
     data: spørsmålOgSvar,
     isLoading: lasterSpørsmålOgSvar,
     error: feilSpørsmålOgSvar,
-  } = useSpørsmålOgSvar(spørreundersøkelseId, vertId, tema, spørsmålId);
+  } = useSpørsmålOgSvar(spørreundersøkelseId, vertId, temaId, spørsmålId);
 
   if (lasterSpørsmålOgSvar) {
     return (
       <Page contentBlockPadding="none">
         <PageBlock as={"main"}>
           <SpørsmålBleedVert
-            tema={tema}
+            temaId={temaId}
+            temabeskrivelse={"Laster"}
             spørreundersøkelseId={spørreundersøkelseId}
             vertId={vertId}
             spørsmålId={spørsmålId}
@@ -71,7 +71,8 @@ export default function SpørsmålBody({
       >
         <PageBlock as={"main"}>
           <SpørsmålBleedVert
-            tema={tema}
+            temaId={temaId}
+            temabeskrivelse={spørsmålOgSvar.temabeskrivelse}
             spørreundersøkelseId={spørreundersøkelseId}
             vertId={vertId}
             spørsmålId={spørsmålId}

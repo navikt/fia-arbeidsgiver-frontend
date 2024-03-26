@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import mockCookieHandler from "@/utils/jest-mocks/CookieHandler";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
 import CookieHandler from "@/utils/CookieHandler";
-import { Tema } from "@/app/_types/tema";
 import {
   SpørsmålsoversiktDto,
   SvaralternativDto,
@@ -21,7 +20,7 @@ import {
 
 const testSpørreundersøkelseId: string = dummySpørreundersøkelseId;
 const testSpørsmålId: string = førsteTemaFørsteSpørsmål.spørsmålId;
-const testTema: string = førsteTemaFørsteSpørsmål.tema;
+const testTemaId: number = førsteTemaFørsteSpørsmål.temaId;
 const testSpørsmålOgSvar: SpørsmålsoversiktDto = dummyFørsteSpørsmål;
 
 jest.mock("next/navigation", () => ({
@@ -66,7 +65,7 @@ describe("deltaker/Spørsmålsside", () => {
         params={{
           uuid: testSpørreundersøkelseId,
           sporsmalId: testSpørsmålId,
-          temaId: testTema,
+          temaId: testTemaId,
         }}
       />,
     );
@@ -86,7 +85,7 @@ describe("deltaker/Spørsmålsside", () => {
         params={{
           uuid: testSpørreundersøkelseId,
           sporsmalId: testSpørsmålId,
-          temaId: Tema.REDUSERE_SYKEFRAVÆR.valueOf(),
+          temaId: testTemaId,
         }}
       />,
     );
@@ -102,7 +101,7 @@ describe("deltaker/Spørsmålsside", () => {
     expect(sendSvar).toHaveBeenCalledTimes(1);
     expect(sendSvar).toHaveBeenCalledWith({
       spørreundersøkelseId: testSpørreundersøkelseId,
-      tema: Tema.REDUSERE_SYKEFRAVÆR,
+      temaId: testTemaId,
       spørsmålId: testSpørsmålId,
       svarId: testSpørsmålOgSvar.svaralternativer[0].svarId,
     });
@@ -131,7 +130,7 @@ describe("deltaker/Spørsmålsside", () => {
         params={{
           uuid: testSpørreundersøkelseId,
           sporsmalId: testSpørsmålId,
-          temaId: testTema,
+          temaId: testTemaId,
         }}
       />,
     );
@@ -148,7 +147,7 @@ describe("deltaker/Spørsmålsside", () => {
     expect(sendSvar).toHaveBeenCalledWith({
       spørreundersøkelseId: testSpørreundersøkelseId,
       spørsmålId: testSpørsmålId,
-      tema: testTema,
+      temaId: testTemaId,
       svarId: testSpørsmålOgSvar.svaralternativer[0].svarId,
     });
   });
@@ -167,7 +166,7 @@ describe("deltaker/Spørsmålsside", () => {
         params={{
           uuid: testSpørreundersøkelseId,
           sporsmalId: testSpørsmålId,
-          temaId: testTema,
+          temaId: testTemaId,
         }}
       />,
     );
@@ -188,7 +187,7 @@ describe("deltaker/Spørsmålsside", () => {
       <Spørsmålsside
         params={{
           uuid: testSpørreundersøkelseId,
-          temaId: testTema,
+          temaId: testTemaId,
           sporsmalId: testSpørsmålId,
         }}
       />,
@@ -218,7 +217,7 @@ describe("deltaker/Spørsmålsside", () => {
         params={{
           uuid: testSpørreundersøkelseId,
           sporsmalId: testSpørsmålId,
-          temaId: Tema.REDUSERE_SYKEFRAVÆR.valueOf(),
+          temaId: 2,
         }}
       />,
     );
@@ -256,7 +255,7 @@ describe("deltaker/Spørsmålsside", () => {
         params={{
           uuid: testSpørreundersøkelseId,
           sporsmalId: testSpørsmålId,
-          temaId: testTema,
+          temaId: testTemaId,
         }}
       />,
     );

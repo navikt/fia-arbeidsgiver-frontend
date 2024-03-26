@@ -22,7 +22,7 @@ export function IntrosideBody({
 }: {
   spørreundersøkelseId: string;
   vertId: string;
-  temaId: string;
+  temaId: number;
 }) {
   const HARDKODET_DELNUMMER = 42;
 

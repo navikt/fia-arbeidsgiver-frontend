@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import React from "react";
 import SpørsmålBody from "./SporsmalBody";
-import { paramTilTema } from "@/utils/spørreundersøkelsesUtils";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -11,7 +10,7 @@ export const metadata: Metadata = {
 export default function Spørsmålsside({
   params,
 }: {
-  params: { uuid: string; vertId: string; temaId: string; sporsmalId: string };
+  params: { uuid: string; vertId: string; temaId: number; sporsmalId: string };
 }) {
   const spørsmålnummer = 42;
   const antallspørsmål = 42;
@@ -20,7 +19,7 @@ export default function Spørsmålsside({
     <SpørsmålBody
       spørreundersøkelseId={params.uuid}
       vertId={params.vertId}
-      tema={paramTilTema(params.temaId)}
+      temaId={params.temaId}
       spørsmålId={params.sporsmalId}
       delnummer={delnummer}
       spørsmålnummer={spørsmålnummer}

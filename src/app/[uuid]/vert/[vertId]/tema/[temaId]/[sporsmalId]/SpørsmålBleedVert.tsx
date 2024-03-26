@@ -3,24 +3,24 @@
 import { BodyShort, Heading, VStack } from "@navikt/ds-react";
 import React from "react";
 import HeaderBleed from "@/app/_components/HeaderBleed";
-import { finskrivTema } from "@/utils/spørreundersøkelsesUtils";
 import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
-import { Tema } from "@/app/_types/tema";
 
 export function SpørsmålBleedVert({
   spørreundersøkelseId,
+  temabeskrivelse,
   delnummer,
   spørsmålnummer,
   vertId,
-  tema,
+  temaId,
   spørsmålId,
   antallSpørsmål,
 }: {
   spørreundersøkelseId: string;
+  temabeskrivelse: string;
   delnummer: number;
   spørsmålnummer: number;
   vertId: string;
-  tema: Tema;
+  temaId: number;
   spørsmålId: string;
   antallSpørsmål: number;
 }) {
@@ -29,14 +29,14 @@ export function SpørsmålBleedVert({
       <VStack>
         <BodyShort size="medium">Del {delnummer}</BodyShort>
         <Heading size="medium">
-          {`${finskrivTema(tema)} - ${spørsmålnummer}/${antallSpørsmål}`}
+          {`${temabeskrivelse} - ${spørsmålnummer}/${antallSpørsmål}`}
         </Heading>
       </VStack>
 
       <StatusPåDeltakerMedSvar
         spørsmålId={spørsmålId}
         spørreundersøkelseId={spørreundersøkelseId}
-        tema={tema}
+        temaId={temaId}
         vertId={vertId}
       />
     </HeaderBleed>

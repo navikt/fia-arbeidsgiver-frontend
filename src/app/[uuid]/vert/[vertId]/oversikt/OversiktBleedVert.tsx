@@ -11,7 +11,6 @@ import kartleggingStyles from "@/app/kartlegging.module.css";
 import vertStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/sporsmalsside.module.css";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { temaTilURL } from "@/utils/spørreundersøkelsesUtils";
 import { TemaoversiktDto } from "@/app/_types/temaoversiktDto";
 
 export function OversiktBleedVert({
@@ -35,9 +34,7 @@ export function OversiktBleedVert({
             <HStack gap={"4"}>
               <Button
                 variant={"secondary"}
-                onClick={() =>
-                  router.push(`./tema/${temaTilURL(temaoversikt.temaId)}`)
-                }
+                onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
                 className={kartleggingStyles.knappHvitBred}
               >
                 Start

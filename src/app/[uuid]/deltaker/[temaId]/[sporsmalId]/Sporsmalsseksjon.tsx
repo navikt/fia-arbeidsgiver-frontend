@@ -14,18 +14,17 @@ import { useRouter } from "next/navigation";
 import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 import CookieHandler from "@/utils/CookieHandler";
-import { Tema } from "@/app/_types/tema";
 import { urlNeste, urlTilbake } from "@/utils/spørreundersøkelsesUtils";
 
 export default function Spørsmålsseksjon({
   spørsmålId,
   spørreundersøkelseId,
-  tema,
+  temaId,
   spørsmålOgSvar,
 }: {
   spørsmålId: string;
   spørreundersøkelseId: string;
-  tema: Tema;
+  temaId: number;
   spørsmålOgSvar: SpørsmålsoversiktDto;
 }) {
   const lagretSvar = CookieHandler.getSvarPåSpørsmål(spørsmålId);
@@ -48,7 +47,7 @@ export default function Spørsmålsseksjon({
     } else {
       sendSvar({
         spørreundersøkelseId: spørreundersøkelseId,
-        tema: tema,
+        temaId: temaId,
         spørsmålId: spørsmålId,
         svarId: svar,
       })

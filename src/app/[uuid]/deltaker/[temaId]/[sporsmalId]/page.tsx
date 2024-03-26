@@ -5,7 +5,6 @@ import { Page } from "@navikt/ds-react";
 import { PageBlock } from "@navikt/ds-react/Page";
 
 import spørsmålStyles from "./sporsmalsside.module.css";
-import { paramTilTema } from "@/utils/spørreundersøkelsesUtils";
 
 export const metadata: Metadata = {
   title: "Kartleggingsverktøy",
@@ -15,7 +14,7 @@ export const metadata: Metadata = {
 export default function Spørsmålsside({
   params,
 }: {
-  params: { uuid: string; temaId: string; sporsmalId: string };
+  params: { uuid: string; temaId: number; sporsmalId: string };
 }) {
   return (
     <Page contentBlockPadding="none">
@@ -25,7 +24,7 @@ export default function Spørsmålsside({
         className={spørsmålStyles.spørsmålssideblokk}
       >
         <SpørsmålBody
-          tema={paramTilTema(params.temaId)}
+          temaId={params.temaId}
           spørreundersøkelseId={params.uuid}
           spørsmålId={params.sporsmalId}
         />

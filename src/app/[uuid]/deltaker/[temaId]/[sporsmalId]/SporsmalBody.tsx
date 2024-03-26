@@ -6,21 +6,19 @@ import { useRouter } from "next/navigation";
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import CookieHandler from "@/utils/CookieHandler";
 import { SpørsmålBleedDeltaker } from "@/app/[uuid]/deltaker/[temaId]/[sporsmalId]/SpørsmålBleedDeltaker";
-import { Tema } from "@/app/_types/tema";
 import { Alert, Heading, Loader, VStack } from "@navikt/ds-react";
 import spørsmålStyles from "@/app/[uuid]/deltaker/[temaId]/[sporsmalId]/sporsmalsside.module.css";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
-import { finskrivTema } from "@/utils/spørreundersøkelsesUtils";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,
   spørsmålId,
-  tema,
+  temaId,
 }: {
   spørreundersøkelseId: string;
   spørsmålId: string;
-  tema: Tema;
+  temaId: number;
 }) {
   const router = useRouter();
 
@@ -36,12 +34,12 @@ export default function SpørsmålBody({
     data: spørsmålOgSvar,
     isLoading: lasterSpørsmålOgSvar,
     error: feilSpørsmålOgSvar,
-  } = useSpørsmålOgSvar(spørreundersøkelseId, tema, spørsmålId);
+  } = useSpørsmålOgSvar(spørreundersøkelseId, temaId, spørsmålId);
 
   if (lasterSpørsmålOgSvar) {
     return (
       <>
-        <SpørsmålBleedDeltaker overskrift={finskrivTema(tema)} />
+        <SpørsmålBleedDeltaker overskrift={"Laster tema.."} />
         <VStack
           gap={"4"}
           align={"center"}
@@ -57,7 +55,7 @@ export default function SpørsmålBody({
   if (feilSpørsmålOgSvar) {
     return (
       <>
-        <SpørsmålBleedDeltaker overskrift={finskrivTema(tema)} />
+        <SpørsmålBleedDeltaker overskrift={feilSpørsmålOgSvar.message} />
         <VStack
           gap={"4"}
           align={"center"}
@@ -75,7 +73,7 @@ export default function SpørsmålBody({
   if (spørsmålOgSvar === undefined) {
     return (
       <>
-        <SpørsmålBleedDeltaker overskrift={finskrivTema(tema)} />
+        <SpørsmålBleedDeltaker overskrift={"Venter på vert"} />
         <VStack
           gap={"4"}
           align={"center"}
@@ -92,10 +90,10 @@ export default function SpørsmålBody({
   return (
     spørsmålOgSvar && (
       <>
-        <SpørsmålBleedDeltaker overskrift={finskrivTema(tema)} />
+        <SpørsmålBleedDeltaker overskrift={spørsmålOgSvar.temabeskrivelse} />
         <Spørsmålsseksjon
           spørreundersøkelseId={spørreundersøkelseId}
-          tema={tema}
+          temaId={temaId}
           spørsmålId={spørsmålId}
           spørsmålOgSvar={spørsmålOgSvar}
         />
