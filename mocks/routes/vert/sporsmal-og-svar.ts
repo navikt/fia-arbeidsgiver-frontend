@@ -25,7 +25,7 @@ const sporsmalOgSvarRoutes = [
               res.send(spm);
             } else {
               res.status(404);
-              res.send(`Spørsmål med id ${req.params.id} ble ikke funnet`);
+              res.send(`Spørsmål med angitt id ble ikke funnet`);
             }
           },
         },

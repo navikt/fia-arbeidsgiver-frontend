@@ -67,7 +67,7 @@ function generateTemaMiddleware(temastatuser: { [key: number]: string }) {
       res.send({ ...tema, statusssss: temastatuser[tema.temaId] });
     } else {
       res.status(404);
-      res.send(`Tema med temaid ${req.params.temaId} ble ikke funnet`);
+      res.send(`Tema med angitt temaid ble ikke funnet`);
     }
   };
 }
