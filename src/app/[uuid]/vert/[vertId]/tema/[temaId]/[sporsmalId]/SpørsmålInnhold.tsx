@@ -1,7 +1,7 @@
-import { BodyShort, Box, Heading } from "@navikt/ds-react";
-import vertStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/sporsmalsside.module.css";
+import { Box, Heading, Radio, RadioGroup } from "@navikt/ds-react";
 import React from "react";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+import spørsmålssideStyles from "./sporsmalsside.module.css";
 
 export function SpørsmålInnhold({
   spørsmålOgSvar,
@@ -14,16 +14,17 @@ export function SpørsmålInnhold({
         <Heading level={"2"} size={"small"} spacing>
           {spørsmålOgSvar.spørsmålTekst}
         </Heading>
-        {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
-          <BodyShort
-            key={svaralternativ.svarId}
-            size={"large"}
-            spacing
-            className={vertStyles.innholdSvar}
-          >
-            {svaralternativ.svartekst}
-          </BodyShort>
-        ))}
+        <RadioGroup hideLegend legend={""}>
+          {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
+            <Radio
+              key={svaralternativ.svarId}
+              value={svaralternativ.svarId}
+              className={spørsmålssideStyles.disabletRadio}
+            >
+              {svaralternativ.svartekst}
+            </Radio>
+          ))}
+        </RadioGroup>
       </Box>
     )
   );

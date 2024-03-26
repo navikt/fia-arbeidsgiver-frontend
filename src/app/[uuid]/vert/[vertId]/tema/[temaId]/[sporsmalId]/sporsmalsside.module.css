@@ -28,3 +28,11 @@
     display: flex;
     justify-content: space-between;
 }
+
+.disabletRadio {
+    pointer-events: none;
+}
+
+.disabletRadio label::before {
+    opacity: 0.5;
+}
