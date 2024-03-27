@@ -1,6 +1,6 @@
 "use client";
 
-import { BodyShort, Heading, VStack, Loader } from "@navikt/ds-react";
+import { BodyShort, Heading, VStack } from "@navikt/ds-react";
 import React from "react";
 import HeaderBleed from "@/app/_components/HeaderBleed";
 import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
@@ -22,9 +22,7 @@ export function SpørsmålBleedVert({
   if (spørsmålOgSvar === undefined) {
     return (
       <HeaderBleed>
-        <VStack>
-          <Loader />
-        </VStack>
+        <Heading size={"medium"}>Kunne ikke laste spørsmål</Heading>
         <StatusPåDeltakerMedSvar
           spørsmålId={spørsmålId}
           spørreundersøkelseId={spørreundersøkelseId}

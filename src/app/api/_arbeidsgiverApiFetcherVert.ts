@@ -11,7 +11,7 @@ export function arbeidsgiverApiFetcherVert(endpoint: string, vertId: string) {
   const input = `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/sporreundersokelse/${endpoint}`;
   return () =>
     fetch(input, {
-      cache: "no-cache", //TODO: Dobbelsjekk at dette brukes rett
+      cache: "no-cache",
       method: "GET",
       headers: {
         "nav-fia-kartlegging-vert-id": vertId,

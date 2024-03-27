@@ -12,9 +12,10 @@ export function useSpørsmålOgSvar(
       method: "GET",
     }).then((res) => {
       if (res.status === 202) {
-        throw new Error(
-          "Spørsmål er ikke åpnet Dette burde ikke skje for vert, noe er galt",
-        );
+        throw new Error("Spørsmål er ikke åpnet");
+      }
+      if (!res.ok) {
+        throw new Error("Noe gikk galt");
       }
       return res.json();
     });

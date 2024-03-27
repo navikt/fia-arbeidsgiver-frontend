@@ -22,7 +22,7 @@ export function arbeidsgiverApiFetcherDeltaker(
     fetch(
       `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/sporreundersokelse/${endpoint}`,
       {
-        cache: "no-cache", //TODO: Dobbelsjekk at dette brukes rett
+        cache: "no-cache",
         method: "GET",
         headers: {
           "Content-Type": "application/json",
