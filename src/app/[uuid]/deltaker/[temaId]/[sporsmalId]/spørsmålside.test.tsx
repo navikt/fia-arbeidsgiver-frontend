@@ -14,6 +14,8 @@ import {
 import {
   dummySpørreundersøkelseId,
   dummyFørsteSpørsmål,
+  dummyTredjeSpørsmål,
+  dummyFjerdeSpørsmål,
   førsteTemaFørsteSpørsmål,
   // @ts-ignore
 } from "@/utils/dummyData/dummyInnholdForSpørreundersøkelse";
@@ -150,6 +152,109 @@ describe("deltaker/Spørsmålsside", () => {
       temaId: testTemaId,
       svarId: testSpørsmålOgSvar.svaralternativer[0].svarId,
     });
+
+    expect(pushFunction).toHaveBeenCalledTimes(1);
+    expect(pushFunction).toHaveBeenCalledWith(
+      `../${testSpørsmålOgSvar.nesteSpørsmål?.temaId}/${testSpørsmålOgSvar.nesteSpørsmål?.spørsmålId}`,
+    );
+  });
+
+  test("Siste spørsmål i tema redirecter til første i neste tema", async () => {
+    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
+      data: dummyTredjeSpørsmål,
+      isLoading: false,
+      error: null,
+      mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
+      isValidating: false,
+    });
+    const pushFunction = jest.fn();
+    jest.mocked(useRouter).mockReturnValue({
+      push: pushFunction,
+      back: jest.fn(),
+      prefetch: jest.fn(),
+      forward: jest.fn(),
+      replace: jest.fn(),
+      refresh: jest.fn(),
+    });
+
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: testSpørreundersøkelseId,
+          sporsmalId: testSpørsmålId,
+          temaId: testTemaId,
+        }}
+      />,
+    );
+
+    const svar = screen.getByText(
+      dummyTredjeSpørsmål.svaralternativer[0].svartekst,
+    );
+    act(() => svar.click());
+
+    const neste = screen.getByRole("button", { name: /Svar/i });
+    await act(async () => neste.click());
+
+    expect(sendSvar).toHaveBeenCalledTimes(1);
+    expect(sendSvar).toHaveBeenCalledWith({
+      spørreundersøkelseId: testSpørreundersøkelseId,
+      spørsmålId: testSpørsmålId,
+      temaId: testTemaId,
+      svarId: dummyTredjeSpørsmål.svaralternativer[0].svarId,
+    });
+
+    expect(pushFunction).toHaveBeenCalledTimes(1);
+    expect(pushFunction).toHaveBeenCalledWith(
+      `../${dummyTredjeSpørsmål.nesteSpørsmål?.temaId}/${dummyTredjeSpørsmål.nesteSpørsmål?.spørsmålId}`,
+    );
+  });
+
+  test("Siste spørsmål i siste tema redirecter til ferdigside", async () => {
+    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
+      data: dummyFjerdeSpørsmål,
+      isLoading: false,
+      error: null,
+      mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
+      isValidating: false,
+    });
+    const pushFunction = jest.fn();
+    jest.mocked(useRouter).mockReturnValue({
+      push: pushFunction,
+      back: jest.fn(),
+      prefetch: jest.fn(),
+      forward: jest.fn(),
+      replace: jest.fn(),
+      refresh: jest.fn(),
+    });
+
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: testSpørreundersøkelseId,
+          sporsmalId: testSpørsmålId,
+          temaId: testTemaId,
+        }}
+      />,
+    );
+
+    const svar = screen.getByText(
+      dummyFjerdeSpørsmål.svaralternativer[0].svartekst,
+    );
+    act(() => svar.click());
+
+    const neste = screen.getByRole("button", { name: /Svar/i });
+    await act(async () => neste.click());
+
+    expect(sendSvar).toHaveBeenCalledTimes(1);
+    expect(sendSvar).toHaveBeenCalledWith({
+      spørreundersøkelseId: testSpørreundersøkelseId,
+      spørsmålId: testSpørsmålId,
+      temaId: testTemaId,
+      svarId: dummyFjerdeSpørsmål.svaralternativer[0].svarId,
+    });
+
+    expect(pushFunction).toHaveBeenCalledTimes(1);
+    expect(pushFunction).toHaveBeenCalledWith(`../ferdig`);
   });
 
   test("axe UU-test", async () => {
