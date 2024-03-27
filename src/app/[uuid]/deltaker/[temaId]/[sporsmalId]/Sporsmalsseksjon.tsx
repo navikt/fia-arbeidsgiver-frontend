@@ -108,13 +108,15 @@ export default function Spørsmålsseksjon({
               lagretSvar={lagretSvar}
             />
           </Button>
-          <Button
-            variant="secondary"
-            className={spørsmålStyles.tilbakeknapp}
-            onClick={håndterTilbakeknapp}
-          >
-            Tilbake
-          </Button>
+          {spørsmålOgSvar.forrigeSpørsmål !== null ? (
+            <Button
+              variant="secondary"
+              className={spørsmålStyles.tilbakeknapp}
+              onClick={håndterTilbakeknapp}
+            >
+              Tilbake
+            </Button>
+          ) : null}
         </VStack>
       </VStack>
     </>
