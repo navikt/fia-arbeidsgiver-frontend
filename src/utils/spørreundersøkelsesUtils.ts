@@ -34,7 +34,10 @@ export function urlTilbake(
     throw new Error("Spørsmål mangler");
   }
 
-  if (spørsmålOgSvar.forrigeSpørsmål === null) {
+  if (
+    spørsmålOgSvar.forrigeSpørsmål === null ||
+    spørsmålOgSvar.spørsmålnummer === 1
+  ) {
     return null;
   }
 

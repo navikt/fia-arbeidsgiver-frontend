@@ -6,6 +6,9 @@ import { axe, toHaveNoViolations } from "jest-axe";
 import {
   dummySpørreundersøkelseId,
   dummyFørsteSpørsmål,
+  dummyAndreSpørsmål,
+  dummyTredjeSpørsmål,
+  dummyFjerdeSpørsmål,
   førsteTemaFørsteSpørsmål,
   // @ts-ignore
 } from "@/utils/dummyData/dummyInnholdForSpørreundersøkelse";
@@ -16,17 +19,20 @@ import {
 // @ts-ignore
 import { dummyVertId } from "@/utils/dummyData/vert";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+import { useSpørsmålOgSvar } from "@/app/_api_hooks/vert/useSpørsmålOgSvar";
 const dummySpørsmålId: string = førsteTemaFørsteSpørsmål.spørsmålId;
-const testTema = førsteTemaFørsteSpørsmål.tema;
+const testTema = førsteTemaFørsteSpørsmål.temaId;
 const testSpørsmålOgSvar: SpørsmålsoversiktDto = dummyFørsteSpørsmål;
 const testAntallSvar = "3";
 const testAntallDeltakere = "4";
 
 expect.extend(toHaveNoViolations);
+
+const pushMock = jest.fn(() => null);
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(() => ({
     prefetch: () => null,
-    push: jest.fn(() => null),
+    push: pushMock,
   })),
   usePathname: jest.fn(() => "/"),
 }));
@@ -48,11 +54,7 @@ jest.mock("@/app/_api_hooks/vert/useAntallSvar", () => ({
 }));
 
 jest.mock("@/app/_api_hooks/vert/useSpørsmålOgSvar", () => ({
-  useSpørsmålOgSvar: () => ({
-    data: testSpørsmålOgSvar,
-    isLoading: false,
-    error: undefined,
-  }),
+  useSpørsmålOgSvar: jest.fn(),
 }));
 
 jest.mock("@/app/_api_hooks/vert/useTemaoversikt", () => ({
@@ -66,6 +68,13 @@ jest.mock("@/app/_api_hooks/vert/useTemaoversikt", () => ({
 describe("vert/spørsmålside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
+      data: testSpørsmålOgSvar,
+      isLoading: false,
+      error: undefined,
+      mutate: jest.fn(),
+      isValidating: false,
+    });
   });
 
   test("rett innhold blir tegnet opp", async () => {
@@ -83,10 +92,9 @@ describe("vert/spørsmålside", () => {
 
     expect(tittel).toBeInTheDocument();
 
-    //TODO: sjekk om svar av antalldeltakere tegnes opp
-    // expect(
-    //   screen.getByText(`${testAntallSvar} av ${testAntallDeltakere}`),
-    // ).toBeInTheDocument();
+    expect(
+      screen.getByText(`${testAntallSvar} av ${testAntallDeltakere}`),
+    ).toBeInTheDocument();
 
     for (const svaralternativ of testSpørsmålOgSvar.svaralternativer) {
       const svar = await screen.findByText(svaralternativ.svartekst);
@@ -94,8 +102,7 @@ describe("vert/spørsmålside", () => {
     }
   });
 
-  test("vert blir routet til rett spørsmålside ved trykk på neste basert på IdentifiserbartSpørsmål", async () => {
-    //TODO: implementer
+  test("vert blir routet til rett spørsmålside ved trykk på neste", async () => {
     render(
       <Spørsmålsside
         params={{
@@ -106,26 +113,111 @@ describe("vert/spørsmålside", () => {
         }}
       />,
     );
-    expect(2).toBe(2);
+
+    const nesteKnapp = screen.getByText("Neste");
+    expect(nesteKnapp).toBeInTheDocument();
+    expect(pushMock).toHaveBeenCalledTimes(0);
+    act(() => nesteKnapp.click());
+    expect(pushMock).toHaveBeenCalledTimes(1);
+    expect(pushMock).toHaveBeenCalledWith(
+      `../${testSpørsmålOgSvar.nesteSpørsmål?.temaId}/${testSpørsmålOgSvar.nesteSpørsmål?.spørsmålId}`,
+    );
+  });
+
+  test("vert blir routet til temaside ved tilbaketrykk på første spørsmål", async () => {
+    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
+      data: dummyFørsteSpørsmål,
+      isLoading: false,
+      error: undefined,
+      mutate: jest.fn(),
+      isValidating: false,
+    });
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: dummySpørreundersøkelseId,
+          vertId: dummyVertId,
+          temaId: testTema,
+          sporsmalId: dummySpørsmålId,
+        }}
+      />,
+    );
+
+    const tilbakeKnapp = screen.getByText("Tilbake til temaside");
+    expect(tilbakeKnapp).toBeInTheDocument();
+    expect(pushMock).toHaveBeenCalledTimes(0);
+    act(() => tilbakeKnapp.click());
+    expect(pushMock).toHaveBeenCalledTimes(1);
+    expect(pushMock).toHaveBeenCalledWith(".");
+  });
+
+  test("vert blir routet til temaside ved tilbaketrykk på første spørsmål i andre tema", async () => {
+    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
+      data: dummyFjerdeSpørsmål,
+      isLoading: false,
+      error: undefined,
+      mutate: jest.fn(),
+      isValidating: false,
+    });
+
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: dummySpørreundersøkelseId,
+          vertId: dummyVertId,
+          temaId: testTema,
+          sporsmalId: dummySpørsmålId,
+        }}
+      />,
+    );
+
+    const tilbakeKnapp = screen.getByText("Tilbake til temaside");
+    expect(tilbakeKnapp).toBeInTheDocument();
+    expect(pushMock).toHaveBeenCalledTimes(0);
+    act(() => tilbakeKnapp.click());
+    expect(pushMock).toHaveBeenCalledTimes(1);
+    expect(pushMock).toHaveBeenCalledWith(".");
+  });
+
+  test("vert blir routet til første spørsmål ved tilbaketrykk på andre spørsmål", async () => {
+    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
+      data: dummyAndreSpørsmål,
+      isLoading: false,
+      error: undefined,
+      mutate: jest.fn(),
+      isValidating: false,
+    });
+
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: dummySpørreundersøkelseId,
+          vertId: dummyVertId,
+          temaId: testTema,
+          sporsmalId: dummySpørsmålId,
+        }}
+      />,
+    );
+
+    const tilbakeKnapp = screen.getByText("Forrige spørsmål");
+    expect(tilbakeKnapp).toBeInTheDocument();
+    expect(pushMock).toHaveBeenCalledTimes(0);
+    act(() => tilbakeKnapp.click());
+    expect(pushMock).toHaveBeenCalledTimes(1);
+    expect(pushMock).toHaveBeenCalledWith(
+      `../${dummyAndreSpørsmål.forrigeSpørsmål.temaId}/${dummyAndreSpørsmål.forrigeSpørsmål.spørsmålId}`,
+    );
   });
 
   test("vert blir routet til oversikt om neste IdentifiserbartSpørsmål er null", async () => {
-    //TODO: implementer
-    render(
-      <Spørsmålsside
-        params={{
-          uuid: dummySpørreundersøkelseId,
-          vertId: dummyVertId,
-          temaId: testTema,
-          sporsmalId: dummySpørsmålId,
-        }}
-      />,
-    );
-    expect(2).toBe(2);
-  });
+    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
+      data: dummyTredjeSpørsmål,
+      isLoading: false,
+      error: undefined,
+      mutate: jest.fn(),
+      isValidating: false,
+    });
 
-  test("vert blir routet til rett spørsmålside ved trykk på forrige basert på IdentifiserbartSpørsmål", async () => {
-    //TODO: implementer
     render(
       <Spørsmålsside
         params={{
@@ -136,22 +228,13 @@ describe("vert/spørsmålside", () => {
         }}
       />,
     );
-    expect(2).toBe(2);
-  });
 
-  test("vert blir routet til temaside om forrige IdentifiserbartSpørsmål er null", async () => {
-    //TODO: implementer (usikker på om temaside eller oversikt er rett routing her)
-    render(
-      <Spørsmålsside
-        params={{
-          uuid: dummySpørreundersøkelseId,
-          vertId: dummyVertId,
-          temaId: testTema,
-          sporsmalId: dummySpørsmålId,
-        }}
-      />,
-    );
-    expect(2).toBe(2);
+    const oversiktKnapp = screen.getByText("Oversikt");
+    expect(oversiktKnapp).toBeInTheDocument();
+    expect(pushMock).toHaveBeenCalledTimes(0);
+    act(() => oversiktKnapp.click());
+    expect(pushMock).toHaveBeenCalledTimes(1);
+    expect(pushMock).toHaveBeenCalledWith("../../oversikt");
   });
 
   test("axe UU-test", async () => {

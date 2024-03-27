@@ -45,7 +45,8 @@ export default function SpørsmålNavigasjon({
         className={kartleggingStyles.knappHvitBred}
         onClick={håndterTilbakeknapp}
       >
-        {spørsmålOgSvar.forrigeSpørsmål !== null
+        {spørsmålOgSvar.forrigeSpørsmål !== null &&
+        spørsmålOgSvar.spørsmålnummer > 1
           ? "Forrige spørsmål"
           : "Tilbake til temaside"}
       </Button>
