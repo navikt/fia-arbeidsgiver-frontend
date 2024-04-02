@@ -27,7 +27,6 @@ spec:
         groups:
           - id: 02b25498-1a81-45b5-84cb-876a8899c809
           - id: e00f4248-2d26-4645-bf94-22d47623a51e
-          - id: 30f17df5-c36c-4ad7-b862-48f56c95ebb2
         extra:
           - "NAVident"
     sidecar:
@@ -45,9 +44,3 @@ spec:
   env:
     - name: FIA_ARBEIDSGIVER_HOSTNAME
       value: fia-arbeidsgiver
-    - name: FIA_SUPERBRUKER_GROUP_ID
-      value: 02b25498-1a81-45b5-84cb-876a8899c809
-    - name: FIA_SAKSBEHANDLER_GROUP_ID
-      value: e00f4248-2d26-4645-bf94-22d47623a51e
-    - name: FIA_LESETILGANG_GROUP_ID
-      value: 30f17df5-c36c-4ad7-b862-48f56c95ebb2
