@@ -37,6 +37,7 @@ spec:
         - /*/deltaker/**
         - /api/*/deltaker/**
         - /api/bli-med
+        - /_next/static/**
   accessPolicy:
     outbound:
       rules:
