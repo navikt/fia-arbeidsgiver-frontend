@@ -27,7 +27,7 @@ export default function OversiktBody({
   if (isLoading) {
     return (
       <VStack gap={"4"} align={"center"} justify={"center"}>
-        <Heading size={"large"}>Laster spørsmål</Heading>
+        <Heading size={"large"}>Laster oversikt</Heading>
         <Loader size="3xlarge" title="Venter..." />
       </VStack>
     );

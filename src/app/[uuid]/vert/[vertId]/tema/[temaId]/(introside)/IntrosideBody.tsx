@@ -35,16 +35,12 @@ export function IntrosideBody({
     error,
   } = useTemaoversiktOverEttTema(spørreundersøkelseId, vertId, temaId);
 
-  if (temaoversikt === undefined) {
-    return null;
-  }
-
   if (isLoading) {
     return (
-      <>
-        <Heading size={"large"}>Laster oversikt</Heading>
+      <VStack gap={"4"} align={"center"} justify={"center"}>
+        <Heading size={"large"}>Laster tema</Heading>
         <Loader size="3xlarge" title="Venter..." />
-      </>
+      </VStack>
     );
   }
 
