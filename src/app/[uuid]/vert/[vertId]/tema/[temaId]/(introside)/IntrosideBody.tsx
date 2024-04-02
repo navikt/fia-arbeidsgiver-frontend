@@ -3,15 +3,7 @@
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import { useRouter } from "next/navigation";
 import HeaderBleed from "@/app/_components/HeaderBleed";
-import {
-  BodyLong,
-  BodyShort,
-  Box,
-  Button,
-  Heading,
-  HStack,
-  VStack,
-} from "@navikt/ds-react";
+import { Alert, BodyLong, BodyShort, Box, Button, Heading, HStack, Loader, VStack } from "@navikt/ds-react";
 import { StatusPåDeltaker } from "@/app/_components/StatusPåDeltaker/StatusPåDeltaker";
 import React from "react";
 import { useTemaoversiktOverEttTema } from "@/app/_api_hooks/vert/useTemaoversiktOverEttTema";
@@ -27,7 +19,7 @@ export function IntrosideBody({
 }) {
   const router = useRouter();
 
-  const { data: temaoversikt } = useTemaoversiktOverEttTema(
+  const { data: temaoversikt, isLoading, error } = useTemaoversiktOverEttTema(
     spørreundersøkelseId,
     vertId,
     temaId,
@@ -36,6 +28,22 @@ export function IntrosideBody({
   if (temaoversikt === undefined) {
     return null;
   }
+
+  if (isLoading) {
+    return (<>
+          <Heading size={"large"}>Laster oversikt</Heading>
+          <Loader size="3xlarge" title="Venter..." />
+      </>
+    )
+  }
+
+  if (error) {
+    return (
+          <Alert variant={"error"}>{error.message}</Alert>
+    )
+  }
+
+
 
   return (
     temaoversikt && (

@@ -11,7 +11,7 @@ export function useTemaoversiktOverEttTema(
       method: "GET",
     });
     if (!res.ok) {
-      throw new Error(`Kunne ikke laste temaoversikt for tema ${temaId}`);
+      throw new Error(`Kunne ikke laste tema ${temaId}`);
     }
     return res.json();
   };

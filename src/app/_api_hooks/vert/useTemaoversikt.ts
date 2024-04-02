@@ -10,7 +10,7 @@ export function useTemaoversikt(
       method: "GET",
     });
     if (!res.ok) {
-      throw new Error("Kunne ikke laste temaoversikt");
+      throw new Error("Kunne ikke laste oversikt over temaer");
     }
     return res.json();
   };
