@@ -43,5 +43,7 @@ shift "$(($OPTIND -1))"
 if [ $? -eq 0 ]
 then
   # kjør opp frontend
+  docker-compose up -d
   bun dev & bun run mocks
+  docker-compose down
 fi

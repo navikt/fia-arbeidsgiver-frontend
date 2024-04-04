@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import { arbeidsgiverApiFetcherVert } from "@/app/api/_arbeidsgiverApiFetcherVert";
 
 export async function GET(
-  _: NextRequest,
+  req: NextRequest,
   {
     params: { sporreundersokelseId, vertId, temaId, sporsmalId },
   }: {
@@ -17,6 +17,7 @@ export async function GET(
   const fetcher = arbeidsgiverApiFetcherVert(
     `vert/v2/${sporreundersokelseId}/${temaId}/${sporsmalId}/antall-svar`,
     vertId,
+    req,
   );
   return fetcher();
 }

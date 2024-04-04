@@ -23,6 +23,7 @@
   "dependencies": {
     "@navikt/ds-css": "^6.3.3",
     "@navikt/ds-react": "^6.3.3",
+    "@navikt/oasis": "^3.2.3",
     "cookies-next": "^4.1.1",
     "next": "14.1.4",
     "qrcode.react": "^3.1.0",
