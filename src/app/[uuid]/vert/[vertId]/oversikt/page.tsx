@@ -7,8 +7,7 @@ import { PageBlock } from "@navikt/ds-react/Page";
 import FooterOversikt from "./FooterOversikt";
 
 export const metadata: Metadata = {
-  title: "Kartleggingsverktøy",
-  description: "Her kan du hoste litt kartlegging da",
+  title: "Oversikt",
 };
 
 export default function Oversiktside({

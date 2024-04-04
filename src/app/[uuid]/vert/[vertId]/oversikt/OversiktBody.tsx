@@ -1,15 +1,9 @@
 "use client";
 
-import type { Metadata } from "next";
 import { Alert, Heading, Loader, VStack } from "@navikt/ds-react";
 import React from "react";
 import { OversiktBleedVert } from "@/app/[uuid]/vert/[vertId]/oversikt/OversiktBleedVert";
 import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
-
-export const metadata: Metadata = {
-  title: "Kartleggingsverktøy",
-  description: "Her kan du hoste litt kartlegging da",
-};
 
 export default function OversiktBody({
   spørreundersøkelseId,

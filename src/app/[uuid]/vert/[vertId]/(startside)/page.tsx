@@ -5,8 +5,7 @@ import { Page } from "@navikt/ds-react";
 import startsideStyles from "./startside.module.css";
 
 export const metadata: Metadata = {
-  title: "Kartleggingsverktøy",
-  description: "Her kan du hoste litt kartlegging da",
+  title: "Startside",
 };
 
 export default function Startside({

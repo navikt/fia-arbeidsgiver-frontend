@@ -7,8 +7,7 @@ import kartleggingStyles from "@/app/kartlegging.module.css";
 import { FerdigInnhold } from "./ferdigInnhold";
 
 export const metadata: Metadata = {
-  title: "Kartleggingsverktøy",
-  description: "Her kan du delta på litt litt kartlegging da",
+  title: "Fullført",
 };
 
 export default function Ferdigside() {

@@ -5,8 +5,7 @@ import { PageBlock } from "@navikt/ds-react/Page";
 import { IntrosideBody } from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/(introside)/IntrosideBody";
 
 export const metadata: Metadata = {
-  title: "Kartleggingsverktøy",
-  description: "Her kan du delta på litt litt kartlegging da",
+  title: "Introduksjon til tema",
 };
 
 export default function Temastartside({

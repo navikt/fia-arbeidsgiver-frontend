@@ -6,8 +6,7 @@ import BliMedKnapp from "./BliMedKnapp";
 import startsideStyles from "./startside.module.css";
 
 export const metadata: Metadata = {
-  title: "Kartleggingsverktøy",
-  description: "Her kan du delta på litt litt kartlegging da",
+  title: "Bli med",
 };
 
 export default function Landingsside({ params }: { params: { uuid: string } }) {

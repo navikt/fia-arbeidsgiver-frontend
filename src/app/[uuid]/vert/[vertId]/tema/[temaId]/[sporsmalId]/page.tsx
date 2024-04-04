@@ -3,8 +3,7 @@ import React from "react";
 import SpørsmålBody from "./SporsmalBody";
 
 export const metadata: Metadata = {
-  title: "Kartleggingsverktøy",
-  description: "Her kan du hoste litt kartlegging da",
+  title: "Spørreundersøkelse",
 };
 
 export default function Spørsmålsside({

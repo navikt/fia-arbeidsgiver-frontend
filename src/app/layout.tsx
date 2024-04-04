@@ -6,8 +6,10 @@ import React from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Arbeidsgiverkartlegging",
-  description: "Her skal det komme arbeidsgiverkartlegging etterhvert",
+  title: {
+    template: "%s | Kartleggingsverktøy",
+    default: "Kartleggingsverktøy",
+  },
   other: {
     ["google"]: "notranslate",
   },

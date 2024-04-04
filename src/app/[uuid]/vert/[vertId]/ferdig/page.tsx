@@ -6,8 +6,7 @@ import { PageBlock } from "@navikt/ds-react/Page";
 import ferdigStyles from "./ferdigside.module.css";
 
 export const metadata: Metadata = {
-  title: "Kartleggingsverktøy",
-  description: "Her kan du hoste litt kartlegging da",
+  title: "Fullført",
 };
 
 export default function Ferdigside() {
@@ -17,7 +16,7 @@ export default function Ferdigside() {
         <Bleed marginInline="full" asChild>
           <Box padding="5" className={kartleggingStyles.bleedFerdig}>
             <Heading size={"large"} className={ferdigStyles.bleedInnhold}>
-              Ferdig!
+              Fullført!
             </Heading>
           </Box>
         </Bleed>
