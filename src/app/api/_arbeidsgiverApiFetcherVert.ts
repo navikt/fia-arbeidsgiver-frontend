@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { getToken, requestOboToken, validateToken } from "@navikt/oasis";
+import { getToken, requestAzureOboToken, validateToken } from "@navikt/oasis";
 
 export function arbeidsgiverApiFetcherVert(
   endpoint: string,
@@ -52,9 +52,9 @@ async function exchangeToken(req: NextRequest) {
     };
   }
 
-  const obo = await requestOboToken(
+  const obo = await requestAzureOboToken(
     token,
-    `${process.env.NAIS_CLUSTER_NAME}:pia:fia-arbeidsgiver`,
+    `api://${process.env.NAIS_CLUSTER_NAME}.pia.fia-arbeidsgiver/.default`,
   );
   if (!obo.ok) {
     /* håndter OBO-feil */
