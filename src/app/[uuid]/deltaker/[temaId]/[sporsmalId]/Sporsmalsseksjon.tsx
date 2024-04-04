@@ -2,14 +2,7 @@
 
 import React from "react";
 import spørsmålStyles from "./sporsmalsside.module.css";
-import {
-  Alert,
-  BodyShort,
-  Button,
-  Radio,
-  RadioGroup,
-  VStack,
-} from "@navikt/ds-react";
+import { BodyShort, Button, Radio, RadioGroup, VStack } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
@@ -45,6 +38,11 @@ export default function Spørsmålsseksjon({
     if (erPåLagretSvar) {
       router.push(urlNeste(spørsmålOgSvar));
     } else {
+      if (svar === "") {
+        setFeilSendSvar("Velg minst ett svar");
+        return;
+      }
+
       sendSvar({
         spørreundersøkelseId: spørreundersøkelseId,
         temaId: temaId,
@@ -81,6 +79,7 @@ export default function Spørsmålsseksjon({
           value={svar}
           hideLegend
           className={spørsmålStyles.spørsmålsseksjon}
+          error={feilSendSvar}
         >
           {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
             <Radio key={svaralternativ.svarId} value={svaralternativ.svarId}>
@@ -88,15 +87,6 @@ export default function Spørsmålsseksjon({
             </Radio>
           ))}
         </RadioGroup>
-        {feilSendSvar !== null ? (
-          <Alert
-            variant="error"
-            closeButton
-            onClose={() => setFeilSendSvar(null)}
-          >
-            {feilSendSvar}
-          </Alert>
-        ) : null}
         <VStack className={spørsmålStyles.knappeStack}>
           <Button
             variant="primary"
