@@ -110,7 +110,7 @@ export default function Spørsmålsseksjon({
           <RadioGroup
             legend="Velg ett alternativ"
             onChange={(value) => velgSvar([value])}
-            value={svar[0]}
+            value={svar[0] || null}
             hideLegend
             className={spørsmålStyles.spørsmålsseksjon}
             error={feilSendSvar}
