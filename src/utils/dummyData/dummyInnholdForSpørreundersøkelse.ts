@@ -54,12 +54,13 @@ const dummyFørsteSpørsmål = {
   antallSpørsmål: 3,
   temanummer: 1,
   antallTema: 2,
+  flervalg: false,
 };
 
 const dummyAndreSpørsmål = {
   temabeskrivelse: temabeskrivelsePartssamarbeid,
   spørsmålTekst:
-    "Velg det tiltaket som du mener best kan bidra til å forebygge sykefraværet",
+    "Velg det tiltaket som du mener best kan bidra til å forebygge sykefraværet (flervalg)",
   svaralternativer: [
     {
       svarId: "fec487a5-23fa-4ef1-85fc-b6f951813c7f",
@@ -88,6 +89,7 @@ const dummyAndreSpørsmål = {
   antallSpørsmål: 3,
   temanummer: 1,
   antallTema: 2,
+  flervalg: true,
 };
 
 const dummyTredjeSpørsmål = {
@@ -122,6 +124,7 @@ const dummyTredjeSpørsmål = {
   antallSpørsmål: 3,
   temanummer: 1,
   antallTema: 2,
+  flervalg: false,
 };
 
 const dummyFjerdeSpørsmål = {
@@ -152,6 +155,7 @@ const dummyFjerdeSpørsmål = {
   antallSpørsmål: 1,
   temanummer: 2,
   antallTema: 2,
+  flervalg: false,
 };
 
 const dummySpørsmålSamling = {

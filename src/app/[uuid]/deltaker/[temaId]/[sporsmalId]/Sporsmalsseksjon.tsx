@@ -2,7 +2,15 @@
 
 import React from "react";
 import spørsmålStyles from "./sporsmalsside.module.css";
-import { BodyShort, Button, Radio, RadioGroup, VStack } from "@navikt/ds-react";
+import {
+  BodyShort,
+  Button,
+  Checkbox,
+  CheckboxGroup,
+  Radio,
+  RadioGroup,
+  VStack,
+} from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
@@ -24,7 +32,8 @@ export default function Spørsmålsseksjon({
   const [feilSendSvar, setFeilSendSvar] = React.useState<string | null>(null);
 
   const [svar, setSvar] = React.useState(lagretSvar || []);
-  const velgSvar = (svaralternativid: string) => setSvar([svaralternativid]);
+  const velgSvar = (svaralternativider: string[]) =>
+    setSvar(svaralternativider);
   const erPåLagretSvar = (
     valgtSvar: string[],
     lagretSvar: string[] | undefined,
@@ -80,20 +89,39 @@ export default function Spørsmålsseksjon({
     <>
       <BodyShort weight={"semibold"}>{spørsmålOgSvar.spørsmålTekst}</BodyShort>
       <VStack className={spørsmålStyles.radioStack}>
-        <RadioGroup
-          legend="Velg ett alternativ"
-          onChange={velgSvar}
-          value={svar[0]}
-          hideLegend
-          className={spørsmålStyles.spørsmålsseksjon}
-          error={feilSendSvar}
-        >
-          {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
-            <Radio key={svaralternativ.svarId} value={svaralternativ.svarId}>
-              {svaralternativ.svartekst}
-            </Radio>
-          ))}
-        </RadioGroup>
+        {spørsmålOgSvar.flervalg ? (
+          <CheckboxGroup
+            onChange={velgSvar}
+            legend={"Velg flere alternativ"}
+            hideLegend
+            value={svar}
+            error={feilSendSvar}
+          >
+            {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
+              <Checkbox
+                key={svaralternativ.svarId}
+                value={svaralternativ.svarId}
+              >
+                {svaralternativ.svartekst}
+              </Checkbox>
+            ))}
+          </CheckboxGroup>
+        ) : (
+          <RadioGroup
+            legend="Velg ett alternativ"
+            onChange={(value) => velgSvar([value])}
+            value={svar[0]}
+            hideLegend
+            className={spørsmålStyles.spørsmålsseksjon}
+            error={feilSendSvar}
+          >
+            {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
+              <Radio key={svaralternativ.svarId} value={svaralternativ.svarId}>
+                {svaralternativ.svartekst}
+              </Radio>
+            ))}
+          </RadioGroup>
+        )}
         <VStack className={spørsmålStyles.knappeStack}>
           <Button
             variant="primary"
