@@ -10,6 +10,7 @@ export type SpørsmålsoversiktDto = {
   antallSpørsmål: number;
   temanummer: number;
   antallTema: number;
+  flervalg: boolean;
 };
 
 export type SvaralternativDto = {

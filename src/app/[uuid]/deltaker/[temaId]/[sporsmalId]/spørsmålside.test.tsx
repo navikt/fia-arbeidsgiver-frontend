@@ -105,7 +105,7 @@ describe("deltaker/Spørsmålsside", () => {
       spørreundersøkelseId: testSpørreundersøkelseId,
       temaId: testTemaId,
       spørsmålId: testSpørsmålId,
-      svarId: testSpørsmålOgSvar.svaralternativer[0].svarId,
+      svarIder: [testSpørsmålOgSvar.svaralternativer[0].svarId],
     });
   });
 
@@ -150,7 +150,7 @@ describe("deltaker/Spørsmålsside", () => {
       spørreundersøkelseId: testSpørreundersøkelseId,
       spørsmålId: testSpørsmålId,
       temaId: testTemaId,
-      svarId: testSpørsmålOgSvar.svaralternativer[0].svarId,
+      svarIder: [testSpørsmålOgSvar.svaralternativer[0].svarId],
     });
 
     expect(pushFunction).toHaveBeenCalledTimes(1);
@@ -200,7 +200,7 @@ describe("deltaker/Spørsmålsside", () => {
       spørreundersøkelseId: testSpørreundersøkelseId,
       spørsmålId: testSpørsmålId,
       temaId: testTemaId,
-      svarId: dummyTredjeSpørsmål.svaralternativer[0].svarId,
+      svarIder: [dummyTredjeSpørsmål.svaralternativer[0].svarId],
     });
 
     expect(pushFunction).toHaveBeenCalledTimes(1);
@@ -250,7 +250,7 @@ describe("deltaker/Spørsmålsside", () => {
       spørreundersøkelseId: testSpørreundersøkelseId,
       spørsmålId: testSpørsmålId,
       temaId: testTemaId,
-      svarId: dummyFjerdeSpørsmål.svaralternativer[0].svarId,
+      svarIder: [dummyFjerdeSpørsmål.svaralternativer[0].svarId],
     });
 
     expect(pushFunction).toHaveBeenCalledTimes(1);
@@ -286,7 +286,7 @@ describe("deltaker/Spørsmålsside", () => {
     const forhåndssvart = testSpørsmålOgSvar.svaralternativer[1];
     jest
       .spyOn(CookieHandler, "getSvarPåSpørsmål")
-      .mockImplementation(() => forhåndssvart.svarId);
+      .mockImplementation(() => [forhåndssvart.svarId]);
 
     render(
       <Spørsmålsside
@@ -315,7 +315,7 @@ describe("deltaker/Spørsmålsside", () => {
     const forhåndssvart = testSpørsmålOgSvar.svaralternativer[1];
     jest
       .spyOn(CookieHandler, "getSvarPåSpørsmål")
-      .mockImplementation(() => forhåndssvart.svarId);
+      .mockImplementation(() => [forhåndssvart.svarId]);
 
     render(
       <Spørsmålsside

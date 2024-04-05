@@ -23,10 +23,17 @@ export default function Spørsmålsseksjon({
   const lagretSvar = CookieHandler.getSvarPåSpørsmål(spørsmålId);
   const [feilSendSvar, setFeilSendSvar] = React.useState<string | null>(null);
 
-  const [svar, setSvar] = React.useState(lagretSvar || "");
-  const velgSvar = (svaralternativid: string) => setSvar(svaralternativid);
-
-  const erPåLagretSvar = svar === lagretSvar && lagretSvar?.length > 0;
+  const [svar, setSvar] = React.useState(lagretSvar || []);
+  const velgSvar = (svaralternativid: string) => setSvar([svaralternativid]);
+  const erPåLagretSvar = (
+    valgtSvar: string[],
+    lagretSvar: string[] | undefined,
+  ) => {
+    if (lagretSvar === undefined) return false;
+    return (
+      valgtSvar.toString() === lagretSvar.toString() && lagretSvar?.length > 0
+    );
+  };
 
   const router = useRouter();
 
@@ -35,10 +42,10 @@ export default function Spørsmålsseksjon({
       throw new Error("Spørsmål mangler");
     }
 
-    if (erPåLagretSvar) {
+    if (erPåLagretSvar(svar, lagretSvar)) {
       router.push(urlNeste(spørsmålOgSvar));
     } else {
-      if (svar === "") {
+      if (svar.length === 0) {
         setFeilSendSvar("Velg minst ett svar");
         return;
       }
@@ -47,7 +54,7 @@ export default function Spørsmålsseksjon({
         spørreundersøkelseId: spørreundersøkelseId,
         temaId: temaId,
         spørsmålId: spørsmålId,
-        svarId: svar,
+        svarIder: svar,
       })
         .then(() => {
           setFeilSendSvar(null);
@@ -76,7 +83,7 @@ export default function Spørsmålsseksjon({
         <RadioGroup
           legend="Velg ett alternativ"
           onChange={velgSvar}
-          value={svar}
+          value={svar[0]}
           hideLegend
           className={spørsmålStyles.spørsmålsseksjon}
           error={feilSendSvar}
@@ -94,7 +101,7 @@ export default function Spørsmålsseksjon({
             onClick={håndterNesteknapp}
           >
             <SvarKnappTekst
-              erPåLagretSvar={erPåLagretSvar}
+              erPåLagretSvar={erPåLagretSvar(svar, lagretSvar)}
               lagretSvar={lagretSvar}
             />
           </Button>
@@ -118,13 +125,12 @@ function SvarKnappTekst({
   lagretSvar,
 }: {
   erPåLagretSvar: boolean;
-  lagretSvar?: string;
+  lagretSvar?: string[];
 }) {
   if (erPåLagretSvar) {
     return "Neste";
   } else if (lagretSvar) {
     return "Endre svar";
   }
-
   return "Svar";
 }

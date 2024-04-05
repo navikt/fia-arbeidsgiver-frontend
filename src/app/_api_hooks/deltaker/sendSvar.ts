@@ -4,12 +4,12 @@ export async function sendSvar({
   spørreundersøkelseId,
   temaId,
   spørsmålId,
-  svarId,
+  svarIder,
 }: {
   spørreundersøkelseId: string;
   temaId: number;
   spørsmålId: string;
-  svarId: string;
+  svarIder: string[];
 }) {
   const res = await fetch(
     `/api/${spørreundersøkelseId}/deltaker/${temaId}/${spørsmålId}/svar`,
@@ -19,7 +19,7 @@ export async function sendSvar({
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        svarId,
+        svarIder: svarIder,
       }),
     },
   );
@@ -29,5 +29,5 @@ export async function sendSvar({
   if (!res.ok) {
     throw new Error("Noe gikk galt.");
   }
-  CookieHandler.setSvarPåSpørsmålOgMarkerSomSisteSvarte(spørsmålId, svarId);
+  CookieHandler.setSvarPåSpørsmålOgMarkerSomSisteSvarte(spørsmålId, svarIder);
 }

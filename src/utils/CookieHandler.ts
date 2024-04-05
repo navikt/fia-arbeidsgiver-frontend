@@ -4,7 +4,7 @@ import { COOKIE_MAX_AGE, COOKIE_STORAGE_KEY } from "./consts";
 type CookieContents = {
   spørreundersøkelseId: string;
   sisteSvarteSpørsmålId: string | undefined;
-  svarPåSpørsmål: Record<string, string>;
+  svarPåSpørsmål: Record<string, string[]>;
   harSvartAlleSpørsmål: boolean;
   sesjonsID: string;
 };
@@ -35,13 +35,13 @@ export default abstract class CookieHandler {
     );
   }
 
-  public static svarPåSpørsmål(spørsmålId: string): string | undefined {
+  public static svarPåSpørsmål(spørsmålId: string): string[] | undefined {
     return CookieHandler.cookieContents?.svarPåSpørsmål?.[spørsmålId];
   }
 
-  public static setSvarPåSpørsmål(spørsmålId: string, svarId: string) {
+  public static setSvarPåSpørsmål(spørsmålId: string, svarIder: string[]) {
     const svarPåSpørsmål = CookieHandler.cookieContents?.svarPåSpørsmål || {};
-    svarPåSpørsmål[spørsmålId] = svarId;
+    svarPåSpørsmål[spørsmålId] = svarIder;
 
     CookieHandler.setCookieVerdi("svarPåSpørsmål", svarPåSpørsmål);
   }
@@ -55,12 +55,12 @@ export default abstract class CookieHandler {
   }
   public static setSvarPåSpørsmålOgMarkerSomSisteSvarte(
     spørsmålId: string,
-    svarId: string,
+    svarIder: string[],
   ) {
-    CookieHandler.setSvarPåSpørsmål(spørsmålId, svarId);
+    CookieHandler.setSvarPåSpørsmål(spørsmålId, svarIder);
     CookieHandler.oppdaterSisteSvarteSpørsmål(spørsmålId);
   }
-  public static getSvarPåSpørsmål(spørsmålId: string): string | undefined {
+  public static getSvarPåSpørsmål(spørsmålId: string): string[] | undefined {
     return CookieHandler.cookieContents?.svarPåSpørsmål?.[spørsmålId];
   }
 
