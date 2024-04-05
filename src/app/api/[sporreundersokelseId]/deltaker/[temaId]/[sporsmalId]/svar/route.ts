@@ -18,12 +18,12 @@ export async function POST(
       status: 400,
     });
   }
-  const { svarId } = await request.json();
+  const { svarIder } = await request.json();
 
   const fetcher = poster(
     `deltaker/${sporreundersokelseId}/${temaId}/${sporsmalId}/svar`,
     JSON.stringify({
-      svarId,
+      svarIder,
     }),
     request,
   );
