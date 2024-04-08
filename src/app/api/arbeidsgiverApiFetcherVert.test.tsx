@@ -33,17 +33,15 @@ describe("arbeidsgiverApiFetcherVert", () => {
   });
 
   test("Feil om hostname mangler i config", async () => {
-    const result = arbeidsgiverApiFetcherVert(
+    const result = await arbeidsgiverApiFetcherVert(
       "endpoint",
       "vertId",
       {} as NextRequest,
     )();
 
-    // @ts-ignore
-    expect(result._bodyInit).toBe(
-      //TODO: Finne ut av body
-      JSON.stringify({ error: "missing hostname in config" }),
-    );
+    expect(await result.json()).toStrictEqual({
+      error: "missing hostname in config",
+    });
   });
 
   test("Feil dersom token ikke returnerer", async () => {
@@ -58,10 +56,10 @@ describe("arbeidsgiverApiFetcherVert", () => {
       {} as NextRequest,
     )();
 
-    // @ts-ignore
-    expect(result._bodyInit).toEqual(
-      JSON.stringify({ tokenError: "No token found", code: 401 }),
-    );
+    expect(await result.json()).toEqual({
+      tokenError: "No token found",
+      code: 401,
+    });
     jest.mocked(getToken).mockReturnValue("token");
   });
 
@@ -78,13 +76,10 @@ describe("arbeidsgiverApiFetcherVert", () => {
       {} as NextRequest,
     )();
 
-    // @ts-ignore
-    expect(result._bodyInit).toEqual(
-      JSON.stringify({
-        validationError: "asdf",
-        code: 401,
-      }),
-    );
+    expect(await result.json()).toEqual({
+      validationError: "asdf",
+      code: 401,
+    });
 
     // @ts-ignore
     jest.mocked(validateToken).mockReturnValue({ ok: true });
@@ -105,13 +100,10 @@ describe("arbeidsgiverApiFetcherVert", () => {
       {} as NextRequest,
     )();
 
-    // @ts-ignore
-    expect(result._bodyInit).toEqual(
-      JSON.stringify({
-        oboError: "asdf",
-        code: 500,
-      }),
-    );
+    expect(await result.json()).toEqual({
+      oboError: "asdf",
+      code: 500,
+    });
 
     // @ts-ignore
     jest.mocked(requestAzureOboToken).mockReturnValue({ ok: true });
