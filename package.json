@@ -57,6 +57,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.4"
+    "typescript": "^5.4.4",
+    "whatwg-fetch": "^3.6.20"
   }
 }
