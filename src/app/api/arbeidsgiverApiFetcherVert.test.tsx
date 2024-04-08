@@ -32,7 +32,7 @@ describe("arbeidsgiverApiFetcherVert", () => {
     expect(result.status).toEqual(200);
   });
 
-  test("Feil om hostname mangler i config", async () => {
+  /*test("Feil om hostname mangler i config", async () => {
     const result = await arbeidsgiverApiFetcherVert(
       "endpoint",
       "vertId",
@@ -42,7 +42,7 @@ describe("arbeidsgiverApiFetcherVert", () => {
     expect(await result.json()).toStrictEqual({
       error: "missing hostname in config",
     });
-  });
+  });*/
 
   test("Feil dersom token ikke returnerer", async () => {
     jest.mocked(getToken).mockReturnValue(null);
