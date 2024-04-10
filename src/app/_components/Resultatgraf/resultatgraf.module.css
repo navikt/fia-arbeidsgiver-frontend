@@ -2,6 +2,11 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-top: 1rem;
+}
+
+.chartWrapper:not(:last-child) {
+    margin-bottom: 2rem;
 }
 
 .barWrapper {
@@ -21,9 +26,10 @@
 .labelList {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 1rem;
+    padding-inline-start: 0;
 }
 
 .label {
@@ -32,7 +38,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 0.5rem;
+    margin-right: 1rem;
+}
+
+.labelValue {
+    margin-left: 0.5rem;
 }
 
 .labelBox {
@@ -44,4 +54,15 @@
 
 .spørsmåltekst {
     margin-bottom: 1rem;
+}
+
+.temaheader {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+
+    border-bottom: 1px solid var(--a-gray-300);
+}
+
+.temaboks {
+    margin-bottom: 2rem;
 }

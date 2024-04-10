@@ -1,6 +1,7 @@
 import resultatgrafStyle from "./resultatgraf.module.css";
 import React from "react";
 import { BodyShort } from "@navikt/ds-react";
+import { spørsmålMedSvarDTO } from "@/app/_types/resultatDTO";
 
 type RGB = `rgb(${number}, ${number}, ${number})`;
 type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
@@ -55,47 +56,47 @@ const LabelBox = ({
 export default function Resultatgraf({
   spørsmål,
   farger = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#8dd1e1"],
+  barTestIds,
 }: {
-  spørsmål: {
-    spørsmålId: string;
-    tekst: string;
-    svarListe: {
-      svarId: string;
-      tekst: string;
-      antallSvar: number;
-      prosent: number;
-    }[];
-  };
+  spørsmål: spørsmålMedSvarDTO;
   farger?: Color[] | string[];
+  barTestIds?: string[];
 }) {
   function getSvarGrafFarge(index: number): string {
     return farger[index % farger.length];
   }
 
+  const total = spørsmål.svarListe.reduce(
+    (acc, svar) => acc + svar.antallSvar,
+    0,
+  );
+
   return (
     <ChartWrapper>
-      <BodyShort className={resultatgrafStyle.spørsmåltekst}>
+      <BodyShort className={resultatgrafStyle.spørsmåltekst} weight="semibold">
         {spørsmål.tekst}
       </BodyShort>
       <BarWrapper>
         {spørsmål.svarListe.map(
           (svar, index) =>
-            svar.prosent > 0 && (
+            svar.antallSvar > 0 && (
               <Bar
-                key={svar.svarId}
-                prosent={svar.prosent}
+                key={index}
+                prosent={(svar.antallSvar / total) * 100}
                 farge={getSvarGrafFarge(index)}
-              >
-                {svar.prosent.toFixed(0)}%
-              </Bar>
+                data-testid={barTestIds?.[index]}
+              />
             ),
         )}
       </BarWrapper>
       <LabelList>
         {spørsmål.svarListe.map((svar, index) => (
-          <Label key={svar.svarId}>
+          <Label key={index}>
             <LabelBox farge={getSvarGrafFarge(index)} />
-            {svar.tekst}: {svar.prosent.toFixed(0)}%
+            <BodyShort weight="semibold">{svar.tekst}:</BodyShort>
+            <BodyShort className={resultatgrafStyle.labelValue}>
+              {svar.antallSvar}
+            </BodyShort>
           </Label>
         ))}
       </LabelList>
