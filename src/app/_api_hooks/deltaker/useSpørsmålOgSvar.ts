@@ -1,11 +1,13 @@
 import useSWR, { SWRResponse } from "swr";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+import React from "react";
 
 export function useSpørsmålOgSvar(
   spørreundersøkelseId: string,
   temaId: number,
   spørsmålId: string,
 ): SWRResponse<SpørsmålsoversiktDto> {
+  const [harLastet, setHarLastet] = React.useState(false);
   const fetcher = (url: string) =>
     fetch(url, {
       method: "GET",
@@ -17,6 +19,8 @@ export function useSpørsmålOgSvar(
       if (!res.ok) {
         throw new Error("Noe gikk galt.");
       }
+
+      setHarLastet(true);
       return res.json();
     });
 
@@ -24,7 +28,7 @@ export function useSpørsmålOgSvar(
     `/api/${spørreundersøkelseId}/deltaker/${temaId}/${spørsmålId}`,
     fetcher,
     {
-      refreshInterval: 2000,
+      refreshInterval: harLastet ? undefined : 2000,
     },
   );
 }
