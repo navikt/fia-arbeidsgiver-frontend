@@ -36,22 +36,6 @@ export default function SpørsmålBody({
     error: feilSpørsmålOgSvar,
   } = useSpørsmålOgSvar(spørreundersøkelseId, temaId, spørsmålId);
 
-  if (lasterSpørsmålOgSvar) {
-    return (
-      <>
-        <SpørsmålBleedDeltaker spørsmålOgSvar={spørsmålOgSvar} />
-        <VStack
-          gap={"4"}
-          align={"center"}
-          justify={"center"}
-          className={spørsmålStyles.nesteStack}
-        >
-          <Heading size={"large"}>Laster spørsmål</Heading>
-          <Loader size="3xlarge" title="Venter..." />
-        </VStack>
-      </>
-    );
-  }
   if (feilSpørsmålOgSvar) {
     return (
       <>
@@ -81,6 +65,23 @@ export default function SpørsmålBody({
           className={spørsmålStyles.nesteStack}
         >
           <Heading size={"large"}>Venter på vert</Heading>
+          <Loader size="3xlarge" title="Venter..." />
+        </VStack>
+      </>
+    );
+  }
+
+  if (lasterSpørsmålOgSvar) {
+    return (
+      <>
+        <SpørsmålBleedDeltaker spørsmålOgSvar={spørsmålOgSvar} />
+        <VStack
+          gap={"4"}
+          align={"center"}
+          justify={"center"}
+          className={spørsmålStyles.nesteStack}
+        >
+          <Heading size={"large"}>Laster spørsmål</Heading>
           <Loader size="3xlarge" title="Venter..." />
         </VStack>
       </>

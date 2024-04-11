@@ -381,4 +381,48 @@ describe("deltaker/Spørsmålsside", () => {
       screen.queryByRole("button", { name: /Endre Svar/i }),
     ).not.toBeInTheDocument();
   });
+
+  test("Viser feilmelding dersom vi har error og loading", () => {
+    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
+      data: undefined,
+      isLoading: true,
+      error: new Error("Noe gikk galt."),
+      mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
+      isValidating: false,
+    });
+
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: testSpørreundersøkelseId,
+          sporsmalId: testSpørsmålId,
+          temaId: testTemaId,
+        }}
+      />,
+    );
+
+    expect(screen.getByText("Noe gikk galt.")).toBeInTheDocument();
+  });
+
+  test("Viser 'venter på vert' dersom vi ikke har spørsmål, men loading", () => {
+    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
+      data: undefined,
+      isLoading: true,
+      error: null,
+      mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
+      isValidating: false,
+    });
+
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: testSpørreundersøkelseId,
+          sporsmalId: testSpørsmålId,
+          temaId: testTemaId,
+        }}
+      />,
+    );
+
+    expect(screen.getByText("Venter på vert")).toBeInTheDocument();
+  });
 });
