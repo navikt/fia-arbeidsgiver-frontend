@@ -158,6 +158,54 @@ const dummyFjerdeSpørsmål = {
   flervalg: false,
 };
 
+const dummySpørsmålMedMangeSvaralternativer = {
+  temabeskrivelse: "Utvikle partssamarbeidet i virksomheten",
+  spørsmålTekst: "Hvilke temaer får størst prioritet i møtene deres?",
+  svaralternativer: [
+    {
+      svarId: "e4b71510-2bde-4dd3-9e5a-6e406b48d1e7",
+      svartekst: "Lønnsforhandlinger",
+    },
+    {
+      svarId: "79e2b135-e02f-418f-a40c-36b539a8b3da",
+      svartekst: "HMS",
+    },
+    {
+      svarId: "8086090b-7793-4ced-a4ff-9ec8546665ae",
+      svartekst: "Bemanning",
+    },
+    {
+      svarId: "9bf3f13e-c4d7-4a73-893a-b5b2f946bb8f",
+      svartekst: "Sykefravær",
+    },
+    {
+      svarId: "6abae259-40d4-4dfd-9fd1-45ff70cd8bf1",
+      svartekst: "Arbeidsmiljø",
+    },
+    {
+      svarId: "d7d10783-9ea0-459d-bd61-047d423ec6a3",
+      svartekst: "Annet",
+    },
+    {
+      svarId: "a953e606-793d-47bc-ba28-25f755aac693",
+      svartekst: "Vet ikke",
+    },
+  ],
+  nesteSpørsmål: {
+    temaId: 2,
+    spørsmålId: "5df90163-81e4-44c5-8e72-9b47f2added2",
+  },
+  forrigeSpørsmål: {
+    temaId: 3,
+    spørsmålId: "018e7b18-2552-77e9-95a1-366c3eb8e800",
+  },
+  antallTema: 2,
+  temanummer: 1,
+  antallSpørsmål: 7,
+  spørsmålnummer: 7,
+  flervalg: true,
+};
+
 const dummySpørsmålSamling = {
   [førsteTemaFørsteSpørsmål.spørsmålId]: dummyFørsteSpørsmål,
   [førsteTemaAndreSpørsmål.spørsmålId]: dummyAndreSpørsmål,
@@ -176,4 +224,5 @@ module.exports = {
   dummyFjerdeSpørsmål,
   dummySpørreundersøkelseId,
   dummySpørsmålSamling,
+  dummySpørsmålMedMangeSvaralternativer,
 };

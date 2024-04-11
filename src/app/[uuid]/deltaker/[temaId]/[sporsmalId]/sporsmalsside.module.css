@@ -1,3 +1,7 @@
+.spørsmålsbleed {
+    flex-shrink: 0;
+}
+
 .spørsmålsheader {
     display: flex;
     justify-content: flex-start;
