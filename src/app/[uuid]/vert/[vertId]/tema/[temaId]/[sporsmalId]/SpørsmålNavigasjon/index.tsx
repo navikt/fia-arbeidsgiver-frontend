@@ -1,11 +1,12 @@
 import { Button, HStack } from "@navikt/ds-react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
-import spørsmålStyles from "./sporsmalsside.module.css";
+import spørsmålStyles from "../sporsmalsside.module.css";
 
 import React from "react";
 import { useRouter } from "next/navigation";
 import { urlNesteVert, urlTilbake } from "@/utils/spørreundersøkelsesUtils";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+import LinkTilResultat from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/SpørsmålNavigasjon/LinkTilResultat";
 
 export default function SpørsmålNavigasjon({
   spørsmålOgSvar,
@@ -14,7 +15,7 @@ export default function SpørsmålNavigasjon({
   spørsmålOgSvar: SpørsmålsoversiktDto;
   temaId: number;
 }) {
-  const gåTilOversiktPåNeste =
+  const erPåSisteSpørsmål =
     Number(spørsmålOgSvar.nesteSpørsmål?.temaId) !== Number(temaId);
 
   const håndterNesteknapp = () => {
@@ -22,7 +23,7 @@ export default function SpørsmålNavigasjon({
       throw new Error("Spørsmål mangler");
     }
 
-    router.push(urlNesteVert(spørsmålOgSvar, gåTilOversiktPåNeste));
+    router.push(urlNesteVert(spørsmålOgSvar, erPåSisteSpørsmål));
   };
 
   const håndterTilbakeknapp = () => {
@@ -50,14 +51,20 @@ export default function SpørsmålNavigasjon({
           ? "Forrige spørsmål"
           : "Tilbake til temaside"}
       </Button>
-      <Button
-        className={kartleggingStyles.knappBred}
-        onClick={håndterNesteknapp}
-      >
-        {spørsmålOgSvar.nesteSpørsmål !== null && !gåTilOversiktPåNeste
-          ? "Neste"
-          : "Oversikt"}
-      </Button>
+      <HStack gap={"4"}>
+        <LinkTilResultat
+          skalViseKnapp={erPåSisteSpørsmål}
+          urlTilResultatside={`../../resultater/${temaId}`}
+        />
+        <Button
+          className={kartleggingStyles.knappBred}
+          onClick={håndterNesteknapp}
+        >
+          {spørsmålOgSvar.nesteSpørsmål !== null && !erPåSisteSpørsmål
+            ? "Neste"
+            : "Oversikt"}
+        </Button>
+      </HStack>
     </HStack>
   );
 }

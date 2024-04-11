@@ -13,6 +13,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { TemaoversiktDto } from "@/app/_types/temaoversiktDto";
 import { TemaStatus } from "@/app/_types/tema";
+import LinkTilResultat from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/SpørsmålNavigasjon/LinkTilResultat";
 
 export function OversiktBleedVert({
   temaoversikt,
@@ -44,13 +45,22 @@ function TemaActions({ temaoversikt }: { temaoversikt: TemaoversiktDto }) {
   switch (temaoversikt.status) {
     case TemaStatus.ALLE_SPØRSMÅL_ÅPNET:
       return (
-        <Button
-          variant="secondary"
-          onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
-          className={kartleggingStyles.knappHvitBred}
-        >
-          Gjenoppta
-        </Button>
+        <>
+          <LinkTilResultat
+            skalViseKnapp
+            urlTilResultatside={`./resultater/${temaoversikt.temaId}`}
+            gåDirekteTilResultat={false} // TODO: Ikke via modal dersom tema allerede er stengt
+            knappetekst={""}
+            knappeClass={kartleggingStyles.knappHvit}
+          />
+          <Button
+            variant="secondary"
+            onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
+            className={kartleggingStyles.knappHvitBred}
+          >
+            Gjenoppta
+          </Button>
+        </>
       );
     case TemaStatus.ÅPNET:
       return (

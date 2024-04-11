@@ -1,6 +1,6 @@
 import { temaResultatDTO } from "@/app/_types/resultatDTO";
 import Resultatgraf from "@/app/_components/Resultatgraf/index";
-import { BodyLong, Box, Heading } from "@navikt/ds-react";
+import { BodyShort, Box, Heading } from "@navikt/ds-react";
 import resultatgrafStyle from "./resultatgraf.module.css";
 
 export default function TemaGraf({ tema }: { tema: temaResultatDTO }) {
@@ -13,9 +13,12 @@ export default function TemaGraf({ tema }: { tema: temaResultatDTO }) {
     >
       <div className={resultatgrafStyle.temaheader}>
         <Heading level="2" size="small">
-          {tema.tema}
+          {tema.beskrivelse}
         </Heading>
-        <BodyLong>{tema.beskrivelse}</BodyLong>
+        <BodyShort size="large" weight="semibold" style={{ color: "#f00" }}>
+          {/* TODO: Fjern denne når vi har ekte data */}
+          IKKE EKTE DATA!
+        </BodyShort>
       </div>
       {tema.spørsmålMedSvar.map((spørsmål, index) => (
         <Resultatgraf key={index} spørsmål={spørsmål} />
