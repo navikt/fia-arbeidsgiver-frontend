@@ -2,6 +2,7 @@ const {
   dummyFørsteSpørsmål,
   dummyFjerdeSpørsmål,
   dummySpørsmålSamling,
+  dummyFlervalgSpørsmålMedMangeSvaralternativer,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require("@/utils/dummyData/dummyInnholdForSpørreundersøkelse");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -28,6 +29,14 @@ const sporsmalOgSvarRoutes = [
               res.send(`Spørsmål med angitt id ble ikke funnet`);
             }
           },
+        },
+      },
+      {
+        id: "mange-svaralternativer",
+        type: "json",
+        options: {
+          status: 200,
+          body: dummyFlervalgSpørsmålMedMangeSvaralternativer,
         },
       },
       {

@@ -17,6 +17,7 @@ import {
   dummyTredjeSpørsmål,
   dummyFjerdeSpørsmål,
   førsteTemaFørsteSpørsmål,
+  dummyFlervalgSpørsmålMedMangeSvaralternativer,
   // @ts-ignore
 } from "@/utils/dummyData/dummyInnholdForSpørreundersøkelse";
 
@@ -424,5 +425,55 @@ describe("deltaker/Spørsmålsside", () => {
     );
 
     expect(screen.getByText("Venter på vert")).toBeInTheDocument();
+  });
+
+  test("Viser checkbokser for flervalgsspørsmål", async () => {
+    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
+      data: dummyFlervalgSpørsmålMedMangeSvaralternativer,
+      isLoading: false,
+      error: undefined,
+      mutate: jest.fn(),
+      isValidating: false,
+    });
+
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: dummySpørreundersøkelseId,
+          temaId: testTemaId,
+          sporsmalId: testSpørsmålId,
+        }}
+      />,
+    );
+
+    const checkbokser = screen.queryAllByRole("checkbox");
+
+    expect(checkbokser.length).toBe(
+      dummyFlervalgSpørsmålMedMangeSvaralternativer.svaralternativer.length,
+    );
+
+    const radiobuttons = screen.queryAllByRole("radio");
+    expect(radiobuttons.length).toBe(0);
+  });
+
+  test("Viser radio buttons for vanlige spørsmål", async () => {
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: dummySpørreundersøkelseId,
+          temaId: testTemaId,
+          sporsmalId: testSpørsmålId,
+        }}
+      />,
+    );
+
+    const checkbokser = screen.queryAllByRole("checkbox");
+
+    expect(checkbokser.length).toBe(0);
+
+    const radiobuttons = screen.queryAllByRole("radio");
+    expect(radiobuttons.length).toBe(
+      testSpørsmålOgSvar.svaralternativer.length,
+    );
   });
 });

@@ -10,6 +10,7 @@ import {
   dummyTredjeSpørsmål,
   dummyFjerdeSpørsmål,
   førsteTemaFørsteSpørsmål,
+  dummyFlervalgSpørsmålMedMangeSvaralternativer,
   // @ts-ignore
 } from "@/utils/dummyData/dummyInnholdForSpørreundersøkelse";
 import {
@@ -235,6 +236,58 @@ describe("vert/spørsmålside", () => {
     act(() => oversiktKnapp.click());
     expect(pushMock).toHaveBeenCalledTimes(1);
     expect(pushMock).toHaveBeenCalledWith("../../oversikt");
+  });
+
+  test("Viser checkbokser for flervalgsspørsmål", async () => {
+    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
+      data: dummyFlervalgSpørsmålMedMangeSvaralternativer,
+      isLoading: false,
+      error: undefined,
+      mutate: jest.fn(),
+      isValidating: false,
+    });
+
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: dummySpørreundersøkelseId,
+          vertId: dummyVertId,
+          temaId: testTema,
+          sporsmalId: dummySpørsmålId,
+        }}
+      />,
+    );
+
+    const checkbokser = screen.queryAllByRole("checkbox");
+
+    expect(checkbokser.length).toBe(
+      dummyFlervalgSpørsmålMedMangeSvaralternativer.svaralternativer.length,
+    );
+
+    const radiobuttons = screen.queryAllByRole("radio");
+    expect(radiobuttons.length).toBe(0);
+  });
+
+  test("Viser radio buttons for vanlige spørsmål", async () => {
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: dummySpørreundersøkelseId,
+          vertId: dummyVertId,
+          temaId: testTema,
+          sporsmalId: dummySpørsmålId,
+        }}
+      />,
+    );
+
+    const checkbokser = screen.queryAllByRole("checkbox");
+
+    expect(checkbokser.length).toBe(0);
+
+    const radiobuttons = screen.queryAllByRole("radio");
+    expect(radiobuttons.length).toBe(
+      testSpørsmålOgSvar.svaralternativer.length,
+    );
   });
 
   test("axe UU-test", async () => {

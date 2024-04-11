@@ -2,7 +2,7 @@ const {
   dummyFørsteSpørsmål,
   dummyFjerdeSpørsmål,
   dummySpørsmålSamling,
-  dummySpørsmålMedMangeSvaralternativer,
+  dummyFlervalgSpørsmålMedMangeSvaralternativer,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require("@/utils/dummyData/dummyInnholdForSpørreundersøkelse");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -36,7 +36,7 @@ const sporsmalOgSvarRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: dummySpørsmålMedMangeSvaralternativer,
+          body: dummyFlervalgSpørsmålMedMangeSvaralternativer,
         },
       },
       {

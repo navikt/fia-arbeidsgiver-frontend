@@ -5,10 +5,6 @@
     align-items: center;
 }
 
-.spørsmålInnhold {
-}
-
-
 .innholdSvar {
     padding-left: 2rem;
 }
@@ -29,10 +25,10 @@
     justify-content: space-between;
 }
 
-.disabletRadio {
+.disabletOption {
     pointer-events: none;
 }
 
-.disabletRadio label::before {
+.disabletOption label::before {
     opacity: 0.5;
 }

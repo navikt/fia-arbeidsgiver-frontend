@@ -1,4 +1,11 @@
-import { Box, Heading, Radio, RadioGroup } from "@navikt/ds-react";
+import {
+  Box,
+  Heading,
+  Radio,
+  RadioGroup,
+  Checkbox,
+  CheckboxGroup,
+} from "@navikt/ds-react";
 import React from "react";
 import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
 import spørsmålssideStyles from "./sporsmalsside.module.css";
@@ -8,23 +15,25 @@ export function SpørsmålInnhold({
 }: {
   spørsmålOgSvar: SpørsmålsoversiktDto;
 }) {
+  const OptionGroup = spørsmålOgSvar.flervalg ? CheckboxGroup : RadioGroup;
+  const Option = spørsmålOgSvar.flervalg ? Checkbox : Radio;
   return (
     spørsmålOgSvar && (
       <Box borderRadius="xlarge" padding="12" background="surface-selected">
         <Heading level={"2"} size={"small"} spacing>
           {spørsmålOgSvar.spørsmålTekst}
         </Heading>
-        <RadioGroup hideLegend legend={""}>
+        <OptionGroup hideLegend legend={""}>
           {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
-            <Radio
+            <Option
               key={svaralternativ.svarId}
               value={svaralternativ.svarId}
-              className={spørsmålssideStyles.disabletRadio}
+              className={spørsmålssideStyles.disabletOption}
             >
               {svaralternativ.svartekst}
-            </Radio>
+            </Option>
           ))}
-        </RadioGroup>
+        </OptionGroup>
       </Box>
     )
   );

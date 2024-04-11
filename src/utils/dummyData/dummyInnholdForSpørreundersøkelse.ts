@@ -158,7 +158,7 @@ const dummyFjerdeSpørsmål = {
   flervalg: false,
 };
 
-const dummySpørsmålMedMangeSvaralternativer = {
+const dummyFlervalgSpørsmålMedMangeSvaralternativer = {
   temabeskrivelse: "Utvikle partssamarbeidet i virksomheten",
   spørsmålTekst: "Hvilke temaer får størst prioritet i møtene deres?",
   svaralternativer: [
@@ -224,5 +224,5 @@ module.exports = {
   dummyFjerdeSpørsmål,
   dummySpørreundersøkelseId,
   dummySpørsmålSamling,
-  dummySpørsmålMedMangeSvaralternativer,
+  dummyFlervalgSpørsmålMedMangeSvaralternativer,
 };
