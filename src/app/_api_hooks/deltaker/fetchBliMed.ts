@@ -27,9 +27,11 @@ export function fetchBliMed(spørreundersøkelseId: string) {
         return res.json();
       })
       .then((data: bliMedDTO) => {
-        const nySessionID = data.sesjonsId;
-
-        CookieHandler.nyUndersøkelse(spørreundersøkelseId, nySessionID);
+        if (data.spørreundersøkelseId !== spørreundersøkelseId) {
+          throw new Error("Feil spørreundersøkelseId");
+        } else {
+          CookieHandler.nyUndersøkelse(spørreundersøkelseId);
+        }
       });
 
   return fetcher();

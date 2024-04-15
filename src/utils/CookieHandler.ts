@@ -6,7 +6,6 @@ type CookieContents = {
   sisteSvarteSpørsmålId: string | undefined;
   svarPåSpørsmål: Record<string, string[]>;
   harSvartAlleSpørsmål: boolean;
-  sesjonsID: string;
 };
 
 export default abstract class CookieHandler {
@@ -68,10 +67,6 @@ export default abstract class CookieHandler {
     return CookieHandler.cookieContents?.harSvartAlleSpørsmål || false;
   }
 
-  public static get sesjonsID(): string {
-    return CookieHandler.cookieContents?.sesjonsID || "";
-  }
-
   public static get sisteSvarteSpørsmålId(): string | undefined {
     return CookieHandler.cookieContents?.sisteSvarteSpørsmålId;
   }
@@ -94,10 +89,7 @@ export default abstract class CookieHandler {
       spørreundersøkelseId
     );
   }
-  public static nyUndersøkelse(
-    spørreundersøkelseId: string,
-    nySessionID: string,
-  ) {
+  public static nyUndersøkelse(spørreundersøkelseId: string) {
     const cookie = CookieHandler.cookieContents;
 
     if (cookie && cookie.spørreundersøkelseId !== spørreundersøkelseId) {
@@ -107,7 +99,6 @@ export default abstract class CookieHandler {
       COOKIE_STORAGE_KEY,
       JSON.stringify({
         spørreundersøkelseId,
-        sesjonsID: nySessionID,
         sisteSvarteSpørsmålId: undefined,
         svarPåSpørsmål: {},
         harSvartAlleSpørsmål: false,

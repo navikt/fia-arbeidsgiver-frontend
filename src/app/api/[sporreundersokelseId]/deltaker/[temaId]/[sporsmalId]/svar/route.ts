@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
-import { COOKIE_STORAGE_KEY } from "@/utils/consts";
+import { COOKIE_SESJONS_ID_KEY } from "@/utils/consts";
+import { cookies } from "next/headers";
 
 export async function POST(
   request: NextRequest,
@@ -25,13 +26,13 @@ export async function POST(
     JSON.stringify({
       svarIder,
     }),
-    request,
   );
   return fetcher();
 }
 
-function poster(endpoint: string, body: BodyInit, request: NextRequest) {
+function poster(endpoint: string, body: BodyInit) {
   const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
+  const sesjonsId = cookies().get(COOKIE_SESJONS_ID_KEY)?.value;
 
   if (FIA_ARBEIDSGIVER_HOSTNAME === undefined) {
     return () =>
@@ -40,9 +41,12 @@ function poster(endpoint: string, body: BodyInit, request: NextRequest) {
       });
   }
 
-  const cookie = request.cookies.get(COOKIE_STORAGE_KEY);
-  const parsetCookie = cookie ? JSON.parse(cookie.value) : undefined;
-  const sesjonsId: string = parsetCookie.sesjonsID;
+  if (sesjonsId === undefined) {
+    return () =>
+      new Response(JSON.stringify({ error: "missing session id in cookie" }), {
+        status: 401,
+      });
+  }
 
   return () =>
     fetch(

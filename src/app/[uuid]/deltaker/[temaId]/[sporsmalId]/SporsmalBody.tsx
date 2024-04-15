@@ -1,10 +1,8 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
-import CookieHandler from "@/utils/CookieHandler";
 import { SpørsmålBleedDeltaker } from "@/app/[uuid]/deltaker/[temaId]/[sporsmalId]/SpørsmålBleedDeltaker";
 import { Alert, Heading, Loader, VStack } from "@navikt/ds-react";
 import spørsmålStyles from "@/app/[uuid]/deltaker/[temaId]/[sporsmalId]/sporsmalsside.module.css";
@@ -20,16 +18,6 @@ export default function SpørsmålBody({
   spørsmålId: string;
   temaId: number;
 }) {
-  const router = useRouter();
-
-  const storedSessionID = CookieHandler.sesjonsID;
-
-  React.useEffect(() => {
-    if (!storedSessionID) {
-      router.push("../../deltaker");
-    }
-  });
-
   const {
     data: spørsmålOgSvar,
     isLoading: lasterSpørsmålOgSvar,

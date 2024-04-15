@@ -1,11 +1,9 @@
-import { NextRequest } from "next/server";
-import { COOKIE_STORAGE_KEY } from "@/utils/consts";
+import { COOKIE_SESJONS_ID_KEY } from "@/utils/consts";
+import { cookies } from "next/headers";
 
-export function arbeidsgiverApiFetcherDeltaker(
-  endpoint: string,
-  req: NextRequest,
-) {
+export function arbeidsgiverApiFetcherDeltaker(endpoint: string) {
   const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
+  const sesjonsId = cookies().get(COOKIE_SESJONS_ID_KEY)?.value;
 
   if (FIA_ARBEIDSGIVER_HOSTNAME === undefined) {
     return () =>
@@ -14,10 +12,13 @@ export function arbeidsgiverApiFetcherDeltaker(
       });
   }
 
-  const cookie = req.cookies.get(COOKIE_STORAGE_KEY);
-  const parsetCookie = cookie ? JSON.parse(cookie.value) : undefined;
+  if (sesjonsId === undefined) {
+    return () =>
+      new Response(JSON.stringify({ error: "missing session id in cookie" }), {
+        status: 401,
+      });
+  }
 
-  const sesjonsId: string = parsetCookie.sesjonsID;
   return () =>
     fetch(
       `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/sporreundersokelse/${endpoint}`,
