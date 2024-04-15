@@ -9,7 +9,7 @@ import spørsmålStyles from "@/app/[uuid]/deltaker/[temaId]/[sporsmalId]/sporsm
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import { useRouter } from "next/navigation";
-import { harSesjonsID } from "@/utils/harSesjonsID";
+import { harGyldigSesjonsID } from "@/utils/harGyldigSesjonsID";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,
@@ -29,7 +29,7 @@ export default function SpørsmålBody({
 
   React.useEffect(() => {
     const sjekkSesjonOgRedirectOmMangler = async () => {
-      const harSesjon = await harSesjonsID();
+      const harSesjon = await harGyldigSesjonsID(spørreundersøkelseId);
       if (!harSesjon) {
         router.push("../../deltaker");
       }

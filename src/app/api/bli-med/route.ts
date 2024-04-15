@@ -29,12 +29,16 @@ export async function POST(request: NextRequest) {
   );
 
   const fetched = await fetcher();
-  cookies().set(COOKIE_SESJONS_ID_KEY, fetched.sesjonsId, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "strict",
-    maxAge: COOKIE_MAX_AGE,
-  });
+  cookies().set(
+    COOKIE_SESJONS_ID_KEY,
+    JSON.stringify({ sesjonsId: fetched.sesjonsId, spørreundersøkelseId }),
+    {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      maxAge: COOKIE_MAX_AGE,
+    },
+  );
 
   return new Response(JSON.stringify({ ...fetched, sesjonsId: "ok" }));
 }

@@ -20,7 +20,7 @@ import {
   dummyFlervalgSpørsmålMedMangeSvaralternativer,
   // @ts-ignore
 } from "@/utils/dummyData/dummyInnholdForSpørreundersøkelse";
-import { harSesjonsID } from "@/utils/harSesjonsID";
+import { harGyldigSesjonsID } from "@/utils/harGyldigSesjonsID";
 
 const testSpørreundersøkelseId: string = dummySpørreundersøkelseId;
 const testSpørsmålId: string = førsteTemaFørsteSpørsmål.spørsmålId;
@@ -42,8 +42,8 @@ jest.mock("@/app/_api_hooks/deltaker/useSpørsmålOgSvar", () => ({
   useSpørsmålOgSvar: jest.fn(),
 }));
 
-jest.mock("@/utils/harSesjonsID", () => ({
-  harSesjonsID: jest.fn(() => Promise.resolve(false)),
+jest.mock("@/utils/harGyldigSesjonsID", () => ({
+  harGyldigSesjonsID: jest.fn(() => Promise.resolve(false)),
 }));
 
 mockCookieHandler();
@@ -62,7 +62,7 @@ describe("deltaker/Spørsmålsside", () => {
       isValidating: false,
     });
 
-    jest.mocked(harSesjonsID).mockReturnValue(Promise.resolve(true));
+    jest.mocked(harGyldigSesjonsID).mockReturnValue(Promise.resolve(true));
 
     jest
       .spyOn(CookieHandler, "getSvarPåSpørsmål")
@@ -485,7 +485,7 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("Redirecter tilbake til bli-med dersom vi ikke har en sesjon", async () => {
-    jest.mocked(harSesjonsID).mockReturnValue(Promise.resolve(false));
+    jest.mocked(harGyldigSesjonsID).mockReturnValue(Promise.resolve(false));
     const pushFunction = jest.fn();
     jest.mocked(useRouter).mockReturnValue({
       push: pushFunction,
@@ -512,7 +512,7 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("Redirecter ikke hvis vi har en sesjon", async () => {
-    jest.mocked(harSesjonsID).mockReturnValue(Promise.resolve(true));
+    jest.mocked(harGyldigSesjonsID).mockReturnValue(Promise.resolve(true));
     const pushFunction = jest.fn();
     jest.mocked(useRouter).mockReturnValue({
       push: pushFunction,

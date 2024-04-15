@@ -3,7 +3,9 @@ import { cookies } from "next/headers";
 
 export function arbeidsgiverApiFetcherDeltaker(endpoint: string) {
   const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
-  const sesjonsId = cookies().get(COOKIE_SESJONS_ID_KEY)?.value;
+  const { sesjonsId } = JSON.parse(
+    cookies().get(COOKIE_SESJONS_ID_KEY)?.value ?? "{}",
+  );
 
   if (FIA_ARBEIDSGIVER_HOSTNAME === undefined) {
     return () =>

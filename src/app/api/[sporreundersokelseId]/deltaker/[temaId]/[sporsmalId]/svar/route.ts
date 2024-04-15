@@ -32,7 +32,9 @@ export async function POST(
 
 function poster(endpoint: string, body: BodyInit) {
   const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
-  const sesjonsId = cookies().get(COOKIE_SESJONS_ID_KEY)?.value;
+  const { sesjonsId } = JSON.parse(
+    cookies().get(COOKIE_SESJONS_ID_KEY)?.value ?? "{}",
+  );
 
   if (FIA_ARBEIDSGIVER_HOSTNAME === undefined) {
     return () =>

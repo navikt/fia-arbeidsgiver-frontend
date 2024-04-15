@@ -2,11 +2,7 @@ import "@testing-library/jest-dom";
 
 import CookieHandler from "@/utils/CookieHandler";
 import { deleteCookie, getCookie, setCookie } from "cookies-next";
-import {
-  COOKIE_MAX_AGE,
-  COOKIE_SESJONS_ID_KEY,
-  COOKIE_STORAGE_KEY,
-} from "@/utils/consts";
+import { COOKIE_MAX_AGE, COOKIE_STORAGE_KEY } from "@/utils/consts";
 
 let dummyCookieStore: { [key: string]: string } = {};
 
@@ -90,7 +86,6 @@ describe("CookieHandler", () => {
   });
 
   test("Sjekk at lagring av svar fungerer", () => {
-    dummyCookieStore[COOKIE_SESJONS_ID_KEY] = "nySessionId123";
     CookieHandler.nyUndersøkelse("spørreundersøkelseId123");
 
     expect(CookieHandler.getSvarPåSpørsmål("spm1")).toBe(undefined);
