@@ -9,7 +9,6 @@ export async function GET(
 
   const fetcher = arbeidsgiverApiFetcherDeltaker(
     `deltaker/${spørreundersøkelseId}`,
-    req,
   );
 
   return fetcher();

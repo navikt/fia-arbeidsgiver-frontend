@@ -12,10 +12,12 @@ export async function POST(request: NextRequest) {
   }
 
   if (FIA_ARBEIDSGIVER_HOSTNAME === undefined) {
-    return () =>
-      new Response(JSON.stringify({ error: "missing hostname in config" }), {
+    return new Response(
+      JSON.stringify({ error: "missing hostname in config" }),
+      {
         status: 500,
-      });
+      },
+    );
   }
 
   const { spørreundersøkelseId } = await request.json();

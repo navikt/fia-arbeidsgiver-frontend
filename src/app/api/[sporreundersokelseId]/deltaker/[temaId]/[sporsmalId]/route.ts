@@ -15,7 +15,6 @@ export async function GET(
 ) {
   const fetcher = arbeidsgiverApiFetcherDeltaker(
     `deltaker/${sporreundersokelseId}/${temaId}/${sporsmalId}`,
-      req,
   );
 
   return fetcher();
