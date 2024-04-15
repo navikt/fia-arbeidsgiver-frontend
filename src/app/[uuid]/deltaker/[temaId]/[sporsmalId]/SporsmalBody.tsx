@@ -8,6 +8,8 @@ import { Alert, Heading, Loader, VStack } from "@navikt/ds-react";
 import spørsmålStyles from "@/app/[uuid]/deltaker/[temaId]/[sporsmalId]/sporsmalsside.module.css";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
 import kartleggingStyles from "@/app/kartlegging.module.css";
+import { useRouter } from "next/navigation";
+import { harSesjonsID } from "@/utils/harSesjonsID";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,
@@ -18,11 +20,23 @@ export default function SpørsmålBody({
   spørsmålId: string;
   temaId: number;
 }) {
+  const router = useRouter();
   const {
     data: spørsmålOgSvar,
     isLoading: lasterSpørsmålOgSvar,
     error: feilSpørsmålOgSvar,
   } = useSpørsmålOgSvar(spørreundersøkelseId, temaId, spørsmålId);
+
+  React.useEffect(() => {
+    const sjekkSesjonOgRedirectOmMangler = async () => {
+      const harSesjon = await harSesjonsID();
+      if (!harSesjon) {
+        router.push("../../deltaker");
+      }
+    };
+
+    sjekkSesjonOgRedirectOmMangler();
+  });
 
   if (feilSpørsmålOgSvar) {
     return (

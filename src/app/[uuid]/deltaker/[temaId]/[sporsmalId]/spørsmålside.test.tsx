@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { act, render, screen } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import Spørsmålsside from "./page";
 import { axe, toHaveNoViolations } from "jest-axe";
 import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
@@ -20,6 +20,7 @@ import {
   dummyFlervalgSpørsmålMedMangeSvaralternativer,
   // @ts-ignore
 } from "@/utils/dummyData/dummyInnholdForSpørreundersøkelse";
+import { harSesjonsID } from "@/utils/harSesjonsID";
 
 const testSpørreundersøkelseId: string = dummySpørreundersøkelseId;
 const testSpørsmålId: string = førsteTemaFørsteSpørsmål.spørsmålId;
@@ -41,6 +42,10 @@ jest.mock("@/app/_api_hooks/deltaker/useSpørsmålOgSvar", () => ({
   useSpørsmålOgSvar: jest.fn(),
 }));
 
+jest.mock("@/utils/harSesjonsID", () => ({
+  harSesjonsID: jest.fn(() => Promise.resolve(false)),
+}));
+
 mockCookieHandler();
 
 expect.extend(toHaveNoViolations);
@@ -56,6 +61,8 @@ describe("deltaker/Spørsmålsside", () => {
       mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
       isValidating: false,
     });
+
+    jest.mocked(harSesjonsID).mockReturnValue(Promise.resolve(true));
 
     jest
       .spyOn(CookieHandler, "getSvarPåSpørsmål")
@@ -475,5 +482,58 @@ describe("deltaker/Spørsmålsside", () => {
     expect(radiobuttons.length).toBe(
       testSpørsmålOgSvar.svaralternativer.length,
     );
+  });
+
+  test("Redirecter tilbake til bli-med dersom vi ikke har en sesjon", async () => {
+    jest.mocked(harSesjonsID).mockReturnValue(Promise.resolve(false));
+    const pushFunction = jest.fn();
+    jest.mocked(useRouter).mockReturnValue({
+      push: pushFunction,
+      back: jest.fn(),
+      prefetch: jest.fn(),
+      forward: jest.fn(),
+      replace: jest.fn(),
+      refresh: jest.fn(),
+    });
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: dummySpørreundersøkelseId,
+          temaId: testTemaId,
+          sporsmalId: testSpørsmålId,
+        }}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(pushFunction).toHaveBeenCalledTimes(1);
+    });
+    expect(pushFunction).toHaveBeenCalledWith("../../deltaker");
+  });
+
+  test("Redirecter ikke hvis vi har en sesjon", async () => {
+    jest.mocked(harSesjonsID).mockReturnValue(Promise.resolve(true));
+    const pushFunction = jest.fn();
+    jest.mocked(useRouter).mockReturnValue({
+      push: pushFunction,
+      back: jest.fn(),
+      prefetch: jest.fn(),
+      forward: jest.fn(),
+      replace: jest.fn(),
+      refresh: jest.fn(),
+    });
+    render(
+      <Spørsmålsside
+        params={{
+          uuid: dummySpørreundersøkelseId,
+          temaId: testTemaId,
+          sporsmalId: testSpørsmålId,
+        }}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(pushFunction).toHaveBeenCalledTimes(0);
+    });
   });
 });
