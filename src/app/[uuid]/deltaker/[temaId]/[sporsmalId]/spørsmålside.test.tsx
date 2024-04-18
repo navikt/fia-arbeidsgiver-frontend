@@ -508,7 +508,7 @@ describe("deltaker/Spørsmålsside", () => {
     await waitFor(() => {
       expect(pushFunction).toHaveBeenCalledTimes(1);
     });
-    expect(pushFunction).toHaveBeenCalledWith("../../deltaker");
+    expect(pushFunction).toHaveBeenCalledWith("../../deltaker?sesjon=utløpt");
   });
 
   test("Redirecter ikke hvis vi har en sesjon", async () => {

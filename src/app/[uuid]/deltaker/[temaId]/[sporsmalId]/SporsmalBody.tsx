@@ -31,7 +31,7 @@ export default function SpørsmålBody({
     const sjekkSesjonOgRedirectOmMangler = async () => {
       const harSesjon = await harGyldigSesjonsID(spørreundersøkelseId);
       if (!harSesjon) {
-        router.push("../../deltaker");
+        router.push("../../deltaker?sesjon=utløpt");
       }
     };
 
