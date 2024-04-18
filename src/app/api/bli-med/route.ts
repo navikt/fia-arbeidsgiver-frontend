@@ -28,10 +28,29 @@ export async function POST(request: NextRequest) {
     }),
   );
 
+  const { sesjonsId, spørreundersøkelseId: cookieSpørreundersøkelseId } =
+    JSON.parse(cookies().get(COOKIE_SESJONS_ID_KEY)?.value ?? "{}");
+
+  if (
+    sesjonsId !== undefined &&
+    cookieSpørreundersøkelseId === spørreundersøkelseId
+  ) {
+    setSesjonsIdCookie(sesjonsId, spørreundersøkelseId);
+    return new Response(
+      JSON.stringify({ spørreundersøkelseId, sesjonsId: "ok" }),
+    );
+  }
+
   const fetched = await fetcher();
+  setSesjonsIdCookie(fetched.sesjonsId, spørreundersøkelseId);
+
+  return new Response(JSON.stringify({ ...fetched, sesjonsId: "ok" }));
+}
+
+function setSesjonsIdCookie(sesjonsId: string, spørreundersøkelseId: string) {
   cookies().set(
     COOKIE_SESJONS_ID_KEY,
-    JSON.stringify({ sesjonsId: fetched.sesjonsId, spørreundersøkelseId }),
+    JSON.stringify({ sesjonsId, spørreundersøkelseId }),
     {
       httpOnly: true,
       secure: true,
@@ -39,8 +58,6 @@ export async function POST(request: NextRequest) {
       maxAge: COOKIE_MAX_AGE,
     },
   );
-
-  return new Response(JSON.stringify({ ...fetched, sesjonsId: "ok" }));
 }
 
 function bliMedFetcher(endpoint: string, body: BodyInit | null = null) {
