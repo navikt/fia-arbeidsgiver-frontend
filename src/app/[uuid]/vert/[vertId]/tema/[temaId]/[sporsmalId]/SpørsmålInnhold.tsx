@@ -21,7 +21,8 @@ export function SpørsmålInnhold({
     spørsmålOgSvar && (
       <Box borderRadius="xlarge" padding="12" background="surface-selected">
         <Heading level={"2"} size={"small"} spacing>
-          {spørsmålOgSvar.spørsmålTekst}
+          {spørsmålOgSvar.spørsmålTekst}{" "}
+          {spørsmålOgSvar.flervalg ? "(Velg ett eller flere svar)" : null}
         </Heading>
         <OptionGroup hideLegend legend={""}>
           {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (

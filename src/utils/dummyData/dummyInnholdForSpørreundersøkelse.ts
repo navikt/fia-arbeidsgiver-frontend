@@ -60,7 +60,7 @@ const dummyFørsteSpørsmål = {
 const dummyAndreSpørsmål = {
   temabeskrivelse: temabeskrivelsePartssamarbeid,
   spørsmålTekst:
-    "Velg det tiltaket som du mener best kan bidra til å forebygge sykefraværet (flervalg)",
+    "Velg det tiltaket som du mener best kan bidra til å forebygge sykefraværet",
   svaralternativer: [
     {
       svarId: "fec487a5-23fa-4ef1-85fc-b6f951813c7f",
