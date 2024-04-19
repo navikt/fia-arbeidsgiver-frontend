@@ -87,7 +87,10 @@ export default function Spørsmålsseksjon({
 
   return (
     <>
-      <BodyShort weight={"semibold"}>{spørsmålOgSvar.spørsmålTekst}</BodyShort>
+      <BodyShort weight={"semibold"}>
+        {spørsmålOgSvar.spørsmålTekst}{" "}
+        {spørsmålOgSvar.flervalg ? "(Velg ett eller flere svar)" : null}
+      </BodyShort>
       <VStack className={spørsmålStyles.radioStack}>
         {spørsmålOgSvar.flervalg ? (
           <CheckboxGroup
