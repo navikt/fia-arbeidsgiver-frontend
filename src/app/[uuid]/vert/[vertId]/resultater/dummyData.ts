@@ -2,6 +2,7 @@ import { temaResultatDTO } from "@/app/_types/resultatDTO";
 
 export const dummySpørsmålMedSvarPerTema: temaResultatDTO[] = [
   {
+    temaId: 1,
     tema: "UTVIKLE_PARTSSAMARBEID",
     beskrivelse: "Utvikle partssamarbeidet i virksomheten",
     spørsmålMedSvar: [
@@ -173,6 +174,7 @@ export const dummySpørsmålMedSvarPerTema: temaResultatDTO[] = [
     ],
   },
   {
+    temaId: 2,
     tema: "REDUSERE_SYKEFRAVÆR",
     beskrivelse: "Redusere sykefravær i virksomheten",
     spørsmålMedSvar: [

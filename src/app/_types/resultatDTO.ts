@@ -1,4 +1,5 @@
 export type temaResultatDTO = {
+  temaId: number;
   tema: string;
   beskrivelse: string;
   spørsmålMedSvar: spørsmålMedSvarDTO[];
