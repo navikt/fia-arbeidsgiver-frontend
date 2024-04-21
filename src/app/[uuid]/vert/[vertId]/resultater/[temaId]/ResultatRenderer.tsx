@@ -1,7 +1,7 @@
 "use client";
 
 import HeaderBleed from "@/app/_components/HeaderBleed";
-import { Heading, Page, VStack } from "@navikt/ds-react";
+import { Heading, Page } from "@navikt/ds-react";
 import { StatusPåDeltaker } from "@/app/_components/StatusPåDeltaker/StatusPåDeltaker";
 import TemaGraf from "@/app/_components/Resultatgraf/TemaGraf";
 import React from "react";

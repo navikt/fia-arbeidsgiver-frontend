@@ -23,7 +23,7 @@ export function arbeidsgiverApiFetcherDeltaker(endpoint: string) {
 
   return () =>
     fetch(
-      `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/sporreundersokelse/${endpoint}`,
+      `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/sporreundersokelse/deltaker/${endpoint}`,
       {
         cache: "no-cache",
         method: "GET",

@@ -15,7 +15,7 @@ export async function GET(
   },
 ) {
   const fetcher = arbeidsgiverApiFetcherVert(
-    `vert/v2/${sporreundersokelseId}/${temaId}/${sporsmalId}/antall-svar`,
+    `${sporreundersokelseId}/tema/${temaId}/sporsmal/${sporsmalId}/antall-svar`,
     vertId,
     req,
   );

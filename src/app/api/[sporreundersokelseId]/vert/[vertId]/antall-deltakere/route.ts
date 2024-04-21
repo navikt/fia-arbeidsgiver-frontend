@@ -13,7 +13,7 @@ export async function GET(
   },
 ) {
   const fetcher = arbeidsgiverApiFetcherVert(
-    `vert/v2/${sporreundersokelseId}/antall-deltakere`,
+    `${sporreundersokelseId}/antall-deltakere`,
     vertId,
     req,
   );

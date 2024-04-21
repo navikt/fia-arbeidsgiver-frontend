@@ -22,7 +22,7 @@ export async function POST(
   const { svarIder } = await request.json();
 
   const fetcher = poster(
-    `deltaker/${sporreundersokelseId}/${temaId}/${sporsmalId}/svar`,
+    `${sporreundersokelseId}/tema/${temaId}/sporsmal/${sporsmalId}/svar`,
     JSON.stringify({
       svarIder,
     }),
@@ -52,7 +52,7 @@ function poster(endpoint: string, body: BodyInit) {
 
   return () =>
     fetch(
-      `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/sporreundersokelse/${endpoint}`,
+      `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/sporreundersokelse/deltaker/${endpoint}`,
       {
         method: "POST",
         headers: {

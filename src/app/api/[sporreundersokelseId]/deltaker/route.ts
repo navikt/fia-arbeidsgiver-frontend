@@ -7,9 +7,7 @@ export async function GET(
 ) {
   const spørreundersøkelseId = params.sporreundersokelseId;
 
-  const fetcher = arbeidsgiverApiFetcherDeltaker(
-    `deltaker/${spørreundersøkelseId}`,
-  );
+  const fetcher = arbeidsgiverApiFetcherDeltaker(`${spørreundersøkelseId}`);
 
   return fetcher();
 }

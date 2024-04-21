@@ -14,7 +14,7 @@ export async function GET(
   },
 ) {
   const fetcher = arbeidsgiverApiFetcherDeltaker(
-    `deltaker/${sporreundersokelseId}/${temaId}/${sporsmalId}`,
+    `${sporreundersokelseId}/tema/${temaId}/sporsmal/${sporsmalId}`,
   );
 
   return fetcher();

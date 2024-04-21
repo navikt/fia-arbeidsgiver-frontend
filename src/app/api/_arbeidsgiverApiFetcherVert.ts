@@ -15,7 +15,7 @@ export function arbeidsgiverApiFetcherVert(
       });
   }
 
-  const input = `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/sporreundersokelse/${endpoint}`;
+  const input = `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/sporreundersokelse/vert/${endpoint}`;
   return async () => {
     const exchangeResult = await exchangeToken(req);
 
