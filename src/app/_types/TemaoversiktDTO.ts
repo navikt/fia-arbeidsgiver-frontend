@@ -1,6 +1,4 @@
-import { TemaStatus } from "@/app/_types/tema";
-
-export type TemaoversiktDto = {
+export type TemaoversiktDTO = {
   tittel: string;
   temanavn: string;
   temaId: number;
@@ -10,3 +8,9 @@ export type TemaoversiktDto = {
   førsteSpørsmålId: string;
   status: TemaStatus;
 };
+
+export const enum TemaStatus {
+  ÅPNET = "ÅPNET",
+  IKKE_ÅPNET = "IKKE_ÅPNET",
+  ALLE_SPØRSMÅL_ÅPNET = "ALLE_SPØRSMÅL_ÅPNET",
+}

@@ -13,7 +13,7 @@ import {
 } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
-import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+import { SpørsmåloversiktDTO } from "@/app/_types/SpørsmåloversiktDTO";
 import CookieHandler from "@/utils/CookieHandler";
 import { urlNeste, urlTilbake } from "@/utils/spørreundersøkelsesUtils";
 
@@ -26,7 +26,7 @@ export default function Spørsmålsseksjon({
   spørsmålId: string;
   spørreundersøkelseId: string;
   temaId: number;
-  spørsmålOgSvar: SpørsmålsoversiktDto;
+  spørsmålOgSvar: SpørsmåloversiktDTO;
 }) {
   const lagretSvar = CookieHandler.getSvarPåSpørsmål(spørsmålId);
   const [feilSendSvar, setFeilSendSvar] = React.useState<string | null>(null);

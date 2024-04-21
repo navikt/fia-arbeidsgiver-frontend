@@ -1,7 +1,7 @@
 import resultatgrafStyle from "./resultatgraf.module.css";
 import React from "react";
 import { BodyShort } from "@navikt/ds-react";
-import { spørsmålMedSvarDTO } from "@/app/_types/resultatDTO";
+import { SpørsmålMedSvarDTO } from "@/app/_types/TemaResultatDTO";
 
 type RGB = `rgb(${number}, ${number}, ${number})`;
 type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
@@ -58,7 +58,7 @@ export default function Resultatgraf({
   farger = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#8dd1e1"],
   barTestIds,
 }: {
-  spørsmål: spørsmålMedSvarDTO;
+  spørsmål: SpørsmålMedSvarDTO;
   farger?: Color[] | string[];
   barTestIds?: string[];
 }) {

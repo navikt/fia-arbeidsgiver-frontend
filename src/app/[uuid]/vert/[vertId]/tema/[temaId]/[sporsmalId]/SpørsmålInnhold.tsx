@@ -7,13 +7,13 @@ import {
   CheckboxGroup,
 } from "@navikt/ds-react";
 import React from "react";
-import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+import { SpørsmåloversiktDTO } from "@/app/_types/SpørsmåloversiktDTO";
 import spørsmålssideStyles from "./sporsmalsside.module.css";
 
 export function SpørsmålInnhold({
   spørsmålOgSvar,
 }: {
-  spørsmålOgSvar: SpørsmålsoversiktDto;
+  spørsmålOgSvar: SpørsmåloversiktDTO;
 }) {
   const OptionGroup = spørsmålOgSvar.flervalg ? CheckboxGroup : RadioGroup;
   const Option = spørsmålOgSvar.flervalg ? Checkbox : Radio;

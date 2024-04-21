@@ -5,14 +5,14 @@ import spørsmålStyles from "../sporsmalsside.module.css";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { urlNesteVert, urlTilbake } from "@/utils/spørreundersøkelsesUtils";
-import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+import { SpørsmåloversiktDTO } from "@/app/_types/SpørsmåloversiktDTO";
 import LinkTilResultat from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/SpørsmålNavigasjon/LinkTilResultat";
 
 export default function SpørsmålNavigasjon({
   spørsmålOgSvar,
   temaId,
 }: {
-  spørsmålOgSvar: SpørsmålsoversiktDto;
+  spørsmålOgSvar: SpørsmåloversiktDTO;
   temaId: number;
 }) {
   const erPåSisteSpørsmål =

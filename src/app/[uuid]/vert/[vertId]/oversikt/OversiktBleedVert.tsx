@@ -11,14 +11,13 @@ import kartleggingStyles from "@/app/kartlegging.module.css";
 import vertStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/sporsmalsside.module.css";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { TemaoversiktDto } from "@/app/_types/temaoversiktDto";
-import { TemaStatus } from "@/app/_types/tema";
+import { TemaoversiktDTO, TemaStatus } from "@/app/_types/TemaoversiktDTO";
 import LinkTilResultat from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/SpørsmålNavigasjon/LinkTilResultat";
 
 export function OversiktBleedVert({
   temaoversikt,
 }: {
-  temaoversikt: TemaoversiktDto;
+  temaoversikt: TemaoversiktDTO;
 }) {
   return (
     temaoversikt && (
@@ -39,7 +38,7 @@ export function OversiktBleedVert({
   );
 }
 
-function TemaActions({ temaoversikt }: { temaoversikt: TemaoversiktDto }) {
+function TemaActions({ temaoversikt }: { temaoversikt: TemaoversiktDTO }) {
   const router = useRouter();
 
   switch (temaoversikt.status) {

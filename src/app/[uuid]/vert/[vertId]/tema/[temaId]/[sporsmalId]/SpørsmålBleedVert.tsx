@@ -4,7 +4,7 @@ import { BodyShort, Heading, VStack } from "@navikt/ds-react";
 import React from "react";
 import HeaderBleed from "@/app/_components/HeaderBleed";
 import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
-import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+import { SpørsmåloversiktDTO } from "@/app/_types/SpørsmåloversiktDTO";
 
 export function SpørsmålBleedVert({
   spørreundersøkelseId,
@@ -17,7 +17,7 @@ export function SpørsmålBleedVert({
   vertId: string;
   temaId: number;
   spørsmålId: string;
-  spørsmålOgSvar: SpørsmålsoversiktDto | undefined;
+  spørsmålOgSvar: SpørsmåloversiktDTO | undefined;
 }) {
   if (spørsmålOgSvar === undefined) {
     return (

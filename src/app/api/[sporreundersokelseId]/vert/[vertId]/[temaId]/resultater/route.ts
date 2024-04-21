@@ -4,18 +4,17 @@ import { arbeidsgiverApiFetcherVert } from "@/app/api/_arbeidsgiverApiFetcherVer
 export async function GET(
   req: NextRequest,
   {
-    params: { sporreundersokelseId, vertId, temaId, sporsmalId },
+    params: { sporreundersokelseId, vertId, temaId },
   }: {
     params: {
       sporreundersokelseId: string;
       vertId: string;
       temaId: string;
-      sporsmalId: string;
     };
   },
 ) {
   const fetcher = arbeidsgiverApiFetcherVert(
-    `vert/v2/${sporreundersokelseId}/${temaId}/sporsmal/${sporsmalId}`,
+    `vert/v2/${sporreundersokelseId}/${temaId}/resultater`,
     vertId,
     req,
   );

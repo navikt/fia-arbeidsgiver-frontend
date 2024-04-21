@@ -6,7 +6,7 @@ import { axe, toHaveNoViolations } from "jest-axe";
 // @ts-ignore
 import { dummyTemaoversikt } from "@/utils/dummyData/vert";
 import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
-import { TemaStatus } from "@/app/_types/tema";
+import { TemaStatus } from "@/app/_types/TemaoversiktDTO";
 
 expect.extend(toHaveNoViolations);
 

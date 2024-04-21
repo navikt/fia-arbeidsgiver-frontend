@@ -8,9 +8,9 @@ import mockCookieHandler from "@/utils/jest-mocks/CookieHandler";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
 import CookieHandler from "@/utils/CookieHandler";
 import {
-  SpørsmålsoversiktDto,
-  SvaralternativDto,
-} from "@/app/_types/spørsmålsoversiktDto";
+  SpørsmåloversiktDTO,
+  SvaralternativDTO,
+} from "@/app/_types/SpørsmåloversiktDTO";
 import {
   dummySpørreundersøkelseId,
   dummyFørsteSpørsmål,
@@ -25,7 +25,7 @@ import { harGyldigSesjonsID } from "@/utils/harGyldigSesjonsID";
 const testSpørreundersøkelseId: string = dummySpørreundersøkelseId;
 const testSpørsmålId: string = førsteTemaFørsteSpørsmål.spørsmålId;
 const testTemaId: number = førsteTemaFørsteSpørsmål.temaId;
-const testSpørsmålOgSvar: SpørsmålsoversiktDto = dummyFørsteSpørsmål;
+const testSpørsmålOgSvar: SpørsmåloversiktDTO = dummyFørsteSpørsmål;
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(() => ({
@@ -84,7 +84,7 @@ describe("deltaker/Spørsmålsside", () => {
       screen.getByText(testSpørsmålOgSvar.spørsmålTekst),
     ).toBeInTheDocument();
 
-    testSpørsmålOgSvar.svaralternativer.forEach((svar: SvaralternativDto) => {
+    testSpørsmålOgSvar.svaralternativer.forEach((svar: SvaralternativDTO) => {
       expect(screen.getByText(svar.svartekst)).toBeInTheDocument();
     });
   });

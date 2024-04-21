@@ -13,6 +13,11 @@ const API_VERT_TEMAOVERSIKT_OVER_ETT_TEMA_URL = (
   temaId = ":temaId",
 ) => `${API_BASE_URL_VERT}/${sporreundersokelseId}/tema/${temaId}`;
 
+const API_VERT_TEMARESULTAT_URL = (
+  sporreundersokelseId = ":sporreundersokelseId",
+  temaId = ":temaId",
+) => `${API_BASE_URL_VERT}/${sporreundersokelseId}/${temaId}/resultater`;
+
 const API_VERT_ANTALL_DELTAKERE_URL = (
   sporreundersokelseId = ":sporreundersokelseId",
 ) => `${API_VERT_UNDERSØKELSE_URL(sporreundersokelseId)}/antall-deltakere`;
@@ -22,7 +27,7 @@ const API_VERT_SPØRSMÅL_URL = (
   temaId = ":temaId",
   sporsmalId = ":sporsmalId",
 ) =>
-  `${API_VERT_UNDERSØKELSE_URL(sporreundersokelseId)}/${temaId}/${sporsmalId}`;
+  `${API_VERT_UNDERSØKELSE_URL(sporreundersokelseId)}/${temaId}/sporsmal/${sporsmalId}`;
 
 const API_VERT_ANTALL_SVAR_URL = (
   sporreundersokelseId = ":sporreundersokelseId",
@@ -61,6 +66,7 @@ module.exports = {
   API_BASE_URL_DELTAKER,
   API_VERT_UNDERSØKELSE_URL,
   API_VERT_TEMAOVERSIKT_OVER_ETT_TEMA_URL,
+  API_VERT_TEMARESULTAT_URL,
   API_VERT_ANTALL_DELTAKERE_URL,
   API_VERT_SPØRSMÅL_URL,
   API_VERT_ANTALL_SVAR_URL,

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import React from "react";
-import { dummySpørsmålMedSvarPerTema } from "../dummyData";
 import { ResultatRenderer } from "./ResultatRenderer";
 
 export const metadata: Metadata = {
@@ -12,10 +11,9 @@ export default function Temaresultatside({
 }: {
   params: { uuid: string; vertId: string; temaId: number };
 }) {
-  const dummySpmOgSvarForTema = dummySpørsmålMedSvarPerTema[0];
   return (
     <ResultatRenderer
-      tema={dummySpmOgSvarForTema}
+      temaId={params.temaId}
       vertId={params.vertId}
       spørreundersøkelseId={params.uuid}
     />

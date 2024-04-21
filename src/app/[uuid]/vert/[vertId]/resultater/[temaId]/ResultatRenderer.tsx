@@ -1,8 +1,7 @@
 "use client";
 
-import { temaResultatDTO } from "@/app/_types/resultatDTO";
 import HeaderBleed from "@/app/_components/HeaderBleed";
-import { BodyShort, Heading, Page, VStack } from "@navikt/ds-react";
+import { Heading, Page, VStack } from "@navikt/ds-react";
 import { StatusPåDeltaker } from "@/app/_components/StatusPåDeltaker/StatusPåDeltaker";
 import TemaGraf from "@/app/_components/Resultatgraf/TemaGraf";
 import React from "react";
@@ -10,11 +9,11 @@ import HeaderVert from "@/app/_components/HeaderVert";
 import { PageBlock } from "@navikt/ds-react/Page";
 
 export function ResultatRenderer({
-  tema,
+  temaId,
   spørreundersøkelseId,
   vertId,
 }: {
-  tema: temaResultatDTO;
+  temaId: number;
   spørreundersøkelseId: string;
   vertId: string;
 }) {
@@ -24,16 +23,18 @@ export function ResultatRenderer({
       <Page contentBlockPadding="none">
         <PageBlock gutters width="lg">
           <HeaderBleed>
-            <VStack>
-              <Heading size="medium">Temaresultatside</Heading>
-              <BodyShort size="medium">{tema.tema}</BodyShort>
-            </VStack>
+            <Heading size="medium">Temaresultatside</Heading>
             <StatusPåDeltaker
               spørreundersøkelseId={spørreundersøkelseId}
               vertId={vertId}
             />
           </HeaderBleed>
-          <TemaGraf tema={tema} />
+          <TemaGraf
+            key={temaId}
+            temaId={temaId}
+            spørreundersøkelseId={spørreundersøkelseId}
+            vertId={vertId}
+          />
         </PageBlock>
       </Page>
     </>

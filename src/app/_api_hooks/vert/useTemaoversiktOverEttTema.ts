@@ -1,11 +1,11 @@
 import useSWR, { SWRResponse } from "swr";
-import { TemaoversiktDto } from "@/app/_types/temaoversiktDto";
+import { TemaoversiktDTO } from "@/app/_types/TemaoversiktDTO";
 
 export function useTemaoversiktOverEttTema(
   spørreundersøkelseId: string,
   vertId: string,
   temaId: number,
-): SWRResponse<TemaoversiktDto> {
+): SWRResponse<TemaoversiktDTO> {
   const fetcher = async (url: string) => {
     const res = await fetch(url, {
       method: "GET",
@@ -15,7 +15,7 @@ export function useTemaoversiktOverEttTema(
     }
     return res.json();
   };
-  return useSWR<TemaoversiktDto>(
+  return useSWR<TemaoversiktDTO>(
     `/api/${spørreundersøkelseId}/vert/${vertId}/${temaId}`,
     fetcher,
   );

@@ -11,12 +11,12 @@ import {
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import deltakerStyles from "./sporsmalsside.module.css";
 import React from "react";
-import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+import { SpørsmåloversiktDTO } from "@/app/_types/SpørsmåloversiktDTO";
 
 export function SpørsmålBleedDeltaker({
   spørsmålOgSvar,
 }: {
-  spørsmålOgSvar: SpørsmålsoversiktDto | undefined;
+  spørsmålOgSvar: SpørsmåloversiktDTO | undefined;
 }) {
   return (
     <Bleed

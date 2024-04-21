@@ -1,12 +1,12 @@
 import useSWR, { SWRResponse } from "swr";
-import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+import { SpørsmåloversiktDTO } from "@/app/_types/SpørsmåloversiktDTO";
 
 export function useSpørsmålOgSvar(
   spørreundersøkelseId: string,
   vertId: string,
   temaId: number,
   spørsmålId: string,
-): SWRResponse<SpørsmålsoversiktDto> {
+): SWRResponse<SpørsmåloversiktDTO> {
   const fetcher = (url: string) =>
     fetch(url, {
       method: "GET",

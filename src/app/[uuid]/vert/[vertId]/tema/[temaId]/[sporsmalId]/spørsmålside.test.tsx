@@ -19,11 +19,11 @@ import {
 } from "@/utils/dummyData/vert";
 // @ts-ignore
 import { dummyVertId } from "@/utils/dummyData/vert";
-import { SpørsmålsoversiktDto } from "@/app/_types/spørsmålsoversiktDto";
+import { SpørsmåloversiktDTO } from "@/app/_types/SpørsmåloversiktDTO";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/vert/useSpørsmålOgSvar";
 const dummySpørsmålId: string = førsteTemaFørsteSpørsmål.spørsmålId;
 const testTema = førsteTemaFørsteSpørsmål.temaId;
-const testSpørsmålOgSvar: SpørsmålsoversiktDto = dummyFørsteSpørsmål;
+const testSpørsmålOgSvar: SpørsmåloversiktDTO = dummyFørsteSpørsmål;
 const testAntallSvar = "3";
 const testAntallDeltakere = "4";
 

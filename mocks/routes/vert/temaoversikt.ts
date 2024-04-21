@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { TemaoversiktDto } from "@/app/_types/temaoversiktDto";
+import { TemaoversiktDTO } from "@/app/_types/TemaoversiktDTO";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { dummyTemaoversikt } = require("@/utils/dummyData/vert");
@@ -52,7 +52,7 @@ function generateTemaMiddleware(temastatuser: { [key: number]: string }) {
   return (req: Request, res: Response) => {
     res.status(200);
     res.send(
-      dummyTemaoversikt.map((tema: TemaoversiktDto) => ({
+      dummyTemaoversikt.map((tema: TemaoversiktDTO) => ({
         ...tema,
         status: temastatuser[tema.temaId],
       })),
