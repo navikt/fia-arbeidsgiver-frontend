@@ -12,6 +12,7 @@ const collections = [
       "vert-temaoversikt-for-ett-tema:success",
       "vert-sporsmal-og-svar:success",
       "vert-temaresultat:success",
+      "vert-avslutt-tema:success",
     ],
   },
 ];

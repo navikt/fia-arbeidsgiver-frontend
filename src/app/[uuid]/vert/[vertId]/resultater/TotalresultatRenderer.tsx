@@ -6,8 +6,9 @@ import { PageBlock } from "@navikt/ds-react/Page";
 import HeaderBleed from "@/app/_components/HeaderBleed";
 import { StatusPåDeltaker } from "@/app/_components/StatusPåDeltaker/StatusPåDeltaker";
 import TemaGraf from "@/app/_components/Resultatgraf/TemaGraf";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
+import { avsluttTema } from "@/app/_api_hooks/vert/avsluttTema";
 
 export function TotalresultatRenderer({
   spørreundersøkelseId,
@@ -20,6 +21,25 @@ export function TotalresultatRenderer({
     spørreundersøkelseId,
     vertId,
   );
+
+  const [temaErAvsluttet, setTemaErAvsluttet] = useState<{
+    [temaId: string]: boolean;
+  }>({});
+
+  useEffect(() => {
+    if (listeOverTemaer) {
+      listeOverTemaer.forEach((tema) => {
+        avsluttTema(spørreundersøkelseId, vertId, tema.temaId)
+          .then(() => {
+            setTemaErAvsluttet((prev) => ({ ...prev, [tema.temaId]: true }));
+          })
+          .catch((error) => {
+            console.error(`Kunne ikke avslutte tema ${tema.temaId}`, error);
+          });
+      });
+    }
+  }, [spørreundersøkelseId, vertId, listeOverTemaer]);
+
   return (
     listeOverTemaer && (
       <>
@@ -38,14 +58,18 @@ export function TotalresultatRenderer({
                 vertId={vertId}
               />
             </HeaderBleed>
-            {listeOverTemaer.map((tema) => (
-              <TemaGraf
-                key={tema.temaId}
-                temaId={tema.temaId}
-                spørreundersøkelseId={spørreundersøkelseId}
-                vertId={vertId}
-              />
-            ))}
+            {listeOverTemaer &&
+              listeOverTemaer.map(
+                (tema) =>
+                  temaErAvsluttet[tema.temaId] && (
+                    <TemaGraf
+                      key={tema.temaId}
+                      temaId={tema.temaId}
+                      spørreundersøkelseId={spørreundersøkelseId}
+                      vertId={vertId}
+                    />
+                  ),
+              )}
           </PageBlock>
         </Page>
       </>
