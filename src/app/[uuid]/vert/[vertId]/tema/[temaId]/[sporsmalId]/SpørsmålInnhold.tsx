@@ -1,10 +1,10 @@
 import {
+  BodyShort,
   Box,
-  Heading,
-  Radio,
-  RadioGroup,
   Checkbox,
   CheckboxGroup,
+  Radio,
+  RadioGroup,
 } from "@navikt/ds-react";
 import React from "react";
 import { SpørsmåloversiktDTO } from "@/app/_types/SpørsmåloversiktDTO";
@@ -20,10 +20,12 @@ export function SpørsmålInnhold({
   return (
     spørsmålOgSvar && (
       <Box borderRadius="xlarge" padding="12" background="surface-selected">
-        <Heading level={"2"} size={"small"} spacing>
+        <BodyShort weight={"semibold"}>
           {spørsmålOgSvar.spørsmålTekst}{" "}
-          {spørsmålOgSvar.flervalg ? "(Velg ett eller flere svar)" : null}
-        </Heading>
+          {spørsmålOgSvar.flervalg ? (
+            <BodyShort>(flere valg er mulig)</BodyShort>
+          ) : null}
+        </BodyShort>
         <OptionGroup hideLegend legend={""}>
           {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
             <Option
