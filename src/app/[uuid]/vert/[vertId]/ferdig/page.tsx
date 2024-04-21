@@ -23,8 +23,7 @@ export default function Ferdigside() {
         <VStack gap="4">
           <VStack align={"center"}>
             <BodyShort size={"large"} spacing>
-              Bra jobbet! Da har alle svar blitt logget og sendt til Fia.
-              Rådgiveren sier litt om prosessen videre.
+              Bra jobbet!
             </BodyShort>
           </VStack>
         </VStack>
