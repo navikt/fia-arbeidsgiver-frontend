@@ -14,7 +14,6 @@ export function initInstrumentation(): void {
 
   getFaroEnv().then((envValue) => {
     if (envValue.FARO_URL !== undefined) {
-      console.log("envValue.FARO_URL :>> ", envValue.FARO_URL);
       const fro = getFaro(envValue.FARO_URL);
       configureLogger({
         onLog: (log) =>
