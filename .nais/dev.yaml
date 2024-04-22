@@ -44,6 +44,6 @@ spec:
         - application: fia-arbeidsgiver
   env:
     - name: FARO_URL
-      value: https://telemetry.dev-gcp.nav.cloud.nais.io/collect
+      value: https://telemetry.ekstern.dev.nav.no/collect
     - name: FIA_ARBEIDSGIVER_HOSTNAME
       value: fia-arbeidsgiver
