@@ -45,3 +45,5 @@ spec:
   env:
     - name: FIA_ARBEIDSGIVER_HOSTNAME
       value: fia-arbeidsgiver
+    - name: NEXT_PUBLIC_TELEMETRY_URL
+      value: https://telemetry.dev-gcp.nav.cloud.nais.io/collect
