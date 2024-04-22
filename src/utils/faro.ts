@@ -24,7 +24,7 @@ export function initInstrumentation(): void {
 export function getFaro(): Faro {
   if (faro != null) return faro;
   faro = initializeFaro({
-    url: process.env.TELEMETRY_URL,
+    url: process.env.NEXT_PUBLIC_TELEMETRY_URL,
     app: {
       name: "fia-arbeidsgiver-frontend",
     },
