@@ -43,7 +43,7 @@ spec:
       rules:
         - application: fia-arbeidsgiver
   env:
-    - name: NEXT_PUBLIC_TELEMETRY_URL
+    - name: FARO_URL
       value: https://telemetry.dev-gcp.nav.cloud.nais.io/collect
     - name: FIA_ARBEIDSGIVER_HOSTNAME
       value: fia-arbeidsgiver

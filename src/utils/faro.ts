@@ -6,25 +6,32 @@ import {
 } from "@grafana/faro-web-sdk";
 import { TracingInstrumentation } from "@grafana/faro-web-tracing";
 import { configureLogger } from "@navikt/next-logger";
+import { getFaroEnv } from "./faroEnv";
 
 let faro: Faro | null = null;
 export function initInstrumentation(): void {
   if (typeof window === "undefined" || faro !== null) return;
 
-  const fro = getFaro();
-
-  configureLogger({
-    onLog: (log) =>
-      fro.api.pushLog(log.messages, {
-        level: pinoLevelToFaroLevel(log.level.label),
-      }),
+  getFaroEnv().then((envValue) => {
+    if (envValue.FARO_URL !== undefined) {
+      console.log("envValue.FARO_URL :>> ", envValue.FARO_URL);
+      const fro = getFaro(envValue.FARO_URL);
+      configureLogger({
+        onLog: (log) =>
+          fro.api.pushLog(log.messages, {
+            level: pinoLevelToFaroLevel(log.level.label),
+          }),
+      });
+    } else {
+      console.error("FARO_URL is not defined");
+    }
   });
 }
 
-export function getFaro(): Faro {
+export function getFaro(faroUrl: string): Faro {
   if (faro != null) return faro;
   faro = initializeFaro({
-    url: process.env.NEXT_PUBLIC_TELEMETRY_URL,
+    url: faroUrl,
     app: {
       name: "fia-arbeidsgiver-frontend",
     },
