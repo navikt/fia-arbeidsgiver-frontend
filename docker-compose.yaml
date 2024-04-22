@@ -1,3 +1,13 @@
+configs:
+  agent.yaml:
+    file: docker/agent.yaml
+
+volumes:
+  grafana: {}
+  tempo: {}
+  loki: {}
+  agent: {}
+
 services:
   authserver:
     image: ghcr.io/navikt/mock-oauth2-server:2.1.2
@@ -73,3 +83,57 @@ services:
     restart: unless-stopped
     command: >
       --log-level=debug
+  agent:
+    image: grafana/agent
+    volumes:
+      - agent:/agent
+    ports:
+      - "12347:12347" # HTTP ingester
+    command:
+      - "-config.file=/agent.yaml"
+      - "-enable-features=integrations-next"
+      - "-config.expand-env=true"
+    configs:
+      - agent.yaml
+  tempo:
+    image: grafana/tempo
+    volumes:
+      - tempo:/traces
+    command:
+      - "-server.http-listen-port=3100"
+      - "-storage.trace.backend=local"
+      - "-storage.trace.local.path=/traces"
+    ports:
+      - "4317:4317" # gRPC
+  loki:
+    image: grafana/loki
+    command:
+      - "-server.http-listen-address=0.0.0.0"
+      # Grafana issues a lot of queries for the web vitals dashboard.
+      # Increased from current default of 100 to prevent HTTP 429.
+      - "-query-scheduler.max-outstanding-requests-per-tenant=2048"
+      - "-config.file=/etc/loki/local-config.yaml"
+    volumes:
+      - loki:/loki
+      #ports:
+      #- "3100:3100" # HTTP
+      #- "9095:9095" # gRPC
+  grafana:
+    image: grafana/grafana:9.4.9
+    environment:
+      # Disable authentication.
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_AUTH_BASIC_ENABLED=false
+      # Permit unauthenticated access as administrator.
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      # Override landing page dashboard.
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/web-vitals.json
+    volumes:
+      - grafana:/var/lib/grafana
+      # Autoconfigure data sources and dashboards on spin-up.
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      # Dashboards in this directory are automatically added.
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    ports:
+      - "3500:3000"
