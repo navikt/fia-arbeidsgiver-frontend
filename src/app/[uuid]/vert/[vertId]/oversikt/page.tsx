@@ -16,7 +16,7 @@ export default function Oversiktside({
   params: { uuid: string; vertId: string };
 }) {
   return (
-    <Page contentBlockPadding="none" footer={<FooterOversikt />}>
+    <Page footer={<FooterOversikt />} background="bg-subtle">
       <HeaderVert spørreundersøkelseId={params.uuid} vertId={params.vertId} />
       <PageBlock>
         <OversiktBody

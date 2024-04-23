@@ -5,7 +5,7 @@ const dummyTemaoversiktUtviklePartssamarbeid = {
   temanavn: "UTVIKLE_PARTSSAMARBEID",
   temaId: 1,
   del: 1,
-  beskrivelse: "Utvikle partsamarbeidet i virksomheten",
+  beskrivelse: "Partssammarbeid",
   introtekst:
     'Partssamarbeid er essensielt i virksomheter fordi det bidrar til et godt forebyggende arbeidsmiljø og reduksjon av antall tapte dagsverk. Partssamarbeidet anerkjenner og utnytter kompetansen og ansvarsområdene til verneombud, tillitsvalgte og ledere, noe som skaper en "utvidet ledelseskapasitet".',
   førsteSpørsmålId: "b16c4b1c-b45e-470d-a1a5-d6f87424d410",
@@ -17,7 +17,7 @@ const dummyTemaoversiktRedusereSykefravær = {
   temanavn: "REDUSERE_SYKEFRAVÆR",
   temaId: 2,
   del: 2,
-  beskrivelse: "Redusere sykefravær i virksomheten",
+  beskrivelse: "Sykefraværsarbeid",
   introtekst:
     "Sykefravær er en viktig indikator for arbeidsmiljøet og ansattes helse. Å ha et bevisst forhold til sykefraværsarbeid på arbeidsplassen er avgjørende for å skape et trivelig og produktivt arbeidsmiljø. Gjennom kartlegging kan man identifisere mønstre, sette mål og implementere tiltak for å redusere sykefraværet. Dette bidrar til et bedre arbeidsmiljø og økt trivsel for alle ansatte.",
   førsteSpørsmålId: "5df90163-81e4-44c5-8e72-9b47f2added2",

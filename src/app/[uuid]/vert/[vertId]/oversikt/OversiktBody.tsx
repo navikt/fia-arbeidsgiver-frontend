@@ -1,6 +1,6 @@
 "use client";
 
-import { Alert, Heading, Loader, VStack } from "@navikt/ds-react";
+import { Alert, HStack, Heading, Loader, VStack } from "@navikt/ds-react";
 import React from "react";
 import { OversiktBleedVert } from "@/app/[uuid]/vert/[vertId]/oversikt/OversiktBleedVert";
 import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
@@ -33,11 +33,11 @@ export default function OversiktBody({
 
   return (
     listeOverTemaer && (
-      <VStack gap="4">
+      <HStack gap="4" align="center" justify="center">
         {listeOverTemaer.map((temaoversikt, index) => (
           <OversiktBleedVert key={index} temaoversikt={temaoversikt} />
         ))}
-      </VStack>
+      </HStack>
     )
   );
 }

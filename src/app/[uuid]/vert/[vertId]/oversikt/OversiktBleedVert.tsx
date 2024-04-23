@@ -1,18 +1,10 @@
-import {
-  Bleed,
-  BodyShort,
-  Box,
-  Button,
-  Heading,
-  HStack,
-  VStack,
-} from "@navikt/ds-react";
-import kartleggingStyles from "@/app/kartlegging.module.css";
-import vertStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/sporsmalsside.module.css";
+import { Box, Button, Heading, HStack, VStack } from "@navikt/ds-react";
+import oversiktStyles from "./oversikt.module.css";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { TemaoversiktDTO, TemaStatus } from "@/app/_types/TemaoversiktDTO";
 import LinkTilResultat from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/SpørsmålNavigasjon/LinkTilResultat";
+import { ArrowRightIcon } from "@navikt/aksel-icons";
 
 export function OversiktBleedVert({
   temaoversikt,
@@ -21,19 +13,18 @@ export function OversiktBleedVert({
 }) {
   return (
     temaoversikt && (
-      <Bleed marginInline="full" asChild reflectivePadding>
-        <Box padding="5" className={kartleggingStyles.bleedKlar}>
-          <HStack className={vertStyles.bleedInnhold}>
-            <VStack>
-              <BodyShort size="medium">Del {temaoversikt.del}</BodyShort>
-              <Heading size="medium">{temaoversikt.beskrivelse}</Heading>
-            </VStack>
-            <HStack gap={"4"}>
-              <TemaActions temaoversikt={temaoversikt} />
-            </HStack>
+      <Box padding="10" className={oversiktStyles.temaboks}>
+        <VStack
+          gap="8"
+          justify="space-between"
+          className={oversiktStyles.temaboksinnhold}
+        >
+          <Heading size="medium">{temaoversikt.beskrivelse}</Heading>
+          <HStack gap={"4"} justify="end">
+            <TemaActions temaoversikt={temaoversikt} />
           </HStack>
-        </Box>
-      </Bleed>
+        </VStack>
+      </Box>
     )
   );
 }
@@ -50,12 +41,13 @@ function TemaActions({ temaoversikt }: { temaoversikt: TemaoversiktDTO }) {
             urlTilResultatside={`./resultater/${temaoversikt.temaId}`}
             gåDirekteTilResultat={false} // TODO: Ikke via modal dersom tema allerede er stengt
             knappetekst={""}
-            knappeClass={kartleggingStyles.knappHvit}
+            variant="primary"
           />
           <Button
-            variant="secondary"
+            variant="primary"
             onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
-            className={kartleggingStyles.knappHvitBred}
+            icon={<ArrowRightIcon />}
+            iconPosition="right"
           >
             Gjenoppta
           </Button>
@@ -64,9 +56,10 @@ function TemaActions({ temaoversikt }: { temaoversikt: TemaoversiktDTO }) {
     case TemaStatus.ÅPNET:
       return (
         <Button
-          variant="secondary"
+          variant="primary"
           onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
-          className={kartleggingStyles.knappHvitBred}
+          icon={<ArrowRightIcon />}
+          iconPosition="right"
         >
           Start
         </Button>
@@ -76,9 +69,10 @@ function TemaActions({ temaoversikt }: { temaoversikt: TemaoversiktDTO }) {
     default:
       return (
         <Button
-          variant="secondary"
+          variant="primary"
           onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
-          className={kartleggingStyles.disabletBred}
+          icon={<ArrowRightIcon />}
+          iconPosition="right"
           disabled
         >
           Start

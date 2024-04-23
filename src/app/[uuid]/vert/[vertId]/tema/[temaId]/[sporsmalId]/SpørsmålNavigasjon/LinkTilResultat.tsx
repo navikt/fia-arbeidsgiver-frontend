@@ -12,6 +12,7 @@ export default function LinkTilResultat({
   knappetekst = "Gå til resultat",
   knappeClass,
   resultatType = "tema",
+  variant = "secondary",
 }: {
   skalViseKnapp: boolean;
   urlTilResultatside: string;
@@ -19,6 +20,7 @@ export default function LinkTilResultat({
   knappetekst?: string;
   knappeClass?: string;
   resultatType?: string;
+  variant?: "primary" | "secondary";
 }) {
   const router = useRouter();
   const modalRef = React.useRef<HTMLDialogElement>(null);
@@ -32,7 +34,7 @@ export default function LinkTilResultat({
   return (
     <>
       <Button
-        variant="secondary"
+        variant={variant}
         className={knappeClass}
         onClick={gåDirekteTilResultat ? gåTilResultat : åpneModal}
         icon={<BarChartIcon title="Resultater" />}
