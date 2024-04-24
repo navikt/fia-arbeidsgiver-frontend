@@ -5,7 +5,7 @@ const dummyTemaoversiktUtviklePartssamarbeid = {
   temanavn: "UTVIKLE_PARTSSAMARBEID",
   temaId: 1,
   del: 1,
-  beskrivelse: "Partssammarbeid",
+  beskrivelse: "Partssamarbeid",
   introtekst:
     'Partssamarbeid er essensielt i virksomheter fordi det bidrar til et godt forebyggende arbeidsmiljø og reduksjon av antall tapte dagsverk. Partssamarbeidet anerkjenner og utnytter kompetansen og ansvarsområdene til verneombud, tillitsvalgte og ledere, noe som skaper en "utvidet ledelseskapasitet".',
   førsteSpørsmålId: "b16c4b1c-b45e-470d-a1a5-d6f87424d410",

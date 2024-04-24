@@ -1,22 +1,9 @@
 "use client";
 
-import kartleggingStyles from "@/app/kartlegging.module.css";
-import { useRouter } from "next/navigation";
-import HeaderBleed from "@/app/_components/HeaderBleed";
-import {
-  Alert,
-  BodyLong,
-  BodyShort,
-  Box,
-  Button,
-  Heading,
-  HStack,
-  Loader,
-  VStack,
-} from "@navikt/ds-react";
-import { StatusPåDeltaker } from "@/app/_components/StatusPåDeltaker/StatusPåDeltaker";
+import { Alert, Heading, Loader, VStack } from "@navikt/ds-react";
 import React from "react";
 import { useTemaoversiktOverEttTema } from "@/app/_api_hooks/vert/useTemaoversiktOverEttTema";
+import { Infoblokk } from "./Infoblokk";
 
 export function IntrosideBody({
   spørreundersøkelseId,
@@ -27,8 +14,6 @@ export function IntrosideBody({
   vertId: string;
   temaId: number;
 }) {
-  const router = useRouter();
-
   const {
     data: temaoversikt,
     isLoading,
@@ -50,58 +35,11 @@ export function IntrosideBody({
 
   return (
     temaoversikt && (
-      <>
-        <HeaderBleed>
-          <VStack>
-            <BodyShort size="medium">Del {temaoversikt.del}</BodyShort>
-            <Heading size="medium">{temaoversikt.beskrivelse}</Heading>
-          </VStack>
-          <StatusPåDeltaker
-            spørreundersøkelseId={spørreundersøkelseId}
-            vertId={vertId}
-          />
-        </HeaderBleed>
-        <Infoblokk
-          tittel={temaoversikt.beskrivelse}
-          undertittel={temaoversikt.introtekst}
-        />
-        <HStack className={kartleggingStyles.buttonFooter} gap="4">
-          <Button
-            variant="secondary"
-            className={kartleggingStyles.knappHvitBred}
-            onClick={() => router.push(`../oversikt`)}
-          >
-            Tilbake til oversikt
-          </Button>
-          <Button
-            onClick={() =>
-              router.push(
-                `./${temaoversikt.temaId}/${temaoversikt.førsteSpørsmålId}`,
-              )
-            }
-            className={kartleggingStyles.knappBred}
-          >
-            Start
-          </Button>
-        </HStack>
-      </>
+      <Infoblokk
+        temaoversikt={temaoversikt}
+        tittel={temaoversikt.beskrivelse}
+        undertittel={temaoversikt.introtekst}
+      />
     )
-  );
-}
-
-function Infoblokk({
-  tittel,
-  undertittel,
-}: {
-  tittel: string;
-  undertittel: string;
-}) {
-  return (
-    <Box borderRadius="xlarge" padding="12" background="surface-selected">
-      <Heading size="small" spacing>
-        {tittel}
-      </Heading>
-      <BodyLong>{undertittel}</BodyLong>
-    </Box>
   );
 }

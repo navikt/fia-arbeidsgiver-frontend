@@ -22,13 +22,12 @@ export default function HeaderVert({
   const erPåOversiktSide = pathname.endsWith("oversikt");
 
   return (
-    <PageBlock as={"header"} className={komponenterStyles.header}>
-      <HStack justify={"space-between"}>
+    <PageBlock as="header" className={komponenterStyles.header}>
+      <HStack gap="8">
         {!erPåOversiktSide && (
           <Button
             icon={<ArrowLeftIcon aria-hidden />}
             variant="secondary"
-            size="small"
             onClick={() =>
               router.push(`/${spørreundersøkelseId}/vert/${vertId}/oversikt`)
             }
@@ -36,12 +35,7 @@ export default function HeaderVert({
             Gå til oversikt
           </Button>
         )}
-        <Button
-          style={{ marginLeft: "auto" }}
-          variant="secondary"
-          size="small"
-          onClick={() => setvisQRkodeModalÅpen(true)}
-        >
+        <Button variant="secondary" onClick={() => setvisQRkodeModalÅpen(true)}>
           Vis QR-kode
         </Button>
       </HStack>

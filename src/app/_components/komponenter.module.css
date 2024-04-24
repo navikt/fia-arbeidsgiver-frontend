@@ -1,5 +1,6 @@
 .header {
     padding: 1rem 10rem 1rem;
+    background-color: var(--a-bg-subtle);
 }
 
 .overskrift {

@@ -14,7 +14,7 @@ export default function Temastartside({
   params: { uuid: string; vertId: string; temaId: number };
 }) {
   return (
-    <Page contentBlockPadding="none">
+    <Page contentBlockPadding="none" background="bg-subtle">
       <PageBlock gutters width="lg">
         <IntrosideBody
           spørreundersøkelseId={params.uuid}

@@ -1,5 +1,5 @@
 const dummySpørreundersøkelseId = "5164abc8-9e4c-408d-8790-ce7f7f3c4658";
-const temabeskrivelsePartssamarbeid = "Partssammarbeid";
+const temabeskrivelsePartssamarbeid = "Partssamarbeid";
 const temabeskrivelseSykefravær = "Sykefraværsarbeid";
 
 const førsteTemaFørsteSpørsmål = {
