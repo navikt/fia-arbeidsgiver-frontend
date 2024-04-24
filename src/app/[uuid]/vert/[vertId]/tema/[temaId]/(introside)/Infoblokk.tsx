@@ -1,18 +1,12 @@
 "use client";
-import {
-  BodyLong,
-  BodyShort,
-  Box,
-  Button,
-  HStack,
-  Heading,
-} from "@navikt/ds-react";
+import { BodyLong, BodyShort, Box, Button, HStack } from "@navikt/ds-react";
 import { List, ListItem } from "@navikt/ds-react/List";
 import { useRouter } from "next/navigation";
 import React, { ComponentProps } from "react";
 import { TemaoversiktDTO } from "@/app/_types/TemaoversiktDTO";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
 import introsideStyles from "./introside.module.css";
+import Headerlinje from "@/app/_components/Headerlinje";
 
 export function Infoblokk({
   tittel,
@@ -98,12 +92,7 @@ function Infoblokkinnhold({
 
   return (
     <>
-      <HStack
-        justify="space-between"
-        align="center"
-        className={introsideStyles.headerlinje}
-      >
-        <Heading size="large">{tittel}</Heading>
+      <Headerlinje tittel={tittel}>
         <Button
           onClick={() =>
             router.push(
@@ -115,7 +104,7 @@ function Infoblokkinnhold({
         >
           Start
         </Button>
-      </HStack>
+      </Headerlinje>
       <Box borderRadius="xlarge" padding="12" background="surface-default">
         <HStack align="center" gap="4" justify="space-between">
           <span className={introsideStyles.venstreDel}>
