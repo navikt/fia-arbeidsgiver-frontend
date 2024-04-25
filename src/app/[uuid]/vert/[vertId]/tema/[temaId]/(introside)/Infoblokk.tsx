@@ -3,7 +3,7 @@ import { BodyLong, BodyShort, Box, Button, HStack } from "@navikt/ds-react";
 import { List, ListItem } from "@navikt/ds-react/List";
 import { useRouter } from "next/navigation";
 import React, { ComponentProps } from "react";
-import { TemaID, TemaoversiktDTO } from "@/app/_types/TemaoversiktDTO";
+import { TemaoversiktDTO } from "@/app/_types/TemaoversiktDTO";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
 import introsideStyles from "./introside.module.css";
 import Headerlinje from "@/app/_components/Headerlinje";
@@ -150,7 +150,7 @@ type punkter = {
 
 interface infoblokk {
   type: "infoblokk";
-  id: TemaID;
+  id: "UTVIKLE_PARTSSAMARBEID" | "REDUSERE_SYKEFRAVÆR" | "ARBEIDSMILJØ";
   punkter: punkter;
   fargeseksjon: {
     farge: ComponentProps<typeof Box>["background"];
