@@ -1,7 +1,7 @@
 export type TemaoversiktDTO = {
   tittel: string;
   temanavn: string;
-  temaId: number;
+  temaId: TemaID;
   del: number;
   beskrivelse: string;
   introtekst: string;
@@ -14,3 +14,8 @@ export const enum TemaStatus {
   IKKE_ÅPNET = "IKKE_ÅPNET",
   ALLE_SPØRSMÅL_ÅPNET = "ALLE_SPØRSMÅL_ÅPNET",
 }
+
+export type TemaID =
+  | "UTVIKLE_PARTSSAMARBEID"
+  | "REDUSERE_SYKEFRAVÆR"
+  | "ARBEIDSMILJØ";

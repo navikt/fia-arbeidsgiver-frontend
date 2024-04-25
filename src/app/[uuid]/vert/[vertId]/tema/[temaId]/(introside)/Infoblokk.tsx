@@ -3,7 +3,7 @@ import { BodyLong, BodyShort, Box, Button, HStack } from "@navikt/ds-react";
 import { List, ListItem } from "@navikt/ds-react/List";
 import { useRouter } from "next/navigation";
 import React, { ComponentProps } from "react";
-import { TemaoversiktDTO } from "@/app/_types/TemaoversiktDTO";
+import { TemaID, TemaoversiktDTO } from "@/app/_types/TemaoversiktDTO";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
 import introsideStyles from "./introside.module.css";
 import Headerlinje from "@/app/_components/Headerlinje";
@@ -17,8 +17,9 @@ export function Infoblokk({
   undertittel: string;
   temaoversikt: TemaoversiktDTO;
 }) {
-  const innhold = innholdsconfig.find((innhold) =>
-    innhold.tittel.toLowerCase().includes(tittel.toLowerCase()),
+  const innhold = innholdsconfig.find(
+    (innhold) =>
+      innhold.id.toLowerCase() === temaoversikt.temanavn.toLowerCase(),
   ) || {
     tittel,
     punkter: {
@@ -34,7 +35,6 @@ export function Infoblokk({
 
   return (
     <Infoblokkinnhold
-      tittel={innhold.tittel}
       punkter={innhold.punkter}
       fargeseksjon={innhold.fargeseksjon}
       temaoversikt={temaoversikt}
@@ -83,16 +83,15 @@ function InnholdsSwitch({
 }
 
 function Infoblokkinnhold({
-  tittel,
   punkter,
   fargeseksjon,
   temaoversikt,
-}: Omit<infoblokk, "type"> & { temaoversikt: TemaoversiktDTO }) {
+}: Omit<Omit<infoblokk, "type">, "id"> & { temaoversikt: TemaoversiktDTO }) {
   const router = useRouter();
 
   return (
     <>
-      <Headerlinje tittel={tittel}>
+      <Headerlinje tittel={temaoversikt.beskrivelse}>
         <Button
           onClick={() =>
             router.push(
@@ -151,7 +150,7 @@ type punkter = {
 
 interface infoblokk {
   type: "infoblokk";
-  tittel: string;
+  id: TemaID;
   punkter: punkter;
   fargeseksjon: {
     farge: ComponentProps<typeof Box>["background"];
@@ -163,7 +162,7 @@ interface infoblokk {
 const innholdsconfig: infoblokk[] = [
   {
     type: "infoblokk",
-    tittel: "Partssamarbeid",
+    id: "UTVIKLE_PARTSSAMARBEID",
     punkter: {
       type: "punkter",
       punkter: [
@@ -190,7 +189,7 @@ const innholdsconfig: infoblokk[] = [
   },
   {
     type: "infoblokk",
-    tittel: "Sykefraværsarbeid",
+    id: "REDUSERE_SYKEFRAVÆR",
     punkter: {
       type: "punkter",
       punkter: [
@@ -209,7 +208,7 @@ const innholdsconfig: infoblokk[] = [
   },
   {
     type: "infoblokk",
-    tittel: "Arbeidsmiljø",
+    id: "ARBEIDSMILJØ",
     punkter: {
       type: "punkter",
       punkter: [
