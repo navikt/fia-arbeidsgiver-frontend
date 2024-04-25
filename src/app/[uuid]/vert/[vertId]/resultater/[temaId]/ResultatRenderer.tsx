@@ -1,13 +1,13 @@
 "use client";
 
-import HeaderBleed from "@/app/_components/HeaderBleed";
-import { Heading, Page } from "@navikt/ds-react";
-import { StatusPåDeltaker } from "@/app/_components/StatusPåDeltaker/StatusPåDeltaker";
+import { Page } from "@navikt/ds-react";
 import TemaGraf from "@/app/_components/Resultatgraf/TemaGraf";
 import React, { useEffect, useState } from "react";
 import HeaderVert from "@/app/_components/HeaderVert";
 import { PageBlock } from "@navikt/ds-react/Page";
 import { avsluttTema } from "@/app/_api_hooks/vert/avsluttTema";
+import { useTemaResultat } from "@/app/_api_hooks/vert/useTemaresultater";
+import Headerlinje from "@/app/_components/Headerlinje";
 
 export function ResultatRenderer({
   temaId,
@@ -28,26 +28,15 @@ export function ResultatRenderer({
       );
   }, [spørreundersøkelseId, vertId, temaId]);
 
+  const { data: tema } = useTemaResultat(spørreundersøkelseId, vertId, temaId);
+
   return (
     <>
       <HeaderVert spørreundersøkelseId={spørreundersøkelseId} vertId={vertId} />
-      <Page contentBlockPadding="none">
+      <Page contentBlockPadding="none" background="bg-subtle">
         <PageBlock gutters width="lg">
-          <HeaderBleed>
-            <Heading size="medium">Temaresultatside</Heading>
-            <StatusPåDeltaker
-              spørreundersøkelseId={spørreundersøkelseId}
-              vertId={vertId}
-            />
-          </HeaderBleed>
-          {erAvsluttet && (
-            <TemaGraf
-              key={temaId}
-              temaId={temaId}
-              spørreundersøkelseId={spørreundersøkelseId}
-              vertId={vertId}
-            />
-          )}
+          <Headerlinje tittel={tema?.beskrivelse} />
+          {erAvsluttet && <TemaGraf key={temaId} tema={tema} />}
         </PageBlock>
       </Page>
     </>

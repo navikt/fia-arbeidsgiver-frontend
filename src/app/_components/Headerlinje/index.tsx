@@ -5,7 +5,7 @@ export default function Headerlinje({
   tittel,
   children,
 }: {
-  tittel: string;
+  tittel?: string;
   children?: React.ReactNode;
 }) {
   return (
@@ -14,7 +14,9 @@ export default function Headerlinje({
       align="center"
       className={headerlinjeStyles.headerlinje}
     >
-      <Heading size="large">{tittel}</Heading>
+      <Heading size="large" className={headerlinjeStyles.headertekst}>
+        {tittel}
+      </Heading>
       {children}
     </HStack>
   );

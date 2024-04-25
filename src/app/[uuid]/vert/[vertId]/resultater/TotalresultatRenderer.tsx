@@ -1,14 +1,13 @@
 "use client";
 
 import HeaderVert from "@/app/_components/HeaderVert";
-import { Heading, Page, VStack } from "@navikt/ds-react";
+import { Page } from "@navikt/ds-react";
 import { PageBlock } from "@navikt/ds-react/Page";
-import HeaderBleed from "@/app/_components/HeaderBleed";
-import { StatusPåDeltaker } from "@/app/_components/StatusPåDeltaker/StatusPåDeltaker";
-import TemaGraf from "@/app/_components/Resultatgraf/TemaGraf";
+import { TemaGrafMedDatahenting } from "@/app/_components/Resultatgraf/TemaGraf";
 import React, { useEffect, useState } from "react";
 import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
 import { avsluttTema } from "@/app/_api_hooks/vert/avsluttTema";
+import Headerlinje from "@/app/_components/Headerlinje";
 
 export function TotalresultatRenderer({
   spørreundersøkelseId,
@@ -47,27 +46,20 @@ export function TotalresultatRenderer({
           spørreundersøkelseId={spørreundersøkelseId}
           vertId={vertId}
         />
-        <Page contentBlockPadding="none">
+        <Page contentBlockPadding="none" background="bg-subtle">
           <PageBlock gutters width="lg">
-            <HeaderBleed>
-              <VStack>
-                <Heading size="medium">Temaresultatside</Heading>
-              </VStack>
-              <StatusPåDeltaker
-                spørreundersøkelseId={spørreundersøkelseId}
-                vertId={vertId}
-              />
-            </HeaderBleed>
             {listeOverTemaer &&
               listeOverTemaer.map(
                 (tema) =>
                   temaErAvsluttet[tema.temaId] && (
-                    <TemaGraf
-                      key={tema.temaId}
-                      temaId={tema.temaId}
-                      spørreundersøkelseId={spørreundersøkelseId}
-                      vertId={vertId}
-                    />
+                    <React.Fragment key={tema.temaId}>
+                      <Headerlinje tittel={tema?.beskrivelse} />
+                      <TemaGrafMedDatahenting
+                        temaId={tema.temaId}
+                        spørreundersøkelseId={spørreundersøkelseId}
+                        vertId={vertId}
+                      />
+                    </React.Fragment>
                   ),
               )}
           </PageBlock>

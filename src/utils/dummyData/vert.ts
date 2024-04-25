@@ -167,15 +167,15 @@ const dummySpørsmålMedSvarPerTema = [
         svarListe: [
           {
             tekst: "Lønnsforhandlinger",
-            antallSvar: 0,
+            antallSvar: 1,
           },
           {
             tekst: "HMS",
-            antallSvar: 0,
+            antallSvar: 1,
           },
           {
             tekst: "Bemanning",
-            antallSvar: 0,
+            antallSvar: 1,
           },
           {
             tekst: "Sykefravær",
@@ -183,15 +183,27 @@ const dummySpørsmålMedSvarPerTema = [
           },
           {
             tekst: "Arbeidsmiljø",
-            antallSvar: 2,
+            antallSvar: 1,
           },
           {
             tekst: "Annet",
-            antallSvar: 0,
+            antallSvar: 1,
           },
           {
             tekst: "Vet ikke",
-            antallSvar: 0,
+            antallSvar: 1,
+          },
+          {
+            tekst: "Enda en farge",
+            antallSvar: 1,
+          },
+          {
+            tekst: "En farge til",
+            antallSvar: 1,
+          },
+          {
+            tekst: "Siste farge",
+            antallSvar: 1,
           },
         ],
       },

@@ -1,3 +1,8 @@
 .headerlinje {
-  margin: 1rem 0;
+  margin: 3rem 0 1rem;
+}
+
+.headertekst {
+  color: var(--a-surface-action-selected);
+  font-size: 1.875rem;
 }

@@ -55,7 +55,18 @@ const LabelBox = ({
 
 export default function Resultatgraf({
   spørsmål,
-  farger = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#8dd1e1"],
+  farger = [
+    "var(--a-data-surface-2)",
+    "var(--a-data-surface-2-subtle)",
+    "var(--a-data-surface-3)",
+    "var(--a-data-surface-3-subtle)",
+    "var(--a-data-surface-6)",
+    "var(--a-data-surface-6-subtle)",
+    "var(--a-data-surface-5)",
+    "var(--a-data-surface-5-subtle)",
+    "var(--a-data-surface-4)",
+    "var(--a-data-surface-4-subtle)",
+  ],
   barTestIds,
 }: {
   spørsmål: SpørsmålMedSvarDTO;
@@ -93,9 +104,9 @@ export default function Resultatgraf({
         {spørsmål.svarListe.map((svar, index) => (
           <Label key={index}>
             <LabelBox farge={getSvarGrafFarge(index)} />
-            <BodyShort weight="semibold">{svar.tekst}:</BodyShort>
+            <BodyShort weight="semibold">{svar.tekst}</BodyShort>
             <BodyShort className={resultatgrafStyle.labelValue}>
-              {svar.antallSvar}
+              ({svar.antallSvar})
             </BodyShort>
           </Label>
         ))}
