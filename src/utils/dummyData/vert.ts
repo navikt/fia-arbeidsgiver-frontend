@@ -10,6 +10,7 @@ const dummyTemaoversiktUtviklePartssamarbeid = {
     'Partssamarbeid er essensielt i virksomheter fordi det bidrar til et godt forebyggende arbeidsmiljø og reduksjon av antall tapte dagsverk. Partssamarbeidet anerkjenner og utnytter kompetansen og ansvarsområdene til verneombud, tillitsvalgte og ledere, noe som skaper en "utvidet ledelseskapasitet".',
   status: "ALLE_SPØRSMÅL_ÅPNET",
   førsteSpørsmålId: "018e7b18-2552-77e9-95a1-366c3eb8e800",
+  nesteTemaId: 2,
   spørsmålOgSvaralternativer: [
     {
       id: "018e7b18-2552-77e9-95a1-366c3eb8e800",
@@ -203,6 +204,7 @@ const dummyTemaoversiktRedusereSykefravær = {
     "Sykefravær er en viktig indikator for arbeidsmiljøet og ansattes helse. Å ha et bevisst forhold til sykefraværsarbeid på arbeidsplassen er avgjørende for å skape et trivelig og produktivt arbeidsmiljø. Gjennom kartlegging kan man identifisere mønstre, sette mål og implementere tiltak for å redusere sykefraværet. Dette bidrar til et bedre arbeidsmiljø og økt trivsel for alle ansatte.",
   status: "ÅPNET",
   førsteSpørsmålId: "5df90163-81e4-44c5-8e72-9b47f2added2",
+  nesteTemaId: null,
   spørsmålOgSvaralternativer: [
     {
       id: "5df90163-81e4-44c5-8e72-9b47f2added2",

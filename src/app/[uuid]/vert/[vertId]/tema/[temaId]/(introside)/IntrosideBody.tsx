@@ -27,6 +27,8 @@ import { AccordionContent } from "@navikt/ds-react/Accordion";
 import { SvaralternativDTO } from "@/app/_types/SpørsmåloversiktDTO";
 import { useÅpneTema } from "@/app/_api_hooks/vert/useÅpneTema";
 import LinkTilResultat from "@/app/_components/LinkTilResultat";
+import { useRouter } from "next/navigation";
+import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
 
 export function IntrosideBody({
   spørreundersøkelseId,
@@ -64,10 +66,22 @@ export function IntrosideBody({
       {temaoversikt && (
         <>
           <Headerlinje tittel={temaoversikt.beskrivelse}>
+            {/* TODO: bruk verdi for hele tema, ikke siste spørsmål. */}
+            <StatusPåDeltakerMedSvar
+              spørreundersøkelseId={spørreundersøkelseId}
+              vertId={vertId}
+              temaId={temaId}
+              spørsmålId={
+                temaoversikt.spørsmålOgSvaralternativer[
+                  temaoversikt.spørsmålOgSvaralternativer.length - 1
+                ].id
+              }
+            />
             <Actionknapper
               åpneTema={åpneTema}
               setErStartet={setErStartet}
               erStartet={erStartet}
+              nesteTemaId={temaoversikt.nesteTemaId}
             />
           </Headerlinje>
           <Infoblokk
@@ -88,11 +102,14 @@ function Actionknapper({
   åpneTema,
   setErStartet,
   erStartet,
+  nesteTemaId,
 }: {
   åpneTema: () => void;
   setErStartet: (erStartet: boolean) => void;
   erStartet: boolean;
+  nesteTemaId?: number;
 }) {
+  const router = useRouter();
   if (!erStartet) {
     return (
       <Button
@@ -122,11 +139,14 @@ function Actionknapper({
         icon={<ArrowRightIcon />}
         iconPosition="right"
         onClick={() => {
-          // TODO: Gå til neste tema
-          console.log("Gå til neste tema");
+          if (nesteTemaId) {
+            router.push(`./${nesteTemaId}`);
+          } else {
+            router.push(`../oversikt`);
+          }
         }}
       >
-        Gå til neste tema
+        {nesteTemaId ? "Gå til neste tema" : "Gå til oversikt"}
       </Button>
     </span>
   );

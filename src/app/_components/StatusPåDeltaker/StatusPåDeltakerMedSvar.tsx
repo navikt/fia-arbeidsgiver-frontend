@@ -1,7 +1,7 @@
 "use client";
 
 import { Alert, HStack, Loader } from "@navikt/ds-react";
-import spørsmålStyles from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/sporsmalsside.module.css";
+import statusPåDeltakereStyles from "./statusPåDeltaker.module.css";
 import { PersonGroupFillIcon } from "@navikt/aksel-icons";
 import React from "react";
 import { useAntallSvar } from "@/app/_api_hooks/vert/useAntallSvar";
@@ -54,7 +54,7 @@ export function StatusPåDeltakerMedSvar({
     );
   }
   return (
-    <HStack className={spørsmålStyles.deltakere}>
+    <HStack className={statusPåDeltakereStyles.deltakere}>
       <PersonGroupFillIcon />
       <InnholdEllerSpinner innhold={antallSvar} laster={lasterAntallSvar} />
       {" av "}

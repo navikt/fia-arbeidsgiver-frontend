@@ -10,6 +10,7 @@ export type TemaoversiktDTO = {
   status: TemaStatus;
   førsteSpørsmålId: string;
   spørsmålOgSvaralternativer: SpørsmålOgSvaralternativerDTO[];
+  nesteTemaId?: number;
 };
 
 export type SpørsmålOgSvaralternativerDTO = {
