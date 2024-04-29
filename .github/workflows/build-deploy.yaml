@@ -63,7 +63,7 @@ jobs:
   trivy-scan:
     if: ${{ github.ref == 'refs/heads/main' && github.actor != 'dependabot[bot]' }}
     name: Scanner docker image med Trivy
-    needs: build
+    needs: docker-build-push
     permissions:
       contents: read # to write sarif
       security-events: write # push sarif to github security
