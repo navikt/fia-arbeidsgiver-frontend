@@ -1,0 +1,49 @@
+apiVersion: nais.io/v1alpha1
+kind: Application
+metadata:
+  name: fia-arbeidsgiver-frontend
+  namespace: pia
+  labels:
+    team: pia
+  annotations:
+    nginx.ingress.kubernetes.io/limit-rpm: "250"
+spec:
+  ingresses:
+    - {{ ingress }}
+  image: {{image}}
+  port: 3000
+  replicas:
+    max: 2
+    min: 2
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+  azure:
+    application:
+      enabled: true
+      allowAllUsers: false
+      claims:
+        groups:
+          - id: {{fiaSuperbrukerGroup}}
+          - id: {{fiaSaksbehandlerGroup}}
+        extra:
+          - "NAVident"
+    sidecar:
+      enabled: true
+      autoLogin: true
+      autoLoginIgnorePaths:
+        - /*/deltaker
+        - /*/deltaker/**
+        - /api/*/deltaker/**
+        - /api/bli-med
+        - /_next/static/**
+  accessPolicy:
+    outbound:
+      rules:
+        - application: fia-arbeidsgiver
+  env:
+    - name: FARO_URL
+      value: {{ faroUrl }}
+    - name: FIA_ARBEIDSGIVER_HOSTNAME
+      value: fia-arbeidsgiver

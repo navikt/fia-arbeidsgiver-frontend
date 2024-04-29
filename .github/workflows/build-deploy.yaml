@@ -40,8 +40,12 @@ jobs:
     outputs:
       image: ${{ steps.docker-push.outputs.image }}
 
-  deployAppToDev:
-    name: Deploy to dev-gcp
+  deploy:
+    strategy:
+      matrix:
+        cluster: [dev, prod]
+    name: Deploy to ${{ matrix.cluster }}-gcp
+    if: github.ref == 'refs/heads/main'
     needs: docker-build-push
     runs-on: ubuntu-latest
     permissions:
@@ -51,6 +55,24 @@ jobs:
       - uses: actions/checkout@v4
       - uses: nais/deploy/actions/deploy@v2
         env:
-          CLUSTER: dev-gcp
+          CLUSTER: ${{ matrix.cluster }}-gcp
           IMAGE: ${{ needs.docker-build-push.outputs.image }}
-          RESOURCE: .nais/dev.yaml
+          RESOURCE: .nais/nais.yaml
+          VARS: .nais/${{ matrix.cluster }}.yaml
+
+  trivy-scan:
+    if: ${{ github.ref == 'refs/heads/main' && github.actor != 'dependabot[bot]' }}
+    name: Scanner docker image med Trivy
+    needs: build
+    permissions:
+      contents: read # to write sarif
+      security-events: write # push sarif to github security
+      id-token: write # for nais/login
+    runs-on: ubuntu-latest
+    steps:
+      - uses: navikt/pia-actions/trivy-scan@v1 # https://github.com/navikt/pia-actions/tree/main/trivy-scan
+        with:
+          image: ${{ needs.docker-build-push.outputs.image }}
+          team: pia
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
