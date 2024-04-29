@@ -3,7 +3,7 @@ import oversiktStyles from "./oversikt.module.css";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { TemaoversiktDTO, TemaStatus } from "@/app/_types/TemaoversiktDTO";
-import LinkTilResultat from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/SpørsmålNavigasjon/LinkTilResultat";
+import LinkTilResultat from "@/app/_components/LinkTilResultat";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
 
 export function OversiktBleedVert({

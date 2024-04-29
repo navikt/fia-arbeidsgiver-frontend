@@ -1,12 +1,22 @@
+import { SvaralternativDTO } from "./SpørsmåloversiktDTO";
+
 export type TemaoversiktDTO = {
-  tittel: string;
-  temanavn: string;
   temaId: number;
+  temanavn: string;
   del: number;
+  tittel: string;
   beskrivelse: string;
   introtekst: string;
-  førsteSpørsmålId: string;
   status: TemaStatus;
+  førsteSpørsmålId: string;
+  spørsmålOgSvaralternativer: SpørsmålOgSvaralternativerDTO[];
+};
+
+export type SpørsmålOgSvaralternativerDTO = {
+  id: string;
+  spørsmål: string;
+  svaralternativer: SvaralternativDTO[];
+  flervalg: boolean;
 };
 
 export const enum TemaStatus {

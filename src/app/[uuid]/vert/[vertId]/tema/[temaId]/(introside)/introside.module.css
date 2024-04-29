@@ -6,3 +6,32 @@
   width: 20rem;
   font-style: italic;
 }
+
+.spørsmålsseksjon {
+  margin-top: 2rem;
+}
+
+.disabletOption {
+  pointer-events: none;
+}
+
+.disabletOption label::before {
+  opacity: 0.5;
+}
+
+.spørsmåltittel {
+  color: var(--a-blue-500);
+  --a-font-weight-bold: 400;
+}
+
+.førstespørsmåltittel {
+  --__ac-accordion-header-shadow-color: transparent;
+}
+
+.actionknapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 420px;
+  margin-left: auto;
+}

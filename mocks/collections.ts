@@ -13,6 +13,7 @@ const collections = [
       "vert-sporsmal-og-svar:success",
       "vert-temaresultat:success",
       "vert-avslutt-tema:success",
+      "vert-åpne-tema:success",
     ],
   },
 ];

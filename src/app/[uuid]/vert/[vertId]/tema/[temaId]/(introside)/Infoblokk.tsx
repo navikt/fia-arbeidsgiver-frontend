@@ -1,12 +1,9 @@
 "use client";
-import { BodyLong, BodyShort, Box, Button, HStack } from "@navikt/ds-react";
+import { BodyLong, BodyShort, Box, HStack } from "@navikt/ds-react";
 import { List, ListItem } from "@navikt/ds-react/List";
-import { useRouter } from "next/navigation";
 import React, { ComponentProps } from "react";
 import { TemaoversiktDTO } from "@/app/_types/TemaoversiktDTO";
-import { ArrowRightIcon } from "@navikt/aksel-icons";
 import introsideStyles from "./introside.module.css";
-import Headerlinje from "@/app/_components/Headerlinje";
 
 export function Infoblokk({
   tittel,
@@ -37,7 +34,6 @@ export function Infoblokk({
     <Infoblokkinnhold
       punkter={innhold.punkter}
       fargeseksjon={innhold.fargeseksjon}
-      temaoversikt={temaoversikt}
     />
   );
 }
@@ -85,25 +81,9 @@ function InnholdsSwitch({
 function Infoblokkinnhold({
   punkter,
   fargeseksjon,
-  temaoversikt,
-}: Omit<Omit<infoblokk, "type">, "id"> & { temaoversikt: TemaoversiktDTO }) {
-  const router = useRouter();
-
+}: Omit<Omit<infoblokk, "type">, "id">) {
   return (
     <>
-      <Headerlinje tittel={temaoversikt.beskrivelse}>
-        <Button
-          onClick={() =>
-            router.push(
-              `./${temaoversikt.temaId}/${temaoversikt.førsteSpørsmålId}`,
-            )
-          }
-          icon={<ArrowRightIcon />}
-          iconPosition="right"
-        >
-          Start
-        </Button>
-      </Headerlinje>
       <Box borderRadius="xlarge" padding="12" background="surface-default">
         <HStack align="center" gap="4" justify="space-between">
           <span className={introsideStyles.venstreDel}>

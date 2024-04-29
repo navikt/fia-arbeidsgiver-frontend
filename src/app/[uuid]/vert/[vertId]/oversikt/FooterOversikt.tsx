@@ -6,7 +6,7 @@ import { PageBlock } from "@navikt/ds-react/Page";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 
 import { useRouter } from "next/navigation";
-import LinkTilResultat from "@/app/[uuid]/vert/[vertId]/tema/[temaId]/[sporsmalId]/SpørsmålNavigasjon/LinkTilResultat";
+import LinkTilResultat from "@/app/_components/LinkTilResultat";
 
 export default function FooterOversikt() {
   const router = useRouter();
