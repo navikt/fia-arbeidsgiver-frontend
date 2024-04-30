@@ -1,13 +1,12 @@
 "use client";
 
-import { Page } from "@navikt/ds-react";
 import TemaGraf from "@/app/_components/Resultatgraf/TemaGraf";
 import React, { useEffect, useState } from "react";
-import HeaderVert from "@/app/_components/HeaderVert";
-import { PageBlock } from "@navikt/ds-react/Page";
 import { avsluttTema } from "@/app/_api_hooks/vert/avsluttTema";
 import { useTemaResultat } from "@/app/_api_hooks/vert/useTemaresultater";
 import Headerlinje from "@/app/_components/Headerlinje";
+import { Heading, VStack, Loader } from "@navikt/ds-react";
+import resultaterStyles from "../resultater.module.css";
 
 export function ResultatRenderer({
   temaId,
@@ -30,15 +29,27 @@ export function ResultatRenderer({
 
   const { data: tema } = useTemaResultat(spørreundersøkelseId, vertId, temaId);
 
+  if (tema === undefined || !erAvsluttet) {
+    return (
+      <>
+        <Headerlinje tittel={tema?.beskrivelse} />
+        <VStack
+          gap={"4"}
+          align={"center"}
+          justify={"center"}
+          className={resultaterStyles.loadingStack}
+        >
+          <Heading size={"large"}>Laster resultater</Heading>
+          <Loader size="3xlarge" title="Venter..." />
+        </VStack>
+      </>
+    );
+  }
+
   return (
     <>
-      <HeaderVert spørreundersøkelseId={spørreundersøkelseId} vertId={vertId} />
-      <Page contentBlockPadding="none" background="bg-subtle">
-        <PageBlock gutters width="lg">
-          <Headerlinje tittel={tema?.beskrivelse} />
-          {erAvsluttet && <TemaGraf key={temaId} tema={tema} />}
-        </PageBlock>
-      </Page>
+      <Headerlinje tittel={tema?.beskrivelse} />
+      {erAvsluttet && <TemaGraf key={temaId} tema={tema} />}
     </>
   );
 }

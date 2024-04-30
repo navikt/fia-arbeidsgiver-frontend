@@ -3,9 +3,9 @@
 import React from "react";
 
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
-import { SpørsmålBleedDeltaker } from "@/app/[uuid]/deltaker/[temaId]/[sporsmalId]/SpørsmålBleedDeltaker";
+import { SpørsmålBleedDeltaker } from "./SpørsmålBleedDeltaker";
 import { Alert, Heading, Loader, VStack } from "@navikt/ds-react";
-import spørsmålStyles from "@/app/[uuid]/deltaker/[temaId]/[sporsmalId]/sporsmalsside.module.css";
+import spørsmålStyles from "./sporsmalsside.module.css";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import { useRouter } from "next/navigation";

@@ -1,13 +1,14 @@
 "use client";
 
 import HeaderVert from "@/app/_components/HeaderVert";
-import { Page } from "@navikt/ds-react";
+import { Heading, Page, VStack, Loader } from "@navikt/ds-react";
 import { PageBlock } from "@navikt/ds-react/Page";
 import { TemaGrafMedDatahenting } from "@/app/_components/Resultatgraf/TemaGraf";
 import React, { useEffect, useState } from "react";
 import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
 import { avsluttTema } from "@/app/_api_hooks/vert/avsluttTema";
 import Headerlinje from "@/app/_components/Headerlinje";
+import resultaterStyles from "./resultater.module.css";
 
 export function TotalresultatRenderer({
   spørreundersøkelseId,
@@ -48,7 +49,7 @@ export function TotalresultatRenderer({
         />
         <Page contentBlockPadding="none" background="bg-subtle">
           <PageBlock gutters width="lg">
-            {listeOverTemaer &&
+            {listeOverTemaer ? (
               listeOverTemaer.map(
                 (tema) =>
                   temaErAvsluttet[tema.temaId] && (
@@ -61,7 +62,18 @@ export function TotalresultatRenderer({
                       />
                     </React.Fragment>
                   ),
-              )}
+              )
+            ) : (
+              <VStack
+                gap={"4"}
+                align={"center"}
+                justify={"center"}
+                className={resultaterStyles.loadingStack}
+              >
+                <Heading size={"large"}>Laster resultater</Heading>
+                <Loader size="3xlarge" title="Venter..." />
+              </VStack>
+            )}
           </PageBlock>
         </Page>
       </>
