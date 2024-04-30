@@ -129,7 +129,7 @@ function Actionknapper({
     <span className={introsideStyles.actionknapper}>
       <LinkTilResultat
         skalViseKnapp
-        urlTilResultatside={`./resultater`}
+        urlTilResultatside={`../resultater/${nesteTemaId}`}
         gåDirekteTilResultat={false}
         knappetekst={"Vis resultater"}
         variant="primary"
