@@ -54,10 +54,10 @@ export function StatusPåDeltakerMedSvar({
     );
   }
   return (
-    <HStack className={statusPåDeltakereStyles.deltakere}>
+    <HStack className={statusPåDeltakereStyles.deltakereMedStatus}>
       <PersonGroupFillIcon />
       <InnholdEllerSpinner innhold={antallSvar} laster={lasterAntallSvar} />
-      {" av "}
+      {"/"}
       <InnholdEllerSpinner
         innhold={antallDeltakere}
         laster={lasterAntallDeltakere}
