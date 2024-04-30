@@ -82,6 +82,7 @@ export function IntrosideBody({
               setErStartet={setErStartet}
               erStartet={erStartet}
               nesteTemaId={temaoversikt.nesteTemaId}
+              temaId={temaId}
             />
           </Headerlinje>
           <Infoblokk
@@ -103,11 +104,13 @@ function Actionknapper({
   setErStartet,
   erStartet,
   nesteTemaId,
+  temaId,
 }: {
   åpneTema: () => void;
   setErStartet: (erStartet: boolean) => void;
   erStartet: boolean;
   nesteTemaId?: number;
+  temaId: number;
 }) {
   const router = useRouter();
   if (!erStartet) {
@@ -129,7 +132,7 @@ function Actionknapper({
     <span className={introsideStyles.actionknapper}>
       <LinkTilResultat
         skalViseKnapp
-        urlTilResultatside={`../resultater/${nesteTemaId}`}
+        urlTilResultatside={`../resultater/${temaId}`}
         gåDirekteTilResultat={false}
         knappetekst={"Vis resultater"}
         variant="primary"
