@@ -16,6 +16,7 @@ import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
 import { SpørsmåloversiktDTO } from "@/app/_types/SpørsmåloversiktDTO";
 import CookieHandler from "@/utils/CookieHandler";
 import { urlNeste, urlTilbake } from "@/utils/spørreundersøkelsesUtils";
+import { fetchIdentifiserbartSpørsmål } from "@/app/_api_hooks/deltaker/fetchIdentifiserbartSpørsmål";
 
 export default function Spørsmålsseksjon({
   spørsmålId,
@@ -70,7 +71,16 @@ export default function Spørsmålsseksjon({
           router.push(urlNeste(spørsmålOgSvar));
         })
         .catch((error) => {
-          setFeilSendSvar(error.message);
+          if (error.message == "Tema stengt, hent nytt spørsmål") {
+            console.log("Hent et nytt spørsmål");
+            fetchIdentifiserbartSpørsmål(spørreundersøkelseId).then(
+              ({ spørsmålId, temaId }) => {
+                router.push(`../../deltaker/${temaId}/${spørsmålId}`);
+              },
+            );
+          } else {
+            setFeilSendSvar(error.message);
+          }
         });
     }
   };

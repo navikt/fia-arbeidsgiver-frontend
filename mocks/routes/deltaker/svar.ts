@@ -15,6 +15,13 @@ const svarRoutes = [
         },
       },
       {
+        id: "stengt-tema",
+        type: "status",
+        options: {
+          status: 303,
+        },
+      },
+      {
         id: "feil-i-uuid",
         type: "status",
         options: {

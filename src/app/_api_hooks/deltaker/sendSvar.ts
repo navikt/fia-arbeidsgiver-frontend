@@ -26,6 +26,9 @@ export async function sendSvar({
   if (res.status === 400 || res.status === 403) {
     throw new Error("Kunne ikke sende svar, prøv igjen");
   }
+  if (res.status === 303) {
+    throw new Error("Tema stengt, hent nytt spørsmål");
+  }
   if (!res.ok) {
     throw new Error("Noe gikk galt.");
   }
