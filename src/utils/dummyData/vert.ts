@@ -241,6 +241,7 @@ const dummySpørsmålMedSvarPerTema = [
     spørsmålMedSvar: [
       {
         tekst: "Hvor lenge har du vært en del av gruppen?",
+        flervalg: false,
         svarListe: [
           {
             tekst: "Mindre enn et år",
@@ -262,6 +263,7 @@ const dummySpørsmålMedSvarPerTema = [
       },
       {
         tekst: "Hvor ofte møtes dere?",
+        flervalg: false,
         svarListe: [
           {
             tekst: "1 - 2 ganger i året",
@@ -288,6 +290,7 @@ const dummySpørsmålMedSvarPerTema = [
       {
         tekst:
           "Hvor godt kjenner dere til hverandres roller og ansvar i gruppen?",
+        flervalg: false,
         svarListe: [
           {
             tekst: "Godt",
@@ -309,6 +312,7 @@ const dummySpørsmålMedSvarPerTema = [
       },
       {
         tekst: "Hvordan opplever du at samarbeidet i gruppen fungerer?",
+        flervalg: false,
         svarListe: [
           {
             tekst: "Bra",
@@ -330,6 +334,7 @@ const dummySpørsmålMedSvarPerTema = [
       },
       {
         tekst: "I hvilken grad er du involvert i den daglige driften?",
+        flervalg: false,
         svarListe: [
           {
             tekst: "I stor grad",
@@ -352,6 +357,7 @@ const dummySpørsmålMedSvarPerTema = [
       {
         tekst:
           "I hvilken grad er du involvert i å skape godt samarbeid på arbeidsplassen?",
+        flervalg: false,
         svarListe: [
           {
             tekst: "I stor grad",
@@ -373,6 +379,7 @@ const dummySpørsmålMedSvarPerTema = [
       },
       {
         tekst: "Hvilke temaer får størst prioritet i møtene deres?",
+        flervalg: true,
         svarListe: [
           {
             tekst: "Lønnsforhandlinger",
@@ -426,6 +433,7 @@ const dummySpørsmålMedSvarPerTema = [
       {
         tekst:
           "I hvilken grad jobber dere med tilrettelegging og tilpasning av arbeid?",
+        flervalg: false,
         svarListe: [
           {
             tekst: "I stor grad",

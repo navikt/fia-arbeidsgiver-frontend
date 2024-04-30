@@ -87,6 +87,11 @@ export default function Resultatgraf({
       <BodyShort className={resultatgrafStyle.spørsmåltekst} weight="semibold">
         {spørsmål.tekst}
       </BodyShort>
+      {spørsmål.flervalg ? (
+        <BodyShort className={resultatgrafStyle.flervalgtekst}>
+          (flervalg)
+        </BodyShort>
+      ) : undefined}
       <BarWrapper>
         {spørsmål.svarListe.map(
           (svar, index) =>

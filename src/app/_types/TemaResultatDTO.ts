@@ -7,6 +7,7 @@ export type TemaResultatDTO = {
 
 export type SpørsmålMedSvarDTO = {
   tekst: string;
+  flervalg: boolean;
   svarListe: SvarDTO[];
 };
 

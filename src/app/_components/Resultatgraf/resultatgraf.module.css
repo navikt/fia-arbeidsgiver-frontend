@@ -57,6 +57,11 @@
     margin-bottom: 1rem;
 }
 
+.flervalgtekst {
+    margin-bottom: 1rem;
+    margin-top: -1rem;
+}
+
 .temaheader {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
