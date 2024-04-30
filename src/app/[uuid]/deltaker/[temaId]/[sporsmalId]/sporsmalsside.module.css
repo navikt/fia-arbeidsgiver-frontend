@@ -19,6 +19,10 @@
     flex-shrink: 0;
 }
 
+.normaltekst {
+    font-weight: 400;
+}
+
 .svaralternativknapp {
     width: 100%;
     max-width: 28rem;

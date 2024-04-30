@@ -42,6 +42,14 @@ const API_VERT_ANTALL_SVAR_URL = (
     sporreundersokelseId,
   )}/tema/${temaId}/sporsmal/${sporsmalId}/antall-svar`;
 
+const API_VERT_ANTALL_SVAR_TEMA_URL = (
+  sporreundersokelseId = ":sporreundersokelseId",
+  temaId = ":temaId",
+) =>
+  `${API_VERT_UNDERSØKELSE_URL(
+    sporreundersokelseId,
+  )}/tema/${temaId}/antall-svar`;
+
 const API_DELTAKER_UNDERSØKELSE_URL = (
   sporreundersokelseId = ":sporreundersokelseId",
 ) => `${API_BASE_URL_DELTAKER}/${sporreundersokelseId}`;
@@ -75,6 +83,7 @@ module.exports = {
   API_VERT_ANTALL_DELTAKERE_URL,
   API_VERT_SPØRSMÅL_URL,
   API_VERT_ANTALL_SVAR_URL,
+  API_VERT_ANTALL_SVAR_TEMA_URL,
   API_DELTAKER_UNDERSØKELSE_URL,
   API_DELTAKER_SPØRSMÅL_URL,
   API_DELTAKER_SVAR_URL,

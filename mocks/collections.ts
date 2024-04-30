@@ -8,6 +8,7 @@ const collections = [
       "deltaker-svar:success",
       "vert-antall-deltakere:success",
       "vert-antall-svar:success",
+      "vert-antall-svar-tema:success",
       "vert-temaoversikt:success",
       "vert-temaoversikt-for-ett-tema:success",
       "vert-sporsmal-og-svar:success",
