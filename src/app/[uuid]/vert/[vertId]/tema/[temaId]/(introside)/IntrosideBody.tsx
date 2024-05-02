@@ -66,16 +66,10 @@ export function IntrosideBody({
       {temaoversikt && (
         <>
           <Headerlinje tittel={temaoversikt.beskrivelse}>
-            {/* TODO: bruk verdi for hele tema, ikke siste spørsmål. */}
             <StatusPåDeltakerMedSvar
               spørreundersøkelseId={spørreundersøkelseId}
               vertId={vertId}
               temaId={temaId}
-              spørsmålId={
-                temaoversikt.spørsmålOgSvaralternativer[
-                  temaoversikt.spørsmålOgSvaralternativer.length - 1
-                ].id
-              }
             />
             <Actionknapper
               åpneTema={åpneTema}

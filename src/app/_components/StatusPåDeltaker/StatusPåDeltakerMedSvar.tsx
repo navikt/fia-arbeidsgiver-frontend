@@ -4,30 +4,27 @@ import { Alert, HStack, Loader } from "@navikt/ds-react";
 import statusPåDeltakereStyles from "./statusPåDeltaker.module.css";
 import { PersonGroupFillIcon } from "@navikt/aksel-icons";
 import React from "react";
-import { useAntallSvar } from "@/app/_api_hooks/vert/useAntallSvar";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import { useAntallDeltakere } from "@/app/_api_hooks/vert/useAntallDeltakere";
+import { useTemaAntallSvar } from "@/app/_api_hooks/vert/useTemaAntallSvar";
 
 export function StatusPåDeltakerMedSvar({
   spørreundersøkelseId,
   vertId,
   temaId,
-  spørsmålId,
 }: {
   spørreundersøkelseId: string;
   vertId: string;
   temaId: number;
-  spørsmålId: string;
 }) {
   const {
     data: antallSvar,
     isLoading: lasterAntallSvar,
     error: feilAntallSvar,
-  } = useAntallSvar({
+  } = useTemaAntallSvar({
     vertId,
     spørreundersøkelseId,
     temaId,
-    spørsmålId,
   });
   const {
     data: antallDeltakere,

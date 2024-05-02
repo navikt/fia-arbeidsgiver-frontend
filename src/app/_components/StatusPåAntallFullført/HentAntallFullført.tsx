@@ -6,7 +6,6 @@ import kartleggingStyles from "@/app/kartlegging.module.css";
 import React from "react";
 
 export function HentAntallFullført({
-  //TODO: Kan nå tas i bruk. Relatert: HentAntallSvarForTema
   spørreundersøkelseId,
   vertId,
 }: {

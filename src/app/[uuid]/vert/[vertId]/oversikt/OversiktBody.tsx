@@ -35,7 +35,12 @@ export default function OversiktBody({
     listeOverTemaer && (
       <HStack gap="4" align="center" justify="center">
         {listeOverTemaer.map((temaoversikt, index) => (
-          <OversiktBleedVert key={index} temaoversikt={temaoversikt} />
+          <OversiktBleedVert
+            key={index}
+            vertId={vertId}
+            spørreundersøkelseId={spørreundersøkelseId}
+            temaoversikt={temaoversikt}
+          />
         ))}
       </HStack>
     )

@@ -5,10 +5,15 @@ import { useRouter } from "next/navigation";
 import { TemaoversiktDTO, TemaStatus } from "@/app/_types/TemaoversiktDTO";
 import LinkTilResultat from "@/app/_components/LinkTilResultat";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
+import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
 
 export function OversiktBleedVert({
+  spørreundersøkelseId,
+  vertId,
   temaoversikt,
 }: {
+  spørreundersøkelseId: string;
+  vertId: string;
   temaoversikt: TemaoversiktDTO;
 }) {
   return (
@@ -20,7 +25,17 @@ export function OversiktBleedVert({
           className={oversiktStyles.temaboksinnhold}
         >
           <Heading size="medium">{temaoversikt.beskrivelse}</Heading>
-          <HStack gap={"4"} justify="end">
+          <HStack
+            gap={"4"}
+            justify={temaoversikt.status === "ÅPNET" ? "space-between" : "end"}
+          >
+            {temaoversikt.status === "ÅPNET" && (
+              <StatusPåDeltakerMedSvar
+                spørreundersøkelseId={spørreundersøkelseId}
+                vertId={vertId}
+                temaId={temaoversikt.temaId}
+              />
+            )}
             <TemaActions temaoversikt={temaoversikt} />
           </HStack>
         </VStack>
