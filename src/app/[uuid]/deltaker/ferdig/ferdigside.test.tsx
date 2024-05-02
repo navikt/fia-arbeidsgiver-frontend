@@ -15,7 +15,7 @@ describe("Ferdigside", () => {
   });
   test("rett innhold blir tegnet opp", async () => {
     render(<Ferdigside />);
-    const tittel = await screen.findByText("Takk for ditt bidrag!");
+    const tittel = await screen.findByText("Takk for din deltakelse 🎉");
     expect(tittel).toBeInTheDocument();
   });
 
