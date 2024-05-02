@@ -28,7 +28,7 @@ describe("Startside", () => {
   test("rett innhold blir tegnet opp", async () => {
     render(<Startside params={{ uuid: "uuid", vertId: "vertId" }} />);
     const tittel = await screen.findByText(
-      "Skann QR-koden for å bli med i undersøkelsen",
+      "Hovedmålet er å få ned sykefraværet og redusere frafall fra arbeidslivet.",
     );
     expect(tittel).toBeInTheDocument();
   });
@@ -49,7 +49,7 @@ describe("Startside", () => {
     act(() => komIGang.click());
     expect(pushFunction).toHaveBeenCalledTimes(1);
     expect(pushFunction).toHaveBeenCalledWith(
-      `../../uuid/vert/vertId/oversikt`,
+      `../../uuid/vert/vertId/oversikt?loginModal=true`,
     );
   });
 
@@ -57,11 +57,7 @@ describe("Startside", () => {
     const { container } = render(
       <Startside params={{ uuid: "uuid", vertId: "vertId" }} />,
     );
-    const results = await axe(container, {
-      rules: {
-        "svg-img-alt": { enabled: false }, // TODO: Fiks alt-tekst på svg (qr-kode) før denne testen kan slås på.
-      },
-    });
+    const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 });
