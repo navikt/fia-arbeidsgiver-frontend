@@ -18,6 +18,9 @@ jest.mock("next/navigation", () => ({
     push: pushMock,
   })),
   usePathname: jest.fn(() => "/"),
+  useSearchParams: jest.fn(() => ({
+    get: jest.fn(() => null),
+  })),
 }));
 
 jest.mock("@/app/_api_hooks/vert/useTemaoversikt", () => ({
