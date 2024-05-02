@@ -8,7 +8,16 @@ import { TracingInstrumentation } from "@grafana/faro-web-tracing";
 import { configureLogger } from "@navikt/next-logger";
 import { getFaroEnv } from "./faroEnv";
 
+const ignoredUrlsGlobal = [
+  // TODO: legg til URL-ene til andre endepunkt/hosts som ikke skal instrumentaliseres
+  // (det går ikke an å bruke window.location.hostname med SSR)
+  //new RegExp(`^(?!.*${window.location.hostname})`),
+  new RegExp(`/antall-deltakere$`),
+  new RegExp(`/antall-svar$`),
+];
+
 let faro: Faro | null = null;
+
 export function initInstrumentation(): void {
   if (typeof window === "undefined" || faro !== null) return;
 
@@ -34,6 +43,7 @@ export function getFaro(faroUrl: string): Faro {
     app: {
       name: "fia-arbeidsgiver-frontend",
     },
+    ignoreUrls: ignoredUrlsGlobal,
     instrumentations: [
       ...getWebInstrumentations({
         captureConsole: false,
