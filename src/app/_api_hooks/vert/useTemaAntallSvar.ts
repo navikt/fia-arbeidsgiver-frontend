@@ -1,5 +1,4 @@
-import useSWR, { SWRConfiguration, SWRResponse } from "swr";
-import { ETT_SEKUND_MS } from "@/utils/consts";
+import useSWR, { SWRResponse } from "swr";
 
 export function useTemaAntallSvar({
   spørreundersøkelseId,
@@ -21,14 +20,8 @@ export function useTemaAntallSvar({
     });
   };
 
-  const swrConfig: SWRConfiguration = {
-    refreshInterval: ETT_SEKUND_MS,
-    revalidateIfStale: true,
-  };
-
   return useSWR<number>(
     `/api/${spørreundersøkelseId}/vert/${vertId}/${temaId}/antall-svar`,
     fetcher,
-    swrConfig,
   );
 }

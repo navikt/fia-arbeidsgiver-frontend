@@ -1,10 +1,12 @@
+"use client";
+
 import { useTemaAntallSvar } from "@/app/_api_hooks/vert/useTemaAntallSvar";
 import { Alert, Loader } from "@navikt/ds-react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import React from "react";
 
 export function HentAntallSvarForTema({
-  //TODO: ta i bruk når endepunkt for antall svar for alle temaer er klart
+  //TODO: Kan nå tas i bruk. Relatert: HentAntallFullført
   spørreundersøkelseId,
   vertId,
   temaId,
