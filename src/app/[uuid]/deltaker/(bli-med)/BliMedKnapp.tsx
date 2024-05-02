@@ -1,11 +1,12 @@
 "use client";
 
-import { Alert, Button } from "@navikt/ds-react";
+import { Alert, BodyShort, Button, HStack } from "@navikt/ds-react";
 import React from "react";
 import { useRouter } from "next/navigation";
 import startsideStyles from "./startside.module.css";
 import { fetchBliMed } from "@/app/_api_hooks/deltaker/fetchBliMed";
 import { fetchIdentifiserbartSpørsmål } from "@/app/_api_hooks/deltaker/fetchIdentifiserbartSpørsmål";
+import { PersonGroupIcon } from "@navikt/aksel-icons";
 
 export default function BliMedKnapp({
   spørreundersøkelseId,
@@ -17,7 +18,6 @@ export default function BliMedKnapp({
   return (
     <>
       <Button
-        variant={"secondary"}
         onClick={() => {
           fetchBliMed(spørreundersøkelseId)
             .then(() => {
@@ -32,7 +32,9 @@ export default function BliMedKnapp({
         }}
         className={startsideStyles.bliMedKnapp}
       >
-        Bli med!
+        <HStack align={"center"}>
+          <PersonGroupIcon /> <BodyShort>Bli med!</BodyShort>
+        </HStack>
       </Button>
       {error !== null ? <Alert variant="error">{error}</Alert> : null}
     </>

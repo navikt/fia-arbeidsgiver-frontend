@@ -1,14 +1,13 @@
 .sidetekst {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .bliMedKnapp {
-    max-width: 28rem;
+    max-width: 12rem;
     width: 100%;
     margin: auto;
 }
 
 .kartleggingsmøtetittel {
-    margin-top: 2rem;
+    margin-top: 10rem;
 }

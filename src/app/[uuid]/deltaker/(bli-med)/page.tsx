@@ -26,11 +26,11 @@ export default function Landingsside({
             className={startsideStyles.kartleggingsmøtetittel}
             align="center"
           >
-            IA kartleggingsmøte
+            Velkommen!
           </Heading>
           <SesjonUtløptVarsel sesjon={searchParams.sesjon} />
           <BodyShort align="center" className={startsideStyles.sidetekst}>
-            Klikk på &quot;Bli med!&quot; for å delta på kartleggingsmøtet.
+            Trykk på knappen for å bli med
           </BodyShort>
           <BliMedKnapp spørreundersøkelseId={params?.uuid} />
         </VStack>
