@@ -3,10 +3,9 @@ import { Button, HStack } from "@navikt/ds-react";
 import { PageBlock } from "@navikt/ds-react/Page";
 import komponenterStyles from "./komponenter.module.css";
 import React from "react";
-import { VisQRModal } from "@/app/_components/VisQRModal";
-import { QRkodeVisning } from "@/app/_components/QRkodeVisning";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeftIcon } from "@navikt/aksel-icons";
+import LoginModal from "./LoginModal";
 
 export default function HeaderVert({
   spørreundersøkelseId,
@@ -18,8 +17,10 @@ export default function HeaderVert({
   const router = useRouter();
   const pathname = usePathname();
 
-  const [visQRkodeModalÅpen, setvisQRkodeModalÅpen] = React.useState(false);
   const erPåOversiktSide = pathname.endsWith("oversikt");
+  const searchParams = useSearchParams();
+
+  const loginModal = searchParams.get("loginModal");
 
   return (
     <PageBlock as="header" className={komponenterStyles.header}>
@@ -35,19 +36,12 @@ export default function HeaderVert({
             Gå til oversikt
           </Button>
         )}
-        <Button variant="secondary" onClick={() => setvisQRkodeModalÅpen(true)}>
-          Vis QR-kode
-        </Button>
+        <LoginModal
+          spørreundersøkelseId={spørreundersøkelseId}
+          vertId={vertId}
+          startOpen={loginModal === "true"}
+        />
       </HStack>
-      <VisQRModal
-        åpen={visQRkodeModalÅpen}
-        lukk={() => {
-          setvisQRkodeModalÅpen(false);
-        }}
-        title={"QR kode"}
-      >
-        <QRkodeVisning spørreundersøkelseId={spørreundersøkelseId} />
-      </VisQRModal>
     </PageBlock>
   );
 }

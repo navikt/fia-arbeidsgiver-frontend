@@ -1,5 +1,5 @@
-import { Modal, VStack } from "@navikt/ds-react";
-import komponenterStyles from "./komponenter.module.css";
+import { Modal } from "@navikt/ds-react";
+import loginmodalStyles from "./loginmodal.module.css";
 
 interface Props {
   åpen: boolean;
@@ -15,11 +15,10 @@ export const VisQRModal = ({ åpen, lukk, title, children }: Props) => {
       onClose={lukk}
       header={{ heading: title }}
       closeOnBackdropClick={true}
+      width="50rem"
     >
-      <Modal.Body className={komponenterStyles.qrKodeModal}>
-        <VStack align={"center"} justify={"center"}>
-          {children}
-        </VStack>
+      <Modal.Body className={loginmodalStyles.qrKodeModal}>
+        {children}
       </Modal.Body>
     </Modal>
   );

@@ -15,11 +15,12 @@ export function StatusPåDeltaker({
 }) {
   return (
     <HStack className={statusPåDeltakereStyles.deltakere}>
-      <PersonGroupFillIcon />
+      <PersonGroupFillIcon fontSize="3rem" />
       <AntallDeltakere
         spørreundersøkelseId={spørreundersøkelseId}
         vertId={vertId}
       />
+      {" deltakere"}
     </HStack>
   );
 }

@@ -23,10 +23,3 @@
     align-items: center;
     justify-content: center;
 }
-
-.qrKodeModal {
-    padding: 0;
-    min-width: 25rem;
-    min-height: 25rem;
-    --a-spacing-6: 0.5rem;
-}

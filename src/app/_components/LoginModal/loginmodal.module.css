@@ -1,0 +1,8 @@
+.qrKodeModal {
+  display: flex;
+  flex-direction: row;
+}
+
+.qrKodeModal > div {
+  flex: 1;
+}

@@ -3,7 +3,10 @@
 import React from "react";
 import startsideStyles from "./startside.module.css";
 import { Heading } from "@navikt/ds-react";
-import { lenkeFraId, QRkodeVisning } from "@/app/_components/QRkodeVisning";
+import {
+  lenkeFraId,
+  QRkodeVisning,
+} from "@/app/_components/LoginModal/QRkodeVisning";
 import { HydrationSafeClientsideComponent } from "@/app/_components/HydrationSafeClientsideComponent";
 
 export default function Logininformasjon({
