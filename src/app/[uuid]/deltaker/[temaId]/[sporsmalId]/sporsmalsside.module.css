@@ -1,46 +1,31 @@
-.spørsmålsbleed {
-    flex-shrink: 0;
+.ventertittel {
+    margin-top: 11rem;
+    margin-bottom: 3rem;
 }
 
 .spørsmålsheader {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-    margin-right: auto;
-    margin-left: auto;
-
-    font-weight: 600;
-    max-width: 42rem;
+    padding-top: 3rem;
+    align-self: start;
+    width: 100%;
 }
 
-.spørsmålsheader :first-child {
-    margin-right: 2rem;
-    flex-shrink: 0;
+.innholdboks{
+    background: var(--a-blue-50);
+    margin-top: 1rem;
 }
 
 .normaltekst {
     font-weight: 400;
 }
 
-.svaralternativknapp {
-    width: 100%;
-    max-width: 28rem;
-    margin-bottom: 1rem;
-}
-
 .tilbakeknapp {
-    width: 100%;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    max-width: 28rem;
 }
 
 .nesteknapp {
-    width: 100%;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    max-width: 28rem;
 }
 
 .spørsmålsseksjon {
@@ -57,20 +42,9 @@
     flex-direction: column;
 }
 
-.spørsmålstekst {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-
 .lasterhjul {
     display: flex;
     justify-content: center;
-}
-
-.bleedInnhold {
-    padding-left: 1rem;
-    padding-top: 0.5rem;
-    align-self: center;
 }
 
 .nesteStack {

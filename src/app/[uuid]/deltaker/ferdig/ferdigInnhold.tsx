@@ -1,8 +1,9 @@
 "use client";
 
-import { BodyShort, VStack } from "@navikt/ds-react";
+import { BodyShort } from "@navikt/ds-react";
 import React from "react";
 import CookieHandler from "@/utils/CookieHandler";
+import startsideStyles from "@/app/[uuid]/deltaker/(bli-med)/startside.module.css";
 
 export function FerdigInnhold() {
   React.useEffect(() => {
@@ -10,8 +11,8 @@ export function FerdigInnhold() {
   });
 
   return (
-    <VStack gap={"4"} align={"center"}>
-      <BodyShort>Takk for ditt bidrag!</BodyShort>
-    </VStack>
+    <BodyShort align="center" className={startsideStyles.sidetekst}>
+      Takk for din deltakelse 🎉
+    </BodyShort>
   );
 }

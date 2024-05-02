@@ -3,7 +3,7 @@
 import React from "react";
 
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
-import { SpørsmålBleedDeltaker } from "./SpørsmålBleedDeltaker";
+import { SpørsmålHeadingDeltaker } from "./SpørsmålHeadingDeltaker";
 import { Alert, Heading, Loader, VStack } from "@navikt/ds-react";
 import spørsmålStyles from "./sporsmalsside.module.css";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
@@ -41,7 +41,6 @@ export default function SpørsmålBody({
   if (feilSpørsmålOgSvar) {
     return (
       <>
-        <SpørsmålBleedDeltaker spørsmålOgSvar={spørsmålOgSvar} />
         <VStack
           gap={"4"}
           align={"center"}
@@ -56,35 +55,19 @@ export default function SpørsmålBody({
     );
   }
 
-  if (spørsmålOgSvar === undefined) {
+  if (spørsmålOgSvar === undefined || lasterSpørsmålOgSvar) {
     return (
       <>
-        <SpørsmålBleedDeltaker spørsmålOgSvar={spørsmålOgSvar} />
-        <VStack
-          gap={"4"}
-          align={"center"}
-          justify={"center"}
-          className={spørsmålStyles.nesteStack}
-        >
-          <Heading size={"large"}>Venter på vert</Heading>
-          <Loader size="3xlarge" title="Venter..." />
-        </VStack>
-      </>
-    );
-  }
-
-  if (lasterSpørsmålOgSvar) {
-    return (
-      <>
-        <SpørsmålBleedDeltaker spørsmålOgSvar={spørsmålOgSvar} />
-        <VStack
-          gap={"4"}
-          align={"center"}
-          justify={"center"}
-          className={spørsmålStyles.nesteStack}
-        >
-          <Heading size={"large"}>Laster spørsmål</Heading>
-          <Loader size="3xlarge" title="Venter..." />
+        <VStack gap={"4"} align={"center"}>
+          <Heading
+            level="1"
+            size="medium"
+            className={spørsmålStyles.ventertittel}
+            align="center"
+          >
+            Venter...
+          </Heading>
+          <Loader variant={"interaction"} size="3xlarge" title="Venter" />
         </VStack>
       </>
     );
@@ -93,7 +76,7 @@ export default function SpørsmålBody({
   return (
     spørsmålOgSvar && (
       <>
-        <SpørsmålBleedDeltaker spørsmålOgSvar={spørsmålOgSvar} />
+        <SpørsmålHeadingDeltaker spørsmålOgSvar={spørsmålOgSvar} />
         <Spørsmålsseksjon
           spørreundersøkelseId={spørreundersøkelseId}
           temaId={temaId}

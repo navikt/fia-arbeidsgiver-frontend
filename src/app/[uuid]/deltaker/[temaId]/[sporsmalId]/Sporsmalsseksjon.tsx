@@ -4,9 +4,11 @@ import React from "react";
 import spørsmålStyles from "./sporsmalsside.module.css";
 import {
   BodyShort,
+  Box,
   Button,
   Checkbox,
   CheckboxGroup,
+  HStack,
   Radio,
   RadioGroup,
   VStack,
@@ -17,6 +19,7 @@ import { SpørsmåloversiktDTO } from "@/app/_types/SpørsmåloversiktDTO";
 import CookieHandler from "@/utils/CookieHandler";
 import { urlNeste, urlTilbake } from "@/utils/spørreundersøkelsesUtils";
 import { fetchIdentifiserbartSpørsmål } from "@/app/_api_hooks/deltaker/fetchIdentifiserbartSpørsmål";
+import { ArrowRightIcon } from "@navikt/aksel-icons";
 
 export default function Spørsmålsseksjon({
   spørsmålId,
@@ -96,70 +99,82 @@ export default function Spørsmålsseksjon({
 
   return (
     <>
-      <BodyShort weight={"semibold"}>
-        {spørsmålOgSvar.spørsmålTekst}{" "}
-        {spørsmålOgSvar.flervalg ? (
-          <span className={spørsmålStyles.normaltekst}>
-            (flere valg er mulig)
-          </span>
-        ) : null}
-      </BodyShort>
-      <VStack className={spørsmålStyles.radioStack}>
-        {spørsmålOgSvar.flervalg ? (
-          <CheckboxGroup
-            onChange={velgSvar}
-            legend={"Velg flere alternativ"}
-            hideLegend
-            value={svar}
-            error={feilSendSvar}
-          >
-            {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
-              <Checkbox
-                key={svaralternativ.svarId}
-                value={svaralternativ.svarId}
-              >
-                {svaralternativ.svartekst}
-              </Checkbox>
-            ))}
-          </CheckboxGroup>
-        ) : (
-          <RadioGroup
-            legend="Velg ett alternativ"
-            onChange={(value) => velgSvar([value])}
-            value={svar[0] || null}
-            hideLegend
-            className={spørsmålStyles.spørsmålsseksjon}
-            error={feilSendSvar}
-          >
-            {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
-              <Radio key={svaralternativ.svarId} value={svaralternativ.svarId}>
-                {svaralternativ.svartekst}
-              </Radio>
-            ))}
-          </RadioGroup>
-        )}
-        <VStack className={spørsmålStyles.knappeStack}>
+      <Box
+        borderRadius="xlarge"
+        padding="5"
+        className={spørsmålStyles.innholdboks}
+      >
+        <BodyShort weight={"semibold"}>
+          {spørsmålOgSvar.spørsmålTekst}{" "}
+          {spørsmålOgSvar.flervalg ? (
+            <span className={spørsmålStyles.normaltekst}>
+              (flere valg er mulig)
+            </span>
+          ) : null}
+        </BodyShort>
+        <VStack className={spørsmålStyles.radioStack}>
+          {spørsmålOgSvar.flervalg ? (
+            <CheckboxGroup
+              onChange={velgSvar}
+              legend={"Velg flere alternativ"}
+              hideLegend
+              value={svar}
+              error={feilSendSvar}
+            >
+              {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
+                <Checkbox
+                  key={svaralternativ.svarId}
+                  value={svaralternativ.svarId}
+                >
+                  {svaralternativ.svartekst}
+                </Checkbox>
+              ))}
+            </CheckboxGroup>
+          ) : (
+            <RadioGroup
+              legend="Velg ett alternativ"
+              onChange={(value) => velgSvar([value])}
+              value={svar[0] || null}
+              hideLegend
+              className={spørsmålStyles.spørsmålsseksjon}
+              error={feilSendSvar}
+            >
+              {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
+                <Radio
+                  key={svaralternativ.svarId}
+                  value={svaralternativ.svarId}
+                >
+                  {svaralternativ.svartekst}
+                </Radio>
+              ))}
+            </RadioGroup>
+          )}
+        </VStack>
+      </Box>
+      <HStack justify={"end"} gap={"2"} className={spørsmålStyles.knappeStack}>
+        {spørsmålOgSvar.forrigeSpørsmål !== null ? (
           <Button
-            variant="primary"
-            className={spørsmålStyles.nesteknapp}
-            onClick={håndterNesteknapp}
+            variant="secondary"
+            className={spørsmålStyles.tilbakeknapp}
+            onClick={håndterTilbakeknapp}
           >
+            Tilbake
+          </Button>
+        ) : null}
+        <Button
+          variant="primary"
+          className={spørsmålStyles.nesteknapp}
+          onClick={håndterNesteknapp}
+        >
+          <HStack align={"center"} justify={"center"} gap={"2"}>
             <SvarKnappTekst
               erPåLagretSvar={erPåLagretSvar(svar, lagretSvar)}
               lagretSvar={lagretSvar}
             />
-          </Button>
-          {spørsmålOgSvar.forrigeSpørsmål !== null ? (
-            <Button
-              variant="secondary"
-              className={spørsmålStyles.tilbakeknapp}
-              onClick={håndterTilbakeknapp}
-            >
-              Tilbake
-            </Button>
-          ) : null}
-        </VStack>
-      </VStack>
+            <ArrowRightIcon aria-hidden fontSize={"1.5rem"} />
+          </HStack>
+        </Button>
+      </HStack>
     </>
   );
 }

@@ -32,7 +32,7 @@ export default function BliMedKnapp({
         }}
         className={startsideStyles.bliMedKnapp}
       >
-        <HStack align={"center"}>
+        <HStack align={"center"} gap={"2"}>
           <PersonGroupIcon /> <BodyShort>Bli med!</BodyShort>
         </HStack>
       </Button>
