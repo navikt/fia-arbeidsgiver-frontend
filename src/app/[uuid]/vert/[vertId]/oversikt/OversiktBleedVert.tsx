@@ -27,9 +27,11 @@ export function OversiktBleedVert({
           <Heading size="medium">{temaoversikt.beskrivelse}</Heading>
           <HStack
             gap={"4"}
-            justify={temaoversikt.status === "ÅPNET" ? "space-between" : "end"}
+            justify={
+              temaoversikt.status !== "IKKE_ÅPNET" ? "space-between" : "end"
+            }
           >
-            {temaoversikt.status === "ÅPNET" && (
+            {temaoversikt.status !== "IKKE_ÅPNET" && (
               <StatusPåDeltakerMedSvar
                 spørreundersøkelseId={spørreundersøkelseId}
                 vertId={vertId}
