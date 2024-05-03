@@ -10,7 +10,7 @@ export function Framdrift({
 }) {
   const framdriftDivs = [];
   const breddeUtenMargin =
-    (100 * (window.innerWidth - totaltAntallSpørsmål * 2)) /
+    (95 * (window.innerWidth - totaltAntallSpørsmål * 2)) /
     (window.innerWidth * totaltAntallSpørsmål);
 
   for (let i = 0; i < totaltAntallSpørsmål; i++) {
