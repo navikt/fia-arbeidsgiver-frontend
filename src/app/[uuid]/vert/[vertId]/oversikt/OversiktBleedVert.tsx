@@ -25,13 +25,12 @@ export function OversiktBleedVert({
           className={oversiktStyles.temaboksinnhold}
         >
           <VStack gap="4">
-            {temaoversikt.status !== "IKKE_ÅPNET" && (
-              <StatusPåDeltakerMedSvar
-                spørreundersøkelseId={spørreundersøkelseId}
-                vertId={vertId}
-                temaId={temaoversikt.temaId}
-              />
-            )}
+            <StatusPåDeltakerMedSvar
+              spørreundersøkelseId={spørreundersøkelseId}
+              vertId={vertId}
+              temaId={temaoversikt.temaId}
+              erSynlig={temaoversikt.status !== "IKKE_ÅPNET"}
+            />
             <Heading size="medium">{temaoversikt.beskrivelse}</Heading>
           </VStack>
           <HStack gap={"4"} justify={"end"}>

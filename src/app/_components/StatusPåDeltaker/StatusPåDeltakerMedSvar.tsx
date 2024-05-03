@@ -12,10 +12,12 @@ export function StatusPåDeltakerMedSvar({
   spørreundersøkelseId,
   vertId,
   temaId,
+  erSynlig = true,
 }: {
   spørreundersøkelseId: string;
   vertId: string;
   temaId?: number;
+  erSynlig?: boolean;
 }) {
   const {
     data: antallSvar,
@@ -51,7 +53,10 @@ export function StatusPåDeltakerMedSvar({
     );
   }
   return (
-    <HStack className={statusPåDeltakereStyles.deltakereMedStatus}>
+    <HStack
+      style={{ visibility: erSynlig ? "visible" : "hidden" }}
+      className={statusPåDeltakereStyles.deltakereMedStatus}
+    >
       <PersonGroupFillIcon />
       <InnholdEllerSpinner innhold={antallSvar} laster={lasterAntallSvar} />
       {"/"}
