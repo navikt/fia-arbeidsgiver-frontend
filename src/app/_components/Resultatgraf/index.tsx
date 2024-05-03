@@ -21,16 +21,34 @@ const Bar = ({
   style = {},
   prosent,
   farge,
+  borderfarge,
   ...remainingProps
 }: {
   prosent: number;
   farge: string;
+  borderfarge?: string;
 } & React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={resultatgrafStyle.bar}
-    style={{ ...style, width: `${prosent}%`, backgroundColor: farge }}
+    style={{
+      ...style,
+      width: `${prosent}%`,
+      position: "relative",
+    }}
     {...remainingProps}
-  />
+  >
+    <div
+      style={{
+        backgroundColor: farge,
+        border: borderfarge ? `2px solid ${borderfarge}` : undefined,
+        position: "absolute",
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+      }}
+    ></div>
+  </div>
 );
 
 const LabelList = (props: React.HTMLAttributes<HTMLUListElement>) => (
@@ -43,12 +61,20 @@ const Label = (props: React.HTMLAttributes<HTMLLIElement>) => (
 
 const LabelBox = ({
   farge,
+  borderfarge,
   style = {},
   ...remainingProps
-}: { farge: string } & React.HTMLAttributes<HTMLDivElement>) => (
+}: {
+  farge: string;
+  borderfarge?: string;
+} & React.HTMLAttributes<HTMLDivElement>) => (
   <div
     {...remainingProps}
-    style={{ ...style, backgroundColor: farge }}
+    style={{
+      ...style,
+      backgroundColor: farge,
+      border: borderfarge ? `2px solid ${borderfarge}` : undefined,
+    }}
     className={resultatgrafStyle.labelBox}
   />
 );
@@ -56,25 +82,43 @@ const LabelBox = ({
 export default function Resultatgraf({
   spørsmål,
   farger = [
-    "var(--a-data-surface-2)",
-    "var(--a-data-surface-2-subtle)",
-    "var(--a-data-surface-3)",
-    "var(--a-data-surface-3-subtle)",
-    "var(--a-data-surface-6)",
-    "var(--a-data-surface-6-subtle)",
-    "var(--a-data-surface-5)",
-    "var(--a-data-surface-5-subtle)",
-    "var(--a-data-surface-4)",
-    "var(--a-data-surface-4-subtle)",
+    { bakgrunn: "var(--a-data-surface-2)", border: undefined },
+    {
+      bakgrunn: "var(--a-data-surface-2-subtle)",
+      border: "var(--a-data-border-2)",
+    },
+    { bakgrunn: "var(--a-data-surface-3)", border: undefined },
+    {
+      bakgrunn: "var(--a-data-surface-3-subtle)",
+      border: "var(--a-data-border-3)",
+    },
+    { bakgrunn: "var(--a-data-surface-6)", border: undefined },
+    {
+      bakgrunn: "var(--a-data-surface-6-subtle)",
+      border: "var(--a-data-border-6)",
+    },
+    { bakgrunn: "var(--a-data-surface-5)", border: undefined },
+    {
+      bakgrunn: "var(--a-data-surface-5-subtle)",
+      border: "var(--a-data-border-5)",
+    },
+    { bakgrunn: "var(--a-data-surface-4)", border: undefined },
+    {
+      bakgrunn: "var(--a-data-surface-4-subtle)",
+      border: "var(--a-data-border-4)",
+    },
   ],
   barTestIds,
 }: {
   spørsmål: SpørsmålMedSvarDTO;
-  farger?: Color[] | string[];
+  farger?: { bakgrunn: Color | string; border?: Color | string }[];
   barTestIds?: string[];
 }) {
-  function getSvarGrafFarge(index: number): string {
-    return farger[index % farger.length];
+  function getSvarGrafBakgrunnsfarge(index: number): string {
+    return farger[index % farger.length].bakgrunn;
+  }
+  function getSvarGrafBorderfarge(index: number): string | undefined {
+    return farger[index % farger.length].border;
   }
 
   const total = spørsmål.svarListe.reduce(
@@ -99,7 +143,8 @@ export default function Resultatgraf({
               <Bar
                 key={index}
                 prosent={(svar.antallSvar / total) * 100}
-                farge={getSvarGrafFarge(index)}
+                farge={getSvarGrafBakgrunnsfarge(index)}
+                borderfarge={getSvarGrafBorderfarge(index)}
                 data-testid={barTestIds?.[index]}
               />
             ),
@@ -108,7 +153,10 @@ export default function Resultatgraf({
       <LabelList>
         {spørsmål.svarListe.map((svar, index) => (
           <Label key={index}>
-            <LabelBox farge={getSvarGrafFarge(index)} />
+            <LabelBox
+              farge={getSvarGrafBakgrunnsfarge(index)}
+              borderfarge={getSvarGrafBorderfarge(index)}
+            />
             <BodyShort weight="semibold">{svar.tekst}</BodyShort>
             <BodyShort className={resultatgrafStyle.labelValue}>
               ({svar.antallSvar})

@@ -21,13 +21,18 @@ describe("Resultatgraf", () => {
   });
 
   test("Tegner riktig farge og bredde på svar.", () => {
-    const farger = ["#f0f", "#ff0", "#0ff", "#0f0"];
+    const farger = [
+      { bakgrunn: "#f0f" },
+      { bakgrunn: "#ff0" },
+      { bakgrunn: "#0ff" },
+      { bakgrunn: "#0f0" },
+    ];
     render(
       <Resultatgraf
         spørsmål={{
           tekst: "Hva er din favorittfarge?",
           svarListe: farger.map((farge, index) => ({
-            tekst: farge,
+            tekst: farge.bakgrunn,
             antallSvar: index + 1,
           })),
         }}
