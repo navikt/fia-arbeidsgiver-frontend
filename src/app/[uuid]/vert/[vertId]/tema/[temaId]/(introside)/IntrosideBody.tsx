@@ -76,6 +76,8 @@ export function IntrosideBody({
               setErStartet={setErStartet}
               erStartet={erStartet}
               nesteTemaId={temaoversikt.nesteTemaId}
+              spørreundersøkelseId={spørreundersøkelseId}
+              vertId={vertId}
               temaId={temaId}
             />
           </Headerlinje>
@@ -98,12 +100,16 @@ function Actionknapper({
   setErStartet,
   erStartet,
   nesteTemaId,
+  spørreundersøkelseId,
+  vertId,
   temaId,
 }: {
   åpneTema: () => void;
   setErStartet: (erStartet: boolean) => void;
   erStartet: boolean;
   nesteTemaId?: number;
+  spørreundersøkelseId: string;
+  vertId: string;
   temaId: number;
 }) {
   const router = useRouter();
@@ -125,6 +131,9 @@ function Actionknapper({
   return (
     <span className={introsideStyles.actionknapper}>
       <LinkTilResultat
+        spørreundersøkelseId={spørreundersøkelseId}
+        vertId={vertId}
+        temaId={temaId}
         skalViseKnapp
         urlTilResultatside={`../resultater/${temaId}`}
         gåDirekteTilResultat={false}

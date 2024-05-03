@@ -1,11 +1,15 @@
 "use client";
 
 import React from "react";
-import { BodyLong, Button, Modal } from "@navikt/ds-react";
+import { BodyLong, Button, HStack, Modal, VStack } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { BarChartIcon } from "@navikt/aksel-icons";
+import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
 
 export default function LinkTilResultat({
+  spørreundersøkelseId,
+  vertId,
+  temaId,
   skalViseKnapp,
   urlTilResultatside,
   gåDirekteTilResultat = false,
@@ -14,6 +18,9 @@ export default function LinkTilResultat({
   resultatType = "tema",
   variant = "secondary",
 }: {
+  spørreundersøkelseId: string;
+  vertId: string;
+  temaId?: number;
   skalViseKnapp: boolean;
   urlTilResultatside: string;
   gåDirekteTilResultat?: boolean;
@@ -41,12 +48,29 @@ export default function LinkTilResultat({
       >
         {knappetekst}
       </Button>
-      <Modal ref={modalRef} header={{ heading: "Er du sikker?" }}>
+      <Modal
+        ref={modalRef}
+        header={{ heading: `${knappetekst ? knappetekst : "Vis resultater"}` }}
+      >
         <Modal.Body>
-          <BodyLong>Er du sikker på at du ønsker å gå til resultat?</BodyLong>
-          <BodyLong weight="semibold">
-            Dette vil låse {resultatType}, så ingen nye svar kan komme inn.
-          </BodyLong>
+          <VStack gap={"4"}>
+            <VStack>
+              <BodyLong>
+                Er du sikker på at du ønsker å gå til resultat?
+              </BodyLong>
+              <BodyLong weight="semibold">
+                Dette vil låse {resultatType}, så ingen nye svar kan komme inn.
+              </BodyLong>
+            </VStack>
+            <HStack align={"center"} gap={"2"}>
+              <StatusPåDeltakerMedSvar
+                spørreundersøkelseId={spørreundersøkelseId}
+                vertId={vertId}
+                temaId={temaId}
+              />
+              <BodyLong>har svart på {resultatType}</BodyLong>
+            </HStack>
+          </VStack>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => modalRef.current?.close()}>
