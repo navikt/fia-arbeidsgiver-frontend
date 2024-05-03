@@ -34,10 +34,6 @@ export default abstract class CookieHandler {
     );
   }
 
-  public static svarPåSpørsmål(spørsmålId: string): string[] | undefined {
-    return CookieHandler.cookieContents?.svarPåSpørsmål?.[spørsmålId];
-  }
-
   public static setSvarPåSpørsmål(spørsmålId: string, svarIder: string[]) {
     const svarPåSpørsmål = CookieHandler.cookieContents?.svarPåSpørsmål || {};
     svarPåSpørsmål[spørsmålId] = svarIder;
@@ -69,14 +65,6 @@ export default abstract class CookieHandler {
 
   public static get sisteSvarteSpørsmålId(): string | undefined {
     return CookieHandler.cookieContents?.sisteSvarteSpørsmålId;
-  }
-
-  public static get spørsmålÅStartePå(): string {
-    if (CookieHandler.harSvartAlleSpørsmål) {
-      return "START";
-    }
-
-    return CookieHandler.sisteSvarteSpørsmålId || "START";
   }
 
   public static get spørreundersøkelseId(): string | undefined {
