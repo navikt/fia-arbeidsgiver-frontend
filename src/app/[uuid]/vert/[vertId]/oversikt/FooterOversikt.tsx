@@ -8,7 +8,13 @@ import kartleggingStyles from "@/app/kartlegging.module.css";
 import { useRouter } from "next/navigation";
 import LinkTilResultat from "@/app/_components/LinkTilResultat";
 
-export default function FooterOversikt() {
+export default function FooterOversikt({
+  spørreundersøkelseId,
+  vertId,
+}: {
+  spørreundersøkelseId: string;
+  vertId: string;
+}) {
   const router = useRouter();
 
   return (
@@ -17,10 +23,12 @@ export default function FooterOversikt() {
         <LinkTilResultat
           skalViseKnapp
           urlTilResultatside={`./resultater`}
-          gåDirekteTilResultat={false} // TODO: Ikke via modal dersom alle tema allerede er stengt
-          knappetekst={"Vis resultater"}
+          gåDirekteTilResultat={false} // TODO: Ikke vis modal dersom alle tema allerede er stengt
+          knappetekst={"Vis alle resultater"}
           knappeClass={kartleggingStyles.knappHvit}
           resultatType={"undersøkelsen"}
+          spørreundersøkelseId={spørreundersøkelseId}
+          vertId={vertId}
         />
         <Button
           variant={"secondary"}

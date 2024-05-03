@@ -7,7 +7,7 @@ export function useTemaAntallSvar({
 }: {
   spørreundersøkelseId: string;
   vertId: string;
-  temaId: number;
+  temaId?: number;
 }): SWRResponse<number> {
   const fetcher = (url: string) => {
     return fetch(url, {

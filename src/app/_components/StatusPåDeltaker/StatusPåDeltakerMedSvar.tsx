@@ -6,7 +6,7 @@ import { PersonGroupFillIcon } from "@navikt/aksel-icons";
 import React from "react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import { useAntallDeltakere } from "@/app/_api_hooks/vert/useAntallDeltakere";
-import { useTemaAntallSvar } from "@/app/_api_hooks/vert/useTemaAntallSvar";
+import { useAntallFullført } from "@/app/_api_hooks/vert/useAntallFullført";
 
 export function StatusPåDeltakerMedSvar({
   spørreundersøkelseId,
@@ -15,13 +15,13 @@ export function StatusPåDeltakerMedSvar({
 }: {
   spørreundersøkelseId: string;
   vertId: string;
-  temaId: number;
+  temaId?: number;
 }) {
   const {
     data: antallSvar,
     isLoading: lasterAntallSvar,
     error: feilAntallSvar,
-  } = useTemaAntallSvar({
+  } = useAntallFullført({
     vertId,
     spørreundersøkelseId,
     temaId,

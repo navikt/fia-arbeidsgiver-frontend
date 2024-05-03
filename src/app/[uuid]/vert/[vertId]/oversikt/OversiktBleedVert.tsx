@@ -24,13 +24,7 @@ export function OversiktBleedVert({
           justify="space-between"
           className={oversiktStyles.temaboksinnhold}
         >
-          <Heading size="medium">{temaoversikt.beskrivelse}</Heading>
-          <HStack
-            gap={"4"}
-            justify={
-              temaoversikt.status !== "IKKE_ÅPNET" ? "space-between" : "end"
-            }
-          >
+          <VStack gap="4">
             {temaoversikt.status !== "IKKE_ÅPNET" && (
               <StatusPåDeltakerMedSvar
                 spørreundersøkelseId={spørreundersøkelseId}
@@ -38,7 +32,14 @@ export function OversiktBleedVert({
                 temaId={temaoversikt.temaId}
               />
             )}
-            <TemaActions temaoversikt={temaoversikt} />
+            <Heading size="medium">{temaoversikt.beskrivelse}</Heading>
+          </VStack>
+          <HStack gap={"4"} justify={"end"}>
+            <TemaActions
+              temaoversikt={temaoversikt}
+              spørreundersøkelseId={spørreundersøkelseId}
+              vertId={vertId}
+            />
           </HStack>
         </VStack>
       </Box>
@@ -46,7 +47,15 @@ export function OversiktBleedVert({
   );
 }
 
-function TemaActions({ temaoversikt }: { temaoversikt: TemaoversiktDTO }) {
+function TemaActions({
+  temaoversikt,
+  spørreundersøkelseId,
+  vertId,
+}: {
+  temaoversikt: TemaoversiktDTO;
+  spørreundersøkelseId: string;
+  vertId: string;
+}) {
   const router = useRouter();
 
   switch (temaoversikt.status) {
@@ -59,6 +68,9 @@ function TemaActions({ temaoversikt }: { temaoversikt: TemaoversiktDTO }) {
             gåDirekteTilResultat={false} // TODO: Ikke via modal dersom tema allerede er stengt
             knappetekst={""}
             variant="primary"
+            spørreundersøkelseId={spørreundersøkelseId}
+            vertId={vertId}
+            temaId={temaoversikt.temaId}
           />
           <Button
             variant="primary"
