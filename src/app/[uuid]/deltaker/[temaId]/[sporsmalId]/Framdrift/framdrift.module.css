@@ -1,0 +1,22 @@
+.framdrift {
+  width: 100%;
+  display: flex;
+  gap: 0.25rem;
+  list-style-type: none;
+  padding: 0;
+}
+
+.framdriftStandard {
+  border-radius: 3px;
+  flex-basis: 1;
+  height: 0.25rem;
+  flex-grow: 1;
+}
+
+.tom {
+  background-color: var(--a-gray-300);
+}
+
+.ferdig {
+  background-color: var(--a-blue-700);
+}
