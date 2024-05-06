@@ -7,7 +7,7 @@ import { PageBlock } from "@navikt/ds-react/Page";
 import resultaterStyles from "../resultater.module.css";
 
 export const metadata: Metadata = {
-  title: "Resultat",
+  title: "Temaresultat",
 };
 
 export default function Temaresultatside({

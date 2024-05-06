@@ -18,7 +18,7 @@ import { ListItem } from "@navikt/ds-react/List";
 import { Stepper, StepperStep } from "@navikt/ds-react/Stepper";
 
 export const metadata: Metadata = {
-  title: "Startside",
+  title: "Velkommen",
 };
 
 export default function Startside({

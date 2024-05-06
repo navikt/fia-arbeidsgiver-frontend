@@ -7,7 +7,7 @@ import { PageBlock } from "@navikt/ds-react/Page";
 import spørsmålStyles from "./sporsmalsside.module.css";
 
 export const metadata: Metadata = {
-  title: "Spørreundersøkelse",
+  title: "Deltaker",
 };
 
 export default function Spørsmålsside({
