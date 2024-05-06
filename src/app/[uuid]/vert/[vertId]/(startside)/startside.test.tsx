@@ -28,7 +28,7 @@ describe("Startside", () => {
   test("rett innhold blir tegnet opp", async () => {
     render(<Startside params={{ uuid: "uuid", vertId: "vertId" }} />);
     const tittel = await screen.findByText(
-      "Hovedmålet er å få ned sykefraværet og redusere frafall fra arbeidslivet.",
+      "Målet for møtet er å sette retning og felles mål for IA-samarbeidet.",
     );
     expect(tittel).toBeInTheDocument();
   });
