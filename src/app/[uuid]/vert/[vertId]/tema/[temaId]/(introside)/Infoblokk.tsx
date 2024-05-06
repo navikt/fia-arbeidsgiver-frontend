@@ -87,6 +87,7 @@ function Infoblokkinnhold({
       <Box borderRadius="xlarge" padding="12" background="surface-default">
         <HStack align="center" gap="4" justify="space-between">
           <span className={introsideStyles.venstreDel}>
+            {punkter.beskrivelse && <b>{punkter.beskrivelse}</b>}
             <InnholdsSwitch innhold={punkter} />
           </span>
           <span className={introsideStyles.høyreDel}>
@@ -99,7 +100,7 @@ function Infoblokkinnhold({
                 weight="semibold"
                 style={{ color: `var(--${fargeseksjon.tekstfarge})` }}
               >
-                {fargeseksjon.tekst}
+                <InnholdsSwitch innhold={fargeseksjon.tekst} />
               </BodyLong>
             </Box>
           </span>
@@ -125,6 +126,7 @@ type boldtekst = {
 
 type punkter = {
   type: "punkter";
+  beskrivelse?: string;
   punkter: innholdstyper[];
 };
 
@@ -135,7 +137,7 @@ interface infoblokk {
   fargeseksjon: {
     farge: ComponentProps<typeof Box>["background"];
     tekstfarge: string;
-    tekst: string;
+    tekst: innholdstyperEllerArray;
   };
 }
 
@@ -149,22 +151,45 @@ const innholdsconfig: infoblokk[] = [
         {
           type: "tekst",
           tekst: [
-            "Et effektivt partssamarbeid verdsetter og benytter ",
-            { type: "bold", tekst: "lederes, tillitsvalgtes" },
-            " og ",
-            { type: "bold", tekst: "verneombuds" },
-            " kompetanse og ansvarsområder.",
+            "NAV er opptatt av det ",
+            { type: "bold", tekst: "utvidede partssamarbeidet." },
+            " Det betyr samarbeid mellom ledere, tillitsvalgte og verneombud for å utvikle og forbedre arbeidsplassen.",
           ],
         },
-        "Samarbeidet er viktig for å oppnå et godt arbeidsmiljø, lavt sykefravær og sikre høy produktivitet.",
-        "Alle parter har en viktig rolle i å skape et godt arbeidsmiljø i praksis.",
+        {
+          type: "tekst",
+          tekst: [
+            "Et velfungerende partssamarbeid verdsetter og utnytter partenes ",
+            { type: "bold", tekst: "kompetanse" },
+            " og ",
+            { type: "bold", tekst: "ansvarsområder." },
+          ],
+        },
+        {
+          type: "tekst",
+          tekst: [
+            "Samarbeidet er viktig for å oppnå et ",
+            { type: "bold", tekst: "godt arbeidsmiljø" },
+            ", ",
+            { type: "bold", tekst: "lavt sykefravær" },
+            " og sikre ",
+            { type: "bold", tekst: "høy produktivitet." },
+          ],
+        },
       ],
     },
     fargeseksjon: {
       farge: "surface-action-subtle",
       tekstfarge: "a-text-action",
-      tekst:
-        "Et utvidet partssamarbeid kan bidra til å bygge broer mellom ledelse og medarbeidere og være et fundament i utvikling av gode arbeidsmiljø.",
+      tekst: {
+        type: "tekst",
+        tekst: [
+          "Som deltaker i partssamarbeidet har du en viktig rolle i å skape ",
+          { type: "bold", tekst: "godt arbeidsmiljø" },
+          " og ",
+          { type: "bold", tekst: "samarbeid mellom ledelse og ansatte" },
+        ],
+      },
     },
   },
   {
@@ -172,18 +197,25 @@ const innholdsconfig: infoblokk[] = [
     id: "REDUSERE_SYKEFRAVÆR",
     punkter: {
       type: "punkter",
+      beskrivelse: "Sykefraværsarbeid handler blant annet om:",
       punkter: [
-        "Gode og kjente rutiner for hvordan sykefravær følges opp",
-        "Aktiv tilrettelegging for ansatte",
-        "Gode og trygge samtaler mellom leder og ansatt",
-        "Alle vet hva som forventes når man blir sykmeldt eller står i fare for å bli sykmeldt",
+        "Kjente og etablerte rutiner for hvordan sykefravær skal følges opp.",
+        "Kultur og kompetanse for tilrettelegging for ansatte.",
+        "At ansatte vet hva som forventes når en er sykmeldt eller står i fare for å bli det.",
       ],
     },
     fargeseksjon: {
       farge: "surface-success-subtle",
       tekstfarge: "a-text-success",
-      tekst:
-        "De beste resultatene oppnås når leder, tillitsvalgt og verneombud utarbeider gode rutiner i samarbeid med ansatte.",
+      tekst: {
+        type: "tekst",
+        tekst: [
+          "Som leder, tillitsvalgt eller verneombud har du en viktig rolle i å ",
+          { type: "bold", tekst: "forebygge sykefravær" },
+          " og ",
+          { type: "bold", tekst: "skape gode sykefraværsrutiner" },
+        ],
+      },
     },
   },
   {
@@ -195,23 +227,32 @@ const innholdsconfig: infoblokk[] = [
         {
           type: "tekst",
           tekst: [
-            "Godt arbeidsmiljøarbeid handler om å ",
-            { type: "bold", tekst: "organisere, planlegge" },
+            "Arbeidsmiljø handler om arbeid - det å ",
+            { type: "bold", tekst: "organisere" },
+            ", ",
+            { type: "bold", tekst: "planlegge" },
             " og ",
             { type: "bold", tekst: "gjennomføre" },
             " arbeidet.",
           ],
         },
-        "Et velfungerende partssamarbeid er motoren for forebyggende arbeid.",
-        "Arbeidsmiljøet er forskjellig fra arbeidsplass til arbeidsplass og må tilpasses hver arbeidssituasjon.",
-        "Arbeidsmiljøet må behandles som ferskvare og krever kontinuerlig innsats",
+        "Psykologiske og sosiale forhold på arbeidsplassen er viktige faktorer for arbeidsmiljøet.",
+        "Arbeidsmiljø må behandles som ferskvare og krever kontinuerlig, kunnskapsbasert innsats.",
       ],
     },
     fargeseksjon: {
       farge: "surface-warning-subtle",
       tekstfarge: "a-text-warning",
-      tekst:
-        "Godt arbeidsmiljøarbeid fører til økt engasjement, bedre arbeidsflyt, og at færre blir sykmeldt.",
+      tekst: {
+        type: "tekst",
+        tekst: [
+          "Din rolle i partssamarbeidet er viktig for å ",
+          { type: "bold", tekst: "skape engasjement" },
+          " og ",
+          { type: "bold", tekst: "gode arbeidsforhold" },
+          " på arbeidsplassen",
+        ],
+      },
     },
   },
 ];
