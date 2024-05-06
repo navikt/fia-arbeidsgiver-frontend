@@ -54,6 +54,10 @@ const API_VERT_ANTALL_FULLFORT_URL = (
   sporreundersokelseId = ":sporreundersokelseId",
 ) => `${API_VERT_UNDERSØKELSE_URL(sporreundersokelseId)}/antall-fullfort`;
 
+const API_VERT_VIRKSOMHETSNAVN_URL = (
+  sporreundersokelseId = ":sporreundersokelseId",
+) => `${API_VERT_UNDERSØKELSE_URL(sporreundersokelseId)}/virksomhetsnavn`;
+
 const API_DELTAKER_UNDERSØKELSE_URL = (
   sporreundersokelseId = ":sporreundersokelseId",
 ) => `${API_BASE_URL_DELTAKER}/${sporreundersokelseId}`;
@@ -89,6 +93,7 @@ module.exports = {
   API_VERT_ANTALL_SVAR_URL,
   API_VERT_ANTALL_SVAR_TEMA_URL,
   API_VERT_ANTALL_FULLFORT_URL,
+  API_VERT_VIRKSOMHETSNAVN_URL,
   API_DELTAKER_UNDERSØKELSE_URL,
   API_DELTAKER_SPØRSMÅL_URL,
   API_DELTAKER_SVAR_URL,

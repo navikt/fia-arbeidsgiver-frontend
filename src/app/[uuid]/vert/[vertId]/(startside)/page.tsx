@@ -12,10 +12,10 @@ import {
 } from "@navikt/ds-react";
 import startsideStyles from "./startside.module.css";
 import { PageBlock } from "@navikt/ds-react/Page";
-import Headerlinje from "@/app/_components/Headerlinje";
 import KomIGangKnapp from "./KomIGangKnapp";
 import { ListItem } from "@navikt/ds-react/List";
 import { Stepper, StepperStep } from "@navikt/ds-react/Stepper";
+import { VelkommenVirksomhet } from "@/app/[uuid]/vert/[vertId]/(startside)/VelkommenVirksomhet";
 
 export const metadata: Metadata = {
   title: "Velkommen",
@@ -29,13 +29,15 @@ export default function Startside({
   return (
     <Page background="bg-subtle">
       <PageBlock gutters width="xl">
-        {/* TODO: Legg inn virksomhetsnavn: "Velkommen, [virksomhet]" */}
-        <Headerlinje tittel="Velkommen">
+        <VelkommenVirksomhet
+          spørreundersøkelseId={params.uuid}
+          vertId={params.vertId}
+        >
           <KomIGangKnapp
             vertId={params.vertId}
             spørreundersøkelseId={params.uuid}
           />
-        </Headerlinje>
+        </VelkommenVirksomhet>
         <Box
           borderRadius="xlarge"
           padding="10"
