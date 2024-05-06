@@ -12,13 +12,18 @@ export function Framdrift({
   framdriftDivs[spørsmålnummer - 1] = true;
 
   return (
-    <ol className={framdriftStyles.framdrift} aria-hidden="true">
-      {framdriftDivs.map((erAktivt, index) => (
-        <li
-          key={index}
-          className={`${framdriftStyles.framdriftStandard} ${erAktivt ? framdriftStyles.ferdig : framdriftStyles.tom}`}
-        />
-      ))}
-    </ol>
+    <>
+      <span className={framdriftStyles.visuallyHidden}>
+        Spørsmål {spørsmålnummer} av {totaltAntallSpørsmål}
+      </span>
+      <ol className={framdriftStyles.framdrift}>
+        {framdriftDivs.map((erAktivt, index) => (
+          <li
+            key={index}
+            className={`${framdriftStyles.framdriftStandard} ${erAktivt ? framdriftStyles.ferdig : framdriftStyles.tom}`}
+          />
+        ))}
+      </ol>
+    </>
   );
 }
