@@ -14,7 +14,6 @@ import startsideStyles from "./startside.module.css";
 import { PageBlock } from "@navikt/ds-react/Page";
 import KomIGangKnapp from "./KomIGangKnapp";
 import { ListItem } from "@navikt/ds-react/List";
-import { Stepper, StepperStep } from "@navikt/ds-react/Stepper";
 import { VelkommenVirksomhet } from "@/app/[uuid]/vert/[vertId]/(startside)/VelkommenVirksomhet";
 
 export const metadata: Metadata = {
@@ -44,50 +43,70 @@ export default function Startside({
           background="bg-default"
           className={`${startsideStyles.startsideboks} ${startsideStyles.startsidegrid}`}
         >
-          <FremgangsmåteStepper />
-          <VStack className={startsideStyles.gridFull}>
+          <VStack className={startsideStyles.gridCenter}>
             <Heading
               level="2"
               size="small"
               className={startsideStyles.subheading}
             >
-              Behovsavklaring
+              Behovsvurdering for IA-samarbeidet
             </Heading>
-            <BodyLong>
-              I dagens møte skal vi identifisere hva dere har mest behov for å
-              jobbe med. Dette er kun en kartlegging av dagens situasjon - ikke
-              en test. Kartleggingen består av spørsmål som besvares
-              individuelt, deretter ser vi på svarene sammen og diskuterer hva
-              vi skal fokusere på i samarbeidsperioden.
-            </BodyLong>
+            <List as="ul">
+              <ListItem>
+                Målet for møtet er å sette retning og felles mål for
+                IA-samarbeidet.
+              </ListItem>
+              <ListItem>
+                Vi skal sammen reflektere over hvordan dere jobber med
+                sykefravær og arbeidsmiljø.
+              </ListItem>
+              <ListItem>
+                Vi er her for å hjelpe med utgangspunkt i en felles vurdering av
+                dagens situasjon.
+              </ListItem>
+              <ListItem>
+                Vi skal se på tre temaer; <b>partssamarbeid</b>,{" "}
+                <b>sykefraværsarbeid</b> og <b>arbeidsmiljø.</b>
+              </ListItem>
+              <ListItem>
+                Hvert tema introduseres før dere svarer individuelt på spørsmål.
+              </ListItem>
+              <ListItem>
+                Vi ser på resultatene i fellesskap og diskuterer hva som bør
+                vektlegges i samarbeidsperioden.
+              </ListItem>
+            </List>
           </VStack>
-          <HStack gap="2" className={startsideStyles.gridCenter}>
-            <StartsideBoksElement tittel="Svare individuelt på spørsmål" />
-            <StartsideBoksElement tittel="Reflektere og diskutere sammen" />
-          </HStack>
-          <VStack className={startsideStyles.gridFull}>
+        </Box>
+        <Box
+          borderRadius="xlarge"
+          padding="10"
+          background="bg-default"
+          className={`${startsideStyles.startsideboks} ${startsideStyles.startsidegrid}`}
+        >
+          <VStack className={startsideStyles.gridCenter}>
             <Heading
               level="2"
               size="small"
               className={startsideStyles.subheading}
             >
-              IA-avtalen
-            </Heading>
-            <Heading level="3" size="small">
-              Hovedmålet er å få ned sykefraværet og redusere frafall fra
-              arbeidslivet.
+              IA-samarbeidet
             </Heading>
             <BodyLong>
-              NAV Arbeidslivssenter tilbyr hjelp med sykefraværsarbeid og
-              arbeidsmiljø. Gjennom et tidsavgrenset samarbeid med ledere,
-              tillitsvalgte og verneombud (partsgruppe) kan NAV tilby tjenester
-              for å:
+              NAV tilbyr hjelp og kompetanseheving for å forebygge og redusere
+              sykefravær. I en avtalt periode kan vi hjelpe dere med å:
             </BodyLong>
           </VStack>
           <HStack gap="2" className={startsideStyles.gridCenter}>
-            <StartsideBoksElement tittel="Forbedre arbeidsmiljøet og redusere sykefraværet" />
-            <StartsideBoksElement tittel="Øke kvaliteten på sykefraværsarbeidet" />
-            <StartsideBoksElement tittel="Jobbe målrettet og kunnskapsbasert med arbeidsmiljø" />
+            <StartsideBoksElement>
+              <b>samarbeide</b> om arbeidsmiljø og sykefravær
+            </StartsideBoksElement>
+            <StartsideBoksElement>
+              <b>øke kvaliteten</b> på sykefraværsarbeidet
+            </StartsideBoksElement>
+            <StartsideBoksElement>
+              jobbe <b>forebyggende</b> med arbeidsmiljø
+            </StartsideBoksElement>
           </HStack>
         </Box>
         <Box
@@ -105,14 +124,16 @@ export default function Startside({
           </Heading>
           <List>
             <ListItem>
-              Alle svar er anonyme og kan ikke spores tilbake til deltakere
+              Alle svar er anonyme og vi registrerer ikke hvem som har svart
+              hva.
             </ListItem>
             <ListItem>
-              Dere eier all data og resultatene blir delt etter møtet
+              Resultatene brukes som grunnlag for samarbeidet og deles kun med
+              dere.
             </ListItem>
-            <ListItem>Resultatene deles ikke med andre.</ListItem>
             <ListItem>
-              NAV benytter kun statistikk for å videreutvikle tjenester
+              NAV bruker kun anonymisert statistikk for å videreutvikle
+              tjenester.
             </ListItem>
           </List>
         </Box>
@@ -121,29 +142,7 @@ export default function Startside({
   );
 }
 
-function FremgangsmåteStepper() {
-  return (
-    <Stepper
-      activeStep={2}
-      orientation="horizontal"
-      className={startsideStyles.gridCenter}
-    >
-      <StepperStep interactive={false}>Introduksjon/infomøte</StepperStep>
-      <StepperStep interactive={false}>Behovsavklaring</StepperStep>
-      <StepperStep interactive={false}>Planlegge</StepperStep>
-      <StepperStep interactive={false}>Samarbeide</StepperStep>
-      <StepperStep interactive={false}>Evaluere</StepperStep>
-    </Stepper>
-  );
-}
-
-function StartsideBoksElement({
-  tittel,
-  undertittel,
-}: {
-  tittel: string;
-  undertittel?: string;
-}) {
+function StartsideBoksElement({ children }: { children: React.ReactNode }) {
   return (
     <Box
       background="surface-action-subtle"
@@ -151,8 +150,9 @@ function StartsideBoksElement({
       padding="4"
       className={startsideStyles.startsideinfoboks}
     >
-      <BodyShort>{tittel}</BodyShort>
-      {undertittel && <BodyShort>{undertittel}</BodyShort>}
+      <BodyShort className={startsideStyles.startsideinfoboksinnhold}>
+        {children}
+      </BodyShort>
     </Box>
   );
 }

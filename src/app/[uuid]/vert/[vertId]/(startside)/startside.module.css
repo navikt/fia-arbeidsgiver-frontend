@@ -86,9 +86,13 @@
 
 .startsideinfoboks {
   flex: 1;
+  color: var(--a-blue-800);
+  padding: 1.5rem 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.startsideinfoboksinnhold {
   text-align: center;
-  color: var(--a-blue-800);
 }
