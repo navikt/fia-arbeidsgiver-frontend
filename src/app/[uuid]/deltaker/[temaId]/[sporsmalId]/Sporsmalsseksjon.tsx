@@ -3,7 +3,6 @@
 import React from "react";
 import spørsmålStyles from "./sporsmalsside.module.css";
 import {
-  BodyShort,
   Box,
   Button,
   Checkbox,
