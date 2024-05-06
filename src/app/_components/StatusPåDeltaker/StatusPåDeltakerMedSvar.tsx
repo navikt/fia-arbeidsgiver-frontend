@@ -57,7 +57,7 @@ export function StatusPåDeltakerMedSvar({
       style={{ visibility: erSynlig ? "visible" : "hidden" }}
       className={statusPåDeltakereStyles.deltakereMedStatus}
     >
-      <PersonGroupFillIcon />
+      <PersonGroupFillIcon title="Deltakere som har svart" />
       <InnholdEllerSpinner innhold={antallSvar} laster={lasterAntallSvar} />
       {"/"}
       <InnholdEllerSpinner

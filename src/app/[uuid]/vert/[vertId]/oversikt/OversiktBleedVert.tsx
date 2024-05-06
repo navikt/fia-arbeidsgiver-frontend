@@ -74,7 +74,7 @@ function TemaActions({
           <Button
             variant="primary"
             onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
-            icon={<ArrowRightIcon />}
+            icon={<ArrowRightIcon aria-hidden />}
             iconPosition="right"
           >
             Gjenoppta
@@ -86,7 +86,7 @@ function TemaActions({
         <Button
           variant="primary"
           onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
-          icon={<ArrowRightIcon />}
+          icon={<ArrowRightIcon aria-hidden />}
           iconPosition="right"
         >
           Start
@@ -99,7 +99,7 @@ function TemaActions({
         <Button
           variant="primary"
           onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
-          icon={<ArrowRightIcon />}
+          icon={<ArrowRightIcon aria-hidden />}
           iconPosition="right"
           disabled
         >

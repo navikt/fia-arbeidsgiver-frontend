@@ -120,7 +120,7 @@ function Actionknapper({
           åpneTema();
           setErStartet(true);
         }}
-        icon={<ArrowRightIcon />}
+        icon={<ArrowRightIcon aria-hidden />}
         iconPosition="right"
       >
         Start
@@ -142,7 +142,7 @@ function Actionknapper({
       />
       <Button
         variant="secondary"
-        icon={<ArrowRightIcon />}
+        icon={<ArrowRightIcon aria-hidden />}
         iconPosition="right"
         onClick={() => {
           if (nesteTemaId) {
