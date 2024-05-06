@@ -104,20 +104,19 @@ export default function Spørsmålsseksjon({
         padding="5"
         className={spørsmålStyles.innholdboks}
       >
-        <BodyShort weight={"semibold"}>
-          {spørsmålOgSvar.spørsmålTekst}{" "}
-          {spørsmålOgSvar.flervalg ? (
-            <span className={spørsmålStyles.normaltekst}>
-              (flere valg er mulig)
-            </span>
-          ) : null}
-        </BodyShort>
         <VStack className={spørsmålStyles.radioStack}>
           {spørsmålOgSvar.flervalg ? (
             <CheckboxGroup
               onChange={velgSvar}
-              legend={"Velg flere alternativ"}
-              hideLegend
+              legend={
+                <>
+                  {spørsmålOgSvar.spørsmålTekst}
+                  <br />
+                  <span className={spørsmålStyles.normaltekst}>
+                    (flere valg er mulig)
+                  </span>
+                </>
+              }
               value={svar}
               error={feilSendSvar}
             >
@@ -132,10 +131,9 @@ export default function Spørsmålsseksjon({
             </CheckboxGroup>
           ) : (
             <RadioGroup
-              legend="Velg ett alternativ"
+              legend={spørsmålOgSvar.spørsmålTekst}
               onChange={(value) => velgSvar([value])}
               value={svar[0] || null}
-              hideLegend
               className={spørsmålStyles.spørsmålsseksjon}
               error={feilSendSvar}
             >
