@@ -1,5 +1,5 @@
 "use client";
-import startsideStyles from "@/app/[uuid]/vert/[vertId]/(startside)/startside.module.css";
+import loginModalStyles from "./loginmodal.module.css";
 import { QRCodeSVG } from "qrcode.react";
 import React from "react";
 import { HydrationSafeClientsideComponent } from "@/app/_components/HydrationSafeClientsideComponent";
@@ -13,7 +13,7 @@ export function QRkodeVisning({ spørreundersøkelseId }: Props) {
     <HydrationSafeClientsideComponent>
       <QRCodeSVG
         value={lenkeFraId(spørreundersøkelseId)}
-        className={startsideStyles.qrcode}
+        className={loginModalStyles.qrcode}
       />
     </HydrationSafeClientsideComponent>
   );

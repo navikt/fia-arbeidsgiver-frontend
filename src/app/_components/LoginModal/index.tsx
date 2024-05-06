@@ -1,8 +1,9 @@
-import { BodyLong, Button, CopyButton, VStack } from "@navikt/ds-react";
+import { BodyLong, Button, CopyButton, HStack, VStack } from "@navikt/ds-react";
 import React from "react";
 import { VisQRModal } from "./VisQRModal";
 import { QRkodeVisning, lenkeFraId } from "./QRkodeVisning";
 import { StatusPåDeltaker } from "../StatusPåDeltaker/StatusPåDeltaker";
+import loginModalStyles from "./loginmodal.module.css";
 
 export default function LoginModal({
   spørreundersøkelseId,
@@ -26,24 +27,26 @@ export default function LoginModal({
         }}
         title="Scan QR-kode og bli med"
       >
-        <VStack align="start">
-          <BodyLong>
-            Åpne kameraet på telefonen, fokuser på QR-koden og følg lenken som
-            dukker opp.
-          </BodyLong>
-          <QRkodeVisning spørreundersøkelseId={spørreundersøkelseId} />
-          <CopyButton
-            copyText={lenkeFraId(spørreundersøkelseId)}
-            variant="action"
-            text="Kopier lenke"
-          />
-        </VStack>
-        <VStack align="center" justify="center">
-          <StatusPåDeltaker
-            spørreundersøkelseId={spørreundersøkelseId}
-            vertId={vertId}
-          />
-        </VStack>
+        <HStack wrap className={loginModalStyles.maksHundre}>
+          <VStack className={loginModalStyles.maksHundre}>
+            <BodyLong>
+              Åpne kameraet på telefonen, fokuser på QR-koden og følg lenken som
+              dukker opp.
+            </BodyLong>
+            <QRkodeVisning spørreundersøkelseId={spørreundersøkelseId} />
+            <CopyButton
+              copyText={lenkeFraId(spørreundersøkelseId)}
+              variant="action"
+              text="Kopier lenke"
+            />
+          </VStack>
+          <VStack className={loginModalStyles.maksHundre}>
+            <StatusPåDeltaker
+              spørreundersøkelseId={spørreundersøkelseId}
+              vertId={vertId}
+            />
+          </VStack>
+        </HStack>
       </VisQRModal>
     </>
   );

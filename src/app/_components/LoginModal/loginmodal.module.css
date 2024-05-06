@@ -3,6 +3,16 @@
   flex-direction: row;
 }
 
-.qrKodeModal > div {
-  flex: 1;
+.qrcode {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  width: 22rem;
+  height: 22rem;
+  min-width: 8rem;
+  min-height: 8rem;
+  max-width: 100%;
+}
+
+.maksHundre {
+  max-width: 100%;
 }
