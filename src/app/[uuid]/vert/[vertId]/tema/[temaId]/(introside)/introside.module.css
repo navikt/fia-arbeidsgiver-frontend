@@ -32,6 +32,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 420px;
   margin-left: auto;
+}
+
+.resultatknapp {
+  margin-right: 1rem;
 }

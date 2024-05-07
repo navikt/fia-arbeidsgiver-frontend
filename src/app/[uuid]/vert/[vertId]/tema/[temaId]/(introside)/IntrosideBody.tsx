@@ -70,11 +70,6 @@ export function IntrosideBody({
       {temaoversikt && (
         <>
           <Headerlinje tittel={temaoversikt.beskrivelse}>
-            <StatusPåDeltakerMedSvar
-              spørreundersøkelseId={spørreundersøkelseId}
-              vertId={vertId}
-              temaId={temaId}
-            />
             <Actionknapper
               åpneTema={åpneTema}
               setErStartet={setErStartet}
@@ -134,6 +129,11 @@ function Actionknapper({
 
   return (
     <span className={introsideStyles.actionknapper}>
+      <StatusPåDeltakerMedSvar
+        spørreundersøkelseId={spørreundersøkelseId}
+        vertId={vertId}
+        temaId={temaId}
+      />
       <LinkTilResultat
         spørreundersøkelseId={spørreundersøkelseId}
         vertId={vertId}
@@ -143,6 +143,7 @@ function Actionknapper({
         gåDirekteTilResultat={false}
         knappetekst={"Vis resultater"}
         variant="primary"
+        knappeClass={introsideStyles.resultatknapp}
       />
       <Button
         variant="secondary"

@@ -1,10 +1,14 @@
 .temaboks {
-    background-color: white;
-    width: 24rem;
-    border-radius: 1rem;
-    min-height: 16rem;
+  background-color: white;
+  width: 24rem;
+  border-radius: 1rem;
+  min-height: 16rem;
 }
 
 .temaboks .temaboksinnhold {
-    height: 100%;
+  height: 100%;
+}
+
+.bodyContainer {
+  margin-top: 8rem;
 }
