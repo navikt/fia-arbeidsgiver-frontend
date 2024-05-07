@@ -52,7 +52,7 @@
     "@types/react-dom": "^18.3.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "bun-types": "^1.1.7",
-    "eslint": "9.2.0",
+    "eslint": "^8.57.0",
     "eslint-config-next": "14.2.3",
     "express": "^4.19.2",
     "husky": "^9.0.11",
