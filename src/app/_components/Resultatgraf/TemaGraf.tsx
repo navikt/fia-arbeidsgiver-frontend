@@ -5,12 +5,20 @@ import { Box } from "@navikt/ds-react";
 import resultatgrafStyle from "./resultatgraf.module.css";
 import { useTemaResultat } from "@/app/_api_hooks/vert/useTemaresultater";
 import { TemaResultatDTO } from "@/app/_types/TemaResultatDTO";
+import { Loader } from "@navikt/ds-react";
 
 export default function TemaGraf({
   tema,
 }: {
   tema: TemaResultatDTO | undefined;
 }) {
+  if (tema === undefined) {
+    return (
+      <div className={resultatgrafStyle.loaderWrapper}>
+        <Loader size="3xlarge" title="Laster tema" variant="interaction" />
+      </div>
+    );
+  }
   return (
     tema && (
       <Box

@@ -72,3 +72,9 @@
 .temaboks {
     margin-bottom: 2rem;
 }
+
+.loaderWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

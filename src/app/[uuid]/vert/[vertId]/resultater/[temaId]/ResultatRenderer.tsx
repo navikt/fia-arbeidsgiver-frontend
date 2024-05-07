@@ -49,7 +49,7 @@ export function ResultatRenderer({
   return (
     <>
       <Headerlinje tittel={tema?.beskrivelse} />
-      {erAvsluttet && <TemaGraf key={temaId} tema={tema} />}
+      <TemaGraf key={temaId} tema={erAvsluttet ? tema : undefined} />
     </>
   );
 }
