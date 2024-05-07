@@ -49,8 +49,8 @@
 .footer {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 4rem;
-    padding-right: 10rem;
+    padding-bottom: 3rem;
+    padding-right: 3rem;
 }
 
 .buttonFooter {

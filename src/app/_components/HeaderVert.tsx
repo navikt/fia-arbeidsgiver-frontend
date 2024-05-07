@@ -24,7 +24,7 @@ export default function HeaderVert({
 
   return (
     <PageBlock as="header" className={komponenterStyles.header}>
-      <HStack gap="8">
+      <HStack gap="4">
         {!erPåOversiktSide && (
           <Button
             icon={<ArrowLeftIcon aria-hidden />}
