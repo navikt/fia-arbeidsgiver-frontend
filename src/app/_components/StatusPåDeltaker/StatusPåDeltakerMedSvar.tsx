@@ -43,6 +43,8 @@ export function StatusPåDeltakerMedSvar({
         variant={"warning"}
         inline
         className={kartleggingStyles.alertWarning}
+        role="alert"
+        aria-live="polite"
       >
         {feilAntallSvar?.message}
         {feilAntallSvar !== undefined && feilAntallDeltakere !== undefined ? (

@@ -45,7 +45,7 @@ function SesjonUtløptVarsel({ sesjon }: { sesjon?: string }) {
   }
 
   return (
-    <Alert variant={"error"}>
+    <Alert variant={"error"} role="alert" aria-live="polite">
       Sesjonen din har utløpt. Vennligst start på nytt.
     </Alert>
   );

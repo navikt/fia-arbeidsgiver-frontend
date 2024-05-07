@@ -47,7 +47,12 @@ export default function SpørsmålBody({
           justify={"center"}
           className={spørsmålStyles.nesteStack}
         >
-          <Alert variant={"error"} className={kartleggingStyles.alertWarning}>
+          <Alert
+            variant={"error"}
+            className={kartleggingStyles.alertWarning}
+            role="alert"
+            aria-live="polite"
+          >
             {feilSpørsmålOgSvar.message}
           </Alert>
         </VStack>

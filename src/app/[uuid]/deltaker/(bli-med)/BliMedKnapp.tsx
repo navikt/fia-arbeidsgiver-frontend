@@ -36,7 +36,7 @@ export default function BliMedKnapp({
           <PersonGroupIcon /> <BodyShort>Bli med!</BodyShort>
         </HStack>
       </Button>
-      {error !== null ? <Alert variant="error">{error}</Alert> : null}
+      {error !== null ? <Alert variant="error" role="alert" aria-live="polite">{error}</Alert> : null}
     </>
   );
 }

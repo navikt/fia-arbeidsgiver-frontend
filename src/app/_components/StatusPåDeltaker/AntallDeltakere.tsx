@@ -27,6 +27,8 @@ export function AntallDeltakere({
         variant={"warning"}
         inline
         className={kartleggingStyles.alertWarning}
+        role="alert"
+        aria-live="polite"
       >
         {feilAntallDeltakere.message}
       </Alert>

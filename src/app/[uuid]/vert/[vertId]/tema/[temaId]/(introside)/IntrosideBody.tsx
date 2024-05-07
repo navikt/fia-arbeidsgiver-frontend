@@ -58,7 +58,11 @@ export function IntrosideBody({
   }
 
   if (error) {
-    return <Alert variant={"error"}>{error.message}</Alert>;
+    return (
+      <Alert variant={"error"} role="alert" aria-live="polite">
+        {error.message}
+      </Alert>
+    );
   }
 
   return (
