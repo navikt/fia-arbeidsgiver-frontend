@@ -27,8 +27,11 @@ export default function LoginModal({
         }}
         title="Scan QR-kode og bli med"
       >
-        <HStack wrap className={loginModalStyles.maksHundre}>
-          <VStack className={loginModalStyles.maksHundre}>
+        <HStack
+          wrap
+          className={`${loginModalStyles.maksHundre} ${loginModalStyles.stack}`}
+        >
+          <VStack className={loginModalStyles.venstreDel}>
             <BodyLong>
               Åpne kameraet på telefonen, fokuser på QR-koden og følg lenken som
               dukker opp.
@@ -40,7 +43,7 @@ export default function LoginModal({
               text="Kopier lenke"
             />
           </VStack>
-          <VStack className={loginModalStyles.maksHundre}>
+          <VStack className={loginModalStyles.høyreDel}>
             <StatusPåDeltaker
               spørreundersøkelseId={spørreundersøkelseId}
               vertId={vertId}
