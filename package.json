@@ -21,8 +21,8 @@
   },
   "prettier": {},
   "dependencies": {
-    "@grafana/faro-web-sdk": "^1.7.0",
-    "@grafana/faro-web-tracing": "^1.7.0",
+    "@grafana/faro-web-sdk": "^1.7.2",
+    "@grafana/faro-web-tracing": "^1.7.2",
     "@navikt/ds-css": "^6.3.6",
     "@navikt/ds-react": "^6.3.6",
     "@navikt/next-logger": "^1.23.0",

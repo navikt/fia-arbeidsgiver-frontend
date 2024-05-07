@@ -12,8 +12,9 @@ const ignoredUrlsGlobal = [
   // TODO: legg til URL-ene til andre endepunkt/hosts som ikke skal instrumentaliseres
   // (det går ikke an å bruke window.location.hostname med SSR)
   //new RegExp(`^(?!.*${window.location.hostname})`),
-  new RegExp(`/antall-deltakere$`),
-  new RegExp(`/antall-svar$`),
+  /antall-deltakere$/,
+  /antall-svar$/,
+  /antall-fullfort$/,
 ];
 
 let faro: Faro | null = null;
