@@ -1,61 +1,66 @@
 .ventertittel {
-    margin-top: 11rem;
-    margin-bottom: 3rem;
+  margin-top: 11rem;
+  margin-bottom: 3rem;
 }
 
 .spørsmålsheader {
-    padding-top: 3rem;
-    align-self: start;
-    width: 100%;
+  padding-top: 3rem;
+  align-self: start;
+  width: 100%;
 }
 
-.innholdboks{
-    background: var(--a-blue-50);
-    margin-top: 1rem;
+.innholdboks {
+  background: var(--a-blue-50);
+  margin-top: 1rem;
 }
 
 .normaltekst {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 .tilbakeknapp {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .nesteknapp {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .spørsmålsseksjon {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
-    flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-grow: 1;
 }
 
 .spørsmålssideblokk {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .lasterhjul {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .nesteStack {
-    height: 100vh;
-    padding: 2rem;
+  height: 100vh;
+  padding: 2rem;
 }
 
 .radioStack {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .knappeStack {
-    margin-top: 1rem;
+  margin-top: 1rem;
+}
+
+.venterundertittel {
+  margin-top: 2rem;
+  text-align: center;
 }

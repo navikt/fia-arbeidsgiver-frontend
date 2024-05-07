@@ -4,7 +4,7 @@ import React from "react";
 
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import { SpørsmålHeadingDeltaker } from "./SpørsmålHeadingDeltaker";
-import { Alert, Heading, Loader, VStack } from "@navikt/ds-react";
+import { Alert, BodyShort, Heading, Loader, VStack } from "@navikt/ds-react";
 import spørsmålStyles from "./sporsmalsside.module.css";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
 import kartleggingStyles from "@/app/kartlegging.module.css";
@@ -73,6 +73,9 @@ export default function SpørsmålBody({
             Venter...
           </Heading>
           <Loader variant={"interaction"} size="3xlarge" title="Venter" />
+          <BodyShort className={spørsmålStyles.venterundertittel}>
+            Spørsmål vil komme opp når verten åpner temaet.
+          </BodyShort>
         </VStack>
       </>
     );
