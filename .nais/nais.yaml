@@ -42,6 +42,10 @@ spec:
     outbound:
       rules:
         - application: fia-arbeidsgiver
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: nodejs
   env:
     - name: FARO_URL
       value: {{ faroUrl }}
