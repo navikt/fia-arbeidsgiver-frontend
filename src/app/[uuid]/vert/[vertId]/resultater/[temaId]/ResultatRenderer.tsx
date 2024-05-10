@@ -7,6 +7,7 @@ import { useTemaResultat } from "@/app/_api_hooks/vert/useTemaresultater";
 import Headerlinje from "@/app/_components/Headerlinje";
 import { Heading, VStack, Loader } from "@navikt/ds-react";
 import resultaterStyles from "../resultater.module.css";
+import NavigerTilNesteTemaKnapp from "@/app/[uuid]/vert/[vertId]/resultater/[temaId]/NavigerTilNesteTemaKnapp";
 
 export function ResultatRenderer({
   temaId,
@@ -48,7 +49,13 @@ export function ResultatRenderer({
 
   return (
     <>
-      <Headerlinje tittel={tema?.beskrivelse} />
+      <Headerlinje tittel={tema?.beskrivelse}>
+        <NavigerTilNesteTemaKnapp
+          vertId={vertId}
+          spørreundersøkelseId={spørreundersøkelseId}
+          temaId={temaId}
+        />
+      </Headerlinje>
       <TemaGraf key={temaId} tema={erAvsluttet ? tema : undefined} />
     </>
   );
