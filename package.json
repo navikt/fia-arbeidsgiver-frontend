@@ -9,7 +9,10 @@
     "lint": "next lint",
     "format": "prettier --write . --log-level silent",
     "mocks": "mocks-server",
-    "test": "jest"
+    "test": "jest",
+    "playwright": "playwright test",
+    "playwright:ui": "playwright test --ui",
+    "playwright:report": "playwright show-report"
   },
   "eslintConfig": {
     "extends": [
@@ -42,6 +45,7 @@
     "@mocks-server/core": "^4.0.2",
     "@mocks-server/main": "^4.1.0",
     "@navikt/eslint-config-teamia": "^1.0.7",
+    "@playwright/test": "^1.44.0",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",
     "@types/express": "^4.17.21",
