@@ -4,7 +4,6 @@ import {
   initializeFaro,
   LogLevel,
 } from "@grafana/faro-web-sdk";
-import { TracingInstrumentation } from "@grafana/faro-web-tracing";
 import { configureLogger } from "@navikt/next-logger";
 import { getFaroEnv } from "./faroEnv";
 
@@ -49,7 +48,6 @@ export function getFaro(faroUrl: string): Faro {
       ...getWebInstrumentations({
         captureConsole: false,
       }),
-      new TracingInstrumentation(),
     ],
   });
   return faro;
