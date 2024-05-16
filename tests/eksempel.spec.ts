@@ -1,9 +1,9 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
-import { vertTest } from "@/utils/playwrightUtils";
+import { vertTest as test } from "@/utils/playwrightUtils";
 
-vertTest.describe("Gruppering av test", () => {
-  vertTest("første test for å sjekke at noe funker", async ({ page }) => {
+test.describe("Gruppering av test", () => {
+  test("første test for å sjekke at noe funker", async ({ page }) => {
     await expect(
       page.getByRole("heading", { name: "Utvikle partssamarbeidet i" }),
     ).toBeVisible();
@@ -23,7 +23,7 @@ vertTest.describe("Gruppering av test", () => {
     ).toBeVisible();
   });
 
-  vertTest("test av axe", async ({ page }) => {
+  test("test av axe", async ({ page }) => {
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
     expect(accessibilityScanResults.violations).toEqual([]);
