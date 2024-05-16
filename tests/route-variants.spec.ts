@@ -1,12 +1,12 @@
 import {
   clearRouteVariants,
   setRouteVariant,
-  vertTest,
+  vertTest as test,
 } from "@/utils/playwrightUtils";
 import { expect } from "@playwright/test";
 
-vertTest.describe("Route variant", () => {
-  vertTest("Endring av route variant", async ({ page }) => {
+test.describe("Route variant", () => {
+  test("Endring av route variant", async ({ page }) => {
     await expect(page.getByRole("main")).toContainText(
       "Utvikle partssamarbeidet i virksomheten",
     );
@@ -22,7 +22,7 @@ vertTest.describe("Route variant", () => {
     await expect(page.getByRole("button", { name: "Gjenoppta" })).toBeVisible();
   });
 
-  vertTest.afterAll(async () => {
+  test.afterAll(async () => {
     clearRouteVariants();
   });
 });
