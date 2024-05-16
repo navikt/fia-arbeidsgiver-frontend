@@ -1,19 +1,12 @@
-import { clearRouteVariants, setRouteVariant } from "@/utils/playwrightUtils";
-import { test, expect } from "@playwright/test";
+import {
+  clearRouteVariants,
+  setRouteVariant,
+  vertTest,
+} from "@/utils/playwrightUtils";
+import { expect } from "@playwright/test";
 
-test.describe("Route variant", () => {
-  test.beforeEach(async () => {
-    // Clear route variants
-    clearRouteVariants();
-  });
-  test("Endring av route variant", async ({ page }) => {
-    await page.goto("http://localhost:2222");
-    await page.getByPlaceholder("Enter any user/subject").click();
-    await page.getByPlaceholder("Enter any user/subject").fill("asdf");
-    await page.getByPlaceholder("Enter any user/subject").press("Enter");
-
-    await page.getByRole("button", { name: "Kom i gang" }).click();
-    await page.getByRole("button", { name: "Lukk" }).click();
+vertTest.describe("Route variant", () => {
+  vertTest("Endring av route variant", async ({ page }) => {
     await expect(page.getByRole("main")).toContainText(
       "Utvikle partssamarbeidet i virksomheten",
     );
@@ -24,11 +17,12 @@ test.describe("Route variant", () => {
 
     await page.reload();
     await page.getByRole("button", { name: "Lukk" }).click();
+    await page.waitForLoadState("networkidle");
 
     await expect(page.getByRole("button", { name: "Gjenoppta" })).toBeVisible();
   });
 
-  test.afterAll(async () => {
+  vertTest.afterAll(async () => {
     clearRouteVariants();
   });
 });
