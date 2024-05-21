@@ -11,23 +11,21 @@ export const metadata: Metadata = {
 
 export default function Ferdigside() {
   return (
-    <Page contentBlockPadding="none">
-      <PageBlock as={"main"}>
-        <Bleed marginInline="full" asChild>
-          <Box padding="5" className={kartleggingStyles.bleedFerdig}>
-            <Heading size={"large"} className={ferdigStyles.bleedInnhold}>
-              Fullført!
-            </Heading>
-          </Box>
-        </Bleed>
-        <VStack gap="4">
-          <VStack align={"center"}>
-            <BodyShort size={"large"} spacing>
-              Bra jobbet!
-            </BodyShort>
-          </VStack>
+    <>
+      <Bleed marginInline="full" asChild>
+        <Box padding="5" className={kartleggingStyles.bleedFerdig}>
+          <Heading size={"large"} className={ferdigStyles.bleedInnhold}>
+            Fullført!
+          </Heading>
+        </Box>
+      </Bleed>
+      <VStack gap="4">
+        <VStack align={"center"}>
+          <BodyShort size={"large"} spacing>
+            Bra jobbet!
+          </BodyShort>
         </VStack>
-      </PageBlock>
-    </Page>
+      </VStack>
+    </>
   );
 }
