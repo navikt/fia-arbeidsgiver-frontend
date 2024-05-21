@@ -162,14 +162,13 @@ export default function Spørsmålsseksjon({
           variant="primary"
           className={spørsmålStyles.nesteknapp}
           onClick={håndterNesteknapp}
+          iconPosition="right"
+          icon={<ArrowRightIcon aria-hidden />}
         >
-          <HStack align={"center"} justify={"center"} gap={"2"}>
-            <SvarKnappTekst
-              erPåLagretSvar={erPåLagretSvar(svar, lagretSvar)}
-              lagretSvar={lagretSvar}
-            />
-            <ArrowRightIcon aria-hidden fontSize={"1.5rem"} />
-          </HStack>
+          <SvarKnappTekst
+            erPåLagretSvar={erPåLagretSvar(svar, lagretSvar)}
+            lagretSvar={lagretSvar}
+          />
         </Button>
       </HStack>
     </>
