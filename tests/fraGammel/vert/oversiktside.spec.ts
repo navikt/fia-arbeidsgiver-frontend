@@ -2,7 +2,7 @@ import { setRouteVariant, vertTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
 
-test.describe("Vert/startside", () => {
+test.describe("Vert/oversiktside", () => {
   test("Andre tema er ikke åpnet før første tema er besvart", async ({
     page,
   }) => {
