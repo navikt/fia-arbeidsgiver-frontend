@@ -2,7 +2,7 @@ import { vertTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
 
-test.describe("Vert/startside", () => {
+test.describe("Vert/ferdigside", () => {
   test("rett innhold blir tegnet opp", async ({ page }) => {
     await page.getByRole("button", { name: "Avslutt" }).click();
     await expect(page.locator("body")).toContainText("Fullført!");
