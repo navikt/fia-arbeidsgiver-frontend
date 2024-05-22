@@ -1,6 +1,8 @@
-import { setRouteVariant, vertTest as test } from "@/utils/playwrightUtils";
+import { TemaStatus } from "@/app/_types/TemaoversiktDTO";
+import { vertTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
+const { dummyTemaoversikt } = require("@/utils/dummyData/vert");
 
 test.describe("Vert/oversiktside", () => {
   test("Andre tema er ikke åpnet før første tema er besvart", async ({
@@ -19,11 +21,19 @@ test.describe("Vert/oversiktside", () => {
   });
 
   test("Andre tema er åpnet når første tema er besvart", async ({ page }) => {
-    setRouteVariant("vert-temaoversikt:success-første-besvart");
+    // TODO: Bedre løsning. Mocker apiet før vi kommer til frackend, for å unngå problemer med parralell kjøring av tester.
+    await page.route(
+      "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93",
+      async (route) => {
+        const json = dummyTemaoversikt;
+        json[0].status = TemaStatus.ALLE_SPØRSMÅL_ÅPNET;
+        json[1].status = TemaStatus.ÅPNET;
+        await route.fulfill({ json });
+      },
+    );
 
     await page.reload();
     await page.getByRole("button", { name: "Lukk" }).click();
-    await page.waitForLoadState("networkidle");
 
     await expect(page.getByRole("button", { name: "Gjenoppta" })).toBeVisible();
     await expect(
