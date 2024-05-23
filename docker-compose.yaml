@@ -79,7 +79,7 @@ services:
       WONDERWALL_INGRESS: http://localhost:2222
       WONDERWALL_BIND_ADDRESS: 0.0.0.0:2222
       WONDERWALL_UPSTREAM_HOST: host.docker.internal:3000
-      WONDERWALL_AUTO_LOGIN: true
+      WONDERWALL_AUTO_LOGIN: "true"
     restart: unless-stopped
     command: >
       --log-level=debug
