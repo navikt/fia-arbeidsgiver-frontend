@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import React from "react";
-import { Bleed, BodyShort, Box, Heading, Page, VStack } from "@navikt/ds-react";
+import { Bleed, BodyShort, Box, Heading, VStack } from "@navikt/ds-react";
 import kartleggingStyles from "@/app/kartlegging.module.css";
-import { PageBlock } from "@navikt/ds-react/Page";
 import ferdigStyles from "./ferdigside.module.css";
 
 export const metadata: Metadata = {

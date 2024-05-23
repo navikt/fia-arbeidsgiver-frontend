@@ -9,13 +9,15 @@ export function clearRouteVariants() {
   });
 }
 
-export function setRouteVariant(routeVariant: string | string[]): Promise<any> {
+export function setRouteVariant(
+  routeVariant: string | string[],
+): Promise<Response> | Promise<Response>[] {
   if (Array.isArray(routeVariant)) {
-    return Promise.all(
-      routeVariant.map((variant) => {
+    return routeVariant
+      .map((variant) => {
         return setRouteVariant(variant);
-      }),
-    );
+      })
+      .flat();
   }
   return fetch("http://localhost:3110/api/mock/custom-route-variants", {
     body: JSON.stringify({
