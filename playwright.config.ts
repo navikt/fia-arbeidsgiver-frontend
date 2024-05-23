@@ -72,7 +72,7 @@ export default defineConfig({
     },
     {
       command: "docker-compose up",
-      url: "http://host.docker.internal:6969/azure/authorize",
+      url: "http://localhost:6969/azure/authorize",
       reuseExistingServer: true,
     },
     {
