@@ -55,6 +55,7 @@ services:
   wonderwall:
     image: ghcr.io/nais/wonderwall:latest
     container_name: wonderwall
+    network_mode: host
     depends_on:
       - authserver
     ports:
