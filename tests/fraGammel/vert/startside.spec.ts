@@ -1,4 +1,3 @@
-import { clearRouteVariants } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
 import { test as base } from "@playwright/test";
@@ -6,7 +5,6 @@ import { test as base } from "@playwright/test";
 // Må override, da den i playwrighUtils.ts er satt til å hoppe forbi denne siden.
 const test = base.extend({
   page: async ({ page }, use) => {
-    await clearRouteVariants();
     await page.goto("http://localhost:2222");
     await page.getByPlaceholder("Enter any user/subject").click();
     await page.getByPlaceholder("Enter any user/subject").fill("asdf");

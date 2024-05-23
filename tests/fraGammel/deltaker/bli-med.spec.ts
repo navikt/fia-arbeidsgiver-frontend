@@ -1,10 +1,8 @@
-import { clearRouteVariants } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test as base } from "@playwright/test";
 
 const test = base.extend({
   page: async ({ page }, use) => {
-    await clearRouteVariants();
     await page.goto(
       "http://localhost:2222/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker",
     );
