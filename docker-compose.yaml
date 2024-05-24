@@ -83,6 +83,8 @@ services:
     restart: unless-stopped
     command: >
       --log-level=debug
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   agent:
     image: grafana/agent
     volumes:
