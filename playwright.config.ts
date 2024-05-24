@@ -69,16 +69,22 @@ export default defineConfig({
       command: "bun dev",
       url: "http://localhost:3000",
       reuseExistingServer: true,
+      stderr: "pipe",
+      stdout: "pipe",
     },
     {
       command: "docker-compose up",
       url: "http://localhost:6969/azure/authorize",
       reuseExistingServer: true,
+      stderr: "pipe",
+      stdout: "pipe",
     },
     {
       command: "bun run mocks",
       url: "http://localhost:3100/fia-arbeidsgiver/sporreundersokelse/vert/asdf/virksomhetsnavn",
       reuseExistingServer: true,
+      stderr: "pipe",
+      stdout: "pipe",
     },
   ],
   // webServer: {
