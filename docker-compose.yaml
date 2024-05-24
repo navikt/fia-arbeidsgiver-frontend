@@ -55,9 +55,10 @@ services:
   wonderwall:
     image: ghcr.io/nais/wonderwall:latest
     container_name: wonderwall
-    network_mode: host
     depends_on:
       - authserver
+    ports:
+      - "2222:2222"
     environment:
       WONDERWALL_OPENID_CLIENT_ID: "fia-arbeidsgiver-frontend"
       WONDERWALL_OPENID_CLIENT_JWK: >

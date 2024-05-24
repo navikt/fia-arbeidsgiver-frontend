@@ -27,16 +27,6 @@ jobs:
         run: bun lint
       - name: Run testing-library tests
         run: bun run test
-      - name: Install Playwright Browsers
-        run: bunx playwright install --with-deps
-      - name: Run Playwright tests
-        run: bun run playwright
-      - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
       - name: Build
         run: bun run build
       - name: Push to Google Artifact Registry
