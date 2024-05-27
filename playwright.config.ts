@@ -16,6 +16,7 @@ export default defineConfig({
   retries: 1,
   workers: 8,
   reporter: "html",
+  timeout: 60000,
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
@@ -74,14 +75,14 @@ export default defineConfig({
       stdout: "pipe",
     },
     {
-      command: "docker-compose up",
+      command: "docker-compose up -d",
       url: "http://localhost:6969/azure/authorize",
       reuseExistingServer: true,
       stderr: "pipe",
       stdout: "pipe",
     },
     {
-      command: "bun run mocks",
+      command: "bun run mocks -- --no-plugins.inquirerCli.enabled",
       url: "http://localhost:3100/fia-arbeidsgiver/sporreundersokelse/vert/asdf/virksomhetsnavn",
       reuseExistingServer: true,
       stderr: "pipe",
