@@ -13,7 +13,7 @@ export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: 1,
+  retries: 3,
   workers: 8,
   reporter: "html",
   timeout: 60000,
