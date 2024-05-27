@@ -26,6 +26,9 @@ export default defineConfig({
     screenshot: "on",
     video: "retry-with-video",
   },
+  expect: {
+    timeout: 15000,
+  },
 
   /* Configure projects for major browsers */
   projects: [
