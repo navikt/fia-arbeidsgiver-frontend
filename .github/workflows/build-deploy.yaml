@@ -38,6 +38,7 @@ jobs:
 
   docker-build-push:
     name: Build, test and push docker image
+    needs: test
     runs-on: ubuntu-latest
     permissions:
       id-token: write
