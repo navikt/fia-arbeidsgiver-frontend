@@ -82,7 +82,7 @@ export default defineConfig({
       stdout: "pipe",
     },
     {
-      command: "bun run mocks -- --no-plugins.inquirerCli.enabled",
+      command: "bun run mocks",
       url: "http://localhost:3100/fia-arbeidsgiver/sporreundersokelse/vert/asdf/virksomhetsnavn",
       reuseExistingServer: true,
       stderr: "pipe",
