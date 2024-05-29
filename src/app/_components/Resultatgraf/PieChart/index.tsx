@@ -80,10 +80,12 @@ function genererChartOptionsFraSpørsmålOgSvar(
         dataLabels: [
           {
             enabled: true,
+            // @ts-ignore
             distance: 20,
           },
           {
             enabled: true,
+            // @ts-ignore
             distance: -40,
             format: "{y}",
             style: {
