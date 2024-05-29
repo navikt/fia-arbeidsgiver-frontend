@@ -16,11 +16,9 @@ test.describe("Gruppering av test", () => {
     await page
       .getByRole("button", { name: "Resultater Vis resultater" })
       .click();
-    await page.getByLabel("Vis resultater").click();
+    await page.getByLabel("Vil du fullføre temaet?").click();
 
-    await expect(
-      page.getByRole("button", { name: "Gå til resultat" }),
-    ).toBeVisible();
+    await expect(page.getByRole("button", { name: "Fullfør" })).toBeVisible();
   });
 
   test("test av axe", async ({ page }) => {
