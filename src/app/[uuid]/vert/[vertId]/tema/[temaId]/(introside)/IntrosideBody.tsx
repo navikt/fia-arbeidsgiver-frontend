@@ -142,6 +142,7 @@ function Actionknapper({
         urlTilResultatside={`../resultater/${temaId}`}
         gåDirekteTilResultat={false}
         knappetekst={"Vis resultater"}
+        modalTittel={"Vil du fullføre temaet?"}
         variant="primary"
         knappeClass={introsideStyles.resultatknapp}
       />

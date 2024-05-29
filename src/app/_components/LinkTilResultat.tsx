@@ -5,6 +5,7 @@ import { BodyLong, Button, HStack, Modal, VStack } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { BarChartIcon } from "@navikt/aksel-icons";
 import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
+import statusPåDeltakereStyles from "@/app/_components/StatusPåDeltaker/statusPåDeltaker.module.css";
 
 export default function LinkTilResultat({
   spørreundersøkelseId,
@@ -13,9 +14,10 @@ export default function LinkTilResultat({
   skalViseKnapp,
   urlTilResultatside,
   gåDirekteTilResultat = false,
-  knappetekst = "Gå til resultat",
+  knappetekst = "",
   knappeClass,
-  resultatType = "tema",
+  modalTittel,
+  resultatType = "temaet",
   variant = "secondary",
 }: {
   spørreundersøkelseId: string;
@@ -26,6 +28,7 @@ export default function LinkTilResultat({
   gåDirekteTilResultat?: boolean;
   knappetekst?: string;
   knappeClass?: string;
+  modalTittel?: string;
   resultatType?: string;
   variant?: "primary" | "secondary";
 }) {
@@ -50,34 +53,33 @@ export default function LinkTilResultat({
       </Button>
       <Modal
         ref={modalRef}
-        header={{ heading: `${knappetekst ? knappetekst : "Vis resultater"}` }}
+        header={{ heading: `${modalTittel ? modalTittel : knappetekst}` }}
+        style={{ maxWidth: "600px" }}
       >
         <Modal.Body>
           <VStack gap={"4"}>
             <VStack>
               <BodyLong>
-                Er du sikker på at du ønsker å gå til resultat?
-              </BodyLong>
-              <BodyLong weight="semibold">
-                Dette vil låse {resultatType}, så ingen nye svar kan komme inn.
+                Når du fullfører {resultatType} og viser resultatene er det ikke
+                mulig å avgi flere svar.
               </BodyLong>
             </VStack>
-            <HStack align={"center"} gap={"2"}>
+            <HStack align={"center"}>
               <StatusPåDeltakerMedSvar
                 spørreundersøkelseId={spørreundersøkelseId}
                 vertId={vertId}
                 temaId={temaId}
               />
-              <BodyLong>har svart på {resultatType}</BodyLong>
+              <BodyLong className={statusPåDeltakereStyles.deltakereMedStatus}>
+                har svart
+              </BodyLong>
             </HStack>
           </VStack>
         </Modal.Body>
         <Modal.Footer>
+          <Button onClick={gåTilResultat}>Fullfør</Button>
           <Button variant="secondary" onClick={() => modalRef.current?.close()}>
             Avbryt
-          </Button>
-          <Button onClick={gåTilResultat} icon={<BarChartIcon />}>
-            Gå til resultat
           </Button>
         </Modal.Footer>
       </Modal>
