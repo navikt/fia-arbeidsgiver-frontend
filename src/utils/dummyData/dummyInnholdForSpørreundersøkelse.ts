@@ -159,7 +159,7 @@ const dummyFjerdeSpørsmål = {
 };
 
 const dummyFlervalgSpørsmålMedMangeSvaralternativer = {
-  temabeskrivelse: "Utvikle partssamarbeidet i virksomheten",
+  temabeskrivelse: temabeskrivelsePartssamarbeid,
   spørsmålTekst: "Hvilke temaer får størst prioritet i møtene deres?",
   svaralternativer: [
     {

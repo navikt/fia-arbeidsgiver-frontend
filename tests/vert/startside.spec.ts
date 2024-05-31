@@ -32,9 +32,7 @@ test.describe("Vert/startside", () => {
   test("Klikk på kom i gang", async ({ page }) => {
     await page.getByRole("button", { name: "Kom i gang" }).click();
     await page.getByRole("button", { name: "Lukk" }).click();
-    await expect(page.getByRole("main")).toContainText(
-      "Utvikle partssamarbeidet i virksomheten",
-    );
+    await expect(page.getByRole("main")).toContainText("Partssamarbeid");
   });
 
   test("test av axe", async ({ page }) => {

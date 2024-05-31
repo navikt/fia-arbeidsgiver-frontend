@@ -141,7 +141,7 @@ function Actionknapper({
         skalViseKnapp
         urlTilResultatside={`../resultater/${temaId}`}
         gåDirekteTilResultat={false}
-        knappetekst={"Vis resultater"}
+        knappetekst={"Fullfør og vis resultat"}
         modalTittel={"Vil du fullføre temaet?"}
         variant="primary"
         knappeClass={introsideStyles.resultatknapp}

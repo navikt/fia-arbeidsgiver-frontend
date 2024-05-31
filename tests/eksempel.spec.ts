@@ -5,7 +5,7 @@ import { vertTest as test } from "@/utils/playwrightUtils";
 test.describe("Gruppering av test", () => {
   test("første test for å sjekke at noe funker", async ({ page }) => {
     await expect(
-      page.getByRole("heading", { name: "Utvikle partssamarbeidet i" }),
+      page.getByRole("heading", { name: "Partssamarbeid" }),
     ).toBeVisible();
 
     await page.getByRole("button", { name: "Start" }).first().click();
@@ -14,11 +14,13 @@ test.describe("Gruppering av test", () => {
     );
     await page.getByRole("button", { name: "Start" }).first().click();
     await page
-      .getByRole("button", { name: "Resultater Vis resultater" })
+      .getByRole("button", { name: "Resultater Fullfør og vis resultat" })
       .click();
     await page.getByLabel("Vil du fullføre temaet?").click();
 
-    await expect(page.getByRole("button", { name: "Fullfør" })).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Fullfør" }).first(),
+    ).toBeVisible();
   });
 
   test("test av axe", async ({ page }) => {

@@ -5,7 +5,7 @@ const dummyTemaoversiktUtviklePartssamarbeid = {
   temanavn: "UTVIKLE_PARTSSAMARBEID",
   del: 1,
   tittel: "UTVIKLE_PARTSSAMARBEID",
-  beskrivelse: "Utvikle partssamarbeidet i virksomheten",
+  beskrivelse: "Partssamarbeid",
   introtekst:
     'Partssamarbeid er essensielt i virksomheter fordi det bidrar til et godt forebyggende arbeidsmiljø og reduksjon av antall tapte dagsverk. Partssamarbeidet anerkjenner og utnytter kompetansen og ansvarsområdene til verneombud, tillitsvalgte og ledere, noe som skaper en "utvidet ledelseskapasitet".',
   status: "ALLE_SPØRSMÅL_ÅPNET",
@@ -199,7 +199,7 @@ const dummyTemaoversiktRedusereSykefravær = {
   temanavn: "REDUSERE_SYKEFRAVÆR",
   del: 2,
   tittel: "REDUSERE_SYKEFRAVÆR",
-  beskrivelse: "Redusere sykefravær i virksomheten",
+  beskrivelse: "Sykefraværsarbeid",
   introtekst:
     "Sykefravær er en viktig indikator for arbeidsmiljøet og ansattes helse. Å ha et bevisst forhold til sykefraværsarbeid på arbeidsplassen er avgjørende for å skape et trivelig og produktivt arbeidsmiljø. Gjennom kartlegging kan man identifisere mønstre, sette mål og implementere tiltak for å redusere sykefraværet. Dette bidrar til et bedre arbeidsmiljø og økt trivsel for alle ansatte.",
   status: "ÅPNET",
@@ -237,7 +237,7 @@ const dummySpørsmålMedSvarPerTema = [
   {
     temaId: 1,
     tema: "UTVIKLE_PARTSSAMARBEID",
-    beskrivelse: "Utvikle partssamarbeidet i virksomheten",
+    beskrivelse: "Partssamarbeid",
     spørsmålMedSvar: [
       {
         tekst: "Hvor lenge har du vært en del av gruppen?",
@@ -428,7 +428,7 @@ const dummySpørsmålMedSvarPerTema = [
   {
     temaId: 2,
     tema: "REDUSERE_SYKEFRAVÆR",
-    beskrivelse: "Redusere sykefravær i virksomheten",
+    beskrivelse: "Sykefraværsarbeid",
     spørsmålMedSvar: [
       {
         tekst:
