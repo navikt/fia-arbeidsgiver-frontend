@@ -64,8 +64,9 @@ function TemaActions({
           <LinkTilResultat
             skalViseKnapp
             urlTilResultatside={`./resultater/${temaoversikt.temaId}`}
-            gåDirekteTilResultat={false} // TODO: Ikke via modal dersom tema allerede er stengt
+            gåDirekteTilResultat={false} // TODO: Ikke vis modal dersom tema allerede er stengt
             knappetekst={""}
+            modalTittel={"Vil du fullføre temaet?"}
             variant="primary"
             spørreundersøkelseId={spørreundersøkelseId}
             vertId={vertId}
