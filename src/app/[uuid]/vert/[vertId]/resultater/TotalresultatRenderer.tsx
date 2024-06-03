@@ -48,7 +48,7 @@ export function TotalresultatRenderer({
           vertId={vertId}
         />
         <Page contentBlockPadding="none" background="bg-subtle">
-          <PageBlock gutters width="lg">
+          <PageBlock gutters width="2xl">
             {listeOverTemaer ? (
               listeOverTemaer.map(
                 (tema) =>

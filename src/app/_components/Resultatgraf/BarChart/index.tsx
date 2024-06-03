@@ -35,6 +35,7 @@ function genererChartOptionsFraSpørsmålOgSvar(
     title: {
       text: spørsmål.tekst,
       align: "left",
+      margin: 35,
     },
     subtitle: {
       text: spørsmål.flervalg ? "(flere valg er mulig)" : undefined,
@@ -64,9 +65,13 @@ function genererChartOptionsFraSpørsmålOgSvar(
       categories: spørsmål.svarListe.map((svar) => svar.tekst),
     },
     yAxis: {
+      allowDecimals: false,
       title: {
-        text: "",
+        text: "Antall svar",
       },
+    },
+    credits: {
+      enabled: false,
     },
     legend: {
       enabled: false,

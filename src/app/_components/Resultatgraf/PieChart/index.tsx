@@ -118,5 +118,8 @@ function genererChartOptionsFraSpørsmålOgSvar(
         ),
       },
     ],
+    credits: {
+      enabled: false,
+    },
   };
 }

@@ -23,7 +23,7 @@ export default function Temaresultatside({
         background="bg-subtle"
         className={resultaterStyles.page}
       >
-        <PageBlock gutters width="lg" className={resultaterStyles.pageBlock}>
+        <PageBlock gutters width="2xl" className={resultaterStyles.pageBlock}>
           <ResultatRenderer
             temaId={params.temaId}
             vertId={params.vertId}

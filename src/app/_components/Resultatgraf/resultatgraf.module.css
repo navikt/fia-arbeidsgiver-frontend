@@ -1,80 +1,95 @@
 .chartWrapper {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 1rem;
 }
 
 .chartWrapper:not(:last-child) {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .barWrapper {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 .bar {
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    border-left: 2px solid white;
-    border-right: 2px solid white;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  border-left: 2px solid white;
+  border-right: 2px solid white;
 }
 
 .labelList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: 1rem;
-    padding-inline-start: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1rem;
+  padding-inline-start: 0;
 }
 
 .label {
-    list-style-type: none;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 1rem;
+  list-style-type: none;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
 }
 
 .labelValue {
-    margin-left: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .labelBox {
-    width: 1rem;
-    height: 1rem;
-    margin-right: 0.5rem;
-    margin-left: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .spørsmåltekst {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .flervalgtekst {
-    margin-bottom: 1rem;
-    margin-top: -1rem;
+  margin-bottom: 1rem;
+  margin-top: -1rem;
 }
 
 .temaheader {
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
 
-    border-bottom: 1px solid var(--a-gray-300);
+  border-bottom: 1px solid var(--a-gray-300);
+}
+
+.boksContainer {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  justify-items: stretch;
+  width: 100%;
+  padding-bottom: 4rem;
 }
 
 .temaboks {
-    margin-bottom: 2rem;
+  grid-column: span 1;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.flervalgTemaboks {
+  grid-column: span 2;
 }
 
 .loaderWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

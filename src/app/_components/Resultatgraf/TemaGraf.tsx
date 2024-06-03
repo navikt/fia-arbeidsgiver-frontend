@@ -1,11 +1,12 @@
 "use client";
 
-import Resultatgraf from "@/app/_components/Resultatgraf/index";
 import { Box } from "@navikt/ds-react";
 import resultatgrafStyle from "./resultatgraf.module.css";
 import { useTemaResultat } from "@/app/_api_hooks/vert/useTemaresultater";
 import { TemaResultatDTO } from "@/app/_types/TemaResultatDTO";
 import { Loader } from "@navikt/ds-react";
+import BarChart from "./BarChart";
+import PieChart from "./PieChart";
 
 export default function TemaGraf({
   tema,
@@ -20,18 +21,23 @@ export default function TemaGraf({
     );
   }
   return (
-    tema && (
-      <Box
-        borderRadius="xlarge"
-        padding="12"
-        background="bg-default"
-        className={resultatgrafStyle.temaboks}
-      >
-        {tema.spørsmålMedSvar.map((spørsmål, index) => (
-          <Resultatgraf key={index} spørsmål={spørsmål} />
-        ))}
-      </Box>
-    )
+    <div className={resultatgrafStyle.boksContainer}>
+      {tema.spørsmålMedSvar.map((spørsmål, index) => (
+        <Box
+          key={index}
+          borderRadius="xlarge"
+          padding="12"
+          background="bg-default"
+          className={`${resultatgrafStyle.temaboks} ${spørsmål.flervalg ? resultatgrafStyle.flervalgTemaboks : ""}`}
+        >
+          {spørsmål.flervalg ? (
+            <PieChart key={index} spørsmål={spørsmål} />
+          ) : (
+            <BarChart key={index} spørsmål={spørsmål} />
+          )}
+        </Box>
+      ))}
+    </div>
   );
 }
 
