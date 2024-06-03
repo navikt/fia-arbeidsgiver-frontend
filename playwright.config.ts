@@ -9,14 +9,28 @@ import { defineConfig, devices } from "@playwright/test";
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+const isCI = !!process.env.CI;
+
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
-  forbidOnly: !!process.env.CI,
+  forbidOnly: isCI,
   retries: 3,
   workers: 8,
-  reporter: "html",
   timeout: 60000,
+  outputDir: ".test/spec/output",
+  snapshotPathTemplate:
+    ".test/spec/snaps/{projectName}/{testFilePath}/{arg}{ext}",
+  reporter: [
+    [
+      "html",
+      {
+        outputFolder: ".test/spec/results",
+        open: "never",
+      },
+    ],
+    isCI ? ["github"] : ["line"],
+  ],
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
