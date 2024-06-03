@@ -56,10 +56,11 @@ function trengerEkstraBredde(
   if (index === 0 || tema.spørsmålMedSvar[index - 1].flervalg) {
     // Hvis vi er første etter start eller flervalg (vi er på en ny linje med ikke-flervalg)
 
+    const nesteFlervalg = tema.spørsmålMedSvar.findIndex(
+      (spm, ind) => spm.flervalg && ind > index,
+    );
     const nesteLineBreak =
-      tema.spørsmålMedSvar.findIndex(
-        (spm, ind) => spm.flervalg && ind > index,
-      ) || tema.spørsmålMedSvar.length;
+      nesteFlervalg === -1 ? tema.spørsmålMedSvar.length : nesteFlervalg;
 
     const antallSpørsmål = nesteLineBreak - index;
 
