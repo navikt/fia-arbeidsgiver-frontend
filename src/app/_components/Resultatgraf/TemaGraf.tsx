@@ -3,7 +3,10 @@
 import { Box } from "@navikt/ds-react";
 import resultatgrafStyle from "./resultatgraf.module.css";
 import { useTemaResultat } from "@/app/_api_hooks/vert/useTemaresultater";
-import { TemaResultatDTO } from "@/app/_types/TemaResultatDTO";
+import {
+  SpørsmålMedSvarDTO,
+  TemaResultatDTO,
+} from "@/app/_types/TemaResultatDTO";
 import { Loader } from "@navikt/ds-react";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
@@ -28,7 +31,7 @@ export default function TemaGraf({
           borderRadius="xlarge"
           padding="12"
           background="bg-default"
-          className={`${resultatgrafStyle.temaboks} ${spørsmål.flervalg ? resultatgrafStyle.flervalgTemaboks : ""}`}
+          className={`${resultatgrafStyle.temaboks} ${trengerEkstraBredde(tema, spørsmål, index) ? resultatgrafStyle.flervalgTemaboks : ""}`}
         >
           {spørsmål.flervalg ? (
             <PieChart key={index} spørsmål={spørsmål} />
@@ -39,6 +42,33 @@ export default function TemaGraf({
       ))}
     </div>
   );
+}
+
+function trengerEkstraBredde(
+  tema: TemaResultatDTO,
+  spørsmål: SpørsmålMedSvarDTO,
+  index: number,
+) {
+  if (spørsmål.flervalg) {
+    return true;
+  }
+  // Tving bar-chart til å ta full row om vi ender opp men en alene.
+  if (index === 0 || tema.spørsmålMedSvar[index - 1].flervalg) {
+    // Hvis vi er første etter start eller flervalg (vi er på en ny linje med ikke-flervalg)
+
+    const nesteLineBreak =
+      tema.spørsmålMedSvar.findIndex(
+        (spm, ind) => spm.flervalg && ind > index,
+      ) || tema.spørsmålMedSvar.length;
+
+    const antallSpørsmål = nesteLineBreak - index;
+
+    if (antallSpørsmål % 2 === 1) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 export function TemaGrafMedDatahenting({
