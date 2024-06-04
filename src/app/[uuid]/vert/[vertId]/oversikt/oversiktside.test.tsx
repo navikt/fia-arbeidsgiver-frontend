@@ -116,7 +116,7 @@ describe("Oversiktside", () => {
       isValidating: false,
     });
     render(<Oversiktside params={{ uuid: "uuid", vertId: "vertId" }} />);
-    const fortsettKnapp = screen.getByText("Gjenoppta");
+    const fortsettKnapp = screen.getByText("Vis spørsmål");
     expect(fortsettKnapp).toBeInTheDocument();
     expect(fortsettKnapp).not.toBeDisabled();
 

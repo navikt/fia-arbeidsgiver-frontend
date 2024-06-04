@@ -23,6 +23,7 @@ import {
   TemaoversiktDTO,
 } from "@/app/_types/TemaoversiktDTO";
 import introsideStyles from "./introside.module.css";
+import kartleggingStyles from "../../../../../../kartlegging.module.css";
 import { AccordionContent } from "@navikt/ds-react/Accordion";
 import { SvaralternativDTO } from "@/app/_types/SpørsmåloversiktDTO";
 import { useÅpneTema } from "@/app/_api_hooks/vert/useÅpneTema";
@@ -102,6 +103,7 @@ function Actionknapper({
   spørreundersøkelseId,
   vertId,
   temaId,
+  erAlleTemaStengt = true,
 }: {
   åpneTema: () => void;
   setErStartet: (erStartet: boolean) => void;
@@ -110,6 +112,7 @@ function Actionknapper({
   spørreundersøkelseId: string;
   vertId: string;
   temaId: number;
+  erAlleTemaStengt?: boolean;
 }) {
   const router = useRouter();
   if (!erStartet) {
@@ -134,22 +137,39 @@ function Actionknapper({
         vertId={vertId}
         temaId={temaId}
       />
-      <LinkTilResultat
-        spørreundersøkelseId={spørreundersøkelseId}
-        vertId={vertId}
-        temaId={temaId}
-        skalViseKnapp
-        urlTilResultatside={`../resultater/${temaId}`}
-        gåDirekteTilResultat={false}
-        knappetekst={"Fullfør og vis resultat"}
-        modalTittel={"Vil du fullføre temaet?"}
-        variant="primary"
-        knappeClass={introsideStyles.resultatknapp}
-      />
+      {erAlleTemaStengt ? (
+        <LinkTilResultat
+          spørreundersøkelseId={spørreundersøkelseId}
+          vertId={vertId}
+          temaId={temaId}
+          skalViseKnapp
+          urlTilResultatside={`../resultater/${temaId}`}
+          gåDirekteTilResultat={true}
+          knappetekst={"Fullfør og vis resultater"}
+          modalTittel={"Vil du fullføre temaet?"}
+          variant="primary"
+          knappeClass={introsideStyles.resultatknapp}
+        />
+      ) : (
+        <LinkTilResultat
+          spørreundersøkelseId={spørreundersøkelseId}
+          vertId={vertId}
+          temaId={temaId}
+          skalViseKnapp
+          urlTilResultatside={`../resultater/${temaId}`}
+          gåDirekteTilResultat={false}
+          knappetekst={"Fullfør og vis resultater"}
+          modalTittel={"Vil du fullføre temaet?"}
+          variant="primary"
+          knappeClass={introsideStyles.resultatknapp}
+        />
+      )}
+
       <Button
         variant="secondary"
         icon={<ArrowRightIcon aria-hidden />}
         iconPosition="right"
+        className={kartleggingStyles.knappHvit}
         onClick={() => {
           if (nesteTemaId) {
             router.push(`./${nesteTemaId}`);

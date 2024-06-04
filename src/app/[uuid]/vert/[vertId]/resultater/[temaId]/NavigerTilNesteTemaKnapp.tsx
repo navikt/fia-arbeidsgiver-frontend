@@ -3,6 +3,7 @@ import { Button } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
 import { useTemaoversiktOverEttTema } from "@/app/_api_hooks/vert/useTemaoversiktOverEttTema";
+import kartleggingStyles from "../../../../../kartlegging.module.css";
 
 export default function NavigerTilNesteTemaKnapp({
   vertId,
@@ -25,6 +26,7 @@ export default function NavigerTilNesteTemaKnapp({
       <Button
         onClick={() => router.push(`../tema/${tema.nesteTemaId}`)}
         icon={<ArrowRightIcon aria-hidden />}
+        className={kartleggingStyles.knappHvit}
         variant="secondary"
         iconPosition="right"
       >

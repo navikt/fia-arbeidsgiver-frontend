@@ -2,7 +2,7 @@
 
 import { Alert, HStack, Heading, Loader, VStack } from "@navikt/ds-react";
 import React from "react";
-import { OversiktBleedVert } from "@/app/[uuid]/vert/[vertId]/oversikt/OversiktBleedVert";
+import { TemaBoks } from "@/app/[uuid]/vert/[vertId]/oversikt/TemaBoks";
 import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
 import oversiktStyles from "./oversikt.module.css";
 
@@ -45,7 +45,7 @@ export default function OversiktBody({
         className={oversiktStyles.bodyContainer}
       >
         {listeOverTemaer.map((temaoversikt, index) => (
-          <OversiktBleedVert
+          <TemaBoks
             key={index}
             vertId={vertId}
             spørreundersøkelseId={spørreundersøkelseId}

@@ -3,6 +3,7 @@ import React from "react";
 import { VisQRModal } from "./VisQRModal";
 import { QRkodeVisning, lenkeFraId } from "./QRkodeVisning";
 import { StatusPåDeltaker } from "../StatusPåDeltaker/StatusPåDeltaker";
+import kartleggingStyles from "../../kartlegging.module.css";
 import loginModalStyles from "./loginmodal.module.css";
 
 export default function LoginModal({
@@ -17,7 +18,11 @@ export default function LoginModal({
   const [visQRkodeModalÅpen, setvisQRkodeModalÅpen] = React.useState(startOpen);
   return (
     <>
-      <Button variant="secondary" onClick={() => setvisQRkodeModalÅpen(true)}>
+      <Button
+        variant="secondary"
+        onClick={() => setvisQRkodeModalÅpen(true)}
+        className={kartleggingStyles.knappHvit}
+      >
         Vis QR-kode
       </Button>
       <VisQRModal

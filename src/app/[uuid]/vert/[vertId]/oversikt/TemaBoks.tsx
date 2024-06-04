@@ -1,4 +1,4 @@
-import { Box, Button, Heading, HStack, VStack } from "@navikt/ds-react";
+import { Box, Button, Heading, HStack, Tag, VStack } from "@navikt/ds-react";
 import oversiktStyles from "./oversikt.module.css";
 import React from "react";
 import { useRouter } from "next/navigation";
@@ -7,7 +7,7 @@ import LinkTilResultat from "@/app/_components/LinkTilResultat";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
 import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
 
-export function OversiktBleedVert({
+export function TemaBoks({
   spørreundersøkelseId,
   vertId,
   temaoversikt,
@@ -25,12 +25,17 @@ export function OversiktBleedVert({
           className={oversiktStyles.temaboksinnhold}
         >
           <VStack gap="4">
-            <StatusPåDeltakerMedSvar
-              spørreundersøkelseId={spørreundersøkelseId}
-              vertId={vertId}
-              temaId={temaoversikt.temaId}
-              erSynlig={temaoversikt.status !== "IKKE_ÅPNET"}
-            />
+            <HStack justify={"space-between"}>
+              <StatusPåDeltakerMedSvar
+                spørreundersøkelseId={spørreundersøkelseId}
+                vertId={vertId}
+                temaId={temaoversikt.temaId}
+                erSynlig={temaoversikt.status !== "IKKE_ÅPNET"}
+              />
+              {temaoversikt.status === "STENGT" ? (
+                <Tag variant={"success-moderate"}>Fullført</Tag>
+              ) : null}
+            </HStack>
             <Heading size="medium">{temaoversikt.beskrivelse}</Heading>
           </VStack>
           <HStack gap={"4"} justify={"end"}>
@@ -58,28 +63,49 @@ function TemaActions({
   const router = useRouter();
 
   switch (temaoversikt.status) {
-    case TemaStatus.ALLE_SPØRSMÅL_ÅPNET:
+    case TemaStatus.STENGT:
       return (
         <>
+          <Button
+            variant="secondary"
+            onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
+            iconPosition="right"
+          >
+            Vis spørsmål
+          </Button>
           <LinkTilResultat
             skalViseKnapp
             urlTilResultatside={`./resultater/${temaoversikt.temaId}`}
-            gåDirekteTilResultat={false} // TODO: Ikke vis modal dersom tema allerede er stengt
-            knappetekst={""}
+            gåDirekteTilResultat={true}
+            knappetekst={"Vis resultater"}
+            variant="primary"
+            spørreundersøkelseId={spørreundersøkelseId}
+            vertId={vertId}
+            temaId={temaoversikt.temaId}
+          />
+        </>
+      );
+    case TemaStatus.ALLE_SPØRSMÅL_ÅPNET:
+      return (
+        <>
+          <Button
+            variant="secondary"
+            onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
+            iconPosition="right"
+          >
+            Vis spørsmål
+          </Button>
+          <LinkTilResultat
+            skalViseKnapp
+            urlTilResultatside={`./resultater/${temaoversikt.temaId}`}
+            gåDirekteTilResultat={false}
+            knappetekst={"Vis resultater"}
             modalTittel={"Vil du fullføre temaet?"}
             variant="primary"
             spørreundersøkelseId={spørreundersøkelseId}
             vertId={vertId}
             temaId={temaoversikt.temaId}
           />
-          <Button
-            variant="primary"
-            onClick={() => router.push(`./tema/${temaoversikt.temaId}`)}
-            icon={<ArrowRightIcon aria-hidden />}
-            iconPosition="right"
-          >
-            Gjenoppta
-          </Button>
         </>
       );
     case TemaStatus.ÅPNET:

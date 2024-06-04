@@ -1,192 +1,146 @@
 const dummyVertId = "797bdcd0-98e7-40da-9cad-5f03a349517a";
 
 const dummyTemaoversiktUtviklePartssamarbeid = {
-  temaId: 1,
+  temaId: 4,
+  nesteTemaId: 5,
   temanavn: "UTVIKLE_PARTSSAMARBEID",
   del: 1,
   tittel: "UTVIKLE_PARTSSAMARBEID",
+  introtekst: "",
   beskrivelse: "Partssamarbeid",
-  introtekst:
-    'Partssamarbeid er essensielt i virksomheter fordi det bidrar til et godt forebyggende arbeidsmiljø og reduksjon av antall tapte dagsverk. Partssamarbeidet anerkjenner og utnytter kompetansen og ansvarsområdene til verneombud, tillitsvalgte og ledere, noe som skaper en "utvidet ledelseskapasitet".',
   status: "ALLE_SPØRSMÅL_ÅPNET",
-  førsteSpørsmålId: "018e7b18-2552-77e9-95a1-366c3eb8e800",
-  nesteTemaId: 2,
+  førsteSpørsmålId: "018f4e25-6a40-79c6-bb29-68de8b575cd1",
   spørsmålOgSvaralternativer: [
     {
-      id: "018e7b18-2552-77e9-95a1-366c3eb8e800",
+      id: "018f4e25-6a40-79c6-bb29-68de8b575cd1",
       spørsmål:
-        "I hvilken grad er du involvert i å skape godt samarbeid på arbeidsplassen?",
+        "Vi planlegger og gjennomfører jevnlige møter i partssamarbeidet",
       svaralternativer: [
         {
-          svarId: "745daa61-2676-42c6-b3ca-4da28891d564",
-          svartekst: "Vet ikke",
+          svarId: "d0fa55d9-a442-42e5-8a08-d44d6ba2304c",
+          svartekst: "Enig",
         },
         {
-          svarId: "868fd0a6-a9b7-4769-82a9-89a568c384cb",
-          svartekst: "I stor grad",
+          svarId: "7cae5bfc-778c-40a6-b015-5208bbabae02",
+          svartekst: "Litt enig",
         },
         {
-          svarId: "10904084-9f8b-431e-aa2d-9a4d35cb3c10",
-          svartekst: "I noe grad",
+          svarId: "eadefa9b-9e13-4c34-b39c-78dce8928872",
+          svartekst: "Hverken enig eller uenig",
         },
         {
-          svarId: "54228d8e-0115-41f5-a097-8a37baff3086",
-          svartekst: "I liten grad",
-        },
-      ],
-      flervalg: false,
-    },
-    {
-      id: "018e7b17-4004-7c54-a1ab-d352a87be133",
-      spørsmål: "I hvilken grad er du involvert i den daglige driften?",
-      svaralternativer: [
-        {
-          svarId: "ebd7569e-7e12-41c6-9f1d-e806511ac692",
-          svartekst: "Vet ikke",
+          svarId: "2e834275-bb3c-4f7a-a9fd-c8581e682c85",
+          svartekst: "Litt uenig",
         },
         {
-          svarId: "5b5dac74-147f-4359-af6d-cdf2efb31b7f",
-          svartekst: "I stor grad",
+          svarId: "b27ece27-6aa2-4cfa-985b-9557fe647002",
+          svartekst: "Uenig",
         },
         {
-          svarId: "f379e2b1-d963-468e-8ca6-2a94ff91e75d",
-          svartekst: "I noe grad",
-        },
-        {
-          svarId: "ae7b9cda-b441-4892-936a-3591390f3f97",
-          svartekst: "I liten grad",
-        },
-      ],
-      flervalg: false,
-    },
-    {
-      id: "018e7b0a-4455-739d-b377-870e01fe978f",
-      spørsmål: "Hvor lenge har du vært en del av gruppen?",
-      svaralternativer: [
-        {
-          svarId: "3b73e829-6901-410c-9792-926f76ecf3fa",
-          svartekst: "Mindre enn et år",
-        },
-        {
-          svarId: "65566c25-62f4-45f8-9b8d-2a15953db920",
-          svartekst: "1-2 år",
-        },
-        {
-          svarId: "60b0bb7f-be9f-456d-94df-7e78a809ce94",
-          svartekst: "2-4 år",
-        },
-        {
-          svarId: "91a65c38-d8ac-4188-9198-c42f22bc797b",
-          svartekst: "Mer enn fire år",
-        },
-      ],
-      flervalg: false,
-    },
-    {
-      id: "018e7b0b-2490-7295-9ab4-aca881c46320",
-      spørsmål: "Hvor ofte møtes dere?",
-      svaralternativer: [
-        {
-          svarId: "037f3e26-d9fc-4cd2-9a59-4bf6a19ece58",
-          svartekst: "1 - 2 ganger i året",
-        },
-        {
-          svarId: "42b8d90c-afa8-4971-82e5-80d28163ba2c",
-          svartekst: "3 - 5 ganger i året",
-        },
-        {
-          svarId: "fe04c2d6-fb88-4204-9654-334a0e142d28",
-          svartekst: "6 - 10 ganger i året",
-        },
-        {
-          svarId: "2ce32aa0-39dd-4899-a147-a5309bcaf2cf",
-          svartekst: "Mer enn 10 ganger i året",
-        },
-        {
-          svarId: "c1f8f05e-c935-486e-a1bf-46ad37e11b6e",
+          svarId: "5b02c717-92b5-45d2-92fb-ddda6d12affe",
           svartekst: "Vet ikke",
         },
       ],
       flervalg: false,
     },
     {
-      id: "018e7b0d-fe32-79ab-8e2e-b990afbbc2bf",
-      spørsmål: "Hvilke temaer får størst prioritet i møtene deres?",
+      id: "018f4e25-6a40-713f-b769-267afa134896",
+      spørsmål: "Hvilke temaer vektlegges mest i møtene?",
       svaralternativer: [
         {
-          svarId: "e4b71510-2bde-4dd3-9e5a-6e406b48d1e7",
+          svarId: "065e38d3-5912-4833-9b48-54f3d5440ecc",
           svartekst: "Lønnsforhandlinger",
         },
         {
-          svarId: "79e2b135-e02f-418f-a40c-36b539a8b3da",
+          svarId: "0b261693-0e52-49c5-9337-1c4d5a0a357d",
           svartekst: "HMS",
         },
         {
-          svarId: "8086090b-7793-4ced-a4ff-9ec8546665ae",
-          svartekst: "Bemanning",
+          svarId: "551708ef-3810-41f8-9cf2-6a03d0afc3b0",
+          svartekst: "Rekruttering og bemanning",
         },
         {
-          svarId: "9bf3f13e-c4d7-4a73-893a-b5b2f946bb8f",
-          svartekst: "Sykefravær",
+          svarId: "a5c3cfd4-ccb5-472b-b69a-6b58433cb778",
+          svartekst: "Driftsrelaterte saker (f.eks. utvikling, økonomi)",
         },
         {
-          svarId: "6abae259-40d4-4dfd-9fd1-45ff70cd8bf1",
-          svartekst: "Arbeidsmiljø",
+          svarId: "9d29f43f-e584-40e4-890e-cbae92e5caa4",
+          svartekst: "Sykefravær (f.eks. rutiner, tilrettelegging, oppfølging)",
         },
         {
-          svarId: "d7d10783-9ea0-459d-bd61-047d423ec6a3",
+          svarId: "7769f036-a649-47d2-a38c-86b6f3fdcb2a",
+          svartekst: "Arbeidsmiljø (f.eks. organisering, planlegging)",
+        },
+        {
+          svarId: "149f7415-e2a7-461d-bec9-858946008773",
           svartekst: "Annet",
         },
         {
-          svarId: "a953e606-793d-47bc-ba28-25f755aac693",
-          svartekst: "Vet ikke",
+          svarId: "a1174c98-c4eb-49af-9d49-7c637b52faa1",
+          svartekst: "Vet ikke ",
         },
       ],
       flervalg: true,
     },
     {
-      id: "018e7b12-b11a-7f68-b617-e694fd010088",
-      spørsmål:
-        "Hvor godt kjenner dere til hverandres roller og ansvar i gruppen?",
+      id: "018f4e25-6a40-7c73-8183-cc574b92b2be",
+      spørsmål: "Hvordan opplever du at partssamarbeidet fungerer?",
       svaralternativer: [
         {
-          svarId: "f835d163-3747-4487-b171-b7d892cb1549",
-          svartekst: "Godt",
+          svarId: "960a1aeb-5032-4e86-b444-c707ce053b71",
+          svartekst: "Svært bra",
         },
         {
-          svarId: "12cad1c3-7079-4896-8908-bf367c80eaca",
-          svartekst: "Hverken godt eller dårlig",
+          svarId: "d0ca5f36-9674-4da6-8cb6-dc5695f467fd",
+          svartekst: "Bra",
         },
         {
-          svarId: "c008913a-9b2f-4bef-aaa9-13f098434599",
-          svartekst: "Ikke så godt",
+          svarId: "fb753d34-c856-4b32-ab1e-8ee83fca9ee5",
+          svartekst: "Hverken bra eller dårlig",
         },
         {
-          svarId: "a1f968a7-e695-417e-a56c-736bf6176233",
+          svarId: "881a844f-e317-49db-895c-0acf7add3971",
+          svartekst: "Dårlig",
+        },
+        {
+          svarId: "43ccda37-9a3c-418f-9f1c-74dfebfa0f3b",
+          svartekst: "Svært dårlig",
+        },
+        {
+          svarId: "11ddd5ad-4f3a-4166-8e3c-6f50cf2c6c36",
           svartekst: "Vet ikke",
         },
       ],
       flervalg: false,
     },
     {
-      id: "018e7b15-256d-705e-a3e9-913e56658b28",
-      spørsmål: "Hvordan opplever du at samarbeidet i gruppen fungerer?",
+      id: "018f4e25-6a40-78d9-9ad6-775fec6a102f",
+      spørsmål:
+        "Som leder, tillitsvalgt eller verneombud jobber jeg for et godt samarbeid på arbeidsplassen",
       svaralternativer: [
         {
-          svarId: "bc8c3f92-3e0a-47a4-9628-54fc11c4abad",
-          svartekst: "Bra",
+          svarId: "72c19b39-818a-4e84-956e-d6475c910e29",
+          svartekst: "Enig",
         },
         {
-          svarId: "8f65b21d-15de-4ef4-a5f8-f41858364565",
-          svartekst: "Hverken bra eller dårlig",
+          svarId: "ed4389b0-c211-4e0b-876d-d0e731ce0acf",
+          svartekst: "Litt enig",
         },
         {
-          svarId: "8f38140c-b9c7-4d6a-9332-dc9b34e0d2ea",
-          svartekst: "Ikke så bra",
+          svarId: "94306930-b041-46f8-99ae-609eb996c0fd",
+          svartekst: "Hverken enig eller uenig",
         },
         {
-          svarId: "90511609-d4b4-4320-a444-5e4c5d93659f",
-          svartekst: "Vet ikke",
+          svarId: "4df9511a-377e-4432-8eca-832eb69e1992",
+          svartekst: "Litt uenig",
+        },
+        {
+          svarId: "323072b4-b4b0-4eac-8039-13a486326075",
+          svartekst: "Uenig",
+        },
+        {
+          svarId: "65ea0be5-82f7-4799-879b-a9ba59bd3d39",
+          svartekst: "Vet ikke ",
         },
       ],
       flervalg: false,
@@ -195,37 +149,312 @@ const dummyTemaoversiktUtviklePartssamarbeid = {
 };
 
 const dummyTemaoversiktRedusereSykefravær = {
-  temaId: 2,
+  temaId: 5,
+  nesteTemaId: 6,
   temanavn: "REDUSERE_SYKEFRAVÆR",
   del: 2,
   tittel: "REDUSERE_SYKEFRAVÆR",
   beskrivelse: "Sykefraværsarbeid",
-  introtekst:
-    "Sykefravær er en viktig indikator for arbeidsmiljøet og ansattes helse. Å ha et bevisst forhold til sykefraværsarbeid på arbeidsplassen er avgjørende for å skape et trivelig og produktivt arbeidsmiljø. Gjennom kartlegging kan man identifisere mønstre, sette mål og implementere tiltak for å redusere sykefraværet. Dette bidrar til et bedre arbeidsmiljø og økt trivsel for alle ansatte.",
+  introtekst: "",
   status: "ÅPNET",
-  førsteSpørsmålId: "5df90163-81e4-44c5-8e72-9b47f2added2",
-  nesteTemaId: null,
+  førsteSpørsmålId: "018f4e5d-c06d-775f-8304-8afa7bf193d1",
   spørsmålOgSvaralternativer: [
     {
-      id: "5df90163-81e4-44c5-8e72-9b47f2added2",
-      spørsmål:
-        "I hvilken grad jobber dere med tilrettelegging og tilpasning av arbeid?",
+      id: "018f4e5d-c06d-775f-8304-8afa7bf193d1",
+      spørsmål: "Vi jobber systematisk for å forebygge sykefravær",
       svaralternativer: [
         {
-          svarId: "bb547108-2594-418e-8f95-d911283b4eab",
-          svartekst: "I noen grad",
+          svarId: "2879a6c0-c06c-44d4-901d-620fc1f24e17",
+          svartekst: "Enig",
         },
         {
-          svarId: "a0d5d8b6-7f8f-46d2-b78e-6c8d49615a19",
-          svartekst: "I liten grad",
+          svarId: "a63526ab-fa9f-4727-bf47-f3bab61a9aec",
+          svartekst: "Litt enig",
         },
         {
-          svarId: "e183fbcc-632b-41d9-95fa-57478e1a9c54",
+          svarId: "9e25b089-a4d8-45bc-9a7f-6eddce47f3aa",
+          svartekst: "Hverken enig eller uenig",
+        },
+        {
+          svarId: "1f9de8a7-e040-4212-96a9-6e2ae78a2d2d",
+          svartekst: "Litt uenig",
+        },
+        {
+          svarId: "1130a178-c876-4649-a270-7494348ffb6a",
+          svartekst: "Uenig",
+        },
+        {
+          svarId: "a33e5686-c86f-447c-bbea-13fed4c409d5",
           svartekst: "Vet ikke",
         },
+      ],
+      flervalg: false,
+    },
+    {
+      id: "018f4e5e-18b2-7bf9-a714-ea5554f213d7",
+      spørsmål: "Vi har sykefraværsrutiner som er kjent for alle og blir brukt",
+      svaralternativer: [
         {
-          svarId: "92099422-5964-4716-a79b-86eb65e136f5",
-          svartekst: "I stor grad",
+          svarId: "e648324d-cd60-48fd-b66b-0a6594a9775a",
+          svartekst: "Enig",
+        },
+        {
+          svarId: "15dcd8cd-c2f9-46c7-b90f-9cbf63662641",
+          svartekst: "Litt enig",
+        },
+        {
+          svarId: "077a1465-1f5f-411f-ba27-a31bedf6cf7a",
+          svartekst: "Hverken enig eller uenig",
+        },
+        {
+          svarId: "05715547-a524-47e1-bef6-685b905f5aea",
+          svartekst: "Litt uenig",
+        },
+        {
+          svarId: "aea4f9af-c4e4-49aa-9020-fc784fa6234c",
+          svartekst: "Uenig",
+        },
+        {
+          svarId: "dd7a32e4-b5f5-4560-9dad-cee23726e4d0",
+          svartekst: "Vet ikke",
+        },
+      ],
+      flervalg: false,
+    },
+    {
+      id: "018f4e5e-51bb-7a64-9bca-452ab06ae313",
+      spørsmål:
+        "Ansatte kjenner til egne plikter og rettigheter når de er sykmeldt eller står i fare for å bli det",
+      svaralternativer: [
+        {
+          svarId: "f9fe616a-52fe-4521-bc11-fed3e5e4eb0c",
+          svartekst: "Enig",
+        },
+        {
+          svarId: "5e612d3a-2630-46f6-abe1-0a0a321c5fcc",
+          svartekst: "Litt enig",
+        },
+        {
+          svarId: "ff994861-4612-4eb1-a073-8cd7a241ef37",
+          svartekst: "Hverken enig eller uenig",
+        },
+        {
+          svarId: "3e6b3b78-6261-4be9-864d-45c9de193bab",
+          svartekst: "Litt uenig",
+        },
+        {
+          svarId: "d694d56f-c681-44b9-aab3-4ee5822592de",
+          svartekst: "Uenig",
+        },
+        {
+          svarId: "adf2c629-fc4d-4df5-8cbf-d638c7a0bdff",
+          svartekst: "Vet ikke",
+        },
+      ],
+      flervalg: false,
+    },
+    {
+      id: "018f4e5e-6b80-7332-8491-359b2985d8a0",
+      spørsmål:
+        "Jeg opplever at ledere er trygge på å følge opp ansatte som er sykmeldt eller står i fare for å bli det",
+      svaralternativer: [
+        {
+          svarId: "b081ca65-8d52-480a-a95b-facf7c5329a2",
+          svartekst: "Enig",
+        },
+        {
+          svarId: "986882f8-51d4-4675-b97e-59c454b16df9",
+          svartekst: "Litt enig",
+        },
+        {
+          svarId: "4cdd30ba-d326-4833-89b2-a2c5da20e003",
+          svartekst: "Hverken enig eller uenig",
+        },
+        {
+          svarId: "3a9cfa92-8a77-49aa-8335-0b8b2df29415",
+          svartekst: "Litt uenig",
+        },
+        {
+          svarId: "ea37c992-45a1-4280-b8c4-39e597d0d647",
+          svartekst: "Uenig",
+        },
+        {
+          svarId: "14239605-e50f-4e0b-ad0c-72d3299335da",
+          svartekst: "Vet ikke",
+        },
+      ],
+      flervalg: false,
+    },
+    {
+      id: "018f4e5e-84bf-7123-adb2-f80af15c954f",
+      spørsmål:
+        "Vi har skriftlig oversikt over tilretteleggingsmuligheter for ansatte",
+      svaralternativer: [
+        {
+          svarId: "a9b0abeb-12f0-4a49-ac4a-23fb499a7229",
+          svartekst: "Enig",
+        },
+        {
+          svarId: "9193995c-5d04-4ec3-9f9e-7d314ab7578f",
+          svartekst: "Litt enig",
+        },
+        {
+          svarId: "61908361-3913-450f-9385-bb85e395c828",
+          svartekst: "Hverken enig eller uenig",
+        },
+        {
+          svarId: "c99aaf54-2068-4359-9709-e7fd01c7dd4f",
+          svartekst: "Litt uenig",
+        },
+        {
+          svarId: "f51f3bc9-ccd9-4a99-875e-a3d1469b1aaf",
+          svartekst: "Uenig",
+        },
+        {
+          svarId: "ea52f030-6700-42bc-80e4-203af6578478",
+          svartekst: "Vet ikke",
+        },
+      ],
+      flervalg: false,
+    },
+    {
+      id: "018f4e5e-9ce6-74c6-9e9d-c6a9b49075b9",
+      spørsmål:
+        "Tilretteleggingstiltak er midlertidig og avsluttes til avtalt tid ",
+      svaralternativer: [
+        {
+          svarId: "04707109-3e68-4b2e-86b8-4d8a45592f45",
+          svartekst: "Enig",
+        },
+        {
+          svarId: "fce293af-f633-4f39-9cd9-86ac637312a3",
+          svartekst: "Litt enig",
+        },
+        {
+          svarId: "f5ac74ca-2e94-46ee-9095-f425d93210d3",
+          svartekst: "Hverken enig eller uenig",
+        },
+        {
+          svarId: "aa1e2533-bc52-46bb-9774-b14a79e81185",
+          svartekst: "Litt uenig",
+        },
+        {
+          svarId: "de824f99-d0d5-4f8a-ae73-abec2293d7ea",
+          svartekst: "Uenig",
+        },
+        {
+          svarId: "e67479f4-26fe-4ecb-8e02-5c2be3587c02",
+          svartekst: "Vet ikke",
+        },
+      ],
+      flervalg: false,
+    },
+    {
+      id: "018f4e5e-b178-7d83-aa0b-ddb52cade105",
+      spørsmål:
+        "Jeg har inntrykk av at vi har mange vanskelige enkeltsaker som handler om sykefravær",
+      svaralternativer: [
+        {
+          svarId: "f781dd50-aeb8-47d2-9689-bfe81ec70ea3",
+          svartekst: "Enig",
+        },
+        {
+          svarId: "d24c584c-baaa-4dd5-a9f8-3207c7038085",
+          svartekst: "Litt enig",
+        },
+        {
+          svarId: "cf609dca-2339-450c-b59c-a8734b83cd36",
+          svartekst: "Hverken enig eller uenig",
+        },
+        {
+          svarId: "8e31d354-3f77-49d4-b18c-4e6a5218cef2",
+          svartekst: "Litt uenig",
+        },
+        {
+          svarId: "37874556-cbc5-499d-b792-b297e1bd6482",
+          svartekst: "Uenig",
+        },
+        {
+          svarId: "3311d0ea-62a4-48fd-aa37-8e1cb266d9f8",
+          svartekst: "Vet ikke",
+        },
+      ],
+      flervalg: false,
+    },
+  ],
+};
+
+const dummyTemaoversiktArbeidsmiljø = {
+  temaId: 6,
+  nesteTemaId: null,
+  temanavn: "ARBEIDSMILJØ",
+  del: 3,
+  tittel: "ARBEIDSMILJØ",
+  beskrivelse: "Arbeidsmiljø",
+  introtekst: "",
+  status: "ÅPNET",
+  førsteSpørsmålId: "018f4e7b-5689-7ff7-884f-2635a51009ef",
+  spørsmålOgSvaralternativer: [
+    {
+      id: "018f4e7b-5689-7ff7-884f-2635a51009ef",
+      spørsmål:
+        "Vi er kjent med hva som er de vanlige risikofaktorene for vår bransje",
+      svaralternativer: [
+        {
+          svarId: "4ff4f56d-9a86-4416-be7a-65275061cd78",
+          svartekst: "Enig",
+        },
+        {
+          svarId: "65b31989-c24a-4163-8db8-553d7b49abca",
+          svartekst: "Litt enig",
+        },
+        {
+          svarId: "0231dcf4-a06c-451a-9152-122dc0c6254d",
+          svartekst: "Hverken enig eller uenig",
+        },
+        {
+          svarId: "0d1cce16-4ba6-4b5e-b93b-30302d15b873",
+          svartekst: "Litt uenig",
+        },
+        {
+          svarId: "11de7c99-dc25-4780-b9f7-16e880a0ffce",
+          svartekst: "Uenig",
+        },
+        {
+          svarId: "d1d99ce3-19a9-4736-913f-34ad5329e98f",
+          svartekst: "Vet ikke",
+        },
+      ],
+      flervalg: false,
+    },
+    {
+      id: "018f4e7b-5689-7595-932f-06a4ee599efc",
+      spørsmål:
+        "Vi jobber systematisk med tiltak for å forbedre arbeidsmiljøet",
+      svaralternativer: [
+        {
+          svarId: "103fccf2-f5b0-4f14-b9ba-0a7ddea8ab82",
+          svartekst: "Enig",
+        },
+        {
+          svarId: "f2a22f64-2737-408f-87a6-8a3ea5a7474e",
+          svartekst: "Litt enig",
+        },
+        {
+          svarId: "3ca0691b-8dea-44e1-aab0-f3a34dfbf259",
+          svartekst: "Hverken enig eller uenig",
+        },
+        {
+          svarId: "085e5aaa-4b7d-4018-82b6-79c57896e934",
+          svartekst: "Litt uenig",
+        },
+        {
+          svarId: "ad3018c0-d721-45cd-91e8-289f85cda148",
+          svartekst: "Uenig",
+        },
+        {
+          svarId: "4cc502cb-91e9-45bc-8c2f-a4d0b3678124",
+          svartekst: "Vet ikke",
         },
       ],
       flervalg: false,
@@ -460,6 +689,7 @@ const dummySpørsmålMedSvarPerTema = [
 const dummyTemaoversikt = [
   dummyTemaoversiktUtviklePartssamarbeid,
   dummyTemaoversiktRedusereSykefravær,
+  dummyTemaoversiktArbeidsmiljø,
 ];
 module.exports = {
   dummySpørsmålMedSvarPerTema,
@@ -467,4 +697,5 @@ module.exports = {
   dummyTemaoversikt,
   dummyTemaoversiktRedusereSykefravær,
   dummyTemaoversiktUtviklePartssamarbeid,
+  dummyTemaoversiktArbeidsmiljø,
 };

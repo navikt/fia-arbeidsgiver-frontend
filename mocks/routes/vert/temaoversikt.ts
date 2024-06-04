@@ -14,19 +14,24 @@ const listeOverTemaRoutes = [
     method: "GET",
     variants: [
       {
-        id: "success",
-        type: "middleware",
-        options: {
-          middleware: generateTemaMiddleware({ 1: "ÅPNET", 2: "IKKE_ÅPNET" }),
-        },
-      },
-      {
-        id: "success-første-besvart",
+        id: "success-første-åpnet",
         type: "middleware",
         options: {
           middleware: generateTemaMiddleware({
-            1: "ALLE_SPØRSMÅL_ÅPNET",
-            2: "ÅPNET",
+            1: "ÅPNET",
+            2: "IKKE_ÅPNET",
+            3: "IKKE_ÅPNET",
+          }),
+        },
+      },
+      {
+        id: "success",
+        type: "middleware",
+        options: {
+          middleware: generateTemaMiddleware({
+            4: "STENGT",
+            5: "ALLE_SPØRSMÅL_ÅPNET",
+            6: "ÅPNET",
           }),
         },
       },
