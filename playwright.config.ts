@@ -11,6 +11,7 @@ export default defineConfig({
   forbidOnly: isCI,
   retries: 2,
   workers: 8,
+  timeout: 30000,
   outputDir: ".test/spec/output",
   snapshotPathTemplate:
     ".test/spec/snaps/{projectName}/{testFilePath}/{arg}{ext}",
