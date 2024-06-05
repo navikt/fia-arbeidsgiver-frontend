@@ -1,5 +1,5 @@
-name: Build, test and deploy
-run-name: Build and deploy app || ${{ github.event.head_commit.message }}
+name: Test
+run-name: Test app || ${{ github.event.head_commit.message }}
 on:
   # Allow updating playwright snapshots during manual runs
   workflow_call:
@@ -12,7 +12,7 @@ env:
   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}-tests
   cancel-in-progress: true
 
 jobs:
