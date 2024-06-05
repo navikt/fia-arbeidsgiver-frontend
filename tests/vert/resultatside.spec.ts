@@ -4,7 +4,7 @@ import { Page, expect } from "@playwright/test";
 
 async function gåTilResultater(page: Page) {
   await page.getByRole("button", { name: "Vis alle resultater" }).click();
-  await page.getByRole("button", { name: "Fullfør" }).click();
+  await page.getByRole("button", { name: "Fullfør", exact: true }).click();
   await expect(page.locator("body")).toContainText("flere valg er mulig");
 }
 

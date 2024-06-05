@@ -9,6 +9,17 @@ test.describe("Vert/oversiktside", () => {
   test("Andre tema er ikke åpnet før første tema er besvart", async ({
     page,
   }) => {
+    await page.route(
+      "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93",
+      async (route) => {
+        const json = dummyTemaoversikt;
+        json[0].status = TemaStatus.ÅPNET;
+        json[1].status = TemaStatus.IKKE_ÅPNET;
+        json[2].status = TemaStatus.IKKE_ÅPNET;
+        await route.fulfill({ json });
+      },
+    );
+    await page.reload();
     await expect(page.getByRole("main")).toContainText("Start");
     await expect(
       page.getByRole("button", { name: "Start" }).nth(1),
@@ -29,6 +40,7 @@ test.describe("Vert/oversiktside", () => {
         const json = dummyTemaoversikt;
         json[0].status = TemaStatus.ALLE_SPØRSMÅL_ÅPNET;
         json[1].status = TemaStatus.ÅPNET;
+        json[2].status = TemaStatus.IKKE_ÅPNET;
         await route.fulfill({ json });
       },
     );
@@ -36,13 +48,15 @@ test.describe("Vert/oversiktside", () => {
     await page.reload();
     await page.getByRole("button", { name: "Lukk" }).click();
 
-    await expect(page.getByRole("button", { name: "Gjenoppta" })).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Vis spørsmål" }),
+    ).toBeVisible();
     await expect(
       page.getByRole("button", { name: "Start" }).nth(0),
     ).not.toBeDisabled();
     await expect(
       page.getByRole("button", { name: "Start" }).nth(1),
-    ).not.toBeVisible();
+    ).toBeDisabled();
   });
 
   test("test av axe", async ({ page }) => {
