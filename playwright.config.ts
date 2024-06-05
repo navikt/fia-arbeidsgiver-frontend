@@ -15,9 +15,8 @@ export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
   forbidOnly: isCI,
-  retries: 3,
+  retries: 1,
   workers: 8,
-  timeout: 60000,
   outputDir: ".test/spec/output",
   snapshotPathTemplate:
     ".test/spec/snaps/{projectName}/{testFilePath}/{arg}{ext}",
