@@ -15,6 +15,10 @@ async function gåTilResultater(page: Page) {
   await expect(visResultater).toBeVisible();
   await visResultater.click();
 
+  await page
+    .getByRole("button", { name: "Fullfør", exact: true })
+    .click({ timeout: 10000 });
+
   await expect(page.locator("body")).toContainText("flere valg er mulig");
 }
 
