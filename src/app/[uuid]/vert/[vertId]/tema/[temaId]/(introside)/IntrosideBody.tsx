@@ -135,7 +135,6 @@ function Actionknapper({
         vertId={vertId}
         temaId={temaId}
       />
-      (
       <LinkTilResultat
         spørreundersøkelseId={spørreundersøkelseId}
         vertId={vertId}
@@ -148,7 +147,6 @@ function Actionknapper({
         variant="primary"
         knappeClass={introsideStyles.resultatknapp}
       />
-      )
       <Button
         variant="secondary"
         icon={<ArrowRightIcon aria-hidden />}
