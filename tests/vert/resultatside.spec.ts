@@ -11,7 +11,7 @@ async function gåTilResultater(page: Page) {
 test.describe("Vert/resultatside", () => {
   test("Screenshot av innhold likner", async ({ page }) => {
     await gåTilResultater(page);
-    await expect(page).toHaveScreenshot("resultat.png");
+    await expect(page).toHaveScreenshot({ fullPage: true });
   });
 
   test("test av axe", async ({ page }) => {
