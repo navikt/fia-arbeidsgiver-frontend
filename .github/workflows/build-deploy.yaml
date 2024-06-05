@@ -63,6 +63,7 @@ jobs:
         run: npx playwright test --update-snapshots
       - name: Run playwright tests
         continue-on-error: true
+        id: playwright-step
         run: bun playwright test
       - name: Upload test report
         if: always()
@@ -72,6 +73,9 @@ jobs:
           path: .test/spec/results/
           retention-days: 7
           overwrite: true
+      - name: Fail if playwright tests failed
+        if: ${{steps.playwright-step.outcome != 'success'}}
+        run: exit 1
       - name: Build
         run: bun run build
       - name: Push to Google Artifact Registry
