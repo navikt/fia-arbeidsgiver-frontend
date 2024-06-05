@@ -103,7 +103,6 @@ function Actionknapper({
   spørreundersøkelseId,
   vertId,
   temaId,
-  erAlleTemaStengt = true,
 }: {
   åpneTema: () => void;
   setErStartet: (erStartet: boolean) => void;
@@ -112,7 +111,6 @@ function Actionknapper({
   spørreundersøkelseId: string;
   vertId: string;
   temaId: number;
-  erAlleTemaStengt?: boolean;
 }) {
   const router = useRouter();
   if (!erStartet) {
@@ -137,34 +135,20 @@ function Actionknapper({
         vertId={vertId}
         temaId={temaId}
       />
-      {erAlleTemaStengt ? (
-        <LinkTilResultat
-          spørreundersøkelseId={spørreundersøkelseId}
-          vertId={vertId}
-          temaId={temaId}
-          skalViseKnapp
-          urlTilResultatside={`../resultater/${temaId}`}
-          gåDirekteTilResultat={true}
-          knappetekst={"Fullfør og vis resultater"}
-          modalTittel={"Vil du fullføre temaet?"}
-          variant="primary"
-          knappeClass={introsideStyles.resultatknapp}
-        />
-      ) : (
-        <LinkTilResultat
-          spørreundersøkelseId={spørreundersøkelseId}
-          vertId={vertId}
-          temaId={temaId}
-          skalViseKnapp
-          urlTilResultatside={`../resultater/${temaId}`}
-          gåDirekteTilResultat={false}
-          knappetekst={"Fullfør og vis resultater"}
-          modalTittel={"Vil du fullføre temaet?"}
-          variant="primary"
-          knappeClass={introsideStyles.resultatknapp}
-        />
-      )}
-
+      (
+      <LinkTilResultat
+        spørreundersøkelseId={spørreundersøkelseId}
+        vertId={vertId}
+        temaId={temaId}
+        skalViseKnapp
+        urlTilResultatside={`../resultater/${temaId}`}
+        gåDirekteTilResultat={false}
+        knappetekst={"Fullfør og vis resultater"}
+        modalTittel={"Vil du fullføre temaet?"}
+        variant="primary"
+        knappeClass={introsideStyles.resultatknapp}
+      />
+      )
       <Button
         variant="secondary"
         icon={<ArrowRightIcon aria-hidden />}
