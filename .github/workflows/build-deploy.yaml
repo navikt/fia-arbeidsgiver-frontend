@@ -59,7 +59,7 @@ jobs:
           restore-keys: cache/${{github.repository}}/refs/heads/master
           path: .test/**
       - name: Initialize playwright snapshots
-        if: ${{steps.cache.outputs.cache-hit != 'true' || inputs.update-snapshots == 'true'}}
+        if: ${{steps.cache.outputs.cache-hit != 'true' || inputs.update-snapshots }}
         run: npx playwright test --update-snapshots
       - name: Run playwright tests
         continue-on-error: true
