@@ -113,29 +113,31 @@ export default function Startside({
           borderRadius="xlarge"
           padding="10"
           background="bg-default"
-          className={startsideStyles.startsideboks}
+          className={`${startsideStyles.startsideboks} ${startsideStyles.startsidegrid}`}
         >
-          <Heading
-            level="2"
-            size="small"
-            className={startsideStyles.subheading}
-          >
-            Resultater og personvern
-          </Heading>
-          <List>
-            <ListItem>
-              Alle svar er anonyme og vi registrerer ikke hvem som har svart
-              hva.
-            </ListItem>
-            <ListItem>
-              Resultatene brukes som grunnlag for samarbeidet og deles kun med
-              dere.
-            </ListItem>
-            <ListItem>
-              NAV bruker kun anonymisert statistikk for å videreutvikle
-              tjenester.
-            </ListItem>
-          </List>
+          <VStack className={startsideStyles.gridCenter}>
+            <Heading
+              level="2"
+              size="small"
+              className={startsideStyles.subheading}
+            >
+              Resultater og personvern
+            </Heading>
+            <List>
+              <ListItem>
+                Alle svar er anonyme og vi registrerer ikke hvem som har svart
+                hva.
+              </ListItem>
+              <ListItem>
+                Resultatene brukes som grunnlag for samarbeidet og deles kun med
+                dere.
+              </ListItem>
+              <ListItem>
+                NAV bruker kun anonymisert statistikk for å videreutvikle
+                tjenester.
+              </ListItem>
+            </List>
+          </VStack>
         </Box>
       </PageBlock>
     </Page>
