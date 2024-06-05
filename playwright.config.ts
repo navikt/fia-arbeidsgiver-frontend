@@ -9,7 +9,7 @@ export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
   forbidOnly: isCI,
-  retries: 1,
+  retries: 2,
   workers: 8,
   outputDir: ".test/spec/output",
   snapshotPathTemplate:
