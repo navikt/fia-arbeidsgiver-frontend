@@ -69,6 +69,12 @@ jobs:
       - name: Initialize playwright snapshots
         if: ${{steps.cache.outputs.cache-hit != 'true' || inputs.update-snapshots }}
         run: bunx playwright test --update-snapshots --reporter html
+      - name: Save playwright snapshots
+        uses: actions/cache/save@v3
+        if: ${{steps.cache.outputs.cache-hit != 'true' || inputs.update-snapshots }}
+        with:
+          key: cache/${{github.repository}}/${{github.ref}}
+          path: .test/**
       - name: Run playwright tests
         continue-on-error: true
         id: playwright-step
