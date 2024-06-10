@@ -1,35 +1,6 @@
 name: Build, test and deploy
 run-name: Build and deploy app || ${{ github.event.head_commit.message }}
-on:
-  push:
-    branches:
-      - "*"
-
-  pull_request:
-    branches:
-      - "*"
-
-  # Allow updating playwright snapshots during manual runs
-  workflow_call:
-    inputs:
-      update-snapshots:
-        description: "Update playwright snapshots?"
-        type: boolean
-      run-build-and-deploy:
-        description: "Run build and deploy?"
-        type: boolean
-        default: true
-  
-  # Allow updating playwright snapshots during automatic runs
-  workflow_dispatch: 
-    inputs:
-      update-snapshots:
-        description: "Update playwright snapshots?"
-        type: boolean
-      run-build-and-deploy:
-        description: "Run build and deploy?"
-        type: boolean
-        default: true
+on: [push]
 
 env:
   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
@@ -67,7 +38,7 @@ jobs:
           restore-keys: cache/${{github.repository}}/${{vars.PLAYWRIGHT_CACHE_VERSION}}/refs/heads/master
           path: .test/**
       - name: Initialize playwright snapshots
-        if: ${{steps.cache.outputs.cache-hit != 'true' || inputs.update-snapshots }}
+        if: ${{steps.cache.outputs.cache-hit != 'true' }}
         run: bunx playwright test --update-snapshots --reporter html
       - name: Run playwright tests
         continue-on-error: true
@@ -89,7 +60,6 @@ jobs:
     name: Build, test and push docker image
     runs-on: ubuntu-latest
     needs: tests
-    if: inputs.run-build-and-deploy
     permissions:
       id-token: write
     timeout-minutes: 15
