@@ -61,19 +61,14 @@ jobs:
       - run: bunx playwright install --with-deps
       - name: Set up cache
         id: cache
-        uses: actions/cache/restore@v3
+        uses: actions/cache@v4
         with:
-          key: cache/${{github.repository}}/${{github.ref}}
+          key: cache/${{github.repository}}/${{vars.PLAYWRIGHT_CACHE_VERSION}}/${{github.ref}}
+          restore-keys: cache/${{github.repository}}/${{vars.PLAYWRIGHT_CACHE_VERSION}}/refs/heads/master
           path: .test/**
       - name: Initialize playwright snapshots
         if: ${{steps.cache.outputs.cache-hit != 'true' || inputs.update-snapshots }}
         run: bunx playwright test --update-snapshots --reporter html
-      - name: Save playwright snapshots
-        uses: actions/cache/save@v3
-        if: ${{steps.cache.outputs.cache-hit != 'true' || inputs.update-snapshots }}
-        with:
-          key: cache/${{github.repository}}/${{github.ref}}
-          path: .test/**
       - name: Run playwright tests
         continue-on-error: true
         id: playwright-step
