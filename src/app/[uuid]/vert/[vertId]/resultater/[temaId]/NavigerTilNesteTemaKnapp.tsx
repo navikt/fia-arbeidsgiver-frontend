@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@navikt/ds-react";
+import { Alert, Button } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
 import { useTemaoversiktOverEttTema } from "@/app/_api_hooks/vert/useTemaoversiktOverEttTema";
@@ -15,7 +15,7 @@ export default function NavigerTilNesteTemaKnapp({
   temaId: number;
 }) {
   const router = useRouter();
-  const { data: tema } = useTemaoversiktOverEttTema(
+  const { data: tema, error } = useTemaoversiktOverEttTema(
     spørreundersøkelseId,
     vertId,
     temaId,
@@ -32,6 +32,12 @@ export default function NavigerTilNesteTemaKnapp({
       >
         Gå til neste tema
       </Button>
+    );
+  } else if (error) {
+    return (
+      <Alert variant="error" role="alert" aria-live="polite">
+        {error.message}
+      </Alert>
     );
   } else {
     return null;

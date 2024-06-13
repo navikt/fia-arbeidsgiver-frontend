@@ -3,29 +3,18 @@ import AxeBuilder from "@axe-core/playwright";
 import { Page, expect } from "@playwright/test";
 
 async function gåTilResultater(page: Page) {
-  await page.getByRole("button", { name: "Start" }).first().click();
-  await expect(page.locator("body")).toContainText(
-    "Arbeidsmiljø handler om arbeid - det å organisere, planlegge og gjennomføre arbeidet.",
-  );
-
-  await page.getByRole("button", { name: "Start" }).click();
-  const visResultater = page.getByRole("button", {
-    name: "Fullfør og vis resultater",
-  });
-  await expect(visResultater).toBeVisible();
-  await visResultater.click();
-
-  await page
-    .getByRole("button", { name: "Fullfør", exact: true })
-    .click({ timeout: 10000 });
-
+  await page.getByRole("button", { name: "Vis alle resultater" }).click();
+  await page.getByRole("button", { name: "Fullfør", exact: true }).click();
   await expect(page.locator("body")).toContainText("flere valg er mulig");
 }
 
-test.describe("Vert/delresultatside", () => {
+test.describe("Vert/resultatside", () => {
   test.beforeEach(({ page }) => {
     page.unroute(
-      `http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93/6`,
+      "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93",
+    );
+    page.unroute(
+      "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93/4/resultater",
     );
   });
   test("Screenshot av innhold likner", async ({ page }) => {
@@ -38,14 +27,16 @@ test.describe("Vert/delresultatside", () => {
   }) => {
     await gåTilResultater(page);
     await page.route(
-      `http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93/6`,
+      "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93",
       async (route) => {
         await route.fulfill({ status: 303 });
       },
     );
 
     await page.reload();
-    await expect(page.getByText("Kunne ikke laste tema 6")).toBeVisible();
+    await expect(
+      page.getByText("Kunne ikke laste oversikt over temaer"),
+    ).toBeVisible();
   });
 
   test("Viser feilmelding når det er problemer med å hente temaresultat", async ({
@@ -53,7 +44,7 @@ test.describe("Vert/delresultatside", () => {
   }) => {
     await gåTilResultater(page);
     await page.route(
-      "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93/6/resultater",
+      "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93/4/resultater",
       async (route) => {
         await route.fulfill({ status: 303 });
       },
@@ -67,7 +58,6 @@ test.describe("Vert/delresultatside", () => {
 
   test("test av axe", async ({ page }) => {
     await gåTilResultater(page);
-    await expect(page.locator("body")).toContainText("Gå til oversikt"); //Vent på at siden er lastet.
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
     expect(accessibilityScanResults.violations).toEqual([]);

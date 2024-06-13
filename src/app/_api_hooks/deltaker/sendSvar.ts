@@ -30,7 +30,7 @@ export async function sendSvar({
     throw new Error("Tema stengt, hent nytt spørsmål");
   }
   if (!res.ok) {
-    throw new Error("Noe gikk galt.");
+    throw new Error("Noe gikk galt. Prøv å laste siden på nytt.");
   }
   CookieHandler.setSvarPåSpørsmålOgMarkerSomSisteSvarte(spørsmålId, svarIder);
 }

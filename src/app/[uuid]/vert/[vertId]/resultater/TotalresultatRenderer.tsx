@@ -1,7 +1,7 @@
 "use client";
 
 import HeaderVert from "@/app/_components/HeaderVert";
-import { Heading, Page, VStack, Loader } from "@navikt/ds-react";
+import { Heading, Page, VStack, Loader, Alert } from "@navikt/ds-react";
 import { PageBlock } from "@navikt/ds-react/Page";
 import { TemaGrafMedDatahenting } from "@/app/_components/Resultatgraf/TemaGraf";
 import React, { useEffect, useState } from "react";
@@ -17,7 +17,7 @@ export function TotalresultatRenderer({
   spørreundersøkelseId: string;
   vertId: string;
 }) {
-  const { data: listeOverTemaer } = useTemaoversikt(
+  const { data: listeOverTemaer, error } = useTemaoversikt(
     spørreundersøkelseId,
     vertId,
   );
@@ -41,42 +41,42 @@ export function TotalresultatRenderer({
   }, [spørreundersøkelseId, vertId, listeOverTemaer]);
 
   return (
-    listeOverTemaer && (
-      <>
-        <HeaderVert
-          spørreundersøkelseId={spørreundersøkelseId}
-          vertId={vertId}
-        />
-        <Page contentBlockPadding="none" background="bg-subtle">
-          <PageBlock gutters width="2xl">
-            {listeOverTemaer ? (
-              listeOverTemaer.map(
-                (tema) =>
-                  temaErAvsluttet[tema.temaId] && (
-                    <React.Fragment key={tema.temaId}>
-                      <Headerlinje tittel={tema?.beskrivelse} />
-                      <TemaGrafMedDatahenting
-                        temaId={tema.temaId}
-                        spørreundersøkelseId={spørreundersøkelseId}
-                        vertId={vertId}
-                      />
-                    </React.Fragment>
-                  ),
-              )
-            ) : (
-              <VStack
-                gap={"4"}
-                align={"center"}
-                justify={"center"}
-                className={resultaterStyles.loadingStack}
-              >
-                <Heading size={"large"}>Laster resultater</Heading>
-                <Loader size="3xlarge" title="Venter..." />
-              </VStack>
-            )}
-          </PageBlock>
-        </Page>
-      </>
-    )
+    <>
+      <HeaderVert spørreundersøkelseId={spørreundersøkelseId} vertId={vertId} />
+      <Page contentBlockPadding="none" background="bg-subtle">
+        <PageBlock gutters width="2xl">
+          {error && (
+            <Alert variant="error" role="alert" aria-live="polite">
+              {error?.message}
+            </Alert>
+          )}
+          {listeOverTemaer ? (
+            listeOverTemaer.map(
+              (tema) =>
+                temaErAvsluttet[tema.temaId] && (
+                  <React.Fragment key={tema.temaId}>
+                    <Headerlinje tittel={tema?.beskrivelse} />
+                    <TemaGrafMedDatahenting
+                      temaId={tema.temaId}
+                      spørreundersøkelseId={spørreundersøkelseId}
+                      vertId={vertId}
+                    />
+                  </React.Fragment>
+                ),
+            )
+          ) : (
+            <VStack
+              gap={"4"}
+              align={"center"}
+              justify={"center"}
+              className={resultaterStyles.loadingStack}
+            >
+              <Heading size={"large"}>Laster resultater</Heading>
+              <Loader size="3xlarge" title="Venter..." />
+            </VStack>
+          )}
+        </PageBlock>
+      </Page>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { Box } from "@navikt/ds-react";
+import { Alert, Box } from "@navikt/ds-react";
 import resultatgrafStyle from "./resultatgraf.module.css";
 import { useTemaResultat } from "@/app/_api_hooks/vert/useTemaresultater";
 import {
@@ -81,7 +81,19 @@ export function TemaGrafMedDatahenting({
   spørreundersøkelseId: string;
   vertId: string;
 }) {
-  const { data: tema } = useTemaResultat(spørreundersøkelseId, vertId, temaId);
+  const { data: tema, error } = useTemaResultat(
+    spørreundersøkelseId,
+    vertId,
+    temaId,
+  );
+
+  if (error) {
+    return (
+      <Alert variant="error" role="alert" aria-live="polite">
+        {error.message}
+      </Alert>
+    );
+  }
 
   return <TemaGraf tema={tema} />;
 }

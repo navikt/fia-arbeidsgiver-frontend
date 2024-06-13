@@ -11,7 +11,7 @@ export function useTemaResultat(
       method: "GET",
     });
     if (!res.ok) {
-      throw new Error("Kunne ikke laste resultater over temaer");
+      throw new Error("Kunne ikke laste resultater for tema");
     }
     return res.json();
   };

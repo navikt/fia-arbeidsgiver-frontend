@@ -21,7 +21,9 @@ export function fetchBliMed(spørreundersøkelseId: string) {
           );
         }
         if (!res.ok) {
-          throw new Error("Noe gikk galt.");
+          throw new Error(
+            "Noe gikk galt. Er du sikker på at du skrev inn riktig lenke?",
+          );
         }
 
         return res.json();

@@ -50,10 +50,6 @@ export default function Spørsmålsseksjon({
   const router = useRouter();
 
   const håndterNesteknapp = () => {
-    if (!spørsmålOgSvar) {
-      throw new Error("Spørsmål mangler");
-    }
-
     if (erPåLagretSvar(svar, lagretSvar)) {
       router.push(urlNeste(spørsmålOgSvar));
     } else {
@@ -74,11 +70,13 @@ export default function Spørsmålsseksjon({
         })
         .catch((error) => {
           if (error.message == "Tema stengt, hent nytt spørsmål") {
-            fetchIdentifiserbartSpørsmål(spørreundersøkelseId).then(
-              ({ spørsmålId, temaId }) => {
+            fetchIdentifiserbartSpørsmål(spørreundersøkelseId)
+              .then(({ spørsmålId, temaId }) => {
                 router.push(`../../deltaker/${temaId}/${spørsmålId}`);
-              },
-            );
+              })
+              .catch((error) => {
+                setFeilSendSvar(error.message);
+              });
           } else {
             setFeilSendSvar(error.message);
           }
@@ -87,9 +85,6 @@ export default function Spørsmålsseksjon({
   };
 
   const håndterTilbakeknapp = () => {
-    if (!spørsmålOgSvar) {
-      throw new Error("Spørsmål mangler");
-    }
     const url = urlTilbake(spørsmålOgSvar);
     if (url !== null) {
       router.push(url);

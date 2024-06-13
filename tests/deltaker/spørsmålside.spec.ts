@@ -3,6 +3,18 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
 
 test.describe("Deltaker/spørsmålside", () => {
+  test.beforeEach(({ page }) => {
+    page.unroute(
+      "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker",
+    );
+    page.unroute(
+      `http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker/1/b16c4b1c-b45e-470d-a1a5-d6f87424d410/svar`,
+    );
+    page.unroute(
+      `http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker/1/b16c4b1c-b45e-470d-a1a5-d6f87424d410`,
+    );
+  });
+
   test("rett innhold blir tegnet opp", async ({ page }) => {
     await expect(
       page.getByRole("heading", { name: "Partssamarbeid" }),
@@ -63,6 +75,70 @@ test.describe("Deltaker/spørsmålside", () => {
     await expect(page.getByRole("main")).toContainText(
       "Fullført!Takk for din deltakelse 🎉Du kan nå lukke denne siden.",
     );
+  });
+
+  test("Viser feilmelding ved feil i sendSvar", async ({ page }) => {
+    await page.route(
+      `http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker/1/b16c4b1c-b45e-470d-a1a5-d6f87424d410/svar`,
+      async (route) => {
+        await route.fulfill({ status: 400 });
+      },
+    );
+
+    await page.getByText("Arbeidsforhold").click();
+    await page.getByRole("button", { name: "Svar" }).click();
+    await expect(
+      page.getByText("Kunne ikke sende svar, prøv igjen"),
+    ).toBeVisible();
+
+    await page.route(
+      `http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker/1/b16c4b1c-b45e-470d-a1a5-d6f87424d410/svar`,
+      async (route) => {
+        await route.fulfill({ status: 302 });
+      },
+    );
+
+    await page.getByText("Arbeidsforhold").click();
+    await page.getByRole("button", { name: "Svar" }).click();
+    await expect(
+      page.getByText("Noe gikk galt. Prøv å laste siden på nytt."),
+    ).toBeVisible();
+  });
+
+  test("Viser feilmelding ved lukket spørsmål og feil i fetchIdentifiserbartSpørsmål", async ({
+    page,
+  }) => {
+    await page.route(
+      `http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker/1/b16c4b1c-b45e-470d-a1a5-d6f87424d410/svar`,
+      async (route) => {
+        await route.fulfill({ status: 303 });
+      },
+    );
+
+    await page.getByText("Arbeidsforhold").click();
+    await page.route(
+      "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker",
+      async (route) => {
+        await route.fulfill({ status: 303 });
+      },
+    );
+    await page.getByRole("button", { name: "Svar" }).click();
+    await expect(
+      page.getByText("Noe gikk galt med henting av neste spørsmål."),
+    ).toBeVisible();
+  });
+
+  test("Viser feilmelding fra useSpørsmålOgSvar", async ({ page }) => {
+    await page.route(
+      `http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker/1/b16c4b1c-b45e-470d-a1a5-d6f87424d410`,
+      async (route) => {
+        await route.fulfill({ status: 302 });
+      },
+    );
+
+    await expect(
+      page.getByText("Noe gikk galt. Prøv å laste siden på nytt."),
+    ).toBeVisible();
   });
 
   test.fixme("Bruker valgt svaralternativ fra cookieHandler", () => {

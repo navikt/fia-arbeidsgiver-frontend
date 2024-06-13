@@ -6,6 +6,11 @@ import { expect } from "@playwright/test";
 const { dummyTemaoversikt } = require("@/utils/dummyData/vert");
 
 test.describe("Vert/oversiktside", () => {
+  test.beforeEach(({ page }) => {
+    page.unroute(
+      "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93",
+    );
+  });
   test("Andre tema er ikke åpnet før første tema er besvart", async ({
     page,
   }) => {
@@ -57,6 +62,22 @@ test.describe("Vert/oversiktside", () => {
     await expect(
       page.getByRole("button", { name: "Start" }).nth(1),
     ).toBeDisabled();
+  });
+
+  test("Viser feilmelding når det er problemer med å hente temaoversikt", async ({
+    page,
+  }) => {
+    await page.route(
+      "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93",
+      async (route) => {
+        await route.fulfill({ status: 303 });
+      },
+    );
+
+    await page.reload();
+    await expect(
+      page.getByText("Kunne ikke laste oversikt over temaer"),
+    ).toBeVisible();
   });
 
   test("test av axe", async ({ page }) => {

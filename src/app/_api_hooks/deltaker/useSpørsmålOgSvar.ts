@@ -12,12 +12,12 @@ export function useSpørsmålOgSvar(
     fetch(url, {
       method: "GET",
     }).then((res) => {
-      if (res.status === 202) {
-        return undefined;
+      if (!res.ok) {
+        throw new Error("Noe gikk galt. Prøv å laste siden på nytt.");
       }
 
-      if (!res.ok) {
-        throw new Error("Noe gikk galt.");
+      if (res.status === 202) {
+        return undefined;
       }
 
       setHarLastet(true);

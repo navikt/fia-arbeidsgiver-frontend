@@ -47,6 +47,8 @@ export function IntrosideBody({
   } = useTemaoversiktOverEttTema(spørreundersøkelseId, vertId, temaId);
   const åpneTema = useÅpneTema(spørreundersøkelseId, vertId, temaId);
 
+  const [åpneTemaError, setÅpneTemaError] = React.useState<string | null>(null);
+
   const [erStartet, setErStartet] = React.useState(false);
 
   if (isLoading) {
@@ -58,10 +60,11 @@ export function IntrosideBody({
     );
   }
 
-  if (error) {
+  if (error || åpneTemaError) {
     return (
       <Alert variant={"error"} role="alert" aria-live="polite">
-        {error.message}
+        {error?.message}
+        {åpneTemaError}
       </Alert>
     );
   }
@@ -73,6 +76,7 @@ export function IntrosideBody({
           <Headerlinje tittel={temaoversikt.beskrivelse}>
             <Actionknapper
               åpneTema={åpneTema}
+              setÅpneTemaError={setÅpneTemaError}
               setErStartet={setErStartet}
               erStartet={erStartet}
               nesteTemaId={temaoversikt.nesteTemaId}
@@ -97,6 +101,7 @@ export function IntrosideBody({
 
 function Actionknapper({
   åpneTema,
+  setÅpneTemaError,
   setErStartet,
   erStartet,
   nesteTemaId,
@@ -104,7 +109,8 @@ function Actionknapper({
   vertId,
   temaId,
 }: {
-  åpneTema: () => void;
+  åpneTema: () => Promise<void>;
+  setÅpneTemaError: (error: string) => void;
   setErStartet: (erStartet: boolean) => void;
   erStartet: boolean;
   nesteTemaId?: number;
@@ -117,7 +123,9 @@ function Actionknapper({
     return (
       <Button
         onClick={() => {
-          åpneTema();
+          åpneTema().catch((error) => {
+            setÅpneTemaError(error.message);
+          });
           setErStartet(true);
         }}
         icon={<ArrowRightIcon aria-hidden />}

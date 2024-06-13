@@ -12,21 +12,6 @@ export function urlNeste(spørsmålOgSvar: SpørsmåloversiktDTO): string {
   return `../${spørsmålOgSvar.nesteSpørsmål.temaId}/${spørsmålOgSvar.nesteSpørsmål.spørsmålId}`;
 }
 
-export function urlNesteVert(
-  spørsmålOgSvar: SpørsmåloversiktDTO,
-  gåTilOversikt: boolean = false,
-): string {
-  if (!spørsmålOgSvar) {
-    throw new Error("Spørsmål mangler");
-  }
-
-  if (spørsmålOgSvar.nesteSpørsmål === null || gåTilOversikt) {
-    return `../../oversikt`;
-  }
-
-  return `../${spørsmålOgSvar.nesteSpørsmål.temaId}/${spørsmålOgSvar.nesteSpørsmål.spørsmålId}`;
-}
-
 export function urlTilbake(spørsmålOgSvar: SpørsmåloversiktDTO): string | null {
   if (!spørsmålOgSvar) {
     throw new Error("Spørsmål mangler");

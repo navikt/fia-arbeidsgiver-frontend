@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { avsluttTema } from "@/app/_api_hooks/vert/avsluttTema";
 import { useTemaResultat } from "@/app/_api_hooks/vert/useTemaresultater";
 import Headerlinje from "@/app/_components/Headerlinje";
-import { Heading, VStack, Loader } from "@navikt/ds-react";
+import { Heading, VStack, Loader, Alert } from "@navikt/ds-react";
 import resultaterStyles from "../resultater.module.css";
 import NavigerTilNesteTemaKnapp from "@/app/[uuid]/vert/[vertId]/resultater/[temaId]/NavigerTilNesteTemaKnapp";
 
@@ -28,7 +28,11 @@ export function ResultatRenderer({
       );
   }, [spørreundersøkelseId, vertId, temaId]);
 
-  const { data: tema } = useTemaResultat(spørreundersøkelseId, vertId, temaId);
+  const { data: tema, error } = useTemaResultat(
+    spørreundersøkelseId,
+    vertId,
+    temaId,
+  );
 
   if (tema === undefined || !erAvsluttet) {
     return (
@@ -42,6 +46,11 @@ export function ResultatRenderer({
         >
           <Heading size={"large"}>Laster resultater</Heading>
           <Loader size="3xlarge" title="Venter..." />
+          {error && (
+            <Alert variant="error" role="alert" aria-live="polite">
+              {error.message}
+            </Alert>
+          )}
         </VStack>
       </>
     );

@@ -10,7 +10,7 @@ export function fetchIdentifiserbartSpørsmål(
       method: "GET",
     }).then((res) => {
       if (!res.ok) {
-        throw new Error("Noe gikk galt med henting av første spørsmål.");
+        throw new Error("Noe gikk galt med henting av neste spørsmål.");
       }
 
       return res.json();
