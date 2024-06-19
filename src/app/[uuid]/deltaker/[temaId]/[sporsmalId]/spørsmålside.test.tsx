@@ -431,7 +431,7 @@ describe("deltaker/Spørsmålsside", () => {
       />,
     );
 
-    expect(screen.getByText("Venter...")).toBeInTheDocument();
+    expect(screen.getByText("Vennligst vent...")).toBeInTheDocument();
   });
 
   test("Viser checkbokser for flervalgsspørsmål", async () => {

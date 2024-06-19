@@ -1,6 +1,28 @@
 .ventertittel {
-  margin-top: 11rem;
+  margin-top: 10rem;
   margin-bottom: 3rem;
+}
+
+.venterundertittel {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.venterTimeglass {
+  animation: bounce 3s linear infinite;
+  color: var(--a-blue-500);
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(0.8rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .spørsmålsheader {
@@ -58,9 +80,4 @@
 
 .knappeStack {
   margin-top: 1rem;
-}
-
-.venterundertittel {
-  margin-top: 2rem;
-  text-align: center;
 }

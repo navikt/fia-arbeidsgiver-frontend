@@ -4,12 +4,13 @@ import React from "react";
 
 import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import { SpørsmålHeadingDeltaker } from "./SpørsmålHeadingDeltaker";
-import { Alert, BodyShort, Heading, Loader, VStack } from "@navikt/ds-react";
+import { Alert, BodyShort, Heading, VStack } from "@navikt/ds-react";
 import spørsmålStyles from "./sporsmalsside.module.css";
 import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import { useRouter } from "next/navigation";
 import { harGyldigSesjonsID } from "@/utils/harGyldigSesjonsID";
+import { HourglassTopFilledIcon } from "@navikt/aksel-icons";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,
@@ -70,11 +71,15 @@ export default function SpørsmålBody({
             className={spørsmålStyles.ventertittel}
             align="center"
           >
-            Venter...
+            Vennligst vent...
           </Heading>
-          <Loader variant={"interaction"} size="3xlarge" title="Venter" />
+          <HourglassTopFilledIcon
+            className={spørsmålStyles.venterTimeglass}
+            title="Venter"
+            fontSize="9rem"
+          />
           <BodyShort className={spørsmålStyles.venterundertittel}>
-            Spørsmål vil komme opp når verten åpner temaet.
+            Spørsmål blir snart tilgjengelig.
           </BodyShort>
         </VStack>
       </>
