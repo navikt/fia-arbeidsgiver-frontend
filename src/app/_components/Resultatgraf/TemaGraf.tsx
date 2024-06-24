@@ -10,6 +10,8 @@ import {
 import { Loader } from "@navikt/ds-react";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
+import React from "react";
+import useTimeHasElapsed from "@/utils/useTimeHasElapsed";
 
 export default function TemaGraf({
   tema,
@@ -81,13 +83,15 @@ export function TemaGrafMedDatahenting({
   spørreundersøkelseId: string;
   vertId: string;
 }) {
+  // Ignorer errors de første 20 sekundene etter load, ettersom vi får 403 på første load etter at vi har avsluttet tema.
+  const visErrorOmDenFinnes = useTimeHasElapsed(20000);
   const { data: tema, error } = useTemaResultat(
     spørreundersøkelseId,
     vertId,
     temaId,
   );
 
-  if (error) {
+  if (error && visErrorOmDenFinnes) {
     return (
       <Alert variant="error" role="alert" aria-live="polite">
         {error.message}
