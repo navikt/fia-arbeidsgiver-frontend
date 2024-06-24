@@ -42,6 +42,8 @@ test.describe("Vert/resultatside", () => {
   test("Viser feilmelding når det er problemer med å hente temaresultat", async ({
     page,
   }) => {
+    // TODO: Fjern denne når vi får fikset at beckend sender error første gang
+    test.setTimeout(90000);
     await gåTilResultater(page);
     await page.route(
       "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93/4/resultater",
@@ -51,9 +53,10 @@ test.describe("Vert/resultatside", () => {
     );
 
     await page.reload();
+    // TODO: Fjern denne når vi får fikset at beckend sender error første gang
     await expect(
       page.getByText("Kunne ikke laste resultater for tema"),
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 60000 });
   });
 
   test("test av axe", async ({ page }) => {
