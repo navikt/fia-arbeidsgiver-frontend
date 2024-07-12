@@ -13,7 +13,6 @@ const collections = [
       "vert-antall-fullfort:success",
       "vert-temaoversikt:success",
       "vert-temaoversikt-for-ett-tema:success",
-      "vert-sporsmal-og-svar:success",
       "vert-temaresultat:success",
       "vert-avslutt-tema:success",
       "vert-åpne-tema:success",

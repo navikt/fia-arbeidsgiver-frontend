@@ -1,7 +1,7 @@
 const {
-  dummySpørsmålMedSvarPerTema,
+  partssamarbeidResultat,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-} = require("@/utils/dummyData/vert");
+} = require("@/utils/dummydata");
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { API_VERT_TEMARESULTAT_URL } = require("@/utils/urls");
@@ -17,7 +17,7 @@ const listeOverTemaResultatRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: dummySpørsmålMedSvarPerTema[0],
+          body: partssamarbeidResultat,
         },
       },
       {

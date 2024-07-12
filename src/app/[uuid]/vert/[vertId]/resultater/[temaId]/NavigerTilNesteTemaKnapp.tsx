@@ -2,7 +2,7 @@
 import { Alert, Button } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
-import { useTemaoversiktOverEttTema } from "@/app/_api_hooks/vert/useTemaoversiktOverEttTema";
+import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
 import kartleggingStyles from "../../../../../kartlegging.module.css";
 
 export default function NavigerTilNesteTemaKnapp({
@@ -15,16 +15,16 @@ export default function NavigerTilNesteTemaKnapp({
   temaId: number;
 }) {
   const router = useRouter();
-  const { data: tema, error } = useTemaoversiktOverEttTema(
+  const { data: tema, error } = useTemaoversikt(
     spørreundersøkelseId,
     vertId,
     temaId,
   );
 
-  if (tema?.nesteTemaId) {
+  if (tema && tema.del < 3) {
     return (
       <Button
-        onClick={() => router.push(`../tema/${tema.nesteTemaId}`)}
+        onClick={() => router.push(`../tema/${tema.del + 1}`)}
         icon={<ArrowRightIcon aria-hidden />}
         className={kartleggingStyles.knappHvit}
         variant="secondary"

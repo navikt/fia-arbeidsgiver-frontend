@@ -1,7 +1,9 @@
 const {
-  førsteTemaFørsteSpørsmål,
+  førsteLedigeSpørsmål,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-} = require("@/utils/dummyData/dummyInnholdForSpørreundersøkelse");
+} = require("@/utils/dummydata");
+
+const førsteTemaFørsteSpørsmål = førsteLedigeSpørsmål;
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { API_DELTAKER_UNDERSØKELSE_URL } = require("@/utils/urls");

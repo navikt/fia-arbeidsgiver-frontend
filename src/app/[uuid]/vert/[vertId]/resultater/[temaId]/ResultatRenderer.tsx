@@ -41,7 +41,7 @@ export function ResultatRenderer({
   if (tema === undefined || !erAvsluttet) {
     return (
       <>
-        <Headerlinje tittel={tema?.beskrivelse} />
+        <Headerlinje tittel={tema?.navn} />
         <VStack
           gap={"4"}
           align={"center"}
@@ -62,7 +62,7 @@ export function ResultatRenderer({
 
   return (
     <>
-      <Headerlinje tittel={tema?.beskrivelse}>
+      <Headerlinje tittel={tema?.navn}>
         <NavigerTilNesteTemaKnapp
           vertId={vertId}
           spørreundersøkelseId={spørreundersøkelseId}

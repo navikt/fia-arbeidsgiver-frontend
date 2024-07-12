@@ -3,20 +3,18 @@
 import { Alert, Box } from "@navikt/ds-react";
 import resultatgrafStyle from "./resultatgraf.module.css";
 import { useTemaResultat } from "@/app/_api_hooks/vert/useTemaresultater";
-import {
-  SpørsmålMedSvarDTO,
-  TemaResultatDTO,
-} from "@/app/_types/TemaResultatDTO";
+import { TemaResultatDto } from "@/app/_types/TemaResultatDto";
 import { Loader } from "@navikt/ds-react";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
 import React from "react";
 import useTimeHasElapsed from "@/utils/useTimeHasElapsed";
+import { SpørsmålResultatDto } from "@/app/_types/SpørsmålResultatDto";
 
 export default function TemaGraf({
   tema,
 }: {
-  tema: TemaResultatDTO | undefined;
+  tema: TemaResultatDto | undefined;
 }) {
   if (tema === undefined) {
     return (
@@ -47,8 +45,8 @@ export default function TemaGraf({
 }
 
 function trengerEkstraBredde(
-  tema: TemaResultatDTO,
-  spørsmål: SpørsmålMedSvarDTO,
+  tema: TemaResultatDto,
+  spørsmål: SpørsmålResultatDto,
   index: number,
 ) {
   if (spørsmål.flervalg) {

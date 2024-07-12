@@ -14,7 +14,7 @@ import {
 } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
-import { SpørsmåloversiktDTO } from "@/app/_types/SpørsmåloversiktDTO";
+import { SpørsmåloversiktDto } from "@/app/_types/SpørsmåloversiktDto";
 import CookieHandler from "@/utils/CookieHandler";
 import { urlNeste, urlTilbake } from "@/utils/spørreundersøkelsesUtils";
 import { fetchIdentifiserbartSpørsmål } from "@/app/_api_hooks/deltaker/fetchIdentifiserbartSpørsmål";
@@ -24,12 +24,12 @@ export default function Spørsmålsseksjon({
   spørsmålId,
   spørreundersøkelseId,
   temaId,
-  spørsmålOgSvar,
+  spørsmåloversikt,
 }: {
   spørsmålId: string;
   spørreundersøkelseId: string;
   temaId: number;
-  spørsmålOgSvar: SpørsmåloversiktDTO;
+  spørsmåloversikt: SpørsmåloversiktDto;
 }) {
   const lagretSvar = CookieHandler.getSvarPåSpørsmål(spørsmålId);
   const [feilSendSvar, setFeilSendSvar] = React.useState<string | null>(null);
@@ -51,7 +51,7 @@ export default function Spørsmålsseksjon({
 
   const håndterNesteknapp = () => {
     if (erPåLagretSvar(svar, lagretSvar)) {
-      router.push(urlNeste(spørsmålOgSvar));
+      router.push(urlNeste(spørsmåloversikt));
     } else {
       if (svar.length === 0) {
         setFeilSendSvar("Velg minst ett svar");
@@ -66,7 +66,7 @@ export default function Spørsmålsseksjon({
       })
         .then(() => {
           setFeilSendSvar(null);
-          router.push(urlNeste(spørsmålOgSvar));
+          router.push(urlNeste(spørsmåloversikt));
         })
         .catch((error) => {
           if (error.message == "Tema stengt, hent nytt spørsmål") {
@@ -85,7 +85,7 @@ export default function Spørsmålsseksjon({
   };
 
   const håndterTilbakeknapp = () => {
-    const url = urlTilbake(spørsmålOgSvar);
+    const url = urlTilbake(spørsmåloversikt);
     if (url !== null) {
       router.push(url);
     }
@@ -99,12 +99,12 @@ export default function Spørsmålsseksjon({
         className={spørsmålStyles.innholdboks}
       >
         <VStack className={spørsmålStyles.radioStack}>
-          {spørsmålOgSvar.flervalg ? (
+          {spørsmåloversikt.spørsmål.flervalg ? (
             <CheckboxGroup
               onChange={velgSvar}
               legend={
                 <>
-                  {spørsmålOgSvar.spørsmålTekst}
+                  {spørsmåloversikt.spørsmål.tekst}
                   <br />
                   <span className={spørsmålStyles.normaltekst}>
                     (flere valg er mulig)
@@ -114,37 +114,35 @@ export default function Spørsmålsseksjon({
               value={svar}
               error={feilSendSvar}
             >
-              {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
-                <Checkbox
-                  key={svaralternativ.svarId}
-                  value={svaralternativ.svarId}
-                >
-                  {svaralternativ.svartekst}
-                </Checkbox>
-              ))}
+              {spørsmåloversikt.spørsmål.svaralternativer.map(
+                (svaralternativ) => (
+                  <Checkbox key={svaralternativ.id} value={svaralternativ.id}>
+                    {svaralternativ.tekst}
+                  </Checkbox>
+                ),
+              )}
             </CheckboxGroup>
           ) : (
             <RadioGroup
-              legend={spørsmålOgSvar.spørsmålTekst}
+              legend={spørsmåloversikt.spørsmål.tekst}
               onChange={(value) => velgSvar([value])}
               value={svar[0] || null}
               className={spørsmålStyles.spørsmålsseksjon}
               error={feilSendSvar}
             >
-              {spørsmålOgSvar.svaralternativer.map((svaralternativ) => (
-                <Radio
-                  key={svaralternativ.svarId}
-                  value={svaralternativ.svarId}
-                >
-                  {svaralternativ.svartekst}
-                </Radio>
-              ))}
+              {spørsmåloversikt.spørsmål.svaralternativer.map(
+                (svaralternativ) => (
+                  <Radio key={svaralternativ.id} value={svaralternativ.id}>
+                    {svaralternativ.tekst}
+                  </Radio>
+                ),
+              )}
             </RadioGroup>
           )}
         </VStack>
       </Box>
       <HStack justify={"end"} gap={"2"} className={spørsmålStyles.knappeStack}>
-        {spørsmålOgSvar.forrigeSpørsmål !== null ? (
+        {spørsmåloversikt.forrigeSpørsmål !== null ? (
           <Button
             variant="secondary"
             className={spørsmålStyles.tilbakeknapp}

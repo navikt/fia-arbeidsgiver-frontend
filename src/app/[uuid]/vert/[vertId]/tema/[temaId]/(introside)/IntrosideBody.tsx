@@ -14,22 +14,20 @@ import {
   Radio,
 } from "@navikt/ds-react";
 import React from "react";
-import { useTemaoversiktOverEttTema } from "@/app/_api_hooks/vert/useTemaoversiktOverEttTema";
+import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
 import { Infoblokk } from "./Infoblokk";
 import Headerlinje from "@/app/_components/Headerlinje";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
-import {
-  SpørsmålOgSvaralternativerDTO,
-  TemaoversiktDTO,
-} from "@/app/_types/TemaoversiktDTO";
+import { TemaDto } from "@/app/_types/TemaDto";
 import introsideStyles from "./introside.module.css";
 import kartleggingStyles from "../../../../../../kartlegging.module.css";
 import { AccordionContent } from "@navikt/ds-react/Accordion";
-import { SvaralternativDTO } from "@/app/_types/SpørsmåloversiktDTO";
 import { useÅpneTema } from "@/app/_api_hooks/vert/useÅpneTema";
 import LinkTilResultat from "@/app/_components/LinkTilResultat";
 import { useRouter } from "next/navigation";
 import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
+import { SpørsmålDto } from "@/app/_types/SpørsmålDto";
+import { SvaralternativDto } from "@/app/_types/SvaralternativDto";
 
 export function IntrosideBody({
   spørreundersøkelseId,
@@ -44,7 +42,7 @@ export function IntrosideBody({
     data: temaoversikt,
     isLoading,
     error,
-  } = useTemaoversiktOverEttTema(spørreundersøkelseId, vertId, temaId);
+  } = useTemaoversikt(spørreundersøkelseId, vertId, temaId);
   const åpneTema = useÅpneTema(spørreundersøkelseId, vertId, temaId);
 
   const [åpneTemaError, setÅpneTemaError] = React.useState<string | null>(null);
@@ -73,23 +71,19 @@ export function IntrosideBody({
     <>
       {temaoversikt && (
         <>
-          <Headerlinje tittel={temaoversikt.beskrivelse}>
+          <Headerlinje tittel={temaoversikt.navn}>
             <Actionknapper
               åpneTema={åpneTema}
               setÅpneTemaError={setÅpneTemaError}
               setErStartet={setErStartet}
               erStartet={erStartet}
-              nesteTemaId={temaoversikt.nesteTemaId}
+              nesteTemaId={temaoversikt.id}
               spørreundersøkelseId={spørreundersøkelseId}
               vertId={vertId}
               temaId={temaId}
             />
           </Headerlinje>
-          <Infoblokk
-            temaoversikt={temaoversikt}
-            tittel={temaoversikt.beskrivelse}
-            undertittel={temaoversikt.introtekst}
-          />
+          <Infoblokk tema={temaoversikt} />
         </>
       )}
       {erStartet && temaoversikt && (
@@ -174,7 +168,7 @@ function Actionknapper({
   );
 }
 
-function SvarRenderer({ temaoversikt }: { temaoversikt: TemaoversiktDTO }) {
+function SvarRenderer({ temaoversikt }: { temaoversikt: TemaDto }) {
   return (
     <>
       <Box
@@ -184,7 +178,7 @@ function SvarRenderer({ temaoversikt }: { temaoversikt: TemaoversiktDTO }) {
         className={introsideStyles.spørsmålsseksjon}
       >
         <Accordion>
-          {temaoversikt.spørsmålOgSvaralternativer.map((spørsmål, index) => (
+          {temaoversikt.spørsmål.map((spørsmål, index) => (
             <SpørsmålAccordion key={index} spørsmål={spørsmål} index={index} />
           ))}
         </Accordion>
@@ -197,7 +191,7 @@ function SpørsmålAccordion({
   spørsmål,
   index,
 }: {
-  spørsmål: SpørsmålOgSvaralternativerDTO;
+  spørsmål: SpørsmålDto;
   index: number;
 }) {
   return (
@@ -205,7 +199,7 @@ function SpørsmålAccordion({
       <Accordion.Header
         className={`${index === 0 ? introsideStyles.førstespørsmåltittel : ""} ${introsideStyles.spørsmåltittel}`}
       >
-        {spørsmål.spørsmål}
+        {spørsmål.tekst}
       </Accordion.Header>
       <AccordionContent>
         <Svaralternativer
@@ -221,7 +215,7 @@ function Svaralternativer({
   svaralternativer,
   flervalg,
 }: {
-  svaralternativer: SvaralternativDTO[];
+  svaralternativer: SvaralternativDto[];
   flervalg: boolean;
 }) {
   const OptionGroup = flervalg ? CheckboxGroup : RadioGroup;
@@ -231,11 +225,11 @@ function Svaralternativer({
     <OptionGroup hideLegend legend={""}>
       {svaralternativer.map((svaralternativ) => (
         <Option
-          key={svaralternativ.svarId}
-          value={svaralternativ.svarId}
+          key={svaralternativ.id}
+          value={svaralternativ.id}
           className={introsideStyles.disabletOption}
         >
-          {svaralternativ.svartekst}
+          {svaralternativ.tekst}
         </Option>
       ))}
     </OptionGroup>

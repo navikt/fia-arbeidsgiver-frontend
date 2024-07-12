@@ -2,14 +2,15 @@ import "@testing-library/jest-dom";
 import { act, render, screen } from "@testing-library/react";
 import Oversiktside from "./page";
 import { axe, toHaveNoViolations } from "jest-axe";
-
+import { useTemaoversikter } from "@/app/_api_hooks/vert/useTemaoversikter";
+import { TemaStatus } from "@/app/_types/TemaStatus";
+import { TemaDto } from "@/app/_types/TemaDto";
 // @ts-ignore
-import { dummyTemaoversikt } from "@/utils/dummyData/vert";
-import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
-import { TemaStatus } from "@/app/_types/TemaoversiktDTO";
+import { helSpørreundersøkelse } from "@/utils/dummydata";
 
 expect.extend(toHaveNoViolations);
 
+const temaliste: TemaDto[] = helSpørreundersøkelse;
 const pushMock = jest.fn(() => null);
 
 jest.mock("next/navigation", () => ({
@@ -23,9 +24,9 @@ jest.mock("next/navigation", () => ({
   })),
 }));
 
-jest.mock("@/app/_api_hooks/vert/useTemaoversikt", () => ({
+jest.mock("@/app/_api_hooks/vert/useTemaoversikter", () => ({
   useTemaoversikt: jest.fn(() => ({
-    data: dummyTemaoversikt,
+    data: temaliste,
     isLoading: false,
     error: undefined,
   })),
@@ -34,8 +35,8 @@ jest.mock("@/app/_api_hooks/vert/useTemaoversikt", () => ({
 describe("Oversiktside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    jest.mocked(useTemaoversikt).mockReturnValue({
-      data: dummyTemaoversikt,
+    jest.mocked(useTemaoversikter).mockReturnValue({
+      data: temaliste,
       isLoading: false,
       error: undefined,
       mutate: jest.fn(),
@@ -62,14 +63,14 @@ describe("Oversiktside", () => {
   });
 
   test("Andre tema er ikke åpnet før første tema er besvart", async () => {
-    jest.mocked(useTemaoversikt).mockReturnValue({
+    jest.mocked(useTemaoversikter).mockReturnValue({
       data: [
         {
-          ...dummyTemaoversikt[0],
+          ...temaliste[0],
           status: TemaStatus.ÅPNET,
         },
         {
-          ...dummyTemaoversikt[1],
+          ...temaliste[1],
           status: TemaStatus.IKKE_ÅPNET,
         },
       ],
@@ -91,22 +92,20 @@ describe("Oversiktside", () => {
 
     act(() => startknapper[0].click());
     expect(pushMock).toHaveBeenCalledTimes(1);
-    expect(pushMock).toHaveBeenCalledWith(
-      `./tema/${dummyTemaoversikt[0].temaId}`,
-    );
+    expect(pushMock).toHaveBeenCalledWith(`./tema/${temaliste[0].id}`);
     act(() => startknapper[1].click());
     expect(pushMock).toHaveBeenCalledTimes(1);
   });
 
   test("Andre tema er åpnet når første tema er besvart", async () => {
-    jest.mocked(useTemaoversikt).mockReturnValue({
+    jest.mocked(useTemaoversikter).mockReturnValue({
       data: [
         {
-          ...dummyTemaoversikt[0],
+          ...temaliste[0],
           status: TemaStatus.ALLE_SPØRSMÅL_ÅPNET,
         },
         {
-          ...dummyTemaoversikt[1],
+          ...temaliste[1],
           status: TemaStatus.ÅPNET,
         },
       ],
@@ -127,13 +126,9 @@ describe("Oversiktside", () => {
     expect(pushMock).not.toHaveBeenCalled();
     act(() => startknapper[0].click());
     expect(pushMock).toHaveBeenCalledTimes(1);
-    expect(pushMock).toHaveBeenCalledWith(
-      `./tema/${dummyTemaoversikt[1].temaId}`,
-    );
+    expect(pushMock).toHaveBeenCalledWith(`./tema/${temaliste[1].id}`);
     act(() => fortsettKnapp.click());
     expect(pushMock).toHaveBeenCalledTimes(2);
-    expect(pushMock).toHaveBeenCalledWith(
-      `./tema/${dummyTemaoversikt[0].temaId}`,
-    );
+    expect(pushMock).toHaveBeenCalledWith(`./tema/${temaliste[0].id}`);
   });
 });

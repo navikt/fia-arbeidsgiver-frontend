@@ -1,13 +1,21 @@
-const {
-  dummyFørsteSpørsmål,
-  dummyFjerdeSpørsmål,
-  dummySpørsmålSamling,
-  dummyFlervalgSpørsmålMedMangeSvaralternativer,
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-} = require("@/utils/dummyData/dummyInnholdForSpørreundersøkelse");
+import { Request, Response } from "express";
+import { SpørsmåloversiktDto } from "@/app/_types/SpørsmåloversiktDto";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { API_DELTAKER_SPØRSMÅL_URL } = require("@/utils/urls");
-import { Request, Response } from "express";
+const {
+  partssamarbeidoversikt1,
+  partssamarbeidoversikt2,
+  partssamarbeidoversikt3,
+  partssamarbeidoversikt4,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require("@/utils/dummydata");
+
+const dummySpørsmålSamling: SpørsmåloversiktDto[] = [
+  partssamarbeidoversikt1,
+  partssamarbeidoversikt2,
+  partssamarbeidoversikt3,
+  partssamarbeidoversikt4,
+];
 
 const sporsmalOgSvarRoutes = [
   {
@@ -20,7 +28,10 @@ const sporsmalOgSvarRoutes = [
         type: "middleware",
         options: {
           middleware: (req: Request, res: Response) => {
-            const spm = dummySpørsmålSamling[req.params.sporsmalId];
+            const spm = dummySpørsmålSamling.find(
+              (spørsmåloversikt) =>
+                spørsmåloversikt.spørsmål.id === req.params.sporsmalId,
+            );
             if (spm !== undefined) {
               res.status(200);
               res.send(spm);
@@ -36,7 +47,7 @@ const sporsmalOgSvarRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: dummyFlervalgSpørsmålMedMangeSvaralternativer,
+          body: partssamarbeidoversikt2,
         },
       },
       {
@@ -44,7 +55,7 @@ const sporsmalOgSvarRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: dummyFørsteSpørsmål,
+          body: partssamarbeidoversikt1,
         },
       },
       {
@@ -52,7 +63,7 @@ const sporsmalOgSvarRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: dummyFjerdeSpørsmål,
+          body: partssamarbeidoversikt4,
         },
       },
       {

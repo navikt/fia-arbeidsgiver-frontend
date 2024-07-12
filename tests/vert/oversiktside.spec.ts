@@ -1,7 +1,7 @@
-import { TemaStatus } from "@/app/_types/TemaoversiktDTO";
 import { vertTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
+import { TemaStatus } from "@/app/_types/TemaStatus";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { dummyTemaoversikt } = require("@/utils/dummyData/vert");
 
