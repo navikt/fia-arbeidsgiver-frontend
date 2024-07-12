@@ -7,13 +7,15 @@ describe("Resultatgraf", () => {
     render(
       <Resultatgraf
         spørsmål={{
+          id: "a1",
           tekst: "Hva er din favorittfarge?",
           svarListe: [
-            { tekst: "QWER", antallSvar: 10 },
-            { tekst: "ASDF", antallSvar: 20 },
-            { tekst: "ZXCV", antallSvar: 10 },
-            { tekst: "ÆØÅ", antallSvar: 10 },
+            { id: "b1", tekst: "QWER", antallSvar: 10 },
+            { id: "b2", tekst: "ASDF", antallSvar: 20 },
+            { id: "b3", tekst: "ZXCV", antallSvar: 10 },
+            { id: "b4", tekst: "ÆØÅ", antallSvar: 10 },
           ],
+          flervalg: false,
         }}
       />,
     );
@@ -30,11 +32,14 @@ describe("Resultatgraf", () => {
     render(
       <Resultatgraf
         spørsmål={{
+          id: "a1",
           tekst: "Hva er din favorittfarge?",
           svarListe: farger.map((farge, index) => ({
+            id: `b${index + 1}`,
             tekst: farge.bakgrunn,
             antallSvar: index + 1,
           })),
+          flervalg: false,
         }}
         farger={farger}
         barTestIds={farger.map((_, index) => `bar-${index}`)}

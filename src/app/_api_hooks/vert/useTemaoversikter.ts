@@ -1,22 +1,21 @@
 import useSWR, { SWRResponse } from "swr";
 import { TemaDto } from "@/app/_types/TemaDto";
 
-export function useTemaoversikt(
+export function useTemaoversikter(
   spørreundersøkelseId: string,
   vertId: string,
-  temaId: number,
-): SWRResponse<TemaDto> {
+): SWRResponse<TemaDto[]> {
   const fetcher = async (url: string) => {
     const res = await fetch(url, {
       method: "GET",
     });
     if (!res.ok) {
-      throw new Error(`Kunne ikke laste tema ${temaId}`);
+      throw new Error("Kunne ikke laste oversikt over temaer");
     }
     return res.json();
   };
-  return useSWR<TemaDto>(
-    `/api/${spørreundersøkelseId}/vert/${vertId}/${temaId}`,
+  return useSWR<TemaDto[]>(
+    `/api/${spørreundersøkelseId}/vert/${vertId}`,
     fetcher,
   );
 }

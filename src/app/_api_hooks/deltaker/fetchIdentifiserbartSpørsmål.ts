@@ -1,10 +1,10 @@
 "use client";
 
-import { IdentifiserbartSpørsmålDTO } from "@/app/_types/SpørsmåloversiktDTO";
+import { IdentifiserbartSpørsmålDto } from "@/app/_types/IdentifiserbartSpørsmålDto";
 
 export function fetchIdentifiserbartSpørsmål(
   spørreundersøkelseId: string,
-): Promise<IdentifiserbartSpørsmålDTO> {
+): Promise<IdentifiserbartSpørsmålDto> {
   const fetcher = () =>
     fetch(`/api/${spørreundersøkelseId}/deltaker`, {
       method: "GET",

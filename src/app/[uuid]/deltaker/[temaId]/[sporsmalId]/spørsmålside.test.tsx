@@ -5,27 +5,31 @@ import { axe, toHaveNoViolations } from "jest-axe";
 import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
 import { useRouter } from "next/navigation";
 import mockCookieHandler from "@/utils/jest-mocks/CookieHandler";
-import { useSpørsmålOgSvar } from "@/app/_api_hooks/deltaker/useSpørsmålOgSvar";
+import { useSpørsmåloversikt } from "@/app/_api_hooks/deltaker/useSpørsmåloversikt";
 import CookieHandler from "@/utils/CookieHandler";
-import {
-  SpørsmåloversiktDTO,
-  SvaralternativDTO,
-} from "@/app/_types/SpørsmåloversiktDTO";
-import {
-  dummySpørreundersøkelseId,
-  dummyFørsteSpørsmål,
-  dummyTredjeSpørsmål,
-  dummyFjerdeSpørsmål,
-  førsteTemaFørsteSpørsmål,
-  dummyFlervalgSpørsmålMedMangeSvaralternativer,
-  // @ts-ignore
-} from "@/utils/dummyData/dummyInnholdForSpørreundersøkelse";
+import { SpørsmåloversiktDto } from "@/app/_types/SpørsmåloversiktDto";
 import { harGyldigSesjonsID } from "@/utils/harGyldigSesjonsID";
+import { SvaralternativDto } from "@/app/_types/SvaralternativDto";
 
-const testSpørreundersøkelseId: string = dummySpørreundersøkelseId;
-const testSpørsmålId: string = førsteTemaFørsteSpørsmål.spørsmålId;
-const testTemaId: number = førsteTemaFørsteSpørsmål.temaId;
-const testSpørsmålOgSvar: SpørsmåloversiktDTO = dummyFørsteSpørsmål;
+import {
+  arbeidsmiljøoversikt2,
+  partssamarbeidoversikt1,
+  partssamarbeidoversikt2,
+  partssamarbeidoversikt4,
+  // @ts-ignore
+} from "@/utils/dummydata";
+
+const testSpørreundersøkelseId: string = "85ed4b72-d93c-443e-8bb1-101e9e64b667";
+const testSpørsmålId: string = partssamarbeidoversikt1.spørsmål.id;
+const testTemaId: number = 1;
+const førsteSpørsmålPartssamarbeid: SpørsmåloversiktDto =
+  partssamarbeidoversikt1;
+const sisteSpørsmålPartssamarbeid: SpørsmåloversiktDto =
+  partssamarbeidoversikt4;
+const sisteSpørsmålArbeidsmiljø: SpørsmåloversiktDto = arbeidsmiljøoversikt2;
+
+const flervalgSpørsmålPartssamarbeid: SpørsmåloversiktDto =
+  partssamarbeidoversikt2;
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(() => ({
@@ -38,7 +42,7 @@ jest.mock("@/app/_api_hooks/deltaker/sendSvar", () => ({
   sendSvar: jest.fn(() => Promise.resolve()),
 }));
 
-jest.mock("@/app/_api_hooks/deltaker/useSpørsmålOgSvar", () => ({
+jest.mock("@/app/_api_hooks/deltaker/useSpørsmåloversikt", () => ({
   useSpørsmålOgSvar: jest.fn(),
 }));
 
@@ -54,11 +58,11 @@ describe("deltaker/Spørsmålsside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
-    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
-      data: testSpørsmålOgSvar,
+    jest.mocked(useSpørsmåloversikt).mockReturnValue({
+      data: førsteSpørsmålPartssamarbeid,
       isLoading: false,
       error: null,
-      mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
+      mutate: jest.fn(() => Promise.resolve(førsteSpørsmålPartssamarbeid)),
       isValidating: false,
     });
 
@@ -81,12 +85,14 @@ describe("deltaker/Spørsmålsside", () => {
     );
 
     expect(
-      screen.getByText(testSpørsmålOgSvar.spørsmålTekst),
+      screen.getByText(førsteSpørsmålPartssamarbeid.spørsmål.tekst),
     ).toBeInTheDocument();
 
-    testSpørsmålOgSvar.svaralternativer.forEach((svar: SvaralternativDTO) => {
-      expect(screen.getByText(svar.svartekst)).toBeInTheDocument();
-    });
+    førsteSpørsmålPartssamarbeid.spørsmål.svaralternativer.forEach(
+      (svar: SvaralternativDto) => {
+        expect(screen.getByText(svar.tekst)).toBeInTheDocument();
+      },
+    );
   });
 
   test("klikk på svaralternativ", async () => {
@@ -101,7 +107,7 @@ describe("deltaker/Spørsmålsside", () => {
     );
 
     const svar = await screen.findByText(
-      testSpørsmålOgSvar.svaralternativer[0].svartekst,
+      førsteSpørsmålPartssamarbeid.spørsmål.svaralternativer[0].tekst,
     );
     act(() => svar.click());
 
@@ -111,18 +117,18 @@ describe("deltaker/Spørsmålsside", () => {
     expect(sendSvar).toHaveBeenCalledTimes(1);
     expect(sendSvar).toHaveBeenCalledWith({
       spørreundersøkelseId: testSpørreundersøkelseId,
-      temaId: testTemaId,
+      id: testTemaId,
       spørsmålId: testSpørsmålId,
-      svarIder: [testSpørsmålOgSvar.svaralternativer[0].svarId],
+      svarIder: [førsteSpørsmålPartssamarbeid.spørsmål.svaralternativer[0].id],
     });
   });
 
   test("Velg og send svar", async () => {
-    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
-      data: testSpørsmålOgSvar,
+    jest.mocked(useSpørsmåloversikt).mockReturnValue({
+      data: førsteSpørsmålPartssamarbeid,
       isLoading: false,
       error: null,
-      mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
+      mutate: jest.fn(() => Promise.resolve(førsteSpørsmålPartssamarbeid)),
       isValidating: false,
     });
     const pushFunction = jest.fn();
@@ -146,7 +152,7 @@ describe("deltaker/Spørsmålsside", () => {
     );
 
     const svar = screen.getByText(
-      testSpørsmålOgSvar.svaralternativer[0].svartekst,
+      førsteSpørsmålPartssamarbeid.spørsmål.svaralternativer[0].tekst,
     );
     act(() => svar.click());
 
@@ -157,22 +163,22 @@ describe("deltaker/Spørsmålsside", () => {
     expect(sendSvar).toHaveBeenCalledWith({
       spørreundersøkelseId: testSpørreundersøkelseId,
       spørsmålId: testSpørsmålId,
-      temaId: testTemaId,
-      svarIder: [testSpørsmålOgSvar.svaralternativer[0].svarId],
+      id: testTemaId,
+      svarIder: [førsteSpørsmålPartssamarbeid.spørsmål.svaralternativer[0].id],
     });
 
     expect(pushFunction).toHaveBeenCalledTimes(1);
     expect(pushFunction).toHaveBeenCalledWith(
-      `../${testSpørsmålOgSvar.nesteSpørsmål?.temaId}/${testSpørsmålOgSvar.nesteSpørsmål?.spørsmålId}`,
+      `../${førsteSpørsmålPartssamarbeid.nesteSpørsmål?.temaId}/${førsteSpørsmålPartssamarbeid.nesteSpørsmål?.spørsmålId}`,
     );
   });
 
   test("Siste spørsmål i tema redirecter til første i neste tema", async () => {
-    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
-      data: dummyTredjeSpørsmål,
+    jest.mocked(useSpørsmåloversikt).mockReturnValue({
+      data: sisteSpørsmålPartssamarbeid,
       isLoading: false,
       error: null,
-      mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
+      mutate: jest.fn(() => Promise.resolve(førsteSpørsmålPartssamarbeid)),
       isValidating: false,
     });
     const pushFunction = jest.fn();
@@ -196,7 +202,7 @@ describe("deltaker/Spørsmålsside", () => {
     );
 
     const svar = screen.getByText(
-      dummyTredjeSpørsmål.svaralternativer[0].svartekst,
+      sisteSpørsmålPartssamarbeid.spørsmål.svaralternativer[0].tekst,
     );
     act(() => svar.click());
 
@@ -207,22 +213,22 @@ describe("deltaker/Spørsmålsside", () => {
     expect(sendSvar).toHaveBeenCalledWith({
       spørreundersøkelseId: testSpørreundersøkelseId,
       spørsmålId: testSpørsmålId,
-      temaId: testTemaId,
-      svarIder: [dummyTredjeSpørsmål.svaralternativer[0].svarId],
+      id: testTemaId,
+      svarIder: [sisteSpørsmålPartssamarbeid.spørsmål.svaralternativer[0].id],
     });
 
     expect(pushFunction).toHaveBeenCalledTimes(1);
     expect(pushFunction).toHaveBeenCalledWith(
-      `../${dummyTredjeSpørsmål.nesteSpørsmål?.temaId}/${dummyTredjeSpørsmål.nesteSpørsmål?.spørsmålId}`,
+      `../${sisteSpørsmålPartssamarbeid.nesteSpørsmål?.temaId}/${sisteSpørsmålPartssamarbeid.nesteSpørsmål?.spørsmålId}`,
     );
   });
 
   test("Siste spørsmål i siste tema redirecter til ferdigside", async () => {
-    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
-      data: dummyFjerdeSpørsmål,
+    jest.mocked(useSpørsmåloversikt).mockReturnValue({
+      data: sisteSpørsmålArbeidsmiljø,
       isLoading: false,
       error: null,
-      mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
+      mutate: jest.fn(() => Promise.resolve(førsteSpørsmålPartssamarbeid)),
       isValidating: false,
     });
     const pushFunction = jest.fn();
@@ -246,7 +252,7 @@ describe("deltaker/Spørsmålsside", () => {
     );
 
     const svar = screen.getByText(
-      dummyFjerdeSpørsmål.svaralternativer[0].svartekst,
+      sisteSpørsmålArbeidsmiljø.spørsmål.svaralternativer[0].tekst,
     );
     act(() => svar.click());
 
@@ -257,8 +263,8 @@ describe("deltaker/Spørsmålsside", () => {
     expect(sendSvar).toHaveBeenCalledWith({
       spørreundersøkelseId: testSpørreundersøkelseId,
       spørsmålId: testSpørsmålId,
-      temaId: testTemaId,
-      svarIder: [dummyFjerdeSpørsmål.svaralternativer[0].svarId],
+      id: testTemaId,
+      svarIder: [sisteSpørsmålArbeidsmiljø.spørsmål.svaralternativer[0].id],
     });
 
     expect(pushFunction).toHaveBeenCalledTimes(1);
@@ -266,11 +272,11 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("axe UU-test", async () => {
-    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
-      data: testSpørsmålOgSvar,
+    jest.mocked(useSpørsmåloversikt).mockReturnValue({
+      data: førsteSpørsmålPartssamarbeid,
       isLoading: false,
       error: null,
-      mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
+      mutate: jest.fn(() => Promise.resolve(førsteSpørsmålPartssamarbeid)),
       isValidating: false,
     });
 
@@ -291,10 +297,11 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("Bruker valgt svaralternativ fra cookieHandler", async () => {
-    const forhåndssvart = testSpørsmålOgSvar.svaralternativer[1];
+    const forhåndssvart =
+      førsteSpørsmålPartssamarbeid.spørsmål.svaralternativer[1];
     jest
       .spyOn(CookieHandler, "getSvarPåSpørsmål")
-      .mockImplementation(() => [forhåndssvart.svarId]);
+      .mockImplementation(() => [forhåndssvart.id]);
 
     render(
       <Spørsmålsside
@@ -307,23 +314,24 @@ describe("deltaker/Spørsmålsside", () => {
     );
 
     const svar = await screen.findByRole("radio", {
-      name: forhåndssvart.svartekst,
+      name: forhåndssvart.tekst,
     });
 
     expect(svar).toHaveAttribute("checked");
 
     const feilSvar = await screen.findByRole("radio", {
-      name: testSpørsmålOgSvar.svaralternativer[0].svartekst,
+      name: førsteSpørsmålPartssamarbeid.spørsmål.svaralternativer[0].tekst,
     });
 
     expect(feilSvar).not.toHaveAttribute("checked");
   });
 
   test("Viser riktig tekst i svarknapp i forhold til lagret svar", async () => {
-    const forhåndssvart = testSpørsmålOgSvar.svaralternativer[1];
+    const forhåndssvart =
+      førsteSpørsmålPartssamarbeid.spørsmål.svaralternativer[1];
     jest
       .spyOn(CookieHandler, "getSvarPåSpørsmål")
-      .mockImplementation(() => [forhåndssvart.svarId]);
+      .mockImplementation(() => [forhåndssvart.id]);
 
     render(
       <Spørsmålsside
@@ -345,7 +353,7 @@ describe("deltaker/Spørsmålsside", () => {
 
     await screen
       .findByRole("radio", {
-        name: testSpørsmålOgSvar.svaralternativer[0].svartekst,
+        name: førsteSpørsmålPartssamarbeid.spørsmål.svaralternativer[0].tekst,
       })
       .then((radio) => {
         act(() => radio.click());
@@ -375,7 +383,7 @@ describe("deltaker/Spørsmålsside", () => {
 
     await screen
       .findByRole("radio", {
-        name: testSpørsmålOgSvar.svaralternativer[0].svartekst,
+        name: førsteSpørsmålPartssamarbeid.spørsmål.svaralternativer[0].tekst,
       })
       .then((radio) => {
         act(() => radio.click());
@@ -391,11 +399,11 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("Viser feilmelding dersom vi har error og loading", () => {
-    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
+    jest.mocked(useSpørsmåloversikt).mockReturnValue({
       data: undefined,
       isLoading: true,
       error: new Error("Noe gikk galt."),
-      mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
+      mutate: jest.fn(() => Promise.resolve(førsteSpørsmålPartssamarbeid)),
       isValidating: false,
     });
 
@@ -413,11 +421,11 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("Viser 'venter på vert' dersom vi ikke har spørsmål, men loading", () => {
-    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
+    jest.mocked(useSpørsmåloversikt).mockReturnValue({
       data: undefined,
       isLoading: true,
       error: null,
-      mutate: jest.fn(() => Promise.resolve(testSpørsmålOgSvar)),
+      mutate: jest.fn(() => Promise.resolve(førsteSpørsmålPartssamarbeid)),
       isValidating: false,
     });
 
@@ -435,8 +443,8 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("Viser checkbokser for flervalgsspørsmål", async () => {
-    jest.mocked(useSpørsmålOgSvar).mockReturnValue({
-      data: dummyFlervalgSpørsmålMedMangeSvaralternativer,
+    jest.mocked(useSpørsmåloversikt).mockReturnValue({
+      data: flervalgSpørsmålPartssamarbeid,
       isLoading: false,
       error: undefined,
       mutate: jest.fn(),
@@ -446,7 +454,7 @@ describe("deltaker/Spørsmålsside", () => {
     render(
       <Spørsmålsside
         params={{
-          uuid: dummySpørreundersøkelseId,
+          uuid: testSpørreundersøkelseId,
           temaId: testTemaId,
           sporsmalId: testSpørsmålId,
         }}
@@ -456,7 +464,7 @@ describe("deltaker/Spørsmålsside", () => {
     const checkbokser = screen.queryAllByRole("checkbox");
 
     expect(checkbokser.length).toBe(
-      dummyFlervalgSpørsmålMedMangeSvaralternativer.svaralternativer.length,
+      flervalgSpørsmålPartssamarbeid.spørsmål.svaralternativer.length,
     );
 
     const radiobuttons = screen.queryAllByRole("radio");
@@ -467,7 +475,7 @@ describe("deltaker/Spørsmålsside", () => {
     render(
       <Spørsmålsside
         params={{
-          uuid: dummySpørreundersøkelseId,
+          uuid: testSpørreundersøkelseId,
           temaId: testTemaId,
           sporsmalId: testSpørsmålId,
         }}
@@ -480,7 +488,7 @@ describe("deltaker/Spørsmålsside", () => {
 
     const radiobuttons = screen.queryAllByRole("radio");
     expect(radiobuttons.length).toBe(
-      testSpørsmålOgSvar.svaralternativer.length,
+      førsteSpørsmålPartssamarbeid.spørsmål.svaralternativer.length,
     );
   });
 
@@ -498,7 +506,7 @@ describe("deltaker/Spørsmålsside", () => {
     render(
       <Spørsmålsside
         params={{
-          uuid: dummySpørreundersøkelseId,
+          uuid: testSpørreundersøkelseId,
           temaId: testTemaId,
           sporsmalId: testSpørsmålId,
         }}
@@ -525,7 +533,7 @@ describe("deltaker/Spørsmålsside", () => {
     render(
       <Spørsmålsside
         params={{
-          uuid: dummySpørreundersøkelseId,
+          uuid: testSpørreundersøkelseId,
           temaId: testTemaId,
           sporsmalId: testSpørsmålId,
         }}

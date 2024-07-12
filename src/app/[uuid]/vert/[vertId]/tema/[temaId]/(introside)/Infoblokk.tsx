@@ -2,26 +2,18 @@
 import { BodyLong, BodyShort, Box, HStack } from "@navikt/ds-react";
 import { List, ListItem } from "@navikt/ds-react/List";
 import React, { ComponentProps } from "react";
-import { TemaoversiktDTO } from "@/app/_types/TemaoversiktDTO";
+import { TemaDto } from "@/app/_types/TemaDto";
 import introsideStyles from "./introside.module.css";
 
-export function Infoblokk({
-  tittel,
-  undertittel,
-  temaoversikt,
-}: {
-  tittel: string;
-  undertittel: string;
-  temaoversikt: TemaoversiktDTO;
-}) {
+export function Infoblokk({ tema }: { tema: TemaDto }) {
+  const tittel = tema.navn;
   const innhold = innholdsconfig.find(
-    (innhold) =>
-      innhold.id.toLowerCase() === temaoversikt.temanavn.toLowerCase(),
+    (innhold) => innhold.del === tema.del,
   ) || {
     tittel,
     punkter: {
       type: "punkter",
-      punkter: [undertittel],
+      punkter: [],
     },
     fargeseksjon: {
       farge: "surface-warning-subtle",
@@ -81,7 +73,7 @@ function InnholdsSwitch({
 function Infoblokkinnhold({
   punkter,
   fargeseksjon,
-}: Omit<Omit<infoblokk, "type">, "id">) {
+}: Omit<Omit<infoblokk, "type">, "del">) {
   return (
     <>
       <Box borderRadius="xlarge" padding="12" background="surface-default">
@@ -132,7 +124,7 @@ type punkter = {
 
 interface infoblokk {
   type: "infoblokk";
-  id: "UTVIKLE_PARTSSAMARBEID" | "REDUSERE_SYKEFRAVÆR" | "ARBEIDSMILJØ";
+  del: 1 | 2 | 3;
   punkter: punkter;
   fargeseksjon: {
     farge: ComponentProps<typeof Box>["background"];
@@ -144,7 +136,7 @@ interface infoblokk {
 const innholdsconfig: infoblokk[] = [
   {
     type: "infoblokk",
-    id: "UTVIKLE_PARTSSAMARBEID",
+    del: 1,
     punkter: {
       type: "punkter",
       punkter: [
@@ -194,7 +186,7 @@ const innholdsconfig: infoblokk[] = [
   },
   {
     type: "infoblokk",
-    id: "REDUSERE_SYKEFRAVÆR",
+    del: 2,
     punkter: {
       type: "punkter",
       beskrivelse: "Sykefraværsarbeid handler blant annet om:",
@@ -220,7 +212,7 @@ const innholdsconfig: infoblokk[] = [
   },
   {
     type: "infoblokk",
-    id: "ARBEIDSMILJØ",
+    del: 3,
     punkter: {
       type: "punkter",
       punkter: [

@@ -1,60 +1,42 @@
+const {
+  partssamarbeid,
+  helSpørreundersøkelse,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require("@/utils/dummydata");
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { API_VERT_TEMAOVERSIKT_OVER_ETT_TEMA_URL } = require("@/utils/urls");
 import { Request, Response } from "express";
-import { TemaoversiktDTO } from "@/app/_types/TemaoversiktDTO";
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { dummyTemaoversikt } = require("@/utils/dummyData/vert");
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_VERT_UNDERSØKELSE_URL } = require("@/utils/urls");
 
 const listeOverTemaRoutes = [
   {
-    id: "vert-temaoversikt",
-    url: API_VERT_UNDERSØKELSE_URL(),
+    id: "vert-temaoversikt-for-ett-tema",
+    url: API_VERT_TEMAOVERSIKT_OVER_ETT_TEMA_URL(),
     method: "GET",
     variants: [
-      {
-        id: "success-første-åpnet",
-        type: "middleware",
-        options: {
-          middleware: generateTemaMiddleware({
-            4: "ÅPNET",
-            5: "IKKE_ÅPNET",
-            6: "IKKE_ÅPNET",
-          }),
-        },
-      },
       {
         id: "success",
         type: "middleware",
         options: {
+          middleware: generateTemaMiddleware({ 1: "ÅPNET", 2: "IKKE_ÅPNET" }),
+        },
+      },
+      {
+        id: "success-første-besvart",
+        type: "middleware",
+        options: {
           middleware: generateTemaMiddleware({
-            4: "STENGT",
-            5: "ALLE_SPØRSMÅL_ÅPNET",
-            6: "ÅPNET",
+            1: "ALLE_SPØRSMÅL_ÅPNET",
+            2: "ÅPNET",
           }),
         },
       },
       {
-        id: "success-alle-åpnet",
-        type: "middleware",
+        id: "success-static",
+        type: "json",
         options: {
-          middleware: generateTemaMiddleware({
-            4: "ALLE_SPØRSMÅL_ÅPNET",
-            5: "ALLE_SPØRSMÅL_ÅPNET",
-            6: "ALLE_SPØRSMÅL_ÅPNET",
-          }),
-        },
-      },
-      {
-        id: "success-alle-stengt",
-        type: "middleware",
-        options: {
-          middleware: generateTemaMiddleware({
-            4: "STENGT",
-            5: "STENGT",
-            6: "STENGT",
-          }),
+          status: 200,
+          body: partssamarbeid,
         },
       },
       {
@@ -77,13 +59,16 @@ const listeOverTemaRoutes = [
 
 function generateTemaMiddleware(temastatuser: { [key: number]: string }) {
   return (req: Request, res: Response) => {
-    res.status(200);
-    res.send(
-      dummyTemaoversikt.map((tema: TemaoversiktDTO) => ({
-        ...tema,
-        status: temastatuser[tema.temaId],
-      })),
+    const tema = helSpørreundersøkelse.find(
+      ({ id }: { id: number }) => id === Number(req.params.temaId),
     );
+    if (tema !== undefined) {
+      res.status(200);
+      res.send({ ...tema, statusssss: temastatuser[tema.id] });
+    } else {
+      res.status(404);
+      res.send(`Tema med angitt temaid ble ikke funnet`);
+    }
   };
 }
 

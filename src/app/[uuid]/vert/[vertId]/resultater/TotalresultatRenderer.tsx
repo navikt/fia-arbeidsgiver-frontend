@@ -5,7 +5,7 @@ import { Heading, Page, VStack, Loader, Alert } from "@navikt/ds-react";
 import { PageBlock } from "@navikt/ds-react/Page";
 import { TemaGrafMedDatahenting } from "@/app/_components/Resultatgraf/TemaGraf";
 import React, { useEffect, useState } from "react";
-import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
+import { useTemaoversikter } from "@/app/_api_hooks/vert/useTemaoversikter";
 import { avsluttTema } from "@/app/_api_hooks/vert/avsluttTema";
 import Headerlinje from "@/app/_components/Headerlinje";
 import resultaterStyles from "./resultater.module.css";
@@ -17,7 +17,7 @@ export function TotalresultatRenderer({
   spørreundersøkelseId: string;
   vertId: string;
 }) {
-  const { data: listeOverTemaer, error } = useTemaoversikt(
+  const { data: listeOverTemaer, error } = useTemaoversikter(
     spørreundersøkelseId,
     vertId,
   );
@@ -29,12 +29,12 @@ export function TotalresultatRenderer({
   useEffect(() => {
     if (listeOverTemaer) {
       listeOverTemaer.forEach((tema) => {
-        avsluttTema(spørreundersøkelseId, vertId, tema.temaId)
+        avsluttTema(spørreundersøkelseId, vertId, tema.id)
           .then(() => {
-            setTemaErAvsluttet((prev) => ({ ...prev, [tema.temaId]: true }));
+            setTemaErAvsluttet((prev) => ({ ...prev, [tema.id]: true }));
           })
           .catch((error) => {
-            console.error(`Kunne ikke avslutte tema ${tema.temaId}`, error);
+            console.error(`Kunne ikke avslutte tema ${tema.id}`, error);
           });
       });
     }
@@ -53,11 +53,11 @@ export function TotalresultatRenderer({
           {listeOverTemaer ? (
             listeOverTemaer.map(
               (tema) =>
-                temaErAvsluttet[tema.temaId] && (
-                  <React.Fragment key={tema.temaId}>
-                    <Headerlinje tittel={tema?.beskrivelse} />
+                temaErAvsluttet[tema.id] && (
+                  <React.Fragment key={tema.id}>
+                    <Headerlinje tittel={tema?.navn} />
                     <TemaGrafMedDatahenting
-                      temaId={tema.temaId}
+                      temaId={tema.id}
                       spørreundersøkelseId={spørreundersøkelseId}
                       vertId={vertId}
                     />

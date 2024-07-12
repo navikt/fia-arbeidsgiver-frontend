@@ -1,12 +1,12 @@
 import React from "react";
 import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { SpørsmålMedSvarDTO } from "@/app/_types/TemaResultatDTO";
+import { SpørsmålResultatDto } from "@/app/_types/SpørsmålResultatDto";
 
 export default function PieChart({
   spørsmål,
 }: {
-  spørsmål: SpørsmålMedSvarDTO;
+  spørsmål: SpørsmålResultatDto;
 }) {
   const chartComponentRef = React.useRef<HighchartsReact.RefObject>(null);
 
@@ -26,7 +26,7 @@ export default function PieChart({
 }
 
 function genererChartOptionsFraSpørsmålOgSvar(
-  spørsmål: SpørsmålMedSvarDTO,
+  spørsmål: SpørsmålResultatDto,
 ): Highcharts.Options {
   const farger = [
     { bakgrunn: "var(--a-data-surface-2)", border: undefined },

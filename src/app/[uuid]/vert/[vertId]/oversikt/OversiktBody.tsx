@@ -3,7 +3,7 @@
 import { Alert, HStack, Heading, Loader, VStack } from "@navikt/ds-react";
 import React from "react";
 import { TemaBoks } from "@/app/[uuid]/vert/[vertId]/oversikt/TemaBoks";
-import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
+import { useTemaoversikter } from "@/app/_api_hooks/vert/useTemaoversikter";
 import oversiktStyles from "./oversikt.module.css";
 
 export default function OversiktBody({
@@ -17,7 +17,7 @@ export default function OversiktBody({
     data: listeOverTemaer,
     isLoading,
     error,
-  } = useTemaoversikt(spørreundersøkelseId, vertId);
+  } = useTemaoversikter(spørreundersøkelseId, vertId);
 
   if (isLoading) {
     return (
