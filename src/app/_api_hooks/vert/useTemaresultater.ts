@@ -3,7 +3,6 @@ import { TemaResultatDto } from "@/app/_types/TemaResultatDto";
 
 export function useTemaResultat(
   spørreundersøkelseId: string,
-  vertId: string,
   temaId: number,
 ): SWRResponse<TemaResultatDto> {
   const fetcher = async (url: string) => {
@@ -16,7 +15,7 @@ export function useTemaResultat(
     return res.json();
   };
   return useSWR<TemaResultatDto>(
-    `/api/${spørreundersøkelseId}/vert/${vertId}/${temaId}/resultater`,
+    `/api/${spørreundersøkelseId}/vert/tema/${temaId}/resultater`,
     fetcher,
   );
 }

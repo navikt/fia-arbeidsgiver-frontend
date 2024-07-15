@@ -10,12 +10,10 @@ import { useAntallFullført } from "@/app/_api_hooks/vert/useAntallFullført";
 
 export function StatusPåDeltakerMedSvar({
   spørreundersøkelseId,
-  vertId,
   temaId,
   erSynlig = true,
 }: {
   spørreundersøkelseId: string;
-  vertId: string;
   temaId?: number;
   erSynlig?: boolean;
 }) {
@@ -24,7 +22,6 @@ export function StatusPåDeltakerMedSvar({
     isLoading: lasterAntallSvar,
     error: feilAntallSvar,
   } = useAntallFullført({
-    vertId,
     spørreundersøkelseId,
     temaId,
   });
@@ -33,7 +30,6 @@ export function StatusPåDeltakerMedSvar({
     isLoading: lasterAntallDeltakere,
     error: feilAntallDeltakere,
   } = useAntallDeltakere({
-    vertId,
     spørreundersøkelseId,
   });
 

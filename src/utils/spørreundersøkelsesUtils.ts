@@ -1,6 +1,6 @@
-import { SpørsmåloversiktDto } from "@/app/_types/SpørsmåloversiktDto";
+import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 
-export function urlNeste(spørsmålOgSvar: SpørsmåloversiktDto): string {
+export function urlNeste(spørsmålOgSvar: DeltakerSpørsmålDto): string {
   if (!spørsmålOgSvar) {
     throw new Error("Spørsmål mangler");
   }
@@ -12,7 +12,7 @@ export function urlNeste(spørsmålOgSvar: SpørsmåloversiktDto): string {
   return `../${spørsmålOgSvar.nesteSpørsmål.temaId}/${spørsmålOgSvar.nesteSpørsmål.spørsmålId}`;
 }
 
-export function urlTilbake(spørsmålOgSvar: SpørsmåloversiktDto): string | null {
+export function urlTilbake(spørsmålOgSvar: DeltakerSpørsmålDto): string | null {
   if (!spørsmålOgSvar) {
     throw new Error("Spørsmål mangler");
   }

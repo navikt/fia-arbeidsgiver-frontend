@@ -9,7 +9,6 @@ import statusPåDeltakereStyles from "@/app/_components/StatusPåDeltaker/status
 
 export default function LinkTilResultat({
   spørreundersøkelseId,
-  vertId,
   temaId,
   skalViseKnapp,
   urlTilResultatside,
@@ -21,7 +20,6 @@ export default function LinkTilResultat({
   variant = "secondary",
 }: {
   spørreundersøkelseId: string;
-  vertId: string;
   temaId?: number;
   skalViseKnapp: boolean;
   urlTilResultatside: string;
@@ -67,7 +65,6 @@ export default function LinkTilResultat({
             <HStack align={"center"}>
               <StatusPåDeltakerMedSvar
                 spørreundersøkelseId={spørreundersøkelseId}
-                vertId={vertId}
                 temaId={temaId}
               />
               <BodyLong className={statusPåDeltakereStyles.deltakereMedStatus}>

@@ -2,10 +2,8 @@ import useSWR, { SWRConfiguration, SWRResponse } from "swr";
 import { ETT_SEKUND_MS } from "@/utils/consts";
 
 export function useAntallDeltakere({
-  vertId,
   spørreundersøkelseId,
 }: {
-  vertId: string;
   spørreundersøkelseId: string;
 }): SWRResponse<number> {
   const fetcher = (url: string) => {
@@ -24,7 +22,7 @@ export function useAntallDeltakere({
     revalidateIfStale: true,
   };
   return useSWR<number>(
-    `/api/${spørreundersøkelseId}/vert/${vertId}/antall-deltakere`,
+    `/api/${spørreundersøkelseId}/vert/antall-deltakere`,
     fetcher,
     swrConfig,
   );

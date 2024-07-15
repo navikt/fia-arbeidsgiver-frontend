@@ -5,13 +5,13 @@ const {
 } = require("@/utils/dummydata");
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_VERT_TEMAOVERSIKT_OVER_ETT_TEMA_URL } = require("@/utils/urls");
+const { API_VERT_TEMAOVERSIKT_URL } = require("@/utils/urls");
 import { Request, Response } from "express";
 
 const listeOverTemaRoutes = [
   {
     id: "vert-temaoversikt-for-ett-tema",
-    url: API_VERT_TEMAOVERSIKT_OVER_ETT_TEMA_URL(),
+    url: API_VERT_TEMAOVERSIKT_URL(),
     method: "GET",
     variants: [
       {

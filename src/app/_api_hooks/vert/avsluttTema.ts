@@ -1,6 +1,5 @@
 export function avsluttTema(
   spørreundersøkelseId: string,
-  vertId: string,
   temaId: number,
 ) {
   const fetcher = async (url: string) => {
@@ -14,6 +13,6 @@ export function avsluttTema(
   };
 
   return fetcher(
-    `/api/${spørreundersøkelseId}/vert/${vertId}/${temaId}/avslutt`,
+    `/api/${spørreundersøkelseId}/vert/tema/${temaId}/avslutt`,
   );
 }

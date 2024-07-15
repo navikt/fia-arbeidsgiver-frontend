@@ -9,11 +9,9 @@ import loginModalStyles from "./loginmodal.module.css";
 export default function LoginModal({
   spørreundersøkelseId,
   startOpen = false,
-  vertId,
 }: {
   spørreundersøkelseId: string;
   startOpen?: boolean;
-  vertId: string;
 }) {
   const [visQRkodeModalÅpen, setvisQRkodeModalÅpen] = React.useState(startOpen);
   return (
@@ -51,7 +49,6 @@ export default function LoginModal({
           <VStack className={loginModalStyles.høyreDel}>
             <StatusPåDeltaker
               spørreundersøkelseId={spørreundersøkelseId}
-              vertId={vertId}
             />
           </VStack>
         </HStack>

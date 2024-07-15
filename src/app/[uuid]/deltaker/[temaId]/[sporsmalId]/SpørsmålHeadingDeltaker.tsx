@@ -3,13 +3,13 @@
 import { Heading, VStack } from "@navikt/ds-react";
 import deltakerStyles from "./sporsmalsside.module.css";
 import React from "react";
-import { SpørsmåloversiktDto } from "@/app/_types/SpørsmåloversiktDto";
+import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 import { Framdrift } from "@/app/[uuid]/deltaker/[temaId]/[sporsmalId]/Framdrift";
 
 export function SpørsmålHeadingDeltaker({
   spørsmåloversikt,
 }: {
-  spørsmåloversikt: SpørsmåloversiktDto;
+  spørsmåloversikt: DeltakerSpørsmålDto;
 }) {
   return (
     spørsmåloversikt && (
