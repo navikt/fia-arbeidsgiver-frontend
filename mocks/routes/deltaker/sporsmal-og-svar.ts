@@ -1,20 +1,20 @@
 import { Request, Response } from "express";
-import { SpørsmåloversiktDto } from "@/app/_types/SpørsmåloversiktDto";
+import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { API_DELTAKER_SPØRSMÅL_URL } = require("@/utils/urls");
 const {
-  partssamarbeidoversikt1,
-  partssamarbeidoversikt2,
-  partssamarbeidoversikt3,
-  partssamarbeidoversikt4,
+  partssamarbeidDeltaker1,
+  partssamarbeidDeltaker2,
+  partssamarbeidDeltaker3,
+  partssamarbeidDeltaker4,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require("@/utils/dummydata");
 
-const dummySpørsmålSamling: SpørsmåloversiktDto[] = [
-  partssamarbeidoversikt1,
-  partssamarbeidoversikt2,
-  partssamarbeidoversikt3,
-  partssamarbeidoversikt4,
+const dummySpørsmålSamling: DeltakerSpørsmålDto[] = [
+  partssamarbeidDeltaker1,
+  partssamarbeidDeltaker2,
+  partssamarbeidDeltaker3,
+  partssamarbeidDeltaker4,
 ];
 
 const sporsmalOgSvarRoutes = [
@@ -47,7 +47,7 @@ const sporsmalOgSvarRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: partssamarbeidoversikt2,
+          body: partssamarbeidDeltaker2,
         },
       },
       {
@@ -55,7 +55,7 @@ const sporsmalOgSvarRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: partssamarbeidoversikt1,
+          body: partssamarbeidDeltaker1,
         },
       },
       {
@@ -63,7 +63,7 @@ const sporsmalOgSvarRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: partssamarbeidoversikt4,
+          body: partssamarbeidDeltaker4,
         },
       },
       {

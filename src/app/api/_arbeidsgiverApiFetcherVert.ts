@@ -3,7 +3,6 @@ import { _exchangeToken } from "@/app/api/_exchangeToken";
 
 export function arbeidsgiverApiFetcherVert(
   endpoint: string,
-  vertId: string,
   req: NextRequest,
 ) {
   const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
@@ -26,7 +25,6 @@ export function arbeidsgiverApiFetcherVert(
       cache: "no-cache",
       method: "GET",
       headers: {
-        "nav-fia-kartlegging-vert-id": vertId,
         Authorization: `Bearer ${exchangeResult.obo.token}`,
       },
     });

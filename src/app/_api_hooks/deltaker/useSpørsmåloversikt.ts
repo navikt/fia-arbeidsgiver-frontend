@@ -1,12 +1,12 @@
 import useSWR, { SWRResponse } from "swr";
-import { SpørsmåloversiktDto } from "@/app/_types/SpørsmåloversiktDto";
+import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 import React from "react";
 
 export function useSpørsmåloversikt(
   spørreundersøkelseId: string,
   temaId: number,
   spørsmålId: string,
-): SWRResponse<SpørsmåloversiktDto> {
+): SWRResponse<DeltakerSpørsmålDto> {
   const [harLastet, setHarLastet] = React.useState(false);
   const fetcher = (url: string) =>
     fetch(url, {

@@ -8,17 +8,14 @@ import { AntallDeltakere } from "@/app/_components/StatusPåDeltaker/AntallDelta
 
 export function StatusPåDeltaker({
   spørreundersøkelseId,
-  vertId,
 }: {
   spørreundersøkelseId: string;
-  vertId: string;
 }) {
   return (
     <HStack className={statusPåDeltakereStyles.deltakere}>
       <PersonGroupFillIcon fontSize="3rem" aria-hidden />
       <AntallDeltakere
         spørreundersøkelseId={spørreundersøkelseId}
-        vertId={vertId}
       />
       {" deltakere"}
     </HStack>

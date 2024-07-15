@@ -5,12 +5,12 @@ import { TemaDto } from "@/app/_types/TemaDto";
 const { helSpørreundersøkelse } = require("@/utils/dummydata");
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_VERT_UNDERSØKELSE_URL } = require("@/utils/urls");
+const { API_VERT_TEMAOVERSIKTER_URL } = require("@/utils/urls");
 
 const listeOverTemaRoutes = [
   {
     id: "vert-temaoversikt",
-    url: API_VERT_UNDERSØKELSE_URL(),
+    url: API_VERT_TEMAOVERSIKTER_URL(),
     method: "GET",
     variants: [
       {

@@ -25,7 +25,6 @@ describe("arbeidsgiverApiFetcherVert", () => {
     };
     const result = await arbeidsgiverApiFetcherVert(
       "endpoint",
-      "vertId",
       {} as NextRequest,
     )();
 
@@ -39,7 +38,6 @@ describe("arbeidsgiverApiFetcherVert", () => {
     };
     const result = await arbeidsgiverApiFetcherVert(
       "endpoint",
-      "vertId",
       {} as NextRequest,
     )();
 
@@ -56,7 +54,6 @@ describe("arbeidsgiverApiFetcherVert", () => {
     };
     const result = await arbeidsgiverApiFetcherVert(
       "endpoint",
-      "vertId",
       {} as NextRequest,
     )();
 
@@ -76,7 +73,6 @@ describe("arbeidsgiverApiFetcherVert", () => {
     };
     const result = await arbeidsgiverApiFetcherVert(
       "endpoint",
-      "vertId",
       {} as NextRequest,
     )();
 
@@ -100,7 +96,6 @@ describe("arbeidsgiverApiFetcherVert", () => {
     };
     const result = await arbeidsgiverApiFetcherVert(
       "endpoint",
-      "vertId",
       {} as NextRequest,
     )();
 

@@ -11,10 +11,8 @@ import LinkTilResultat from "@/app/_components/LinkTilResultat";
 
 export default function HeaderVert({
   spørreundersøkelseId,
-  vertId,
 }: {
   spørreundersøkelseId: string;
-  vertId: string;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -33,7 +31,7 @@ export default function HeaderVert({
               icon={<ArrowLeftIcon aria-hidden />}
               variant="secondary"
               onClick={() =>
-                router.push(`/${spørreundersøkelseId}/vert/${vertId}/oversikt`)
+                router.push(`/${spørreundersøkelseId}/vert/oversikt`)
               }
               className={kartleggingStyles.knappHvit}
             >
@@ -42,7 +40,6 @@ export default function HeaderVert({
           )}
           <LoginModal
             spørreundersøkelseId={spørreundersøkelseId}
-            vertId={vertId}
             startOpen={loginModal === "true"}
           />
         </HStack>
@@ -54,7 +51,6 @@ export default function HeaderVert({
             knappetekst={"Fullfør og vis alle resultater"}
             resultatType={"undersøkelsen"}
             spørreundersøkelseId={spørreundersøkelseId}
-            vertId={vertId}
             variant={"primary"}
           />
         )}

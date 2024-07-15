@@ -5,17 +5,14 @@ import { ETT_SEKUND_MS } from "@/utils/consts";
  * Hent antall brukere som har fullført (svart på alle spørsmål)
  *  enten på spørreundersøkelse eller tema (hvis temaId)
  * @param spørreundersøkelseId
- * @param vertId
  * @param temaId (optional)
  */
 
 export function useAntallFullført({
   spørreundersøkelseId,
-  vertId,
   temaId,
 }: {
   spørreundersøkelseId: string;
-  vertId: string;
   temaId?: number;
 }): SWRResponse<number> {
   const fetcher = (url: string) => {
@@ -39,8 +36,8 @@ export function useAntallFullført({
   };
 
   const endepunkt = temaId
-    ? `/api/${spørreundersøkelseId}/vert/${vertId}/${temaId}/antall-svar` // TODO: refactor til antall-fullfort
-    : `/api/${spørreundersøkelseId}/vert/${vertId}/antall-fullfort`;
+    ? `/api/${spørreundersøkelseId}/vert/tema/${temaId}/antall-svar`
+    : `/api/${spørreundersøkelseId}/vert/antall-fullfort`;
 
   return useSWR<number>(endepunkt, fetcher, swrConfig);
 }

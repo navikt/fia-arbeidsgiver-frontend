@@ -7,29 +7,29 @@ import { useRouter } from "next/navigation";
 import mockCookieHandler from "@/utils/jest-mocks/CookieHandler";
 import { useSpørsmåloversikt } from "@/app/_api_hooks/deltaker/useSpørsmåloversikt";
 import CookieHandler from "@/utils/CookieHandler";
-import { SpørsmåloversiktDto } from "@/app/_types/SpørsmåloversiktDto";
+import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 import { harGyldigSesjonsID } from "@/utils/harGyldigSesjonsID";
 import { SvaralternativDto } from "@/app/_types/SvaralternativDto";
-
 import {
-  arbeidsmiljøoversikt2,
-  partssamarbeidoversikt1,
-  partssamarbeidoversikt2,
-  partssamarbeidoversikt4,
-  // @ts-ignore
+  arbeidsmiljøDeltaker2,
+  partssamarbeidDeltaker1,
+  partssamarbeidDeltaker2,
+  partssamarbeidDeltaker4
 } from "@/utils/dummydata";
 
-const testSpørreundersøkelseId: string = "85ed4b72-d93c-443e-8bb1-101e9e64b667";
-const testSpørsmålId: string = partssamarbeidoversikt1.spørsmål.id;
-const testTemaId: number = 1;
-const førsteSpørsmålPartssamarbeid: SpørsmåloversiktDto =
-  partssamarbeidoversikt1;
-const sisteSpørsmålPartssamarbeid: SpørsmåloversiktDto =
-  partssamarbeidoversikt4;
-const sisteSpørsmålArbeidsmiljø: SpørsmåloversiktDto = arbeidsmiljøoversikt2;
 
-const flervalgSpørsmålPartssamarbeid: SpørsmåloversiktDto =
-  partssamarbeidoversikt2;
+const testSpørreundersøkelseId: string = "85ed4b72-d93c-443e-8bb1-101e9e64b667";
+const testSpørsmålId: string = partssamarbeidDeltaker1.spørsmål.id;
+const testTemaId: number = 1;
+const førsteSpørsmålPartssamarbeid: DeltakerSpørsmålDto =
+  partssamarbeidDeltaker1;
+
+const sisteSpørsmålPartssamarbeid: DeltakerSpørsmålDto =
+  partssamarbeidDeltaker4;
+const sisteSpørsmålArbeidsmiljø: DeltakerSpørsmålDto = arbeidsmiljøDeltaker2;
+
+const flervalgSpørsmålPartssamarbeid: DeltakerSpørsmålDto =
+  partssamarbeidDeltaker2;
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(() => ({
