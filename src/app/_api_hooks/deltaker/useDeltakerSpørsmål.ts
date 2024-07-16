@@ -2,7 +2,7 @@ import useSWR, { SWRResponse } from "swr";
 import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 import React from "react";
 
-export function useSpørsmåloversikt(
+export function useDeltakerSpørsmål(
   spørreundersøkelseId: string,
   temaId: number,
   spørsmålId: string,

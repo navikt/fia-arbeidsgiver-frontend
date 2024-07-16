@@ -24,12 +24,12 @@ export default function Spørsmålsseksjon({
   spørsmålId,
   spørreundersøkelseId,
   temaId,
-  spørsmåloversikt,
+  deltakerSpørsmål,
 }: {
   spørsmålId: string;
   spørreundersøkelseId: string;
   temaId: number;
-  spørsmåloversikt: DeltakerSpørsmålDto;
+  deltakerSpørsmål: DeltakerSpørsmålDto;
 }) {
   const lagretSvar = CookieHandler.getSvarPåSpørsmål(spørsmålId);
   const [feilSendSvar, setFeilSendSvar] = React.useState<string | null>(null);
@@ -51,7 +51,7 @@ export default function Spørsmålsseksjon({
 
   const håndterNesteknapp = () => {
     if (erPåLagretSvar(svar, lagretSvar)) {
-      router.push(urlNeste(spørsmåloversikt));
+      router.push(urlNeste(deltakerSpørsmål));
     } else {
       if (svar.length === 0) {
         setFeilSendSvar("Velg minst ett svar");
@@ -66,7 +66,7 @@ export default function Spørsmålsseksjon({
       })
         .then(() => {
           setFeilSendSvar(null);
-          router.push(urlNeste(spørsmåloversikt));
+          router.push(urlNeste(deltakerSpørsmål));
         })
         .catch((error) => {
           if (error.message == "Tema stengt, hent nytt spørsmål") {
@@ -85,7 +85,7 @@ export default function Spørsmålsseksjon({
   };
 
   const håndterTilbakeknapp = () => {
-    const url = urlTilbake(spørsmåloversikt);
+    const url = urlTilbake(deltakerSpørsmål);
     if (url !== null) {
       router.push(url);
     }
@@ -99,12 +99,12 @@ export default function Spørsmålsseksjon({
         className={spørsmålStyles.innholdboks}
       >
         <VStack className={spørsmålStyles.radioStack}>
-          {spørsmåloversikt.spørsmål.flervalg ? (
+          {deltakerSpørsmål.spørsmål.flervalg ? (
             <CheckboxGroup
               onChange={velgSvar}
               legend={
                 <>
-                  {spørsmåloversikt.spørsmål.tekst}
+                  {deltakerSpørsmål.spørsmål.tekst}
                   <br />
                   <span className={spørsmålStyles.normaltekst}>
                     (flere valg er mulig)
@@ -114,7 +114,7 @@ export default function Spørsmålsseksjon({
               value={svar}
               error={feilSendSvar}
             >
-              {spørsmåloversikt.spørsmål.svaralternativer.map(
+              {deltakerSpørsmål.spørsmål.svaralternativer.map(
                 (svaralternativ) => (
                   <Checkbox key={svaralternativ.id} value={svaralternativ.id}>
                     {svaralternativ.tekst}
@@ -124,13 +124,13 @@ export default function Spørsmålsseksjon({
             </CheckboxGroup>
           ) : (
             <RadioGroup
-              legend={spørsmåloversikt.spørsmål.tekst}
+              legend={deltakerSpørsmål.spørsmål.tekst}
               onChange={(value) => velgSvar([value])}
               value={svar[0] || null}
               className={spørsmålStyles.spørsmålsseksjon}
               error={feilSendSvar}
             >
-              {spørsmåloversikt.spørsmål.svaralternativer.map(
+              {deltakerSpørsmål.spørsmål.svaralternativer.map(
                 (svaralternativ) => (
                   <Radio key={svaralternativ.id} value={svaralternativ.id}>
                     {svaralternativ.tekst}
@@ -142,7 +142,7 @@ export default function Spørsmålsseksjon({
         </VStack>
       </Box>
       <HStack justify={"end"} gap={"2"} className={spørsmålStyles.knappeStack}>
-        {spørsmåloversikt.forrigeSpørsmål !== null ? (
+        {deltakerSpørsmål.forrigeSpørsmål !== null ? (
           <Button
             variant="secondary"
             className={spørsmålStyles.tilbakeknapp}

@@ -6,7 +6,7 @@ import Spørsmålsseksjon from "./Sporsmalsseksjon";
 import { SpørsmålHeadingDeltaker } from "./SpørsmålHeadingDeltaker";
 import { Alert, BodyShort, Heading, VStack } from "@navikt/ds-react";
 import spørsmålStyles from "./sporsmalsside.module.css";
-import { useSpørsmåloversikt } from "@/app/_api_hooks/deltaker/useSpørsmåloversikt";
+import { useDeltakerSpørsmål } from "@/app/_api_hooks/deltaker/useDeltakerSpørsmål";
 import kartleggingStyles from "@/app/kartlegging.module.css";
 import { useRouter } from "next/navigation";
 import { harGyldigSesjonsID } from "@/utils/harGyldigSesjonsID";
@@ -23,10 +23,10 @@ export default function SpørsmålBody({
 }) {
   const router = useRouter();
   const {
-    data: spørsmålOgSvar,
+    data: deltakerSpørsmål,
     isLoading: lasterSpørsmålOgSvar,
     error: feilSpørsmålOgSvar,
-  } = useSpørsmåloversikt(spørreundersøkelseId, temaId, spørsmålId);
+  } = useDeltakerSpørsmål(spørreundersøkelseId, temaId, spørsmålId);
 
   React.useEffect(() => {
     const sjekkSesjonOgRedirectOmMangler = async () => {
@@ -61,7 +61,7 @@ export default function SpørsmålBody({
     );
   }
 
-  if (spørsmålOgSvar === undefined || lasterSpørsmålOgSvar) {
+  if (deltakerSpørsmål === undefined || lasterSpørsmålOgSvar) {
     return (
       <>
         <VStack gap={"4"} align={"center"}>
@@ -87,14 +87,14 @@ export default function SpørsmålBody({
   }
 
   return (
-    spørsmålOgSvar && (
+    deltakerSpørsmål && (
       <>
-        <SpørsmålHeadingDeltaker spørsmåloversikt={spørsmålOgSvar} />
+        <SpørsmålHeadingDeltaker deltakerSpørsmål={deltakerSpørsmål} />
         <Spørsmålsseksjon
           spørreundersøkelseId={spørreundersøkelseId}
           temaId={temaId}
           spørsmålId={spørsmålId}
-          spørsmåloversikt={spørsmålOgSvar}
+          deltakerSpørsmål={deltakerSpørsmål}
         />
       </>
     )
