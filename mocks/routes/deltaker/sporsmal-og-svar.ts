@@ -29,8 +29,8 @@ const sporsmalOgSvarRoutes = [
         options: {
           middleware: (req: Request, res: Response) => {
             const spm = dummySpørsmålSamling.find(
-              (spørsmåloversikt) =>
-                spørsmåloversikt.spørsmål.id === req.params.sporsmalId,
+              (deltakerSpørsmål) =>
+                deltakerSpørsmål.spørsmål.id === req.params.sporsmalId,
             );
             if (spm !== undefined) {
               res.status(200);

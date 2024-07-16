@@ -5,7 +5,7 @@ import { axe, toHaveNoViolations } from "jest-axe";
 import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
 import { useRouter } from "next/navigation";
 import mockCookieHandler from "@/utils/jest-mocks/CookieHandler";
-import { useSpørsmåloversikt } from "@/app/_api_hooks/deltaker/useSpørsmåloversikt";
+import { useDeltakerSpørsmål } from "@/app/_api_hooks/deltaker/useDeltakerSpørsmål";
 import CookieHandler from "@/utils/CookieHandler";
 import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 import { harGyldigSesjonsID } from "@/utils/harGyldigSesjonsID";
@@ -42,7 +42,7 @@ jest.mock("@/app/_api_hooks/deltaker/sendSvar", () => ({
   sendSvar: jest.fn(() => Promise.resolve()),
 }));
 
-jest.mock("@/app/_api_hooks/deltaker/useSpørsmåloversikt", () => ({
+jest.mock("@/app/_api_hooks/deltaker/useDeltakerSpørsmål", () => ({
   useSpørsmålOgSvar: jest.fn(),
 }));
 
@@ -58,7 +58,7 @@ describe("deltaker/Spørsmålsside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
-    jest.mocked(useSpørsmåloversikt).mockReturnValue({
+    jest.mocked(useDeltakerSpørsmål).mockReturnValue({
       data: førsteSpørsmålPartssamarbeid,
       isLoading: false,
       error: null,
@@ -124,7 +124,7 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("Velg og send svar", async () => {
-    jest.mocked(useSpørsmåloversikt).mockReturnValue({
+    jest.mocked(useDeltakerSpørsmål).mockReturnValue({
       data: førsteSpørsmålPartssamarbeid,
       isLoading: false,
       error: null,
@@ -174,7 +174,7 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("Siste spørsmål i tema redirecter til første i neste tema", async () => {
-    jest.mocked(useSpørsmåloversikt).mockReturnValue({
+    jest.mocked(useDeltakerSpørsmål).mockReturnValue({
       data: sisteSpørsmålPartssamarbeid,
       isLoading: false,
       error: null,
@@ -224,7 +224,7 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("Siste spørsmål i siste tema redirecter til ferdigside", async () => {
-    jest.mocked(useSpørsmåloversikt).mockReturnValue({
+    jest.mocked(useDeltakerSpørsmål).mockReturnValue({
       data: sisteSpørsmålArbeidsmiljø,
       isLoading: false,
       error: null,
@@ -272,7 +272,7 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("axe UU-test", async () => {
-    jest.mocked(useSpørsmåloversikt).mockReturnValue({
+    jest.mocked(useDeltakerSpørsmål).mockReturnValue({
       data: førsteSpørsmålPartssamarbeid,
       isLoading: false,
       error: null,
@@ -399,7 +399,7 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("Viser feilmelding dersom vi har error og loading", () => {
-    jest.mocked(useSpørsmåloversikt).mockReturnValue({
+    jest.mocked(useDeltakerSpørsmål).mockReturnValue({
       data: undefined,
       isLoading: true,
       error: new Error("Noe gikk galt."),
@@ -421,7 +421,7 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("Viser 'venter på vert' dersom vi ikke har spørsmål, men loading", () => {
-    jest.mocked(useSpørsmåloversikt).mockReturnValue({
+    jest.mocked(useDeltakerSpørsmål).mockReturnValue({
       data: undefined,
       isLoading: true,
       error: null,
@@ -443,7 +443,7 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("Viser checkbokser for flervalgsspørsmål", async () => {
-    jest.mocked(useSpørsmåloversikt).mockReturnValue({
+    jest.mocked(useDeltakerSpørsmål).mockReturnValue({
       data: flervalgSpørsmålPartssamarbeid,
       isLoading: false,
       error: undefined,

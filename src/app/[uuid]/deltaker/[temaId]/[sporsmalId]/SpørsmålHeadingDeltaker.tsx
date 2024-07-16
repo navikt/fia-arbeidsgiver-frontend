@@ -7,21 +7,21 @@ import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 import { Framdrift } from "@/app/[uuid]/deltaker/[temaId]/[sporsmalId]/Framdrift";
 
 export function SpørsmålHeadingDeltaker({
-  spørsmåloversikt,
+  deltakerSpørsmål,
 }: {
-  spørsmåloversikt: DeltakerSpørsmålDto;
+  deltakerSpørsmål: DeltakerSpørsmålDto;
 }) {
   return (
-    spørsmåloversikt && (
+    deltakerSpørsmål && (
       <VStack
         justify={"start"}
         gap={"2"}
         className={deltakerStyles.spørsmålsheader}
       >
-        <Heading size="medium">{spørsmåloversikt.temanavn}</Heading>
+        <Heading size="medium">{deltakerSpørsmål.temanavn}</Heading>
         <Framdrift
-          spørsmålnummer={spørsmåloversikt.spørsmålnummer}
-          totaltAntallSpørsmål={spørsmåloversikt.antallSpørsmål}
+          spørsmålnummer={deltakerSpørsmål.spørsmålnummer}
+          totaltAntallSpørsmål={deltakerSpørsmål.antallSpørsmål}
         />
       </VStack>
     )
