@@ -1,9 +1,9 @@
+import { TemaStatus } from "@/app/_types/TemaStatus";
 import { vertTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
-import { TemaStatus } from "@/app/_types/TemaStatus";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { dummyTemaoversikt } = require("@/utils/dummyData/vert");
+const { helSpørreundersøkelse } = require("@/utils/dummyData");
 
 test.describe("Vert/oversiktside", () => {
   test.beforeEach(({ page }) => {
@@ -17,7 +17,7 @@ test.describe("Vert/oversiktside", () => {
     await page.route(
       "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93",
       async (route) => {
-        const json = dummyTemaoversikt;
+        const json = helSpørreundersøkelse;
         json[0].status = TemaStatus.ÅPNET;
         json[1].status = TemaStatus.IKKE_ÅPNET;
         json[2].status = TemaStatus.IKKE_ÅPNET;
@@ -42,7 +42,7 @@ test.describe("Vert/oversiktside", () => {
     await page.route(
       "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93",
       async (route) => {
-        const json = dummyTemaoversikt;
+        const json = helSpørreundersøkelse;
         json[0].status = TemaStatus.ALLE_SPØRSMÅL_ÅPNET;
         json[1].status = TemaStatus.ÅPNET;
         json[2].status = TemaStatus.IKKE_ÅPNET;
