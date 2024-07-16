@@ -25,7 +25,7 @@ export function useDeltakerSpørsmål(
     });
 
   return useSWR(
-    `/api/${spørreundersøkelseId}/deltaker/${temaId}/${spørsmålId}`,
+    `/api/${spørreundersøkelseId}/deltaker/tema/${temaId}/sporsmal/${spørsmålId}`,
     fetcher,
     {
       refreshInterval: harLastet ? undefined : 2000,

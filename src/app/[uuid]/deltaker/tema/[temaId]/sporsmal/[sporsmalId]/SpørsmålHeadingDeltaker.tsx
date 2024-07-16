@@ -4,7 +4,7 @@ import { Heading, VStack } from "@navikt/ds-react";
 import deltakerStyles from "./sporsmalsside.module.css";
 import React from "react";
 import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
-import { Framdrift } from "@/app/[uuid]/deltaker/[temaId]/[sporsmalId]/Framdrift";
+import { Framdrift } from "@/app/[uuid]/deltaker/tema/[temaId]/sporsmal/[sporsmalId]/Framdrift";
 
 export function SpørsmålHeadingDeltaker({
   deltakerSpørsmål,

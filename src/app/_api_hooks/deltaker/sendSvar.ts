@@ -12,7 +12,7 @@ export async function sendSvar({
   svarIder: string[];
 }) {
   const res = await fetch(
-    `/api/${spørreundersøkelseId}/deltaker/${temaId}/${spørsmålId}/svar`,
+    `/api/${spørreundersøkelseId}/deltaker/tema/${temaId}/sporsmal/${spørsmålId}/svar`,
     {
       method: "POST",
       headers: {

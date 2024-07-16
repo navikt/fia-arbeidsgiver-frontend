@@ -18,10 +18,10 @@ export default function NavigerTilNesteTemaKnapp({
     temaId,
   );
 
-  if (tema && tema.del < 3) {
+  if (tema?.nesteTemaId) {
     return (
       <Button
-        onClick={() => router.push(`../tema/${tema.del + 1}`)} // TODO: endre router.push alle steder til å ta i bruk tema del og ikke id
+        onClick={() => router.push(`../tema/${tema.nesteTemaId}`)}
         icon={<ArrowRightIcon aria-hidden />}
         className={kartleggingStyles.knappHvit}
         variant="secondary"
