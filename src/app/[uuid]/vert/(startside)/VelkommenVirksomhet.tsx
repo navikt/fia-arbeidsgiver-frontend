@@ -1,6 +1,6 @@
 "use client";
 
-import Headerlinje from "../../../_components/Headerlinje";
+import Headerlinje from "@/app/_components/Headerlinje";
 import { useVirksomhetsnavn } from "@/app/_api_hooks/vert/useVirksomhetsnavn";
 import { Loader } from "@navikt/ds-react";
 

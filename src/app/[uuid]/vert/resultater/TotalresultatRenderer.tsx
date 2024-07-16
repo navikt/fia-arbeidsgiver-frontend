@@ -1,13 +1,13 @@
 "use client";
 
-import HeaderVert from "../../../_components/HeaderVert";
+import HeaderVert from "@/app/_components/HeaderVert";
 import { Heading, Page, VStack, Loader, Alert } from "@navikt/ds-react";
 import { PageBlock } from "@navikt/ds-react/Page";
-import { TemaGrafMedDatahenting } from "../../../_components/Resultatgraf/TemaGraf";
+import { TemaGrafMedDatahenting } from "@/app/_components/Resultatgraf/TemaGraf";
 import React, { useEffect, useState } from "react";
-import { useTemaoversikter } from "../../../_api_hooks/vert/useTemaoversikter";
-import { avsluttTema } from "../../../_api_hooks/vert/avsluttTema";
-import Headerlinje from "../../../_components/Headerlinje";
+import { useTemaoversikter } from "@/app/_api_hooks/vert/useTemaoversikter";
+import { avsluttTema } from "@/app/_api_hooks/vert/avsluttTema";
+import Headerlinje from "@/app/_components/Headerlinje";
 import resultaterStyles from "./resultater.module.css";
 
 export function TotalresultatRenderer({

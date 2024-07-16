@@ -106,7 +106,7 @@ function genererChartOptionsFraSpørsmålOgSvar(
       {
         type: "pie",
         name: "Antall svar",
-        data: spørsmål.svarListe.map((svar, index) =>
+        data: spørsmål.svar.map((svar, index) =>
           svar.antallSvar > 0
             ? {
                 name: svar.tekst,

@@ -7,6 +7,7 @@ const API_DELTAKER_BLI_MED_URL = `${API_BASE_URL}/bli-med`;
 const API_VERT_UNDERSØKELSE_URL = (
   sporreundersokelseId = ":sporreundersokelseId",
 ) => `${API_BASE_URL_VERT}/${sporreundersokelseId}`;
+
 const API_VERT_TEMAOVERSIKTER_URL = (
   sporreundersokelseId = ":sporreundersokelseId",
 ) => `${API_BASE_URL_VERT}/${sporreundersokelseId}/oversikt`;
@@ -83,10 +84,10 @@ const API_DELTAKER_SVAR_URL = (
   )}/tema/${temaId}/sporsmal/${sporsmalId}/svar`;
 
 module.exports = {
-  API_BASE_URL,
-  API_BASE_URL_VERT,
-  API_BASE_URL_DELTAKER,
-  API_VERT_UNDERSØKELSE_URL,
+  API_DELTAKER_BLI_MED_URL,
+  API_DELTAKER_UNDERSØKELSE_URL,
+  API_DELTAKER_SPØRSMÅL_URL,
+  API_DELTAKER_SVAR_URL,
   API_VERT_TEMAOVERSIKTER_URL,
   API_VERT_TEMAOVERSIKT_URL,
   API_VERT_TEMARESULTAT_URL,
@@ -97,8 +98,4 @@ module.exports = {
   API_VERT_ANTALL_FULLFORT_URL,
   API_VERT_VIRKSOMHETSNAVN_URL,
   API_VERT_ÅPNE_TEMA_URL,
-  API_DELTAKER_UNDERSØKELSE_URL,
-  API_DELTAKER_SPØRSMÅL_URL,
-  API_DELTAKER_SVAR_URL,
-  API_DELTAKER_BLI_MED_URL,
 };

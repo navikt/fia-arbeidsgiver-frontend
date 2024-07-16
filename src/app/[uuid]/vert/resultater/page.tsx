@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import React from "react";
-import { TotalresultatRenderer } from "./TotalresultatRenderer";
+import { TotalresultatRenderer } from "@/app/[uuid]/vert/resultater/TotalresultatRenderer";
 
 export const metadata: Metadata = {
   title: "Resultat",

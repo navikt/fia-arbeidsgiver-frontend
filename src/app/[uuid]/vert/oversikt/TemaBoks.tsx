@@ -3,20 +3,20 @@ import oversiktStyles from "./oversikt.module.css";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { TemaDto } from "@/app/_types/TemaDto";
-import LinkTilResultat from "../../../_components/LinkTilResultat";
+import LinkTilResultat from "@/app/_components/LinkTilResultat";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
 import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
 import { TemaStatus } from "@/app/_types/TemaStatus";
 
 export function TemaBoks({
   spørreundersøkelseId,
-  temaoversikt,
+  tema,
 }: {
   spørreundersøkelseId: string;
-  temaoversikt: TemaDto;
+  tema: TemaDto;
 }) {
   return (
-    temaoversikt && (
+    tema && (
       <Box padding="10" className={oversiktStyles.temaboks}>
         <VStack
           gap="8"
@@ -27,18 +27,18 @@ export function TemaBoks({
             <HStack justify={"space-between"}>
               <StatusPåDeltakerMedSvar
                 spørreundersøkelseId={spørreundersøkelseId}
-                temaId={temaoversikt.id}
-                erSynlig={temaoversikt.status !== "IKKE_ÅPNET"}
+                temaId={tema.id}
+                erSynlig={tema.status !== "IKKE_ÅPNET"}
               />
-              {temaoversikt.status === "STENGT" ? (
+              {tema.status === "STENGT" ? (
                 <Tag variant={"success-moderate"}>Fullført</Tag>
               ) : null}
             </HStack>
-            <Heading size="medium">{temaoversikt.navn}</Heading>
+            <Heading size="medium">{tema.navn}</Heading>
           </VStack>
           <HStack gap={"4"} justify={"end"}>
             <TemaActions
-              temaoversikt={temaoversikt}
+              tema={tema}
               spørreundersøkelseId={spørreundersøkelseId}
             />
           </HStack>
@@ -49,33 +49,33 @@ export function TemaBoks({
 }
 
 function TemaActions({
-  temaoversikt,
+  tema,
   spørreundersøkelseId,
 }: {
-  temaoversikt: TemaDto;
+  tema: TemaDto;
   spørreundersøkelseId: string;
 }) {
   const router = useRouter();
 
-  switch (temaoversikt.status) {
+  switch (tema.status) {
     case TemaStatus.STENGT:
       return (
         <>
           <Button
             variant="secondary"
-            onClick={() => router.push(`./tema/${temaoversikt.id}`)}
+            onClick={() => router.push(`./tema/${tema.id}`)}
             iconPosition="right"
           >
             Vis spørsmål
           </Button>
           <LinkTilResultat
             skalViseKnapp
-            urlTilResultatside={`./resultater/${temaoversikt.id}`}
+            urlTilResultatside={`./resultater/${tema.id}`}
             gåDirekteTilResultat={true}
             knappetekst={"Vis resultater"}
             variant="primary"
             spørreundersøkelseId={spørreundersøkelseId}
-            temaId={temaoversikt.id}
+            temaId={tema.id}
           />
         </>
       );
@@ -84,20 +84,20 @@ function TemaActions({
         <>
           <Button
             variant="secondary"
-            onClick={() => router.push(`./tema/${temaoversikt.id}`)}
+            onClick={() => router.push(`./tema/${tema.id}`)}
             iconPosition="right"
           >
             Vis spørsmål
           </Button>
           <LinkTilResultat
             skalViseKnapp
-            urlTilResultatside={`./resultater/${temaoversikt.id}`}
+            urlTilResultatside={`./resultater/${tema.id}`}
             gåDirekteTilResultat={false}
             knappetekst={"Vis resultater"}
             modalTittel={"Vil du fullføre temaet?"}
             variant="primary"
             spørreundersøkelseId={spørreundersøkelseId}
-            temaId={temaoversikt.id}
+            temaId={tema.id}
           />
         </>
       );
@@ -105,7 +105,7 @@ function TemaActions({
       return (
         <Button
           variant="primary"
-          onClick={() => router.push(`./tema/${temaoversikt.id}`)}
+          onClick={() => router.push(`./tema/${tema.id}`)}
           icon={<ArrowRightIcon aria-hidden />}
           iconPosition="right"
         >
@@ -118,7 +118,7 @@ function TemaActions({
       return (
         <Button
           variant="primary"
-          onClick={() => router.push(`./tema/${temaoversikt.id}`)}
+          onClick={() => router.push(`./tema/${tema.id}`)}
           icon={<ArrowRightIcon aria-hidden />}
           iconPosition="right"
           disabled

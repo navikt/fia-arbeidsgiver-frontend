@@ -14,20 +14,20 @@ import {
   Radio,
 } from "@navikt/ds-react";
 import React from "react";
-import { useTemaoversikt } from "../../../../../_api_hooks/vert/useTemaoversikt";
+import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
 import { Infoblokk } from "./Infoblokk";
-import Headerlinje from "../../../../../_components/Headerlinje";
+import Headerlinje from "@/app/_components/Headerlinje";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
-import { TemaDto } from "../../../../../_types/TemaDto";
+import { TemaDto } from "@/app/_types/TemaDto";
 import introsideStyles from "./introside.module.css";
 import kartleggingStyles from "../../../../../kartlegging.module.css";
 import { AccordionContent } from "@navikt/ds-react/Accordion";
-import { useÅpneTema } from "../../../../../_api_hooks/vert/useÅpneTema";
-import LinkTilResultat from "../../../../../_components/LinkTilResultat";
+import { useÅpneTema } from "@/app/_api_hooks/vert/useÅpneTema";
+import LinkTilResultat from "@/app/_components/LinkTilResultat";
 import { useRouter } from "next/navigation";
-import { StatusPåDeltakerMedSvar } from "../../../../../_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
-import { SpørsmålDto } from "../../../../../_types/SpørsmålDto";
-import { SvaralternativDto } from "../../../../../_types/SvaralternativDto";
+import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
+import { SpørsmålDto } from "@/app/_types/SpørsmålDto";
+import { SvaralternativDto } from "@/app/_types/SvaralternativDto";
 
 export function IntrosideBody({
   spørreundersøkelseId,
@@ -37,7 +37,7 @@ export function IntrosideBody({
   temaId: number;
 }) {
   const {
-    data: temaoversikt,
+    data: tema,
     isLoading,
     error,
   } = useTemaoversikt(spørreundersøkelseId, temaId);
@@ -67,24 +67,24 @@ export function IntrosideBody({
 
   return (
     <>
-      {temaoversikt && (
+      {tema && (
         <>
-          <Headerlinje tittel={temaoversikt.navn}>
+          <Headerlinje tittel={tema.navn}>
             <Actionknapper
               åpneTema={åpneTema}
               setÅpneTemaError={setÅpneTemaError}
               setErStartet={setErStartet}
               erStartet={erStartet}
-              nesteTemaId={temaoversikt.id}
+              nesteTemaId={tema.id}
               spørreundersøkelseId={spørreundersøkelseId}
               temaId={temaId}
             />
           </Headerlinje>
-          <Infoblokk tema={temaoversikt} />
+          <Infoblokk tema={tema} />
         </>
       )}
-      {erStartet && temaoversikt && (
-        <SvarRenderer temaoversikt={temaoversikt} />
+      {erStartet && tema && (
+        <SvarRenderer tema={tema} />
       )}
     </>
   );
@@ -161,7 +161,7 @@ function Actionknapper({
   );
 }
 
-function SvarRenderer({ temaoversikt }: { temaoversikt: TemaDto }) {
+function SvarRenderer({ tema }: { tema: TemaDto }) {
   return (
     <>
       <Box
@@ -171,7 +171,7 @@ function SvarRenderer({ temaoversikt }: { temaoversikt: TemaDto }) {
         className={introsideStyles.spørsmålsseksjon}
       >
         <Accordion>
-          {temaoversikt.spørsmål.map((spørsmål, index) => (
+          {tema.spørsmål.map((spørsmål, index) => (
             <SpørsmålAccordion key={index} spørsmål={spørsmål} index={index} />
           ))}
         </Accordion>

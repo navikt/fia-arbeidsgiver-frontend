@@ -14,7 +14,7 @@ import startsideStyles from "./startside.module.css";
 import { PageBlock } from "@navikt/ds-react/Page";
 import KomIGangKnapp from "./KomIGangKnapp";
 import { ListItem } from "@navikt/ds-react/List";
-import { VelkommenVirksomhet } from "./VelkommenVirksomhet";
+import { VelkommenVirksomhet } from "@/app/[uuid]/vert/(startside)/VelkommenVirksomhet";
 
 export const metadata: Metadata = {
   title: "Velkommen",

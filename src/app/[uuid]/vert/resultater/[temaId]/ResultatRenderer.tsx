@@ -1,14 +1,14 @@
 "use client";
 
-import TemaGraf from "../../../../_components/Resultatgraf/TemaGraf";
+import TemaGraf from "@/app/_components/Resultatgraf/TemaGraf";
 import React, { useEffect, useState } from "react";
-import { avsluttTema } from "../../../../_api_hooks/vert/avsluttTema";
-import { useTemaResultat } from "../../../../_api_hooks/vert/useTemaresultater";
-import Headerlinje from "../../../../_components/Headerlinje";
+import { avsluttTema } from "@/app/_api_hooks/vert/avsluttTema";
+import { useTemaResultat } from "@/app/_api_hooks/vert/useTemaresultater";
+import Headerlinje from "@/app/_components/Headerlinje";
 import { Heading, VStack, Loader, Alert } from "@navikt/ds-react";
 import resultaterStyles from "../resultater.module.css";
-import NavigerTilNesteTemaKnapp from "./NavigerTilNesteTemaKnapp";
-import useTimeHasElapsed from "../../../../../utils/useTimeHasElapsed";
+import NavigerTilNesteTemaKnapp from "@/app/[uuid]/vert/resultater/[temaId]/NavigerTilNesteTemaKnapp";
+import useTimeHasElapsed from "@/utils/useTimeHasElapsed";
 
 export function ResultatRenderer({
   temaId,
