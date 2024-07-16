@@ -1,7 +1,6 @@
 import React from "react";
 import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-
 import { SpørsmålResultatDto } from "@/app/_types/SpørsmålResultatDto";
 
 export default function BarChart({
@@ -52,7 +51,7 @@ function genererChartOptionsFraSpørsmålOgSvar(
       {
         type: "column",
         name: "Antall svar",
-        data: spørsmål.svarListe.map((svar) =>
+        data: spørsmål.svar.map((svar) =>
           svar.antallSvar > 0
             ? {
                 y: svar.antallSvar,
@@ -63,7 +62,7 @@ function genererChartOptionsFraSpørsmålOgSvar(
       },
     ],
     xAxis: {
-      categories: spørsmål.svarListe.map((svar) => svar.tekst),
+      categories: spørsmål.svar.map((svar) => svar.tekst),
     },
     yAxis: {
       allowDecimals: false,

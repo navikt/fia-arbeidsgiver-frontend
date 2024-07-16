@@ -121,7 +121,7 @@ export default function Resultatgraf({
     return farger[index % farger.length].border;
   }
 
-  const total = spørsmål.svarListe.reduce(
+  const total = spørsmål.svar.reduce(
     (acc, svar) => acc + svar.antallSvar,
     0,
   );
@@ -137,7 +137,7 @@ export default function Resultatgraf({
         </BodyShort>
       ) : undefined}
       <BarWrapper>
-        {spørsmål.svarListe.map(
+        {spørsmål.svar.map(
           (svar, index) =>
             svar.antallSvar > 0 && (
               <Bar
@@ -151,7 +151,7 @@ export default function Resultatgraf({
         )}
       </BarWrapper>
       <LabelList>
-        {spørsmål.svarListe.map((svar, index) => (
+        {spørsmål.svar.map((svar, index) => (
           <Label key={index}>
             <LabelBox
               farge={getSvarGrafBakgrunnsfarge(index)}

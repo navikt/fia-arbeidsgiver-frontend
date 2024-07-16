@@ -13,13 +13,14 @@ jest.mock("next/navigation", () => ({
   })),
   usePathname: jest.fn(() => "/"),
 }));
-// jest.mock("../../../_api_hooks/vert/useAntallDeltakere", () => ({
-//   useAntallDeltakere: () => ({
-//     data: 0,
-//     isLoading: false,
-//     error: undefined,
-//   }),
-// }));
+
+jest.mock("@/app/_api_hooks/vert/useAntallDeltakere", () => ({
+  useAntallDeltakere: () => ({
+    data: 0,
+    isLoading: false,
+    error: undefined,
+  }),
+}));
 
 describe("Startside", () => {
   beforeEach(() => {

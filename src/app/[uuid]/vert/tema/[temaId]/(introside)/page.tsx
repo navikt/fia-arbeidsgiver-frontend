@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Page } from "@navikt/ds-react";
 import { PageBlock } from "@navikt/ds-react/Page";
-import { IntrosideBody } from "./IntrosideBody";
+import { IntrosideBody } from "@/app/[uuid]/vert/tema/[temaId]/(introside)/IntrosideBody";
 
 export const metadata: Metadata = {
   title: "Temaside",

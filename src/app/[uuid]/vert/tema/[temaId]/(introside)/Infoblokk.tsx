@@ -2,7 +2,7 @@
 import { BodyLong, BodyShort, Box, HStack } from "@navikt/ds-react";
 import { List, ListItem } from "@navikt/ds-react/List";
 import React, { ComponentProps } from "react";
-import { TemaDto } from "../../../../../_types/TemaDto";
+import { TemaDto } from "@/app/_types/TemaDto";
 import introsideStyles from "./introside.module.css";
 
 export function Infoblokk({ tema }: { tema: TemaDto }) {

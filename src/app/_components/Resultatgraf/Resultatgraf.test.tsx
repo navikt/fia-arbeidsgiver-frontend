@@ -9,7 +9,7 @@ describe("Resultatgraf", () => {
         spørsmål={{
           id: "a1",
           tekst: "Hva er din favorittfarge?",
-          svarListe: [
+          svar: [
             { id: "b1", tekst: "QWER", antallSvar: 10 },
             { id: "b2", tekst: "ASDF", antallSvar: 20 },
             { id: "b3", tekst: "ZXCV", antallSvar: 10 },
@@ -34,7 +34,7 @@ describe("Resultatgraf", () => {
         spørsmål={{
           id: "a1",
           tekst: "Hva er din favorittfarge?",
-          svarListe: farger.map((farge, index) => ({
+          svar: farger.map((farge, index) => ({
             id: `b${index + 1}`,
             tekst: farge.bakgrunn,
             antallSvar: index + 1,

@@ -2,8 +2,8 @@
 
 import { Alert, HStack, Heading, Loader, VStack } from "@navikt/ds-react";
 import React from "react";
-import { TemaBoks } from "./TemaBoks";
-import { useTemaoversikter } from "../../../_api_hooks/vert/useTemaoversikter";
+import { TemaBoks } from "@/app/[uuid]/vert/oversikt/TemaBoks";
+import { useTemaoversikter } from "@/app/_api_hooks/vert/useTemaoversikter";
 import oversiktStyles from "./oversikt.module.css";
 
 export default function OversiktBody({
@@ -46,7 +46,7 @@ export default function OversiktBody({
           <TemaBoks
             key={index}
             spørreundersøkelseId={spørreundersøkelseId}
-            temaoversikt={temaoversikt}
+            tema={temaoversikt}
           />
         ))}
       </HStack>

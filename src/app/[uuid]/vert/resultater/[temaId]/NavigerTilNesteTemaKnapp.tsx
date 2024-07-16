@@ -2,7 +2,7 @@
 import { Alert, Button } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
-import { useTemaoversikt } from "../../../../_api_hooks/vert/useTemaoversikt";
+import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
 import kartleggingStyles from "../../../../kartlegging.module.css";
 
 export default function NavigerTilNesteTemaKnapp({
@@ -21,7 +21,7 @@ export default function NavigerTilNesteTemaKnapp({
   if (tema && tema.del < 3) {
     return (
       <Button
-        onClick={() => router.push(`../tema/${tema.del + 1}`)}
+        onClick={() => router.push(`../tema/${tema.del + 1}`)} // TODO: endre router.push alle steder til å ta i bruk tema del og ikke id
         icon={<ArrowRightIcon aria-hidden />}
         className={kartleggingStyles.knappHvit}
         variant="secondary"

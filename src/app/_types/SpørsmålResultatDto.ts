@@ -4,5 +4,5 @@ export type SpørsmålResultatDto = {
   id: string;
   tekst: string;
   flervalg: boolean;
-  svarListe: SvarResultat[];
+  svar: SvarResultat[];
 };
