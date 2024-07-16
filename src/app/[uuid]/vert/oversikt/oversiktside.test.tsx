@@ -1,5 +1,6 @@
 import { useTemaoversikter } from "@/app/_api_hooks/vert/useTemaoversikter";
 import { TemaStatus } from "@/app/_types/TemaStatus";
+// @ts-ignore
 import { helSpørreundersøkelse } from "@/utils/dummydata";
 import "@testing-library/jest-dom";
 import { act, render, screen } from "@testing-library/react";
@@ -22,7 +23,7 @@ jest.mock("next/navigation", () => ({
 }));
 
 jest.mock("@/app/_api_hooks/vert/useTemaoversikter", () => ({
-  useTemaoversikt: jest.fn(() => ({
+  useTemaoversikter: jest.fn(() => ({
     data: helSpørreundersøkelse,
     isLoading: false,
     error: undefined,

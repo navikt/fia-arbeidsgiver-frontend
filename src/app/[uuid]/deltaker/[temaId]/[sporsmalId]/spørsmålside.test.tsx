@@ -15,6 +15,7 @@ import {
   partssamarbeidDeltaker1,
   partssamarbeidDeltaker2,
   partssamarbeidDeltaker4
+// @ts-ignore
 } from "@/utils/dummydata";
 
 
@@ -43,7 +44,7 @@ jest.mock("@/app/_api_hooks/deltaker/sendSvar", () => ({
 }));
 
 jest.mock("@/app/_api_hooks/deltaker/useDeltakerSpørsmål", () => ({
-  useSpørsmålOgSvar: jest.fn(),
+  useDeltakerSpørsmål: jest.fn(),
 }));
 
 jest.mock("@/utils/harGyldigSesjonsID", () => ({
@@ -117,7 +118,7 @@ describe("deltaker/Spørsmålsside", () => {
     expect(sendSvar).toHaveBeenCalledTimes(1);
     expect(sendSvar).toHaveBeenCalledWith({
       spørreundersøkelseId: testSpørreundersøkelseId,
-      id: testTemaId,
+      temaId: testTemaId,
       spørsmålId: testSpørsmålId,
       svarIder: [førsteSpørsmålPartssamarbeid.spørsmål.svaralternativer[0].id],
     });
@@ -163,7 +164,7 @@ describe("deltaker/Spørsmålsside", () => {
     expect(sendSvar).toHaveBeenCalledWith({
       spørreundersøkelseId: testSpørreundersøkelseId,
       spørsmålId: testSpørsmålId,
-      id: testTemaId,
+      temaId: testTemaId,
       svarIder: [førsteSpørsmålPartssamarbeid.spørsmål.svaralternativer[0].id],
     });
 
@@ -213,7 +214,7 @@ describe("deltaker/Spørsmålsside", () => {
     expect(sendSvar).toHaveBeenCalledWith({
       spørreundersøkelseId: testSpørreundersøkelseId,
       spørsmålId: testSpørsmålId,
-      id: testTemaId,
+      temaId: testTemaId,
       svarIder: [sisteSpørsmålPartssamarbeid.spørsmål.svaralternativer[0].id],
     });
 
@@ -263,7 +264,7 @@ describe("deltaker/Spørsmålsside", () => {
     expect(sendSvar).toHaveBeenCalledWith({
       spørreundersøkelseId: testSpørreundersøkelseId,
       spørsmålId: testSpørsmålId,
-      id: testTemaId,
+      temaId: testTemaId,
       svarIder: [sisteSpørsmålArbeidsmiljø.spørsmål.svaralternativer[0].id],
     });
 
