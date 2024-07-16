@@ -24,7 +24,7 @@ export default function BliMedKnapp({
               return fetchIdentifiserbartSpørsmål(spørreundersøkelseId);
             })
             .then(({ spørsmålId, temaId }) => {
-              router.push(`deltaker/${temaId}/${spørsmålId}`);
+              router.push(`deltaker/tema/${temaId}/sporsmal/${spørsmålId}`);
             })
             .catch((error) => {
               setError(error.message);

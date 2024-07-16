@@ -1,5 +1,6 @@
 
-const partssamarbeid1  = {
+// : SpørsmålDto
+const partssamarbeid1 = {
   id: "018f4e25-6a40-79c6-bb29-68de8b575cd1",
   tekst: "Vi planlegger og gjennomfører jevnlige møter i partssamarbeidet",
   flervalg: false,
@@ -414,11 +415,13 @@ const arbeidsmiljø2   = {
   ],
 };
 
+// : TemaDto
 const partssamarbeid= {
   id: 4,
   del: 1,
   navn: "Partssamarbeid",
   status: "ÅPNET",
+  nesteTemaId: 5,
   førsteSpørsmålId: "018f4e25-6a40-79c6-bb29-68de8b575cd1",
   spørsmål: [
     partssamarbeid1,
@@ -432,6 +435,7 @@ const sykefraværsarbeid= {
   del: 2,
   navn: "Sykefraværsarbeid",
   status: "IKKE_ÅPNET",
+  nesteTemaId: 6,
   førsteSpørsmålId: "018f4e5d-c06d-775f-8304-8afa7bf193d1",
   spørsmål: [
     sykefraværsarbeid1,
@@ -448,16 +452,21 @@ const arbeidsmiljø = {
   del: 3,
   navn: "Arbeidsmiljø",
   status: "IKKE_ÅPNET",
+  nesteTemaId: undefined,
   førsteSpørsmålId: "018f4e7b-5689-7ff7-884f-2635a51009ef",
   spørsmål: [arbeidsmiljø1, arbeidsmiljø2],
 };
+
+// : TemaDto[]
 const helSpørreundersøkelse = [partssamarbeid, sykefraværsarbeid, arbeidsmiljø];
 
+// : IdentifiserbartSpørsmålDto
 const førsteLedigeSpørsmål  = {
   temaId: 4,
   spørsmålId: "018f4e25-6a40-79c6-bb29-68de8b575cd1",
 };
 
+// : DeltakerSpørsmålDto
 const partssamarbeidDeltaker1 = {
   spørsmål: partssamarbeid1,
   spørsmålnummer: 1,
@@ -661,15 +670,16 @@ const arbeidsmiljøDeltaker2 = {
   nesteSpørsmål: null,
 };
 
-const partssamarbeidResultat = {
-  temaId: 4,
+// : TemaResultatDto
+const partssamarbeidResultat= {
+  id: 4,
   navn: "Partssamarbeid",
-  spørsmålMedSvar: [
+  spørsmål: [
     {
       id: "018f4e25-6a40-79c6-bb29-68de8b575cd1",
       tekst: "Vi planlegger og gjennomfører jevnlige møter i partssamarbeidet",
       flervalg: false,
-      svarListe: [
+      svar: [
         {
           id: "d0fa55d9-a442-42e5-8a08-d44d6ba2304c",
           tekst: "Enig",
@@ -706,7 +716,7 @@ const partssamarbeidResultat = {
       id: "018f4e25-6a40-713f-b769-267afa134896",
       tekst: "Hvilke temaer vektlegges mest i møtene?",
       flervalg: true,
-      svarListe: [
+      svar: [
         {
           id: "065e38d3-5912-4833-9b48-54f3d5440ecc",
           tekst: "Lønnsforhandlinger",
@@ -753,7 +763,7 @@ const partssamarbeidResultat = {
       id: "018f4e25-6a40-7c73-8183-cc574b92b2be",
       tekst: "Hvordan opplever du at partssamarbeidet fungerer?",
       flervalg: false,
-      svarListe: [
+      svar: [
         {
           id: "960a1aeb-5032-4e86-b444-c707ce053b71",
           tekst: "Svært bra",
@@ -791,7 +801,7 @@ const partssamarbeidResultat = {
       tekst:
         "Som leder, tillitsvalgt eller verneombud jobber jeg for et godt samarbeid på arbeidsplassen",
       flervalg: false,
-      svarListe: [
+      svar: [
         {
           id: "72c19b39-818a-4e84-956e-d6475c910e29",
           tekst: "Enig",
@@ -827,14 +837,14 @@ const partssamarbeidResultat = {
   ],
 };
 const sykefraværsarbeidResultat = {
-  temaId: 5,
+  id: 5,
   navn: "Sykefraværsarbeid",
-  spørsmålMedSvar: [
+  spørsmål: [
     {
       id: "018f4e5d-c06d-775f-8304-8afa7bf193d1",
       tekst: "Vi jobber systematisk for å forebygge sykefravær",
       flervalg: false,
-      svarListe: [
+      svar: [
         {
           id: "2879a6c0-c06c-44d4-901d-620fc1f24e17",
           tekst: "Enig",
@@ -871,7 +881,7 @@ const sykefraværsarbeidResultat = {
       id: "018f4e5e-18b2-7bf9-a714-ea5554f213d7",
       tekst: "Vi har sykefraværsrutiner som er kjent for alle og blir brukt",
       flervalg: false,
-      svarListe: [
+      svar: [
         {
           id: "e648324d-cd60-48fd-b66b-0a6594a9775a",
           tekst: "Enig",
@@ -909,7 +919,7 @@ const sykefraværsarbeidResultat = {
       tekst:
         "Ansatte kjenner til egne plikter og rettigheter når de er sykmeldt eller står i fare for å bli det",
       flervalg: false,
-      svarListe: [
+      svar: [
         {
           id: "f9fe616a-52fe-4521-bc11-fed3e5e4eb0c",
           tekst: "Enig",
@@ -947,7 +957,7 @@ const sykefraværsarbeidResultat = {
       tekst:
         "Jeg opplever at ledere er trygge på å følge opp ansatte som er sykmeldt eller står i fare for å bli det",
       flervalg: false,
-      svarListe: [
+      svar: [
         {
           id: "b081ca65-8d52-480a-a95b-facf7c5329a2",
           tekst: "Enig",
@@ -985,7 +995,7 @@ const sykefraværsarbeidResultat = {
       tekst:
         "Vi har skriftlig oversikt over tilretteleggingsmuligheter for ansatte",
       flervalg: false,
-      svarListe: [
+      svar: [
         {
           id: "a9b0abeb-12f0-4a49-ac4a-23fb499a7229",
           tekst: "Enig",
@@ -1023,7 +1033,7 @@ const sykefraværsarbeidResultat = {
       tekst:
         "Tilretteleggingstiltak er midlertidig og avsluttes til avtalt tid ",
       flervalg: false,
-      svarListe: [
+      svar: [
         {
           id: "04707109-3e68-4b2e-86b8-4d8a45592f45",
           tekst: "Enig",
@@ -1061,7 +1071,7 @@ const sykefraværsarbeidResultat = {
       tekst:
         "Jeg har inntrykk av at vi har mange vanskelige enkeltsaker som handler om sykefravær",
       flervalg: false,
-      svarListe: [
+      svar: [
         {
           id: "f781dd50-aeb8-47d2-9689-bfe81ec70ea3",
           tekst: "Enig",
@@ -1096,16 +1106,16 @@ const sykefraværsarbeidResultat = {
     },
   ],
 };
-const arbeidsmiljøResultat = {
-  temaId: 6,
+const arbeidsmiljøResultat= {
+  id: 6,
   navn: "Arbeidsmiljø",
-  spørsmålMedSvar: [
+  spørsmål: [
     {
       id: "018f4e7b-5689-7ff7-884f-2635a51009ef",
       tekst:
         "Vi er kjent med hva som er de vanlige risikofaktorene for vår bransje",
       flervalg: false,
-      svarListe: [
+      svar: [
         {
           id: "4ff4f56d-9a86-4416-be7a-65275061cd78",
           tekst: "Enig",
@@ -1142,7 +1152,7 @@ const arbeidsmiljøResultat = {
       id: "018f4e7b-5689-7595-932f-06a4ee599efc",
       tekst: "Vi jobber systematisk med tiltak for å forbedre arbeidsmiljøet",
       flervalg: false,
-      svarListe: [
+      svar: [
         {
           id: "103fccf2-f5b0-4f14-b9ba-0a7ddea8ab82",
           tekst: "Enig",
@@ -1178,11 +1188,7 @@ const arbeidsmiljøResultat = {
   ],
 };
 
-module.exports = {
-  partssamarbeidResultat,
-  sykefraværsarbeidResultat,
-  arbeidsmiljøResultat,
-  førsteLedigeSpørsmål,
+const alleSpørsmål = [
   partssamarbeidDeltaker1,
   partssamarbeidDeltaker2,
   partssamarbeidDeltaker3,
@@ -1196,8 +1202,20 @@ module.exports = {
   sykefraværsarbeidDeltaker7,
   arbeidsmiljøDeltaker1,
   arbeidsmiljøDeltaker2,
+];
+
+module.exports = {
+  partssamarbeidResultat,
+  sykefraværsarbeidResultat,
+  arbeidsmiljøResultat,
+  førsteLedigeSpørsmål,
+  alleSpørsmål,
   helSpørreundersøkelse,
   partssamarbeid,
   sykefraværsarbeid,
   arbeidsmiljø,
+  arbeidsmiljøDeltaker2,
+  partssamarbeidDeltaker1,
+  partssamarbeidDeltaker2,
+  partssamarbeidDeltaker4
 };

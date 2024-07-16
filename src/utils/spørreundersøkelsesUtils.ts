@@ -1,15 +1,15 @@
 import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 
-export function urlNeste(spørsmålOgSvar: DeltakerSpørsmålDto): string {
-  if (!spørsmålOgSvar) {
+export function urlNeste(spørsmål: DeltakerSpørsmålDto): string {
+  if (!spørsmål) {
     throw new Error("Spørsmål mangler");
   }
 
-  if (spørsmålOgSvar.nesteSpørsmål === null) {
+  if (spørsmål.nesteSpørsmål === null) {
     return `../ferdig`;
   }
 
-  return `../${spørsmålOgSvar.nesteSpørsmål.temaId}/${spørsmålOgSvar.nesteSpørsmål.spørsmålId}`;
+  return `../../../tema/${spørsmål.nesteSpørsmål.temaId}/sporsmal/${spørsmål.nesteSpørsmål.spørsmålId}`;
 }
 
 export function urlTilbake(spørsmålOgSvar: DeltakerSpørsmålDto): string | null {
@@ -24,5 +24,5 @@ export function urlTilbake(spørsmålOgSvar: DeltakerSpørsmålDto): string | nu
     return null;
   }
 
-  return `../${spørsmålOgSvar.forrigeSpørsmål.temaId}/${spørsmålOgSvar.forrigeSpørsmål.spørsmålId}`;
+  return `../../../tema/${spørsmålOgSvar.forrigeSpørsmål.temaId}/sporsmal/${spørsmålOgSvar.forrigeSpørsmål.spørsmålId}`;
 }

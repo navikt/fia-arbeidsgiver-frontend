@@ -72,7 +72,7 @@ export default function Spørsmålsseksjon({
           if (error.message == "Tema stengt, hent nytt spørsmål") {
             fetchIdentifiserbartSpørsmål(spørreundersøkelseId)
               .then(({ spørsmålId, temaId }) => {
-                router.push(`../../deltaker/${temaId}/${spørsmålId}`);
+                router.push(`../../deltaker/tema/${temaId}/sporsmal/${spørsmålId}`);
               })
               .catch((error) => {
                 setFeilSendSvar(error.message);

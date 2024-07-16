@@ -10,13 +10,8 @@ import CookieHandler from "@/utils/CookieHandler";
 import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 import { harGyldigSesjonsID } from "@/utils/harGyldigSesjonsID";
 import { SvaralternativDto } from "@/app/_types/SvaralternativDto";
-import {
-  arbeidsmiljøDeltaker2,
-  partssamarbeidDeltaker1,
-  partssamarbeidDeltaker2,
-  partssamarbeidDeltaker4
-// @ts-ignore
-} from "@/utils/dummydata";
+//@ts-ignore
+import { arbeidsmiljøDeltaker2, partssamarbeidDeltaker1, partssamarbeidDeltaker2, partssamarbeidDeltaker4 } from "@/utils/dummydata";
 
 
 const testSpørreundersøkelseId: string = "85ed4b72-d93c-443e-8bb1-101e9e64b667";
@@ -170,7 +165,7 @@ describe("deltaker/Spørsmålsside", () => {
 
     expect(pushFunction).toHaveBeenCalledTimes(1);
     expect(pushFunction).toHaveBeenCalledWith(
-      `../${førsteSpørsmålPartssamarbeid.nesteSpørsmål?.temaId}/${førsteSpørsmålPartssamarbeid.nesteSpørsmål?.spørsmålId}`,
+      `../../../tema/${førsteSpørsmålPartssamarbeid.nesteSpørsmål?.temaId}/sporsmal/${førsteSpørsmålPartssamarbeid.nesteSpørsmål?.spørsmålId}`,
     );
   });
 
@@ -220,7 +215,7 @@ describe("deltaker/Spørsmålsside", () => {
 
     expect(pushFunction).toHaveBeenCalledTimes(1);
     expect(pushFunction).toHaveBeenCalledWith(
-      `../${sisteSpørsmålPartssamarbeid.nesteSpørsmål?.temaId}/${sisteSpørsmålPartssamarbeid.nesteSpørsmål?.spørsmålId}`,
+      `../../../tema/${sisteSpørsmålPartssamarbeid.nesteSpørsmål?.temaId}/sporsmal/${sisteSpørsmålPartssamarbeid.nesteSpørsmål?.spørsmålId}`,
     );
   });
 

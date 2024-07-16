@@ -75,7 +75,7 @@ export function IntrosideBody({
               setÅpneTemaError={setÅpneTemaError}
               setErStartet={setErStartet}
               erStartet={erStartet}
-              nesteTemaId={tema.id}
+              nesteTemaId={tema.nesteTemaId}
               spørreundersøkelseId={spørreundersøkelseId}
               temaId={temaId}
             />

@@ -24,8 +24,8 @@ export default function SpørsmålBody({
   const router = useRouter();
   const {
     data: deltakerSpørsmål,
-    isLoading: lasterSpørsmålOgSvar,
-    error: feilSpørsmålOgSvar,
+    isLoading: lasterSpørsmål,
+    error: feilSpørsmål,
   } = useDeltakerSpørsmål(spørreundersøkelseId, temaId, spørsmålId);
 
   React.useEffect(() => {
@@ -39,7 +39,7 @@ export default function SpørsmålBody({
     sjekkSesjonOgRedirectOmMangler();
   });
 
-  if (feilSpørsmålOgSvar) {
+  if (feilSpørsmål) {
     return (
       <>
         <VStack
@@ -54,14 +54,14 @@ export default function SpørsmålBody({
             role="alert"
             aria-live="polite"
           >
-            {feilSpørsmålOgSvar.message}
+            {feilSpørsmål.message}
           </Alert>
         </VStack>
       </>
     );
   }
 
-  if (deltakerSpørsmål === undefined || lasterSpørsmålOgSvar) {
+  if (deltakerSpørsmål === undefined || lasterSpørsmål) {
     return (
       <>
         <VStack gap={"4"} align={"center"}>

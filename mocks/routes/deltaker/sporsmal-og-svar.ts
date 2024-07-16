@@ -3,19 +3,11 @@ import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { API_DELTAKER_SPØRSMÅL_URL } = require("@/utils/urls");
 const {
-  partssamarbeidDeltaker1,
-  partssamarbeidDeltaker2,
-  partssamarbeidDeltaker3,
-  partssamarbeidDeltaker4,
+  alleSpørsmål
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require("@/utils/dummydata");
 
-const dummySpørsmålSamling: DeltakerSpørsmålDto[] = [
-  partssamarbeidDeltaker1,
-  partssamarbeidDeltaker2,
-  partssamarbeidDeltaker3,
-  partssamarbeidDeltaker4,
-];
+
 
 const sporsmalOgSvarRoutes = [
   {
@@ -28,8 +20,8 @@ const sporsmalOgSvarRoutes = [
         type: "middleware",
         options: {
           middleware: (req: Request, res: Response) => {
-            const spm = dummySpørsmålSamling.find(
-              (deltakerSpørsmål) =>
+            const spm = alleSpørsmål.find(
+              (deltakerSpørsmål:DeltakerSpørsmålDto) =>
                 deltakerSpørsmål.spørsmål.id === req.params.sporsmalId,
             );
             if (spm !== undefined) {
@@ -47,7 +39,7 @@ const sporsmalOgSvarRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: partssamarbeidDeltaker2,
+          body: alleSpørsmål[1],
         },
       },
       {
@@ -55,7 +47,7 @@ const sporsmalOgSvarRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: partssamarbeidDeltaker1,
+          body: alleSpørsmål[0],
         },
       },
       {
@@ -63,7 +55,7 @@ const sporsmalOgSvarRoutes = [
         type: "json",
         options: {
           status: 200,
-          body: partssamarbeidDeltaker4,
+          body: alleSpørsmål[3],
         },
       },
       {
