@@ -14,24 +14,24 @@ const listeOverTemaRoutes = [
     method: "GET",
     variants: [
       {
-        id: "success-første-åpnet",
-        type: "middleware",
-        options: {
-          middleware: generateTemaMiddleware({
-            4: "ÅPNET",
-            5: "IKKE_ÅPNET",
-            6: "IKKE_ÅPNET",
-          }),
-        },
-      },
-      {
         id: "success",
         type: "middleware",
         options: {
           middleware: generateTemaMiddleware({
+            4: "ÅPNET",
+            6: "IKKE_ÅPNET",
+            5: "IKKE_ÅPNET",
+          }),
+        },
+      },
+      {
+        id: "success-første-besvart",
+        type: "middleware",
+        options: {
+          middleware: generateTemaMiddleware({
             4: "STENGT",
-            5: "ALLE_SPØRSMÅL_ÅPNET",
-            6: "ÅPNET",
+            6: "ALLE_SPØRSMÅL_ÅPNET",
+            5: "ÅPNET",
           }),
         },
       },
@@ -41,8 +41,8 @@ const listeOverTemaRoutes = [
         options: {
           middleware: generateTemaMiddleware({
             4: "ALLE_SPØRSMÅL_ÅPNET",
-            5: "ALLE_SPØRSMÅL_ÅPNET",
             6: "ALLE_SPØRSMÅL_ÅPNET",
+            5: "ALLE_SPØRSMÅL_ÅPNET",
           }),
         },
       },
@@ -52,8 +52,8 @@ const listeOverTemaRoutes = [
         options: {
           middleware: generateTemaMiddleware({
             4: "STENGT",
-            5: "STENGT",
             6: "STENGT",
+            5: "STENGT",
           }),
         },
       },

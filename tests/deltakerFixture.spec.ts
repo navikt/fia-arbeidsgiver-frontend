@@ -3,6 +3,6 @@ import { expect } from "@playwright/test";
 
 test("deltakerTest", async ({ page }) => {
   await expect(page.locator("legend")).toContainText(
-    "Hvilke av disse faktorene tror du har størst innflytelse på sykefraværet der du jobber?",
+    "Vi planlegger og gjennomfører jevnlige møter i partssamarbeidet",
   );
 });

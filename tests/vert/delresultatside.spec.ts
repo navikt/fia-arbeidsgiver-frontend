@@ -2,10 +2,14 @@ import { vertTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { Page, expect } from "@playwright/test";
 
+// @ts-ignore
+import { partssamarbeid, spørreundersøkelseId } from "@/utils/dummydata";
+const temaId = partssamarbeid.id
+
 async function gåTilResultater(page: Page) {
   await page.getByRole("button", { name: "Start" }).first().click();
   await expect(page.locator("body")).toContainText(
-    "Arbeidsmiljø handler om arbeid - det å organisere, planlegge og gjennomføre arbeidet.",
+    "Et velfungerende partssamarbeid verdsetter og utnytter partenes ",
   );
 
   await page.getByRole("button", { name: "Start" }).click();
@@ -25,7 +29,7 @@ async function gåTilResultater(page: Page) {
 test.describe("Vert/delresultatside", () => {
   test.beforeEach(({ page }) => {
     page.unroute(
-      `http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93/6`,
+      `http://localhost:2222/api/${spørreundersøkelseId}/vert/tema/${temaId}`,
     );
   });
   test("Screenshot av innhold likner", async ({ page }) => {
@@ -38,14 +42,14 @@ test.describe("Vert/delresultatside", () => {
   }) => {
     await gåTilResultater(page);
     await page.route(
-      `http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93/6`,
+      `http://localhost:2222/api/${spørreundersøkelseId}/vert/tema/${temaId}`,
       async (route) => {
         await route.fulfill({ status: 303 });
       },
     );
 
     await page.reload();
-    await expect(page.getByText("Kunne ikke laste tema 6")).toBeVisible();
+    await expect(page.getByText(`Kunne ikke laste tema ${temaId}`)).toBeVisible();
   });
 
   test("Viser feilmelding når det er problemer med å hente temaresultat", async ({
@@ -55,7 +59,7 @@ test.describe("Vert/delresultatside", () => {
     test.setTimeout(90000);
     await gåTilResultater(page);
     await page.route(
-      "http://localhost:2222/api/e2f863df-309e-4314-9c7e-c584237fd90a/vert/86701b0e-a786-406a-881b-08af5b9ddb93/6/resultater",
+      `http://localhost:2222/api/${spørreundersøkelseId}/vert/tema/${temaId}/resultater`,
       async (route) => {
         await route.fulfill({ status: 303 });
       },
