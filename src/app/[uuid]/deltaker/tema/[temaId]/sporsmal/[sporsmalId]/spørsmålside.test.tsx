@@ -264,7 +264,7 @@ describe("deltaker/Spørsmålsside", () => {
     });
 
     expect(pushFunction).toHaveBeenCalledTimes(1);
-    expect(pushFunction).toHaveBeenCalledWith(`../ferdig`);
+    expect(pushFunction).toHaveBeenCalledWith(`../../../ferdig`);
   });
 
   test("axe UU-test", async () => {
