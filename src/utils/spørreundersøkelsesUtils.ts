@@ -6,7 +6,7 @@ export function urlNeste(spørsmål: DeltakerSpørsmålDto): string {
   }
 
   if (spørsmål.nesteSpørsmål === null) {
-    return `../ferdig`;
+    return `../../../ferdig`;
   }
 
   return `../../../tema/${spørsmål.nesteSpørsmål.temaId}/sporsmal/${spørsmål.nesteSpørsmål.spørsmålId}`;

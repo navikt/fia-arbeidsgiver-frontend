@@ -1,3 +1,4 @@
+const spørreundersøkelseId = "e2f863df-309e-4314-9c7e-c584237fd90a"
 
 // : SpørsmålDto
 const partssamarbeid1 = {
@@ -421,7 +422,7 @@ const partssamarbeid= {
   del: 1,
   navn: "Partssamarbeid",
   status: "ÅPNET",
-  nesteTemaId: 5,
+  nesteTemaId: 6,
   førsteSpørsmålId: "018f4e25-6a40-79c6-bb29-68de8b575cd1",
   spørsmål: [
     partssamarbeid1,
@@ -431,11 +432,11 @@ const partssamarbeid= {
   ],
 };
 const sykefraværsarbeid= {
-  id: 5,
+  id: 6,
   del: 2,
   navn: "Sykefraværsarbeid",
   status: "IKKE_ÅPNET",
-  nesteTemaId: 6,
+  nesteTemaId: 5,
   førsteSpørsmålId: "018f4e5d-c06d-775f-8304-8afa7bf193d1",
   spørsmål: [
     sykefraværsarbeid1,
@@ -448,7 +449,7 @@ const sykefraværsarbeid= {
   ],
 };
 const arbeidsmiljø = {
-  id: 6,
+  id: 5,
   del: 3,
   navn: "Arbeidsmiljø",
   status: "IKKE_ÅPNET",
@@ -1205,6 +1206,7 @@ const alleSpørsmål = [
 ];
 
 module.exports = {
+  spørreundersøkelseId,
   partssamarbeidResultat,
   sykefraværsarbeidResultat,
   arbeidsmiljøResultat,
