@@ -1,7 +1,7 @@
 "use client";
 
 import CookieHandler from "@/utils/CookieHandler";
-import { BliMedDTO } from "@/app/_types/BliMedDTO";
+import { BliMedDto } from "@/app/_types/BliMedDto";
 
 export function fetchBliMed(spørreundersøkelseId: string) {
   const fetcher = () =>
@@ -28,7 +28,7 @@ export function fetchBliMed(spørreundersøkelseId: string) {
 
         return res.json();
       })
-      .then((data: BliMedDTO) => {
+      .then((data: BliMedDto) => {
         if (data.spørreundersøkelseId !== spørreundersøkelseId) {
           throw new Error("Feil spørreundersøkelseId");
         } else {

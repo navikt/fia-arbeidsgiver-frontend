@@ -1,4 +1,4 @@
-import { BliMedDTO } from "@/app/_types/BliMedDTO";
+import { BliMedDto } from "@/app/_types/BliMedDto";
 import { COOKIE_MAX_AGE, COOKIE_SESJONS_ID_KEY } from "@/utils/consts";
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
@@ -73,5 +73,5 @@ function bliMedFetcher(endpoint: string, body: BodyInit | null = null) {
         },
         body,
       },
-    ).then((response) => response.json() as Promise<BliMedDTO>);
+    ).then((response) => response.json() as Promise<BliMedDto>);
 }
