@@ -7,6 +7,6 @@ export type TemaDto = {
   navn: string;
   status: TemaStatus;
   førsteSpørsmålId: string;
-  nesteTemaId?: number ;
+  nesteTemaId?: number;
   spørsmål: SpørsmålDto[];
 };
