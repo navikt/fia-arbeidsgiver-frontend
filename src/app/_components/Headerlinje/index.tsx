@@ -5,7 +5,7 @@ export default function Headerlinje({
   tittel,
   children,
 }: {
-  tittel?: string;
+  tittel: string | null;
   children?: React.ReactNode;
 }) {
   return (

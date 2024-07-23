@@ -25,7 +25,7 @@ export default function TemaGraf({
   }
   return (
     <div className={resultatgrafStyle.boksContainer}>
-      {tema.spørsmål.map((spørsmål, index) => (
+      {tema.spørsmålMedSvar.map((spørsmål, index) => (
         <Box
           key={index}
           borderRadius="xlarge"
@@ -53,14 +53,14 @@ function trengerEkstraBredde(
     return true;
   }
   // Tving bar-chart til å ta full row om vi ender opp men en alene.
-  if (index === 0 || tema.spørsmål[index - 1].flervalg) {
+  if (index === 0 || tema.spørsmålMedSvar[index - 1].flervalg) {
     // Hvis vi er første etter start eller flervalg (vi er på en ny linje med ikke-flervalg)
 
-    const nesteFlervalg = tema.spørsmål.findIndex(
+    const nesteFlervalg = tema.spørsmålMedSvar.findIndex(
       (spm, ind) => spm.flervalg && ind > index,
     );
     const nesteLineBreak =
-      nesteFlervalg === -1 ? tema.spørsmål.length : nesteFlervalg;
+      nesteFlervalg === -1 ? tema.spørsmålMedSvar.length : nesteFlervalg;
 
     const antallSpørsmål = nesteLineBreak - index;
 
