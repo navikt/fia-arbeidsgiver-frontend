@@ -38,7 +38,7 @@ export function ResultatRenderer({
   if (tema === undefined || !erAvsluttet) {
     return (
       <>
-        <Headerlinje tittel={tema?.navn} />
+        <Headerlinje tittel={tema ? tema.navn : null} />
         <VStack
           gap={"4"}
           align={"center"}

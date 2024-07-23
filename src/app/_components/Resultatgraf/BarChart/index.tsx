@@ -51,7 +51,7 @@ function genererChartOptionsFraSpørsmålOgSvar(
       {
         type: "column",
         name: "Antall svar",
-        data: spørsmål.svar.map((svar) =>
+        data: spørsmål.svarListe.map((svar) =>
           svar.antallSvar > 0
             ? {
                 y: svar.antallSvar,
@@ -62,7 +62,7 @@ function genererChartOptionsFraSpørsmålOgSvar(
       },
     ],
     xAxis: {
-      categories: spørsmål.svar.map((svar) => svar.tekst),
+      categories: spørsmål.svarListe.map((svar) => svar.tekst),
     },
     yAxis: {
       allowDecimals: false,

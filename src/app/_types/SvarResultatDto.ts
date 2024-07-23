@@ -1,5 +1,5 @@
 export type SvarResultatDto = {
-  id: string;
+  svarId: string;
   tekst: string;
   antallSvar: number;
 };
