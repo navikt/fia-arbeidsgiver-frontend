@@ -1,10 +1,6 @@
 name: Build, test and deploy
 run-name: Build and deploy app || ${{ github.event.head_commit.message }}
-on:
-  push:
-    branches:
-      - main
-      - dto-og-api-endringer
+on: [push]
 
 env:
   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
