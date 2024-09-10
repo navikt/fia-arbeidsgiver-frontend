@@ -142,7 +142,7 @@ export default function Spørsmålsseksjon({
         </VStack>
       </Box>
       <HStack justify={"end"} gap={"2"} className={spørsmålStyles.knappeStack}>
-        {deltakerSpørsmål.forrigeSpørsmål !== null ? (
+        {deltakerSpørsmål.spørsmålnummer>1 ? (
           <Button
             variant="secondary"
             className={spørsmålStyles.tilbakeknapp}
