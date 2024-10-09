@@ -41,10 +41,18 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const fetched = await fetcher();
-  setSesjonsIdCookie(fetched.sesjonsId, spørreundersøkelseId);
+  try {
+    const fetched = await fetcher();
+    setSesjonsIdCookie(fetched.sesjonsId, spørreundersøkelseId);
 
-  return new Response(JSON.stringify({ ...fetched, sesjonsId: "ok" }));
+    return new Response(JSON.stringify({ ...fetched, sesjonsId: "ok" }));
+  } catch (error) {
+    if (error instanceof StatusPassthroughError) {
+      return new Response(error.message, { status: error.statusCode });
+    } else {
+      return new Response("Ukjent feil", { status: 502 });
+    }
+  }
 }
 
 function setSesjonsIdCookie(sesjonsId: string, spørreundersøkelseId: string) {
@@ -73,5 +81,18 @@ function bliMedFetcher(endpoint: string, body: BodyInit | null = null) {
         },
         body,
       },
-    ).then((response) => response.json() as Promise<BliMedDto>);
+    ).then((response) => {
+      if (!response.ok) {
+        throw new StatusPassthroughError(response.status);
+      }
+      return response.json() as Promise<BliMedDto>;
+    });
+}
+
+class StatusPassthroughError extends Error {
+  statusCode: number;
+  constructor(statusCode: number) {
+    super("Statuskode feil");
+    this.statusCode = statusCode;
+  }
 }

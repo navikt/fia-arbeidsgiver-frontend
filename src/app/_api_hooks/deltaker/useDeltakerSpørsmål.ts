@@ -13,7 +13,7 @@ export function useDeltakerSpørsmål(
       method: "GET",
     }).then((res) => {
       if (res.status === 410) {
-        throw new Error("Undersøkelsen er avsluttet.");
+        throw new Error("Spørreundersøkelsen er avsluttet.");
       }
       if (!res.ok) {
         throw new Error("Noe gikk galt. Prøv å laste siden på nytt.");

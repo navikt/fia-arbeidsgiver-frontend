@@ -15,6 +15,9 @@ export function fetchBliMed(spørreundersøkelseId: string) {
       }),
     })
       .then((res) => {
+        if (res.status === 410) {
+          throw new Error("Spørreundersøkelsen er avsluttet.");
+        }
         if (res.status === 403 || res.status === 400) {
           throw new Error(
             "Vi får ikke koblet til spørreundersøkelsen. Er du sikker på at du skrev inn riktig lenke?",

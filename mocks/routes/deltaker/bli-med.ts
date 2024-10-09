@@ -38,7 +38,7 @@ const bliMedRoutes = [
         id: "spørreundersøkelse-i-feil-status",
         type: "status",
         options: {
-          status: 403,
+          status: 410,
         },
       },
     ],
