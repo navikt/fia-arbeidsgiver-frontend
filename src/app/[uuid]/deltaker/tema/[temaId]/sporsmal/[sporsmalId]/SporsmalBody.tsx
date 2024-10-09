@@ -50,7 +50,7 @@ export default function SpørsmålBody({
         >
           <Alert
             variant={
-              feilSpørsmål.message === "Undersøkelsen er avsluttet."
+              feilSpørsmål.message === "Spørreundersøkelsen er avsluttet."
                 ? "warning"
                 : "error"
             }
