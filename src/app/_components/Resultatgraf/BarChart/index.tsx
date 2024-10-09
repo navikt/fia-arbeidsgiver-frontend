@@ -5,14 +5,16 @@ import { SpørsmålResultatDto } from "@/app/_types/SpørsmålResultatDto";
 
 export default function BarChart({
   spørsmål,
+  horizontal = false,
 }: {
   spørsmål: SpørsmålResultatDto;
+  horizontal?: boolean;
 }) {
   const chartComponentRef = React.useRef<HighchartsReact.RefObject>(null);
 
   const options = React.useMemo(
-    () => genererChartOptionsFraSpørsmålOgSvar(spørsmål),
-    [spørsmål],
+    () => genererChartOptionsFraSpørsmålOgSvar(spørsmål, horizontal),
+    [spørsmål, horizontal],
   );
 
   return (
@@ -27,10 +29,12 @@ export default function BarChart({
 
 function genererChartOptionsFraSpørsmålOgSvar(
   spørsmål: SpørsmålResultatDto,
+  horizontal: boolean,
 ): Highcharts.Options {
   return {
     chart: {
-      type: "column",
+      type: horizontal ? "bar" : "column",
+      height: horizontal ? (85 + spørsmål.svarListe.length * 75) : undefined,
     },
     title: {
       text: spørsmål.tekst,
@@ -39,6 +43,7 @@ function genererChartOptionsFraSpørsmålOgSvar(
     },
     subtitle: {
       text: spørsmål.flervalg ? "(flere valg er mulig)" : undefined,
+      align: "left",
     },
     plotOptions: {
       column: {
@@ -54,9 +59,9 @@ function genererChartOptionsFraSpørsmålOgSvar(
         data: spørsmål.svarListe.map((svar) =>
           svar.antallSvar > 0
             ? {
-                y: svar.antallSvar,
-                color: "var(--a-blue-500)",
-              }
+              y: svar.antallSvar,
+              color: "var(--a-blue-500)",
+            }
             : null,
         ),
       },

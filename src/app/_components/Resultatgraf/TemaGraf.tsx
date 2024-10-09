@@ -7,7 +7,6 @@ import { SpørsmålResultatDto } from "@/app/_types/SpørsmålResultatDto";
 import { TemaResultatDto } from "@/app/_types/TemaResultatDto";
 import { Loader } from "@navikt/ds-react";
 import BarChart from "./BarChart";
-import PieChart from "./PieChart";
 import React from "react";
 import useTimeHasElapsed from "@/utils/useTimeHasElapsed";
 
@@ -34,7 +33,7 @@ export default function TemaGraf({
           className={`${resultatgrafStyle.temaboks} ${trengerEkstraBredde(tema, spørsmål, index) ? resultatgrafStyle.flervalgTemaboks : ""}`}
         >
           {spørsmål.flervalg ? (
-            <PieChart key={index} spørsmål={spørsmål} />
+            <BarChart key={index} spørsmål={spørsmål} horizontal />
           ) : (
             <BarChart key={index} spørsmål={spørsmål} />
           )}
