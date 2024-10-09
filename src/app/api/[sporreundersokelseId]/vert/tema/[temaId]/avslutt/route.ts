@@ -13,10 +13,7 @@ export async function POST(
     };
   },
 ) {
-  const fetcher = poster(
-    `${sporreundersokelseId}/tema/${temaId}/avslutt`,
-    req,
-  );
+  const fetcher = poster(`${sporreundersokelseId}/tema/${temaId}/avslutt`, req);
   return fetcher();
 }
 

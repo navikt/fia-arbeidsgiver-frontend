@@ -1,7 +1,4 @@
-export function useÅpneTema(
-  spørreundersøkelseId: string,
-  temaId: number,
-) {
+export function useÅpneTema(spørreundersøkelseId: string, temaId: number) {
   return async () => {
     const res = await fetch(
       `/api/${spørreundersøkelseId}/vert/tema/${temaId}/start`,

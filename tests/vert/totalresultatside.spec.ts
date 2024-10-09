@@ -2,7 +2,6 @@ import { vertTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { Page, expect } from "@playwright/test";
 
-
 // @ts-ignore
 import { partssamarbeid, spørreundersøkelseId } from "@/utils/dummydata";
 const temaId = partssamarbeid.id;
@@ -15,9 +14,7 @@ async function gåTilResultater(page: Page) {
 
 test.describe("Vert/resultatside", () => {
   test.beforeEach(({ page }) => {
-    page.unroute(
-      `http://localhost:2222/api/${spørreundersøkelseId}/vert`,
-    );
+    page.unroute(`http://localhost:2222/api/${spørreundersøkelseId}/vert`);
     page.unroute(
       `http://localhost:2222/api/${spørreundersøkelseId}/vert/tema/${temaId}/resultater`,
     );

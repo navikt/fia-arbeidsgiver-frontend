@@ -13,9 +13,7 @@ export const VelkommenVirksomhet = ({
   spørreundersøkelseId,
   children,
 }: VelkommenVirksomhetProps) => {
-  const { data, isLoading, error } = useVirksomhetsnavn(
-    spørreundersøkelseId,
-  );
+  const { data, isLoading, error } = useVirksomhetsnavn(spørreundersøkelseId);
 
   if (error) {
     return <Headerlinje tittel={`Velkommen`}>{children}</Headerlinje>;

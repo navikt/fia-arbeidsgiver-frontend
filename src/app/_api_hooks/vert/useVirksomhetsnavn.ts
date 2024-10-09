@@ -1,7 +1,7 @@
 import useSWR, { SWRResponse } from "swr";
 
 export function useVirksomhetsnavn(
-  spørreundersøkelseId: string
+  spørreundersøkelseId: string,
 ): SWRResponse<string> {
   const fetcher = (url: string) =>
     fetch(url, {

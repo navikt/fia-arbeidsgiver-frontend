@@ -72,7 +72,9 @@ export default function Spørsmålsseksjon({
           if (error.message == "Tema stengt, hent nytt spørsmål") {
             fetchIdentifiserbartSpørsmål(spørreundersøkelseId)
               .then(({ spørsmålId, temaId }) => {
-                router.push(`../../deltaker/tema/${temaId}/sporsmal/${spørsmålId}`);
+                router.push(
+                  `../../deltaker/tema/${temaId}/sporsmal/${spørsmålId}`,
+                );
               })
               .catch((error) => {
                 setFeilSendSvar(error.message);
@@ -142,7 +144,7 @@ export default function Spørsmålsseksjon({
         </VStack>
       </Box>
       <HStack justify={"end"} gap={"2"} className={spørsmålStyles.knappeStack}>
-        {deltakerSpørsmål.spørsmålnummer>1 ? (
+        {deltakerSpørsmål.spørsmålnummer > 1 ? (
           <Button
             variant="secondary"
             className={spørsmålStyles.tilbakeknapp}

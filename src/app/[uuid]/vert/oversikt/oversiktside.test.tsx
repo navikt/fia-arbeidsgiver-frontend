@@ -43,15 +43,13 @@ describe("Oversiktside", () => {
   });
 
   test("rett innhold blir tegnet opp", async () => {
-    render(<Oversiktside params={{ uuid: "uuid"}} />);
+    render(<Oversiktside params={{ uuid: "uuid" }} />);
     const tittel = await screen.findByText("Vis QR-kode");
     expect(tittel).toBeInTheDocument();
   });
 
   test("axe UU-test", async () => {
-    const { container } = render(
-      <Oversiktside params={{ uuid: "uuid" }} />,
-    );
+    const { container } = render(<Oversiktside params={{ uuid: "uuid" }} />);
     const results = await axe(container, {
       rules: {
         "svg-img-alt": { enabled: false }, // TODO: Fiks alt-tekst på svg (qr-kode) før denne testen kan slås på.
@@ -90,7 +88,9 @@ describe("Oversiktside", () => {
 
     act(() => startknapper[0].click());
     expect(pushMock).toHaveBeenCalledTimes(1);
-    expect(pushMock).toHaveBeenCalledWith(`./tema/${helSpørreundersøkelse[0].id}`);
+    expect(pushMock).toHaveBeenCalledWith(
+      `./tema/${helSpørreundersøkelse[0].id}`,
+    );
     act(() => startknapper[1].click());
     expect(pushMock).toHaveBeenCalledTimes(1);
   });
@@ -124,9 +124,13 @@ describe("Oversiktside", () => {
     expect(pushMock).not.toHaveBeenCalled();
     act(() => startknapper[0].click());
     expect(pushMock).toHaveBeenCalledTimes(1);
-    expect(pushMock).toHaveBeenCalledWith(`./tema/${helSpørreundersøkelse[1].id}`);
+    expect(pushMock).toHaveBeenCalledWith(
+      `./tema/${helSpørreundersøkelse[1].id}`,
+    );
     act(() => fortsettKnapp.click());
     expect(pushMock).toHaveBeenCalledTimes(2);
-    expect(pushMock).toHaveBeenCalledWith(`./tema/${helSpørreundersøkelse[0].id}`);
+    expect(pushMock).toHaveBeenCalledWith(
+      `./tema/${helSpørreundersøkelse[0].id}`,
+    );
   });
 });

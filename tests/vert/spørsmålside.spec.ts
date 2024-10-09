@@ -5,7 +5,7 @@ import { expect } from "@playwright/test";
 // @ts-ignore
 import { partssamarbeid, spørreundersøkelseId } from "@/utils/dummydata";
 
-const førsteTemaId = partssamarbeid.id
+const førsteTemaId = partssamarbeid.id;
 
 test.describe("Vert/spørsmålside", () => {
   test.beforeEach(({ page }) => {

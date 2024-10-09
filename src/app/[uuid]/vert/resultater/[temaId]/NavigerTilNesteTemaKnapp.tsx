@@ -13,10 +13,7 @@ export default function NavigerTilNesteTemaKnapp({
   temaId: number;
 }) {
   const router = useRouter();
-  const { data: tema, error } = useTemaoversikt(
-    spørreundersøkelseId,
-    temaId,
-  );
+  const { data: tema, error } = useTemaoversikt(spørreundersøkelseId, temaId);
 
   if (tema?.nesteTemaId) {
     return (

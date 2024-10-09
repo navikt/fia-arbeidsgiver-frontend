@@ -7,4 +7,3 @@ export type TemaResultatDto = {
   navn: string | null;
   spørsmålMedSvar: SpørsmålResultatDto[];
 };
-

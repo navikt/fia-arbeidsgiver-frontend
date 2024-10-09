@@ -5,9 +5,7 @@ export default function Home() {
 
   return (
     <main>
-      <VideresendTilStart
-        spørreundersøkelseId={spørreundersøkelseId}
-      />
+      <VideresendTilStart spørreundersøkelseId={spørreundersøkelseId} />
     </main>
   );
 }

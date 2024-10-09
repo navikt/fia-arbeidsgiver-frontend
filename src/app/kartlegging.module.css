@@ -1,60 +1,65 @@
 .bleedFerdig {
-    background: var(--a-green-200);
-    margin-bottom: 2rem;
-    padding: 2rem 0;
-    min-height: 112px;
+  background: var(--a-green-200);
+  margin-bottom: 2rem;
+  padding: 2rem 0;
+  min-height: 112px;
 }
 
 .bleedKlar {
-    color: var(--a-text-on-inverted);
-    background: var(--a-deepblue-900);
-    margin-bottom: 2rem;
-    padding: 2rem 0;
-    min-height: 112px;
+  color: var(--a-text-on-inverted);
+  background: var(--a-deepblue-900);
+  margin-bottom: 2rem;
+  padding: 2rem 0;
+  min-height: 112px;
 }
 
 .bleedHoppetOver {
-    background: var(--a-gray-400);
-    margin-bottom: 2rem;
-    padding: 2rem 0;
-    min-height: 112px;
+  background: var(--a-gray-400);
+  margin-bottom: 2rem;
+  padding: 2rem 0;
+  min-height: 112px;
 }
 
 .alertWarning > svg {
-    /* Fikser hvit bakgrunn bak advarselikon om inline */
-    background: radial-gradient(circle at 50% 54%, var(--a-surface-default) 25%, 0, transparent) !important;
+  /* Fikser hvit bakgrunn bak advarselikon om inline */
+  background: radial-gradient(
+    circle at 50% 54%,
+    var(--a-surface-default) 25%,
+    0,
+    transparent
+  ) !important;
 }
 
 .knappHvit {
-    background: var(--a-bg-default);
+  background: var(--a-bg-default);
 }
 
 .knappHvitBred {
-    background: var(--a-bg-default);
-    min-width: 10rem;
+  background: var(--a-bg-default);
+  min-width: 10rem;
 }
 
 .disabletBred {
-    background: var(--a-bg-default);
-    min-width: 10rem;
+  background: var(--a-bg-default);
+  min-width: 10rem;
 }
 .disabletBred:hover {
-    background: var(--a-bg-default);
+  background: var(--a-bg-default);
 }
 
 .knappBred {
-    min-width: 10rem;
+  min-width: 10rem;
 }
 
 .footer {
-    display: flex;
-    justify-content: flex-end;
-    padding-bottom: 3rem;
-    padding-right: 3rem;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 3rem;
+  padding-right: 3rem;
 }
 
 .buttonFooter {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-between;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
 }

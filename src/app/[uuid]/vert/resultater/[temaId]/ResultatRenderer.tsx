@@ -30,10 +30,7 @@ export function ResultatRenderer({
       );
   }, [spørreundersøkelseId, temaId]);
 
-  const { data: tema, error } = useTemaResultat(
-    spørreundersøkelseId,
-    temaId,
-  );
+  const { data: tema, error } = useTemaResultat(spørreundersøkelseId, temaId);
 
   if (tema === undefined || !erAvsluttet) {
     return (

@@ -9,18 +9,12 @@ export const metadata: Metadata = {
   title: "Oversikt",
 };
 
-export default function Oversiktside({
-  params,
-}: {
-  params: { uuid: string;};
-}) {
+export default function Oversiktside({ params }: { params: { uuid: string } }) {
   return (
     <Page background="bg-subtle">
-      <HeaderVert spørreundersøkelseId={params.uuid}/>
+      <HeaderVert spørreundersøkelseId={params.uuid} />
       <PageBlock>
-        <OversiktBody
-          spørreundersøkelseId={params.uuid}
-        />
+        <OversiktBody spørreundersøkelseId={params.uuid} />
       </PageBlock>
     </Page>
   );

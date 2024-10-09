@@ -15,9 +15,8 @@ export function TotalresultatRenderer({
 }: {
   spørreundersøkelseId: string;
 }) {
-  const { data: listeOverTemaer, error } = useTemaoversikter(
-    spørreundersøkelseId,
-  );
+  const { data: listeOverTemaer, error } =
+    useTemaoversikter(spørreundersøkelseId);
 
   const [temaErAvsluttet, setTemaErAvsluttet] = useState<{
     [temaId: string]: boolean;
@@ -39,7 +38,7 @@ export function TotalresultatRenderer({
 
   return (
     <>
-      <HeaderVert spørreundersøkelseId={spørreundersøkelseId}/>
+      <HeaderVert spørreundersøkelseId={spørreundersøkelseId} />
       <Page contentBlockPadding="none" background="bg-subtle">
         <PageBlock gutters width="2xl">
           {error && (

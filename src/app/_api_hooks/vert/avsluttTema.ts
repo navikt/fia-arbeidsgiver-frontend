@@ -1,7 +1,4 @@
-export function avsluttTema(
-  spørreundersøkelseId: string,
-  temaId: number,
-) {
+export function avsluttTema(spørreundersøkelseId: string, temaId: number) {
   const fetcher = async (url: string) => {
     const res = await fetch(url, {
       method: "POST",
@@ -12,7 +9,5 @@ export function avsluttTema(
     return res;
   };
 
-  return fetcher(
-    `/api/${spørreundersøkelseId}/vert/tema/${temaId}/avslutt`,
-  );
+  return fetcher(`/api/${spørreundersøkelseId}/vert/tema/${temaId}/avslutt`);
 }

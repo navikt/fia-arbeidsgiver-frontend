@@ -3,11 +3,9 @@ import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { API_DELTAKER_SPØRSMÅL_URL } = require("@/utils/urls");
 const {
-  alleSpørsmål
+  alleSpørsmål,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require("@/utils/dummydata");
-
-
 
 const sporsmalOgSvarRoutes = [
   {
@@ -21,7 +19,7 @@ const sporsmalOgSvarRoutes = [
         options: {
           middleware: (req: Request, res: Response) => {
             const spm = alleSpørsmål.find(
-              (deltakerSpørsmål:DeltakerSpørsmålDto) =>
+              (deltakerSpørsmål: DeltakerSpørsmålDto) =>
                 deltakerSpørsmål.spørsmål.id === req.params.sporsmalId,
             );
             if (spm !== undefined) {

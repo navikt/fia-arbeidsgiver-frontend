@@ -9,11 +9,7 @@ export const metadata: Metadata = {
 export default function Temaresultatside({
   params,
 }: {
-  params: { uuid: string};
+  params: { uuid: string };
 }) {
-  return (
-    <TotalresultatRenderer
-      spørreundersøkelseId={params.uuid}
-    />
-  );
+  return <TotalresultatRenderer spørreundersøkelseId={params.uuid} />;
 }

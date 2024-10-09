@@ -13,14 +13,11 @@ export async function POST(
     };
   },
 ) {
-  const fetcher = poster(
-    `${sporreundersokelseId}/tema/${temaId}/start`,
-    req,
-  );
+  const fetcher = poster(`${sporreundersokelseId}/tema/${temaId}/start`, req);
   return fetcher();
 }
 
-function poster(endpoint: string,req: NextRequest) {
+function poster(endpoint: string, req: NextRequest) {
   const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
   if (FIA_ARBEIDSGIVER_HOSTNAME === undefined) {
     return () =>

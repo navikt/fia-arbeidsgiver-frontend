@@ -4,7 +4,7 @@ import { Page, expect } from "@playwright/test";
 
 // @ts-ignore
 import { partssamarbeid, spørreundersøkelseId } from "@/utils/dummydata";
-const temaId = partssamarbeid.id
+const temaId = partssamarbeid.id;
 
 async function gåTilResultater(page: Page) {
   await page.getByRole("button", { name: "Start" }).first().click();
@@ -49,7 +49,9 @@ test.describe("Vert/delresultatside", () => {
     );
 
     await page.reload();
-    await expect(page.getByText(`Kunne ikke laste tema ${temaId}`)).toBeVisible();
+    await expect(
+      page.getByText(`Kunne ikke laste tema ${temaId}`),
+    ).toBeVisible();
   });
 
   test("Viser feilmelding når det er problemer med å hente temaresultat", async ({

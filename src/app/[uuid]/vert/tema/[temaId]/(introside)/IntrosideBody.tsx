@@ -83,9 +83,7 @@ export function IntrosideBody({
           <Infoblokk tema={tema} />
         </>
       )}
-      {erStartet && tema && (
-        <SvarRenderer tema={tema} />
-      )}
+      {erStartet && tema && <SvarRenderer tema={tema} />}
     </>
   );
 }

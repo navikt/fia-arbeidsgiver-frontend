@@ -1,10 +1,7 @@
 import { NextRequest } from "next/server";
 import { _exchangeToken } from "@/app/api/_exchangeToken";
 
-export function arbeidsgiverApiFetcherVert(
-  endpoint: string,
-  req: NextRequest,
-) {
+export function arbeidsgiverApiFetcherVert(endpoint: string, req: NextRequest) {
   const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
   if (FIA_ARBEIDSGIVER_HOSTNAME === undefined) {
     return () =>

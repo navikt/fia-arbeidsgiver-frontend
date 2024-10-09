@@ -17,7 +17,7 @@ export default function Temaresultatside({
 }) {
   return (
     <>
-      <HeaderVert spørreundersøkelseId={params.uuid}/>
+      <HeaderVert spørreundersøkelseId={params.uuid} />
       <Page
         contentBlockPadding="none"
         background="bg-subtle"

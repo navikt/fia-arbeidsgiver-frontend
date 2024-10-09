@@ -47,9 +47,7 @@ export default function LoginModal({
             />
           </VStack>
           <VStack className={loginModalStyles.høyreDel}>
-            <StatusPåDeltaker
-              spørreundersøkelseId={spørreundersøkelseId}
-            />
+            <StatusPåDeltaker spørreundersøkelseId={spørreundersøkelseId} />
           </VStack>
         </HStack>
       </VisQRModal>

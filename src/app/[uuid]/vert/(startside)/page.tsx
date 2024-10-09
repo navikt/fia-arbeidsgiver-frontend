@@ -20,20 +20,12 @@ export const metadata: Metadata = {
   title: "Velkommen",
 };
 
-export default function Startside({
-  params,
-}: {
-  params: { uuid: string;};
-}) {
+export default function Startside({ params }: { params: { uuid: string } }) {
   return (
     <Page background="bg-subtle">
       <PageBlock gutters width="xl">
-        <VelkommenVirksomhet
-          spørreundersøkelseId={params.uuid}
-        >
-          <KomIGangKnapp
-            spørreundersøkelseId={params.uuid}
-          />
+        <VelkommenVirksomhet spørreundersøkelseId={params.uuid}>
+          <KomIGangKnapp spørreundersøkelseId={params.uuid} />
         </VelkommenVirksomhet>
         <Box
           borderRadius="xlarge"

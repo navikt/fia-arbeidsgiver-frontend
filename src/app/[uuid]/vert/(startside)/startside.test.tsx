@@ -27,7 +27,7 @@ describe("Startside", () => {
     jest.clearAllMocks();
   });
   test("rett innhold blir tegnet opp", async () => {
-    render(<Startside params={{ uuid: "uuid"}} />);
+    render(<Startside params={{ uuid: "uuid" }} />);
     const tittel = await screen.findByText(
       "Målet for møtet er å sette retning og felles mål for IA-samarbeidet.",
     );
@@ -44,7 +44,7 @@ describe("Startside", () => {
       replace: jest.fn(),
       refresh: jest.fn(),
     });
-    render(<Startside params={{ uuid: "uuid"}} />);
+    render(<Startside params={{ uuid: "uuid" }} />);
 
     const komIGang = await screen.findByRole("button", { name: /Kom i gang/i });
     act(() => komIGang.click());
@@ -55,9 +55,7 @@ describe("Startside", () => {
   });
 
   test("axe UU-test", async () => {
-    const { container } = render(
-      <Startside params={{ uuid: "uuid"}} />,
-    );
+    const { container } = render(<Startside params={{ uuid: "uuid" }} />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
