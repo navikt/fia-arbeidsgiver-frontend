@@ -170,6 +170,16 @@ function Actionknapper({
 }
 
 function SvarRenderer({ tema }: { tema: TemaDto }) {
+  const boxRef = React.useRef<HTMLDivElement>(null);
+  React.useEffect(() => {
+    if (boxRef !== null) {
+      boxRef?.current?.scrollIntoView({
+        block: 'end',
+        inline: 'center',
+      });
+    }
+  }, []);
+
   return (
     <>
       <Box
@@ -177,6 +187,7 @@ function SvarRenderer({ tema }: { tema: TemaDto }) {
         padding="12"
         background="surface-default"
         className={introsideStyles.spørsmålsseksjon}
+        ref={boxRef}
       >
         <Accordion>
           {tema.spørsmål.map((spørsmål, index) => (
