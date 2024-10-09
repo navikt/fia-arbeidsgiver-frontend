@@ -5,13 +5,13 @@ import {
   Alert,
   Box,
   Button,
+  Checkbox,
   CheckboxGroup,
   Heading,
   Loader,
+  Radio,
   RadioGroup,
   VStack,
-  Checkbox,
-  Radio,
 } from "@navikt/ds-react";
 import React from "react";
 import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
@@ -28,6 +28,7 @@ import { useRouter } from "next/navigation";
 import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/StatusPåDeltakerMedSvar";
 import { SpørsmålDto } from "@/app/_types/SpørsmålDto";
 import { SvaralternativDto } from "@/app/_types/SvaralternativDto";
+import { TemaStatus } from "@/app/_types/TemaStatus";
 
 export function IntrosideBody({
   spørreundersøkelseId,
@@ -41,11 +42,20 @@ export function IntrosideBody({
     isLoading,
     error,
   } = useTemaoversikt(spørreundersøkelseId, temaId);
+  const [erStartet, setErStartet] = React.useState(false);
+
+  React.useEffect(() => {
+    if (
+      !erStartet &&
+      (tema?.status === TemaStatus.ALLE_SPØRSMÅL_ÅPNET ||
+        tema?.status === TemaStatus.STENGT)
+    ) {
+      setErStartet(true);
+    }
+  }, [tema, erStartet]);
   const åpneTema = useÅpneTema(spørreundersøkelseId, temaId);
 
   const [åpneTemaError, setÅpneTemaError] = React.useState<string | null>(null);
-
-  const [erStartet, setErStartet] = React.useState(false);
 
   if (isLoading) {
     return (
