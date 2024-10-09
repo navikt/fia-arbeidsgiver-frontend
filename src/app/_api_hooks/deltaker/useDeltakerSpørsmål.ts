@@ -12,6 +12,9 @@ export function useDeltakerSpørsmål(
     fetch(url, {
       method: "GET",
     }).then((res) => {
+      if (res.status === 410) {
+        throw new Error("Undersøkelsen er avsluttet.");
+      }
       if (!res.ok) {
         throw new Error("Noe gikk galt. Prøv å laste siden på nytt.");
       }

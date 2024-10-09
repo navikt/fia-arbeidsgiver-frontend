@@ -49,7 +49,11 @@ export default function SpørsmålBody({
           className={spørsmålStyles.nesteStack}
         >
           <Alert
-            variant={"error"}
+            variant={
+              feilSpørsmål.message === "Undersøkelsen er avsluttet."
+                ? "warning"
+                : "error"
+            }
             className={kartleggingStyles.alertWarning}
             role="alert"
             aria-live="polite"

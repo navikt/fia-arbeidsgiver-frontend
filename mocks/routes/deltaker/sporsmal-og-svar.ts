@@ -77,6 +77,13 @@ const sporsmalOgSvarRoutes = [
           status: 403,
         },
       },
+      {
+        id: "undersøkelse-avsluttet",
+        type: "status",
+        options: {
+          status: 410,
+        },
+      },
     ],
   },
 ];
