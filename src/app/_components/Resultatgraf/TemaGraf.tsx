@@ -80,7 +80,7 @@ export function TemaGrafMedDatahenting({
 }) {
   // Ignorer errors de første 20 sekundene etter load, ettersom vi får 403 på første load etter at vi har avsluttet tema.
   // TODO: Fjern denne når vi får fikset at beckend sender error første gang
-  const visErrorOmDenFinnes = useTimeHasElapsed(20000);
+  const visErrorOmDenFinnes = useTimeHasElapsed(10000);
   const { data: tema, error } = useTemaResultat(spørreundersøkelseId, temaId);
 
   if (error && visErrorOmDenFinnes) {
