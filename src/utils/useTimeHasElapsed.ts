@@ -4,11 +4,13 @@ export default function useTimeHasElapsed(time: number) {
   const [hasElapsed, setHasElapsed] = React.useState(false);
 
   React.useEffect(() => {
-    const timeout = setTimeout(() => {
-      setHasElapsed(true);
+    setTimeout(() => {
+      try {
+        setHasElapsed(true);
+      } catch (e) {
+        // Ignore
+      }
     }, time);
-
-    return () => clearTimeout(timeout);
   });
 
   return hasElapsed;
