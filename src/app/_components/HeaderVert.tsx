@@ -8,6 +8,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeftIcon } from "@navikt/aksel-icons";
 import LoginModal from "./LoginModal";
 import LinkTilResultat from "@/app/_components/LinkTilResultat";
+import { useTemaoversikter } from "@/app/_api_hooks/vert/useTemaoversikter";
 
 export default function HeaderVert({
   spørreundersøkelseId,
@@ -16,6 +17,10 @@ export default function HeaderVert({
 }) {
   const router = useRouter();
   const pathname = usePathname();
+
+  const {
+    data: listeOverTemaer,
+  } = useTemaoversikter(spørreundersøkelseId);
 
   const erPåOversiktSide = pathname.endsWith("oversikt");
   const searchParams = useSearchParams();
@@ -43,12 +48,12 @@ export default function HeaderVert({
             startOpen={loginModal === "true"}
           />
         </HStack>
-        {erPåOversiktSide && (
+        {erPåOversiktSide && listeOverTemaer && (
           <LinkTilResultat
             skalViseKnapp
             urlTilResultatside={`./resultater`}
             gåDirekteTilResultat={false}
-            knappetekst={"Fullfør og vis alle resultater"}
+            knappetekst={listeOverTemaer.every(tema => tema.status === "STENGT") ? "Vis resultater" : "Fullfør og vis alle resultater"}
             resultatType={"undersøkelsen"}
             spørreundersøkelseId={spørreundersøkelseId}
             variant={"primary"}

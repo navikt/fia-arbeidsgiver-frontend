@@ -81,11 +81,11 @@ export function IntrosideBody({
         <>
           <Headerlinje tittel={tema.navn}>
             <Actionknapper
+              tema={tema}
               åpneTema={åpneTema}
               setÅpneTemaError={setÅpneTemaError}
               setErStartet={setErStartet}
               erStartet={erStartet}
-              nesteTemaId={tema.nesteTemaId}
               spørreundersøkelseId={spørreundersøkelseId}
               temaId={temaId}
             />
@@ -103,7 +103,7 @@ function Actionknapper({
   setÅpneTemaError,
   setErStartet,
   erStartet,
-  nesteTemaId,
+  tema,
   spørreundersøkelseId,
   temaId,
 }: {
@@ -111,7 +111,7 @@ function Actionknapper({
   setÅpneTemaError: (error: string) => void;
   setErStartet: (erStartet: boolean) => void;
   erStartet: boolean;
-  nesteTemaId?: number;
+  tema: TemaDto;
   spørreundersøkelseId: string;
   temaId: number;
 }) {
@@ -145,7 +145,7 @@ function Actionknapper({
         skalViseKnapp
         urlTilResultatside={`../resultater/${temaId}`}
         gåDirekteTilResultat={false}
-        knappetekst={"Fullfør og vis resultater"}
+        knappetekst={tema.status === "STENGT" ? "Vis resultater" : "Fullfør og vis resultater"}
         modalTittel={"Vil du fullføre temaet?"}
         variant="primary"
         knappeClass={introsideStyles.resultatknapp}
@@ -156,14 +156,14 @@ function Actionknapper({
         iconPosition="right"
         className={kartleggingStyles.knappHvit}
         onClick={() => {
-          if (nesteTemaId) {
-            router.push(`./${nesteTemaId}`);
+          if (tema.nesteTemaId) {
+            router.push(`./${tema.nesteTemaId}`);
           } else {
             router.push(`../oversikt`);
           }
         }}
       >
-        {nesteTemaId ? "Gå til neste tema" : "Gå til oversikt"}
+        {tema.nesteTemaId ? "Gå til neste tema" : "Gå til oversikt"}
       </Button>
     </span>
   );
