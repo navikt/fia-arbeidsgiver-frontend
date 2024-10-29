@@ -15,7 +15,7 @@ import {
 } from "@navikt/ds-react";
 import React from "react";
 import { useTemaoversikt } from "@/app/_api_hooks/vert/useTemaoversikt";
-import { Infoblokk } from "./Infoblokk";
+import Infoblokk from "./Infoblokk";
 import Headerlinje from "@/app/_components/Headerlinje";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
 import { TemaDto } from "@/app/_types/TemaDto";
