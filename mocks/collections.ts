@@ -6,6 +6,7 @@ const collections = [
       "deltaker-identifiserbartsporsmal:success",
       "deltaker-sporsmal-og-svar:success",
       "deltaker-svar:success",
+      "vert-kontekst:success",
       "vert-virksomhetsnavn:success",
       "vert-antall-deltakere:success",
       "vert-antall-svar:success",
