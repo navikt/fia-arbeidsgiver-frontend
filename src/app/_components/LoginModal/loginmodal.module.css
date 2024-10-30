@@ -4,13 +4,17 @@
 }
 
 .qrcode {
-  margin-bottom: 2rem;
   margin-top: 2rem;
+  margin-bottom: 0.5rem;
   width: 22rem;
   height: 22rem;
   min-width: 8rem;
   min-height: 8rem;
   max-width: 100%;
+}
+
+.qrZoomContainer {
+  margin-bottom: 2rem;
 }
 
 .maksHundre {
