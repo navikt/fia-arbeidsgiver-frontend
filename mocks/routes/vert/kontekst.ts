@@ -20,6 +20,18 @@ const kontekstRoutes = [
         },
       },
       {
+        id: "success-evaluering",
+        type: "json",
+        options: {
+          status: 200,
+          body: {
+            type: "Evaluering",
+            viksomhetsnavn: "Fisk og flesk AS",
+            samarbeidsnavn: null,
+          },
+        },
+      },
+      {
         id: "feil-i-uuid",
         type: "status",
         options: {
