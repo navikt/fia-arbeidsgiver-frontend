@@ -54,6 +54,10 @@
   flex-grow: 1;
 }
 
+.radioStack :global(.navds-fieldset__error):empty {
+  display: none;
+}
+
 .spørsmålssideblokk {
   height: 100vh;
   display: flex;
