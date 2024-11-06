@@ -10,7 +10,6 @@ import {
   HStack,
   Radio,
   RadioGroup,
-  VStack,
 } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
@@ -100,48 +99,47 @@ export default function Spørsmålsseksjon({
         padding="5"
         className={spørsmålStyles.innholdboks}
       >
-        <VStack className={spørsmålStyles.radioStack}>
-          {deltakerSpørsmål.spørsmål.flervalg ? (
-            <CheckboxGroup
-              onChange={velgSvar}
-              legend={
-                <>
-                  {deltakerSpørsmål.spørsmål.tekst}
-                  <br />
-                  <span className={spørsmålStyles.normaltekst}>
-                    (flere valg er mulig)
-                  </span>
-                </>
-              }
-              value={svar}
-              error={feilSendSvar}
-            >
-              {deltakerSpørsmål.spørsmål.svaralternativer.map(
-                (svaralternativ) => (
-                  <Checkbox key={svaralternativ.id} value={svaralternativ.id}>
-                    {svaralternativ.tekst}
-                  </Checkbox>
-                ),
-              )}
-            </CheckboxGroup>
-          ) : (
-            <RadioGroup
-              legend={deltakerSpørsmål.spørsmål.tekst}
-              onChange={(value) => velgSvar([value])}
-              value={svar[0] || null}
-              className={spørsmålStyles.spørsmålsseksjon}
-              error={feilSendSvar}
-            >
-              {deltakerSpørsmål.spørsmål.svaralternativer.map(
-                (svaralternativ) => (
-                  <Radio key={svaralternativ.id} value={svaralternativ.id}>
-                    {svaralternativ.tekst}
-                  </Radio>
-                ),
-              )}
-            </RadioGroup>
-          )}
-        </VStack>
+        {deltakerSpørsmål.spørsmål.flervalg ? (
+          <CheckboxGroup
+            onChange={velgSvar}
+            legend={
+              <>
+                {deltakerSpørsmål.spørsmål.tekst}
+                <br />
+                <span className={spørsmålStyles.normaltekst}>
+                  (flere valg er mulig)
+                </span>
+              </>
+            }
+            className={spørsmålStyles.spørsmålsseksjon}
+            value={svar}
+            error={feilSendSvar}
+          >
+            {deltakerSpørsmål.spørsmål.svaralternativer.map(
+              (svaralternativ) => (
+                <Checkbox key={svaralternativ.id} value={svaralternativ.id}>
+                  {svaralternativ.tekst}
+                </Checkbox>
+              ),
+            )}
+          </CheckboxGroup>
+        ) : (
+          <RadioGroup
+            legend={deltakerSpørsmål.spørsmål.tekst}
+            onChange={(value) => velgSvar([value])}
+            value={svar[0] || null}
+            className={spørsmålStyles.spørsmålsseksjon}
+            error={feilSendSvar}
+          >
+            {deltakerSpørsmål.spørsmål.svaralternativer.map(
+              (svaralternativ) => (
+                <Radio key={svaralternativ.id} value={svaralternativ.id}>
+                  {svaralternativ.tekst}
+                </Radio>
+              ),
+            )}
+          </RadioGroup>
+        )}
       </Box>
       <HStack justify={"end"} gap={"2"} className={spørsmålStyles.knappeStack}>
         {deltakerSpørsmål.spørsmålnummer > 1 ? (

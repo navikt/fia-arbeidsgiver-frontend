@@ -50,10 +50,7 @@
   margin-bottom: 0.5rem;
 }
 
-.spørsmålsseksjon {
-}
-
-.radioStack :global(.navds-fieldset__error):empty {
+.spørsmålsseksjon :global(.navds-fieldset__error):empty {
   display: none;
 }
 
