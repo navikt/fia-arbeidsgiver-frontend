@@ -51,7 +51,6 @@
 }
 
 .spørsmålsseksjon {
-  flex-grow: 1;
 }
 
 .radioStack :global(.navds-fieldset__error):empty {
