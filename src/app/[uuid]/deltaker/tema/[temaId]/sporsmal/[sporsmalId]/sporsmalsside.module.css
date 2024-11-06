@@ -51,10 +51,6 @@
 }
 
 .spørsmålsseksjon {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
   flex-grow: 1;
 }
 
