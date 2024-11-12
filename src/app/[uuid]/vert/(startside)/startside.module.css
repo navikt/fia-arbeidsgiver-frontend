@@ -1,98 +1,86 @@
-.startside > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.sideinnhold {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  margin-top: 2rem;
-}
-
-.logininformasjon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 450px;
-  height: 600px;
-  flex-shrink: 0;
-
-  border-right: 2px solid #d9d9d9;
-}
-
-.logininformasjon .linkDisplay {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2rem;
-  min-width: 22rem;
-}
-
-.logininformasjon .pinDisplay {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logininformasjon .pinDisplay .siffer {
-  width: 4rem;
-  height: 5rem;
-  margin-right: 1rem;
-  background-color: #d9d9d9;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 3rem;
-}
-
-.status {
-  flex-grow: 1;
-}
 
 .startside {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-.subheading {
-  color: var(--a-blue-800);
-}
+    .startsidePageBlock {
+      display: flex;
+      flex-direction: column;
 
-.startsideboks {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-.startsidegrid {
-  display: grid;
-  grid-template-columns: [start] 4rem [center-start] auto [center-end] 4rem [end];
-  row-gap: 2rem;
-}
+      .mobilpåminnelseContainer {
+        position: relative;
 
-.gridCenter {
-  grid-column: center-start / center-end;
-}
+        .mobilpåminnelse {
+          position: absolute;
+          right: 0;
+          top: -12rem;
+          width: fit-content;
+        
+          .snakkeboble {
+            background-color: var(--a-surface-success-subtle);
+            color: var(--a-surface-success);
+            max-width: 18rem;
+            font-size: 1.2rem;
+            padding: 2rem;
+            border-radius: 1rem;
+            position: relative;
+        
+            &::after {
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              width: 0;
+              height: 0;
+              border: 25px solid transparent;
+              border-top-color: var(--a-surface-success-subtle);
+              border-bottom: 0;
+              border-left: 0;
+              margin-left: -50px;
+              margin-bottom: -25px;
+            }
+          }
 
-.gridFull {
-  grid-column: start / end;
-}
+          .mobilikon {
+            position: relative;
+            top: -2.5rem;
+            left: -0.5rem;
+          }
+        }
+      }
+      
+      .velkommenHeader {
+        text-align: center;
+      }
+    
+      .startKnapp {
+        align-self: center;
+        margin-top: 2rem;
+      }
+    
+      .boksBeskrivelse {
+        color: var(--a-blue-800);
+        margin-top: 10rem;
+        margin-bottom: 2rem;
+        font-size: 1.5rem;
+      }
+      
+      .startsideinfoboks {
+        flex: 1;
+        color: var(--a-blue-800);
+        padding: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-.startsideinfoboks {
-  flex: 1;
-  color: var(--a-blue-800);
-  padding: 1.5rem 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.startsideinfoboksinnhold {
-  text-align: center;
+        .startsideinfoboksinnhold {
+          text-align: center;
+        }
+      }
+    }
+  }
+  
 }

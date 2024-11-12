@@ -13,7 +13,7 @@ export default function KomIGangKnapp({
     <Button
       onClick={() =>
         router.push(
-          `../../${spørreundersøkelseId}/vert/oversikt?loginModal=true`,
+          `/${spørreundersøkelseId}/vert/oversikt?loginModal=true`,
         )
       }
       icon={<ArrowRightIcon aria-hidden />}
