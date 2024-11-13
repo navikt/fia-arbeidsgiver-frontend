@@ -20,13 +20,13 @@ test.describe("Vert/introside", () => {
       "Velkommen, Fisk og flesk AS",
     );
     await expect(page.getByRole("main")).toContainText(
-      "Behovsvurdering for IA-samarbeidetMålet for møtet er å sette retning og felles mål for IA-samarbeidet.Vi skal sammen reflektere over hvordan dere jobber med sykefravær og arbeidsmiljø.Vi er her for å hjelpe med utgangspunkt i en felles vurdering av dagens situasjon.Vi skal se på tre temaer; partssamarbeid, sykefraværsarbeid og arbeidsmiljø.Hvert tema introduseres før dere svarer individuelt på spørsmål.Vi ser på resultatene i fellesskap og diskuterer hva som bør vektlegges i samarbeidsperioden.",
+      "Få en felles forståelse for hvordan dere samarbeider om sykefravær og arbeidsmiljø i dag.",
     );
     await expect(page.getByRole("main")).toContainText(
-      "IA-samarbeidetNAV tilbyr hjelp og kompetanseheving for å forebygge og redusere sykefravær. I en avtalt periode kan vi hjelpe dere med å:samarbeide om arbeidsmiljø og sykefraværøke kvaliteten på sykefraværsarbeidetjobbe forebyggende med arbeidsmiljø",
+      "Avklare hvilke behov dere har og hva som bør være fokus fremover.",
     );
     await expect(page.getByRole("main")).toContainText(
-      "Resultater og personvernAlle svar er anonyme og vi registrerer ikke hvem som har svart hva.Resultatene brukes som grunnlag for samarbeidet og deles kun med dere.NAV bruker kun anonymisert statistikk for å videreutvikle tjenester.",
+      "Hvordan gjennomfører vi behovsvurderingen?",
     );
   });
 

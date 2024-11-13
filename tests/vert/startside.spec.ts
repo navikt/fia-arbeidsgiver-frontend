@@ -27,7 +27,7 @@ test.describe("Vert/startside", () => {
 
  test("Klikk på start behovsvurdering", async ({ page }) => {
    await page.getByRole("button", { name: "Start behovsvurdering" }).click();
-   await expect(page.getByRole("main")).toContainText("Behovsvurdering for IA-samarbeidet");
+   await expect(page.getByRole("main")).toContainText("Hvordan gjennomfører vi behovsvurderingen?");
  });
 
   test("test av axe", async ({ page }) => {

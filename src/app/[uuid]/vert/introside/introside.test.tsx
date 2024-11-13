@@ -29,7 +29,7 @@ describe("Introside", () => {
   test("rett innhold blir tegnet opp", async () => {
     render(<Introside params={{ uuid: "uuid" }} />);
     const tittel = await screen.findByText(
-      "Målet for møtet er å sette retning og felles mål for IA-samarbeidet.",
+      "Få en felles forståelse for hvordan dere samarbeider om sykefravær og arbeidsmiljø i dag.",
     );
     expect(tittel).toBeInTheDocument();
   });
