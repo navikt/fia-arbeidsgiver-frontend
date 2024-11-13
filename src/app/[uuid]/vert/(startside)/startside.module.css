@@ -21,7 +21,7 @@
         
           .snakkeboble {
             background-color: var(--a-surface-success-subtle);
-            color: var(--a-surface-success);
+            color: var(--a-green-700);
             max-width: 18rem;
             font-size: 1.2rem;
             padding: 2rem;

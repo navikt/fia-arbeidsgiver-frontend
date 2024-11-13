@@ -18,22 +18,17 @@ test.describe("Vert/startside", () => {
     await expect(page.locator("h1")).toContainText(
       "Velkommen, Fisk og flesk AS",
     );
-    await expect(page.getByRole("main")).toContainText(
-      "Behovsvurdering for IA-samarbeidetMålet for møtet er å sette retning og felles mål for IA-samarbeidet.Vi skal sammen reflektere over hvordan dere jobber med sykefravær og arbeidsmiljø.Vi er her for å hjelpe med utgangspunkt i en felles vurdering av dagens situasjon.Vi skal se på tre temaer; partssamarbeid, sykefraværsarbeid og arbeidsmiljø.Hvert tema introduseres før dere svarer individuelt på spørsmål.Vi ser på resultatene i fellesskap og diskuterer hva som bør vektlegges i samarbeidsperioden.",
-    );
-    await expect(page.getByRole("main")).toContainText(
-      "IA-samarbeidetNAV tilbyr hjelp og kompetanseheving for å forebygge og redusere sykefravær. I en avtalt periode kan vi hjelpe dere med å:samarbeide om arbeidsmiljø og sykefraværøke kvaliteten på sykefraværsarbeidetjobbe forebyggende med arbeidsmiljø",
-    );
-    await expect(page.getByRole("main")).toContainText(
-      "Resultater og personvernAlle svar er anonyme og vi registrerer ikke hvem som har svart hva.Resultatene brukes som grunnlag for samarbeidet og deles kun med dere.NAV bruker kun anonymisert statistikk for å videreutvikle tjenester.",
-    );
+    await expect(page.getByRole("main")).toContainText("Psst! Har du med mobiltelefonen din?");
+    await expect(page.getByRole("main")).toContainText("Inkluderende arbeidsliv handler om å:");
+    await expect(page.getByRole("main")).toContainText("samarbeide for en mer inkluderende arbeidsplass");
+    await expect(page.getByRole("main")).toContainText("jobbe systematisk med sykefraværsarbeid");
+    await expect(page.getByRole("main")).toContainText("jobbe forebyggende med arbeidsmiljø");
   });
 
-  test("Klikk på kom i gang", async ({ page }) => {
-    await page.getByRole("button", { name: "Kom i gang" }).click();
-    await page.getByRole("button", { name: "Lukk" }).click();
-    await expect(page.getByRole("main")).toContainText("Partssamarbeid");
-  });
+ test("Klikk på start behovsvurdering", async ({ page }) => {
+   await page.getByRole("button", { name: "Start behovsvurdering" }).click();
+   await expect(page.getByRole("main")).toContainText("Behovsvurdering for IA-samarbeidet");
+ });
 
   test("test av axe", async ({ page }) => {
     await expect(page.locator("h1")).toContainText(
