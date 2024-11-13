@@ -19,7 +19,7 @@ export function EvalueringIntroside({ params }: { params: { uuid: string } }) {
 	return (
 		<Page background="bg-subtle">
 			<PageBlock gutters width="xl">
-				<VelkommenVirksomhet spørreundersøkelseId={params.uuid}>
+				<VelkommenVirksomhet type="Evaluering">
 					<KomIGangKnapp spørreundersøkelseId={params.uuid} />
 				</VelkommenVirksomhet>
 				<Box
