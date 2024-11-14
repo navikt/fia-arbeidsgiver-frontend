@@ -9,7 +9,7 @@ const temaId = partssamarbeid.id;
 async function gåTilResultater(page: Page) {
   await page.getByRole("button", { name: "Start" }).first().click();
   await expect(page.locator("body")).toContainText(
-    "Et velfungerende partssamarbeid verdsetter og utnytter partenes ",
+    "Et velfungerende partssamarbeid verdsetter og utnytter hverandres ",
   );
 
   await page.getByRole("button", { name: "Start" }).click();
