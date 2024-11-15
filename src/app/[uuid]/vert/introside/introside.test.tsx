@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { act, render, screen } from "@testing-library/react";
-import Startside from "./page";
+import Introside from "./page";
 import { axe, toHaveNoViolations } from "jest-axe";
 import { useRouter } from "next/navigation";
 
@@ -22,14 +22,14 @@ jest.mock("@/app/_api_hooks/vert/useAntallDeltakere", () => ({
   }),
 }));
 
-describe("Startside", () => {
+describe("Introside", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
   test("rett innhold blir tegnet opp", async () => {
-    render(<Startside params={{ uuid: "uuid" }} />);
+    render(<Introside params={{ uuid: "uuid" }} />);
     const tittel = await screen.findByText(
-      "Psst! Har du med mobiltelefonen din?",
+      "Få en felles forståelse for hvordan dere samarbeider om sykefravær og arbeidsmiljø i dag.",
     );
     expect(tittel).toBeInTheDocument();
   });
@@ -44,18 +44,18 @@ describe("Startside", () => {
       replace: jest.fn(),
       refresh: jest.fn(),
     });
-    render(<Startside params={{ uuid: "uuid" }} />);
+    render(<Introside params={{ uuid: "uuid" }} />);
 
-    const komIGang = await screen.findByRole("button", { name: /Start behovsvurderingen/i });
+    const komIGang = await screen.findByRole("button", { name: /Kom i gang/i });
     act(() => komIGang.click());
     expect(pushFunction).toHaveBeenCalledTimes(1);
     expect(pushFunction).toHaveBeenCalledWith(
-      `./vert/introside`,
+      `/uuid/vert/oversikt?loginModal=true`,
     );
   });
 
   test("axe UU-test", async () => {
-    const { container } = render(<Startside params={{ uuid: "uuid" }} />);
+    const { container } = render(<Introside params={{ uuid: "uuid" }} />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });

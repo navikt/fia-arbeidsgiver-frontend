@@ -14,7 +14,7 @@ const kontekstRoutes = [
           status: 200,
           body: {
             type: "Behovsvurdering",
-            viksomhetsnavn: "Fisk og flesk AS",
+            virksomhetsnavn: "Fisk og flesk AS",
             samarbeidsnavn: null,
           },
         },
@@ -26,7 +26,7 @@ const kontekstRoutes = [
           status: 200,
           body: {
             type: "Evaluering",
-            viksomhetsnavn: "Fisk og flesk AS",
+            virksomhetsnavn: "Fisk og flesk AS",
             samarbeidsnavn: null,
           },
         },

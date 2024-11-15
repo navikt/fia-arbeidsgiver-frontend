@@ -9,26 +9,32 @@ const test = base.extend({
     await page.getByPlaceholder("Enter any user/subject").click();
     await page.getByPlaceholder("Enter any user/subject").fill("asdf");
     await page.getByPlaceholder("Enter any user/subject").press("Enter");
+    await page.getByRole("button", { name: "Start behovsvurderingen" }).click();
     await use(page);
   },
 });
 
-test.describe("Vert/startside", () => {
+test.describe("Vert/introside", () => {
   test("rett innhold blir tegnet opp", async ({ page }) => {
     await expect(page.locator("h1")).toContainText(
       "Velkommen, Fisk og flesk AS",
     );
-    await expect(page.getByRole("main")).toContainText("Psst! Har du med mobiltelefonen din?");
-    await expect(page.getByRole("main")).toContainText("Inkluderende arbeidsliv handler om å:");
-    await expect(page.getByRole("main")).toContainText("samarbeide for en mer inkluderende arbeidsplass");
-    await expect(page.getByRole("main")).toContainText("jobbe systematisk med sykefraværsarbeid");
-    await expect(page.getByRole("main")).toContainText("jobbe forebyggende med arbeidsmiljø");
+    await expect(page.getByRole("main")).toContainText(
+      "Få en felles forståelse for hvordan dere samarbeider om sykefravær og arbeidsmiljø i dag.",
+    );
+    await expect(page.getByRole("main")).toContainText(
+      "Avklare hvilke behov dere har og hva som bør være fokus fremover.",
+    );
+    await expect(page.getByRole("main")).toContainText(
+      "Hvordan gjennomfører vi behovsvurderingen?",
+    );
   });
 
- test("Klikk på start behovsvurderingen", async ({ page }) => {
-   await page.getByRole("button", { name: "Start behovsvurderingen" }).click();
-   await expect(page.getByRole("main")).toContainText("Hvordan gjennomfører vi behovsvurderingen?");
- });
+  test("Klikk på kom i gang", async ({ page }) => {
+    await page.getByRole("button", { name: "Kom i gang" }).click();
+    await page.getByRole("button", { name: "Lukk" }).click();
+    await expect(page.getByRole("main")).toContainText("Partssamarbeid");
+  });
 
   test("test av axe", async ({ page }) => {
     await expect(page.locator("h1")).toContainText(

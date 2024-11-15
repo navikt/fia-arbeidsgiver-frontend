@@ -26,7 +26,7 @@
   },
   "prettier": {},
   "dependencies": {
-    "@axe-core/playwright": "^4.10.0",
+    "@axe-core/playwright": "^4.10.1",
     "@grafana/faro-web-sdk": "^1.11.0",
     "@grafana/faro-web-tracing": "^1.11.0",
     "@navikt/ds-css": "^7.4.3",

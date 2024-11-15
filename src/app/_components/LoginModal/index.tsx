@@ -28,7 +28,7 @@ export default function LoginModal({
         lukk={() => {
           setvisQRkodeModalÅpen(false);
         }}
-        title="Scan QR-kode og bli med"
+        title="Scan QR-koden og bli med"
       >
         <HStack
           wrap
