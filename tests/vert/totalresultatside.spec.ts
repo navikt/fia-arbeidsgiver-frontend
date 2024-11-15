@@ -7,7 +7,7 @@ import { partssamarbeid, spørreundersøkelseId } from "@/utils/dummydata";
 const temaId = partssamarbeid.id;
 
 async function gåTilResultater(page: Page) {
-  await page.getByRole("button", { name: "Vis alle resultater" }).click();
+  await page.getByRole("button", { name: "Vis alle resultatene" }).click();
   await page.getByRole("button", { name: "Fullfør", exact: true }).click();
   await expect(page.locator("body")).toContainText("flere valg er mulig");
 }
