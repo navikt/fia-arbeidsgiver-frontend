@@ -1,18 +1,9 @@
+import { planStatusType, planUndertemaType } from "@/app/_types/Plantyper";
 import { Timeline } from "@navikt/ds-react";
 import React from "react";
 
-export type PlanInnhold = {
-	id: number;
-	navn: string;
-	målsetting: string;
-	inkludert: boolean;
-	startDato?: string | null;
-	sluttDato?: string | null;
-	status: "PÅGÅR" | "FULLFØRT" | "AVBRUTT" | "PLANLAGT";
-};
-
 export type PølsegrafProps = {
-	undertemaer: PlanInnhold[];
+	undertemaer: planUndertemaType[];
 	hidePin?: boolean;
 };
 
@@ -113,7 +104,7 @@ export default function PlanGraf(props: PølsegrafProps) {
 	);
 }
 
-function timelineColorFromStatus(status: string | null) {
+function timelineColorFromStatus(status?: planStatusType) {
 	switch (status) {
 		case "PÅGÅR":
 			return "info";

@@ -29,6 +29,7 @@ import { StatusPåDeltakerMedSvar } from "@/app/_components/StatusPåDeltaker/St
 import { SpørsmålDto } from "@/app/_types/SpørsmålDto";
 import { SvaralternativDto } from "@/app/_types/SvaralternativDto";
 import { TemaStatus } from "@/app/_types/TemaStatus";
+import { useSpørreundersøkelseInfo } from "@/app/_api_hooks/vert/useSpørreundersøkelseInfo";
 
 export function IntrosideBody({
   spørreundersøkelseId,
@@ -42,6 +43,7 @@ export function IntrosideBody({
     isLoading,
     error,
   } = useTemaoversikt(spørreundersøkelseId, temaId);
+  const { data: spørreundersøkelseInfo, isLoading: lasterInfo, error: infoError } = useSpørreundersøkelseInfo(spørreundersøkelseId);
   const [erStartet, setErStartet] = React.useState(false);
 
   React.useEffect(() => {
@@ -57,7 +59,7 @@ export function IntrosideBody({
 
   const [åpneTemaError, setÅpneTemaError] = React.useState<string | null>(null);
 
-  if (isLoading) {
+  if (isLoading || lasterInfo) {
     return (
       <VStack gap={"4"} align={"center"} justify={"center"}>
         <Heading size={"large"}>Laster tema</Heading>
@@ -66,11 +68,12 @@ export function IntrosideBody({
     );
   }
 
-  if (error || åpneTemaError) {
+  if (error || åpneTemaError || infoError) {
     return (
       <Alert variant={"error"} role="alert" aria-live="polite">
         {error?.message}
         {åpneTemaError}
+        {infoError?.message}
       </Alert>
     );
   }
@@ -90,7 +93,7 @@ export function IntrosideBody({
               temaId={temaId}
             />
           </Headerlinje>
-          <Infoblokk tema={tema} />
+          <Infoblokk tema={tema} spørreundersøkelseInfo={spørreundersøkelseInfo} />
         </>
       )}
       {erStartet && tema && <SvarRenderer tema={tema} />}

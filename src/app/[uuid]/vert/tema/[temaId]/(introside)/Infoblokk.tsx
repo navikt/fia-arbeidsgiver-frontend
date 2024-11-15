@@ -2,8 +2,14 @@ import { TemaDto } from "@/app/_types/TemaDto";
 import React from "react";
 import { BodyShort, Box, List } from "@navikt/ds-react";
 import { ListItem } from "@navikt/ds-react/List";
+import { SpørreundersøkelseInfoDto } from "@/app/_types/SpørreundersøkelseInfoDto";
+import PlanGraf from "@/app/_components/Plan/PlanGraf";
 
-export default function Infoblokk({ tema }: { tema: TemaDto }) {
+export default function Infoblokk({ tema, spørreundersøkelseInfo }: { tema: TemaDto, spørreundersøkelseInfo?: SpørreundersøkelseInfoDto }) {
+	if (spørreundersøkelseInfo?.type === "Evaluering") {
+		return <EvalueringInfoblokk tema={tema} spørreundersøkelseInfo={spørreundersøkelseInfo} />;
+
+	}
 	switch (tema.navn.toLowerCase()) {
 		case "partssamarbeid":
 			return <Partssamarbeid />;
@@ -12,6 +18,32 @@ export default function Infoblokk({ tema }: { tema: TemaDto }) {
 		case "arbeidsmiljø":
 			return <Arbeidsmiljø />;
 	}
+}
+
+function EvalueringInfoblokk({ tema, spørreundersøkelseInfo }: { tema: TemaDto, spørreundersøkelseInfo: SpørreundersøkelseInfoDto }) {
+	const planTema = spørreundersøkelseInfo.plan?.temaer.find(t => t.navn.toLowerCase() === tema.navn.toLowerCase());
+
+	if (planTema) {
+		return (
+			<Box
+				borderRadius="xlarge"
+				padding="12"
+				background="surface-default"
+			>
+				<PlanGraf undertemaer={planTema.undertemaer} />
+			</Box>
+		);
+	}
+
+	return (
+		<Box
+			borderRadius="xlarge"
+			padding="12"
+			background="surface-default"
+		>
+			Her er det ikke noe enda. Denne siden er ikke ferdigutviklet, men kommer snart :)
+		</Box>
+	);
 }
 
 function Partssamarbeid() {
