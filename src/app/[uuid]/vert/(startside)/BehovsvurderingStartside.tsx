@@ -35,7 +35,7 @@ export function BehovsvurderingStartside({ params }: { params: { uuid: string } 
 					iconPosition="right"
 					className={startsideStyles.startKnapp}
 				>
-					Start behovsvurdering
+					Start behovsvurderingen
 				</Button>
 				<BodyShort align="center" spacing className={startsideStyles.boksBeskrivelse}>
 					Inkluderende arbeidsliv handler om å:

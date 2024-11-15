@@ -72,7 +72,7 @@ function TemaActions({
             skalViseKnapp
             urlTilResultatside={`./resultater/${tema.id}`}
             gåDirekteTilResultat={true}
-            knappetekst={"Vis resultater"}
+            knappetekst={"Vis resultatene"}
             variant="primary"
             spørreundersøkelseId={spørreundersøkelseId}
             temaId={tema.id}
@@ -93,7 +93,7 @@ function TemaActions({
             skalViseKnapp
             urlTilResultatside={`./resultater/${tema.id}`}
             gåDirekteTilResultat={false}
-            knappetekst={"Vis resultater"}
+            knappetekst={"Vis resultatene"}
             modalTittel={"Vil du fullføre temaet?"}
             variant="primary"
             spørreundersøkelseId={spørreundersøkelseId}

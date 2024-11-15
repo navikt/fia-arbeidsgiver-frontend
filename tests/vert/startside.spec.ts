@@ -25,8 +25,8 @@ test.describe("Vert/startside", () => {
     await expect(page.getByRole("main")).toContainText("jobbe forebyggende med arbeidsmiljø");
   });
 
- test("Klikk på start behovsvurdering", async ({ page }) => {
-   await page.getByRole("button", { name: "Start behovsvurdering" }).click();
+ test("Klikk på start behovsvurderingen", async ({ page }) => {
+   await page.getByRole("button", { name: "Start behovsvurderingen" }).click();
    await expect(page.getByRole("main")).toContainText("Hvordan gjennomfører vi behovsvurderingen?");
  });
 

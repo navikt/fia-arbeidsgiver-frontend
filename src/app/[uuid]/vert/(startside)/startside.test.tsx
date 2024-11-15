@@ -46,7 +46,7 @@ describe("Startside", () => {
     });
     render(<Startside params={{ uuid: "uuid" }} />);
 
-    const komIGang = await screen.findByRole("button", { name: /Start behovsvurdering/i });
+    const komIGang = await screen.findByRole("button", { name: /Start behovsvurderingen/i });
     act(() => komIGang.click());
     expect(pushFunction).toHaveBeenCalledTimes(1);
     expect(pushFunction).toHaveBeenCalledWith(

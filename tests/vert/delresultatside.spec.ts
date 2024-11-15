@@ -14,7 +14,7 @@ async function gåTilResultater(page: Page) {
 
   await page.getByRole("button", { name: "Start" }).click();
   const visResultater = page.getByRole("button", {
-    name: "Fullfør og vis resultater",
+    name: "Fullfør og vis resultatene",
   });
   await expect(visResultater).toBeVisible();
   await visResultater.click();

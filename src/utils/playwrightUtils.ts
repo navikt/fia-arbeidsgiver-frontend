@@ -9,7 +9,7 @@ export const vertTest = base.extend({
 
     await page.goto("http://localhost:2222");
 
-    await page.getByRole("button", { name: "Start behovsvurdering" }).click();
+    await page.getByRole("button", { name: "Start behovsvurderingen" }).click();
     await page.getByRole("button", { name: "Kom i gang" }).click();
     await page.getByRole("button", { name: "Lukk" }).click();
     await use(page);

@@ -9,7 +9,7 @@ const test = base.extend({
     await page.getByPlaceholder("Enter any user/subject").click();
     await page.getByPlaceholder("Enter any user/subject").fill("asdf");
     await page.getByPlaceholder("Enter any user/subject").press("Enter");
-    await page.getByRole("button", { name: "Start behovsvurdering" }).click();
+    await page.getByRole("button", { name: "Start behovsvurderingen" }).click();
     await use(page);
   },
 });

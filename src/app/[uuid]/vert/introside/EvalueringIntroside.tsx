@@ -107,7 +107,7 @@ export function EvalueringIntroside({ params }: { params: { uuid: string } }) {
 								dere.
 							</ListItem>
 							<ListItem>
-								NAV bruker kun anonymisert statistikk for å videreutvikle
+								NAV bruker anonymisert statistikk for å videreutvikle
 								tjenester.
 							</ListItem>
 						</List>

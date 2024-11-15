@@ -53,7 +53,7 @@ export default function HeaderVert({
             skalViseKnapp
             urlTilResultatside={`./resultater`}
             gåDirekteTilResultat={false}
-            knappetekst={listeOverTemaer.every(tema => tema.status === "STENGT") ? "Vis resultater" : "Fullfør og vis alle resultater"}
+            knappetekst={listeOverTemaer.every(tema => tema.status === "STENGT") ? "Vis resultatene" : "Fullfør og vis alle resultatene"}
             resultatType={"undersøkelsen"}
             spørreundersøkelseId={spørreundersøkelseId}
             variant={"primary"}

@@ -47,6 +47,7 @@ export function BehovsvurderingIntroside({ params }: { params: { uuid: string } 
 							level="2"
 							size="small"
 							className={introsideStyles.subheading}
+							style={{ marginTop: "1.5rem" }}
 						>
 							Hvordan gjennomfører vi behovsvurderingen?
 						</Heading>
@@ -79,7 +80,7 @@ export function BehovsvurderingIntroside({ params }: { params: { uuid: string } 
 								Resultatene deles kun med dere og det registreres ikke hvem som har svart hva.
 							</ListItem>
 							<ListItem>
-								Nav bruker kun anonymisert statistikk for å videreutvikle tjenesten.
+								Nav bruker anonymisert statistikk for å videreutvikle tjenesten.
 							</ListItem>
 						</List>
 					</VStack>
