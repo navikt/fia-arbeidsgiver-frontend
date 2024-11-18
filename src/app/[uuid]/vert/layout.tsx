@@ -1,3 +1,4 @@
+import Demobanner from "@/app/_components/Demobanner";
 import React from "react";
 
 export default function VertLayout({
@@ -5,5 +6,10 @@ export default function VertLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <main>{children}</main>;
+  return (
+    <>
+      <Demobanner />
+      <main>{children}</main>
+    </>
+  );
 }
