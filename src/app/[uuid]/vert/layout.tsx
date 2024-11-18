@@ -7,9 +7,9 @@ export default function VertLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <main>
       <Demobanner />
-      <main>{children}</main>
-    </>
+      {children}
+    </main>
   );
 }
