@@ -8,6 +8,7 @@ import {
 	Button,
 	HStack,
 	Page,
+	VStack,
 } from "@navikt/ds-react";
 import { PageBlock } from "@navikt/ds-react/Page";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
@@ -24,33 +25,38 @@ export function BehovsvurderingStartside({ params }: { params: { uuid: string } 
 		<Page background="bg-subtle" className={startsideStyles.startside}>
 			<PageBlock gutters width="xl" className={startsideStyles.startsidePageBlock}>
 				<Mobilpåminnelse />
-				<VelkommenVirksomhet spørreundersøkelseId={params.uuid} />
-				<Button
-					onClick={() =>
-						router.push(
-							`./vert/introside`,
-						)
-					}
-					icon={<ArrowRightIcon aria-hidden />}
-					iconPosition="right"
-					className={startsideStyles.startKnapp}
-				>
-					Start behovsvurderingen
-				</Button>
-				<BodyShort align="center" spacing className={startsideStyles.boksBeskrivelse}>
-					Inkluderende arbeidsliv handler om å:
-				</BodyShort>
-				<HStack gap="4">
-					<StartsideBoksElement>
-						<b>samarbeide</b> for en mer inkluderende arbeidsplass
-					</StartsideBoksElement>
-					<StartsideBoksElement>
-						jobbe <b>systematisk</b> med sykefraværsarbeid
-					</StartsideBoksElement>
-					<StartsideBoksElement>
-						jobbe <b>forebyggende</b> med arbeidsmiljø
-					</StartsideBoksElement>
-				</HStack>
+				<div className={startsideStyles.startsideToppInnhold}>
+					<VelkommenVirksomhet spørreundersøkelseId={params.uuid} />
+					<Button
+						onClick={() =>
+							router.push(
+								`./vert/introside`,
+							)
+						}
+						icon={<ArrowRightIcon aria-hidden />}
+						iconPosition="right"
+						className={startsideStyles.startKnapp}
+					>
+						Start behovsvurderingen
+					</Button>
+				</div>
+				<VStack>
+					<BodyShort align="center" spacing className={startsideStyles.boksBeskrivelse}>
+						Inkluderende arbeidsliv handler om å:
+					</BodyShort>
+					<HStack gap="4">
+						<StartsideBoksElement>
+							<b>samarbeide</b> for en mer inkluderende arbeidsplass
+						</StartsideBoksElement>
+						<StartsideBoksElement>
+							jobbe <b>systematisk</b> med sykefraværsarbeid
+						</StartsideBoksElement>
+						<StartsideBoksElement>
+							jobbe <b>forebyggende</b> med arbeidsmiljø
+						</StartsideBoksElement>
+					</HStack>
+				</VStack>
+				<div />
 			</PageBlock>
 		</Page>
 	);

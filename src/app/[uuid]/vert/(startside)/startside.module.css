@@ -2,29 +2,33 @@
 .startside {
   & > div {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
     .startsidePageBlock {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
 
       .mobilpåminnelseContainer {
+        align-self: flex-end;
         position: relative;
-
+        top: 1rem;
+        right: 100px;
+        min-width: 14rem;
+        overflow: visible;
+        z-index: 1;
+        height: 5.7rem;
+        
+    
         .mobilpåminnelse {
-          position: absolute;
-          right: 0;
-          top: -12rem;
           width: fit-content;
         
           .snakkeboble {
             background-color: var(--a-surface-success-subtle);
             color: var(--a-green-700);
-            max-width: 18rem;
-            font-size: 1.2rem;
-            padding: 2rem;
+            max-width: 14rem;
+            font-size: 1rem;
+            padding: 1rem;
             border-radius: 1rem;
             position: relative;
         
@@ -43,27 +47,38 @@
               margin-bottom: -25px;
             }
           }
-
+    
           .mobilikon {
             position: relative;
-            top: -2.5rem;
-            left: -0.5rem;
+            top: -1.5rem;
+            left: -1.3rem;
           }
         }
       }
+  
+
+      .startsideToppInnhold {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: var(--a-bg-subtle);
+        z-index: 10;
+        padding: 1rem;
+        
+        .velkommenHeader {
+          text-align: center;
+        }
       
-      .velkommenHeader {
-        text-align: center;
-      }
-    
-      .startKnapp {
-        align-self: center;
-        margin-top: 2rem;
+        .startKnapp {
+          align-self: center;
+          margin-top: 2rem;
+        }
       }
     
       .boksBeskrivelse {
         color: var(--a-blue-800);
-        margin-top: 10rem;
+        margin-top: 2rem;
         margin-bottom: 2rem;
         font-size: 1.5rem;
       }

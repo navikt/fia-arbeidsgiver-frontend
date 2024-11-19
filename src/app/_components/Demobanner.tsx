@@ -5,7 +5,7 @@ export default function Demobanner() {
 		return (
 			<div style={{
 				width: '100%',
-				height: '2.5rem',
+				minHeight: '2.5rem',
 				backgroundColor: "var(--a-red-800)",
 				display: 'flex',
 				justifyContent: 'center',
@@ -13,6 +13,7 @@ export default function Demobanner() {
 			}}>
 				<div style={{
 					color: '#ffffff',
+					textAlign: 'center',
 				}}><b style={{ fontSize: "1.5rem", marginRight: "0.25rem" }}>Demoutgave:</b> Dette er en demoside for å teste ut ny funksjonalitet. Den skal ikke brukes med ekte virksomheter.</div>
 			</div>
 		);
