@@ -1,7 +1,13 @@
 "use client";
 
-export default function Demobanner() {
-	if (window.location.hostname.includes("localhost") || window.location.hostname.includes("dev.nav.no")) {
+import { HydrationSafeClientsideComponent } from "./HydrationSafeClientsideComponent";
+
+export default function HydrationSafeDemoBanner() {
+	return <HydrationSafeClientsideComponent><Demobanner /></HydrationSafeClientsideComponent>;
+}
+
+function Demobanner() {
+	if (window?.location?.hostname?.includes("localhost") || window?.location?.hostname?.includes("dev.nav.no")) {
 		return (
 			<div style={{
 				width: '100%',
