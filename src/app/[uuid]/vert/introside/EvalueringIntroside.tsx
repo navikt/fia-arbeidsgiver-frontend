@@ -53,7 +53,7 @@ export function EvalueringIntroside({ params, plan }: { params: { uuid: string }
 							className={introsideStyles.startsideboks}
 						>
 							{
-								plan.temaer.map((tema) => (
+								plan.temaer.map((tema) => tema.inkludert ? (
 									<>
 										<Heading
 											level="2"
@@ -65,7 +65,7 @@ export function EvalueringIntroside({ params, plan }: { params: { uuid: string }
 										<PlanGraf undertemaer={tema.undertemaer} />
 										<br />
 									</>
-								))
+								) : null)
 							}
 						</Box>
 
