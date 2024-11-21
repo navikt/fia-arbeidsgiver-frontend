@@ -421,6 +421,7 @@ describe("deltaker/Spørsmålsside", () => {
   });
 
   test("Viser 'venter på vert' dersom vi ikke har spørsmål, men loading", () => {
+    window.localStorage.setItem("sisteTema", JSON.stringify("Partssamarbeid"));
     jest.mocked(useDeltakerSpørsmål).mockReturnValue({
       data: undefined,
       isLoading: true,
@@ -439,7 +440,7 @@ describe("deltaker/Spørsmålsside", () => {
       />,
     );
 
-    expect(screen.getByText("Vennligst vent...")).toBeInTheDocument();
+    expect(screen.getByText("Takk!")).toBeInTheDocument();
   });
 
   test("Viser checkbokser for flervalgsspørsmål", async () => {
