@@ -8,6 +8,18 @@
   text-align: center;
 }
 
+.blåVenterundertittel {
+  color: var(--a-blue-700);
+}
+
+.grønnVenterundertittel {
+  color: var(--a-green-800);
+}
+
+.gulVenterundertittel {
+  color: var(--a-orange-900);
+}
+
 .venterTimeglass {
   animation: bounce 3s linear infinite;
   color: var(--a-blue-500);
@@ -33,7 +45,18 @@
 
 .innholdboks {
   background: var(--a-blue-50);
+  color: var(--a-text-default);
   margin-top: 1rem;
+
+  &.blå {
+    background: var(--a-blue-50);
+  }
+  &.grønn {
+    background: var(--a-green-100);
+  }
+  &.gul {
+    background: var(--a-orange-100);
+  }
 }
 
 .normaltekst {
@@ -76,4 +99,19 @@
 
 .knappeStack {
   margin-top: 1rem;
+}
+
+.blåBoks {
+  background: var(--a-blue-50);
+  color: var(--a-blue-700);
+}
+
+.grønnBoks {
+  background: var(--a-green-100);
+  color: var(--a-green-800);
+}
+
+.gulBoks {
+  background: var(--a-orange-100);
+  color: var(--a-orange-900);
 }

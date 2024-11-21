@@ -19,6 +19,16 @@
 
 .ferdig {
   background-color: var(--a-blue-700);
+
+  &.blå {
+    background-color: var(--a-blue-700);
+  }
+  &.grønn {
+    background-color: var(--a-green-700);
+  }
+  &.gul {
+    background-color: var(--a-orange-700);
+  }
 }
 
 .visuallyHidden {

@@ -22,6 +22,7 @@ export function SpørsmålHeadingDeltaker({
         <Framdrift
           spørsmålnummer={deltakerSpørsmål.spørsmålnummer}
           totaltAntallSpørsmål={deltakerSpørsmål.antallSpørsmål}
+          temanavn={deltakerSpørsmål.temanavn}
         />
       </VStack>
     )

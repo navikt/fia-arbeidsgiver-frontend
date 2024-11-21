@@ -97,7 +97,7 @@ export default function Spørsmålsseksjon({
       <Box
         borderRadius="xlarge"
         padding="5"
-        className={spørsmålStyles.innholdboks}
+        className={`${spørsmålBoksFargeClassname(deltakerSpørsmål.temanavn)} ${spørsmålStyles.innholdboks} `}
       >
         {deltakerSpørsmål.spørsmål.flervalg ? (
           <CheckboxGroup
@@ -167,6 +167,19 @@ export default function Spørsmålsseksjon({
     </>
   );
 }
+
+function spørsmålBoksFargeClassname(temanavn: string) {
+  switch (temanavn) {
+    case "Partssamarbeid":
+      return spørsmålStyles.blå;
+    case "Sykefraværsarbeid":
+      return spørsmålStyles.grønn;
+    case "Arbeidsmiljø":
+      return spørsmålStyles.gul;
+    default:
+      return "";
+  }
+};
 
 function SvarKnappTekst({
   erPåLagretSvar,

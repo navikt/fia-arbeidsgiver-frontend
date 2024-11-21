@@ -10,12 +10,12 @@ import CookieHandler from "@/utils/CookieHandler";
 import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 import { harGyldigSesjonsID } from "@/utils/harGyldigSesjonsID";
 import { SvaralternativDto } from "@/app/_types/SvaralternativDto";
-//@ts-ignore
 import {
   arbeidsmiljøDeltaker2,
   partssamarbeidDeltaker1,
   partssamarbeidDeltaker2,
   partssamarbeidDeltaker4,
+  //@ts-ignore
 } from "@/utils/dummydata";
 
 const testSpørreundersøkelseId: string = "85ed4b72-d93c-443e-8bb1-101e9e64b667";
