@@ -23,27 +23,6 @@ export function EvalueringIntroside({ params, plan }: { params: { uuid: string }
 				<VelkommenVirksomhet type="Evaluering">
 					<KomIGangKnapp spørreundersøkelseId={params.uuid} />
 				</VelkommenVirksomhet>
-				<Box
-					borderRadius="xlarge"
-					padding="10"
-					background="bg-default"
-					className={`${introsideStyles.startsideboks} ${introsideStyles.startsidegrid}`}
-				>
-					<VStack className={introsideStyles.gridCenter}>
-						<Heading
-							level="2"
-							size="small"
-							className={introsideStyles.subheading}
-						>
-							Evaluering for IA-samarbeidet
-						</Heading>
-						<List as="ul">
-							<ListItem>
-								Målet for møtet er å ....
-							</ListItem>
-						</List>
-					</VStack>
-				</Box>
 				<Planvisning plan={plan} />
 				<Box
 					borderRadius="xlarge"
