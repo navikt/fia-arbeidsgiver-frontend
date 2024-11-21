@@ -2,9 +2,14 @@ import { planStatusType, planUndertemaType } from "@/app/_types/Plantyper";
 import { Timeline } from "@navikt/ds-react";
 import React from "react";
 
+import planGrafStyles from "./plangraf.module.css";
+
 export type PølsegrafProps = {
 	undertemaer: planUndertemaType[];
 	hidePin?: boolean;
+	start?: Date;
+	slutt?: Date;
+	harEksterntGrid?: boolean;
 };
 
 const iDag = new Date();
@@ -28,7 +33,7 @@ export default function PlanGraf(props: PølsegrafProps) {
 	);
 
 	const { earliestStart, latestSlutt } = React.useMemo(() => {
-		const undertemaStartOgSlutt = undertemaer.reduce(
+		const undertemaStartOgSlutt = (props.start && props.slutt) ? ({ earliestStart: props.start, latestSlutt: props.slutt }) : undertemaer.reduce(
 			(acc, pølse) => {
 				const start = new Date(pølse.start);
 				const slutt = new Date(pølse.slutt);
@@ -67,14 +72,14 @@ export default function PlanGraf(props: PølsegrafProps) {
 					? ukeEtterStart
 					: dagEtterStart,
 		};
-	}, [undertemaer]);
+	}, [undertemaer, props.slutt, props.start]);
 
 	if (undertemaer.length === 0) {
 		return null;
 	}
 	return (
 		<>
-			<Timeline startDate={earliestStart} endDate={latestSlutt}>
+			<Timeline startDate={earliestStart} endDate={latestSlutt} className={`${planGrafStyles.planGraf} ${props.harEksterntGrid ? planGrafStyles.planGrafMedEksternGrid : ""}`}>
 				{props.hidePin ||
 					iDag < earliestStart ||
 					iDag > latestSlutt ? undefined : (
@@ -88,6 +93,7 @@ export default function PlanGraf(props: PølsegrafProps) {
 						<Timeline.Row
 							label={undertema.navn}
 							key={undertema.navn}
+							className={planGrafStyles.planGrafRad}
 						>
 							<Timeline.Period
 								start={new Date(undertema.start)}
@@ -96,6 +102,7 @@ export default function PlanGraf(props: PølsegrafProps) {
 									undertema.status,
 								)}
 								statusLabel={`${undertema.navn}: ${undertema.status}:`}
+								className={planGrafStyles.pølse}
 							/>
 						</Timeline.Row>
 					))}

@@ -1,0 +1,13 @@
+
+.planGraf.planGrafMedEksternGrid {
+	display: contents;
+
+	& :global(.navds-timeline) {
+		display: contents;
+
+		& :global(.navds-timeline__row-label) {
+			white-space: unset;
+			hyphens: auto;
+		}
+	}
+}
