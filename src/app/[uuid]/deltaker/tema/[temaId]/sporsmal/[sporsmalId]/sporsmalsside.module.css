@@ -47,15 +47,27 @@
   background: var(--a-blue-50);
   color: var(--a-text-default);
   margin-top: 1rem;
+  .grupperingstittel {
+    margin-bottom: 1rem;
+  }
 
   &.blå {
     background: var(--a-blue-50);
+    .grupperingstittel {
+      color: var(--a-blue-700);
+    }
   }
   &.grønn {
     background: var(--a-green-100);
+    .grupperingstittel {
+      color: var(--a-green-800);
+    }
   }
   &.gul {
     background: var(--a-orange-100);
+    .grupperingstittel {
+      color: var(--a-orange-900);
+    }
   }
 }
 

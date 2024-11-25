@@ -4,6 +4,7 @@ const spørreundersøkelseId = "e2f863df-309e-4314-9c7e-c584237fd90a";
 const partssamarbeid1 = {
   id: "018f4e25-6a40-79c6-bb29-68de8b575cd1",
   tekst: "Vi planlegger og gjennomfører jevnlige møter i partssamarbeidet",
+  gruppering: "Gruppe A",
   flervalg: false,
   svaralternativer: [
     {
@@ -35,6 +36,7 @@ const partssamarbeid1 = {
 const partssamarbeid2 = {
   id: "018f4e25-6a40-713f-b769-267afa134896",
   tekst: "Hvilke temaer vektlegges mest i møtene?",
+  gruppering: "Gruppe A",
   flervalg: true,
   svaralternativer: [
     {
@@ -74,6 +76,7 @@ const partssamarbeid2 = {
 const partssamarbeid3 = {
   id: "018f4e25-6a40-7c73-8183-cc574b92b2be",
   tekst: "Hvordan opplever du at partssamarbeidet fungerer?",
+  gruppering: "Gruppe B",
   flervalg: false,
   svaralternativer: [
     {
@@ -106,6 +109,7 @@ const partssamarbeid4 = {
   id: "018f4e25-6a40-78d9-9ad6-775fec6a102f",
   tekst:
     "Som leder, tillitsvalgt eller verneombud jobber jeg for et godt samarbeid på arbeidsplassen",
+  gruppering: "Gruppe C",
   flervalg: false,
   svaralternativer: [
     {
@@ -137,6 +141,7 @@ const partssamarbeid4 = {
 const sykefraværsarbeid1 = {
   id: "018f4e5d-c06d-775f-8304-8afa7bf193d1",
   tekst: "Vi jobber systematisk for å forebygge sykefravær",
+  gruppering: "Gruppe D",
   flervalg: false,
   svaralternativer: [
     {
@@ -168,6 +173,7 @@ const sykefraværsarbeid1 = {
 const sykefraværsarbeid2 = {
   id: "018f4e5e-18b2-7bf9-a714-ea5554f213d7",
   tekst: "Vi har sykefraværsrutiner som er kjent for alle og blir brukt",
+  gruppering: "Gruppe D",
   flervalg: false,
   svaralternativer: [
     {
@@ -200,6 +206,7 @@ const sykefraværsarbeid3 = {
   id: "018f4e5e-51bb-7a64-9bca-452ab06ae313",
   tekst:
     "Ansatte kjenner til egne plikter og rettigheter når de er sykmeldt eller står i fare for å bli det",
+  gruppering: "Gruppe E",
   flervalg: false,
   svaralternativer: [
     {
@@ -232,6 +239,7 @@ const sykefraværsarbeid4 = {
   id: "018f4e5e-6b80-7332-8491-359b2985d8a0",
   tekst:
     "Jeg opplever at ledere er trygge på å følge opp ansatte som er sykmeldt eller står i fare for å bli det",
+  gruppering: "Gruppe E",
   flervalg: false,
   svaralternativer: [
     {
@@ -264,6 +272,7 @@ const sykefraværsarbeid5 = {
   id: "018f4e5e-84bf-7123-adb2-f80af15c954f",
   tekst:
     "Vi har skriftlig oversikt over tilretteleggingsmuligheter for ansatte",
+  gruppering: "Gruppe E",
   flervalg: false,
   svaralternativer: [
     {
@@ -292,6 +301,7 @@ const sykefraværsarbeid5 = {
 const sykefraværsarbeid6 = {
   id: "018f4e5e-9ce6-74c6-9e9d-c6a9b49075b9",
   tekst: "Tilretteleggingstiltak er midlertidig og avsluttes til avtalt tid ",
+  gruppering: "Gruppe F",
   flervalg: false,
   svaralternativer: [
     {
@@ -324,6 +334,7 @@ const sykefraværsarbeid7 = {
   id: "018f4e5e-b178-7d83-aa0b-ddb52cade105",
   tekst:
     "Jeg har inntrykk av at vi har mange vanskelige enkeltsaker som handler om sykefravær",
+  gruppering: "Gruppe F",
   flervalg: false,
   svaralternativer: [
     {
@@ -356,6 +367,7 @@ const arbeidsmiljø1 = {
   id: "018f4e7b-5689-7ff7-884f-2635a51009ef",
   tekst:
     "Vi er kjent med hva som er de vanlige risikofaktorene for vår bransje",
+  gruppering: "Gruppe G",
   flervalg: false,
   svaralternativer: [
     {
@@ -387,6 +399,7 @@ const arbeidsmiljø1 = {
 const arbeidsmiljø2 = {
   id: "018f4e7b-5689-7595-932f-06a4ee599efc",
   tekst: "Vi jobber systematisk med tiltak for å forbedre arbeidsmiljøet",
+  gruppering: "Gruppe G",
   flervalg: false,
   svaralternativer: [
     {

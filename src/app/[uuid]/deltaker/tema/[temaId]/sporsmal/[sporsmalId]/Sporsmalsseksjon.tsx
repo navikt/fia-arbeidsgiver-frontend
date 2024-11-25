@@ -3,6 +3,7 @@
 import React from "react";
 import spørsmålStyles from "./sporsmalsside.module.css";
 import {
+  BodyShort,
   Box,
   Button,
   Checkbox,
@@ -99,6 +100,7 @@ export default function Spørsmålsseksjon({
         padding="5"
         className={`${spørsmålBoksFargeClassname(deltakerSpørsmål.temanavn)} ${spørsmålStyles.innholdboks} `}
       >
+        <Grupperingstittel tittel={deltakerSpørsmål.spørsmål.gruppering} />
         {deltakerSpørsmål.spørsmål.flervalg ? (
           <CheckboxGroup
             onChange={velgSvar}
@@ -165,6 +167,16 @@ export default function Spørsmålsseksjon({
         </Button>
       </HStack>
     </>
+  );
+}
+
+function Grupperingstittel({ tittel }: { tittel?: string }) {
+  if (tittel === "" || tittel === undefined) {
+    return null;
+  }
+
+  return (
+    <BodyShort size="small" className={spørsmålStyles.grupperingstittel}>{tittel}</BodyShort>
   );
 }
 

@@ -4,5 +4,6 @@ export type SpørsmålDto = {
   id: string;
   tekst: string;
   flervalg: boolean;
+  gruppering?: string;
   svaralternativer: SvaralternativDto[];
 };
