@@ -9,7 +9,7 @@ export function FerdigInnhold() {
   React.useEffect(() => {
     CookieHandler.setHarSvartAlleSpørsmål();
   });
-  const [sisteTema] = useLocalStorage<string>("sisteTema");
+  const { storedValue: sisteTema } = useLocalStorage<string>("sisteTema");
 
   return <Lastevisning sisteTema={sisteTema} />;
 }

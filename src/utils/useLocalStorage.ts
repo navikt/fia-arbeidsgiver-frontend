@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function useLocalStorage<T>(key: string, initialValue?: T): [T | undefined, (value: T) => void] {
+export default function useLocalStorage<T>(key: string, initialValue?: T): {storedValue: T | undefined, setValue: (value: T) => void, clearValue: () => void} {
   const [storedValue, setStoredValue] = React.useState<T | undefined>(initialValue);
 
   React.useEffect(() => {
@@ -15,5 +15,7 @@ export default function useLocalStorage<T>(key: string, initialValue?: T): [T | 
 	window.localStorage.setItem(key, JSON.stringify(value));
   }
 
-  return [storedValue, setValue];
+  const clearValue = () => window.localStorage.removeItem(key);
+
+  return {storedValue, setValue, clearValue};
 };

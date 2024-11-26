@@ -22,7 +22,7 @@ export default function SpørsmålBody({
   spørsmålId: string;
   temaId: number;
 }) {
-  const [sisteTema, setSisteTema] = useLocalStorage<string>("sisteTema");
+  const { storedValue: sisteTema, setValue: setSisteTema } = useLocalStorage<string>("sisteTema");
   const router = useRouter();
   const {
     data: deltakerSpørsmål,

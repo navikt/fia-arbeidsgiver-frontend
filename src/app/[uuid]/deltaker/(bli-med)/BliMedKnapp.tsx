@@ -7,6 +7,7 @@ import startsideStyles from "./startside.module.css";
 import { fetchBliMed } from "@/app/_api_hooks/deltaker/fetchBliMed";
 import { fetchIdentifiserbartSpørsmål } from "@/app/_api_hooks/deltaker/fetchIdentifiserbartSpørsmål";
 import { PersonGroupIcon } from "@navikt/aksel-icons";
+import useLocalStorage from "@/utils/useLocalStorage";
 
 export default function BliMedKnapp({
   spørreundersøkelseId,
@@ -15,6 +16,7 @@ export default function BliMedKnapp({
 }) {
   const router = useRouter();
   const [error, setError] = React.useState<string | null>(null);
+  const { clearValue: clearSisteTema } = useLocalStorage<string>("sisteTema");
   return (
     <>
       <Button
@@ -24,6 +26,7 @@ export default function BliMedKnapp({
               return fetchIdentifiserbartSpørsmål(spørreundersøkelseId);
             })
             .then(({ spørsmålId, temaId }) => {
+              clearSisteTema();
               router.push(`deltaker/tema/${temaId}/sporsmal/${spørsmålId}`);
             })
             .catch((error) => {
