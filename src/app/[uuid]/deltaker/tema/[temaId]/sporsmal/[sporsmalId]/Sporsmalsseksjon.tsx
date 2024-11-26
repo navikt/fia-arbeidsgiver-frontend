@@ -11,6 +11,8 @@ import {
   HStack,
   Radio,
   RadioGroup,
+  Skeleton,
+  VStack,
 } from "@navikt/ds-react";
 import { useRouter } from "next/navigation";
 import { sendSvar } from "@/app/_api_hooks/deltaker/sendSvar";
@@ -167,6 +169,40 @@ export default function Spørsmålsseksjon({
         </Button>
       </HStack>
     </>
+  );
+}
+
+export function SpørsmålsseksjonSkeleton({ sisteTema }: { sisteTema?: string }) {
+  return (
+    <>
+      <Box
+        borderRadius="xlarge"
+        padding="5"
+        className={`${spørsmålBoksFargeClassname(sisteTema || "")} ${spørsmålStyles.innholdboks} `}
+      >
+        <BodyShort size="small" as={Skeleton}>Undertema</BodyShort>{/* Kategoritittel */}
+        <VStack gap="3">{/* CheckboxGroup */}
+          <Skeleton width="100%" height="5rem" />{/* Spørsmålstekst */}
+          <CheckboxSkeleton width="6rem" />
+          <CheckboxSkeleton width="5.5rem" />
+          <CheckboxSkeleton width="6.25rem" />
+          <CheckboxSkeleton width="6.5rem" />
+          <CheckboxSkeleton width="5rem" />
+        </VStack>
+      </Box>
+      <HStack justify={"end"} gap={"2"} className={spørsmålStyles.knappeStack}>
+        <Skeleton variant="rounded" height="3rem" width="7.5rem" />{/* Knapp */}
+      </HStack>
+    </>
+  );
+}
+
+function CheckboxSkeleton({ width = "12rem" }: { width?: string }) {
+  return (
+    <HStack align="center" gap="3">
+      <Skeleton variant="circle" width="1.5rem" height="1.5rem" />
+      <Skeleton width={width} height="2rem" />
+    </HStack>
   );
 }
 

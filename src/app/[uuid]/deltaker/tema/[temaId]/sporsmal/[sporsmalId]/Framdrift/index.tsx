@@ -43,6 +43,6 @@ function fremdriftFargeClassname(temanavn: string, erAktivt: boolean) {
     case "Arbeidsmiljø":
       return `${framdriftStyles.ferdig} ${framdriftStyles.gul}`;
     default:
-      return "";
+      return framdriftStyles.tom;
   }
 };
