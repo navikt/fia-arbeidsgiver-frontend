@@ -4,7 +4,7 @@ import React from "react";
 
 import Spørsmålsseksjon, { SpørsmålsseksjonSkeleton } from "./Sporsmalsseksjon";
 import { SpørsmålHeadingDeltaker } from "./SpørsmålHeadingDeltaker";
-import { Alert, Box, Heading, Skeleton, VStack } from "@navikt/ds-react";
+import { Alert, Heading, Skeleton, VStack } from "@navikt/ds-react";
 import spørsmålStyles from "./sporsmalsside.module.css";
 import { useDeltakerSpørsmål } from "@/app/_api_hooks/deltaker/useDeltakerSpørsmål";
 import kartleggingStyles from "@/app/kartlegging.module.css";
