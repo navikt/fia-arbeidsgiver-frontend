@@ -80,7 +80,9 @@ function Venteskjerm(
 			{
 				erSiste ? (
 					<BodyShort className={`${spørsmålStyles.venterundertittel} ${undertittelClassName}`}>
-						Takk for din deltakelse, du kan nå lukke denne siden.
+						Takk for din deltakelse,
+						<br />
+						du kan nå lukke denne siden.
 					</BodyShort>
 				) : (
 					<>

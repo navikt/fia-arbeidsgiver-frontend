@@ -1,3 +1,6 @@
-.sidetekst {
-  margin-bottom: 1rem;
+.sideinnhold {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

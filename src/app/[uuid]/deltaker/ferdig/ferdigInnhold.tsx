@@ -1,23 +1,15 @@
 "use client";
 
-import { BodyShort } from "@navikt/ds-react";
 import React from "react";
 import CookieHandler from "@/utils/CookieHandler";
-import ferdigsideStyles from "./ferdigside.module.css";
+import useLocalStorage from "@/utils/useLocalStorage";
+import Lastevisning from "../tema/[temaId]/sporsmal/[sporsmalId]/Lastevisning";
 
 export function FerdigInnhold() {
   React.useEffect(() => {
     CookieHandler.setHarSvartAlleSpørsmål();
   });
+  const [sisteTema] = useLocalStorage<string>("sisteTema");
 
-  return (
-    <>
-      <BodyShort align="center" className={ferdigsideStyles.sidetekst}>
-        Takk for din deltakelse 🎉
-      </BodyShort>
-      <BodyShort align="center" className={ferdigsideStyles.sidetekst}>
-        Du kan nå lukke denne siden.
-      </BodyShort>
-    </>
-  );
+  return <Lastevisning sisteTema={sisteTema} />;
 }
