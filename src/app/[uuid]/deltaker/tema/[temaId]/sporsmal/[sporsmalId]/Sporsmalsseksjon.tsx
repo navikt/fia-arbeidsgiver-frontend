@@ -100,7 +100,7 @@ export default function Spørsmålsseksjon({
         padding="5"
         className={`${spørsmålBoksFargeClassname(deltakerSpørsmål.temanavn)} ${spørsmålStyles.innholdboks} `}
       >
-        <Grupperingstittel tittel={deltakerSpørsmål.spørsmål.gruppering} />
+        <Kategoritittel tittel={deltakerSpørsmål.spørsmål.kategori} />
         {deltakerSpørsmål.spørsmål.flervalg ? (
           <CheckboxGroup
             onChange={velgSvar}
@@ -170,13 +170,13 @@ export default function Spørsmålsseksjon({
   );
 }
 
-function Grupperingstittel({ tittel }: { tittel?: string }) {
+function Kategoritittel({ tittel }: { tittel?: string }) {
   if (tittel === "" || tittel === undefined) {
     return null;
   }
 
   return (
-    <BodyShort size="small" className={spørsmålStyles.grupperingstittel}>{tittel}</BodyShort>
+    <BodyShort size="small" className={spørsmålStyles.kategoritittel}>{tittel}</BodyShort>
   );
 }
 

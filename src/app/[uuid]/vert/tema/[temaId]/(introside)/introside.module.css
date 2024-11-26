@@ -40,3 +40,17 @@
   margin-right: 1rem;
   margin-left: 1rem;
 }
+
+.kategoriHeader {
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  &:not(:first-child) {
+    margin-top: 2rem;
+  }
+
+  .kategoriTittel {
+    margin-bottom: 0.5rem;
+  }
+}

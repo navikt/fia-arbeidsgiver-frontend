@@ -3,6 +3,7 @@
 import {
   Accordion,
   Alert,
+  BodyShort,
   Box,
   Button,
   Checkbox,
@@ -183,23 +184,100 @@ function SvarRenderer({ tema }: { tema: TemaDto }) {
     }
   }, []);
 
+
+  const erGruppert = tema.spørsmål.some((spørsmål) => spørsmål.kategori);
+
+  return (
+    <Box
+      borderRadius="xlarge"
+      padding="12"
+      background="surface-default"
+      className={introsideStyles.spørsmålsseksjon}
+      ref={boxRef}
+    >
+      {erGruppert ? <GruppertSpørsmålRenderer tema={tema} /> : <UgruppertSpørsmålRenderer tema={tema} />}
+    </Box>
+  );
+}
+
+function UgruppertSpørsmålRenderer({ tema }: { tema: TemaDto }) {
+  const boxRef = React.useRef<HTMLDivElement>(null);
+  React.useEffect(() => {
+    if (boxRef !== null) {
+      boxRef?.current?.scrollIntoView({
+        block: 'end',
+        inline: 'center',
+      });
+    }
+  }, []);
+
+  return (
+    <Accordion>
+      {tema.spørsmål.map((spørsmål, index) => (
+        <SpørsmålAccordion key={index} spørsmål={spørsmål} index={index} />
+      ))}
+    </Accordion>
+  );
+}
+
+function GruppertSpørsmålRenderer({ tema }: { tema: TemaDto }) {
+  const grupperteSpørsmål = tema.spørsmål.reduce((acc, spørsmål) => {
+    if (spørsmål.kategori) {
+      acc[spørsmål.kategori] = acc[spørsmål.kategori] || [];
+      acc[spørsmål.kategori].push(spørsmål);
+    } else {
+      acc["Uten gruppe"] = acc["Uten gruppe"] || [];
+      acc["Uten gruppe"].push(spørsmål);
+    }
+    return acc;
+  }, {} as { [key: string]: SpørsmålDto[] });
+
   return (
     <>
-      <Box
-        borderRadius="xlarge"
-        padding="12"
-        background="surface-default"
-        className={introsideStyles.spørsmålsseksjon}
-        ref={boxRef}
-      >
-        <Accordion>
-          {tema.spørsmål.map((spørsmål, index) => (
-            <SpørsmålAccordion key={index} spørsmål={spørsmål} index={index} />
-          ))}
-        </Accordion>
-      </Box>
+      {Object.entries(grupperteSpørsmål).map(([kategori, spørsmål]) => (
+        <React.Fragment key={kategori}>
+          <Kategori tittel={kategori} />
+          <UgruppertSpørsmålRenderer tema={{ ...tema, spørsmål: spørsmål }} />
+        </React.Fragment>
+      ))}
     </>
   );
+}
+
+const KATEGORI_BESKRIVELSER: { [key: string]: string } = {
+  //Arbeidsmiljø
+  "Utvikle arbeidsmiljøet": "Mål: Øke anvendelse og kompetanse innen verktøy og bransjerettet kunnskap for å jobbe målrettet og kunnskapsbasert med eget arbeidsmiljø.",
+  "Endring og omstilling": "Mål: Øke kunnskap om hvordan ivareta arbeidsmiljø og forebygge sykefravær under endring og omstilling.",
+  "Oppfølging av arbeidsmiljøundersøkelser": "Mål: Øke ferdigheter og gi støtte til hvordan man kan jobbe med forhold på arbeidsplassen som belyses i egne arbeidsmiljøundersøkelser.",
+  "Livsfaseorientert personalpolitikk": "Mål: Utvikle kultur og personalpolitikk som ivaretar medarbeideres ulike behov, krav, begrensninger og muligheter i ulike livsfaser.",
+  "Psykisk helse": "Mål: Gi innsikt i hvordan psykiske utfordringer kan komme til uttrykk i arbeidshverdagen og øke ferdigheter for hvordan man møter medarbeidere med psykiske helseutfordringer.",
+  "HelseIArbeid": "Mål: Øke kompetansen og få ansatte til å mestre jobb, selv med muskel/skjelett- og psykiske helseplager.",
+  //Sykefraværsarbeid
+  "Sykefraværsrutiner": "Mål: Jobbe systematisk og forebyggende med sykefravær, samt forbedre rutiner og oppfølging av ansatte som er sykmeldte eller står i fare for å bli det.",
+  "Oppfølgingssamtaler": "Mål:  Øke kompetanse og ferdigheter for hvordan man gjennomfører gode oppfølgingssamtaler, både gjennom teori og praksis.",
+  "Tilretteleggings- og medvirkningsplikt": "Mål: Utvikle rutiner og kultur for tilrettelegging og medvirkning, samt kartlegging av tilretteleggingsmuligheter på arbeidsplassen.",
+  "Sykefravær - enkeltsaker": "Mål: Øke kompetanse og ferdigheter for hvordan man tar tak i, følger opp og løser enkeltsaker.",
+  //Partssamarbeid
+  "Utvikle partssamarbeidet": "Mål: Styrke og strukturere samarbeidet mellom leder, tillitsvalgt og verneombud, samt øke kunnskap og ferdigheter for å jobbe systematisk og forebyggende med sykefravær og arbeidsmiljø.",
+}
+
+function Kategori({ tittel }: { tittel: string }) {
+  if (KATEGORI_BESKRIVELSER[tittel]) {
+    return (
+      <div className={introsideStyles.kategoriHeader}>
+        <Heading level="4" size="xsmall" className={introsideStyles.kategoriTittel}>{tittel}</Heading>
+        <BodyShort size="small">
+          {KATEGORI_BESKRIVELSER[tittel]}
+        </BodyShort>
+      </div>
+    );
+  }
+
+  if (tittel === "Uten gruppe") {
+    return null;
+  }
+
+  return <Heading level="4" size="xsmall">{tittel}</Heading>;
 }
 
 function SpørsmålAccordion({
