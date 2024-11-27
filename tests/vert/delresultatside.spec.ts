@@ -23,7 +23,7 @@ async function gåTilResultater(page: Page) {
     .getByRole("button", { name: "Fullfør", exact: true })
     .click({ timeout: 10000 });
 
-  await expect(page.locator("body")).toContainText("flere valg er mulig");
+  await expect(page.locator("body")).toContainText("Hvordan opplever du at partssamarbeidet har utviklet seg i løpet av samarbeidsperioden?");
 }
 
 test.describe("Vert/delresultatside", () => {
@@ -67,7 +67,6 @@ test.describe("Vert/delresultatside", () => {
       },
     );
 
-    await page.reload();
     // TODO: Fjern denne når vi får fikset at beckend sender error første gang
     await expect(
       page.getByText("Kunne ikke laste resultater for tema"),
