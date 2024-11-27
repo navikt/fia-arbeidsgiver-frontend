@@ -31,7 +31,6 @@ export function BehovsvurderingIntroside({ params }: { params: { uuid: string } 
 						<Heading
 							level="2"
 							size="small"
-							className={introsideStyles.subheading}
 						>
 							Hva er målet?
 						</Heading>
@@ -46,7 +45,6 @@ export function BehovsvurderingIntroside({ params }: { params: { uuid: string } 
 						<Heading
 							level="2"
 							size="small"
-							className={introsideStyles.subheading}
 							style={{ marginTop: "1.5rem" }}
 						>
 							Hvordan gjennomfører vi behovsvurderingen?
@@ -71,7 +69,6 @@ export function BehovsvurderingIntroside({ params }: { params: { uuid: string } 
 						<Heading
 							level="2"
 							size="small"
-							className={introsideStyles.subheading}
 						>
 							Hva skjer med resultatene?
 						</Heading>

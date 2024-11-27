@@ -22,7 +22,7 @@ export default function StartsideInnhold({ params }: { params: { uuid: string } 
 		);
 	}
 	if (spørreundersøkelseInfo.data?.type === "Evaluering") {
-		return <EvalueringIntroside params={params} plan={spørreundersøkelseInfo.data.plan} />;
+		return <EvalueringIntroside params={params} />;
 	}
 
 	if (spørreundersøkelseInfo.data?.type === "Behovsvurdering") {
