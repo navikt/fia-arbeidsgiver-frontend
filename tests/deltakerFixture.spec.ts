@@ -3,6 +3,6 @@ import { expect } from "@playwright/test";
 
 test("deltakerTest", async ({ page }) => {
   await expect(page.locator("legend")).toContainText(
-    "Vi planlegger og gjennomfører jevnlige møter i partssamarbeidet",
+    "Hvordan opplever du at partssamarbeidet har utviklet seg i løpet av samarbeidsperioden?",
   );
 });

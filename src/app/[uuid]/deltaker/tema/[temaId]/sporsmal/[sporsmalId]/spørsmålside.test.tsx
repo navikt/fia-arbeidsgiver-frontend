@@ -11,10 +11,10 @@ import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 import { harGyldigSesjonsID } from "@/utils/harGyldigSesjonsID";
 import { SvaralternativDto } from "@/app/_types/SvaralternativDto";
 import {
-  arbeidsmiljøDeltaker2,
+  arbeidsmiljøDeltaker16,
   partssamarbeidDeltaker1,
   partssamarbeidDeltaker2,
-  partssamarbeidDeltaker4,
+  partssamarbeidDeltaker5,
   //@ts-ignore
 } from "@/utils/dummydata";
 
@@ -25,8 +25,8 @@ const førsteSpørsmålPartssamarbeid: DeltakerSpørsmålDto =
   partssamarbeidDeltaker1;
 
 const sisteSpørsmålPartssamarbeid: DeltakerSpørsmålDto =
-  partssamarbeidDeltaker4;
-const sisteSpørsmålArbeidsmiljø: DeltakerSpørsmålDto = arbeidsmiljøDeltaker2;
+  partssamarbeidDeltaker5;
+const sisteSpørsmålArbeidsmiljø: DeltakerSpørsmålDto = arbeidsmiljøDeltaker16;
 
 const flervalgSpørsmålPartssamarbeid: DeltakerSpørsmålDto =
   partssamarbeidDeltaker2;

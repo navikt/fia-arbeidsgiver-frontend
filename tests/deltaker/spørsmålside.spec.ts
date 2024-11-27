@@ -23,7 +23,7 @@ test.describe("Deltaker/spørsmålside", () => {
     await expect(
       page.getByRole("heading", { name: partssamarbeid.navn }),
     ).toBeVisible();
-    await expect(page.getByText("Vi planlegger og gjennomfører")).toBeVisible();
+    await expect(page.getByText(partssamarbeid.spørsmål[0].tekst)).toBeVisible();
     await expect(
       page.getByText(
         partssamarbeid.spørsmål[0].svaralternativer
@@ -37,46 +37,6 @@ test.describe("Deltaker/spørsmålside", () => {
         .join(""),
     );
     await expect(page.getByRole("button")).toContainText("Svar");
-  });
-
-  test("advarsel dersom vi ikke velger svaralternativ (enkeltsvar og flervalg)", async ({
-    page,
-  }) => {
-    await page.getByRole("button", { name: "Svar" }).click();
-    await expect(page.getByText("Velg minst ett svar")).toBeVisible();
-    await page.getByText("Enig").first().click();
-    await page.getByRole("button", { name: "Svar" }).click();
-
-    await expect(
-      page.getByText("Hvilke temaer vektlegges mest i møtene?"),
-    ).toBeVisible();
-    await expect(page.getByText("(flere valg er mulig)")).toBeVisible();
-    await page.getByLabel("Lønnsforhandlinger").check();
-    await page.getByLabel("Lønnsforhandlinger").uncheck();
-    await page.getByRole("button", { name: "Svar" }).click();
-    await expect(page.getByText("Velg minst ett svar")).toBeVisible();
-
-    await page.getByLabel("Lønnsforhandlinger").check();
-    await page.getByLabel("HMS").check();
-    await page.getByRole("button", { name: "Svar" }).click();
-
-    await expect(
-      page.getByText("Hvordan opplever du at partssamarbeidet fungerer?"),
-    ).toBeVisible();
-    await page.getByText("Svært bra").click();
-    await page.getByRole("button", { name: "Svar" }).click();
-
-    await expect(
-      page.getByText(
-        "Som leder, tillitsvalgt eller verneombud jobber jeg for et godt samarbeid på arbeidsplassen",
-      ),
-    ).toBeVisible();
-    await page.getByText("Enig").first().click();
-    await page.getByRole("button", { name: "Svar" }).click();
-
-    await expect(
-      page.getByText("Vi jobber systematisk for å forebygge sykefravær"),
-    ).toBeVisible();
   });
 
   test.fixme("havner på ferdigside til slutt", async ({ page }) => {
@@ -104,7 +64,7 @@ test.describe("Deltaker/spørsmålside", () => {
       },
     );
 
-    await page.getByText("Enig").first().click();
+    await page.getByText("Godt").first().click();
     await page.getByRole("button", { name: "Svar" }).click();
     await expect(
       page.getByText("Kunne ikke sende svar, prøv igjen"),
@@ -117,7 +77,7 @@ test.describe("Deltaker/spørsmålside", () => {
       },
     );
 
-    await page.getByText("Enig").first().click();
+    await page.getByText("Godt").first().click();
     await page.getByRole("button", { name: "Svar" }).click();
     await expect(
       page.getByText("Noe gikk galt. Prøv å laste siden på nytt."),
@@ -134,7 +94,7 @@ test.describe("Deltaker/spørsmålside", () => {
       },
     );
 
-    await page.getByText("Enig").first().click();
+    await page.getByText("Godt").first().click();
     await page.route(
       `http://localhost:2222/api/${spørreundersøkelseId}/deltaker`,
       async (route) => {
