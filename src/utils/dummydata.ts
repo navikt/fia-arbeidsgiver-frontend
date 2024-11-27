@@ -1441,8 +1441,16 @@ const partssamarbeidResultat = {
   navn: "Partssamarbeid",
   tema: "PARTSSAMARBEID",
   beskrivelse: "Partssamarbeid",
-  spørsmålMedSvar: partssamarbeid.spørsmål,
+  spørsmålMedSvar: partssamarbeid.spørsmål.map((spørsmål) => ({
+  ...spørsmål,
+    svaralternativer: undefined,
+    svarListe: spørsmål.svaralternativer.map((svar) => ({
+      ...svar,
+      antallSvar: 1,
+    }))
+  }))
 };
+
 const sykefraværsarbeidResultat = {
   temaId: 5,
   navn: "Sykefraværsarbeid",
