@@ -46,7 +46,7 @@ test.describe("Vert/spørsmålside", () => {
     await page.goto(
       `http://localhost:2222/${spørreundersøkelseId}/vert/tema/${førsteTemaId}`,
     );
-    await expect(page.getByText("Kunne ikke laste tema 4")).toBeVisible();
+    await expect(page.getByText(`Kunne ikke laste tema ${førsteTemaId}`)).toBeVisible();
   });
 
   test("test av axe", async ({ page }) => {

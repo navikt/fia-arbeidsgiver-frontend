@@ -9,7 +9,7 @@ const temaId = partssamarbeid.id;
 async function gåTilResultater(page: Page) {
   await page.getByRole("button", { name: "Vis alle resultatene" }).click();
   await page.getByRole("button", { name: "Fullfør", exact: true }).click();
-  await expect(page.locator("body")).toContainText("flere valg er mulig");
+  await expect(page.locator("body")).toContainText("Hvordan opplever du at partssamarbeidet har utviklet seg i løpet av samarbeidsperioden?");
 }
 
 test.describe("Vert/resultatside", () => {
