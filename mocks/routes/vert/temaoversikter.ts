@@ -18,9 +18,9 @@ const listeOverTemaRoutes = [
         type: "middleware",
         options: {
           middleware: generateTemaMiddleware({
-            4: "ÅPNET",
-            6: "IKKE_ÅPNET",
-            5: "IKKE_ÅPNET",
+            16: "ÅPNET",
+            17: "IKKE_ÅPNET",
+            18: "IKKE_ÅPNET",
           }),
         },
       },
@@ -29,9 +29,9 @@ const listeOverTemaRoutes = [
         type: "middleware",
         options: {
           middleware: generateTemaMiddleware({
-            4: "STENGT",
-            6: "ALLE_SPØRSMÅL_ÅPNET",
-            5: "ÅPNET",
+            16: "STENGT",
+            17: "ALLE_SPØRSMÅL_ÅPNET",
+            18: "ÅPNET",
           }),
         },
       },
@@ -40,9 +40,9 @@ const listeOverTemaRoutes = [
         type: "middleware",
         options: {
           middleware: generateTemaMiddleware({
-            4: "ALLE_SPØRSMÅL_ÅPNET",
-            6: "ALLE_SPØRSMÅL_ÅPNET",
-            5: "ALLE_SPØRSMÅL_ÅPNET",
+            16: "ALLE_SPØRSMÅL_ÅPNET",
+            17: "ALLE_SPØRSMÅL_ÅPNET",
+            18: "ALLE_SPØRSMÅL_ÅPNET",
           }),
         },
       },
@@ -51,9 +51,9 @@ const listeOverTemaRoutes = [
         type: "middleware",
         options: {
           middleware: generateTemaMiddleware({
-            4: "STENGT",
-            6: "STENGT",
-            5: "STENGT",
+            16: "STENGT",
+            17: "STENGT",
+            18: "STENGT",
           }),
         },
       },

@@ -18,7 +18,7 @@ const listeOverTemaRoutes = [
         id: "success",
         type: "middleware",
         options: {
-          middleware: generateTemaMiddleware({ 1: "ÅPNET", 2: "IKKE_ÅPNET" }),
+          middleware: generateTemaMiddleware({ 16: "ÅPNET", 17: "IKKE_ÅPNET" }),
         },
       },
       {
@@ -64,7 +64,7 @@ function generateTemaMiddleware(temastatuser: { [key: number]: string }) {
     );
     if (tema !== undefined) {
       res.status(200);
-      res.send({ ...tema, statusssss: temastatuser[tema.id] });
+      res.send({ ...tema, status: temastatuser[tema.id] });
     } else {
       res.status(404);
       res.send(`Tema med angitt temaid ble ikke funnet`);
