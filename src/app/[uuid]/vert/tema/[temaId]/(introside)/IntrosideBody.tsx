@@ -184,7 +184,6 @@ function SvarRenderer({ tema }: { tema: TemaDto }) {
     }
   }, []);
 
-
   const erGruppert = tema.spørsmål.some((spørsmål) => spørsmål.kategori);
 
   return (
@@ -212,7 +211,7 @@ function UgruppertSpørsmålRenderer({ tema }: { tema: TemaDto }) {
   }, []);
 
   return (
-    <Accordion>
+    <Accordion className={introsideStyles.spørsmålsAccordion}>
       {tema.spørsmål.map((spørsmål, index) => (
         <SpørsmålAccordion key={index} spørsmål={spørsmål} index={index} />
       ))}
@@ -266,7 +265,7 @@ function Kategori({ tittel }: { tittel: string }) {
     return (
       <div className={introsideStyles.kategoriHeader}>
         <Heading level="4" size="xsmall" className={introsideStyles.kategoriTittel}>{tittel}</Heading>
-        <BodyShort size="small">
+        <BodyShort size="small" className={introsideStyles.kategoriMål}>
           {KATEGORI_BESKRIVELSER[tittel]}
         </BodyShort>
       </div>
@@ -277,7 +276,11 @@ function Kategori({ tittel }: { tittel: string }) {
     return null;
   }
 
-  return <Heading level="4" size="xsmall">{tittel}</Heading>;
+  return (
+    <div className={introsideStyles.kategoriHeader}>
+      <Heading level="4" size="xsmall" className={introsideStyles.kategoriTittel}>{tittel}</Heading>
+    </div>
+  );
 }
 
 function SpørsmålAccordion({
@@ -288,7 +291,7 @@ function SpørsmålAccordion({
   index: number;
 }) {
   return (
-    <Accordion.Item>
+    <Accordion.Item className={introsideStyles.accordionItem}>
       <Accordion.Header
         className={`${index === 0 ? introsideStyles.førstespørsmåltittel : ""} ${introsideStyles.spørsmåltittel}`}
       >
