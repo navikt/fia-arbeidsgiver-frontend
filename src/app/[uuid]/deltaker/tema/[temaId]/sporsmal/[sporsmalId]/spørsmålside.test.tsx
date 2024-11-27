@@ -447,7 +447,7 @@ describe("deltaker/Spørsmålsside", () => {
 
   test("Viser checkbokser for flervalgsspørsmål", async () => {
     jest.mocked(useDeltakerSpørsmål).mockReturnValue({
-      data: flervalgSpørsmålPartssamarbeid,
+      data: { ...flervalgSpørsmålPartssamarbeid, spørsmål: { ...flervalgSpørsmålPartssamarbeid.spørsmål, flervalg: true } },
       isLoading: false,
       error: undefined,
       mutate: jest.fn(),
