@@ -3,7 +3,7 @@ export type planStatusType = "PÅGÅR" | "FULLFØRT" | "AVBRUTT" | "PLANLAGT";
 export type planUndertemaType = {
 	id: number,
 	navn: string,
-	målsetting: string,
+	målsetning: string,
 	inkludert: boolean,
 	status?: planStatusType,
 	startDato?: Date,

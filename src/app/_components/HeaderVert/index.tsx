@@ -1,14 +1,14 @@
 "use client";
 import { Button, HStack } from "@navikt/ds-react";
 import { PageBlock } from "@navikt/ds-react/Page";
-import komponenterStyles from "./komponenter.module.css";
-import kartleggingStyles from "../kartlegging.module.css";
+import komponenterStyles from "../komponenter.module.css";
+import kartleggingStyles from "../../kartlegging.module.css";
 import React from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ArrowLeftIcon } from "@navikt/aksel-icons";
-import LoginModal from "./LoginModal";
 import LinkTilResultat from "@/app/_components/LinkTilResultat";
 import { useTemaoversikter } from "@/app/_api_hooks/vert/useTemaoversikter";
+import ModalSeksjon from "./ModalSeksjon";
 
 export default function HeaderVert({
   spørreundersøkelseId,
@@ -23,9 +23,6 @@ export default function HeaderVert({
   } = useTemaoversikter(spørreundersøkelseId);
 
   const erPåOversiktSide = pathname.endsWith("oversikt");
-  const searchParams = useSearchParams();
-
-  const loginModal = searchParams.get("loginModal");
 
   return (
     <PageBlock as="header" className={komponenterStyles.header}>
@@ -43,10 +40,7 @@ export default function HeaderVert({
               Gå til oversikt
             </Button>
           )}
-          <LoginModal
-            spørreundersøkelseId={spørreundersøkelseId}
-            startOpen={loginModal === "true"}
-          />
+          <ModalSeksjon spørreundersøkelseId={spørreundersøkelseId} />
         </HStack>
         {erPåOversiktSide && listeOverTemaer && (
           <LinkTilResultat
