@@ -44,6 +44,7 @@ export function IntrosideBody({
     isLoading,
     error,
   } = useTemaoversikt(spørreundersøkelseId, temaId);
+  const åpneTema = useÅpneTema(spørreundersøkelseId, temaId);
   const { data: spørreundersøkelseInfo, isLoading: lasterInfo, error: infoError } = useSpørreundersøkelseInfo(spørreundersøkelseId);
   const [erStartet, setErStartet] = React.useState(false);
 
@@ -56,7 +57,15 @@ export function IntrosideBody({
       setErStartet(true);
     }
   }, [tema, erStartet]);
-  const åpneTema = useÅpneTema(spørreundersøkelseId, temaId);
+
+  React.useEffect(() => {
+    if (spørreundersøkelseInfo?.type === "Evaluering" && !erStartet && tema?.status !== TemaStatus.ALLE_SPØRSMÅL_ÅPNET) {
+      åpneTema().catch((error) => {
+        setÅpneTemaError(error.message);
+      });
+      setErStartet(true);
+    }
+  }, [spørreundersøkelseInfo, erStartet, tema, åpneTema]);
 
   const [åpneTemaError, setÅpneTemaError] = React.useState<string | null>(null);
 
