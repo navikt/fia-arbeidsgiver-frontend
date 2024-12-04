@@ -13,6 +13,7 @@ import { harGyldigSesjonsID } from "@/utils/harGyldigSesjonsID";
 import useLocalStorage from "@/utils/useLocalStorage";
 import Lastevisning from "./Lastevisning";
 import { Framdrift } from "./Framdrift";
+import { DeltakerSpørsmålDto } from "@/app/_types/DeltakerSpørsmålDto";
 
 export default function SpørsmålBody({
   spørreundersøkelseId,
@@ -24,6 +25,7 @@ export default function SpørsmålBody({
   temaId: number;
 }) {
   const { storedValue: sisteTema, setValue: setSisteTema } = useLocalStorage<string>("sisteTema");
+  const [sisteSpørsmål, setSisteSpørsmål] = React.useState<DeltakerSpørsmålDto | undefined>(undefined);
   const router = useRouter();
   const {
     data: deltakerSpørsmål,
@@ -35,7 +37,11 @@ export default function SpørsmålBody({
     if (deltakerSpørsmål && sisteTema !== deltakerSpørsmål.temanavn) {
       setSisteTema(deltakerSpørsmål.temanavn);
     }
-  }, [deltakerSpørsmål, sisteTema, setSisteTema]);
+
+    if (deltakerSpørsmål !== undefined && deltakerSpørsmål.spørsmålnummer !== sisteSpørsmål?.spørsmålnummer) {
+      setSisteSpørsmål(deltakerSpørsmål);
+    }
+  }, [deltakerSpørsmål, sisteTema, setSisteTema, sisteSpørsmål]);
 
   React.useEffect(() => {
     const sjekkSesjonOgRedirectOmMangler = async () => {
@@ -50,7 +56,7 @@ export default function SpørsmålBody({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (lasterSpørsmål) {
+  if (lasterSpørsmål && sisteSpørsmål && sisteSpørsmål.spørsmålnummer < sisteSpørsmål.antallSpørsmål) {
     return <LoadingSkeleton sisteTema={sisteTema} />;
   }
 
