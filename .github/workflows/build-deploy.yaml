@@ -109,7 +109,7 @@ jobs:
       id-token: write
     name: Deploy app to dev
     needs: build
-    if: github.ref == 'refs/heads/ny-startside'
+    if: github.ref == 'refs/heads/hopp-over-temaoversikt'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
