@@ -24,7 +24,7 @@ export default function SpørsmålBody({
   spørsmålId: string;
   temaId: number;
 }) {
-  const { storedValue: sisteTema, setValue: setSisteTema } = useLocalStorage<string>("sisteTema");
+  const { storedValue: sisteTema, setValue: setSisteTema } = useLocalStorage<string>("sisteTema", "FØRSTE_LOAD");
   const { storedValue: sisteSpørsmål, setValue: setSisteSpørsmål } = useLocalStorage<DeltakerSpørsmålDto | undefined>("sisteSpørsmål");
   const router = useRouter();
   const {
@@ -83,14 +83,17 @@ export default function SpørsmålBody({
     );
   }
 
-  console.log('lasterSpørsmål, isValidating, deltakerSpørsmål', lasterSpørsmål, isValidating, deltakerSpørsmål)
+  if (deltakerSpørsmål === undefined) {
+    if (sisteTema === "FØRSTE_LOAD") {
+      // Litt hacky, men bør fjerne en unødvendig blinkende render første runde gjennom rendering.
+      return null;
+    }
 
+    if (sisteSpørsmål && sisteSpørsmål.antallSpørsmål > sisteSpørsmål.spørsmålnummer) {
+      return <LoadingSkeleton sisteTema={sisteTema} sisteSpørsmål={sisteSpørsmål} />;
 
-  if (deltakerSpørsmål === undefined && (sisteSpørsmål === undefined || sisteSpørsmål.spørsmålnummer === sisteSpørsmål.antallSpørsmål)) {
+    }
     return <Lastevisning sisteTema={sisteTema} />;
-  }
-  if (lasterSpørsmål || deltakerSpørsmål === undefined) {
-    return <LoadingSkeleton sisteTema={sisteTema} sisteSpørsmål={sisteSpørsmål} />;
   }
 
   return (
