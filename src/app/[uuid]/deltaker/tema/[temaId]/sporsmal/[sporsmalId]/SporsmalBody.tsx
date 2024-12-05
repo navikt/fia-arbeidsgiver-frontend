@@ -25,12 +25,13 @@ export default function SpørsmålBody({
   temaId: number;
 }) {
   const { storedValue: sisteTema, setValue: setSisteTema } = useLocalStorage<string>("sisteTema");
-  const [sisteSpørsmål, setSisteSpørsmål] = React.useState<DeltakerSpørsmålDto | undefined>(undefined);
+  const { storedValue: sisteSpørsmål, setValue: setSisteSpørsmål } = useLocalStorage<DeltakerSpørsmålDto | undefined>("sisteSpørsmål");
   const router = useRouter();
   const {
     data: deltakerSpørsmål,
     isLoading: lasterSpørsmål,
     error: feilSpørsmål,
+    isValidating,
   } = useDeltakerSpørsmål(spørreundersøkelseId, temaId, spørsmålId);
 
   React.useEffect(() => {
@@ -41,7 +42,7 @@ export default function SpørsmålBody({
     if (deltakerSpørsmål !== undefined && deltakerSpørsmål.spørsmålnummer !== sisteSpørsmål?.spørsmålnummer) {
       setSisteSpørsmål(deltakerSpørsmål);
     }
-  }, [deltakerSpørsmål, sisteTema, setSisteTema, sisteSpørsmål]);
+  }, [deltakerSpørsmål, sisteTema, setSisteTema, sisteSpørsmål, setSisteSpørsmål]);
 
   React.useEffect(() => {
     const sjekkSesjonOgRedirectOmMangler = async () => {
@@ -55,11 +56,6 @@ export default function SpørsmålBody({
     // Disabler linting fordi vi bare vil kjøre denne en gang, så vi må ha tomt array
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (lasterSpørsmål && sisteSpørsmål && sisteSpørsmål.spørsmålnummer < sisteSpørsmål.antallSpørsmål) {
-    return <LoadingSkeleton sisteTema={sisteTema} />;
-  }
-
 
   if (feilSpørsmål) {
     return (
@@ -87,8 +83,14 @@ export default function SpørsmålBody({
     );
   }
 
-  if (deltakerSpørsmål === undefined || lasterSpørsmål) {
+  console.log('lasterSpørsmål, isValidating, deltakerSpørsmål', lasterSpørsmål, isValidating, deltakerSpørsmål)
+
+
+  if (deltakerSpørsmål === undefined && (sisteSpørsmål === undefined || sisteSpørsmål.spørsmålnummer === sisteSpørsmål.antallSpørsmål)) {
     return <Lastevisning sisteTema={sisteTema} />;
+  }
+  if (lasterSpørsmål || deltakerSpørsmål === undefined) {
+    return <LoadingSkeleton sisteTema={sisteTema} sisteSpørsmål={sisteSpørsmål} />;
   }
 
   return (
@@ -104,7 +106,7 @@ export default function SpørsmålBody({
   );
 }
 
-function LoadingSkeleton({ sisteTema }: { sisteTema?: string }) {
+function LoadingSkeleton({ sisteTema, sisteSpørsmål }: { sisteTema?: string, sisteSpørsmål?: DeltakerSpørsmålDto }) {
   return (
     <>
       <VStack
@@ -114,8 +116,8 @@ function LoadingSkeleton({ sisteTema }: { sisteTema?: string }) {
       >
         {sisteTema ? <Heading size="medium">{sisteTema}</Heading> : <Heading size="medium" as={Skeleton}>Laster tema</Heading>}
         <Framdrift
-          spørsmålnummer={1}
-          totaltAntallSpørsmål={4}
+          spørsmålnummer={sisteSpørsmål?.spørsmålnummer || 1}
+          totaltAntallSpørsmål={sisteSpørsmål?.antallSpørsmål || 4}
           temanavn={sisteTema || "Laster tema"}
         />
       </VStack>
