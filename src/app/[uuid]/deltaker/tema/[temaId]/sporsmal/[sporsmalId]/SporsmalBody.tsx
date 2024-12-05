@@ -29,9 +29,7 @@ export default function SpørsmålBody({
   const router = useRouter();
   const {
     data: deltakerSpørsmål,
-    isLoading: lasterSpørsmål,
     error: feilSpørsmål,
-    isValidating,
   } = useDeltakerSpørsmål(spørreundersøkelseId, temaId, spørsmålId);
 
   React.useEffect(() => {
