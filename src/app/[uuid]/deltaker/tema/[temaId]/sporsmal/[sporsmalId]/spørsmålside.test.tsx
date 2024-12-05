@@ -398,8 +398,7 @@ describe("deltaker/Spørsmålsside", () => {
     ).not.toBeInTheDocument();
   });
 
-  // TODO: Fiks testen
-  test.failing("Viser feilmelding dersom vi har error og loading", () => {
+  test("Viser feilmelding dersom vi har error og loading", () => {
     jest.mocked(useDeltakerSpørsmål).mockReturnValue({
       data: undefined,
       isLoading: true,
@@ -421,8 +420,7 @@ describe("deltaker/Spørsmålsside", () => {
     expect(screen.getByText("Noe gikk galt.")).toBeInTheDocument();
   });
 
-  // TODO: Fiks testen
-  test.failing("Viser 'venter på vert' dersom vi ikke har spørsmål, men loading", () => {
+  test("Viser 'venter på vert' dersom vi ikke har spørsmål, men loading", () => {
     window.localStorage.setItem("sisteTema", JSON.stringify("Partssamarbeid"));
     jest.mocked(useDeltakerSpørsmål).mockReturnValue({
       data: undefined,
