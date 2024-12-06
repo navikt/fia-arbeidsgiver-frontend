@@ -11,8 +11,8 @@ export default function useLocalStorage<T>(key: string, initialValue?: T): {stor
   }, [key]);
 
   const setValue = (value: T) => {
-	setStoredValue(value);
-	window.localStorage.setItem(key, JSON.stringify(value));
+    window.localStorage.setItem(key, JSON.stringify(value));
+    setStoredValue(value);
   }
 
   const clearValue = () => window.localStorage.removeItem(key);

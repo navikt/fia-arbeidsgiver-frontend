@@ -82,6 +82,10 @@ export default function SpørsmålBody({
   }
 
   if (deltakerSpørsmål === undefined) {
+    console.log('sisteTema, sisteSpørsmål', sisteTema, sisteSpørsmål);
+    if (sisteTema === "bliMed") {
+      return <Lastevisning sisteTema={sisteTema} />;
+    }
     if (sisteTema === "FØRSTE_LOAD") {
       // Litt hacky, men bør fjerne en unødvendig blinkende render første runde gjennom rendering.
       return null;

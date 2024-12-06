@@ -14,9 +14,9 @@ export default function BliMedKnapp({
 }: {
   spørreundersøkelseId: string;
 }) {
+  const { setValue: setSisteTema } = useLocalStorage<string>("sisteTema");
   const router = useRouter();
   const [error, setError] = React.useState<string | null>(null);
-  const { clearValue: clearSisteTema } = useLocalStorage<string>("sisteTema");
   return (
     <>
       <Button
@@ -26,7 +26,7 @@ export default function BliMedKnapp({
               return fetchIdentifiserbartSpørsmål(spørreundersøkelseId);
             })
             .then(({ spørsmålId, temaId }) => {
-              clearSisteTema();
+              setSisteTema("bliMed");
               router.push(`deltaker/tema/${temaId}/sporsmal/${spørsmålId}`);
             })
             .catch((error) => {
