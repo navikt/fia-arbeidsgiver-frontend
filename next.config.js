@@ -7,6 +7,9 @@ const nextConfig = {
     }
     return config;
   },
+  devIndicators: {
+    appIsrStatus: false,
+  }
 };
 
 module.exports = nextConfig;
