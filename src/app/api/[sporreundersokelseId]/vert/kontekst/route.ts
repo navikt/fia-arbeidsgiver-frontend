@@ -3,14 +3,18 @@ import { arbeidsgiverApiFetcherVert } from "@/app/api/_arbeidsgiverApiFetcherVer
 
 export async function GET(
   req: NextRequest,
-  {
-    params: { sporreundersokelseId },
-  }: {
-    params: {
+  props: {
+    params: Promise<{
       sporreundersokelseId: string;
-    };
-  },
+    }>;
+  }
 ) {
+  const params = await props.params;
+
+  const {
+    sporreundersokelseId
+  } = params;
+
   const fetcher = arbeidsgiverApiFetcherVert(
     `${sporreundersokelseId}/kontekst`,
     req,

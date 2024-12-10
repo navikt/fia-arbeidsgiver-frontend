@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import Landingsside from "./page";
 import { render, screen } from "@testing-library/react";
 import { axe, toHaveNoViolations } from "jest-axe";
-import { act } from "react-dom/test-utils";
+import { act } from "react";
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(() => ({
