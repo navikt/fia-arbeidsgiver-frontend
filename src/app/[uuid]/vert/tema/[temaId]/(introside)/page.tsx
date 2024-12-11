@@ -8,12 +8,11 @@ export const metadata: Metadata = {
   title: "Temaside",
 };
 
-export default async function Temastartside(
-  props: {
-    params: Promise<{ uuid: string; temaId: number }>;
-  }
-) {
-  const params = await props.params;
+export default function Temastartside({
+  params,
+}: {
+  params: { uuid: string; temaId: number };
+}) {
   return (
     <Page contentBlockPadding="none" background="bg-subtle">
       <PageBlock gutters width="lg">

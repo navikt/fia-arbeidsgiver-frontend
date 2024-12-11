@@ -3,9 +3,8 @@ import { NextRequest } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  props: { params: Promise<{ sporreundersokelseId: string }> }
+  { params }: { params: { sporreundersokelseId: string } },
 ) {
-  const params = await props.params;
   const spørreundersøkelseId = params.sporreundersokelseId;
 
   const fetcher = arbeidsgiverApiFetcherDeltaker(`${spørreundersøkelseId}`);

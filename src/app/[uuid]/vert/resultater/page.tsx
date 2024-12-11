@@ -6,11 +6,10 @@ export const metadata: Metadata = {
   title: "Resultat",
 };
 
-export default async function Temaresultatside(
-  props: {
-    params: Promise<{ uuid: string }>;
-  }
-) {
-  const params = await props.params;
+export default function Temaresultatside({
+  params,
+}: {
+  params: { uuid: string };
+}) {
   return <TotalresultatRenderer spørreundersøkelseId={params.uuid} />;
 }

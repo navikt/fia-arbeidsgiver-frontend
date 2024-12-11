@@ -4,20 +4,15 @@ import { _exchangeToken } from "@/app/api/_exchangeToken";
 
 export async function POST(
   req: NextRequest,
-  props: {
-    params: Promise<{
+  {
+    params: { sporreundersokelseId, temaId },
+  }: {
+    params: {
       sporreundersokelseId: string;
       temaId: string;
-    }>;
-  }
+    };
+  },
 ) {
-  const params = await props.params;
-
-  const {
-    sporreundersokelseId,
-    temaId
-  } = params;
-
   const fetcher = poster(`${sporreundersokelseId}/tema/${temaId}/avslutt`, req);
   return fetcher();
 }

@@ -1,6 +1,6 @@
 import { BliMedDto } from "@/app/_types/BliMedDto";
 import { COOKIE_MAX_AGE, COOKIE_SESJONS_ID_KEY } from "@/utils/consts";
-import { cookies, type UnsafeUnwrappedCookies } from "next/headers";
+import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
   );
 
   const { sesjonsId, spørreundersøkelseId: cookieSpørreundersøkelseId } =
-    JSON.parse((await cookies()).get(COOKIE_SESJONS_ID_KEY)?.value ?? "{}");
+    JSON.parse(cookies().get(COOKIE_SESJONS_ID_KEY)?.value ?? "{}");
 
   if (
     sesjonsId !== undefined &&
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
 }
 
 function setSesjonsIdCookie(sesjonsId: string, spørreundersøkelseId: string) {
-  (cookies() as unknown as UnsafeUnwrappedCookies).set(
+  cookies().set(
     COOKIE_SESJONS_ID_KEY,
     JSON.stringify({ sesjonsId, spørreundersøkelseId }),
     {

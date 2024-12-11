@@ -4,7 +4,7 @@ import { COOKIE_SESJONS_ID_KEY } from "@/utils/consts";
 
 export async function harGyldigSesjonsID(spørreundersøkelseId: string) {
   const sesjonCookie = JSON.parse(
-    (await cookies()).get(COOKIE_SESJONS_ID_KEY)?.value ?? "{}",
+    cookies().get(COOKIE_SESJONS_ID_KEY)?.value ?? "{}",
   );
 
   return (

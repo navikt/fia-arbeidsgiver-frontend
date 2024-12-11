@@ -1,25 +1,19 @@
 import { NextRequest } from "next/server";
 import { COOKIE_SESJONS_ID_KEY } from "@/utils/consts";
-import { cookies, type UnsafeUnwrappedCookies } from "next/headers";
+import { cookies } from "next/headers";
 
 export async function POST(
   request: NextRequest,
-  props: {
-    params: Promise<{
+  {
+    params: { sporreundersokelseId, temaId, sporsmalId },
+  }: {
+    params: {
       sporreundersokelseId: string;
       temaId: string;
       sporsmalId: string;
-    }>;
-  }
+    };
+  },
 ) {
-  const params = await props.params;
-
-  const {
-    sporreundersokelseId,
-    temaId,
-    sporsmalId
-  } = params;
-
   if (request.headers.get("content-type") != "application/json") {
     return new Response(JSON.stringify({ error: "Invalid content-type" }), {
       status: 400,
@@ -39,7 +33,7 @@ export async function POST(
 function poster(endpoint: string, body: BodyInit) {
   const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
   const { sesjonsId } = JSON.parse(
-    (cookies() as unknown as UnsafeUnwrappedCookies).get(COOKIE_SESJONS_ID_KEY)?.value ?? "{}",
+    cookies().get(COOKIE_SESJONS_ID_KEY)?.value ?? "{}",
   );
 
   if (FIA_ARBEIDSGIVER_HOSTNAME === undefined) {

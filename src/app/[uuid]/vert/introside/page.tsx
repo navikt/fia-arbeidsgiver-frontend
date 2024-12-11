@@ -7,7 +7,6 @@ export const metadata: Metadata = {
 };
 
 
-export default async function Introside(props: { params: Promise<{ uuid: string }> }) {
-  const params = await props.params;
+export default function Introside({ params }: { params: { uuid: string } }) {
   return <IntosideInnhold params={params} />;
 }

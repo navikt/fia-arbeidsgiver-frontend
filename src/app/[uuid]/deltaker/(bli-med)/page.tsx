@@ -9,14 +9,13 @@ export const metadata: Metadata = {
   title: "Bli med",
 };
 
-export default async function Landingsside(
-  props: {
-    params: Promise<{ uuid: string }>;
-    searchParams: Promise<{ sesjon?: string }>;
-  }
-) {
-  const searchParams = await props.searchParams;
-  const params = await props.params;
+export default function Landingsside({
+  params,
+  searchParams,
+}: {
+  params: { uuid: string };
+  searchParams: { sesjon?: string };
+}) {
   return (
     <Page contentBlockPadding="none">
       <PageBlock gutters width="lg">
