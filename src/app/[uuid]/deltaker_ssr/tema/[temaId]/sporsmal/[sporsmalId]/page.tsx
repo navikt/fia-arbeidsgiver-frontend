@@ -21,20 +21,24 @@ export default async function Spørsmålsside({
     `${params.uuid}/tema/${params.temaId}/sporsmal/${params.sporsmalId}`
   )
     .then((res) => {
+      console.log('api-fetch-response', res);
       if (!res.ok) {
         throw new Error("Failed to fetch deltakerSpørsmål");
       }
       return res;
     })
-    .then((res) => res.json()).catch((error) => {
-      console.error(error);
+    .then((res) => res.json())
+    .catch((error) => {
       return {
         error
       };
     });
 
   if (deltakerSpørsmål.error) {
-    return <div>Error: {deltakerSpørsmål.error.message}</div>;
+    return <>
+      <div>Error: {deltakerSpørsmål.error.message}</div>
+      <div>{JSON.stringify(deltakerSpørsmål)}</div>
+    </>;
   }
 
   return (
