@@ -24,9 +24,13 @@ export default async function Spørsmålsside({
       console.log('res.status', res.status);
       console.log('res.statusText', res.statusText);
       console.log('res.ok', res.ok);
-      console.log('res.type', res.type);
       console.log('res.url', res.url);
       console.log('res.type', res.type);
+      console.log('res.headers', res.headers);
+      console.log('res.body', res.body);
+      console.log('etter json res.status', res.status);
+      console.log('etter json res.statusText', res.statusText);
+
       if (!res.ok) {
         throw new Error("Failed to fetch deltakerSpørsmål");
       }
@@ -34,6 +38,7 @@ export default async function Spørsmålsside({
     })
     .then((res) => res.json())
     .catch((error) => {
+      console.error("Error fetching deltakerSpørsmål", error);
       return {
         error
       };
