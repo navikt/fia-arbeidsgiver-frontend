@@ -21,7 +21,12 @@ export default async function Spørsmålsside({
     `${params.uuid}/tema/${params.temaId}/sporsmal/${params.sporsmalId}`
   )
     .then((res) => {
-      console.log('api-fetch-response', res);
+      console.log('res.status', res.status);
+      console.log('res.statusText', res.statusText);
+      console.log('res.ok', res.ok);
+      console.log('res.type', res.type);
+      console.log('res.url', res.url);
+      console.log('res.type', res.type);
       if (!res.ok) {
         throw new Error("Failed to fetch deltakerSpørsmål");
       }
