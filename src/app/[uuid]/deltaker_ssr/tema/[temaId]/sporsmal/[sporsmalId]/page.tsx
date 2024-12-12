@@ -19,7 +19,23 @@ export default async function Spørsmålsside({
   //TODO: Feilhpndtering
   const deltakerSpørsmål = await asyncArbeidsgiverApiFetcherDeltaker(
     `${params.uuid}/tema/${params.temaId}/sporsmal/${params.sporsmalId}`
-  ).then((res) => res.json());
+  )
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to fetch deltakerSpørsmål");
+      }
+      return res;
+    })
+    .then((res) => res.json()).catch((error) => {
+      console.error(error);
+      return {
+        error
+      };
+    });
+
+  if (deltakerSpørsmål.error) {
+    return <div>Error: {deltakerSpørsmål.error.message}</div>;
+  }
 
   return (
     <Page contentBlockPadding="none">
