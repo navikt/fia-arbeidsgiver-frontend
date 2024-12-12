@@ -51,7 +51,7 @@ export async function asyncArbeidsgiverApiFetcherDeltaker(endpoint: string) {
       });
   }
 
-  return fetch(url, {
+  return await fetch(url, {
       cache: "no-cache",
       method: "GET",
       headers: {
