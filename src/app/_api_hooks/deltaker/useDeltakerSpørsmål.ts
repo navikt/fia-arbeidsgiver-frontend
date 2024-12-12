@@ -4,7 +4,7 @@ import React from "react";
 
 export function useDeltakerSpørsmål(
   spørreundersøkelseId: string,
-  temaId: number,
+  temaId: string,
   spørsmålId: string,
 ): SWRResponse<DeltakerSpørsmålDto> {
   const [harLastet, setHarLastet] = React.useState(false);

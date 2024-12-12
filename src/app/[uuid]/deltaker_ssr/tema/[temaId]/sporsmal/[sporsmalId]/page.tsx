@@ -1,20 +1,26 @@
 import React from "react";
 import type { Metadata } from "next";
-import SpørsmålBody from "./SporsmalBody";
 import { Page } from "@navikt/ds-react";
 import { PageBlock } from "@navikt/ds-react/Page";
 
 import spørsmålStyles from "./sporsmalsside.module.css";
+import SpørsmålBody from "./SporsmalBody";
+import { asyncArbeidsgiverApiFetcherDeltaker } from "@/app/api/_arbeidsgiverApiFetcherDeltaker";
 
 export const metadata: Metadata = {
   title: "Deltaker",
 };
 
-export default function Spørsmålsside({
+export default async function Spørsmålsside({
   params,
 }: {
   params: { uuid: string; temaId: string; sporsmalId: string };
 }) {
+  //TODO: Feilhpndtering
+  const deltakerSpørsmål = await asyncArbeidsgiverApiFetcherDeltaker(
+    `${params.uuid}/tema/${params.temaId}/sporsmal/${params.sporsmalId}`
+  ).then((res) => res.json());
+
   return (
     <Page contentBlockPadding="none">
       <PageBlock
@@ -26,6 +32,7 @@ export default function Spørsmålsside({
           temaId={params.temaId}
           spørreundersøkelseId={params.uuid}
           spørsmålId={params.sporsmalId}
+          deltakerSpørsmål={deltakerSpørsmål}
         />
       </PageBlock>
     </Page>

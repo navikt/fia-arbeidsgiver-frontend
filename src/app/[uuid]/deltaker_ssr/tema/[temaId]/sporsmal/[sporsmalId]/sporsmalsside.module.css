@@ -1,0 +1,129 @@
+.ventertittel {
+  margin-top: 10rem;
+  margin-bottom: 3rem;
+}
+
+.venterundertittel {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.blåVenterundertittel {
+  color: var(--a-blue-700);
+}
+
+.grønnVenterundertittel {
+  color: var(--a-green-800);
+}
+
+.gulVenterundertittel {
+  color: var(--a-orange-900);
+}
+
+.venterTimeglass {
+  animation: bounce 3s linear infinite;
+  color: var(--a-blue-500);
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(0.8rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.spørsmålsheader {
+  padding-top: 3rem;
+  align-self: start;
+  width: 100%;
+}
+
+.innholdboks {
+  background: var(--a-blue-50);
+  color: var(--a-text-default);
+  margin-top: 1rem;
+  .kategoritittel {
+    margin-bottom: 1rem;
+  }
+
+  &.blå {
+    background: var(--a-blue-50);
+    .kategoritittel {
+      color: var(--a-blue-700);
+    }
+  }
+  &.grønn {
+    background: var(--a-green-100);
+    .kategoritittel {
+      color: var(--a-green-800);
+    }
+  }
+  &.gul {
+    background: var(--a-orange-100);
+    .kategoritittel {
+      color: var(--a-orange-900);
+    }
+  }
+}
+
+.normaltekst {
+  font-weight: 400;
+}
+
+.tilbakeknapp {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.nesteknapp {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.spørsmålsseksjon :global(.navds-fieldset__error):empty {
+  display: none;
+}
+
+.spørsmålssideblokk {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.lasterhjul {
+  display: flex;
+  justify-content: center;
+}
+
+.nesteStack {
+  height: 100vh;
+  padding: 2rem;
+}
+
+.radioStack {
+  padding: 1rem;
+}
+
+.knappeStack {
+  margin-top: 1rem;
+}
+
+.blåBoks {
+  background: var(--a-blue-50);
+  color: var(--a-blue-700);
+}
+
+.grønnBoks {
+  background: var(--a-green-100);
+  color: var(--a-green-800);
+}
+
+.gulBoks {
+  background: var(--a-orange-100);
+  color: var(--a-orange-900);
+}

@@ -32,3 +32,31 @@ export function arbeidsgiverApiFetcherDeltaker(endpoint: string) {
       },
     });
 }
+export async function asyncArbeidsgiverApiFetcherDeltaker(endpoint: string) {
+  const { sesjonsId } = JSON.parse(
+    cookies().get(COOKIE_SESJONS_ID_KEY)?.value ?? "{}",
+  );
+
+  const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;
+  if (FIA_ARBEIDSGIVER_HOSTNAME === undefined) {
+    return new Response(JSON.stringify({ error: "missing hostname in config" }), {
+        status: 500,
+      });
+  }
+  const url = `http://${FIA_ARBEIDSGIVER_HOSTNAME}/fia-arbeidsgiver/sporreundersokelse/deltaker/${endpoint}`;
+
+  if (sesjonsId === undefined) {
+    return new Response(JSON.stringify({ error: "missing session id in cookie" }), {
+        status: 401,
+      });
+  }
+
+  return fetch(url, {
+      cache: "no-cache",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "nav-fia-kartlegging-sesjon-id": sesjonsId,
+      },
+    });
+}

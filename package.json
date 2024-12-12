@@ -10,6 +10,8 @@
     "format": "prettier --write . --log-level silent",
     "mocks": "mocks-server",
     "test": "jest",
+    "test:clear": "jest --clearCache",
+    "test:inBand": "jest --runInBand",
     "playwright": "playwright test",
     "playwright:generate": "playwright test --update-snapshots",
     "playwright:ui": "playwright test --ui",

@@ -22,7 +22,7 @@ export default function SpørsmålBody({
 }: {
   spørreundersøkelseId: string;
   spørsmålId: string;
-  temaId: number;
+  temaId: string;
 }) {
   const { storedValue: sisteTema, setValue: setSisteTema } = useLocalStorage<string>("sisteTema", "FØRSTE_LOAD");
   const { storedValue: sisteSpørsmål, setValue: setSisteSpørsmål } = useLocalStorage<DeltakerSpørsmålDto | undefined>("sisteSpørsmål");

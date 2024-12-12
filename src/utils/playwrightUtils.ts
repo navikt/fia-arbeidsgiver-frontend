@@ -35,3 +35,23 @@ export const deltakerTest = base.extend({
     await use(page);
   },
 });
+
+export const deltakerSSRTest = base.extend({
+  page: async ({ page }, use) => {
+    await page.goto(
+      "http://localhost:2222/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker_ssr",
+    );
+    await page.getByPlaceholder("Enter any user/subject").click();
+    await page.getByPlaceholder("Enter any user/subject").fill("asdf");
+    await page.getByPlaceholder("Enter any user/subject").press("Enter");
+
+    await page.waitForLoadState("domcontentloaded");
+    await page.goto(
+      "http://localhost:2222/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker_ssr",
+    );
+    await page.waitForLoadState("domcontentloaded");
+    await page.getByRole("button", { name: "Bli med!" }).click();
+    await page.waitForLoadState("domcontentloaded");
+    await use(page);
+  },
+});

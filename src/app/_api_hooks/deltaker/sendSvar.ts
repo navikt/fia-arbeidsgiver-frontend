@@ -7,7 +7,7 @@ export async function sendSvar({
   svarIder,
 }: {
   spørreundersøkelseId: string;
-  temaId: number;
+  temaId: string;
   spørsmålId: string;
   svarIder: string[];
 }) {
