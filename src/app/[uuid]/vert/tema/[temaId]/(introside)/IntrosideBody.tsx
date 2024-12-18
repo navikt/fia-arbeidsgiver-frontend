@@ -31,6 +31,7 @@ import { SpørsmålDto } from "@/app/_types/SpørsmålDto";
 import { SvaralternativDto } from "@/app/_types/SvaralternativDto";
 import { TemaStatus } from "@/app/_types/TemaStatus";
 import { useSpørreundersøkelseInfo } from "@/app/_api_hooks/vert/useSpørreundersøkelseInfo";
+import { SpørreundersøkelseInfoDto } from "@/app/_types/SpørreundersøkelseInfoDto";
 
 export function IntrosideBody({
   spørreundersøkelseId,
@@ -106,7 +107,7 @@ export function IntrosideBody({
           <Infoblokk tema={tema} spørreundersøkelseInfo={spørreundersøkelseInfo} />
         </>
       )}
-      {erStartet && tema && <SvarRenderer tema={tema} />}
+      {erStartet && tema && <SvarRenderer tema={tema} type={spørreundersøkelseInfo?.type} />}
     </>
   );
 }
@@ -182,10 +183,14 @@ function Actionknapper({
   );
 }
 
-function SvarRenderer({ tema }: { tema: TemaDto }) {
+function SvarRenderer({ type, tema }: {
+  tema: TemaDto;
+  type?: SpørreundersøkelseInfoDto["type"];
+
+}) {
   const boxRef = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => {
-    if (boxRef !== null) {
+    if (boxRef !== null && type !== "Evaluering") {
       boxRef?.current?.scrollIntoView({
         block: 'end',
         inline: 'center',
