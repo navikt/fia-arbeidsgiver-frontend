@@ -39,7 +39,7 @@ export function EvalueringIntroside({ params }: { params: { uuid: string } }) {
 								Se tilbake på hva vi har samarbeidet om og evaluere hvordan det har gått.
 							</ListItem>
 							<ListItem>
-								Diskutere hvordan dere vil jobbe videre med de ulike temaene.
+								Diskutere hvordan dere vil jobbe videre på egen hånd.
 							</ListItem>
 						</List>
 					</VStack>
@@ -52,7 +52,7 @@ export function EvalueringIntroside({ params }: { params: { uuid: string } }) {
 						</Heading>
 						<List>
 							<ListItem>
-								Alle svarer individuelt på spørsmål basert på samarbeidsplanen vår.
+								Alle svarer individuelt på spørsmål som er basert på samarbeidsplanen vår.
 							</ListItem>
 							<ListItem>
 								Vi diskuterer resultatene i fellesskap.
