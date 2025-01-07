@@ -22,7 +22,9 @@ export default function StartsideInnhold({ params }: { params: { uuid: string } 
 	const router = useRouter();
 	const spørreundersøkelseInfo = useSpørreundersøkelseInfo(params.uuid);
 
-	if (spørreundersøkelseInfo.isLoading) {
+	const knappetekst = spørreundersøkelseInfo.data?.type ? `Start ${spørreundersøkelseInfo.data?.type?.toLowerCase()}en` : "Start";
+
+	if (spørreundersøkelseInfo.isLoading || !spørreundersøkelseInfo.data) {
 		return (
 			<Page background="bg-subtle">
 				<div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
@@ -48,7 +50,7 @@ export default function StartsideInnhold({ params }: { params: { uuid: string } 
 						iconPosition="right"
 						className={startsideStyles.startKnapp}
 					>
-						Start {spørreundersøkelseInfo.data?.type?.toLowerCase()}
+						{knappetekst}
 					</Button>
 				</div>
 				<VStack>

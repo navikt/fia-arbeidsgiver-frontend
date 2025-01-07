@@ -3,6 +3,7 @@ import { act, render, screen } from "@testing-library/react";
 import Startside from "./page";
 import { axe, toHaveNoViolations } from "jest-axe";
 import { useRouter } from "next/navigation";
+import { useSpørreundersøkelseInfo } from "@/app/_api_hooks/vert/useSpørreundersøkelseInfo";
 
 expect.extend(toHaveNoViolations);
 
@@ -20,6 +21,18 @@ jest.mock("@/app/_api_hooks/vert/useAntallDeltakere", () => ({
     isLoading: false,
     error: undefined,
   }),
+}));
+
+jest.mock("@/app/_api_hooks/vert/useSpørreundersøkelseInfo", () => ({
+  useSpørreundersøkelseInfo: jest.fn(() => ({
+    data: {
+      type: "Behovsvurdering",
+      virksomhetsnavn: "Virksomhetsnavn",
+      samarbeidsnavn: "Samarbeidsnavn"
+    },
+    isLoading: false,
+    error: undefined,
+  })),
 }));
 
 describe("Startside", () => {
