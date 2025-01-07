@@ -3,7 +3,6 @@ import { act, render, screen } from "@testing-library/react";
 import Startside from "./page";
 import { axe, toHaveNoViolations } from "jest-axe";
 import { useRouter } from "next/navigation";
-import { useSpørreundersøkelseInfo } from "@/app/_api_hooks/vert/useSpørreundersøkelseInfo";
 
 expect.extend(toHaveNoViolations);
 

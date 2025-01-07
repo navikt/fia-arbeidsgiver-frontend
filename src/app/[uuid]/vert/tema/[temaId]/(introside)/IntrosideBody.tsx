@@ -196,6 +196,7 @@ function SvarRenderer({ type, tema }: {
         inline: 'center',
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const erGruppert = tema.spørsmål.some((spørsmål) => spørsmål.kategori);
