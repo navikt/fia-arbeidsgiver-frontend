@@ -3,13 +3,23 @@
 import React from "react";
 import {
 	Page,
-	Loader
+	Loader,
+	Button,
+	VStack,
+	BodyShort,
+	HStack
 } from "@navikt/ds-react";
 import { useSpørreundersøkelseInfo } from "@/app/_api_hooks/vert/useSpørreundersøkelseInfo";
-import { EvalueringStartside } from "./EvalueringStartside";
-import { BehovsvurderingStartside } from "./BehovsvurderingStartside";
+import { useRouter } from "next/navigation";
+import startsideStyles from "./startside.module.css";
+import { PageBlock } from "@navikt/ds-react/Page";
+import Mobilpåminnelse from "./Mobilpåminnelse";
+import { VelkommenVirksomhet } from "./VelkommenVirksomhet";
+import { ArrowRightIcon } from "@navikt/aksel-icons";
+import StartsideBoksElement from "./StartsideBoksElement";
 
 export default function StartsideInnhold({ params }: { params: { uuid: string } }) {
+	const router = useRouter();
 	const spørreundersøkelseInfo = useSpørreundersøkelseInfo(params.uuid);
 
 	if (spørreundersøkelseInfo.isLoading) {
@@ -21,16 +31,46 @@ export default function StartsideInnhold({ params }: { params: { uuid: string } 
 			</Page>
 		);
 	}
-	if (spørreundersøkelseInfo.data?.type === "Evaluering") {
-		return <EvalueringStartside params={params} />;
-	}
 
-	if (spørreundersøkelseInfo.data?.type === "Behovsvurdering") {
-		return <BehovsvurderingStartside params={params} />;
-	}
-
-	//Vis behovsvurdering som default, for å unngå bugs før release av evaluering.
-	return <BehovsvurderingStartside params={params} />;
+	return (
+		<Page background="bg-subtle" className={startsideStyles.startside}>
+			<PageBlock gutters width="xl" className={startsideStyles.startsidePageBlock}>
+				<Mobilpåminnelse />
+				<div className={startsideStyles.startsideToppInnhold}>
+					<VelkommenVirksomhet spørreundersøkelseId={params.uuid} />
+					<Button
+						onClick={() =>
+							router.push(
+								`./vert/introside`,
+							)
+						}
+						icon={<ArrowRightIcon aria-hidden />}
+						iconPosition="right"
+						className={startsideStyles.startKnapp}
+					>
+						Start {spørreundersøkelseInfo.data?.type?.toLowerCase()}
+					</Button>
+				</div>
+				<VStack>
+					<BodyShort align="center" spacing className={startsideStyles.boksBeskrivelse}>
+						Inkluderende arbeidsliv handler om å:
+					</BodyShort>
+					<HStack gap="4">
+						<StartsideBoksElement>
+							<b>samarbeide</b> for en mer inkluderende arbeidsplass
+						</StartsideBoksElement>
+						<StartsideBoksElement>
+							jobbe <b>systematisk</b> med sykefraværsarbeid
+						</StartsideBoksElement>
+						<StartsideBoksElement>
+							jobbe <b>forebyggende</b> med arbeidsmiljø
+						</StartsideBoksElement>
+					</HStack>
+				</VStack>
+				<div />
+			</PageBlock>
+		</Page>
+	);
 }
 
 
