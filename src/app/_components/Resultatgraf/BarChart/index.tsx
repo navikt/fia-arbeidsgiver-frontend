@@ -40,10 +40,13 @@ function genererChartOptionsFraSpørsmålOgSvar(
       text: spørsmål.tekst,
       align: "left",
       margin: 35,
+      minScale: 1,
+      style: {
+        fontSize: "1.25rem",
+      }
     },
     subtitle: {
       text: spørsmål.flervalg ? "(flere valg er mulig)" : undefined,
-      align: "left",
     },
     plotOptions: {
       column: {
