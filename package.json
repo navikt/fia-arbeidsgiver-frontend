@@ -33,7 +33,7 @@
     "@navikt/ds-react": "^7.9.1",
     "@navikt/next-logger": "^1.35.0",
     "@navikt/oasis": "^3.6.0",
-    "cookies-next": "^5.0.2",
+    "cookies-next": "^4.3.0",
     "highcharts": "^12.1.2",
     "highcharts-react-official": "^3.2.1",
     "next": "14.2.23",
