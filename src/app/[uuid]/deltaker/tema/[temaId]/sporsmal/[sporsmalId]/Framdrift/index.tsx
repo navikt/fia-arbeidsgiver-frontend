@@ -18,9 +18,10 @@ export function Framdrift({
       <span className={framdriftStyles.visuallyHidden}>
         Spørsmål {spørsmålnummer} av {totaltAntallSpørsmål}
       </span>
-      <ol className={framdriftStyles.framdrift}>
+      <ol aria-hidden className={framdriftStyles.framdrift}>
         {framdriftDivs.map((erAktivt, index) => (
           <li
+            aria-hidden
             key={index}
             className={`${framdriftStyles.framdriftStandard} ${fremdriftFargeClassname(temanavn, erAktivt)}`}
           />
