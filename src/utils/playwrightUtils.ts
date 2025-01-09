@@ -1,6 +1,6 @@
 import { test as base } from "@playwright/test";
 
-export const vertTest = base.extend({
+export const vertTest = base.extend<object>({
   page: async ({ page }, use) => {
     await page.goto("http://localhost:2222");
     await page.getByPlaceholder("Enter any user/subject").click();
@@ -16,7 +16,7 @@ export const vertTest = base.extend({
   },
 });
 
-export const deltakerTest = base.extend({
+export const deltakerTest = base.extend<object>({
   page: async ({ page }, use) => {
     await page.goto(
       "http://localhost:2222/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker",
