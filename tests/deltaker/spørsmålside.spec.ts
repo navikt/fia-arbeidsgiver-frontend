@@ -126,27 +126,20 @@ test.describe("Deltaker/spørsmålside", () => {
     await expect(
       page.getByRole("heading", { name: partssamarbeid.navn }),
     ).toBeVisible();
-    expect(page.locator("body")).toMatchAriaSnapshot(`
+    await expect(page.getByRole('main')).toMatchAriaSnapshot(`
       - main:
         - heading "Partssamarbeid" [level=1]
         - text: Spørsmål 1 av 5
-        - list:
-          - listitem
-          - listitem
-          - listitem
-          - listitem
-          - listitem
         - paragraph: Utvikle partssamarbeidet
         - group "Hvordan opplever du at partssamarbeidet har utviklet seg i løpet av samarbeidsperioden?":
-          - radio "Svært godt": /06740ca9-bb43-\\d+-\\d+-136aa514dbca/
-          - radio "Godt": /06740ca9-bb72-74c8-\\d+-8fa6e3e13d06/
-          - radio "Dårlig": /06740ca9-bb9b-7b38-\\d+-531d1d0bc046/
-          - radio "Svært dårlig": /06740ca9-bbcf-\\d+-\\d+-d6ca1e15516b/
-          - radio "Vet ikke": /06740ca9-bbf8-75d7-\\d+-aced076bc15e/
+          - radio "Svært godt": 06740ca9-bb43-7547-8000-136aa514dbca
+          - radio "Godt": 06740ca9-bb72-74c8-8000-8fa6e3e13d06
+          - radio "Dårlig": 06740ca9-bb9b-7b38-8000-531d1d0bc046
+          - radio "Svært dårlig": 06740ca9-bbcf-7041-8000-d6ca1e15516b
+          - radio "Vet ikke": 06740ca9-bbf8-75d7-8000-aced076bc15e
         - button "Svar"
-      - alert: Deltaker | Behovsvurdering
     `);
-  });
+    });
 
   test.fixme("Bruker valgt svaralternativ fra cookieHandler", () => {
     // TODO: Finn ut av testing av cookieHandler
