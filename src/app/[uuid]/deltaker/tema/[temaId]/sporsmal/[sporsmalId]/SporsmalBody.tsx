@@ -82,7 +82,6 @@ export default function SpørsmålBody({
   }
 
   if (deltakerSpørsmål === undefined) {
-    console.log('sisteTema, sisteSpørsmål', sisteTema, sisteSpørsmål);
     if (sisteTema === "bliMed") {
       return <Lastevisning sisteTema={sisteTema} />;
     }
