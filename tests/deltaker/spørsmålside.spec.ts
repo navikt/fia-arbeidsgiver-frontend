@@ -3,7 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
 
 // @ts-ignore
-import { partssamarbeid, spørreundersøkelseId } from "@/utils/dummydata";
+import { partssamarbeid, spørreundersøkelseId, helSpørreundersøkelse } from "@/utils/dummydata";
 import { SvaralternativDto } from "@/app/_types/SvaralternativDto";
 const førsteSpørsmålId = partssamarbeid.spørsmål[0].id;
 const førsteTemaId = partssamarbeid.id;
@@ -39,21 +39,23 @@ test.describe("Deltaker/spørsmålside", () => {
     await expect(page.getByRole("button")).toContainText("Svar");
   });
 
-  test.fixme("havner på ferdigside til slutt", async ({ page }) => {
-    await page.getByText("Enig").first().click();
-    await page.getByRole("button", { name: "Svar" }).click();
-    await page.getByLabel("Lønnsforhandlinger").check();
-    await page.getByRole("button", { name: "Svar" }).click();
-    await page.getByText("Svært bra").click();
-    await page.getByRole("button", { name: "Svar" }).click();
-    await page.getByText("Enig").first().click();
-    await page.getByRole("button", { name: "Svar" }).click();
+  test("havner på ferdigside til slutt", async ({ page }) => {
+    for (let i = 0; i < helSpørreundersøkelse.length; i++) {
+      const tema = helSpørreundersøkelse[i];
+
+      for (let j = 0; j < tema.spørsmål.length; j++) {
+        const element = tema.spørsmål[j];
+  
+        await expect(page.getByText(element.tekst)).toBeVisible();
+  
+        await page.getByText(element.svaralternativer[(j%element.svaralternativer.length)].tekst).click();
+        await page.getByRole("button", { name: "Svar" }).click();
+      }
+    }
 
     //TODO: Nytt tema, ikke ferdigside kommer opp med nye testdata
     // await expect(page.getByText("Vi jobber systematisk for å forebygge sykefravær")).toBeVisible();
-    await expect(page.getByRole("main")).toContainText(
-      "Fullført!Takk for din deltakelse 🎉Du kan nå lukke denne siden.",
-    );
+    await expect(page.getByRole('main')).toContainText('Takk!Din rolle i partssamarbeidet er viktig for å skape engasjement og gode arbeidsforhold på arbeidsplassenTakk for din deltakelse,du kan nå lukke denne siden.');
   });
 
   test("Viser feilmelding ved feil i sendSvar", async ({ page }) => {
@@ -128,6 +130,12 @@ test.describe("Deltaker/spørsmålside", () => {
       - main:
         - heading "Partssamarbeid" [level=1]
         - text: Spørsmål 1 av 5
+        - list:
+          - listitem
+          - listitem
+          - listitem
+          - listitem
+          - listitem
         - paragraph: Utvikle partssamarbeidet
         - group "Hvordan opplever du at partssamarbeidet har utviklet seg i løpet av samarbeidsperioden?":
           - radio "Svært godt": /06740ca9-bb43-\\d+-\\d+-136aa514dbca/
