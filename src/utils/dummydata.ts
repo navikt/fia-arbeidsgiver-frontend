@@ -1452,18 +1452,32 @@ const partssamarbeidResultat = {
 };
 
 const sykefraværsarbeidResultat = {
-  temaId: 5,
+  temaId: 17,
   navn: "Sykefraværsarbeid",
   tema: "SYKEFRAVÆRSARBEID",
   beskrivelse: "Sykefraværsarbeid",
-  spørsmålMedSvar: sykefraværsarbeid.spørsmål,
+  spørsmålMedSvar: sykefraværsarbeid.spørsmål.map((spørsmål) => ({
+    ...spørsmål,
+      svaralternativer: undefined,
+      svarListe: spørsmål.svaralternativer.map((svar) => ({
+        ...svar,
+        antallSvar: 1,
+      }))
+    })),
 };
 const arbeidsmiljøResultat = {
-  temaId: 6,
+  temaId: 18,
   navn: "Arbeidsmiljø",
   tema: "ARBEIDSMILJØ",
   beskrivelse: "Arbeidsmiljø",
-  spørsmålMedSvar: arbeidsmiljø.spørsmål,
+  spørsmålMedSvar: arbeidsmiljø.spørsmål.map((spørsmål) => ({
+    ...spørsmål,
+      svaralternativer: undefined,
+      svarListe: spørsmål.svaralternativer.map((svar) => ({
+        ...svar,
+        antallSvar: 1,
+      }))
+    })),
 };
 
 const alleSpørsmål = [

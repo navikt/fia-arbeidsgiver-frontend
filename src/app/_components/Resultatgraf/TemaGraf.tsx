@@ -24,23 +24,39 @@ export default function TemaGraf({
   }
   return (
     <div className={resultatgrafStyle.boksContainer}>
-      {tema.spørsmålMedSvar.map((spørsmål, index) => (
-        <Box
-          key={index}
-          borderRadius="xlarge"
-          padding="12"
-          background="bg-default"
-          className={`${resultatgrafStyle.temaboks} ${trengerEkstraBredde(tema, spørsmål, index) ? resultatgrafStyle.flervalgTemaboks : ""}`}
-        >
-          {spørsmål.flervalg ? (
-            <BarChart key={index} spørsmål={spørsmål} horizontal />
-          ) : (
-            <BarChart key={index} spørsmål={spørsmål} />
-          )}
-        </Box>
-      ))}
+      {tema.spørsmålMedSvar.map((spørsmål, index) => {
+        const farge = getGraffargeFromTema(tema);
+        return (
+          <Box
+            key={index}
+            borderRadius="xlarge"
+            padding="12"
+            background="bg-default"
+            className={`${resultatgrafStyle.temaboks} ${trengerEkstraBredde(tema, spørsmål, index) ? resultatgrafStyle.flervalgTemaboks : ""}`}
+          >
+            {spørsmål.flervalg ? (
+              <BarChart key={index} spørsmål={spørsmål} farge={farge} horizontal />
+            ) : (
+              <BarChart key={index} spørsmål={spørsmål} farge={farge} />
+            )}
+          </Box>
+        )
+      })}
     </div>
   );
+}
+
+function getGraffargeFromTema(tema: TemaResultatDto) {
+  switch (tema.navn?.toLowerCase()) {
+    case "partssamarbeid":
+      return "var(--a-blue-500)";
+    case "sykefraværsarbeid":
+      return "var(--a-green-500)";
+    case "arbeidsmiljø":
+      return "var(--a-orange-600)";
+    default:
+      break;
+  }
 }
 
 function trengerEkstraBredde(

@@ -6,14 +6,16 @@ import { SpørsmålResultatDto } from "@/app/_types/SpørsmålResultatDto";
 export default function BarChart({
   spørsmål,
   horizontal = false,
+  farge = "var(--a-blue-500)",
 }: {
   spørsmål: SpørsmålResultatDto;
   horizontal?: boolean;
+  farge?: string;
 }) {
   const chartComponentRef = React.useRef<HighchartsReact.RefObject>(null);
 
   const options = React.useMemo(
-    () => genererChartOptionsFraSpørsmålOgSvar(spørsmål, horizontal),
+    () => genererChartOptionsFraSpørsmålOgSvar(spørsmål, horizontal, farge),
     [spørsmål, horizontal],
   );
 
@@ -30,6 +32,7 @@ export default function BarChart({
 function genererChartOptionsFraSpørsmålOgSvar(
   spørsmål: SpørsmålResultatDto,
   horizontal: boolean,
+  farge: string,
 ): Highcharts.Options {
   return {
     chart: {
@@ -63,7 +66,7 @@ function genererChartOptionsFraSpørsmålOgSvar(
           svar.antallSvar > 0
             ? {
               y: svar.antallSvar,
-              color: "var(--a-blue-500)",
+              color: farge,
             }
             : null,
         ),
