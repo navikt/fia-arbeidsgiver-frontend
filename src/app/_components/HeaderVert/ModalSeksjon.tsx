@@ -51,7 +51,7 @@ function ModalVelger({ setPlanModalÅpen, setQRmodalÅpen, spørreundersøkelseI
 						className={kartleggingStyles.knappHvit}
 						variant="secondary"
 						iconPosition="right"
-						icon={<Dropdownikon />}
+						icon={<Dropdownikon aria-hidden />}
 					>
 						Vis
 					</Button>
