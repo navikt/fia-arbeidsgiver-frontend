@@ -5,4 +5,5 @@ export type SpørsmålResultatDto = {
   tekst: string;
   flervalg: boolean;
   svarListe: SvarResultatDto[];
+  kategori: string;
 };

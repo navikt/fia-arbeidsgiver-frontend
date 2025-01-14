@@ -1,6 +1,6 @@
 "use client";
 
-import { Alert, Box } from "@navikt/ds-react";
+import { Alert, BodyShort, Box } from "@navikt/ds-react";
 import resultatgrafStyle from "./resultatgraf.module.css";
 import { useTemaResultat } from "@/app/_api_hooks/vert/useTemaresultater";
 import { SpørsmålResultatDto } from "@/app/_types/SpørsmålResultatDto";
@@ -34,6 +34,7 @@ export default function TemaGraf({
             background="bg-default"
             className={`${resultatgrafStyle.temaboks} ${trengerEkstraBredde(tema, spørsmål, index) ? resultatgrafStyle.flervalgTemaboks : ""}`}
           >
+            <FargetKategoritittel tittel={spørsmål.kategori} temanavn={tema.navn} />
             {spørsmål.flervalg ? (
               <BarChart key={index} spørsmål={spørsmål} farge={farge} horizontal />
             ) : (
@@ -44,6 +45,29 @@ export default function TemaGraf({
       })}
     </div>
   );
+}
+
+function FargetKategoritittel({ tittel, temanavn }: { tittel?: string; temanavn?: string | null }) {
+  if (tittel === "" || tittel === undefined || tittel === null) {
+    return null;
+  }
+
+  return (
+    <BodyShort className={`${resultatgrafStyle.kategoritittel} ${getFargeKategoriTittelKlasse(temanavn)}`}>{tittel}</BodyShort>
+  );
+}
+
+function getFargeKategoriTittelKlasse(temanavn?: string | null) {
+  switch (temanavn?.toLowerCase()) {
+    case "partssamarbeid":
+      return resultatgrafStyle.blå;
+    case "sykefraværsarbeid":
+      return resultatgrafStyle.grønn;
+    case "arbeidsmiljø":
+      return resultatgrafStyle.gul;
+    default:
+      break;
+  }
 }
 
 function getGraffargeFromTema(tema: TemaResultatDto) {
