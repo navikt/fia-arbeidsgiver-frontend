@@ -35,7 +35,7 @@ test.describe("Vert/oversiktside", () => {
     ).not.toBeVisible();
   });
 
-  test.fixme(
+  test(
     "Andre tema er åpnet når første tema er besvart",
     async ({ page }) => {
       // TODO: Bedre løsning. Mocker apiet før vi kommer til frackend, for å unngå problemer med parralell kjøring av tester.
@@ -54,7 +54,7 @@ test.describe("Vert/oversiktside", () => {
       await page.getByRole("button", { name: "Lukk" }).click();
 
       await expect(
-        page.getByRole("button", { name: "Vis spørsmål" }),
+        page.getByRole("button", { name: "Start" }).nth(0),
       ).toBeVisible();
       await expect(
         page.getByRole("button", { name: "Start" }).nth(0),

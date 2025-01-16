@@ -90,7 +90,7 @@ test.describe("Deltaker/bli med", () => {
     );
   });
 
-  test.fixme("test av axe", async ({ page }) => {
+  test("test av axe", async ({ page }) => {
     let accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     //TODO: Får feil på svg her.
     expect(accessibilityScanResults.violations).toEqual([]);

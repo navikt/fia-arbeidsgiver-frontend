@@ -141,11 +141,18 @@ test.describe("Deltaker/spørsmålside", () => {
     `);
     });
 
-  test.fixme("Bruker valgt svaralternativ fra cookieHandler", () => {
-    // TODO: Finn ut av testing av cookieHandler
+  test("Bruker valgt svaralternativ fra cookieHandler", async ({page}) => {
+    await expect(
+      page.getByRole("heading", { name: partssamarbeid.navn }),
+    ).toBeVisible();
+
+    await page.getByLabel('Svært godt').check();
+    await page.getByRole('button', { name: 'Svar' }).click();
+    await page.getByRole('button', { name: 'Tilbake' }).click();
+    await expect(page.getByLabel('Svært godt')).toBeChecked();
   });
 
-  test.fixme("test av axe", async ({ page }) => {
+  test("test av axe", async ({ page }) => {
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
     //TODO: Får feil på svg her.
