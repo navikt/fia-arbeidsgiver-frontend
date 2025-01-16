@@ -1,6 +1,7 @@
 import { vertTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { Page, expect } from "@playwright/test";
+import { Page as CorePage } from 'playwright-core';
 
 // @ts-ignore
 import { partssamarbeid, spørreundersøkelseId } from "@/utils/dummydata";
@@ -76,7 +77,7 @@ test.describe("Vert/delresultatside", () => {
   test("test av axe", async ({ page }) => {
     await gåTilResultater(page);
     await expect(page.locator("body")).toContainText("Gå til oversikt"); //Vent på at siden er lastet.
-    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+    const accessibilityScanResults = await new AxeBuilder({ page: (page as CorePage) }).analyze();
 
     expect(accessibilityScanResults.violations).toEqual([]);
   });

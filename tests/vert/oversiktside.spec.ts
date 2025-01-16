@@ -2,6 +2,7 @@ import { TemaStatus } from "@/app/_types/TemaStatus";
 import { vertTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
+import { Page } from 'playwright-core';
 // @ts-ignore
 import { helSpørreundersøkelse, spørreundersøkelseId } from "@/utils/dummydata";
 
@@ -82,7 +83,7 @@ test.describe("Vert/oversiktside", () => {
   });
 
   test("test av axe", async ({ page }) => {
-    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+    const accessibilityScanResults = await new AxeBuilder({ page: (page as Page) }).analyze();
 
     expect(accessibilityScanResults.violations).toEqual([]);
   });

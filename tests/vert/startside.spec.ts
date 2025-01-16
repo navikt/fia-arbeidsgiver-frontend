@@ -1,9 +1,10 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
 import { test as base } from "@playwright/test";
+import { Page } from 'playwright-core';
 
 // Må override, da den i playwrighUtils.ts er satt til å hoppe forbi denne siden.
-const test = base.extend({
+const test = base.extend<object>({
   page: async ({ page }, use) => {
     await page.goto("http://localhost:2222");
     await page.getByPlaceholder("Enter any user/subject").click();
@@ -34,7 +35,7 @@ test.describe("Vert/startside", () => {
     await expect(page.locator("h1")).toContainText(
       "Velkommen, Fisk og flesk AS",
     ); //Vent på at siden er lastet.
-    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+    const accessibilityScanResults = await new AxeBuilder({ page: (page as Page) }).analyze();
 
     expect(accessibilityScanResults.violations).toEqual([]);
   });
