@@ -16,7 +16,7 @@ export function Framdrift({
   return (
     <>
       <span className={framdriftStyles.visuallyHidden}>
-        Spørsmål {spørsmålnummer} av {totaltAntallSpørsmål}
+        {`Spørsmål ${spørsmålnummer} av ${totaltAntallSpørsmål}`}
       </span>
       <ol aria-hidden className={framdriftStyles.framdrift}>
         {framdriftDivs.map((erAktivt, index) => (
