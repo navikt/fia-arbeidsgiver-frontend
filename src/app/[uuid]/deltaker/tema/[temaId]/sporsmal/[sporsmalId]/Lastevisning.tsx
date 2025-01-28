@@ -10,7 +10,7 @@ export default function Lastevisning({ sisteTema }: { sisteTema?: string }) {
 					<Heading size="medium" spacing>Takk!</Heading>
 					<BodyShort>
 						<i>
-							Som deltaker i partssamarbeidet har du en viktig rolle i å skape <b>godt arbeidsmiljø</b> og <b>samarbeid mellom ledelse og ansatte</b>
+							Som deltaker i partssamarbeidet har du en viktig rolle i å skape <strong>godt arbeidsmiljø</strong> og <strong>samarbeid mellom ledelse og ansatte</strong>
 						</i>
 					</BodyShort>
 				</Venteskjerm>
@@ -21,7 +21,7 @@ export default function Lastevisning({ sisteTema }: { sisteTema?: string }) {
 					<Heading size="medium" spacing>Takk!</Heading>
 					<BodyShort>
 						<i>
-							Som leder, tillitsvalgt eller verneombud har du en viktig rolle i å <b>forebygge sykefravær</b> og <b>skape gode sykefraværsrutiner</b>
+							Som leder, tillitsvalgt eller verneombud har du en viktig rolle i å <strong>forebygge sykefravær</strong> og <strong>skape gode sykefraværsrutiner</strong>
 						</i>
 					</BodyShort>
 				</Venteskjerm>
@@ -32,7 +32,7 @@ export default function Lastevisning({ sisteTema }: { sisteTema?: string }) {
 					<Heading size="medium" spacing>Takk!</Heading>
 					<BodyShort>
 						<i>
-							Din rolle i partssamarbeidet er viktig for å <b>skape engasjement</b> og <b>gode arbeidsforhold</b> på arbeidsplassen
+							Din rolle i partssamarbeidet er viktig for å <strong>skape engasjement</strong> og <strong>gode arbeidsforhold</strong> på arbeidsplassen
 						</i>
 					</BodyShort>
 				</Venteskjerm>
