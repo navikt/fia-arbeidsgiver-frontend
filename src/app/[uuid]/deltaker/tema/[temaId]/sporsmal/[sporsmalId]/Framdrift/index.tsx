@@ -10,12 +10,23 @@ export function Framdrift({
   totaltAntallSpørsmål: number;
   temanavn: string;
 }) {
+  const [sisteSpørsmål, setSisteSpørsmål] = React.useState<number>(0);
   const framdriftDivs = new Array(totaltAntallSpørsmål).fill(false);
   framdriftDivs[spørsmålnummer - 1] = true;
+  const UUTeller = React.useRef<HTMLSpanElement>(null);
+
+  React.useEffect(() => {
+    if (UUTeller.current) {
+      if (sisteSpørsmål !== spørsmålnummer) {
+        UUTeller.current.focus();
+        setSisteSpørsmål(spørsmålnummer);
+      }
+    }
+  }, [spørsmålnummer]);
 
   return (
     <>
-      <span className={framdriftStyles.visuallyHidden}>
+      <span className={framdriftStyles.visuallyHidden} tabIndex={-1} ref={UUTeller}>
         {`Spørsmål ${spørsmålnummer} av ${totaltAntallSpørsmål}`}
       </span>
       <ol aria-hidden className={framdriftStyles.framdrift}>
