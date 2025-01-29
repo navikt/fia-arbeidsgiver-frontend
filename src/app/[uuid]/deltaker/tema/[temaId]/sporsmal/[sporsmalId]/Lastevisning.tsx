@@ -8,10 +8,8 @@ export default function Lastevisning({ sisteTema }: { sisteTema?: string }) {
 			return (
 				<Venteskjerm boxClassName={spørsmålStyles.blåBoks} undertittelClassName={spørsmålStyles.blåVenterundertittel}>
 					<Heading size="medium" spacing>Takk!</Heading>
-					<BodyShort>
-						<i>
-							Som deltaker i partssamarbeidet har du en viktig rolle i å skape <strong>godt arbeidsmiljø</strong> og <strong>samarbeid mellom ledelse og ansatte</strong>
-						</i>
+					<BodyShort className={spørsmålStyles.venterPåAtNesteÅpnerTekst}>
+						Som deltaker i partssamarbeidet har du en viktig rolle i å skape <strong>godt arbeidsmiljø</strong> og <strong>samarbeid mellom ledelse og ansatte</strong>
 					</BodyShort>
 				</Venteskjerm>
 			);
@@ -19,10 +17,8 @@ export default function Lastevisning({ sisteTema }: { sisteTema?: string }) {
 			return (
 				<Venteskjerm boxClassName={spørsmålStyles.grønnBoks} undertittelClassName={spørsmålStyles.grønnVenterundertittel}>
 					<Heading size="medium" spacing>Takk!</Heading>
-					<BodyShort>
-						<i>
-							Som leder, tillitsvalgt eller verneombud har du en viktig rolle i å <strong>forebygge sykefravær</strong> og <strong>skape gode sykefraværsrutiner</strong>
-						</i>
+					<BodyShort className={spørsmålStyles.venterPåAtNesteÅpnerTekst}>
+						Som leder, tillitsvalgt eller verneombud har du en viktig rolle i å <strong>forebygge sykefravær</strong> og <strong>skape gode sykefraværsrutiner</strong>
 					</BodyShort>
 				</Venteskjerm>
 			);
@@ -30,10 +26,8 @@ export default function Lastevisning({ sisteTema }: { sisteTema?: string }) {
 			return (
 				<Venteskjerm erSiste boxClassName={spørsmålStyles.gulBoks} undertittelClassName={spørsmålStyles.gulVenterundertittel}>
 					<Heading size="medium" spacing>Takk!</Heading>
-					<BodyShort>
-						<i>
-							Din rolle i partssamarbeidet er viktig for å <strong>skape engasjement</strong> og <strong>gode arbeidsforhold</strong> på arbeidsplassen
-						</i>
+					<BodyShort className={spørsmålStyles.venterPåAtNesteÅpnerTekst} role="text">
+						Din rolle i partssamarbeidet er viktig for å <strong>skape engasjement</strong> og <strong>gode arbeidsforhold</strong> på arbeidsplassen
 					</BodyShort>
 				</Venteskjerm>
 			);

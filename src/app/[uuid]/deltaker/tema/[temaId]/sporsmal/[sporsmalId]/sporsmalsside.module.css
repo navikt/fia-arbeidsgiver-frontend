@@ -127,3 +127,7 @@
   background: var(--a-orange-100);
   color: var(--a-orange-900);
 }
+
+.venterPåAtNesteÅpnerTekst {
+  font-style: italic;
+}

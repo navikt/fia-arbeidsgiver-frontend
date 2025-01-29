@@ -38,10 +38,16 @@ test.describe("Deltaker/ferdigside", () => {
   
   test("Sjekker at accessibility-tree er i orden", async ({ page }) => {
     await expect(page.getByRole('main')).toMatchAriaSnapshot(`
-      - heading "Takk!" [level=1]
-      - paragraph: Din rolle i partssamarbeidet er viktig for å skape engasjement og gode arbeidsforhold på arbeidsplassen
-      - paragraph: Takk for din deltakelse, du kan nå lukke denne siden.
-      `);
+      - main:
+        - heading "Takk!" [level=1]
+        - paragraph:
+          - text: Din rolle i partssamarbeidet er viktig for å
+          - strong: skape engasjement
+          - text: og
+          - strong: gode arbeidsforhold
+          - text: på arbeidsplassen
+        - paragraph: Takk for din deltakelse, du kan nå lukke denne siden.
+    `);
   });
   
 
