@@ -10,4 +10,5 @@ export type DeltakerSpørsmålDto = {
   temanavn: string;
   nesteSpørsmål: IdentifiserbartSpørsmålDto | null;
   forrigeSpørsmål: IdentifiserbartSpørsmålDto | null;
+  type: string;
 };

@@ -102,7 +102,7 @@ export default function Spørsmålsseksjon({
         padding="5"
         className={`${spørsmålBoksFargeClassname(deltakerSpørsmål.temanavn)} ${spørsmålStyles.innholdboks} `}
       >
-        <Kategoritittel tittel={deltakerSpørsmål.spørsmål.kategori} />
+        {deltakerSpørsmål.type.toLowerCase() === "evaluering" ? <Kategoritittel tittel={deltakerSpørsmål.spørsmål.kategori} /> : null}
         {deltakerSpørsmål.spørsmål.flervalg ? (
           <CheckboxGroup
             onChange={velgSvar}

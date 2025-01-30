@@ -33,6 +33,28 @@ const sporsmalOgSvarRoutes = [
         },
       },
       {
+        id: "success-evaluering",
+        type: "middleware",
+        options: {
+          middleware: (req: Request, res: Response) => {
+            const spm = alleSpørsmål.find(
+              (deltakerSpørsmål: DeltakerSpørsmålDto) =>
+                deltakerSpørsmål.spørsmål.id === req.params.sporsmalId,
+            );
+            if (spm !== undefined) {
+              res.status(200);
+              res.send({
+                ...spm,
+                type: "Evaluering",
+              });
+            } else {
+              res.status(404);
+              res.send(`Spørsmål med angitt id ble ikke funnet`);
+            }
+          },
+        },
+      },
+      {
         id: "mange-svaralternativer",
         type: "json",
         options: {

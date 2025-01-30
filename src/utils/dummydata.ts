@@ -955,6 +955,7 @@ const partssamarbeidDeltaker1 = {
     spørsmålId: partssamarbeid2.id,
   },
   forrigeSpørsmål: null,
+  type:  "Behovsvurdering",
 };
 const partssamarbeidDeltaker2 = {
   spørsmål: partssamarbeid2,
@@ -971,6 +972,7 @@ const partssamarbeidDeltaker2 = {
     temaId: 16,
     spørsmålId: partssamarbeid1.id,
   },
+  type:  "Behovsvurdering",
 };
 const partssamarbeidDeltaker3 = {
   spørsmål: partssamarbeid3,
@@ -987,6 +989,7 @@ const partssamarbeidDeltaker3 = {
     temaId: 16,
     spørsmålId: partssamarbeid2.id,
   },
+  type:  "Behovsvurdering",
 };
 const partssamarbeidDeltaker4 = {
   spørsmål: partssamarbeid4,
@@ -1003,6 +1006,7 @@ const partssamarbeidDeltaker4 = {
     temaId: 16,
     spørsmålId: partssamarbeid3.id,
   },
+  type:  "Behovsvurdering",
 };
 const partssamarbeidDeltaker5 = {
   spørsmål: partssamarbeid5,
@@ -1019,6 +1023,7 @@ const partssamarbeidDeltaker5 = {
     temaId: 16,
     spørsmålId: partssamarbeid4.id,
   },
+  type:  "Behovsvurdering",
 };
 const sykefraværsarbeidDeltaker1 = {
   spørsmål: sykefraværsarbeid1,
@@ -1035,6 +1040,7 @@ const sykefraværsarbeidDeltaker1 = {
     temaId: 16,
     spørsmålId: partssamarbeid5.id,
   },
+  type:  "Behovsvurdering",
 };
 const sykefraværsarbeidDeltaker2 = {
   spørsmål: sykefraværsarbeid2,
@@ -1051,6 +1057,7 @@ const sykefraværsarbeidDeltaker2 = {
     temaId: 17,
     spørsmålId: sykefraværsarbeid1.id,
   },
+  type:  "Behovsvurdering",
 };
 const sykefraværsarbeidDeltaker3 = {
   spørsmål: sykefraværsarbeid3,
@@ -1067,6 +1074,7 @@ const sykefraværsarbeidDeltaker3 = {
     temaId: 17,
     spørsmålId: sykefraværsarbeid2.id,
   },
+  type:  "Behovsvurdering",
 };
 const sykefraværsarbeidDeltaker4 = {
   spørsmål: sykefraværsarbeid4,
@@ -1083,6 +1091,7 @@ const sykefraværsarbeidDeltaker4 = {
     temaId: 17,
     spørsmålId: sykefraværsarbeid3.id,
   },
+  type:  "Behovsvurdering",
 };
 const sykefraværsarbeidDeltaker5 = {
   spørsmål: sykefraværsarbeid5,
@@ -1099,6 +1108,7 @@ const sykefraværsarbeidDeltaker5 = {
     temaId: 17,
     spørsmålId: sykefraværsarbeid4.id,
   },
+  type:  "Behovsvurdering",
 };
 const sykefraværsarbeidDeltaker6 = {
   spørsmål: sykefraværsarbeid6,
@@ -1115,6 +1125,7 @@ const sykefraværsarbeidDeltaker6 = {
     temaId: 17,
     spørsmålId: sykefraværsarbeid5.id,
   },
+  type:  "Behovsvurdering",
 };
 const sykefraværsarbeidDeltaker7 = {
   spørsmål: sykefraværsarbeid7,
@@ -1131,6 +1142,7 @@ const sykefraværsarbeidDeltaker7 = {
     temaId: 17,
     spørsmålId: sykefraværsarbeid6.id,
   },
+  type:  "Behovsvurdering",
 };
 const sykefraværsarbeidDeltaker8 = {
   spørsmål: sykefraværsarbeid8,
@@ -1147,6 +1159,7 @@ const sykefraværsarbeidDeltaker8 = {
     temaId: 17,
     spørsmålId: sykefraværsarbeid7.id,
   },
+  type:  "Behovsvurdering",
 };
 const sykefraværsarbeidDeltaker9 = {
   spørsmål: sykefraværsarbeid9,
@@ -1163,6 +1176,7 @@ const sykefraværsarbeidDeltaker9 = {
     temaId: 17,
     spørsmålId: sykefraværsarbeid8.id,
   },
+  type:  "Behovsvurdering",
 };
 const sykefraværsarbeidDeltaker10 = {
   spørsmål: sykefraværsarbeid10,
@@ -1179,6 +1193,7 @@ const sykefraværsarbeidDeltaker10 = {
     temaId: 17,
     spørsmålId: sykefraværsarbeid9.id,
   },
+  type:  "Behovsvurdering",
 };
 
 const arbeidsmiljøDeltaker1 = {
@@ -1196,6 +1211,7 @@ const arbeidsmiljøDeltaker1 = {
     temaId: 17,
     spørsmålId: sykefraværsarbeid10.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker2 = {
   spørsmål: arbeidsmiljø2,
@@ -1212,6 +1228,7 @@ const arbeidsmiljøDeltaker2 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø3.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker3 = {
   spørsmål: arbeidsmiljø3,
@@ -1228,6 +1245,7 @@ const arbeidsmiljøDeltaker3 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø4.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker4 = {
   spørsmål: arbeidsmiljø4,
@@ -1244,6 +1262,7 @@ const arbeidsmiljøDeltaker4 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø5.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker5 = {
   spørsmål: arbeidsmiljø5,
@@ -1260,6 +1279,7 @@ const arbeidsmiljøDeltaker5 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø4.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker6 = {
   spørsmål: arbeidsmiljø6,
@@ -1276,6 +1296,7 @@ const arbeidsmiljøDeltaker6 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø5.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker7 = {
   spørsmål: arbeidsmiljø7,
@@ -1292,6 +1313,7 @@ const arbeidsmiljøDeltaker7 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø6.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker8 = {
   spørsmål: arbeidsmiljø8,
@@ -1308,6 +1330,7 @@ const arbeidsmiljøDeltaker8 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø7.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker9 = {
   spørsmål: arbeidsmiljø9,
@@ -1324,6 +1347,7 @@ const arbeidsmiljøDeltaker9 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø8.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker10 = {
   spørsmål: arbeidsmiljø10,
@@ -1340,6 +1364,7 @@ const arbeidsmiljøDeltaker10 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø9.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker11 = {
   spørsmål: arbeidsmiljø11,
@@ -1356,6 +1381,7 @@ const arbeidsmiljøDeltaker11 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø10.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker12 = {
   spørsmål: arbeidsmiljø12,
@@ -1372,6 +1398,7 @@ const arbeidsmiljøDeltaker12 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø11.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker13 = {
   spørsmål: arbeidsmiljø13,
@@ -1388,6 +1415,7 @@ const arbeidsmiljøDeltaker13 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø12.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker14 = {
   spørsmål: arbeidsmiljø14,
@@ -1404,6 +1432,7 @@ const arbeidsmiljøDeltaker14 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø13.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker15 = {
   spørsmål: arbeidsmiljø15,
@@ -1420,6 +1449,7 @@ const arbeidsmiljøDeltaker15 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø14.id,
   },
+  type:  "Behovsvurdering",
 };
 const arbeidsmiljøDeltaker16 = {
   spørsmål: arbeidsmiljø16,
@@ -1433,6 +1463,7 @@ const arbeidsmiljøDeltaker16 = {
     temaId: 18,
     spørsmålId: arbeidsmiljø15.id,
   },
+  type:  "Behovsvurdering",
 };
 
 // : TemaResultatDto
