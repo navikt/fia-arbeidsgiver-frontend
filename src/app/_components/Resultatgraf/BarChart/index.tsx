@@ -2,6 +2,7 @@ import React from "react";
 import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { SpørsmålResultatDto } from "@/app/_types/SpørsmålResultatDto";
+import { useSpørsmålMedSorterteSvaralternativer } from "@/utils/sorterSvaralternativer";
 
 export default function BarChart({
   spørsmål,
@@ -14,9 +15,11 @@ export default function BarChart({
 }) {
   const chartComponentRef = React.useRef<HighchartsReact.RefObject>(null);
 
+  const spørsmålMedSorterteAlternativer = useSpørsmålMedSorterteSvaralternativer(spørsmål);
+
   const options = React.useMemo(
-    () => genererChartOptionsFraSpørsmålOgSvar(spørsmål, horizontal, farge),
-    [spørsmål, horizontal],
+    () => genererChartOptionsFraSpørsmålOgSvar(spørsmålMedSorterteAlternativer, horizontal, farge),
+    [spørsmålMedSorterteAlternativer, horizontal],
   );
 
   return (

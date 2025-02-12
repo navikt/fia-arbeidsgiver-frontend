@@ -8,11 +8,11 @@ const partssamarbeid1 = {
   "svaralternativer": [
       {
           "id": "06740ca9-bb43-7547-8000-136aa514dbca",
-          "tekst": "Svært godt"
+          "tekst": "Svært bra"
       },
       {
           "id": "06740ca9-bb72-74c8-8000-8fa6e3e13d06",
-          "tekst": "Godt"
+          "tekst": "Bra"
       },
       {
           "id": "06740ca9-bb9b-7b38-8000-531d1d0bc046",
@@ -36,7 +36,7 @@ const partssamarbeid2 = {
   "svaralternativer": [
       {
           "id": "06740ca9-bc5a-70cf-8000-aec490fed130",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-bc8c-7682-8000-5e8497ffd20e",
@@ -48,7 +48,7 @@ const partssamarbeid2 = {
       },
       {
           "id": "06740ca9-bce4-7bec-8000-9f1290fab622",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-bd18-7138-8000-a4430f31266a",
@@ -64,7 +64,7 @@ const partssamarbeid3 = {
   "svaralternativer": [
       {
           "id": "06740ca9-bd7e-79c8-8000-34ce46cc2827",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-bdb2-7010-8000-cd61d12f3251",
@@ -76,7 +76,7 @@ const partssamarbeid3 = {
       },
       {
           "id": "06740ca9-be13-72c6-8000-3276c6202148",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-be46-7972-8000-52bc57072cf7",
@@ -92,7 +92,7 @@ const partssamarbeid4 = {
   "svaralternativer": [
       {
           "id": "06740ca9-beac-717e-8000-45a534340cc6",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-bedf-7212-8000-117c56d4f1c4",
@@ -104,7 +104,7 @@ const partssamarbeid4 = {
       },
       {
           "id": "06740ca9-bf42-757c-8000-827a0a2751ea",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-bf70-7b06-8000-97084ad8bca4",
@@ -120,7 +120,7 @@ const partssamarbeid5 = {
   "svaralternativer": [
       {
           "id": "06740ca9-bfcd-750e-8000-04a970d50730",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-c000-7e8c-8000-59f751c79cd8",
@@ -132,7 +132,7 @@ const partssamarbeid5 = {
       },
       {
           "id": "06740ca9-c066-7aec-8000-b2aa780a1bbe",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-c09a-73a0-8000-6606457ee29d",
@@ -148,7 +148,7 @@ const sykefraværsarbeid1 = {
   "svaralternativer": [
       {
           "id": "06740ca9-c100-7fa9-8000-07250761e08c",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-c134-7491-8000-15acfa130b77",
@@ -160,7 +160,7 @@ const sykefraværsarbeid1 = {
       },
       {
           "id": "06740ca9-c197-7e88-8000-9c163532b7f3",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-c1cb-7545-8000-fe6711e64ac5",
@@ -176,7 +176,7 @@ const sykefraværsarbeid2 = {
   "svaralternativer": [
       {
           "id": "06740ca9-c232-71a2-8000-90099667178a",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-c265-7753-8000-9ce7b0013aa6",
@@ -188,7 +188,7 @@ const sykefraværsarbeid2 = {
       },
       {
           "id": "06740ca9-c2c6-7e6d-8000-e8ffffcc3cbd",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-c2f5-7686-8000-88b46125897b",
@@ -204,7 +204,7 @@ const sykefraværsarbeid3 = {
   "svaralternativer": [
       {
           "id": "06740ca9-c356-7ffc-8000-09304a72998c",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-c38a-74e3-8000-e91f6fb2caef",
@@ -216,7 +216,7 @@ const sykefraværsarbeid3 = {
       },
       {
           "id": "06740ca9-c3f0-72d5-8000-288b08acb986",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-c423-7832-8000-a949943ec8ce",
@@ -232,7 +232,7 @@ const sykefraværsarbeid4 = {
   "svaralternativer": [
       {
           "id": "06740ca9-c48a-74c1-8000-ded38fe892c1",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-c4bc-7ff6-8000-a3677a4a1ba5",
@@ -244,7 +244,7 @@ const sykefraværsarbeid4 = {
       },
       {
           "id": "06740ca9-c519-749e-8000-67bf0f6a4556",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-c545-7e80-8000-65d04265b04e",
@@ -260,7 +260,7 @@ const sykefraværsarbeid5 = {
   "svaralternativer": [
       {
           "id": "06740ca9-c5a2-71d9-8000-b21ec98d9a99",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-c5ce-7768-8000-3fcb8da26da9",
@@ -272,7 +272,7 @@ const sykefraværsarbeid5 = {
       },
       {
           "id": "06740ca9-c62e-78d1-8000-20623d030f7a",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-c65f-74e4-8000-606238f7bcc4",
@@ -288,7 +288,7 @@ const sykefraværsarbeid6 = {
   "svaralternativer": [
       {
           "id": "06740ca9-c6bc-7675-8000-6dd8d8dcb9a0",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-c6e9-78fe-8000-0def0d333741",
@@ -300,7 +300,7 @@ const sykefraværsarbeid6 = {
       },
       {
           "id": "06740ca9-c745-7ec3-8000-fbd70ce171d3",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-c779-76e1-8000-60219c7e6ffe",
@@ -316,7 +316,7 @@ const sykefraværsarbeid7 = {
   "svaralternativer": [
       {
           "id": "06740ca9-c7df-78e3-8000-4cbc9c5a926b",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-c80f-7ca4-8000-07c201d08d93",
@@ -328,7 +328,7 @@ const sykefraværsarbeid7 = {
       },
       {
           "id": "06740ca9-c871-7b8a-8000-3ee49782f461",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-c8a5-73da-8000-75d04f878ab7",
@@ -344,7 +344,7 @@ const sykefraværsarbeid8 = {
   "svaralternativer": [
       {
           "id": "06740ca9-c901-7605-8000-248fd930ed55",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-c932-7bfd-8000-931263f842b2",
@@ -356,7 +356,7 @@ const sykefraværsarbeid8 = {
       },
       {
           "id": "06740ca9-c994-73bf-8000-dda575ec2d95",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-c9bd-7e61-8000-0c1cf4993552",
@@ -372,7 +372,7 @@ const sykefraværsarbeid9 = {
   "svaralternativer": [
       {
           "id": "06740ca9-ca23-7810-8000-dae18c83af34",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-ca56-7c93-8000-7b6c729fc689",
@@ -384,7 +384,7 @@ const sykefraværsarbeid9 = {
       },
       {
           "id": "06740ca9-cabb-7070-8000-3c595609e4dc",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-caf1-7715-8000-698f2c508da4",
@@ -400,7 +400,7 @@ const sykefraværsarbeid10 = {
   "svaralternativer": [
       {
           "id": "06740ca9-cb57-7f84-8000-0dc329b26b36",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-cb8b-7380-8000-ec5904581760",
@@ -412,7 +412,7 @@ const sykefraværsarbeid10 = {
       },
       {
           "id": "06740ca9-cbf1-7b58-8000-57ef657ceb7e",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-cc24-7f87-8000-3760311acceb",
@@ -428,7 +428,7 @@ const arbeidsmiljø1 = {
   "svaralternativer": [
       {
           "id": "06740ca9-cc8b-7977-8000-4b1aadedaa94",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-ccbe-7e3d-8000-60474441f505",
@@ -440,7 +440,7 @@ const arbeidsmiljø1 = {
       },
       {
           "id": "06740ca9-cd25-7753-8000-5514c19f8620",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-cd58-7c6d-8000-890da0650446",
@@ -456,7 +456,7 @@ const arbeidsmiljø2 = {
   "svaralternativer": [
       {
           "id": "06740ca9-cdc0-7863-8000-da18c12c800c",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-cdf0-72c4-8000-b9d8c9e5096d",
@@ -468,7 +468,7 @@ const arbeidsmiljø2 = {
       },
       {
           "id": "06740ca9-ce57-715c-8000-f16984dbeaff",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-ce8a-76da-8000-836c03375b6f",
@@ -484,7 +484,7 @@ const arbeidsmiljø3 = {
   "svaralternativer": [
       {
           "id": "06740ca9-cef1-7066-8000-d9189aac7ff6",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-cf24-756f-8000-c537ba6e3e2a",
@@ -496,7 +496,7 @@ const arbeidsmiljø3 = {
       },
       {
           "id": "06740ca9-cf8a-7efb-8000-22ac4a93d075",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-cfbe-7d30-8000-d79af7d07bec",
@@ -512,7 +512,7 @@ const arbeidsmiljø4 = {
   "svaralternativer": [
       {
           "id": "06740ca9-d01d-74e8-8000-5d90048edfc9",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-d04a-7d68-8000-d7098f99f695",
@@ -524,7 +524,7 @@ const arbeidsmiljø4 = {
       },
       {
           "id": "06740ca9-d0ab-766b-8000-a8eb805d8e49",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-d0de-7f30-8000-1e43284dc643",
@@ -540,7 +540,7 @@ const arbeidsmiljø5 = {
   "svaralternativer": [
       {
           "id": "06740ca9-d13f-7088-8000-d174ba23192d",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-d16e-7104-8000-95fecc6693b5",
@@ -552,7 +552,7 @@ const arbeidsmiljø5 = {
       },
       {
           "id": "06740ca9-d1cd-7972-8000-49d00750307c",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-d1fd-7188-8000-66f2a90e2f68",
@@ -568,7 +568,7 @@ const arbeidsmiljø6 = {
   "svaralternativer": [
       {
           "id": "06740ca9-d264-7345-8000-c648d9cd8e16",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-d295-76d1-8000-8fc3c84e74ed",
@@ -580,7 +580,7 @@ const arbeidsmiljø6 = {
       },
       {
           "id": "06740ca9-d2f6-7d33-8000-5c4372e7adc8",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-d327-733e-8000-4f6f6b9b8a2c",
@@ -596,7 +596,7 @@ const arbeidsmiljø7 = {
   "svaralternativer": [
       {
           "id": "06740ca9-d38e-70fc-8000-ca454ae4765a",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-d3c1-797e-8000-ccd798431c1b",
@@ -608,7 +608,7 @@ const arbeidsmiljø7 = {
       },
       {
           "id": "06740ca9-d428-7aa4-8000-6bcc7ebcc982",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-d45c-73ac-8000-e79e1f2a984c",
@@ -624,7 +624,7 @@ const arbeidsmiljø8 = {
   "svaralternativer": [
       {
           "id": "06740ca9-d4bb-741b-8000-27c7c7766abd",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-d4e6-7fc5-8000-39a584475081",
@@ -636,7 +636,7 @@ const arbeidsmiljø8 = {
       },
       {
           "id": "06740ca9-d544-7ed6-8000-d5bbb32b6ade",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-d570-73e2-8000-4a4701de37c4",
@@ -652,7 +652,7 @@ const arbeidsmiljø9 = {
   "svaralternativer": [
       {
           "id": "06740ca9-d5d1-77b5-8000-ed846f1f60c2",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-d604-7f7e-8000-59e12e4fbc83",
@@ -664,7 +664,7 @@ const arbeidsmiljø9 = {
       },
       {
           "id": "06740ca9-d66b-7d3c-8000-efaf707d99d2",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-d69f-742b-8000-a8cb5b71fe4f",
@@ -680,7 +680,7 @@ const arbeidsmiljø10 = {
   "svaralternativer": [
       {
           "id": "06740ca9-d706-7562-8000-e96a378dfd84",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-d73a-72ad-8000-5319ca8d49fc",
@@ -692,7 +692,7 @@ const arbeidsmiljø10 = {
       },
       {
           "id": "06740ca9-d796-7feb-8000-074d728bf2be",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-d7ca-7793-8000-e94a072377a4",
@@ -708,7 +708,7 @@ const arbeidsmiljø11 = {
   "svaralternativer": [
       {
           "id": "06740ca9-d828-73d3-8000-08ce6b5541ff",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-d85a-7da7-8000-5fc63024d0ed",
@@ -720,7 +720,7 @@ const arbeidsmiljø11 = {
       },
       {
           "id": "06740ca9-d8bc-7f5f-8000-c2b4914b81f5",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-d8f0-7878-8000-08d178489450",
@@ -736,7 +736,7 @@ const arbeidsmiljø12 = {
   "svaralternativer": [
       {
           "id": "06740ca9-d951-7116-8000-96a54423214e",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-d984-7a40-8000-320e38f38970",
@@ -748,7 +748,7 @@ const arbeidsmiljø12 = {
       },
       {
           "id": "06740ca9-d9df-7b71-8000-bf9cfb9841c1",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-da13-7469-8000-69cab669c5e5",
@@ -764,7 +764,7 @@ const arbeidsmiljø13 = {
   "svaralternativer": [
       {
           "id": "06740ca9-da7a-7461-8000-c9a5c5e06d77",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-daad-7adb-8000-4386e3b40b7a",
@@ -776,7 +776,7 @@ const arbeidsmiljø13 = {
       },
       {
           "id": "06740ca9-db14-76f5-8000-89abe096f658",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-db45-7836-8000-e01901bef435",
@@ -792,7 +792,7 @@ const arbeidsmiljø14 = {
   "svaralternativer": [
       {
           "id": "06740ca9-dbac-73b9-8000-7ba10e1ad85f",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-dbdf-7916-8000-8df6878febf7",
@@ -804,7 +804,7 @@ const arbeidsmiljø14 = {
       },
       {
           "id": "06740ca9-dc45-7b8d-8000-9ce16cc80d09",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-dc78-7b47-8000-95eb48875c8d",
@@ -820,7 +820,7 @@ const arbeidsmiljø15 = {
   "svaralternativer": [
       {
           "id": "06740ca9-dcd5-738a-8000-ffdc3f31efad",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-dd06-73ae-8000-e08912f7b301",
@@ -832,7 +832,7 @@ const arbeidsmiljø15 = {
       },
       {
           "id": "06740ca9-dd6d-7213-8000-d7f399e4d1a0",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-dda0-7bb2-8000-77126865f639",
@@ -848,7 +848,7 @@ const arbeidsmiljø16 = {
   "svaralternativer": [
       {
           "id": "06740ca9-de01-7aac-8000-03ffa6d0de62",
-          "tekst": "Helt enig"
+          "tekst": "Enig"
       },
       {
           "id": "06740ca9-de34-77b6-8000-3a02256a14dc",
@@ -860,7 +860,7 @@ const arbeidsmiljø16 = {
       },
       {
           "id": "06740ca9-de94-72b3-8000-9a12ee5be60b",
-          "tekst": "Helt uenig"
+          "tekst": "Uenig"
       },
       {
           "id": "06740ca9-dec4-748c-8000-b53f58fafe4f",
