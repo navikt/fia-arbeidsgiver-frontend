@@ -25,7 +25,7 @@ test.describe("Deltaker/ferdigside", () => {
     
           await expect(page.getByText(element.tekst)).toBeVisible();
     
-          await page.getByText(element.svaralternativer[(j%element.svaralternativer.length)].tekst).click();
+          await page.getByText(element.svaralternativer[(j%element.svaralternativer.length)].tekst, {exact: true}).click();
           await page.getByRole("button", { name: "Svar" }).click();
         }
       }

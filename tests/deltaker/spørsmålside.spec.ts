@@ -48,7 +48,7 @@ test.describe("Deltaker/spørsmålside", () => {
   
         await expect(page.getByText(element.tekst)).toBeVisible();
   
-        await page.getByText(element.svaralternativer[(j%element.svaralternativer.length)].tekst).click();
+        await page.getByText(element.svaralternativer[(j%element.svaralternativer.length)].tekst, {exact: true}).click();
         await page.getByRole("button", { name: "Svar" }).click();
       }
     }
@@ -66,7 +66,7 @@ test.describe("Deltaker/spørsmålside", () => {
       },
     );
 
-    await page.getByText("Godt").first().click();
+    await page.getByText("Bra", {exact: true}).first().click();
     await page.getByRole("button", { name: "Svar" }).click();
     await expect(
       page.getByText("Kunne ikke sende svar, prøv igjen"),
@@ -79,7 +79,7 @@ test.describe("Deltaker/spørsmålside", () => {
       },
     );
 
-    await page.getByText("Godt").first().click();
+    await page.getByText("Bra", {exact: true}).first().click();
     await page.getByRole("button", { name: "Svar" }).click();
     await expect(
       page.getByText("Noe gikk galt. Prøv å laste siden på nytt."),
@@ -96,7 +96,7 @@ test.describe("Deltaker/spørsmålside", () => {
       },
     );
 
-    await page.getByText("Godt").first().click();
+    await page.getByText("Bra", {exact: true}).first().click();
     await page.route(
       `http://localhost:2222/api/${spørreundersøkelseId}/deltaker`,
       async (route) => {
@@ -131,8 +131,8 @@ test.describe("Deltaker/spørsmålside", () => {
         - heading "Partssamarbeid" [level=1]
         - text: Spørsmål 1 av 5
         - group "Hvordan opplever du at partssamarbeidet har utviklet seg i løpet av samarbeidsperioden?":
-          - radio "Svært godt": /06740ca9-bb43-\\d+-\\d+-136aa514dbca/
-          - radio "Godt": /06740ca9-bb72-74c8-\\d+-8fa6e3e13d06/
+          - radio "Svært bra": /06740ca9-bb43-\\d+-\\d+-136aa514dbca/
+          - radio "Bra": /06740ca9-bb72-74c8-\\d+-8fa6e3e13d06/
           - radio "Dårlig": /06740ca9-bb9b-7b38-\\d+-531d1d0bc046/
           - radio "Svært dårlig": /06740ca9-bbcf-\\d+-\\d+-d6ca1e15516b/
           - radio "Vet ikke": /06740ca9-bbf8-75d7-\\d+-aced076bc15e/
@@ -145,10 +145,10 @@ test.describe("Deltaker/spørsmålside", () => {
       page.getByRole("heading", { name: partssamarbeid.navn }),
     ).toBeVisible();
 
-    await page.getByLabel('Svært godt').check();
+    await page.getByLabel('Svært bra').check();
     await page.getByRole('button', { name: 'Svar' }).click();
     await page.getByRole('button', { name: 'Tilbake' }).click();
-    await expect(page.getByLabel('Svært godt')).toBeChecked();
+    await expect(page.getByLabel('Svært bra')).toBeChecked();
   });
 
   test("test av axe", async ({ page }) => {
