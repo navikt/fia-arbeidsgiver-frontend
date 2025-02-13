@@ -15,7 +15,7 @@ export default abstract class CookieHandler {
 
   private static get cookieContents(): CookieContents | undefined {
     const cookie = getCookie(COOKIE_STORAGE_KEY);
-    return cookie ? JSON.parse(cookie) : undefined;
+    return cookie?.toString() ? JSON.parse(cookie.toString()) : undefined;
   }
 
   private static setCookieVerdi<Key extends keyof CookieContents>(
