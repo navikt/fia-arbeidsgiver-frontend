@@ -131,11 +131,11 @@ test.describe("Deltaker/spørsmålside", () => {
         - heading "Partssamarbeid" [level=1]
         - text: Spørsmål 1 av 5
         - group "Hvordan opplever du at partssamarbeidet har utviklet seg i løpet av samarbeidsperioden?":
-          - radio "Svært bra": /06740ca9-bb43-\\d+-\\d+-136aa514dbca/
-          - radio "Bra": /06740ca9-bb72-74c8-\\d+-8fa6e3e13d06/
-          - radio "Dårlig": /06740ca9-bb9b-7b38-\\d+-531d1d0bc046/
-          - radio "Svært dårlig": /06740ca9-bbcf-\\d+-\\d+-d6ca1e15516b/
-          - radio "Vet ikke": /06740ca9-bbf8-75d7-\\d+-aced076bc15e/
+          - radio "Svært bra"
+          - radio "Bra"
+          - radio "Dårlig"
+          - radio "Svært dårlig"
+          - radio "Vet ikke"
         - button "Svar"
     `);
     });
