@@ -7,6 +7,7 @@ export const metadata: Metadata = {
 };
 
 
-export default function Startside({ params }: { params: { uuid: string } }) {
+export default async function Startside(props: { params: Promise<{ uuid: string }> }) {
+  const params = await props.params;
   return <StartsideInnhold params={params} />;
 }

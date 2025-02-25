@@ -36,7 +36,7 @@ test.describe("Deltaker/spørsmålside", () => {
         .map((svaralternativ: SvaralternativDto) => svaralternativ.tekst)
         .join(""),
     );
-    await expect(page.getByRole("button")).toContainText("Svar");
+    await expect(page.getByRole("button", {name: "Svar"})).toBeVisible();
   });
 
   test("havner på ferdigside til slutt", async ({ page }) => {
