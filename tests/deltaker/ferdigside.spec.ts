@@ -49,7 +49,16 @@ test.describe("Deltaker/ferdigside", () => {
         - paragraph: Takk for din deltakelse, du kan nå lukke denne siden.
     `);
   });
-  
+
+  test("Setter harSvartAlleSpørsmål når en lander på siden", async ({ page }) => {
+    await expect(page.getByRole('main')).toContainText('Takk!Din rolle i partssamarbeidet er viktig for å skape engasjement og gode arbeidsforhold på arbeidsplassenTakk for din deltakelse,du kan nå lukke denne siden.');
+    
+    const browserContext = page.context();
+    const cookies = await browserContext.cookies();
+    const kartleggingStore = JSON.parse(decodeURIComponent(cookies.find((cookie) => cookie.name === "kartlegging-store")?.value ?? ""));
+
+    expect(kartleggingStore.harSvartAlleSpørsmål).toBe(true);
+  });
 
   test("test av axe", async ({ page }) => {
     await page.goto(
