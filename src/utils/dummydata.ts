@@ -60,7 +60,7 @@ const partssamarbeid2 = {
 const partssamarbeid3 = {
   "id": "06740ca9-bd4b-7599-8000-a4942ae48871",
   "tekst": "Vi har opparbeidet oss nødvendig kompetanse for å forebygge og håndtere sykefraværet vårt",
-  "flervalg": false,
+  "flervalg": true,
   "svaralternativer": [
       {
           "id": "06740ca9-bd7e-79c8-8000-34ce46cc2827",

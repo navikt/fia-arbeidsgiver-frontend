@@ -29,13 +29,13 @@ export async function POST(request: NextRequest) {
   );
 
   const { sesjonsId, spørreundersøkelseId: cookieSpørreundersøkelseId } =
-    JSON.parse(cookies().get(COOKIE_SESJONS_ID_KEY)?.value ?? "{}");
+    JSON.parse((await cookies()).get(COOKIE_SESJONS_ID_KEY)?.value ?? "{}");
 
   if (
     sesjonsId !== undefined &&
     cookieSpørreundersøkelseId === spørreundersøkelseId
   ) {
-    setSesjonsIdCookie(sesjonsId, spørreundersøkelseId);
+    await setSesjonsIdCookie(sesjonsId, spørreundersøkelseId);
     return new Response(
       JSON.stringify({ spørreundersøkelseId, sesjonsId: "ok" }),
     );
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const fetched = await fetcher();
-    setSesjonsIdCookie(fetched.sesjonsId, spørreundersøkelseId);
+    await setSesjonsIdCookie(fetched.sesjonsId, spørreundersøkelseId);
 
     return new Response(JSON.stringify({ ...fetched, sesjonsId: "ok" }));
   } catch (error) {
@@ -55,8 +55,8 @@ export async function POST(request: NextRequest) {
   }
 }
 
-function setSesjonsIdCookie(sesjonsId: string, spørreundersøkelseId: string) {
-  cookies().set(
+async function setSesjonsIdCookie(sesjonsId: string, spørreundersøkelseId: string) {
+  (await cookies()).set(
     COOKIE_SESJONS_ID_KEY,
     JSON.stringify({ sesjonsId, spørreundersøkelseId }),
     {

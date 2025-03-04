@@ -1,9 +1,9 @@
 import { COOKIE_SESJONS_ID_KEY } from "@/utils/consts";
 import { cookies } from "next/headers";
 
-export function arbeidsgiverApiFetcherDeltaker(endpoint: string) {
+export async function arbeidsgiverApiFetcherDeltaker(endpoint: string) {
   const { sesjonsId } = JSON.parse(
-    cookies().get(COOKIE_SESJONS_ID_KEY)?.value ?? "{}",
+    (await cookies()).get(COOKIE_SESJONS_ID_KEY)?.value ?? "{}",
   );
 
   const { FIA_ARBEIDSGIVER_HOSTNAME } = process.env;

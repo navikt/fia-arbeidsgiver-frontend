@@ -1,6 +1,6 @@
 import { deltakerTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
-import { expect } from "@playwright/test";
+import { expect, test as baseTest } from "@playwright/test";
 
 // @ts-ignore
 import { partssamarbeid, spørreundersøkelseId, helSpørreundersøkelse } from "@/utils/dummydata";
@@ -36,7 +36,7 @@ test.describe("Deltaker/spørsmålside", () => {
         .map((svaralternativ: SvaralternativDto) => svaralternativ.tekst)
         .join(""),
     );
-    await expect(page.getByRole("button")).toContainText("Svar");
+    await expect(page.getByRole("button", {name: "Svar"})).toBeVisible();
   });
 
   test("havner på ferdigside til slutt", async ({ page }) => {
@@ -53,10 +53,82 @@ test.describe("Deltaker/spørsmålside", () => {
       }
     }
 
-    //TODO: Nytt tema, ikke ferdigside kommer opp med nye testdata
-    // await expect(page.getByText("Vi jobber systematisk for å forebygge sykefravær")).toBeVisible();
     await expect(page.getByRole('main')).toContainText('Takk!Din rolle i partssamarbeidet er viktig for å skape engasjement og gode arbeidsforhold på arbeidsplassenTakk for din deltakelse,du kan nå lukke denne siden.');
   });
+
+  test("Havner på venteside om tema ikke er åpnet enda", async ({ page }) => {
+    await page.route(
+      `http://localhost:2222/api/${spørreundersøkelseId}/deltaker/tema/${førsteTemaId}/sporsmal/${førsteSpørsmålId}`,
+      async (route) => {
+        await route.fulfill({ status: 202 });
+      },
+    );
+
+    await expect(
+      page.getByText("Spørsmål blir snart tilgjengelig."),
+    ).toBeVisible();
+  });
+
+  test("Viser riktig når en går tilbake til lagret svar", async ({ page }) => {
+    const tema = helSpørreundersøkelse[0];
+
+    const element = tema.spørsmål[0];
+    const svar = element.svaralternativer[(2 % element.svaralternativer.length)].tekst;
+
+    await expect(page.getByText(element.tekst)).toBeVisible();
+    await expect(page.getByRole("button", { name: "Svar" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Neste" })).not.toBeVisible();
+    await expect(page.getByRole("button", { name: "Tilbake" })).not.toBeVisible();
+    
+    await page.getByText(svar, {exact: true}).click();
+    await page.getByRole("button", { name: "Svar" }).click();
+    
+    await expect(page.getByText(element.tekst)).not.toBeVisible();
+    await expect(page.getByRole("button", { name: "Svar" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Neste" })).not.toBeVisible();
+    await expect(page.getByRole("button", { name: "Tilbake" })).toBeVisible();
+    
+    await page.getByRole("button", { name: "Tilbake" }).click();
+    
+    await expect(page.getByText(element.tekst)).toBeVisible();
+    await expect(page.getByRole("button", { name: "Svar" })).not.toBeVisible();
+    await expect(page.getByRole("button", { name: "Neste" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Tilbake" })).not.toBeVisible();
+    await expect(page.getByText(svar, {exact: true})).toBeChecked();
+  });
+
+  test("Viser checkbox for flervalg og radio for resten", async ({ page }) => {
+    const tema = helSpørreundersøkelse[0];
+
+    await expect(page.locator("input[type=checkbox]")).toHaveCount(0);
+    await expect(page.locator("input[type=radio]")).toHaveCount(tema.spørsmål[0].svaralternativer.length);
+    await page.getByRole("radio", {name: tema.spørsmål[0].svaralternativer[1].tekst, exact: true}).click();
+    await page.getByRole("button", { name: "Svar" }).click();
+
+    await expect(page.locator("input[type=checkbox]")).toHaveCount(0);
+    await expect(page.locator("input[type=radio]")).toHaveCount(tema.spørsmål[1].svaralternativer.length);
+    await page.getByRole("radio", {name: tema.spørsmål[1].svaralternativer[1].tekst}).click();
+    await page.getByRole("button", { name: "Svar" }).click();
+
+    await expect(page.locator("input[type=checkbox]")).toHaveCount(tema.spørsmål[2].svaralternativer.length);
+    await expect(page.locator("input[type=radio]")).toHaveCount(0);
+  });
+
+  baseTest("Redirecter til bli med om man ikke har sesjon", async ({ page }) => {
+    await page.goto(
+      `http://localhost:2222/${spørreundersøkelseId}/deltaker`,
+    );
+    await page.getByPlaceholder("Enter any user/subject").click();
+    await page.getByPlaceholder("Enter any user/subject").fill("asdf");
+    await page.getByPlaceholder("Enter any user/subject").press("Enter");
+
+    await page.waitForLoadState("domcontentloaded");
+    await page.goto(`http://localhost:2222/${spørreundersøkelseId}/deltaker/tema/${førsteTemaId}/sporsmal/${førsteSpørsmålId}`);
+    await page.waitForURL(`http://localhost:2222/${spørreundersøkelseId}/deltaker?sesjon=utl%C3%B8pt`);
+
+    expect(page.url()).toBe(`http://localhost:2222/${spørreundersøkelseId}/deltaker?sesjon=utl%C3%B8pt`);
+  });
+
 
   test("Viser feilmelding ved feil i sendSvar", async ({ page }) => {
     await page.route(
@@ -154,7 +226,6 @@ test.describe("Deltaker/spørsmålside", () => {
   test("test av axe", async ({ page }) => {
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
-    //TODO: Får feil på svg her.
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 });

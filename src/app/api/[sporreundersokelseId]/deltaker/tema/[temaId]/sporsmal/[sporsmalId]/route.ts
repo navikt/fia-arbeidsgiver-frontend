@@ -3,17 +3,23 @@ import { arbeidsgiverApiFetcherDeltaker } from "@/app/api/_arbeidsgiverApiFetche
 
 export async function GET(
   req: NextRequest,
-  {
-    params: { sporreundersokelseId, temaId, sporsmalId },
-  }: {
-    params: {
+  props: {
+    params: Promise<{
       sporreundersokelseId: string;
       temaId: string;
       sporsmalId: string;
-    };
-  },
+    }>;
+  }
 ) {
-  const fetcher = arbeidsgiverApiFetcherDeltaker(
+  const params = await props.params;
+
+  const {
+    sporreundersokelseId,
+    temaId,
+    sporsmalId
+  } = params;
+
+  const fetcher = await arbeidsgiverApiFetcherDeltaker(
     `${sporreundersokelseId}/tema/${temaId}/sporsmal/${sporsmalId}`,
   );
 
