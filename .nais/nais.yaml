@@ -46,6 +46,12 @@ spec:
     autoInstrumentation:
       enabled: true
       runtime: nodejs
+      destinations:
+        - id: "grafana-lgtm"
+    logging:
+      destinations:
+        - id: loki
+        - id: elastic
   env:
     - name: FARO_URL
       value: {{ faroUrl }}
