@@ -22,6 +22,7 @@ export function Framdrift({
         setSisteSpørsmål(spørsmålnummer);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [spørsmålnummer]);
 
   return (

@@ -19,7 +19,7 @@ export default function BarChart({
 
   const options = React.useMemo(
     () => genererChartOptionsFraSpørsmålOgSvar(spørsmålMedSorterteAlternativer, horizontal, farge),
-    [spørsmålMedSorterteAlternativer, horizontal],
+    [spørsmålMedSorterteAlternativer, horizontal, farge],
   );
 
   return (
