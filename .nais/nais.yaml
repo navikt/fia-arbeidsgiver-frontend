@@ -12,6 +12,10 @@ spec:
     - {{ ingress }}
   image: {{image}}
   port: 3000
+  readiness:
+    path: /internal/isReady
+  liveness:
+    path: /internal/isAlive
   replicas:
     max: 2
     min: 2
