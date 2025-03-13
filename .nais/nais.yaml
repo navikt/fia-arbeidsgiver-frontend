@@ -14,8 +14,16 @@ spec:
   port: 3000
   readiness:
     path: /internal/isReady
+    failureThreshold: 10
+    initialDelay: 20
+    periodSeconds: 15
+    timeout: 5
   liveness:
     path: /internal/isAlive
+    failureThreshold: 10
+    initialDelay: 20
+    periodSeconds: 15
+    timeout: 5
   replicas:
     max: 2
     min: 2
