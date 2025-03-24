@@ -27,7 +27,7 @@
     "cookies-next": "^5.1.0",
     "highcharts": "^12.1.2",
     "highcharts-react-official": "^3.2.1",
-    "next": "15.2.1",
+    "next": "15.2.3",
     "pino": "^9.6.0",
     "qrcode.react": "^4.2.0",
     "react": "19.0.0",
