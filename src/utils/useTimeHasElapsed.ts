@@ -7,6 +7,7 @@ export default function useTimeHasElapsed(time: number) {
     setTimeout(() => {
       try {
         setHasElapsed(true);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (e) {
         // Ignore
       }
