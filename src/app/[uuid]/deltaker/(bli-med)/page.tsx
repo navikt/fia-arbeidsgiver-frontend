@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Alert, BodyShort, Heading, Page, VStack } from "@navikt/ds-react";
+import { Alert, BodyShort, Heading, Link, Page, Spacer, VStack } from "@navikt/ds-react";
 import { PageBlock } from "@navikt/ds-react/Page";
 import React from "react";
 import BliMedKnapp from "./BliMedKnapp";
@@ -18,9 +18,9 @@ export default async function Landingsside(
   const searchParams = await props.searchParams;
   const params = await props.params;
   return (
-    <Page contentBlockPadding="none">
-      <PageBlock gutters width="lg">
-        <VStack gap={"4"}>
+    <Page contentBlockPadding="none" className={startsideStyles.startside}>
+      <PageBlock gutters width="lg" className={startsideStyles.startsideinnhold}>
+        <VStack gap={"4"} height={"100%"}>
           <Heading
             level="1"
             size="medium"
@@ -34,6 +34,8 @@ export default async function Landingsside(
             Trykk på knappen for å bli med
           </BodyShort>
           <BliMedKnapp spørreundersøkelseId={params?.uuid} />
+          <Spacer />
+          <Personvernseksjon />
         </VStack>
       </PageBlock>
     </Page>
@@ -49,5 +51,24 @@ function SesjonUtløptVarsel({ sesjon }: { sesjon?: string }) {
     <Alert variant={"error"} role="alert" aria-live="polite">
       Sesjonen din har utløpt. Vennligst start på nytt.
     </Alert>
+  );
+}
+
+function Personvernseksjon() {
+  return (
+    <div className={startsideStyles.personvernseksjon}>
+      <BodyShort size="small" textColor="subtle" align="center">
+        Nav bruker IP adressen din under spørreundersøkelsen, men den vil ikke bli lagret. Les mer i vår{" "}
+        <Link
+          href="https://www.nav.no/personvernerklaering"
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="subtle"
+        >
+          personvernerklæring
+        </Link>
+        .
+      </BodyShort>
+    </div>
   );
 }

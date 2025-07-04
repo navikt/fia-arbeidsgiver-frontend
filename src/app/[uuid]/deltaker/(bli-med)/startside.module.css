@@ -1,13 +1,27 @@
-.sidetekst {
-  margin-bottom: 3rem;
-}
+.startside {
+  > div {
+    display: flex;
 
-.bliMedKnapp {
-  max-width: 12rem;
-  width: 100%;
-  margin: auto;
-}
+    .startsideinnhold {
+      flex-grow: 1;
+      .sidetekst {
+        margin-bottom: 2rem;
+      }
 
-.kartleggingsmøtetittel {
-  margin-top: 10rem;
+      .bliMedKnapp {
+        max-width: 12rem;
+        width: 100%;
+        margin: auto;
+      }
+
+      .kartleggingsmøtetittel {
+        margin-top: 10rem;
+      }
+
+      .personvernseksjon {
+        margin: 4rem auto 2rem;
+        max-width: 30rem;
+      }
+    }
+  }
 }
