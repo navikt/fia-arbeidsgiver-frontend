@@ -3,7 +3,11 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test as baseTest } from "@playwright/test";
 
 // @ts-ignore
-import { partssamarbeid, spørreundersøkelseId, helSpørreundersøkelse } from "@/utils/dummydata";
+import {
+  partssamarbeid,
+  spørreundersøkelseId,
+  helSpørreundersøkelse,
+} from "@/utils/dummydata";
 import { SvaralternativDto } from "@/app/_types/SvaralternativDto";
 const førsteSpørsmålId = partssamarbeid.spørsmål[0].id;
 const førsteTemaId = partssamarbeid.id;
@@ -23,7 +27,9 @@ test.describe("Deltaker/spørsmålside", () => {
     await expect(
       page.getByRole("heading", { name: partssamarbeid.navn }),
     ).toBeVisible();
-    await expect(page.getByText(partssamarbeid.spørsmål[0].tekst)).toBeVisible();
+    await expect(
+      page.getByText(partssamarbeid.spørsmål[0].tekst),
+    ).toBeVisible();
     await expect(
       page.getByText(
         partssamarbeid.spørsmål[0].svaralternativer
@@ -36,7 +42,7 @@ test.describe("Deltaker/spørsmålside", () => {
         .map((svaralternativ: SvaralternativDto) => svaralternativ.tekst)
         .join(""),
     );
-    await expect(page.getByRole("button", {name: "Svar"})).toBeVisible();
+    await expect(page.getByRole("button", { name: "Svar" })).toBeVisible();
   });
 
   test("havner på ferdigside til slutt", async ({ page }) => {
@@ -45,15 +51,22 @@ test.describe("Deltaker/spørsmålside", () => {
 
       for (let j = 0; j < tema.spørsmål.length; j++) {
         const element = tema.spørsmål[j];
-  
+
         await expect(page.getByText(element.tekst)).toBeVisible();
-  
-        await page.getByText(element.svaralternativer[(j%element.svaralternativer.length)].tekst, {exact: true}).click();
+
+        await page
+          .getByText(
+            element.svaralternativer[j % element.svaralternativer.length].tekst,
+            { exact: true },
+          )
+          .click();
         await page.getByRole("button", { name: "Svar" }).click();
       }
     }
 
-    await expect(page.getByRole('main')).toContainText('Takk!Din rolle i partssamarbeidet er viktig for å skape engasjement og gode arbeidsforhold på arbeidsplassenTakk for din deltakelse,du kan nå lukke denne siden.');
+    await expect(page.getByRole("main")).toContainText(
+      "Takk!Din rolle i partssamarbeidet er viktig for å skape engasjement og gode arbeidsforhold på arbeidsplassenTakk for din deltakelse,du kan nå lukke denne siden.",
+    );
   });
 
   test("Havner på venteside om tema ikke er åpnet enda", async ({ page }) => {
@@ -73,62 +86,86 @@ test.describe("Deltaker/spørsmålside", () => {
     const tema = helSpørreundersøkelse[0];
 
     const element = tema.spørsmål[0];
-    const svar = element.svaralternativer[(2 % element.svaralternativer.length)].tekst;
+    const svar =
+      element.svaralternativer[2 % element.svaralternativer.length].tekst;
 
     await expect(page.getByText(element.tekst)).toBeVisible();
     await expect(page.getByRole("button", { name: "Svar" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Neste" })).not.toBeVisible();
-    await expect(page.getByRole("button", { name: "Tilbake" })).not.toBeVisible();
-    
-    await page.getByText(svar, {exact: true}).click();
+    await expect(
+      page.getByRole("button", { name: "Tilbake" }),
+    ).not.toBeVisible();
+
+    await page.getByText(svar, { exact: true }).click();
     await page.getByRole("button", { name: "Svar" }).click();
-    
+
     await expect(page.getByText(element.tekst)).not.toBeVisible();
     await expect(page.getByRole("button", { name: "Svar" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Neste" })).not.toBeVisible();
     await expect(page.getByRole("button", { name: "Tilbake" })).toBeVisible();
-    
+
     await page.getByRole("button", { name: "Tilbake" }).click();
-    
+
     await expect(page.getByText(element.tekst)).toBeVisible();
     await expect(page.getByRole("button", { name: "Svar" })).not.toBeVisible();
     await expect(page.getByRole("button", { name: "Neste" })).toBeVisible();
-    await expect(page.getByRole("button", { name: "Tilbake" })).not.toBeVisible();
-    await expect(page.getByText(svar, {exact: true})).toBeChecked();
+    await expect(
+      page.getByRole("button", { name: "Tilbake" }),
+    ).not.toBeVisible();
+    await expect(page.getByText(svar, { exact: true })).toBeChecked();
   });
 
   test("Viser checkbox for flervalg og radio for resten", async ({ page }) => {
     const tema = helSpørreundersøkelse[0];
 
     await expect(page.locator("input[type=checkbox]")).toHaveCount(0);
-    await expect(page.locator("input[type=radio]")).toHaveCount(tema.spørsmål[0].svaralternativer.length);
-    await page.getByRole("radio", {name: tema.spørsmål[0].svaralternativer[1].tekst, exact: true}).click();
+    await expect(page.locator("input[type=radio]")).toHaveCount(
+      tema.spørsmål[0].svaralternativer.length,
+    );
+    await page
+      .getByRole("radio", {
+        name: tema.spørsmål[0].svaralternativer[1].tekst,
+        exact: true,
+      })
+      .click();
     await page.getByRole("button", { name: "Svar" }).click();
 
     await expect(page.locator("input[type=checkbox]")).toHaveCount(0);
-    await expect(page.locator("input[type=radio]")).toHaveCount(tema.spørsmål[1].svaralternativer.length);
-    await page.getByRole("radio", {name: tema.spørsmål[1].svaralternativer[1].tekst}).click();
+    await expect(page.locator("input[type=radio]")).toHaveCount(
+      tema.spørsmål[1].svaralternativer.length,
+    );
+    await page
+      .getByRole("radio", { name: tema.spørsmål[1].svaralternativer[1].tekst })
+      .click();
     await page.getByRole("button", { name: "Svar" }).click();
 
-    await expect(page.locator("input[type=checkbox]")).toHaveCount(tema.spørsmål[2].svaralternativer.length);
+    await expect(page.locator("input[type=checkbox]")).toHaveCount(
+      tema.spørsmål[2].svaralternativer.length,
+    );
     await expect(page.locator("input[type=radio]")).toHaveCount(0);
   });
 
-  baseTest("Redirecter til bli med om man ikke har sesjon", async ({ page }) => {
-    await page.goto(
-      `http://localhost:2222/${spørreundersøkelseId}/deltaker`,
-    );
-    await page.getByPlaceholder("Enter any user/subject").click();
-    await page.getByPlaceholder("Enter any user/subject").fill("asdf");
-    await page.getByPlaceholder("Enter any user/subject").press("Enter");
+  baseTest(
+    "Redirecter til bli med om man ikke har sesjon",
+    async ({ page }) => {
+      await page.goto(`http://localhost:2222/${spørreundersøkelseId}/deltaker`);
+      await page.getByPlaceholder("Enter any user/subject").click();
+      await page.getByPlaceholder("Enter any user/subject").fill("asdf");
+      await page.getByPlaceholder("Enter any user/subject").press("Enter");
 
-    await page.waitForLoadState("domcontentloaded");
-    await page.goto(`http://localhost:2222/${spørreundersøkelseId}/deltaker/tema/${førsteTemaId}/sporsmal/${førsteSpørsmålId}`);
-    await page.waitForURL(`http://localhost:2222/${spørreundersøkelseId}/deltaker?sesjon=utl%C3%B8pt`);
+      await page.waitForLoadState("domcontentloaded");
+      await page.goto(
+        `http://localhost:2222/${spørreundersøkelseId}/deltaker/tema/${førsteTemaId}/sporsmal/${førsteSpørsmålId}`,
+      );
+      await page.waitForURL(
+        `http://localhost:2222/${spørreundersøkelseId}/deltaker?sesjon=utl%C3%B8pt`,
+      );
 
-    expect(page.url()).toBe(`http://localhost:2222/${spørreundersøkelseId}/deltaker?sesjon=utl%C3%B8pt`);
-  });
-
+      expect(page.url()).toBe(
+        `http://localhost:2222/${spørreundersøkelseId}/deltaker?sesjon=utl%C3%B8pt`,
+      );
+    },
+  );
 
   test("Viser feilmelding ved feil i sendSvar", async ({ page }) => {
     await page.route(
@@ -138,7 +175,7 @@ test.describe("Deltaker/spørsmålside", () => {
       },
     );
 
-    await page.getByText("Bra", {exact: true}).first().click();
+    await page.getByText("Bra", { exact: true }).first().click();
     await page.getByRole("button", { name: "Svar" }).click();
     await expect(
       page.getByText("Kunne ikke sende svar, prøv igjen"),
@@ -151,7 +188,7 @@ test.describe("Deltaker/spørsmålside", () => {
       },
     );
 
-    await page.getByText("Bra", {exact: true}).first().click();
+    await page.getByText("Bra", { exact: true }).first().click();
     await page.getByRole("button", { name: "Svar" }).click();
     await expect(
       page.getByText("Noe gikk galt. Prøv å laste siden på nytt."),
@@ -168,7 +205,7 @@ test.describe("Deltaker/spørsmålside", () => {
       },
     );
 
-    await page.getByText("Bra", {exact: true}).first().click();
+    await page.getByText("Bra", { exact: true }).first().click();
     await page.route(
       `http://localhost:2222/api/${spørreundersøkelseId}/deltaker`,
       async (route) => {
@@ -198,7 +235,7 @@ test.describe("Deltaker/spørsmålside", () => {
     await expect(
       page.getByRole("heading", { name: partssamarbeid.navn }),
     ).toBeVisible();
-    await expect(page.getByRole('main')).toMatchAriaSnapshot(`
+    await expect(page.getByRole("main")).toMatchAriaSnapshot(`
       - main:
         - heading "Partssamarbeid" [level=1]
         - text: Spørsmål 1 av 5
@@ -210,22 +247,26 @@ test.describe("Deltaker/spørsmålside", () => {
           - radio "Vet ikke"
         - button "Svar"
     `);
-    });
+  });
 
-  test("Bruker valgt svaralternativ fra cookieHandler", async ({page}) => {
+  test("Bruker valgt svaralternativ fra cookieHandler", async ({ page }) => {
     await expect(
       page.getByRole("heading", { name: partssamarbeid.navn }),
     ).toBeVisible();
 
-    await page.getByLabel('Svært bra').check();
-    await page.getByRole('button', { name: 'Svar' }).click();
-    await page.getByRole('button', { name: 'Tilbake' }).click();
-    await expect(page.getByLabel('Svært bra')).toBeChecked();
+    await page.getByLabel("Svært bra").check();
+    await page.getByRole("button", { name: "Svar" }).click();
+    await page.getByRole("button", { name: "Tilbake" }).click();
+    await expect(page.getByLabel("Svært bra")).toBeChecked();
   });
 
   test("test av axe", async ({ page }) => {
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
     expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  test("Screenshot av innhold likner", async ({ page }) => {
+    await expect(page).toHaveScreenshot({ fullPage: true });
   });
 });

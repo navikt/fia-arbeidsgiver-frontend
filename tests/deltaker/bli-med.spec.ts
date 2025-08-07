@@ -9,6 +9,7 @@ const test = base.extend({
     await page.getByPlaceholder("Enter any user/subject").click();
     await page.getByPlaceholder("Enter any user/subject").fill("asdf");
     await page.getByPlaceholder("Enter any user/subject").press("Enter");
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     await use(page);
   },
 });
@@ -99,6 +100,15 @@ test.describe("Deltaker/bli med", () => {
     );
     accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  test("Screenshot av innhold likner", async ({ page }) => {
+    await expect(page).toHaveScreenshot({ fullPage: true });
+
+    await page.goto(
+      "http://localhost:2222/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker?sesjon=utl%C3%B8pt",
+    );
+    await expect(page).toHaveScreenshot({ fullPage: true });
   });
 });
 

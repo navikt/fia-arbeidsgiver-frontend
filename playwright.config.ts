@@ -14,7 +14,7 @@ export default defineConfig({
   timeout: 45000,
   outputDir: ".test/spec/output",
   snapshotPathTemplate:
-    ".test/spec/snaps/{projectName}/{testFilePath}/{arg}{ext}",
+    "__playwright_snapshots__/{projectName}/{testFilePath}/{arg}{ext}",
   reporter: [
     [
       "html",
