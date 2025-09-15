@@ -76,7 +76,10 @@ export function BehovsvurderingIntroside({ params }: { params: { uuid: string } 
 							<ListItem>
 								Resultatene deles kun med dere og det registreres ikke hvem som har svart hva.
 							</ListItem>
-							<ListItem>
+              <ListItem>
+                På Min side - Arbeidsgiver blir behovsvurderingen og andre samarbeidsdokumenter tilgjengelig.
+              </ListItem>
+              <ListItem>
 								Nav bruker anonymisert statistikk for å videreutvikle tjenesten.
 							</ListItem>
 						</List>
