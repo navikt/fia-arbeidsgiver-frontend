@@ -6,16 +6,13 @@ export async function GET(
   props: {
     params: Promise<{
       sporreundersokelseId: string;
-      temaId: number;
+      temaId: string;
     }>;
-  }
+  },
 ) {
   const params = await props.params;
 
-  const {
-    sporreundersokelseId,
-    temaId
-  } = params;
+  const { sporreundersokelseId, temaId } = params;
 
   const fetcher = arbeidsgiverApiFetcherVert(
     `${sporreundersokelseId}/tema/${temaId}/antall-svar`,
