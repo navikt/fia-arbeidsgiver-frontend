@@ -1,6 +1,6 @@
 name: Build, test and deploy
 run-name: Build and deploy app || ${{ github.event.head_commit.message }}
-on: [push]
+on: [ push ]
 
 env:
   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
@@ -86,7 +86,7 @@ jobs:
       id-token: write
     strategy:
       matrix:
-        cluster: [dev, prod]
+        cluster: [ dev, prod ]
     name: Deploy to ${{ matrix.cluster }}
     needs: build
     if: github.ref == 'refs/heads/main'
@@ -107,7 +107,7 @@ jobs:
       id-token: write
     name: Deploy app to dev
     needs: build
-    if: github.ref == 'refs/heads/next-15'
+    if: github.ref == 'refs/heads/deploy-ny-next-versjon'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
