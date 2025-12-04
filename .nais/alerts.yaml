@@ -1,0 +1,32 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: fia-arbeidsgiver-frontend
+  namespace: pia
+  labels:
+    team: pia
+    created-by: pia
+spec:
+  groups:
+    - name: fia-arbeidsgiver-frontend-alerts
+      rules:
+        - alert: Applikasjon nede
+          expr: kube_deployment_status_replicas_available{deployment="fia-arbeidsgiver-frontend"} == 0
+          for: 2m
+          annotations:
+            consequence: "fia-arbeidsgiver-frontend (kartlegginger) er utilgjengelig"
+            action: |-
+              Sjekk helsa til applikasjonen i nais console
+          labels:
+            namespace: pia
+            severity: critical
+
+        - alert: ErrorLogRegistrert
+          expr: sum(increase(logd_messages_total{log_app="fia-arbeidsgiver-frontend", log_level="Error"}[10m])) > 0
+          annotations:
+            description: "fia-arbeidsgiver-frontend (kartlegginger) har logget en (eller flere) feil."
+            action: |-
+              Sjekk logger etter hva som kan ha gått galt
+          labels:
+            namespace: pia
+            severity: warning
