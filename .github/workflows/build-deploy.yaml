@@ -17,7 +17,7 @@ jobs:
       id-token: write
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: 1.2.23
@@ -64,7 +64,7 @@ jobs:
     needs: tests
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: 1.2.23
@@ -93,7 +93,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Deploy application to ${{ matrix.cluster }}
         uses: nais/deploy/actions/deploy@v2
         env:
@@ -110,7 +110,7 @@ jobs:
     if: github.ref == 'refs/heads/next-15'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Deploy application to dev
         uses: nais/deploy/actions/deploy@v2
         env:
