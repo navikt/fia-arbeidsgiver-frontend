@@ -7,7 +7,7 @@
       "dependencies": {
         "@grafana/faro-web-sdk": "^2.0.2",
         "@grafana/faro-web-tracing": "^2.0.2",
-        "@navikt/ds-css": "^7.33.4",
+        "@navikt/ds-css": "^7.35.2",
         "@navikt/ds-react": "^7.33.4",
         "@navikt/next-logger": "^4.4.4",
         "@navikt/oasis": "^3.8.0",
@@ -502,7 +502,7 @@
 
     "@navikt/aksel-icons": ["@navikt/aksel-icons@7.33.4", "https://npm.pkg.github.com/download/@navikt/aksel-icons/7.33.4/7c39a67a20f1e006ea5c14b07093a0162147c38f", {}, "sha512-q/mLGfPyeKbyIghanK9l7v9yYriTb6O9cfgtSy5pbjvYRV40eyNRjZlBUh1RHth3ad92vliX+qeW29cHLXLf1g=="],
 
-    "@navikt/ds-css": ["@navikt/ds-css@7.33.4", "https://npm.pkg.github.com/download/@navikt/ds-css/7.33.4/58abe298b8dfaa96db850ee41d0c6eb003e95503", {}, "sha512-L0RL9nNjtIcsV5EVtZiwdPIKPFcR7YhF/7Nvrsyi4V3oiylfaeEO2/Wfh1I1oKOQ0Y8yZIyEyK5hNUiXgD8S2Q=="],
+    "@navikt/ds-css": ["@navikt/ds-css@7.35.2", "https://npm.pkg.github.com/download/@navikt/ds-css/7.35.2/b47c85445b0cbc28f2579ba96a6282e18ac183e7", {}, "sha512-JIYjT05GLLVPe45ewWvIUK2VPifPesxNl2Om5/aXuSGeNJUnFZ2EZ9a+/Q8BO5/w3QDh94toqIjQoLgG3Rsb3w=="],
 
     "@navikt/ds-react": ["@navikt/ds-react@7.33.4", "https://npm.pkg.github.com/download/@navikt/ds-react/7.33.4/7ce5a7b70cf3870bc73f1cf851c4ec3ba3b63683", { "dependencies": { "@floating-ui/react": "0.27.8", "@floating-ui/react-dom": "^2.1.6", "@navikt/aksel-icons": "^7.33.4", "@navikt/ds-tokens": "^7.33.4", "clsx": "^2.1.0", "date-fns": "^4.0.0", "react-day-picker": "9.7.0" }, "peerDependencies": { "@types/react": "^17.0.30 || ^18 || ^19", "react": "^17 || ^18 || ^19", "react-dom": "^17 || ^18 || ^19" } }, "sha512-S6myjbeFXSGMAHq5K2U0vHC5em26ihwPOTbIy+X/GaIB0PuwYSO3cEVRRUNIvDanzoFLmAzQ/T/idLf3shxpLA=="],
 

@@ -19,7 +19,7 @@
   "dependencies": {
     "@grafana/faro-web-sdk": "^2.0.2",
     "@grafana/faro-web-tracing": "^2.0.2",
-    "@navikt/ds-css": "^7.33.4",
+    "@navikt/ds-css": "^7.35.2",
     "@navikt/ds-react": "^7.33.4",
     "@navikt/next-logger": "^4.4.4",
     "@navikt/oasis": "^3.8.0",
