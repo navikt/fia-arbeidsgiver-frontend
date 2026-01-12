@@ -10,7 +10,7 @@ volumes:
 
 services:
   authserver:
-    image: ghcr.io/navikt/mock-oauth2-server:2.1.2
+    image: ghcr.io/navikt/mock-oauth2-server:3.0.1
     environment:
       TZ: Europe/Oslo
       SERVER_PORT: 6969
@@ -121,7 +121,7 @@ services:
       #- "3100:3100" # HTTP
       #- "9095:9095" # gRPC
   grafana:
-    image: grafana/grafana:9.4.9
+    image: grafana/grafana:12.3.1
     environment:
       # Disable authentication.
       - GF_AUTH_DISABLE_LOGIN_FORM=true
