@@ -1,3 +1,3 @@
 export async function GET() {
-	return new Response(JSON.stringify({ isAlive: true }));
+  return new Response(JSON.stringify({ isAlive: true }));
 }

@@ -8,14 +8,11 @@ export async function GET(
       sporreundersokelseId: string;
       temaId: string;
     }>;
-  }
+  },
 ) {
   const params = await props.params;
 
-  const {
-    sporreundersokelseId,
-    temaId
-  } = params;
+  const { sporreundersokelseId, temaId } = params;
 
   const fetcher = arbeidsgiverApiFetcherVert(
     `${sporreundersokelseId}/tema/${temaId}`,

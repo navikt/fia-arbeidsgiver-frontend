@@ -15,10 +15,16 @@ export default function BarChart({
 }) {
   const chartComponentRef = React.useRef<HighchartsReact.RefObject>(null);
 
-  const spørsmålMedSorterteAlternativer = useSpørsmålMedSorterteSvaralternativer(spørsmål);
+  const spørsmålMedSorterteAlternativer =
+    useSpørsmålMedSorterteSvaralternativer(spørsmål);
 
   const options = React.useMemo(
-    () => genererChartOptionsFraSpørsmålOgSvar(spørsmålMedSorterteAlternativer, horizontal, farge),
+    () =>
+      genererChartOptionsFraSpørsmålOgSvar(
+        spørsmålMedSorterteAlternativer,
+        horizontal,
+        farge,
+      ),
     [spørsmålMedSorterteAlternativer, horizontal, farge],
   );
 
@@ -40,7 +46,7 @@ function genererChartOptionsFraSpørsmålOgSvar(
   return {
     chart: {
       type: horizontal ? "bar" : "column",
-      height: horizontal ? (85 + spørsmål.svarListe.length * 75) : undefined,
+      height: horizontal ? 85 + spørsmål.svarListe.length * 75 : undefined,
     },
     title: {
       text: spørsmål.tekst,
@@ -49,7 +55,7 @@ function genererChartOptionsFraSpørsmålOgSvar(
       minScale: 1,
       style: {
         fontSize: "1.25rem",
-      }
+      },
     },
     subtitle: {
       text: spørsmål.flervalg ? "(flere valg er mulig)" : undefined,
@@ -68,9 +74,9 @@ function genererChartOptionsFraSpørsmålOgSvar(
         data: spørsmål.svarListe.map((svar) =>
           svar.antallSvar > 0
             ? {
-              y: svar.antallSvar,
-              color: farge,
-            }
+                y: svar.antallSvar,
+                color: farge,
+              }
             : null,
         ),
       },

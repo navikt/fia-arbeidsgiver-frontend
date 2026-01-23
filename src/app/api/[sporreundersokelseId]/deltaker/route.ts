@@ -3,12 +3,14 @@ import { NextRequest } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  props: { params: Promise<{ sporreundersokelseId: string }> }
+  props: { params: Promise<{ sporreundersokelseId: string }> },
 ) {
   const params = await props.params;
   const spørreundersøkelseId = params.sporreundersokelseId;
 
-  const fetcher = await arbeidsgiverApiFetcherDeltaker(`${spørreundersøkelseId}`);
+  const fetcher = await arbeidsgiverApiFetcherDeltaker(
+    `${spørreundersøkelseId}`,
+  );
 
   return fetcher();
 }

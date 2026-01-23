@@ -24,23 +24,35 @@ export default function SpørsmålBody({
   spørsmålId: string;
   temaId: number;
 }) {
-  const { storedValue: sisteTema, setValue: setSisteTema } = useLocalStorage<string>("sisteTema", "FØRSTE_LOAD");
-  const { storedValue: sisteSpørsmål, setValue: setSisteSpørsmål } = useLocalStorage<DeltakerSpørsmålDto | undefined>("sisteSpørsmål");
+  const { storedValue: sisteTema, setValue: setSisteTema } =
+    useLocalStorage<string>("sisteTema", "FØRSTE_LOAD");
+  const { storedValue: sisteSpørsmål, setValue: setSisteSpørsmål } =
+    useLocalStorage<DeltakerSpørsmålDto | undefined>("sisteSpørsmål");
   const router = useRouter();
-  const {
-    data: deltakerSpørsmål,
-    error: feilSpørsmål,
-  } = useDeltakerSpørsmål(spørreundersøkelseId, temaId, spørsmålId);
+  const { data: deltakerSpørsmål, error: feilSpørsmål } = useDeltakerSpørsmål(
+    spørreundersøkelseId,
+    temaId,
+    spørsmålId,
+  );
 
   React.useEffect(() => {
     if (deltakerSpørsmål && sisteTema !== deltakerSpørsmål.temanavn) {
       setSisteTema(deltakerSpørsmål.temanavn);
     }
 
-    if (deltakerSpørsmål !== undefined && deltakerSpørsmål.spørsmålnummer !== sisteSpørsmål?.spørsmålnummer) {
+    if (
+      deltakerSpørsmål !== undefined &&
+      deltakerSpørsmål.spørsmålnummer !== sisteSpørsmål?.spørsmålnummer
+    ) {
       setSisteSpørsmål(deltakerSpørsmål);
     }
-  }, [deltakerSpørsmål, sisteTema, setSisteTema, sisteSpørsmål, setSisteSpørsmål]);
+  }, [
+    deltakerSpørsmål,
+    sisteTema,
+    setSisteTema,
+    sisteSpørsmål,
+    setSisteSpørsmål,
+  ]);
 
   React.useEffect(() => {
     const sjekkSesjonOgRedirectOmMangler = async () => {
@@ -90,9 +102,13 @@ export default function SpørsmålBody({
       return null;
     }
 
-    if (sisteSpørsmål && sisteSpørsmål.antallSpørsmål > sisteSpørsmål.spørsmålnummer) {
-      return <LoadingSkeleton sisteTema={sisteTema} sisteSpørsmål={sisteSpørsmål} />;
-
+    if (
+      sisteSpørsmål &&
+      sisteSpørsmål.antallSpørsmål > sisteSpørsmål.spørsmålnummer
+    ) {
+      return (
+        <LoadingSkeleton sisteTema={sisteTema} sisteSpørsmål={sisteSpørsmål} />
+      );
     }
     return <Lastevisning sisteTema={sisteTema} />;
   }
@@ -110,7 +126,13 @@ export default function SpørsmålBody({
   );
 }
 
-function LoadingSkeleton({ sisteTema, sisteSpørsmål }: { sisteTema?: string, sisteSpørsmål?: DeltakerSpørsmålDto }) {
+function LoadingSkeleton({
+  sisteTema,
+  sisteSpørsmål,
+}: {
+  sisteTema?: string;
+  sisteSpørsmål?: DeltakerSpørsmålDto;
+}) {
   return (
     <>
       <VStack
@@ -118,7 +140,13 @@ function LoadingSkeleton({ sisteTema, sisteSpørsmål }: { sisteTema?: string, s
         gap={"2"}
         className={spørsmålStyles.spørsmålsheader}
       >
-        {sisteTema ? <Heading size="medium">{sisteTema}</Heading> : <Heading size="medium" as={Skeleton}>Laster tema</Heading>}
+        {sisteTema ? (
+          <Heading size="medium">{sisteTema}</Heading>
+        ) : (
+          <Heading size="medium" as={Skeleton}>
+            Laster tema
+          </Heading>
+        )}
         <Framdrift
           spørsmålnummer={sisteSpørsmål?.spørsmålnummer || 1}
           totaltAntallSpørsmål={sisteSpørsmål?.antallSpørsmål || 4}
@@ -127,5 +155,5 @@ function LoadingSkeleton({ sisteTema, sisteSpørsmål }: { sisteTema?: string, s
       </VStack>
       <SpørsmålsseksjonSkeleton sisteTema={sisteTema} />
     </>
-  )
+  );
 }

@@ -1,7 +1,7 @@
 const {
   partssamarbeidResultat,
   sykefraværsarbeidResultat,
-  arbeidsmiljøResultat
+  arbeidsmiljøResultat,
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require("@/utils/dummydata");
 import { Request, Response } from "express";
@@ -48,6 +48,6 @@ function temaresultatMiddleware(req: Request, res: Response) {
   } else if (req.params.temaId === arbeidsmiljøResultat.temaId.toString()) {
     res.status(200).json(arbeidsmiljøResultat);
   } else {
-    res.status(200).json(partssamarbeidResultat); 
+    res.status(200).json(partssamarbeidResultat);
   }
 }

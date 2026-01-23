@@ -18,9 +18,7 @@ export default function HeaderVert({
   const router = useRouter();
   const pathname = usePathname();
 
-  const {
-    data: listeOverTemaer,
-  } = useTemaoversikter(spørreundersøkelseId);
+  const { data: listeOverTemaer } = useTemaoversikter(spørreundersøkelseId);
 
   const erPåOversiktSide = pathname.endsWith("oversikt");
 
@@ -47,7 +45,11 @@ export default function HeaderVert({
             skalViseKnapp
             urlTilResultatside={`./resultater`}
             gåDirekteTilResultat={false}
-            knappetekst={listeOverTemaer.every(tema => tema.status === "STENGT") ? "Vis resultatene" : "Fullfør og vis alle resultatene"}
+            knappetekst={
+              listeOverTemaer.every((tema) => tema.status === "STENGT")
+                ? "Vis resultatene"
+                : "Fullfør og vis alle resultatene"
+            }
             resultatType={"undersøkelsen"}
             spørreundersøkelseId={spørreundersøkelseId}
             variant={"primary"}

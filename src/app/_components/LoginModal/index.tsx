@@ -15,11 +15,7 @@ export default function LoginModal({
   onClose: () => void;
 }) {
   return (
-    <VisQRModal
-      åpen={åpen}
-      lukk={onClose}
-      title="Scan QR-koden og bli med"
-    >
+    <VisQRModal åpen={åpen} lukk={onClose} title="Scan QR-koden og bli med">
       <HStack
         wrap
         className={`${loginModalStyles.maksHundre} ${loginModalStyles.stack}`}

@@ -9,15 +9,11 @@ export async function GET(
       temaId: string;
       sporsmalId: string;
     }>;
-  }
+  },
 ) {
   const params = await props.params;
 
-  const {
-    sporreundersokelseId,
-    temaId,
-    sporsmalId
-  } = params;
+  const { sporreundersokelseId, temaId, sporsmalId } = params;
 
   const fetcher = arbeidsgiverApiFetcherVert(
     `${sporreundersokelseId}/tema/${temaId}/sporsmal/${sporsmalId}/antall-svar`,

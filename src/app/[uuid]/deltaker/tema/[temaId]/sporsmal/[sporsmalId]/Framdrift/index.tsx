@@ -27,7 +27,11 @@ export function Framdrift({
 
   return (
     <>
-      <span className={framdriftStyles.visuallyHidden} tabIndex={-1} ref={UUTeller}>
+      <span
+        className={framdriftStyles.visuallyHidden}
+        tabIndex={-1}
+        ref={UUTeller}
+      >
         {`Spørsmål ${spørsmålnummer} av ${totaltAntallSpørsmål}`}
       </span>
       <ol aria-hidden className={framdriftStyles.framdrift}>
@@ -43,7 +47,6 @@ export function Framdrift({
   );
 }
 
-
 function fremdriftFargeClassname(temanavn: string, erAktivt: boolean) {
   if (!erAktivt) {
     return framdriftStyles.tom;
@@ -58,4 +61,4 @@ function fremdriftFargeClassname(temanavn: string, erAktivt: boolean) {
     default:
       return framdriftStyles.tom;
   }
-};
+}

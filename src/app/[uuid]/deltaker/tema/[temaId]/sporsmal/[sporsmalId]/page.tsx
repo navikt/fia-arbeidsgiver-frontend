@@ -10,11 +10,9 @@ export const metadata: Metadata = {
   title: "Deltaker",
 };
 
-export default async function Spørsmålsside(
-  props: {
-    params: Promise<{ uuid: string; temaId: number; sporsmalId: string }>;
-  }
-) {
+export default async function Spørsmålsside(props: {
+  params: Promise<{ uuid: string; temaId: number; sporsmalId: string }>;
+}) {
   const params = await props.params;
   return (
     <Page contentBlockPadding="none">

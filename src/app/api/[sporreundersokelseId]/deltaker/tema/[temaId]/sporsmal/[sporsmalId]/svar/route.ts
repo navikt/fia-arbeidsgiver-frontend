@@ -10,15 +10,11 @@ export async function POST(
       temaId: string;
       sporsmalId: string;
     }>;
-  }
+  },
 ) {
   const params = await props.params;
 
-  const {
-    sporreundersokelseId,
-    temaId,
-    sporsmalId
-  } = params;
+  const { sporreundersokelseId, temaId, sporsmalId } = params;
 
   if (request.headers.get("content-type") != "application/json") {
     return new Response(JSON.stringify({ error: "Invalid content-type" }), {

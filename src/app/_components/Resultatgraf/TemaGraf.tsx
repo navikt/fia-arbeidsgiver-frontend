@@ -34,26 +34,44 @@ export default function TemaGraf({
             background="bg-default"
             className={`${resultatgrafStyle.temaboks} ${trengerEkstraBredde(tema, spørsmål, index) ? resultatgrafStyle.flervalgTemaboks : ""}`}
           >
-            <FargetKategoritittel tittel={spørsmål.kategori} temanavn={tema.navn} />
+            <FargetKategoritittel
+              tittel={spørsmål.kategori}
+              temanavn={tema.navn}
+            />
             {spørsmål.flervalg ? (
-              <BarChart key={index} spørsmål={spørsmål} farge={farge} horizontal />
+              <BarChart
+                key={index}
+                spørsmål={spørsmål}
+                farge={farge}
+                horizontal
+              />
             ) : (
               <BarChart key={index} spørsmål={spørsmål} farge={farge} />
             )}
           </Box>
-        )
+        );
       })}
     </div>
   );
 }
 
-function FargetKategoritittel({ tittel, temanavn }: { tittel?: string; temanavn?: string | null }) {
+function FargetKategoritittel({
+  tittel,
+  temanavn,
+}: {
+  tittel?: string;
+  temanavn?: string | null;
+}) {
   if (tittel === "" || tittel === undefined || tittel === null) {
     return null;
   }
 
   return (
-    <BodyShort className={`${resultatgrafStyle.kategoritittel} ${getFargeKategoriTittelKlasse(temanavn)}`}>{tittel}</BodyShort>
+    <BodyShort
+      className={`${resultatgrafStyle.kategoritittel} ${getFargeKategoriTittelKlasse(temanavn)}`}
+    >
+      {tittel}
+    </BodyShort>
   );
 }
 

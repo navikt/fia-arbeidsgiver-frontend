@@ -46,7 +46,11 @@ export function IntrosideBody({
     error,
   } = useTemaoversikt(spørreundersøkelseId, temaId);
   const åpneTema = useÅpneTema(spørreundersøkelseId, temaId);
-  const { data: spørreundersøkelseInfo, isLoading: lasterInfo, error: infoError } = useSpørreundersøkelseInfo(spørreundersøkelseId);
+  const {
+    data: spørreundersøkelseInfo,
+    isLoading: lasterInfo,
+    error: infoError,
+  } = useSpørreundersøkelseInfo(spørreundersøkelseId);
   const [erStartet, setErStartet] = React.useState(false);
 
   React.useEffect(() => {
@@ -60,7 +64,11 @@ export function IntrosideBody({
   }, [tema, erStartet]);
 
   React.useEffect(() => {
-    if (spørreundersøkelseInfo?.type === "Evaluering" && !erStartet && tema?.status !== TemaStatus.ALLE_SPØRSMÅL_ÅPNET) {
+    if (
+      spørreundersøkelseInfo?.type === "Evaluering" &&
+      !erStartet &&
+      tema?.status !== TemaStatus.ALLE_SPØRSMÅL_ÅPNET
+    ) {
       åpneTema().catch((error) => {
         setÅpneTemaError(error.message);
       });
@@ -104,10 +112,15 @@ export function IntrosideBody({
               temaId={temaId}
             />
           </Headerlinje>
-          <Infoblokk tema={tema} spørreundersøkelseInfo={spørreundersøkelseInfo} />
+          <Infoblokk
+            tema={tema}
+            spørreundersøkelseInfo={spørreundersøkelseInfo}
+          />
         </>
       )}
-      {erStartet && tema && <SvarRenderer tema={tema} type={spørreundersøkelseInfo?.type} />}
+      {erStartet && tema && (
+        <SvarRenderer tema={tema} type={spørreundersøkelseInfo?.type} />
+      )}
     </>
   );
 }
@@ -159,7 +172,11 @@ function Actionknapper({
         skalViseKnapp
         urlTilResultatside={`../resultater/${temaId}`}
         gåDirekteTilResultat={false}
-        knappetekst={tema.status === "STENGT" ? "Vis resultatene" : "Fullfør og vis resultatene"}
+        knappetekst={
+          tema.status === "STENGT"
+            ? "Vis resultatene"
+            : "Fullfør og vis resultatene"
+        }
         modalTittel={"Vil du fullføre temaet?"}
         variant="primary"
         knappeClass={introsideStyles.resultatknapp}
@@ -183,17 +200,19 @@ function Actionknapper({
   );
 }
 
-function SvarRenderer({ type, tema }: {
+function SvarRenderer({
+  type,
+  tema,
+}: {
   tema: TemaDto;
   type?: SpørreundersøkelseInfoDto["type"];
-
 }) {
   const boxRef = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => {
     if (boxRef !== null && type !== "Evaluering") {
       boxRef?.current?.scrollIntoView({
-        block: 'end',
-        inline: 'center',
+        block: "end",
+        inline: "center",
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -209,7 +228,11 @@ function SvarRenderer({ type, tema }: {
       className={introsideStyles.spørsmålsseksjon}
       ref={boxRef}
     >
-      {erGruppert ? <GruppertSpørsmålRenderer tema={tema} /> : <UgruppertSpørsmålRenderer tema={tema} />}
+      {erGruppert ? (
+        <GruppertSpørsmålRenderer tema={tema} />
+      ) : (
+        <UgruppertSpørsmålRenderer tema={tema} />
+      )}
     </Box>
   );
 }
@@ -219,8 +242,8 @@ function UgruppertSpørsmålRenderer({ tema }: { tema: TemaDto }) {
   React.useEffect(() => {
     if (boxRef !== null) {
       boxRef?.current?.scrollIntoView({
-        block: 'end',
-        inline: 'center',
+        block: "end",
+        inline: "center",
       });
     }
   }, []);
@@ -235,16 +258,19 @@ function UgruppertSpørsmålRenderer({ tema }: { tema: TemaDto }) {
 }
 
 function GruppertSpørsmålRenderer({ tema }: { tema: TemaDto }) {
-  const grupperteSpørsmål = tema.spørsmål.reduce((acc, spørsmål) => {
-    if (spørsmål.kategori) {
-      acc[spørsmål.kategori] = acc[spørsmål.kategori] || [];
-      acc[spørsmål.kategori].push(spørsmål);
-    } else {
-      acc["Uten gruppe"] = acc["Uten gruppe"] || [];
-      acc["Uten gruppe"].push(spørsmål);
-    }
-    return acc;
-  }, {} as { [key: string]: SpørsmålDto[] });
+  const grupperteSpørsmål = tema.spørsmål.reduce(
+    (acc, spørsmål) => {
+      if (spørsmål.kategori) {
+        acc[spørsmål.kategori] = acc[spørsmål.kategori] || [];
+        acc[spørsmål.kategori].push(spørsmål);
+      } else {
+        acc["Uten gruppe"] = acc["Uten gruppe"] || [];
+        acc["Uten gruppe"].push(spørsmål);
+      }
+      return acc;
+    },
+    {} as { [key: string]: SpørsmålDto[] },
+  );
 
   return (
     <>
@@ -260,26 +286,43 @@ function GruppertSpørsmålRenderer({ tema }: { tema: TemaDto }) {
 
 const KATEGORI_BESKRIVELSER: { [key: string]: string } = {
   //Arbeidsmiljø
-  "Utvikle arbeidsmiljøet": "Mål: Øke anvendelse og kompetanse innen verktøy og bransjerettet kunnskap for å jobbe målrettet og kunnskapsbasert med eget arbeidsmiljø.",
-  "Endring og omstilling": "Mål: Øke kunnskap om hvordan ivareta arbeidsmiljø og forebygge sykefravær under endring og omstilling.",
-  "Oppfølging av arbeidsmiljøundersøkelser": "Mål: Øke ferdigheter og gi støtte til hvordan man kan jobbe med forhold på arbeidsplassen som belyses i egne arbeidsmiljøundersøkelser.",
-  "Livsfaseorientert personalpolitikk": "Mål: Utvikle kultur og personalpolitikk som ivaretar medarbeideres ulike behov, krav, begrensninger og muligheter i ulike livsfaser.",
-  "Psykisk helse": "Mål: Gi innsikt i hvordan psykiske utfordringer kan komme til uttrykk i arbeidshverdagen og øke ferdigheter for hvordan man møter medarbeidere med psykiske helseutfordringer.",
-  "HelseIArbeid": "Mål: Øke kompetansen og få ansatte til å mestre jobb, selv med muskel/skjelett- og psykiske helseplager.",
+  "Utvikle arbeidsmiljøet":
+    "Mål: Øke anvendelse og kompetanse innen verktøy og bransjerettet kunnskap for å jobbe målrettet og kunnskapsbasert med eget arbeidsmiljø.",
+  "Endring og omstilling":
+    "Mål: Øke kunnskap om hvordan ivareta arbeidsmiljø og forebygge sykefravær under endring og omstilling.",
+  "Oppfølging av arbeidsmiljøundersøkelser":
+    "Mål: Øke ferdigheter og gi støtte til hvordan man kan jobbe med forhold på arbeidsplassen som belyses i egne arbeidsmiljøundersøkelser.",
+  "Livsfaseorientert personalpolitikk":
+    "Mål: Utvikle kultur og personalpolitikk som ivaretar medarbeideres ulike behov, krav, begrensninger og muligheter i ulike livsfaser.",
+  "Psykisk helse":
+    "Mål: Gi innsikt i hvordan psykiske utfordringer kan komme til uttrykk i arbeidshverdagen og øke ferdigheter for hvordan man møter medarbeidere med psykiske helseutfordringer.",
+  HelseIArbeid:
+    "Mål: Øke kompetansen og få ansatte til å mestre jobb, selv med muskel/skjelett- og psykiske helseplager.",
   //Sykefraværsarbeid
-  "Sykefraværsrutiner": "Mål: Jobbe systematisk og forebyggende med sykefravær, samt forbedre rutiner og oppfølging av ansatte som er sykmeldte eller står i fare for å bli det.",
-  "Oppfølgingssamtaler": "Mål:  Øke kompetanse og ferdigheter for hvordan man gjennomfører gode oppfølgingssamtaler, både gjennom teori og praksis.",
-  "Tilretteleggings- og medvirkningsplikt": "Mål: Utvikle rutiner og kultur for tilrettelegging og medvirkning, samt kartlegging av tilretteleggingsmuligheter på arbeidsplassen.",
-  "Sykefravær - enkeltsaker": "Mål: Øke kompetanse og ferdigheter for hvordan man tar tak i, følger opp og løser enkeltsaker.",
+  Sykefraværsrutiner:
+    "Mål: Jobbe systematisk og forebyggende med sykefravær, samt forbedre rutiner og oppfølging av ansatte som er sykmeldte eller står i fare for å bli det.",
+  Oppfølgingssamtaler:
+    "Mål:  Øke kompetanse og ferdigheter for hvordan man gjennomfører gode oppfølgingssamtaler, både gjennom teori og praksis.",
+  "Tilretteleggings- og medvirkningsplikt":
+    "Mål: Utvikle rutiner og kultur for tilrettelegging og medvirkning, samt kartlegging av tilretteleggingsmuligheter på arbeidsplassen.",
+  "Sykefravær - enkeltsaker":
+    "Mål: Øke kompetanse og ferdigheter for hvordan man tar tak i, følger opp og løser enkeltsaker.",
   //Partssamarbeid
-  "Utvikle partssamarbeidet": "Mål: Styrke og strukturere samarbeidet mellom leder, tillitsvalgt og verneombud, samt øke kunnskap og ferdigheter for å jobbe systematisk og forebyggende med sykefravær og arbeidsmiljø.",
-}
+  "Utvikle partssamarbeidet":
+    "Mål: Styrke og strukturere samarbeidet mellom leder, tillitsvalgt og verneombud, samt øke kunnskap og ferdigheter for å jobbe systematisk og forebyggende med sykefravær og arbeidsmiljø.",
+};
 
 function Kategori({ tittel }: { tittel: string }) {
   if (KATEGORI_BESKRIVELSER[tittel]) {
     return (
       <div className={introsideStyles.kategoriHeader}>
-        <Heading level="4" size="xsmall" className={introsideStyles.kategoriTittel}>{tittel}</Heading>
+        <Heading
+          level="4"
+          size="xsmall"
+          className={introsideStyles.kategoriTittel}
+        >
+          {tittel}
+        </Heading>
         <BodyShort size="small" className={introsideStyles.kategoriMål}>
           {KATEGORI_BESKRIVELSER[tittel]}
         </BodyShort>
@@ -293,7 +336,13 @@ function Kategori({ tittel }: { tittel: string }) {
 
   return (
     <div className={introsideStyles.kategoriHeader}>
-      <Heading level="4" size="xsmall" className={introsideStyles.kategoriTittel}>{tittel}</Heading>
+      <Heading
+        level="4"
+        size="xsmall"
+        className={introsideStyles.kategoriTittel}
+      >
+        {tittel}
+      </Heading>
     </div>
   );
 }

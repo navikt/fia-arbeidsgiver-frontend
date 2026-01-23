@@ -9,7 +9,9 @@ export const metadata: Metadata = {
   title: "Oversikt",
 };
 
-export default async function Oversiktside(props: { params: Promise<{ uuid: string }> }) {
+export default async function Oversiktside(props: {
+  params: Promise<{ uuid: string }>;
+}) {
   const params = await props.params;
   return (
     <Page background="bg-subtle">

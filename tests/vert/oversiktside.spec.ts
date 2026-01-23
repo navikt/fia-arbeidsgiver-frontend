@@ -2,7 +2,7 @@ import { TemaStatus } from "@/app/_types/TemaStatus";
 import { vertTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
-import { Page } from 'playwright-core';
+import { Page } from "playwright-core";
 // @ts-ignore
 import { helSpørreundersøkelse, spørreundersøkelseId } from "@/utils/dummydata";
 
@@ -36,35 +36,32 @@ test.describe("Vert/oversiktside", () => {
     ).not.toBeVisible();
   });
 
-  test(
-    "Andre tema er åpnet når første tema er besvart",
-    async ({ page }) => {
-      // TODO: Bedre løsning. Mocker apiet før vi kommer til frackend, for å unngå problemer med parralell kjøring av tester.
-      await page.route(
-        `http://localhost:2222/api/${spørreundersøkelseId}/vert`,
-        async (route) => {
-          const json = helSpørreundersøkelse;
-          json[0].status = TemaStatus.ALLE_SPØRSMÅL_ÅPNET;
-          json[1].status = TemaStatus.ÅPNET;
-          json[2].status = TemaStatus.IKKE_ÅPNET;
-          await route.fulfill({ json });
-        },
-      );
+  test("Andre tema er åpnet når første tema er besvart", async ({ page }) => {
+    // TODO: Bedre løsning. Mocker apiet før vi kommer til frackend, for å unngå problemer med parralell kjøring av tester.
+    await page.route(
+      `http://localhost:2222/api/${spørreundersøkelseId}/vert`,
+      async (route) => {
+        const json = helSpørreundersøkelse;
+        json[0].status = TemaStatus.ALLE_SPØRSMÅL_ÅPNET;
+        json[1].status = TemaStatus.ÅPNET;
+        json[2].status = TemaStatus.IKKE_ÅPNET;
+        await route.fulfill({ json });
+      },
+    );
 
-      await page.reload();
-      await page.getByRole("button", { name: "Lukk" }).click();
+    await page.reload();
+    await page.getByRole("button", { name: "Lukk" }).click();
 
-      await expect(
-        page.getByRole("button", { name: "Start" }).nth(0),
-      ).toBeVisible();
-      await expect(
-        page.getByRole("button", { name: "Start" }).nth(0),
-      ).not.toBeDisabled();
-      await expect(
-        page.getByRole("button", { name: "Start" }).nth(1),
-      ).toBeDisabled();
-    },
-  );
+    await expect(
+      page.getByRole("button", { name: "Start" }).nth(0),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Start" }).nth(0),
+    ).not.toBeDisabled();
+    await expect(
+      page.getByRole("button", { name: "Start" }).nth(1),
+    ).toBeDisabled();
+  });
 
   test("Viser feilmelding når det er problemer med å hente temaoversikt", async ({
     page,
@@ -83,7 +80,9 @@ test.describe("Vert/oversiktside", () => {
   });
 
   test("test av axe", async ({ page }) => {
-    const accessibilityScanResults = await new AxeBuilder({ page: (page as Page) }).analyze();
+    const accessibilityScanResults = await new AxeBuilder({
+      page: page as Page,
+    }).analyze();
 
     expect(accessibilityScanResults.violations).toEqual([]);
   });

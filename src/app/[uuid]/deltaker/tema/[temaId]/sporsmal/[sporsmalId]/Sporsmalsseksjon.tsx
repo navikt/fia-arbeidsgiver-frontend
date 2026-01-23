@@ -102,7 +102,9 @@ export default function Spørsmålsseksjon({
         padding="5"
         className={`${spørsmålBoksFargeClassname(deltakerSpørsmål.temanavn)} ${spørsmålStyles.innholdboks} `}
       >
-        {deltakerSpørsmål.type.toLowerCase() === "evaluering" ? <Kategoritittel tittel={deltakerSpørsmål.spørsmål.kategori} /> : null}
+        {deltakerSpørsmål.type.toLowerCase() === "evaluering" ? (
+          <Kategoritittel tittel={deltakerSpørsmål.spørsmål.kategori} />
+        ) : null}
         {deltakerSpørsmål.spørsmål.flervalg ? (
           <CheckboxGroup
             onChange={velgSvar}
@@ -172,7 +174,11 @@ export default function Spørsmålsseksjon({
   );
 }
 
-export function SpørsmålsseksjonSkeleton({ sisteTema }: { sisteTema?: string }) {
+export function SpørsmålsseksjonSkeleton({
+  sisteTema,
+}: {
+  sisteTema?: string;
+}) {
   return (
     <>
       <Box
@@ -180,9 +186,14 @@ export function SpørsmålsseksjonSkeleton({ sisteTema }: { sisteTema?: string }
         padding="5"
         className={`${spørsmålBoksFargeClassname(sisteTema || "")} ${spørsmålStyles.innholdboks} `}
       >
-        <BodyShort size="small" as={Skeleton}>Undertema</BodyShort>{/* Kategoritittel */}
-        <VStack gap="3">{/* CheckboxGroup */}
-          <Skeleton width="100%" height="5rem" />{/* Spørsmålstekst */}
+        <BodyShort size="small" as={Skeleton}>
+          Undertema
+        </BodyShort>
+        {/* Kategoritittel */}
+        <VStack gap="3">
+          {/* CheckboxGroup */}
+          <Skeleton width="100%" height="5rem" />
+          {/* Spørsmålstekst */}
           <CheckboxSkeleton width="6rem" />
           <CheckboxSkeleton width="5.5rem" />
           <CheckboxSkeleton width="6.25rem" />
@@ -191,7 +202,8 @@ export function SpørsmålsseksjonSkeleton({ sisteTema }: { sisteTema?: string }
         </VStack>
       </Box>
       <HStack justify={"end"} gap={"2"} className={spørsmålStyles.knappeStack}>
-        <Skeleton variant="rounded" height="3rem" width="7.5rem" />{/* Knapp */}
+        <Skeleton variant="rounded" height="3rem" width="7.5rem" />
+        {/* Knapp */}
       </HStack>
     </>
   );
@@ -212,7 +224,9 @@ function Kategoritittel({ tittel }: { tittel?: string }) {
   }
 
   return (
-    <BodyShort size="small" className={spørsmålStyles.kategoritittel}>{tittel}</BodyShort>
+    <BodyShort size="small" className={spørsmålStyles.kategoritittel}>
+      {tittel}
+    </BodyShort>
   );
 }
 
@@ -227,7 +241,7 @@ function spørsmålBoksFargeClassname(temanavn: string) {
     default:
       return "";
   }
-};
+}
 
 function SvarKnappTekst({
   erPåLagretSvar,

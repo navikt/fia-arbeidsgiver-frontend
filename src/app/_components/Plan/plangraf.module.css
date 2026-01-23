@@ -1,123 +1,118 @@
-
 .planGraf.planGrafMedEksternGrid {
-	display: grid;
-	grid-template-columns: subgrid;
-	grid-column: 1/5;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1/5;
 
-	& :global(.navds-timeline) {
-		display: grid;
-		grid-template-columns: subgrid;
-		grid-column: 1/5;
+  & :global(.navds-timeline) {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1/5;
 
-		& :global(.navds-timeline__row-label) {
-			white-space: unset;
-			hyphens: auto;
-		}
+    & :global(.navds-timeline__row-label) {
+      white-space: unset;
+      hyphens: auto;
+    }
 
-		& :global(.navds-timeline__pin-wrapper) {
-			z-index: 111;
-			& ::before {
-				z-index: 111;
-			}
-		}
-	}
+    & :global(.navds-timeline__pin-wrapper) {
+      z-index: 111;
+      & ::before {
+        z-index: 111;
+      }
+    }
+  }
 }
 
-
 .innholdAccordion {
-    width: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: min-content 1fr 1fr 8rem;
+  margin-top: 1rem;
+  grid-column: 1/5;
+
+  .innholdLabelRad {
+    grid-column: 1/5;
     display: grid;
-    grid-template-columns: min-content 1fr 1fr 8rem;
-	margin-top: 1rem;
-	grid-column: 1/5;
+    grid-template-columns: subgrid;
+    padding-bottom: 0.5rem;
+    font-weight: 600;
 
-	.innholdLabelRad {
-		grid-column: 1/5;
-		display: grid;
-		grid-template-columns: subgrid;
-		padding-bottom: 0.5rem;
-		font-weight: 600;
+    .innholdLabel {
+      grid-column: 2/3;
+    }
 
-		.innholdLabel {
-			grid-column: 2/3;
-		}
+    .varighetLabel {
+      grid-column: 3/4;
+    }
 
-		.varighetLabel {
-			grid-column: 3/4;
-		}
+    .statusLabel {
+      grid-column: 4/5;
+    }
+  }
 
-		.statusLabel {
-			grid-column: 4/5;
-		}
-	}
+  .innholdAccordionItem {
+    grid-column: 1/5;
+    display: grid;
+    grid-template-columns: subgrid;
 
+    .innholdAccordionHeader {
+      grid-column: 1/5;
+      display: grid;
+      grid-template-columns: subgrid;
 
-	.innholdAccordionItem {
-		grid-column: 1/5;
-		display: grid;
-		grid-template-columns: subgrid;
+      & :global(.navds-accordion__header-content) {
+        grid-column: 2/5;
+        display: grid;
+        grid-template-columns: subgrid;
+        font-weight: 400;
+      }
 
+      &:hover {
+        text-decoration: none;
 
-		.innholdAccordionHeader {
-			grid-column: 1/5;
-			display: grid;
-			grid-template-columns: subgrid;
+        .innholdTittel {
+          text-decoration: underline;
+        }
+      }
+    }
 
-			& :global(.navds-accordion__header-content) {
-				grid-column: 2/5;
-				display: grid;
-				grid-template-columns: subgrid;
-				font-weight: 400;
-			}
-		
-			&:hover {
-				text-decoration: none;
+    .innholdAccordionItemContent {
+      grid-column: 1/5;
+    }
 
-				.innholdTittel {
-					text-decoration: underline;
-				}
-			}
-		}
+    &:last-child {
+      .innholdAccordionHeader {
+        box-shadow: var(--__ac-accordion-header-shadow);
+      }
+    }
+  }
 
-		.innholdAccordionItemContent {
-			grid-column: 1/5;
-		}
-
-		&:last-child {
-			.innholdAccordionHeader {
-				box-shadow: var(--__ac-accordion-header-shadow);
-			}
-		}
-	}
-
-	.innholdAccordionContent {
-		grid-column: 1/5;
-	}
+  .innholdAccordionContent {
+    grid-column: 1/5;
+  }
 }
 
 .modalBody {
-	padding: 2rem;
-	display: grid;
-	grid-template-columns: minmax(8rem, 14rem) 1fr;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: minmax(8rem, 14rem) 1fr;
 
-	.planTemaSeksjon {
-		padding-top: 1rem;
-		padding-bottom: 1rem;
-		grid-column: 1/5;
-		display: grid;
-		grid-template-columns: subgrid;
+  .planTemaSeksjon {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    grid-column: 1/5;
+    display: grid;
+    grid-template-columns: subgrid;
 
-		.planTimelineWrapper {
-			position: relative;
-			grid-column: 1/5;
-			display: grid;
-			grid-template-columns: subgrid;
+    .planTimelineWrapper {
+      position: relative;
+      grid-column: 1/5;
+      display: grid;
+      grid-template-columns: subgrid;
+    }
 
-		}
-	
-		.grafHeader {
-			grid-column: 1 / 3;
-			margin-bottom: 1rem;
-		}
-	}
+    .grafHeader {
+      grid-column: 1 / 3;
+      margin-bottom: 1rem;
+    }
+  }
 }

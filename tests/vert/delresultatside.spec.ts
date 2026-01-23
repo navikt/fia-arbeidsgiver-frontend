@@ -1,7 +1,7 @@
 import { vertTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { Page, expect } from "@playwright/test";
-import { Page as CorePage } from 'playwright-core';
+import { Page as CorePage } from "playwright-core";
 
 // @ts-ignore
 import { partssamarbeid, spørreundersøkelseId } from "@/utils/dummydata";
@@ -24,7 +24,9 @@ async function gåTilResultater(page: Page) {
     .getByRole("button", { name: "Fullfør", exact: true })
     .click({ timeout: 10000 });
 
-  await expect(page.locator("body")).toContainText("Hvordan opplever du at partssamarbeidet har utviklet seg i løpet av samarbeidsperioden?");
+  await expect(page.locator("body")).toContainText(
+    "Hvordan opplever du at partssamarbeidet har utviklet seg i løpet av samarbeidsperioden?",
+  );
 }
 
 test.describe("Vert/delresultatside", () => {
@@ -77,7 +79,9 @@ test.describe("Vert/delresultatside", () => {
   test("test av axe", async ({ page }) => {
     await gåTilResultater(page);
     await expect(page.locator("body")).toContainText("Gå til oversikt"); //Vent på at siden er lastet.
-    const accessibilityScanResults = await new AxeBuilder({ page: (page as CorePage) }).analyze();
+    const accessibilityScanResults = await new AxeBuilder({
+      page: page as CorePage,
+    }).analyze();
 
     expect(accessibilityScanResults.violations).toEqual([]);
   });

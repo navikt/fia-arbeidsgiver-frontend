@@ -9,14 +9,11 @@ export async function POST(
       sporreundersokelseId: string;
       temaId: string;
     }>;
-  }
+  },
 ) {
   const params = await props.params;
 
-  const {
-    sporreundersokelseId,
-    temaId
-  } = params;
+  const { sporreundersokelseId, temaId } = params;
 
   const fetcher = poster(`${sporreundersokelseId}/tema/${temaId}/avslutt`, req);
   return fetcher();

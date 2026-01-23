@@ -55,7 +55,10 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function setSesjonsIdCookie(sesjonsId: string, spørreundersøkelseId: string) {
+async function setSesjonsIdCookie(
+  sesjonsId: string,
+  spørreundersøkelseId: string,
+) {
   (await cookies()).set(
     COOKIE_SESJONS_ID_KEY,
     JSON.stringify({ sesjonsId, spørreundersøkelseId }),

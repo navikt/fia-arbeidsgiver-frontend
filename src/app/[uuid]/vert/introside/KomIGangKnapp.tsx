@@ -12,9 +12,7 @@ export default function KomIGangKnapp({
   return (
     <Button
       onClick={() =>
-        router.push(
-          `/${spørreundersøkelseId}/vert/oversikt?loginModal=true`,
-        )
+        router.push(`/${spørreundersøkelseId}/vert/oversikt?loginModal=true`)
       }
       icon={<ArrowRightIcon aria-hidden />}
       iconPosition="right"

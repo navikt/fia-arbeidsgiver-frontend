@@ -7,13 +7,11 @@ export async function GET(
     params: Promise<{
       sporreundersokelseId: string;
     }>;
-  }
+  },
 ) {
   const params = await props.params;
 
-  const {
-    sporreundersokelseId
-  } = params;
+  const { sporreundersokelseId } = params;
 
   const fetcher = arbeidsgiverApiFetcherVert(
     `${sporreundersokelseId}/antall-deltakere`,

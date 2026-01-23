@@ -21,10 +21,13 @@ export function useTemaResultat(
       onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
         // Only retry up to 25 times.
         if (retryCount >= 25) return;
-        
+
         // Retry with more and more time between retries.
-        setTimeout(() => revalidate({ retryCount }), Math.min(250 * retryCount, 5000))
-      }
-    }
+        setTimeout(
+          () => revalidate({ retryCount }),
+          Math.min(250 * retryCount, 5000),
+        );
+      },
+    },
   );
 }

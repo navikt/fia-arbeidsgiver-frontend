@@ -10,11 +10,9 @@ export const metadata: Metadata = {
   title: "Temaresultat",
 };
 
-export default async function Temaresultatside(
-  props: {
-    params: Promise<{ uuid: string; temaId: number }>;
-  }
-) {
+export default async function Temaresultatside(props: {
+  params: Promise<{ uuid: string; temaId: number }>;
+}) {
   const params = await props.params;
   return (
     <>

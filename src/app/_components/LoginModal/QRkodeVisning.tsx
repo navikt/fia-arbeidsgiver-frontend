@@ -4,7 +4,7 @@ import { QRCodeSVG } from "qrcode.react";
 import React from "react";
 import { HydrationSafeClientsideComponent } from "@/app/_components/HydrationSafeClientsideComponent";
 import { Button, HStack } from "@navikt/ds-react";
-import { ZoomPlusIcon, ZoomMinusIcon } from '@navikt/aksel-icons';
+import { ZoomPlusIcon, ZoomMinusIcon } from "@navikt/aksel-icons";
 
 interface Props {
   spørreundersøkelseId: string;
@@ -23,8 +23,18 @@ export function QRkodeVisning({ spørreundersøkelseId }: Props) {
         }}
       />
       <HStack className={loginModalStyles.qrZoomContainer} gap="1">
-        <Button variant="secondary-neutral" size="small" icon={<ZoomPlusIcon title="Zoom inn" fontSize="1.5rem" />} onClick={() => setStørrelse(størrelse + 2)} />
-        <Button variant="secondary-neutral" size="small" icon={<ZoomMinusIcon title="Zoom ut" fontSize="1.5rem" />} onClick={() => setStørrelse(størrelse - 2)} />
+        <Button
+          variant="secondary-neutral"
+          size="small"
+          icon={<ZoomPlusIcon title="Zoom inn" fontSize="1.5rem" />}
+          onClick={() => setStørrelse(størrelse + 2)}
+        />
+        <Button
+          variant="secondary-neutral"
+          size="small"
+          icon={<ZoomMinusIcon title="Zoom ut" fontSize="1.5rem" />}
+          onClick={() => setStørrelse(størrelse - 2)}
+        />
       </HStack>
     </HydrationSafeClientsideComponent>
   );

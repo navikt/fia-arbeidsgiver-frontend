@@ -58,15 +58,15 @@
   margin-bottom: 1rem;
   padding-left: 3rem;
   padding-right: 3rem;
-  
+
   &:not(:first-child) {
     margin-top: 4rem;
   }
-  
+
   .kategoriTittel {
     margin-bottom: 0.25rem;
   }
-  
+
   .kategoriMål {
     color: var(--a-text-subtle);
   }
