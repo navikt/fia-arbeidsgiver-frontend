@@ -9,31 +9,98 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
+      day: "monday"
+      time: "08:00"
+      timezone: "Europe/Oslo"
+    labels:
+      - "dependencies"
+      - "github-actions"
 
   - package-ecosystem: bun
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
+      day: "monday"
+      time: "08:00"
+      timezone: "Europe/Oslo"
+    labels:
+      - "dependencies"
+      - "bun"
+    groups:
+      "@navikt*":
+        patterns:
+          - "@navikt/*"
+      "@grafana*":
+        patterns:
+          - "@grafana/*"
+      "@testing-library*":
+        patterns:
+          - "@testing-library/*"
+      "react*":
+        patterns:
+          - "react"
+          - "react-dom"
+          - "qrcode.react"
+      "next*":
+        patterns:
+          - "next"
+          - "eslint-config-next"
+      "typescript*":
+        patterns:
+          - "typescript"
+          - "typescript-eslint"
+          - "@types/*"
+          - "ts-node"
+      "jest*":
+        patterns:
+          - "jest"
+          - "jest-*"
+          - "@types/jest"
+      "eslint*":
+        patterns:
+          - "eslint"
+          - "eslint-*"
+          - "@eslint/*"
+          - "eslint-plugin-*"
+          - "eslint-config-*"
+      "playwright*":
+        patterns:
+          - "@playwright/*"
+          - "@axe-core/playwright"
+      "babel*":
+        patterns:
+          - "@babel/*"
+          - "babel-*"
+      "highcharts*":
+        patterns:
+          - "highcharts"
+          - "highcharts-react-official"
+      "mocking*":
+        patterns:
+          - "@mocks-server/*"
+          - "@happy-dom/*"
+      "build-tools*":
+        patterns:
+          - "prettier"
+          - "husky"
+          - "whatwg-fetch"
+          - "bun-types"
     cooldown:
       default-days: 7
       exclude:
         - "@navikt*"
+      applies-to: version-updates
     registries:
       - npm-github
-    groups:
-      production-dependencies:
-        dependency-type: "production"
-        update-types:
-          - "minor"
-          - "patch"
-      development-dependencies:
-        dependency-type: "development"
-        update-types:
-          - "minor"
-          - "patch"
 
   - package-ecosystem: docker
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
+      day: "monday"
+      time: "08:00"
+      timezone: "Europe/Oslo"
+    labels:
+      - "dependencies"
+      - "docker"
