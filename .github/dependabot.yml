@@ -90,8 +90,6 @@ updates:
       default-days: 7
       exclude:
         - "@navikt*"
-    registries:
-      - npm-github
 
   - package-ecosystem: docker
     directory: "/"
