@@ -2,11 +2,11 @@ import { deltakerTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test as baseTest } from "@playwright/test";
 
-// @ts-ignore
 import {
   partssamarbeid,
   spørreundersøkelseId,
   helSpørreundersøkelse,
+  // @ts-ignore
 } from "@/utils/dummydata";
 import { SvaralternativDto } from "@/app/_types/SvaralternativDto";
 const førsteSpørsmålId = partssamarbeid.spørsmål[0].id;
@@ -193,6 +193,64 @@ test.describe("Deltaker/spørsmålside", () => {
     await expect(
       page.getByText("Noe gikk galt. Prøv å laste siden på nytt."),
     ).toBeVisible();
+  });
+
+  test("Viser alert uten valgt svar", async ({ page }) => {
+    // Test radio button case (first question)
+    const tema = helSpørreundersøkelse[0];
+    const element = tema.spørsmål[0];
+
+    await expect(page.getByText(element.tekst)).toBeVisible();
+    await expect(page.getByRole("button", { name: "Svar" })).toBeVisible();
+    await expect(page.locator("input[type=radio]")).toHaveCount(
+      element.svaralternativer.length,
+    );
+
+    await page.getByRole("button", { name: "Svar" }).click();
+
+    // Check that the error message is visible for radio buttons
+    await expect(page.getByText("Velg minst ett svar")).toBeVisible();
+
+    // Check that it has proper alert role and aria-live for screen readers
+    const alertElement = page.getByText("Velg minst ett svar");
+    await expect(alertElement).toHaveAttribute("role", "alert");
+    await expect(alertElement).toHaveAttribute("aria-live", "assertive");
+
+    // Navigate to checkbox question
+    await page
+      .getByRole("radio", {
+        name: element.svaralternativer[0].tekst,
+        exact: true,
+      })
+      .click();
+    await page.getByRole("button", { name: "Svar" }).click();
+    await page
+      .getByRole("radio", {
+        name: tema.spørsmål[1].svaralternativer[0].tekst,
+        exact: true,
+      })
+      .click();
+    await page.getByRole("button", { name: "Svar" }).click();
+
+    // Now we should be on the checkbox question (third question in the theme)
+    const checkboxQuestion = tema.spørsmål[2];
+    await expect(page.getByText(checkboxQuestion.tekst)).toBeVisible();
+    await expect(page.locator("input[type=checkbox]")).toHaveCount(
+      checkboxQuestion.svaralternativer.length,
+    );
+
+    await page.getByRole("button", { name: "Svar" }).click();
+
+    // Check that the error message is visible for checkboxes too
+    await expect(page.getByText("Velg minst ett svar")).toBeVisible();
+
+    // Check accessibility attributes for checkbox case as well
+    const checkboxAlertElement = page.getByText("Velg minst ett svar");
+    await expect(checkboxAlertElement).toHaveAttribute("role", "alert");
+    await expect(checkboxAlertElement).toHaveAttribute(
+      "aria-live",
+      "assertive",
+    );
   });
 
   test("Viser feilmelding ved lukket spørsmål og feil i fetchIdentifiserbartSpørsmål", async ({
