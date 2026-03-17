@@ -75,7 +75,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: [
     {
-      command: "bun run build && bun run start",
+      command: "pnpm build && pnpm start",
       url: "http://localhost:3000",
       reuseExistingServer: true,
       stderr: "pipe",
@@ -89,7 +89,7 @@ export default defineConfig({
       stdout: "ignore",
     },
     {
-      command: "bun run mocks",
+      command: "pnpm mocks",
       url: "http://localhost:3100/fia-arbeidsgiver/sporreundersokelse/vert/asdf/virksomhetsnavn",
       reuseExistingServer: true,
       stderr: "pipe",
