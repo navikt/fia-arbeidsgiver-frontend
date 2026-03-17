@@ -50,7 +50,7 @@ export default defineConfig({
 
   webServer: [
     {
-      command: "pnpm build && pnpm start",
+      command: "pnpm build && node .next/standalone/server.js",
       url: "http://localhost:3000",
       reuseExistingServer: false,
       stderr: "pipe",
