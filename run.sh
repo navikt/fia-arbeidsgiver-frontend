@@ -14,18 +14,18 @@ while getopts 'hmdkie' opt; do
       ;;
 
     m)
-    bun run mocks
+    pnpm mocks
       ;;
 
     d)
-      bun run dev
+      pnpm dev
       ;;
 
     k)
       killall next-server
       ;;
     i)
-      bun install
+      pnpm install
       exit 0
       ;;
     e)
@@ -44,6 +44,6 @@ if [ $? -eq 0 ]
 then
   # kjør opp frontend
   docker-compose up -d
-  bun dev & bun run mocks
+  pnpm dev & pnpm mocks
   docker-compose down
 fi

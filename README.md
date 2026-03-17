@@ -4,11 +4,16 @@ Frontend for kartleggingsverktøy
 
 ## Forhåndskrav
 
-### Installer bun
+### Installer pnpm
 
 ```shell
-brew tap oven-sh/bun
-brew install bun
+brew install pnpm
+```
+
+Eller med npm:
+
+```shell
+npm install -g pnpm
 ```
 
 ### Sjekk minimum node versjon
@@ -25,7 +30,7 @@ nvm use 18.18.2
 ## Getting Started
 
 1. Sett opp en miljøvariabel som heter `NODE_AUTH_TOKEN=<token-med-leserettigheter-i-gpr`.
-2. Installer avhengigheter med `bun install`
+2. Installer avhengigheter med `pnpm install`
 3. Start utviklingsserveren med `./run.sh` eller ved å kjøre mock server og dev server i separate terminaler (se under).
 4. Åpne appen ved å gå til [http://localhost:2222](http://localhost:2222)
 
@@ -36,7 +41,7 @@ Du kan velge mellom å kjøre både mocks og frontend med `./run.sh` og å kjør
 ### Separate terminaler (anbefalt)
 
 Du kan også kjøre to terminaler, hvor du kjører mocks og frontend separat. Dette vil gi deg litt mer kontroll, og du vil ikke oppleve de samme problemene med prosesser som fremdeles kjører i bakgrunnen etter avslutning.
-Først startes wonderwall med `docker-compose up -d`. Så startes frontend med `bun dev` og mocks startes med `bun run mocks`.
+Først startes wonderwall med `docker-compose up -d`. Så startes frontend med `pnpm dev` og mocks startes med `pnpm mocks`.
 
 ### run.sh
 
