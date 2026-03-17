@@ -25,13 +25,13 @@ importers:
         version: 7.40.0(@types/react@19.2.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@navikt/next-logger':
         specifier: ^4.4.5
-        version: 4.5.1(next@15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(pino@10.3.1)
+        version: 4.5.1(next@15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(pino@10.3.1)
       '@navikt/oasis':
         specifier: ^3.8.0
         version: 3.8.0
       cookies-next:
         specifier: ^6.1.1
-        version: 6.1.1(next@15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
+        version: 6.1.1(next@15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
       highcharts:
         specifier: ^12.4.0
         version: 12.5.0
@@ -40,7 +40,7 @@ importers:
         version: 3.2.3(highcharts@12.5.0)(react@19.2.4)
       next:
         specifier: 15.5.10
-        version: 15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        version: 15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       pino:
         specifier: ^10.1.0
         version: 10.3.1
@@ -82,8 +82,8 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
       '@playwright/test':
-        specifier: ^1.57.0
-        version: 1.58.2
+        specifier: 1.57.0
+        version: 1.57.0
       '@testing-library/dom':
         specifier: ^10.4.1
         version: 10.4.1
@@ -1503,8 +1503,8 @@ packages:
     resolution: {integrity: sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@playwright/test@1.58.2':
-    resolution: {integrity: sha512-akea+6bHYBBfA9uQqSYmlJXn61cTa+jbO87xVLCWbTqbWadRVmhxlXATaOjOgcBaWU4ePo0wB41KMFv3o35IXA==}
+  '@playwright/test@1.57.0':
+    resolution: {integrity: sha512-6TyEnHgd6SArQO8UO2OMTxshln3QMWBtPGrOCgs3wVEmQmwyuNtB10IZMfmYDE0riwNR1cu4q+pPcxMVtaG3TA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -4194,13 +4194,18 @@ packages:
     resolution: {integrity: sha512-nDywThFk1i4BQK4twPQ6TA4RT8bDY96yeuCVBWL3ePARCiEKDRSrNGbFIgUJpLp+XeIR65v8ra7WuJOFUBtkMA==}
     engines: {node: '>=8'}
 
+  playwright-core@1.57.0:
+    resolution: {integrity: sha512-agTcKlMw/mjBWOnD6kFZttAAGHgi/Nw0CZ2o6JqWSbMlI219lAFLZZCyqByTsvVAJq5XA5H8cA6PrvBRpBWEuQ==}
+    engines: {node: '>=18'}
+    hasBin: true
+
   playwright-core@1.58.2:
     resolution: {integrity: sha512-yZkEtftgwS8CsfYo7nm0KE8jsvm6i/PTgVtB8DL726wNf6H2IMsDuxCpJj59KDaxCtSnrWan2AeDqM7JBaultg==}
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright@1.58.2:
-    resolution: {integrity: sha512-vA30H8Nvkq/cPBnNw4Q8TWz1EJyqgpuinBcHET0YVJVFldr8JDNiU9LaWAE1KqSkRYazuaBhTpB5ZzShOezQ6A==}
+  playwright@1.57.0:
+    resolution: {integrity: sha512-ilYQj1s8sr2ppEJ2YVadYBN0Mb3mdo9J0wQ+UuDhzYqURwSoW4n1Xs5vs7ORwgDGmyEh33tRMeS8KhdkMoLXQw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -6614,10 +6619,10 @@ snapshots:
 
   '@navikt/ds-tokens@7.40.0': {}
 
-  '@navikt/next-logger@4.5.1(next@15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(pino@10.3.1)':
+  '@navikt/next-logger@4.5.1(next@15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(pino@10.3.1)':
     dependencies:
       '@navikt/pino-logger': 4.5.1(pino@10.3.1)
-      next: 15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      next: 15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       pino: 10.3.1
 
   '@navikt/oasis@3.8.0':
@@ -6791,9 +6796,9 @@ snapshots:
 
   '@pkgr/core@0.2.9': {}
 
-  '@playwright/test@1.58.2':
+  '@playwright/test@1.57.0':
     dependencies:
-      playwright: 1.58.2
+      playwright: 1.57.0
 
   '@protobufjs/aspromise@1.1.2': {}
 
@@ -7721,10 +7726,10 @@ snapshots:
 
   cookiejar@2.1.4: {}
 
-  cookies-next@6.1.1(next@15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4):
+  cookies-next@6.1.1(next@15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4):
     dependencies:
       cookie: 1.1.1
-      next: 15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      next: 15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react: 19.2.4
 
   core-js-compat@3.48.0:
@@ -9666,7 +9671,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next@15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+  next@15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
       '@next/env': 15.5.10
       '@swc/helpers': 0.5.15
@@ -9685,7 +9690,7 @@ snapshots:
       '@next/swc-win32-arm64-msvc': 15.5.7
       '@next/swc-win32-x64-msvc': 15.5.7
       '@opentelemetry/api': 1.9.0
-      '@playwright/test': 1.58.2
+      '@playwright/test': 1.57.0
       sharp: 0.34.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -9954,11 +9959,13 @@ snapshots:
     dependencies:
       find-up: 3.0.0
 
+  playwright-core@1.57.0: {}
+
   playwright-core@1.58.2: {}
 
-  playwright@1.58.2:
+  playwright@1.57.0:
     dependencies:
-      playwright-core: 1.58.2
+      playwright-core: 1.57.0
     optionalDependencies:
       fsevents: 2.3.2
 
