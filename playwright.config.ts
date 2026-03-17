@@ -85,7 +85,7 @@ export default defineConfig({
       command: "docker compose up",
       url: "http://localhost:6969/azure/authorize",
       reuseExistingServer: true,
-      stderr: "pipe",
+      stderr: "ignore",
       stdout: "ignore",
     },
     {
