@@ -53,6 +53,7 @@ export function IntrosideBody({
   } = useSpørreundersøkelseInfo(spørreundersøkelseId);
   const [erStartet, setErStartet] = React.useState(false);
 
+  const [åpneTemaError, setÅpneTemaError] = React.useState<string | null>(null);
   React.useEffect(() => {
     if (
       !erStartet &&
@@ -75,8 +76,6 @@ export function IntrosideBody({
       setErStartet(true);
     }
   }, [spørreundersøkelseInfo, erStartet, tema, åpneTema]);
-
-  const [åpneTemaError, setÅpneTemaError] = React.useState<string | null>(null);
 
   if (isLoading || lasterInfo) {
     return (
