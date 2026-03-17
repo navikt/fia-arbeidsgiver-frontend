@@ -58,6 +58,14 @@ export default defineConfig({
       timeout: 120000,
     },
     {
+      command: "docker compose up",
+      url: "http://localhost:6969/azure/authorize",
+      reuseExistingServer: false,
+      stderr: "pipe",
+      stdout: "ignore",
+      timeout: 60000,
+    },
+    {
       command: "pnpm mocks",
       url: "http://localhost:3100/fia-arbeidsgiver/sporreundersokelse/vert/asdf/virksomhetsnavn",
       reuseExistingServer: false,

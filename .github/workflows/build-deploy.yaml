@@ -43,11 +43,11 @@ jobs:
           path: .test/**
       - name: Initialize playwright snapshots
         if: ${{steps.cache.outputs.cache-hit != 'true' }}
-        run: pnpm exec playwright test --config=playwright.ci.config.ts --update-snapshots --reporter html
+        run: pnpm exec playwright test --update-snapshots --reporter html
       - name: Run playwright tests
         continue-on-error: true
         id: playwright-step
-        run: pnpm exec playwright test --config=playwright.ci.config.ts
+        run: pnpm exec playwright test
       - name: Upload test report
         if: always()
         uses: actions/upload-artifact@v7
