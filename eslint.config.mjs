@@ -1,6 +1,7 @@
 import js from "@eslint/js";
 import typescriptEslint from "typescript-eslint";
 import reactHooks from "eslint-plugin-react-hooks";
+import react from "eslint-plugin-react";
 
 const eslintconfig = [
   {
@@ -26,6 +27,7 @@ const eslintconfig = [
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
     plugins: {
       "react-hooks": reactHooks,
+      react: react,
     },
     languageOptions: {
       ecmaVersion: "latest",
