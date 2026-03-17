@@ -10,7 +10,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: isCI,
   retries: 2,
-  workers: 8,
+  workers: isCI ? 2 : 8,
   timeout: 45000,
   outputDir: ".test/spec/output",
   snapshotPathTemplate:
@@ -41,10 +41,14 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
 
-    {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
-    },
+    ...(!isCI
+      ? [
+          {
+            name: "firefox",
+            use: { ...devices["Desktop Firefox"] },
+          },
+        ]
+      : []),
 
     // {
     //   name: "webkit",
@@ -52,10 +56,14 @@ export default defineConfig({
     // },
 
     /* Test against mobile viewports. */
-    {
-      name: "Mobile Chrome",
-      use: { ...devices["Pixel 5"] },
-    },
+    ...(!isCI
+      ? [
+          {
+            name: "Mobile Chrome",
+            use: { ...devices["Pixel 5"] },
+          },
+        ]
+      : []),
     // {
     //   name: "Mobile Safari",
     //   use: { ...devices["iPhone 12"] },

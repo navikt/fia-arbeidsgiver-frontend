@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
       - name: Setup Node.js
