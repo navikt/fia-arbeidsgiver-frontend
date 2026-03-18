@@ -34,6 +34,37 @@ jobs:
       - name: Put host.docker.internal i hosts
         run: sudo echo "127.0.0.1 host.docker.internal" | sudo tee -a /etc/hosts
       - run: pnpm exec playwright install --with-deps
+      - name: Debug - Start services and verify
+        run: |
+          pnpm build
+          cp -r .next/static .next/standalone/.next/static
+          cp -r public .next/standalone/public
+          node .next/standalone/server.js &
+          docker compose up -d
+          pnpm mocks &
+          echo "Waiting for services to start..."
+          sleep 15
+          echo "--- Checking localhost:3000 (Next.js) ---"
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000 || true
+          echo ""
+          echo "--- Checking localhost:6969 (Auth server) ---"
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:6969/azure/authorize || true
+          echo ""
+          echo "--- Checking localhost:2222 (Wonderwall) ---"
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:2222 || true
+          echo ""
+          echo "--- Checking localhost:3100 (Mock server) ---"
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3100/fia-arbeidsgiver/sporreundersokelse/vert/asdf/virksomhetsnavn || true
+          echo ""
+          echo "--- Docker containers ---"
+          docker compose ps
+          echo "--- Wonderwall logs ---"
+          docker compose logs wonderwall --tail 30 || true
+          echo "--- Auth server logs ---"
+          docker compose logs authserver --tail 30 || true
+          echo "--- Killing services ---"
+          kill %1 %2 2>/dev/null || true
+          docker compose down || true
       - name: Set up cache
         id: cache
         uses: actions/cache@v5
@@ -43,11 +74,11 @@ jobs:
           path: .test/**
       - name: Initialize playwright snapshots
         if: ${{steps.cache.outputs.cache-hit != 'true' }}
-        run: pnpm exec playwright test --update-snapshots --reporter html
+        run: pnpm exec playwright test --update-snapshots --reporter html --trace on
       - name: Run playwright tests
         continue-on-error: true
         id: playwright-step
-        run: pnpm exec playwright test
+        run: pnpm exec playwright test --trace on
       - name: Upload test report
         if: always()
         uses: actions/upload-artifact@v7

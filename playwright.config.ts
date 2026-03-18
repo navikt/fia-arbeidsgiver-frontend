@@ -83,7 +83,8 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: [
     {
-      command: "pnpm build && node .next/standalone/server.js",
+      command:
+        "pnpm build && cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public && node .next/standalone/server.js",
       url: "http://localhost:3000",
       reuseExistingServer: true,
       stderr: "pipe",
@@ -93,8 +94,8 @@ export default defineConfig({
       command: "docker compose up",
       url: "http://localhost:6969/azure/authorize",
       reuseExistingServer: true,
-      stderr: "ignore",
-      stdout: "ignore",
+      stderr: "pipe",
+      stdout: "pipe",
     },
     {
       command: "pnpm mocks",
