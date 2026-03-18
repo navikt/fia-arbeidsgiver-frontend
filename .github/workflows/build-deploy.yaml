@@ -37,9 +37,7 @@ jobs:
       - name: Debug - Start services and verify
         run: |
           pnpm build
-          cp -r .next/static .next/standalone/.next/static
-          cp -r public .next/standalone/public
-          node .next/standalone/server.js &
+          pnpm start &
           docker compose up -d
           pnpm mocks &
           echo "Waiting for services to start..."

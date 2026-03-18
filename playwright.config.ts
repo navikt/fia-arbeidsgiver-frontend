@@ -83,8 +83,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: [
     {
-      command:
-        "pnpm build && cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public && node .next/standalone/server.js",
+      command: "pnpm build && pnpm start",
       url: "http://localhost:3000",
       reuseExistingServer: true,
       stderr: "pipe",
