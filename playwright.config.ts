@@ -94,7 +94,7 @@ export default defineConfig({
       url: "http://localhost:2222",
       reuseExistingServer: true,
       stderr: "pipe",
-      stdout: "pipe",
+      stdout: "ignore",
     },
     {
       command: "pnpm mocks",
