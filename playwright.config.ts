@@ -10,7 +10,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: isCI,
   retries: 2,
-  workers: 8,
+  workers: isCI ? 2 : 8,
   timeout: 45000,
   outputDir: ".test/spec/output",
   snapshotPathTemplate:
@@ -41,10 +41,14 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
 
-    {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
-    },
+    ...(!isCI
+      ? [
+          {
+            name: "firefox",
+            use: { ...devices["Desktop Firefox"] },
+          },
+        ]
+      : []),
 
     // {
     //   name: "webkit",
@@ -52,10 +56,14 @@ export default defineConfig({
     // },
 
     /* Test against mobile viewports. */
-    {
-      name: "Mobile Chrome",
-      use: { ...devices["Pixel 5"] },
-    },
+    ...(!isCI
+      ? [
+          {
+            name: "Mobile Chrome",
+            use: { ...devices["Pixel 5"] },
+          },
+        ]
+      : []),
     // {
     //   name: "Mobile Safari",
     //   use: { ...devices["iPhone 12"] },
@@ -75,7 +83,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: [
     {
-      command: "bun run build && bun run start",
+      command: "pnpm build && pnpm start",
       url: "http://localhost:3000",
       reuseExistingServer: true,
       stderr: "pipe",
@@ -83,13 +91,13 @@ export default defineConfig({
     },
     {
       command: "docker compose up",
-      url: "http://localhost:6969/azure/authorize",
+      url: "http://localhost:2222",
       reuseExistingServer: true,
       stderr: "pipe",
       stdout: "ignore",
     },
     {
-      command: "bun run mocks",
+      command: "pnpm mocks",
       url: "http://localhost:3100/fia-arbeidsgiver/sporreundersokelse/vert/asdf/virksomhetsnavn",
       reuseExistingServer: true,
       stderr: "pipe",

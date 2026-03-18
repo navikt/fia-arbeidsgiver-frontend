@@ -119,7 +119,13 @@ export default function Spørsmålsseksjon({
             }
             className={spørsmålStyles.spørsmålsseksjon}
             value={svar}
-            error={feilSendSvar && <div aria-live="assertive" role="alert">{feilSendSvar}</div>}
+            error={
+              feilSendSvar && (
+                <div aria-live="assertive" role="alert">
+                  {feilSendSvar}
+                </div>
+              )
+            }
           >
             {deltakerSpørsmål.spørsmål.svaralternativer.map(
               (svaralternativ) => (
@@ -135,7 +141,13 @@ export default function Spørsmålsseksjon({
             onChange={(value) => velgSvar([value])}
             value={svar[0] || null}
             className={spørsmålStyles.spørsmålsseksjon}
-            error={feilSendSvar && <div aria-live="assertive" role="alert">{feilSendSvar}</div>}
+            error={
+              feilSendSvar && (
+                <div aria-live="assertive" role="alert">
+                  {feilSendSvar}
+                </div>
+              )
+            }
           >
             {deltakerSpørsmål.spørsmål.svaralternativer.map(
               (svaralternativ) => (

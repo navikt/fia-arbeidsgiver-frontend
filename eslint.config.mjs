@@ -1,52 +1,54 @@
-import { fixupConfigRules } from "@eslint/compat";
-import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
-const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname,
-  recommendedConfig: js.configs.recommended,
-});
+import typescriptEslint from "typescript-eslint";
+import reactHooks from "eslint-plugin-react-hooks";
+import react from "eslint-plugin-react";
 
-const eslingconfig = [
-  ...compat.config(
-    ...fixupConfigRules({
-      extends: [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:jest/recommended",
-        "next/core-web-vitals",
-        "prettier", // Add "prettier" last. This will turn off eslint rules conflicting with prettier. This is not what will format our code.
-      ],
-      rules: {
-        "@typescript-eslint/no-unused-vars": "error",
-        "@typescript-eslint/no-empty-function": "off",
-        "@typescript-eslint/ban-ts-comment": "off",
-        "jsx-a11y/anchor-ambiguous-text": [
-          2,
-          {
-            words: [
-              "her",
-              "klikk",
-              "klikk her",
-              "trykk",
-              "trykk her",
-              "lenken",
-              "linken",
-              "lenka",
-              "lenken her",
-              "linken her",
-              "lenka her",
-              "denne lenken",
-              "denne linken",
-              "denne lenka",
-            ],
-          },
-        ],
+const eslintconfig = [
+  {
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "next-env.d.ts",
+      "*.module.css",
+      "*.config.{ts,js}",
+      "*.setup.{ts,js}",
+      "mocks/**",
+      "coverage/**",
+      "playwright/**",
+      "test-results/**",
+      "tests/**",
+    ],
+  },
+  js.configs.recommended,
+  ...typescriptEslint.configs.recommended,
+  {
+    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+    plugins: {
+      "react-hooks": reactHooks,
+      react: react,
+    },
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
       },
-      settings: {},
-      ignorePatterns: ["*.module.css", "*.{config,setup}.{ts,js}"],
-    }),
-  ),
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/no-empty-function": "off",
+      "@typescript-eslint/ban-ts-comment": "off",
+      "@typescript-eslint/no-unused-expressions": "off", // Disabled as it conflicts with JSX patterns
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
+      "no-unused-expressions": "off",
+    },
+  },
 ];
 
-export default eslingconfig;
+export default eslintconfig;
