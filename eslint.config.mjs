@@ -19,6 +19,7 @@ const eslintconfig = [
       "playwright/**",
       "test-results/**",
       "tests/**",
+      ".test/**",
     ],
   },
   js.configs.recommended,

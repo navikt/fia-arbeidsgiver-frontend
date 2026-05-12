@@ -18,6 +18,7 @@ export function TotalresultatRenderer({
   const { data: listeOverTemaer, error } =
     useTemaoversikter(spørreundersøkelseId);
 
+  const [brukTekstvisning, setBrukTekstvisning] = React.useState(false);
   const [temaErAvsluttet, setTemaErAvsluttet] = useState<{
     [temaId: string]: boolean;
   }>({});
@@ -48,13 +49,16 @@ export function TotalresultatRenderer({
           )}
           {listeOverTemaer ? (
             listeOverTemaer.map(
-              (tema) =>
+              (tema, index) =>
                 temaErAvsluttet[tema.id] && (
                   <React.Fragment key={tema.id}>
                     <Headerlinje tittel={tema?.navn} />
                     <TemaGrafMedDatahenting
                       temaId={tema.id}
+                      skjulToggleGroup={index !== 0}
                       spørreundersøkelseId={spørreundersøkelseId}
+                      brukTekstvisning={brukTekstvisning}
+                      setBrukTekstvisning={setBrukTekstvisning}
                     />
                   </React.Fragment>
                 ),

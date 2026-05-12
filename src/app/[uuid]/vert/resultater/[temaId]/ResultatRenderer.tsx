@@ -31,6 +31,7 @@ export function ResultatRenderer({
   }, [spørreundersøkelseId, temaId]);
 
   const { data: tema, error } = useTemaResultat(spørreundersøkelseId, temaId);
+  const [brukTekstvisning, setBrukTekstvisning] = React.useState(false);
 
   if (tema === undefined || !erAvsluttet) {
     return (
@@ -62,7 +63,12 @@ export function ResultatRenderer({
           temaId={temaId}
         />
       </Headerlinje>
-      <TemaGraf key={temaId} tema={erAvsluttet ? tema : undefined} />
+      <TemaGraf
+        key={temaId}
+        tema={erAvsluttet ? tema : undefined}
+        brukTekstvisning={brukTekstvisning}
+        setBrukTekstvisning={setBrukTekstvisning}
+      />
     </>
   );
 }
