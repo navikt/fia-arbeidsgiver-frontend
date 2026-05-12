@@ -1,6 +1,6 @@
 "use client";
 
-import { Alert, BodyShort, Box } from "@navikt/ds-react";
+import { Alert, BodyShort, Box, ToggleGroup } from "@navikt/ds-react";
 import resultatgrafStyle from "./resultatgraf.module.css";
 import { useTemaResultat } from "@/app/_api_hooks/vert/useTemaresultater";
 import { SpørsmålResultatDto } from "@/app/_types/SpørsmålResultatDto";
@@ -9,11 +9,18 @@ import { Loader } from "@navikt/ds-react";
 import BarChart from "./BarChart";
 import React from "react";
 import useTimeHasElapsed from "@/utils/useTimeHasElapsed";
+import TekstligResultatvisning from "./TekstligResultatvisning";
 
 export default function TemaGraf({
   tema,
+  brukTekstvisning,
+  setBrukTekstvisning,
+  skjulToggleGroup = false,
 }: {
   tema: TemaResultatDto | undefined;
+  brukTekstvisning: boolean;
+  setBrukTekstvisning: React.Dispatch<React.SetStateAction<boolean>>;
+  skjulToggleGroup?: boolean;
 }) {
   if (tema === undefined) {
     return (
@@ -24,6 +31,22 @@ export default function TemaGraf({
   }
   return (
     <div className={resultatgrafStyle.boksContainer}>
+      {!skjulToggleGroup && (
+        <div className={resultatgrafStyle.grafTabellBryterWrapper}>
+          <ToggleGroup
+            className={resultatgrafStyle.grafTabellBryter}
+            size="small"
+            value={brukTekstvisning ? "tabell" : "graf"}
+            aria-label="Hvis du bruker skjermleser, bør du velge tabell"
+            onChange={(value) => {
+              setBrukTekstvisning(value === "tabell");
+            }}
+          >
+            <ToggleGroup.Item value="graf">Graf</ToggleGroup.Item>
+            <ToggleGroup.Item value="tabell">Tabell</ToggleGroup.Item>
+          </ToggleGroup>
+        </div>
+      )}
       {tema.spørsmålMedSvar.map((spørsmål, index) => {
         const farge = getGraffargeFromTema(tema);
         return (
@@ -38,7 +61,13 @@ export default function TemaGraf({
               tittel={spørsmål.kategori}
               temanavn={tema.navn}
             />
-            {spørsmål.flervalg ? (
+            {brukTekstvisning ? (
+              <TekstligResultatvisning
+                key={index}
+                spørsmål={spørsmål}
+                farge={farge ?? "var(--a-blue-500)"}
+              />
+            ) : spørsmål.flervalg ? (
               <BarChart
                 key={index}
                 spørsmål={spørsmål}
@@ -132,9 +161,15 @@ function trengerEkstraBredde(
 export function TemaGrafMedDatahenting({
   temaId,
   spørreundersøkelseId,
+  brukTekstvisning,
+  setBrukTekstvisning,
+  skjulToggleGroup = false,
 }: {
   temaId: number;
   spørreundersøkelseId: string;
+  brukTekstvisning: boolean;
+  setBrukTekstvisning: React.Dispatch<React.SetStateAction<boolean>>;
+  skjulToggleGroup?: boolean;
 }) {
   // Ignorer errors de første 20 sekundene etter load, ettersom vi får 403 på første load etter at vi har avsluttet tema.
   // TODO: Fjern denne når vi får fikset at beckend sender error første gang
@@ -149,5 +184,12 @@ export function TemaGrafMedDatahenting({
     );
   }
 
-  return <TemaGraf tema={tema} />;
+  return (
+    <TemaGraf
+      tema={tema}
+      brukTekstvisning={brukTekstvisning}
+      setBrukTekstvisning={setBrukTekstvisning}
+      skjulToggleGroup={skjulToggleGroup}
+    />
+  );
 }
