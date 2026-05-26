@@ -19,6 +19,7 @@ export function Framdrift({
     if (UUTeller.current) {
       if (sisteSpørsmål !== spørsmålnummer) {
         UUTeller.current.focus();
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setSisteSpørsmål(spørsmålnummer);
       }
     }
