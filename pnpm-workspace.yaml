@@ -9,6 +9,3 @@ minimumReleaseAge: 10080 # 7 dager
 
 minimumReleaseAgeExclude:
   - "@navikt/*"
-  - "@grafana/faro-web-sdk"
-  - "@grafana/faro-web-tracing"
-  - "@grafana/faro-core"
