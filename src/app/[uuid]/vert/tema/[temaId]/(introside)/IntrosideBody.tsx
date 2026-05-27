@@ -60,6 +60,7 @@ export function IntrosideBody({
       (tema?.status === TemaStatus.ALLE_SPØRSMÅL_ÅPNET ||
         tema?.status === TemaStatus.STENGT)
     ) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setErStartet(true);
     }
   }, [tema, erStartet]);
@@ -73,6 +74,7 @@ export function IntrosideBody({
       åpneTema().catch((error) => {
         setÅpneTemaError(error.message);
       });
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setErStartet(true);
     }
   }, [spørreundersøkelseInfo, erStartet, tema, åpneTema]);

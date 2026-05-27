@@ -5,8 +5,6 @@ metadata:
   namespace: pia
   labels:
     team: pia
-  annotations:
-    nginx.ingress.kubernetes.io/limit-rpm: "250"
 spec:
   ingresses:
     - {{ ingress }}
