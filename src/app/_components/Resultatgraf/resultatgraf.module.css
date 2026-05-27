@@ -94,6 +94,20 @@
   align-items: center;
 }
 
+.tekstvisning {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  margin-top: 1rem;
+}
+
+.grafTabellBryterWrapper {
+  grid-column: span 2;
+}
+
+.grafTabellBryter > div {
+  background-color: #fff;
+}
+
 .kategoritittel {
   color: var(--a-blue-500);
 
