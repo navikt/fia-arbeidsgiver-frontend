@@ -27,6 +27,8 @@ jobs:
           version: latest
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Lint
         run: pnpm lint
       - name: Run testing-library tests
@@ -78,6 +80,8 @@ jobs:
           version: latest
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Build
         run: pnpm build
       - name: Push to Google Artifact Registry
