@@ -1,20 +1,20 @@
 .bleedFerdig {
-  background: var(--a-green-200);
+  background: var(--ax-success-300);
   margin-bottom: 2rem;
   padding: 2rem 0;
   min-height: 112px;
 }
 
 .bleedKlar {
-  color: var(--a-text-on-inverted);
-  background: var(--a-deepblue-900);
+  color: var(--ax-text-neutral-contrast);
+  background: var(--ax-brand-blue-1000);
   margin-bottom: 2rem;
   padding: 2rem 0;
   min-height: 112px;
 }
 
 .bleedHoppetOver {
-  background: var(--a-gray-400);
+  background: var(--ax-neutral-500);
   margin-bottom: 2rem;
   padding: 2rem 0;
   min-height: 112px;
@@ -24,27 +24,27 @@
   /* Fikser hvit bakgrunn bak advarselikon om inline */
   background: radial-gradient(
     circle at 50% 54%,
-    var(--a-surface-default) 25%,
+    var(--ax-bg-default) 25%,
     0,
     transparent
   ) !important;
 }
 
 .knappHvit {
-  background: var(--a-bg-default);
+  background: var(--ax-bg-default);
 }
 
 .knappHvitBred {
-  background: var(--a-bg-default);
+  background: var(--ax-bg-default);
   min-width: 10rem;
 }
 
 .disabletBred {
-  background: var(--a-bg-default);
+  background: var(--ax-bg-default);
   min-width: 10rem;
 }
 .disabletBred:hover {
-  background: var(--a-bg-default);
+  background: var(--ax-bg-default);
 }
 
 .knappBred {

@@ -66,7 +66,7 @@
   margin-bottom: 2rem;
   padding-bottom: 1rem;
 
-  border-bottom: 1px solid var(--a-gray-300);
+  border-bottom: 1px solid var(--ax-neutral-400);
 }
 
 .boksContainer {
@@ -109,20 +109,20 @@
 }
 
 .kategoritittel {
-  color: var(--a-blue-500);
+  color: var(--ax-accent-600);
 
   margin-left: 10px;
   margin-bottom: 0.5rem;
 
   &.blå {
-    color: var(--a-blue-500);
+    color: var(--ax-accent-600);
   }
 
   &.grønn {
-    color: var(--a-green-500);
+    color: var(--ax-success-600);
   }
 
   &.gul {
-    color: var(--a-orange-700);
+    color: var(--ax-warning-800);
   }
 }

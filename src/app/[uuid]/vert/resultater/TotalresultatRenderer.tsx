@@ -40,7 +40,7 @@ export function TotalresultatRenderer({
   return (
     <>
       <HeaderVert spørreundersøkelseId={spørreundersøkelseId} />
-      <Page contentBlockPadding="none" background="bg-subtle">
+      <Page contentBlockPadding="none">
         <PageBlock gutters width="2xl">
           {error && (
             <Alert variant="error" role="alert" aria-live="polite">
@@ -65,7 +65,7 @@ export function TotalresultatRenderer({
             )
           ) : (
             <VStack
-              gap={"4"}
+              gap={"space-16"}
               align={"center"}
               justify={"center"}
               className={resultaterStyles.loadingStack}

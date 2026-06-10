@@ -14,7 +14,7 @@ export function SpørsmålHeadingDeltaker({
   return (
     <VStack
       justify={"start"}
-      gap={"2"}
+      gap={"space-8"}
       className={spørsmålStyles.spørsmålsheader}
     >
       <Heading size="medium">{deltakerSpørsmål.temanavn}</Heading>

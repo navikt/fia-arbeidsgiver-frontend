@@ -8,9 +8,8 @@ export default function StartsideBoksElement({
 }) {
   return (
     <Box
-      background="bg-default"
-      borderRadius="xlarge"
-      padding="4"
+      borderRadius="12"
+      padding="space-16"
       className={startsideStyles.startsideinfoboks}
     >
       <BodyShort className={startsideStyles.startsideinfoboksinnhold}>

@@ -15,7 +15,7 @@ export default function StartsideInnhold({
 
   if (spørreundersøkelseInfo.isLoading) {
     return (
-      <Page background="bg-subtle">
+      <Page>
         <div
           style={{
             display: "flex",

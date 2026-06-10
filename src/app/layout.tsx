@@ -24,7 +24,12 @@ export default function RootLayout({
   return (
     <html lang="no" className="notranslate" translate="no">
       <InstrumentationInitializer />
-      <body className={inter.className}>{children}</body>
+      <body
+        className={inter.className}
+        style={{ backgroundColor: "var(--ax-bg-neutral-soft)" }}
+      >
+        {children}
+      </body>
     </html>
   );
 }

@@ -41,9 +41,8 @@ export default function Planvisning({ plan }: { plan?: planType }) {
 
   return (
     <Box
-      borderRadius="xlarge"
-      padding="10"
-      background="bg-default"
+      borderRadius="12"
+      padding="space-40"
       className={`${introsideStyles.startsideboks} ${introsideStyles.startsidegrafboks}`}
     >
       {plan.temaer.map((tema) =>

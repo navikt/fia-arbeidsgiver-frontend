@@ -38,7 +38,7 @@ export function ResultatRenderer({
       <>
         <Headerlinje tittel={tema ? tema.navn : null} />
         <VStack
-          gap={"4"}
+          gap={"space-16"}
           align={"center"}
           justify={"center"}
           className={resultaterStyles.loadingStack}

@@ -17,13 +17,13 @@ export function TemaBoks({
 }) {
   return (
     tema && (
-      <Box padding="10" className={oversiktStyles.temaboks}>
+      <Box padding="space-40" className={oversiktStyles.temaboks}>
         <VStack
-          gap="8"
+          gap="space-32"
           justify="space-between"
           className={oversiktStyles.temaboksinnhold}
         >
-          <VStack gap="4">
+          <VStack gap="space-16">
             <HStack justify={"space-between"}>
               <StatusPåDeltakerMedSvar
                 spørreundersøkelseId={spørreundersøkelseId}
@@ -31,12 +31,14 @@ export function TemaBoks({
                 erSynlig={tema.status !== "IKKE_ÅPNET"}
               />
               {tema.status === "STENGT" ? (
-                <Tag variant={"success-moderate"}>Fullført</Tag>
+                <Tag data-color="success" variant={"moderate"}>
+                  Fullført
+                </Tag>
               ) : null}
             </HStack>
             <Heading size="medium">{tema.navn}</Heading>
           </VStack>
-          <HStack gap={"4"} justify={"end"}>
+          <HStack gap={"space-16"} justify={"end"}>
             <TemaActions
               tema={tema}
               spørreundersøkelseId={spørreundersøkelseId}

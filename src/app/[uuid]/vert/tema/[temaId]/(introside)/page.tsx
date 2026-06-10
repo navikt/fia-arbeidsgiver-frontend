@@ -13,7 +13,7 @@ export default async function Temastartside(props: {
 }) {
   const params = await props.params;
   return (
-    <Page contentBlockPadding="none" background="bg-subtle">
+    <Page contentBlockPadding="none">
       <PageBlock gutters width="lg">
         <IntrosideBody
           spørreundersøkelseId={params.uuid}

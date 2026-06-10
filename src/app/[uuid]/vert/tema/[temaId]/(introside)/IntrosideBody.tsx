@@ -31,7 +31,6 @@ import { SpørsmålDto } from "@/app/_types/SpørsmålDto";
 import { SvaralternativDto } from "@/app/_types/SvaralternativDto";
 import { TemaStatus } from "@/app/_types/TemaStatus";
 import { useSpørreundersøkelseInfo } from "@/app/_api_hooks/vert/useSpørreundersøkelseInfo";
-import { SpørreundersøkelseInfoDto } from "@/app/_types/SpørreundersøkelseInfoDto";
 
 export function IntrosideBody({
   spørreundersøkelseId,
@@ -81,7 +80,7 @@ export function IntrosideBody({
 
   if (isLoading || lasterInfo) {
     return (
-      <VStack gap={"4"} align={"center"} justify={"center"}>
+      <VStack gap={"space-16"} align={"center"} justify={"center"}>
         <Heading size={"large"}>Laster tema</Heading>
         <Loader size="3xlarge" title="Venter..." />
       </VStack>
@@ -119,9 +118,7 @@ export function IntrosideBody({
           />
         </>
       )}
-      {erStartet && tema && (
-        <SvarRenderer tema={tema} type={spørreundersøkelseInfo?.type} />
-      )}
+      {erStartet && tema && <SvarRenderer tema={tema} />}
     </>
   );
 }
@@ -201,33 +198,14 @@ function Actionknapper({
   );
 }
 
-function SvarRenderer({
-  type,
-  tema,
-}: {
-  tema: TemaDto;
-  type?: SpørreundersøkelseInfoDto["type"];
-}) {
-  const boxRef = React.useRef<HTMLDivElement>(null);
-  React.useEffect(() => {
-    if (boxRef !== null && type !== "Evaluering") {
-      boxRef?.current?.scrollIntoView({
-        block: "end",
-        inline: "center",
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+function SvarRenderer({ tema }: { tema: TemaDto }) {
   const erGruppert = tema.spørsmål.some((spørsmål) => spørsmål.kategori);
 
   return (
     <Box
-      borderRadius="xlarge"
-      padding="12"
-      background="surface-default"
+      borderRadius="12"
+      padding="space-24"
       className={introsideStyles.spørsmålsseksjon}
-      ref={boxRef}
     >
       {erGruppert ? (
         <GruppertSpørsmålRenderer tema={tema} />
@@ -239,16 +217,6 @@ function SvarRenderer({
 }
 
 function UgruppertSpørsmålRenderer({ tema }: { tema: TemaDto }) {
-  const boxRef = React.useRef<HTMLDivElement>(null);
-  React.useEffect(() => {
-    if (boxRef !== null) {
-      boxRef?.current?.scrollIntoView({
-        block: "end",
-        inline: "center",
-      });
-    }
-  }, []);
-
   return (
     <Accordion className={introsideStyles.spørsmålsAccordion}>
       {tema.spørsmål.map((spørsmål, index) => (

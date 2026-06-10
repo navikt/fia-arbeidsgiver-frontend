@@ -30,7 +30,7 @@ export default async function Landingsside(props: {
         width="lg"
         className={startsideStyles.startsideinnhold}
       >
-        <VStack gap={"4"} height={"100%"}>
+        <VStack gap={"space-16"} height={"100%"}>
           <Heading
             level="1"
             size="medium"
@@ -71,10 +71,10 @@ function Personvernseksjon() {
         Nav bruker IP adressen din under spørreundersøkelsen, men den vil ikke
         bli lagret. Les mer i vår{" "}
         <Link
+          data-color="neutral"
           href="https://www.nav.no/personvernerklaering"
           target="_blank"
           rel="noopener noreferrer"
-          variant="subtle"
         >
           personvernerklæring
         </Link>

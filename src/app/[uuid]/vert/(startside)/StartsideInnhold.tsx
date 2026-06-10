@@ -32,7 +32,7 @@ export default function StartsideInnhold({
 
   if (spørreundersøkelseInfo.isLoading || !spørreundersøkelseInfo.data) {
     return (
-      <Page background="bg-subtle">
+      <Page>
         <div
           style={{
             display: "flex",
@@ -48,7 +48,7 @@ export default function StartsideInnhold({
   }
 
   return (
-    <Page background="bg-subtle" className={startsideStyles.startside}>
+    <Page className={startsideStyles.startside}>
       <PageBlock
         gutters
         width="xl"
@@ -74,7 +74,7 @@ export default function StartsideInnhold({
           >
             Inkluderende arbeidsliv handler om å:
           </BodyShort>
-          <HStack gap="4">
+          <HStack gap="space-16">
             <StartsideBoksElement>
               <b>samarbeide</b> for en mer inkluderende arbeidsplass
             </StartsideBoksElement>

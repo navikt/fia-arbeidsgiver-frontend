@@ -22,15 +22,17 @@ export function QRkodeVisning({ spørreundersøkelseId }: Props) {
           height: `${størrelse}rem`,
         }}
       />
-      <HStack className={loginModalStyles.qrZoomContainer} gap="1">
+      <HStack className={loginModalStyles.qrZoomContainer} gap="space-4">
         <Button
-          variant="secondary-neutral"
+          data-color="neutral"
+          variant="secondary"
           size="small"
           icon={<ZoomPlusIcon title="Zoom inn" fontSize="1.5rem" />}
           onClick={() => setStørrelse(størrelse + 2)}
         />
         <Button
-          variant="secondary-neutral"
+          data-color="neutral"
+          variant="secondary"
           size="small"
           icon={<ZoomMinusIcon title="Zoom ut" fontSize="1.5rem" />}
           onClick={() => setStørrelse(størrelse - 2)}

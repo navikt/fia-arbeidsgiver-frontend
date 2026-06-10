@@ -55,7 +55,7 @@ export default function LinkTilResultat({
         style={{ maxWidth: "600px" }}
       >
         <Modal.Body>
-          <VStack gap={"4"}>
+          <VStack gap={"space-16"}>
             <VStack>
               <BodyLong>
                 Når du fullfører {resultatType} og viser resultatene er det ikke
