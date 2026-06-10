@@ -1,3 +1,4 @@
+"use client";
 import { Modal } from "@navikt/ds-react";
 import loginmodalStyles from "./loginmodal.module.css";
 

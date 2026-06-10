@@ -143,9 +143,9 @@ export default function Spørsmålsseksjon({
             className={spørsmålStyles.spørsmålsseksjon}
             error={
               feilSendSvar && (
-                <div aria-live="assertive" role="alert">
+                <span aria-live="assertive" role="alert">
                   {feilSendSvar}
-                </div>
+                </span>
               )
             }
           >
