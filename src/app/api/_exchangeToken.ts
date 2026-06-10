@@ -24,7 +24,6 @@ export async function _exchangeToken(req: NextRequest) {
   if (!obo.ok) {
     return {
       error: {
-        obo,
         oboError: obo.error,
         code: 500,
       },
