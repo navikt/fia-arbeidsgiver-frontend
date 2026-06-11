@@ -37,7 +37,7 @@ test.describe("Deltaker/spørsmålside", () => {
           .join(""),
       ),
     ).toBeVisible();
-    await expect(page.getByRole("group")).toContainText(
+    await expect(page.getByRole("radiogroup")).toContainText(
       partssamarbeid.spørsmål[0].svaralternativer
         .map((svaralternativ: SvaralternativDto) => svaralternativ.tekst)
         .join(""),

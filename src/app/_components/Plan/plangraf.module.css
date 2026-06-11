@@ -3,17 +3,17 @@
   grid-template-columns: subgrid;
   grid-column: 1/5;
 
-  & :global(.navds-timeline) {
+  & :global(.aksel-timeline) {
     display: grid;
     grid-template-columns: subgrid;
     grid-column: 1/5;
 
-    & :global(.navds-timeline__row-label) {
+    & :global(.aksel-timeline__row-label) {
       white-space: unset;
       hyphens: auto;
     }
 
-    & :global(.navds-timeline__pin-wrapper) {
+    & :global(.aksel-timeline__pin-wrapper) {
       z-index: 111;
       & ::before {
         z-index: 111;
@@ -59,11 +59,16 @@
       display: grid;
       grid-template-columns: subgrid;
 
-      & :global(.navds-accordion__header-content) {
+      & :global(.aksel-accordion__header-content) {
         grid-column: 2/5;
         display: grid;
         grid-template-columns: subgrid;
         font-weight: 400;
+      }
+      :global(.aksel-heading) {
+        display: grid;
+        grid-template-columns: subgrid;
+        grid-column: 2/5;
       }
 
       &:hover {

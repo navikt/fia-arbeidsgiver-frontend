@@ -63,10 +63,10 @@ function InnholdsVarighetHeader({
   slutt: Date | undefined;
 }) {
   return (
-    <>
+    <span>
       {start && <PrettyInnholdsDato date={start} />} -{" "}
       {slutt && <PrettyInnholdsDato date={slutt} />}
-    </>
+    </span>
   );
 }
 
