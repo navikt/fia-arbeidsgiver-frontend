@@ -48,7 +48,7 @@ jobs:
         uses: actions/cache@v5
         with:
           key: cache/${{github.repository}}/${{vars.PLAYWRIGHT_CACHE_VERSION}}/${{github.ref}}
-          restore-keys: cache/${{github.repository}}/${{vars.PLAYWRIGHT_CACHE_VERSION}}/refs/heads/master
+          restore-keys: cache/${{github.repository}}/${{vars.PLAYWRIGHT_CACHE_VERSION}}/refs/heads/main
           path: .test/**
       - name: Initialize playwright snapshots
         if: ${{steps.cache.outputs.cache-hit != 'true' }}
