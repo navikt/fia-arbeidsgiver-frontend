@@ -297,7 +297,8 @@ test.describe("Deltaker/spørsmålside", () => {
       - main:
         - heading "Partssamarbeid" [level=1]
         - text: Spørsmål 1 av 5
-        - group "Hvordan opplever du at partssamarbeidet har utviklet seg i løpet av samarbeidsperioden?":
+        - radiogroup "Hvordan opplever du at partssamarbeidet har utviklet seg i løpet av samarbeidsperioden?":
+          - text: ""
           - radio "Svært bra"
           - radio "Bra"
           - radio "Dårlig"
