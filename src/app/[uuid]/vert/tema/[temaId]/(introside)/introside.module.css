@@ -18,18 +18,18 @@
 }
 
 .partssamarbeid {
-  background-color: var(--ax-bg-accent-soft);
-  border-color: var(--ax-border-accent-subtle);
+  background: var(--ax-bg-accent-moderate);
+  border-color: var(--ax-border-accent);
 }
 
 .sykefraværsarbeid {
-  background-color: var(--ax-bg-success-soft);
-  border-color: var(--ax-border-success-subtle);
+  background: var(--ax-bg-success-moderate);
+  border-color: var(--ax-border-success);
 }
 
 .arbeidsmiljø {
-  background-color: var(--ax-bg-warning-moderate);
-  border-color: var(--ax-border-warning-subtle);
+  background: var(--ax-bg-warning-moderate);
+  border-color: var(--ax-border-warning);
 }
 
 .disabletOption {

@@ -52,19 +52,22 @@
   }
 
   &.blå {
-    background: var(--ax-accent-100);
+    background: var(--ax-bg-accent-moderate);
+    border: 1px solid var(--ax-border-accent);
     .kategoritittel {
       color: var(--ax-accent-800);
     }
   }
   &.grønn {
-    background: var(--ax-success-200);
+    background: var(--ax-bg-success-moderate);
+    border: 1px solid var(--ax-border-success);
     .kategoritittel {
       color: var(--ax-success-900);
     }
   }
   &.gul {
-    background: var(--ax-warning-200);
+    background: var(--ax-bg-warning-moderate);
+    border: 1px solid var(--ax-border-warning);
     .kategoritittel {
       color: var(--ax-warning-1000);
     }
