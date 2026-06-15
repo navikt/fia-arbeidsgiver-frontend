@@ -78,6 +78,8 @@ jobs:
           version: '11.6.0'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Build
         run: pnpm build
       - name: Push to Google Artifact Registry
