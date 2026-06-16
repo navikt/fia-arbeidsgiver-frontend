@@ -17,11 +17,7 @@ export default async function Temaresultatside(props: {
   return (
     <>
       <HeaderVert spørreundersøkelseId={params.uuid} />
-      <Page
-        contentBlockPadding="none"
-        background="bg-subtle"
-        className={resultaterStyles.page}
-      >
+      <Page contentBlockPadding="none" className={resultaterStyles.page}>
         <PageBlock gutters width="2xl" className={resultaterStyles.pageBlock}>
           <ResultatRenderer
             temaId={params.temaId}

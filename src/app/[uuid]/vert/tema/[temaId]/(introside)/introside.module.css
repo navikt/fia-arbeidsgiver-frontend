@@ -10,6 +10,26 @@
 .spørsmålsseksjon {
   margin-top: 2rem;
   margin-bottom: 2rem;
+  background-color: var(--ax-bg-default);
+}
+
+.hvitBoks {
+  background-color: var(--ax-bg-default);
+}
+
+.partssamarbeid {
+  background: var(--ax-bg-accent-moderate);
+  border-color: var(--ax-border-accent);
+}
+
+.sykefraværsarbeid {
+  background: var(--ax-bg-success-moderate);
+  border-color: var(--ax-border-success);
+}
+
+.arbeidsmiljø {
+  background: var(--ax-bg-warning-moderate);
+  border-color: var(--ax-border-warning);
 }
 
 .disabletOption {
@@ -21,8 +41,9 @@
 }
 
 .spørsmåltittel {
-  color: var(--a-blue-500);
-  --a-font-weight-bold: 400;
+  color: var(--ax-accent-600);
+  /* TODO: Sjekk om vi trenger denne */
+  /* --a-font-weight-bold: 400; */
 }
 
 .spørsmålsAccordion {
@@ -68,6 +89,6 @@
   }
 
   .kategoriMål {
-    color: var(--a-text-subtle);
+    color: var(--ax-text-neutral-subtle);
   }
 }

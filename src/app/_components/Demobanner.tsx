@@ -20,7 +20,7 @@ function Demobanner() {
         style={{
           width: "100%",
           minHeight: "2.5rem",
-          backgroundColor: "var(--a-red-800)",
+          backgroundColor: "var(--ax-danger-900)",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

@@ -98,8 +98,8 @@ export default function Spørsmålsseksjon({
   return (
     <>
       <Box
-        borderRadius="xlarge"
-        padding="5"
+        borderRadius="12"
+        padding="space-20"
         className={`${spørsmålBoksFargeClassname(deltakerSpørsmål.temanavn)} ${spørsmålStyles.innholdboks} `}
       >
         {deltakerSpørsmål.type.toLowerCase() === "evaluering" ? (
@@ -143,9 +143,9 @@ export default function Spørsmålsseksjon({
             className={spørsmålStyles.spørsmålsseksjon}
             error={
               feilSendSvar && (
-                <div aria-live="assertive" role="alert">
+                <span aria-live="assertive" role="alert">
                   {feilSendSvar}
-                </div>
+                </span>
               )
             }
           >
@@ -159,7 +159,11 @@ export default function Spørsmålsseksjon({
           </RadioGroup>
         )}
       </Box>
-      <HStack justify={"end"} gap={"2"} className={spørsmålStyles.knappeStack}>
+      <HStack
+        justify={"end"}
+        gap={"space-8"}
+        className={spørsmålStyles.knappeStack}
+      >
         {deltakerSpørsmål.spørsmålnummer > 1 ? (
           <Button
             variant="secondary"
@@ -194,15 +198,15 @@ export function SpørsmålsseksjonSkeleton({
   return (
     <>
       <Box
-        borderRadius="xlarge"
-        padding="5"
+        borderRadius="12"
+        padding="space-20"
         className={`${spørsmålBoksFargeClassname(sisteTema || "")} ${spørsmålStyles.innholdboks} `}
       >
         <BodyShort size="small" as={Skeleton}>
           Undertema
         </BodyShort>
         {/* Kategoritittel */}
-        <VStack gap="3">
+        <VStack gap="space-12">
           {/* CheckboxGroup */}
           <Skeleton width="100%" height="5rem" />
           {/* Spørsmålstekst */}
@@ -213,7 +217,11 @@ export function SpørsmålsseksjonSkeleton({
           <CheckboxSkeleton width="5rem" />
         </VStack>
       </Box>
-      <HStack justify={"end"} gap={"2"} className={spørsmålStyles.knappeStack}>
+      <HStack
+        justify={"end"}
+        gap={"space-8"}
+        className={spørsmålStyles.knappeStack}
+      >
         <Skeleton variant="rounded" height="3rem" width="7.5rem" />
         {/* Knapp */}
       </HStack>
@@ -223,7 +231,7 @@ export function SpørsmålsseksjonSkeleton({
 
 function CheckboxSkeleton({ width = "12rem" }: { width?: string }) {
   return (
-    <HStack align="center" gap="3">
+    <HStack align="center" gap="space-12">
       <Skeleton variant="circle" width="1.5rem" height="1.5rem" />
       <Skeleton width={width} height="2rem" />
     </HStack>

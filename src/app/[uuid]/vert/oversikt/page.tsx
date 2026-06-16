@@ -14,7 +14,7 @@ export default async function Oversiktside(props: {
 }) {
   const params = await props.params;
   return (
-    <Page background="bg-subtle">
+    <Page>
       <HeaderVert spørreundersøkelseId={params.uuid} />
       <PageBlock>
         <OversiktBody spørreundersøkelseId={params.uuid} />

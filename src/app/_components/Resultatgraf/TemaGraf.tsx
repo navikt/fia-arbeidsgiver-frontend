@@ -52,9 +52,9 @@ export default function TemaGraf({
         return (
           <Box
             key={index}
-            borderRadius="xlarge"
-            padding="12"
-            background="bg-default"
+            borderRadius="12"
+            padding="space-48"
+            background="default"
             className={`${resultatgrafStyle.temaboks} ${trengerEkstraBredde(tema, spørsmål, index) ? resultatgrafStyle.flervalgTemaboks : ""}`}
           >
             <FargetKategoritittel
@@ -65,7 +65,7 @@ export default function TemaGraf({
               <TekstligResultatvisning
                 key={index}
                 spørsmål={spørsmål}
-                farge={farge ?? "var(--a-blue-500)"}
+                farge={farge ?? "var(--ax-accent-600)"}
               />
             ) : spørsmål.flervalg ? (
               <BarChart
@@ -120,11 +120,11 @@ function getFargeKategoriTittelKlasse(temanavn?: string | null) {
 function getGraffargeFromTema(tema: TemaResultatDto) {
   switch (tema.navn?.toLowerCase()) {
     case "partssamarbeid":
-      return "var(--a-blue-500)";
+      return "var(--ax-accent-600)";
     case "sykefraværsarbeid":
-      return "var(--a-green-500)";
+      return "var(--ax-success-600)";
     case "arbeidsmiljø":
-      return "var(--a-orange-600)";
+      return "var(--ax-warning-700)";
     default:
       break;
   }

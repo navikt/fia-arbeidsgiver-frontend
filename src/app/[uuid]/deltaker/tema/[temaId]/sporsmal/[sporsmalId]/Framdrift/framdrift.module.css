@@ -14,20 +14,20 @@
 }
 
 .tom {
-  background-color: var(--a-gray-300);
+  background-color: var(--ax-neutral-400);
 }
 
 .ferdig {
-  background-color: var(--a-blue-700);
+  background-color: var(--ax-accent-800);
 
   &.blå {
-    background-color: var(--a-blue-700);
+    background-color: var(--ax-accent-800);
   }
   &.grønn {
-    background-color: var(--a-green-700);
+    background-color: var(--ax-success-800);
   }
   &.gul {
-    background-color: var(--a-orange-700);
+    background-color: var(--ax-warning-800);
   }
 }
 

@@ -7,7 +7,7 @@ import { useSpørsmålMedSorterteSvaralternativer } from "@/utils/sorterSvaralte
 export default function BarChart({
   spørsmål,
   horizontal = false,
-  farge = "var(--a-blue-500)",
+  farge = "var(--ax-accent-600)",
 }: {
   spørsmål: SpørsmålResultatDto;
   horizontal?: boolean;

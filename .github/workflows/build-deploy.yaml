@@ -18,12 +18,15 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
-      - name: Setup Node.js
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+      - name: Setup node
         uses: actions/setup-node@v6
         with:
-          node-version: '24'
-          registry-url: 'https://npm.pkg.github.com'
-      - uses: pnpm/action-setup@v6
+          node-version: 24
+          registry-url: https://npm.pkg.github.com
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         env:
@@ -40,7 +43,7 @@ jobs:
         uses: actions/cache@v5
         with:
           key: cache/${{github.repository}}/${{vars.PLAYWRIGHT_CACHE_VERSION}}/${{github.ref}}
-          restore-keys: cache/${{github.repository}}/${{vars.PLAYWRIGHT_CACHE_VERSION}}/refs/heads/master
+          restore-keys: cache/${{github.repository}}/${{vars.PLAYWRIGHT_CACHE_VERSION}}/refs/heads/main
           path: .test/**
       - name: Initialize playwright snapshots
         if: ${{steps.cache.outputs.cache-hit != 'true' }}
@@ -70,11 +73,15 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
-      - name: Setup Node.js
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+      - name: Setup node
         uses: actions/setup-node@v6
         with:
-          node-version: '24'
-          registry-url: 'https://npm.pkg.github.com'
+          node-version: 24
+          registry-url: https://npm.pkg.github.com
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
       - uses: pnpm/action-setup@v6
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -117,7 +124,7 @@ jobs:
       id-token: write
     name: Deploy app to dev
     needs: build
-    if: github.ref == 'refs/heads/sett-builder-til-node22'
+    if: github.ref == 'refs/heads/aksel-v8'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6

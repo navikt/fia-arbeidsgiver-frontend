@@ -1,7 +1,7 @@
 .headerBleed {
   &.box {
-    color: var(--a-text-on-inverted);
-    background: var(--a-deepblue-900);
+    color: var(--ax-text-neutral-contrast);
+    background: var(--ax-brand-blue-1000);
     margin-bottom: 2rem;
     padding: 2rem 0;
     min-height: 112px;

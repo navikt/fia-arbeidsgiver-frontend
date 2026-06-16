@@ -15,7 +15,7 @@ export default function HeaderBleed({
       reflectivePadding
       className={headerBleedStyles.headerBleed}
     >
-      <Box padding="5" className={headerBleedStyles.box}>
+      <Box padding="space-20" className={headerBleedStyles.box}>
         <HStack className={headerBleedStyles.innhold}>{children}</HStack>
       </Box>
     </Bleed>

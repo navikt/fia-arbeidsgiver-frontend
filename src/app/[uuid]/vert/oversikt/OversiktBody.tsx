@@ -19,7 +19,7 @@ export default function OversiktBody({
 
   if (isLoading) {
     return (
-      <VStack gap={"4"} align={"center"} justify={"center"}>
+      <VStack gap={"space-16"} align={"center"} justify={"center"}>
         <Heading size={"large"}>Laster oversikt</Heading>
         <Loader size="3xlarge" title="Venter..." />
       </VStack>
@@ -37,7 +37,7 @@ export default function OversiktBody({
   return (
     listeOverTemaer && (
       <HStack
-        gap="4"
+        gap="space-16"
         align="center"
         justify="center"
         className={oversiktStyles.bodyContainer}

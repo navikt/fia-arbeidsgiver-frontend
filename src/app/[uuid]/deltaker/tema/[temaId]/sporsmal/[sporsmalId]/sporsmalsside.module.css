@@ -9,20 +9,20 @@
 }
 
 .blåVenterundertittel {
-  color: var(--a-blue-700);
+  color: var(--ax-accent-800);
 }
 
 .grønnVenterundertittel {
-  color: var(--a-green-800);
+  color: var(--ax-success-900);
 }
 
 .gulVenterundertittel {
-  color: var(--a-orange-900);
+  color: var(--ax-warning-1000);
 }
 
 .venterTimeglass {
   animation: bounce 3s linear infinite;
-  color: var(--a-blue-500);
+  color: var(--ax-accent-600);
 }
 
 @keyframes bounce {
@@ -44,29 +44,32 @@
 }
 
 .innholdboks {
-  background: var(--a-blue-50);
-  color: var(--a-text-default);
+  background: var(--ax-accent-100);
+  color: var(--ax-text-neutral);
   margin-top: 1rem;
   .kategoritittel {
     margin-bottom: 1rem;
   }
 
   &.blå {
-    background: var(--a-blue-50);
+    background: var(--ax-bg-accent-moderate);
+    border: 1px solid var(--ax-border-accent);
     .kategoritittel {
-      color: var(--a-blue-700);
+      color: var(--ax-accent-800);
     }
   }
   &.grønn {
-    background: var(--a-green-100);
+    background: var(--ax-bg-success-moderate);
+    border: 1px solid var(--ax-border-success);
     .kategoritittel {
-      color: var(--a-green-800);
+      color: var(--ax-success-900);
     }
   }
   &.gul {
-    background: var(--a-orange-100);
+    background: var(--ax-bg-warning-moderate);
+    border: 1px solid var(--ax-border-warning);
     .kategoritittel {
-      color: var(--a-orange-900);
+      color: var(--ax-warning-1000);
     }
   }
 }
@@ -114,18 +117,18 @@
 }
 
 .blåBoks {
-  background: var(--a-blue-50);
-  color: var(--a-blue-700);
+  background: var(--ax-accent-100);
+  color: var(--ax-accent-800);
 }
 
 .grønnBoks {
-  background: var(--a-green-100);
-  color: var(--a-green-800);
+  background: var(--ax-success-200);
+  color: var(--ax-success-900);
 }
 
 .gulBoks {
-  background: var(--a-orange-100);
-  color: var(--a-orange-900);
+  background: var(--ax-warning-200);
+  color: var(--ax-warning-1000);
 }
 
 .venterPåAtNesteÅpnerTekst {

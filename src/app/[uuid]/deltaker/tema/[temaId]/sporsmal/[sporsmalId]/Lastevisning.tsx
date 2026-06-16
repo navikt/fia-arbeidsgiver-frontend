@@ -46,10 +46,7 @@ export default function Lastevisning({ sisteTema }: { sisteTema?: string }) {
           <Heading size="medium" spacing>
             Takk!
           </Heading>
-          <BodyShort
-            className={spørsmålStyles.venterPåAtNesteÅpnerTekst}
-            role="text"
-          >
+          <BodyShort className={spørsmålStyles.venterPåAtNesteÅpnerTekst}>
             Din rolle i partssamarbeidet er viktig for å{" "}
             <strong>skape engasjement</strong> og{" "}
             <strong>gode arbeidsforhold</strong> på arbeidsplassen
@@ -59,7 +56,7 @@ export default function Lastevisning({ sisteTema }: { sisteTema?: string }) {
     default:
       return (
         <>
-          <VStack gap={"4"} align={"center"}>
+          <VStack gap={"space-16"} align={"center"}>
             <Heading
               level="1"
               size="medium"
@@ -94,13 +91,13 @@ function Venteskjerm({
   undertittelClassName?: string;
 }) {
   return (
-    <VStack gap="4" align="center" justify="center" height="100%">
+    <VStack gap="space-16" align="center" justify="center" height="100%">
       <Box
-        background="surface-selected"
+        background="accent-soft"
         maxWidth="20rem"
-        borderRadius="xlarge"
+        borderRadius="12"
         className={boxClassName}
-        padding="8"
+        padding="space-32"
       >
         {children}
       </Box>

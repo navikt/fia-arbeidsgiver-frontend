@@ -108,7 +108,7 @@ async function testForNetworkError(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   options: any,
   expectedErrorMessage: string,
-  waitForSelector: string = ".navds-alert",
+  waitForSelector: string = ".aksel-alert",
   side: string = "http://localhost:2222/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker",
 ) {
   await page.route(url, async (route) => {

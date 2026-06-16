@@ -10,11 +10,7 @@ import {
 
 export default function InnholdsAccordion({ tema }: { tema: planTemaType }) {
   return (
-    <Accordion
-      className={planStyles.innholdAccordion}
-      size="small"
-      headingSize="xsmall"
-    >
+    <Accordion className={planStyles.innholdAccordion} size="small">
       <span className={planStyles.innholdLabelRad}>
         <span className={planStyles.innholdLabel}>Innhold</span>
         <span className={planStyles.varighetLabel}>Varighet</span>
@@ -67,10 +63,10 @@ function InnholdsVarighetHeader({
   slutt: Date | undefined;
 }) {
   return (
-    <>
+    <span>
       {start && <PrettyInnholdsDato date={start} />} -{" "}
       {slutt && <PrettyInnholdsDato date={slutt} />}
-    </>
+    </span>
   );
 }
 

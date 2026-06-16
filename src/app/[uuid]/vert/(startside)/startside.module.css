@@ -22,8 +22,8 @@
           width: fit-content;
 
           .snakkeboble {
-            background-color: var(--a-surface-success-subtle);
-            color: var(--a-green-700);
+            background-color: var(--ax-bg-success-soft);
+            color: var(--ax-success-800);
             max-width: 14rem;
             font-size: 1rem;
             padding: 1rem;
@@ -38,7 +38,7 @@
               width: 0;
               height: 0;
               border: 25px solid transparent;
-              border-top-color: var(--a-surface-success-subtle);
+              border-top-color: var(--ax-bg-success-soft);
               border-bottom: 0;
               border-left: 0;
               margin-left: -50px;
@@ -59,7 +59,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        background-color: var(--a-bg-subtle);
+        background-color: var(--ax-bg-neutral-soft);
         z-index: 10;
         padding: 1rem;
 
@@ -74,7 +74,7 @@
       }
 
       .boksBeskrivelse {
-        color: var(--a-blue-800);
+        color: var(--ax-accent-900);
         margin-top: 2rem;
         margin-bottom: 2rem;
         font-size: 1.5rem;
@@ -82,11 +82,12 @@
 
       .startsideinfoboks {
         flex: 1;
-        color: var(--a-blue-800);
+        color: var(--ax-accent-900);
         padding: 3rem;
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: var(--ax-bg-default);
 
         .startsideinfoboksinnhold {
           text-align: center;

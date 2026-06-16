@@ -63,12 +63,13 @@
 }
 
 .subheading {
-  color: var(--a-blue-800);
+  color: var(--ax-accent-900);
 }
 
 .startsideboks {
   margin-top: 2rem;
   margin-bottom: 2rem;
+  background-color: var(--ax-bg-default);
 }
 .startsidegrafboks {
   display: grid;
@@ -94,7 +95,7 @@
 
 .startsideinfoboks {
   flex: 1;
-  color: var(--a-blue-800);
+  color: var(--ax-accent-900);
   padding: 1.5rem 3rem;
   display: flex;
   justify-content: center;

@@ -71,7 +71,7 @@ export default function SpørsmålBody({
     return (
       <>
         <VStack
-          gap={"4"}
+          gap={"space-16"}
           align={"center"}
           justify={"center"}
           className={spørsmålStyles.nesteStack}
@@ -137,7 +137,7 @@ function LoadingSkeleton({
     <>
       <VStack
         justify={"start"}
-        gap={"2"}
+        gap={"space-8"}
         className={spørsmålStyles.spørsmålsheader}
       >
         {sisteTema ? (
