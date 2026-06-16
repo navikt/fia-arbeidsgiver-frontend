@@ -22,11 +22,12 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: '24'
+          registry-url: 'https://npm.pkg.github.com'
       - uses: pnpm/action-setup@v6
-        with:
-          version: latest
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Lint
         run: pnpm lint
       - name: Run testing-library tests
@@ -73,11 +74,12 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: '24'
+          registry-url: 'https://npm.pkg.github.com'
       - uses: pnpm/action-setup@v6
-        with:
-          version: latest
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Build
         run: pnpm build
       - name: Push to Google Artifact Registry
@@ -115,7 +117,7 @@ jobs:
       id-token: write
     name: Deploy app to dev
     needs: build
-    if: github.ref == 'refs/heads/tekstlig-visning'
+    if: github.ref == 'refs/heads/sett-builder-til-node22'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
