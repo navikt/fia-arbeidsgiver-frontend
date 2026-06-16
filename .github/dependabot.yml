@@ -85,7 +85,6 @@ updates:
           - "prettier"
           - "husky"
           - "whatwg-fetch"
-          - "bun-types"
     cooldown:
       default-days: 7
       exclude:
