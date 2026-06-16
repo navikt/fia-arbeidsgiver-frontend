@@ -46,10 +46,7 @@ export default function Lastevisning({ sisteTema }: { sisteTema?: string }) {
           <Heading size="medium" spacing>
             Takk!
           </Heading>
-          <BodyShort
-            className={spørsmålStyles.venterPåAtNesteÅpnerTekst}
-            role="text"
-          >
+          <BodyShort className={spørsmålStyles.venterPåAtNesteÅpnerTekst}>
             Din rolle i partssamarbeidet er viktig for å{" "}
             <strong>skape engasjement</strong> og{" "}
             <strong>gode arbeidsforhold</strong> på arbeidsplassen
