@@ -24,8 +24,6 @@ jobs:
           node-version: '24'
           registry-url: 'https://npm.pkg.github.com'
       - uses: pnpm/action-setup@v6
-        with:
-          version: '11.6.0'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         env:
@@ -78,8 +76,6 @@ jobs:
           node-version: '24'
           registry-url: 'https://npm.pkg.github.com'
       - uses: pnpm/action-setup@v6
-        with:
-          version: '11.6.0'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         env:
