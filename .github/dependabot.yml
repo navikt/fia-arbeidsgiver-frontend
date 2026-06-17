@@ -31,8 +31,8 @@ updates:
       "@navikt*":
         patterns:
           - "@navikt/*"
-      registries:
-        - npm-github
+        registries:
+          - npm-github
       "@grafana*":
         patterns:
           - "@grafana/*"
