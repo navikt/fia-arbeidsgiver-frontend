@@ -37,6 +37,13 @@ test.describe("Vert/introside", () => {
     await expect(page.getByRole("main")).toContainText("Partssamarbeid");
   });
 
+  test("Screenshot av innhold likner", async ({ page }) => {
+    await expect(page.locator("h1")).toContainText(
+      "Velkommen, Fisk og flesk AS",
+    );
+    await expect(page).toHaveScreenshot({ fullPage: true });
+  });
+
   test("test av axe", async ({ page }) => {
     await expect(page.locator("h1")).toContainText(
       "Velkommen, Fisk og flesk AS",

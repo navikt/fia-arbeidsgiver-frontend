@@ -52,6 +52,14 @@ test.describe("Vert/spørsmålside", () => {
     ).toBeVisible();
   });
 
+  test("Screenshot av innhold likner", async ({ page }) => {
+    await page.goto(
+      `http://localhost:2222/${spørreundersøkelseId}/vert/tema/${førsteTemaId}`,
+    );
+    await expect(page.getByRole("main")).toContainText("Start");
+    await expect(page).toHaveScreenshot({ fullPage: true });
+  });
+
   test("test av axe", async ({ page }) => {
     await page.goto(
       `http://localhost:2222/${spørreundersøkelseId}/vert/tema/${førsteTemaId}`,

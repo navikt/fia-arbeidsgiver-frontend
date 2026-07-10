@@ -79,6 +79,11 @@ test.describe("Vert/oversiktside", () => {
     ).toBeVisible();
   });
 
+  test("Screenshot av innhold likner", async ({ page }) => {
+    await expect(page.getByRole("main")).toContainText("Start");
+    await expect(page).toHaveScreenshot({ fullPage: true });
+  });
+
   test("test av axe", async ({ page }) => {
     const accessibilityScanResults = await new AxeBuilder({
       page: page as Page,

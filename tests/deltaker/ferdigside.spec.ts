@@ -79,6 +79,18 @@ test.describe("Deltaker/ferdigside", () => {
     expect(kartleggingStore.harSvartAlleSpørsmål).toBe(true);
   });
 
+  test("Screenshot av innhold likner", async ({ page }) => {
+    await page.goto(
+      "http://localhost:2222/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker/ferdig",
+      { waitUntil: "commit" },
+    );
+
+    await expect(page.getByRole("main")).toContainText(
+      "Takk!Din rolle i partssamarbeidet er viktig for å skape engasjement og gode arbeidsforhold på arbeidsplassenTakk for din deltakelse,du kan nå lukke denne siden.",
+    );
+    await expect(page).toHaveScreenshot({ fullPage: true });
+  });
+
   test("test av axe", async ({ page }) => {
     await page.goto(
       "http://localhost:2222/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker/ferdig",

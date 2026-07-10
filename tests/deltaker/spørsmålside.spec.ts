@@ -319,6 +319,13 @@ test.describe("Deltaker/spørsmålside", () => {
     await expect(page.getByLabel("Svært bra")).toBeChecked();
   });
 
+  test("Screenshot av innhold likner", async ({ page }) => {
+    await expect(
+      page.getByRole("heading", { name: partssamarbeid.navn }),
+    ).toBeVisible();
+    await expect(page).toHaveScreenshot({ fullPage: true });
+  });
+
   test("test av axe", async ({ page }) => {
     await expect(
       page.getByRole("heading", { name: partssamarbeid.navn }),

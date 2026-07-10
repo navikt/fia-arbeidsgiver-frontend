@@ -91,6 +91,11 @@ test.describe("Deltaker/bli med", () => {
     );
   });
 
+  test("Screenshot av innhold likner", async ({ page }) => {
+    await expect(page.getByRole("heading")).toContainText("Velkommen!");
+    await expect(page).toHaveScreenshot({ fullPage: true });
+  });
+
   test("test av axe", async ({ page }) => {
     let accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
