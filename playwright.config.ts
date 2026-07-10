@@ -4,17 +4,30 @@ import { defineConfig, devices } from "@playwright/test";
  * See https://playwright.dev/docs/test-configuration.
  */
 const isCI = !!process.env.CI;
+// Kun ekte GitHub Actions setter GITHUB_ACTIONS. Den lokale Docker-kjøringen
+// setter CI=1, men skal ikke bruke github-reporteren (som gir `::notice`-støy
+// i loggen) – da bruker vi den lesbare "list"-reporteren.
+const isGithubActions = !!process.env.GITHUB_ACTIONS;
+
+// Antall workers styres av PLAYWRIGHT_WORKERS når den er satt (f.eks. i den
+// lokale Docker-kjøringen via docker-compose.e2e.yaml). Da kan lokal kjøring
+// bruke flere workers enn CI, selv om begge kjører i containeren med CI=1.
+const workers = process.env.PLAYWRIGHT_WORKERS
+  ? Number(process.env.PLAYWRIGHT_WORKERS)
+  : isCI
+    ? 2
+    : 8;
 
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
   forbidOnly: isCI,
   retries: 2,
-  workers: isCI ? 2 : 8,
+  workers,
   timeout: 45000,
   outputDir: ".test/spec/output",
   snapshotPathTemplate:
-    ".test/spec/snaps/{projectName}/{testFilePath}/{arg}{ext}",
+    "tests/__snapshots__/{projectName}/{testFilePath}/{arg}{ext}",
   reporter: [
     [
       "html",
@@ -23,7 +36,7 @@ export default defineConfig({
         open: "never",
       },
     ],
-    isCI ? ["github"] : ["line"],
+    isGithubActions ? ["github"] : ["list"],
   ],
   use: {
     trace: "on-first-retry",
@@ -41,14 +54,10 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
 
-    ...(!isCI
-      ? [
-          {
-            name: "firefox",
-            use: { ...devices["Desktop Firefox"] },
-          },
-        ]
-      : []),
+    // {
+    //   name: "firefox",
+    //   use: { ...devices["Desktop Firefox"] },
+    // },
 
     // {
     //   name: "webkit",
@@ -56,14 +65,10 @@ export default defineConfig({
     // },
 
     /* Test against mobile viewports. */
-    ...(!isCI
-      ? [
-          {
-            name: "Mobile Chrome",
-            use: { ...devices["Pixel 5"] },
-          },
-        ]
-      : []),
+    // {
+    //   name: "Mobile Chrome",
+    //   use: { ...devices["Pixel 5"] },
+    // },
     // {
     //   name: "Mobile Safari",
     //   use: { ...devices["iPhone 12"] },

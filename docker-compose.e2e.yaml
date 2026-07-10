@@ -1,0 +1,112 @@
+# E2E-oppsett for Playwright med deterministisk rendering.
+#
+# Alle komponentene (authserver, wonderwall, Next.js, mocks og selve
+# Playwright-testene) deler ETT nettverks-namespace via `network_mode:
+# service:authserver`. Da når alt hverandre på `localhost` – nøyaktig slik det
+# gjør på en Linux-CI-runner – uavhengig av om verten er macOS eller Linux.
+#
+# Rendering skjer i det pinnede Playwright-imaget (samme browser + fonter som i
+# CI), slik at baseline-skjermbildene som genereres lokalt matcher CI pikselvis.
+#
+# Bruk:
+#   ./scripts/e2e.sh            # kjør testene mot committede baseline-bilder
+#   ./scripts/e2e.sh --update   # generer/oppdater baseline-bilder
+
+services:
+  # authserver eier det delte nettverks-namespacet.
+  authserver:
+    extends:
+      file: docker-compose.yaml
+      service: authserver
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "-q",
+          "-O",
+          "/dev/null",
+          "http://localhost:6969/azure/.well-known/openid-configuration",
+        ]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+      start_period: 2s
+
+  wonderwall:
+    image: ghcr.io/nais/wonderwall:latest
+    depends_on:
+      authserver:
+        condition: service_healthy
+    # Del namespace med authserver -> alt snakker over localhost.
+    network_mode: "service:authserver"
+    environment:
+      WONDERWALL_OPENID_CLIENT_ID: "fia-arbeidsgiver-frontend"
+      WONDERWALL_OPENID_CLIENT_JWK: >
+        {
+          "kty":"RSA",
+          "alg":"RS256",
+          "use":"sig",
+          "p":"_xCPvqs85ZZVg460Qfot26rQoNRPTOVDo5p4nqH3ep6BK_5TvoU5LFXd26W-1V1Lc5fcvvftClPOT201xgat4DVtliNtoc8od_tWr190A3AzbsAVFOx0nKa5uhLBxP9SsPM84llp6PXF6QTMGFiPYuoLDaQQqL1K4BbHq3ZzF2M",
+          "q":"7QLqW75zkfSDrn5rMoF50WXyB_ysNx6-2SvaXKGXaOn80IR7QW5vwkleJnsdz_1kr04rJws2p4HBJjUFfSJDi1Dapj7tbIwb0a1szDs6Y2fAa3DlzgXZCkoE2TIrW6UITgs14pI_a7RasclE71FpoZ78XNBvj3NmZugkNLBvRjs",
+          "d":"f7aT4poed8uKdcSD95mvbfBdb6X-M86d99su0c390d6gWwYudeilDugH9PMwqUeUhY0tdaRVXr6rDDIKLSE-uEyaYKaramev0cG-J_QWYJU2Lx-4vDGNHAE7gC99o1Ee_LXqMDCBawMYyVcSWx7PxGQfzhSsARsAIbkarO1sg9zsqPS4exSMbK8wyCTPgRbnkB32_UdZSGbdSib1jSYyyoAItZ8oZHiltVsZIlA97kS4AGPtozde043NC7Ik0uEzgB5qJ_tR7vW8MfDrBj6da2NrLh0UH-q28dooBO1vEu0rvKZIescXYk9lk1ZakHhhpZaLykDOGzxCpronzP3_kQ",
+          "e":"AQAB",
+          "qi":"9kMIR6pEoiwN3M6O0n8bnh6c3KbLMoQQ1j8_Zyir7ZIlmRpWYl6HtK0VnD88zUuNKTrQa7-jfE5uAUa0PubzfRqybACb4S3HIAuSQP00_yCPzCSRrbpGRDFqq-8eWVwI9VdiN4oqkaaWcL1pd54IDcHIbfk-ZtNtZgsOlodeRMo",
+          "dp":"VUecSAvI2JpjDRFxg326R2_dQWi6-uLMsq67FY7hx8WnOqZWKaUxcHllLENGguAmkgd8bv1F6-YJXNUO3Z7uE8DJWyGNTkSNK1CFsy0fBOdGywi-A7jrZFT6VBRhZRRY-YDaInPyzUkfWsGX26wAhPnrqCvqxgBEQJhdOh7obDE",
+          "dq":"7EUfw92T8EhEjUrRKkQQYEK0iGnGdBxePLiOshEUky3PLT8kcBHbr17cUJgjHBiKqofOVNnE3i9nkOMCWcAyfUtY7KmGndL-WIP-FYplpnrjQzgEnuENgEhRlQOCXZWjNcnPKdKJDqF4WAtAgSIznz6SbSQMUoDD8IoyraPFCck",
+          "n":"7CU8tTANiN6W_fD9SP1dK2vQvCkf7-nwvBYe5CfANV0_Bb0ZmQb77FVVsl1beJ7EYLz3cJmL8Is1RCHKUK_4ydqihNjEWTyZiQoj1i67pkqk_zRvfQa9raZR4uZbuBxx7dWUoPC6fFH2F_psAlHW0zf90fsLvhB6Aqq3uvO7XXqo8qNl9d_JSG0Rg_2QUYVb0WKmPVbbhgwtkFu0Tyuev-VZ9IzTbbr5wmZwEUVY7YAi73pDJkcZt5r2WjOF_cuIXe-O2vwbOrRgmJfHO9--mVLdATnEyrb6q2oy_75h6JjP-R4-TD1hyoFFoE2gmj-kSS6Z_Gggljs3Aw7--Nh10Q"
+        }
+      # Delt namespace -> authserver og Next.js er på localhost.
+      WONDERWALL_OPENID_WELL_KNOWN_URL: http://localhost:6969/azure/.well-known/openid-configuration
+      WONDERWALL_INGRESS: http://localhost:2222
+      WONDERWALL_BIND_ADDRESS: 0.0.0.0:2222
+      WONDERWALL_UPSTREAM_HOST: localhost:3000
+      WONDERWALL_AUTO_LOGIN: "true"
+    command: >
+      --log-level=warn
+    restart: unless-stopped
+
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.60.0-noble
+    platform: linux/amd64
+    depends_on:
+      authserver:
+        condition: service_healthy
+      wonderwall:
+        condition: service_started
+    # Samme namespace -> testene når wonderwall/mocks/Next.js på localhost.
+    network_mode: "service:authserver"
+    working_dir: /work
+    environment:
+      CI: "1"
+      E2E_IN_CONTAINER: "1"
+      NEXT_TELEMETRY_DISABLED: "1"
+      # Browserne ligger allerede i imaget – ikke last dem ned på nytt.
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      NODE_AUTH_TOKEN: ${NODE_AUTH_TOKEN:-}
+      E2E_UPDATE: ${E2E_UPDATE:-}
+      # Sendes inn i CI slik at github-reporteren gir annotasjoner. Tom lokalt.
+      GITHUB_ACTIONS: ${GITHUB_ACTIONS:-}
+      # Lokal kjøring bruker flere workers enn CI (som pinner til 2). Kan
+      # overstyres: PLAYWRIGHT_WORKERS=2 ./scripts/e2e.sh
+      PLAYWRIGHT_WORKERS: ${PLAYWRIGHT_WORKERS:-4}
+      # authserver deler namespace med denne containeren, så den nås på
+      # localhost:6969 – ikke host.docker.internal:6969 som i .env.local.
+      # Uten dette feiler OBO-token-utvekslingen og vert-sidene henger på
+      # "Venter…".
+      AZURE_OPENID_CONFIG_TOKEN_ENDPOINT: http://localhost:6969/azure/token
+      AZURE_OPENID_CONFIG_ISSUER: http://localhost:6969/azure
+      AZURE_OPENID_CONFIG_JWKS_URI: http://localhost:6969/azure/jwks
+    volumes:
+      - .:/work
+      # Egne volumer for amd64-avhengigheter og build – skygger vertens
+      # (arm64) node_modules/.next og gir cache mellom kjøringer.
+      - e2e_node_modules:/work/node_modules
+      - e2e_next:/work/.next
+      - e2e_pnpm:/root/.local/share/pnpm
+    command: ["bash", "/work/scripts/run-e2e-in-container.sh"]
+
+volumes:
+  e2e_node_modules:
+  e2e_next:
+  e2e_pnpm:
