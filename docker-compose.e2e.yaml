@@ -68,7 +68,12 @@ services:
 
   playwright:
     image: mcr.microsoft.com/playwright:v1.60.0-noble
-    platform: linux/amd64
+    # Standard er linux/amd64 for at skjermbildene skal matche CI pikselvis.
+    # Kan overstyres til native arkitektur for raskere kjøring på Apple Silicon
+    # via `./scripts/e2e.sh --fast` (setter E2E_PLATFORM=linux/arm64). I fast-
+    # modus kan skjermbilde-sammenligninger feile mot de amd64-genererte
+    # baseline-bildene.
+    platform: ${E2E_PLATFORM:-linux/amd64}
     depends_on:
       authserver:
         condition: service_healthy
@@ -85,6 +90,9 @@ services:
       PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
       NODE_AUTH_TOKEN: ${NODE_AUTH_TOKEN:-}
       E2E_UPDATE: ${E2E_UPDATE:-}
+      # Velger hvilket sett baseline-skjermbilder som brukes (amd64/arm64).
+      # Settes av scripts/e2e.sh sammen med E2E_PLATFORM.
+      E2E_ARCH: ${E2E_ARCH:-amd64}
       # Sendes inn i CI slik at github-reporteren gir annotasjoner. Tom lokalt.
       GITHUB_ACTIONS: ${GITHUB_ACTIONS:-}
       # Lokal kjøring bruker flere workers enn CI (som pinner til 2). Kan

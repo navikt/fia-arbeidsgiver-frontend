@@ -21,6 +21,11 @@ const workers = process.env.PLAYWRIGHT_WORKERS
 // Deltakersidene som også skal testes på mobil.
 const deltakerTests = [/deltaker\//, /deltakerFixture\.spec\.ts/];
 
+// Baseline-skjermbilder lagres per arkitektur, siden amd64 og arm64 rendrer med
+// subpiksel-forskjeller. E2E_ARCH settes av docker-compose.e2e.yaml (amd64 som
+// standard, arm64 via `./scripts/e2e.sh --arm`).
+const arch = process.env.E2E_ARCH ?? "amd64";
+
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
@@ -29,8 +34,7 @@ export default defineConfig({
   workers,
   timeout: 45000,
   outputDir: ".test/spec/output",
-  snapshotPathTemplate:
-    "tests/__snapshots__/{projectName}/{testFilePath}/{arg}{ext}",
+  snapshotPathTemplate: `tests/__snapshots__/${arch}/{projectName}/{testFilePath}/{arg}{ext}`,
   reporter: [
     [
       "html",

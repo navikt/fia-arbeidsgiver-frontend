@@ -2,11 +2,11 @@ import { deltakerTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
 
-// @ts-ignore
 import {
   partssamarbeid,
   spørreundersøkelseId,
   helSpørreundersøkelse,
+  // @ts-ignore
 } from "@/utils/dummydata";
 const førsteSpørsmålId = partssamarbeid.spørsmål[0].id;
 const førsteTemaId = partssamarbeid.id;
