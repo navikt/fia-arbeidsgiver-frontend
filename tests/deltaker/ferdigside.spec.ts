@@ -82,6 +82,7 @@ test.describe("Deltaker/ferdigside", () => {
   test("test av axe", async ({ page }) => {
     await page.goto(
       "http://localhost:2222/e2f863df-309e-4314-9c7e-c584237fd90a/deltaker/ferdig",
+      { waitUntil: "commit" },
     );
 
     await expect(page.getByRole("main")).toContainText(

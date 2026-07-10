@@ -18,6 +18,9 @@ const workers = process.env.PLAYWRIGHT_WORKERS
     ? 2
     : 8;
 
+// Deltakersidene som også skal testes på mobil.
+const deltakerTests = [/deltaker\//, /deltakerFixture\.spec\.ts/];
+
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
@@ -49,40 +52,22 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    /* Alle sider testes på desktop i alle nettlesere. */
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
     },
+    {
+      name: "firefox",
+      use: { ...devices["Desktop Firefox"] },
+    },
 
-    // {
-    //   name: "firefox",
-    //   use: { ...devices["Desktop Firefox"] },
-    // },
-
-    // {
-    //   name: "webkit",
-    //   use: { ...devices["Desktop Safari"] },
-    // },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: "Mobile Chrome",
-    //   use: { ...devices["Pixel 5"] },
-    // },
-    // {
-    //   name: "Mobile Safari",
-    //   use: { ...devices["iPhone 12"] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: "Microsoft Edge",
-    //   use: { ...devices["Desktop Edge"], channel: "msedge" },
-    // },
-    // {
-    //   name: "Google Chrome",
-    //   use: { ...devices["Desktop Chrome"], channel: "chrome" },
-    // },
+    /* Deltakersider testes også på mobil. Vertssidene vises aldri på mobil. */
+    {
+      name: "Mobile Chrome",
+      use: { ...devices["Pixel 5"] },
+      testMatch: deltakerTests,
+    },
   ],
 
   /* Run your local dev server before starting the tests */
