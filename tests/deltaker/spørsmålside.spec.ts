@@ -320,6 +320,10 @@ test.describe("Deltaker/spørsmålside", () => {
   });
 
   test("test av axe", async ({ page }) => {
+    await expect(
+      page.getByRole("heading", { name: partssamarbeid.navn }),
+    ).toBeVisible();
+
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
     expect(accessibilityScanResults.violations).toEqual([]);
