@@ -90,15 +90,15 @@ test.describe("Vert/delresultatside", () => {
           - radio "Graf" [checked]
           - radio "Tabell"
         - paragraph: Utvikle partssamarbeidet
-        - img "Hvordan opplever du at partssamarbeidet harutviklet seg i løpet av samarbeidsperioden?": Antall svar Hvordan opplever du at partssamarbeidet harutviklet seg i løpet av samarbeidsperioden? Svært bra Bra Dårlig Svært dårlig Vet ikke 0 1 2
+        - img "Hvordan opplever du at partssamarbeidet harutviklet seg i løpet av samarbeidsperioden?": Antall svarHvordan opplever du at partssamarbeidet harutviklet seg i løpet av samarbeidsperioden?Svært braBraDårligSvært dårligVet ikke012
         - paragraph: Utvikle partssamarbeidet
-        - img "Som leder, tillitsvalgt eller verneombud har jegfått en bedre forståelse av min rolle og mineansvarsområder i partssamarbeidet": Antall svar Som leder, tillitsvalgt eller verneombud har jegfått en bedre forståelse av min rolle og mineansvarsområder i partssamarbeidet Enig Litt enig Litt uenig Uenig Vet ikke 0 1 2
+        - img "Som leder, tillitsvalgt eller verneombud har jegfått en bedre forståelse av min rolle og mineansvarsområder i partssamarbeidet": Antall svarSom leder, tillitsvalgt eller verneombud har jegfått en bedre forståelse av min rolle og mineansvarsområder i partssamarbeidetEnigLitt enigLitt uenigUenigVet ikke012
         - paragraph: Utvikle partssamarbeidet
-        - img "Vi har opparbeidet oss nødvendig kompetanse for å forebygge og håndtere sykefraværet vårt": Antall svar Vi har opparbeidet oss nødvendig kompetanse for å forebygge og håndtere sykefraværet vårt (flere valg er mulig) 0 1 2 Enig Litt enig Litt uenig Uenig Vet ikke
+        - img "Vi har opparbeidet oss nødvendig kompetanse for å forebygge og håndtere sykefraværet vårt": Antall svarVi har opparbeidet oss nødvendig kompetanse for å forebygge og håndtere sykefraværet vårt(flere valg er mulig)012EnigLitt enigLitt uenigUenigVet ikke
         - paragraph: Veien videre
-        - img "Vi har laget konkrete planer for hvordan vi ipartssamarbeidet skal jobbe fremover": Antall svar Vi har laget konkrete planer for hvordan vi ipartssamarbeidet skal jobbe fremover Enig Litt enig Litt uenig Uenig Vet ikke 0 1 2
+        - img "Vi har laget konkrete planer for hvordan vi ipartssamarbeidet skal jobbe fremover": Antall svarVi har laget konkrete planer for hvordan vi ipartssamarbeidet skal jobbe fremoverEnigLitt enigLitt uenigUenigVet ikke012
         - paragraph: Veien videre
-        - img "Jeg opplever at vi er motiverte for å samarbeidevidere om sykefravær og arbeidsmiljø": Antall svar Jeg opplever at vi er motiverte for å samarbeidevidere om sykefravær og arbeidsmiljø Enig Litt enig Litt uenig Uenig Vet ikke 0 1 2
+        - img "Jeg opplever at vi er motiverte for å samarbeidevidere om sykefravær og arbeidsmiljø": Antall svarJeg opplever at vi er motiverte for å samarbeidevidere om sykefravær og arbeidsmiljøEnigLitt enigLitt uenigUenigVet ikke012
     `);
   });
 
