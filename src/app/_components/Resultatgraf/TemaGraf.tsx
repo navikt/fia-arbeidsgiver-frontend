@@ -67,15 +67,21 @@ export default function TemaGraf({
                 spørsmål={spørsmål}
                 farge={farge ?? "var(--ax-accent-600)"}
               />
-            ) : spørsmål.flervalg ? (
-              <BarChart
-                key={index}
-                spørsmål={spørsmål}
-                farge={farge}
-                horizontal
-              />
             ) : (
-              <BarChart key={index} spørsmål={spørsmål} farge={farge} />
+              <>
+                {spørsmål.flervalg ? (
+                  <BarChart spørsmål={spørsmål} farge={farge} horizontal />
+                ) : (
+                  <BarChart spørsmål={spørsmål} farge={farge} />
+                )}
+                <div className={resultatgrafStyle.skjermleserOnly}>
+                  <TekstligResultatvisning
+                    spørsmål={spørsmål}
+                    farge={farge ?? "var(--ax-accent-600)"}
+                    somSkjermleseralternativ
+                  />
+                </div>
+              </>
             )}
           </Box>
         );

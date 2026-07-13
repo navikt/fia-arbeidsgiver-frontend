@@ -90,15 +90,145 @@ test.describe("Vert/delresultatside", () => {
           - radio "Graf" [checked]
           - radio "Tabell"
         - paragraph: Utvikle partssamarbeidet
-        - img "Hvordan opplever du at partssamarbeidet harutviklet seg i løpet av samarbeidsperioden?": Antall svarHvordan opplever du at partssamarbeidet harutviklet seg i løpet av samarbeidsperioden?Svært braBraDårligSvært dårligVet ikke012
+        - table "Hvordan opplever du at partssamarbeidet har utviklet seg i løpet av samarbeidsperioden?":
+          - rowgroup:
+            - row "Svar Antall svar Prosent":
+              - columnheader "Svar"
+              - columnheader "Antall svar"
+              - columnheader "Prosent"
+          - rowgroup:
+            - row /Svært bra 1 \\d+\\.\\d+%/:
+              - cell "Svært bra"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Bra 1 \\d+\\.\\d+%/:
+              - cell "Bra"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Dårlig 1 \\d+\\.\\d+%/:
+              - cell "Dårlig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Svært dårlig 1 \\d+\\.\\d+%/:
+              - cell "Svært dårlig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Vet ikke 1 \\d+\\.\\d+%/:
+              - cell "Vet ikke"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
         - paragraph: Utvikle partssamarbeidet
-        - img "Som leder, tillitsvalgt eller verneombud har jegfått en bedre forståelse av min rolle og mineansvarsområder i partssamarbeidet": Antall svarSom leder, tillitsvalgt eller verneombud har jegfått en bedre forståelse av min rolle og mineansvarsområder i partssamarbeidetEnigLitt enigLitt uenigUenigVet ikke012
+        - table "Som leder, tillitsvalgt eller verneombud har jeg fått en bedre forståelse av min rolle og mine ansvarsområder i partssamarbeidet":
+          - rowgroup:
+            - row "Svar Antall svar Prosent":
+              - columnheader "Svar"
+              - columnheader "Antall svar"
+              - columnheader "Prosent"
+          - rowgroup:
+            - row /Enig 1 \\d+\\.\\d+%/:
+              - cell "Enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt enig 1 \\d+\\.\\d+%/:
+              - cell "Litt enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt uenig 1 \\d+\\.\\d+%/:
+              - cell "Litt uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Uenig 1 \\d+\\.\\d+%/:
+              - cell "Uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Vet ikke 1 \\d+\\.\\d+%/:
+              - cell "Vet ikke"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
         - paragraph: Utvikle partssamarbeidet
-        - img "Vi har opparbeidet oss nødvendig kompetanse for å forebygge og håndtere sykefraværet vårt": Antall svarVi har opparbeidet oss nødvendig kompetanse for å forebygge og håndtere sykefraværet vårt(flere valg er mulig)012EnigLitt enigLitt uenigUenigVet ikke
+        - table "Vi har opparbeidet oss nødvendig kompetanse for å forebygge og håndtere sykefraværet vårt":
+          - rowgroup:
+            - row "Svar Antall svar Prosent":
+              - columnheader "Svar"
+              - columnheader "Antall svar"
+              - columnheader "Prosent"
+          - rowgroup:
+            - row /Enig 1 \\d+\\.\\d+%/:
+              - cell "Enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt enig 1 \\d+\\.\\d+%/:
+              - cell "Litt enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt uenig 1 \\d+\\.\\d+%/:
+              - cell "Litt uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Uenig 1 \\d+\\.\\d+%/:
+              - cell "Uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Vet ikke 1 \\d+\\.\\d+%/:
+              - cell "Vet ikke"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
         - paragraph: Veien videre
-        - img "Vi har laget konkrete planer for hvordan vi ipartssamarbeidet skal jobbe fremover": Antall svarVi har laget konkrete planer for hvordan vi ipartssamarbeidet skal jobbe fremoverEnigLitt enigLitt uenigUenigVet ikke012
+        - table "Vi har laget konkrete planer for hvordan vi i partssamarbeidet skal jobbe fremover":
+          - rowgroup:
+            - row "Svar Antall svar Prosent":
+              - columnheader "Svar"
+              - columnheader "Antall svar"
+              - columnheader "Prosent"
+          - rowgroup:
+            - row /Enig 1 \\d+\\.\\d+%/:
+              - cell "Enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt enig 1 \\d+\\.\\d+%/:
+              - cell "Litt enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt uenig 1 \\d+\\.\\d+%/:
+              - cell "Litt uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Uenig 1 \\d+\\.\\d+%/:
+              - cell "Uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Vet ikke 1 \\d+\\.\\d+%/:
+              - cell "Vet ikke"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
         - paragraph: Veien videre
-        - img "Jeg opplever at vi er motiverte for å samarbeidevidere om sykefravær og arbeidsmiljø": Antall svarJeg opplever at vi er motiverte for å samarbeidevidere om sykefravær og arbeidsmiljøEnigLitt enigLitt uenigUenigVet ikke012
+        - table "Jeg opplever at vi er motiverte for å samarbeide videre om sykefravær og arbeidsmiljø":
+          - rowgroup:
+            - row "Svar Antall svar Prosent":
+              - columnheader "Svar"
+              - columnheader "Antall svar"
+              - columnheader "Prosent"
+          - rowgroup:
+            - row /Enig 1 \\d+\\.\\d+%/:
+              - cell "Enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt enig 1 \\d+\\.\\d+%/:
+              - cell "Litt enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt uenig 1 \\d+\\.\\d+%/:
+              - cell "Litt uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Uenig 1 \\d+\\.\\d+%/:
+              - cell "Uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Vet ikke 1 \\d+\\.\\d+%/:
+              - cell "Vet ikke"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
     `);
   });
 
