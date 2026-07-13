@@ -60,6 +60,25 @@ test.describe("Vert/spørsmålside", () => {
     await expect(page).toHaveScreenshot({ fullPage: true });
   });
 
+  test("Sjekker at accessibility-tree er i orden", async ({ page }) => {
+    await page.goto(
+      `http://localhost:2222/${spørreundersøkelseId}/vert/tema/${førsteTemaId}`,
+    );
+    await expect(page.getByRole("main")).toContainText("Start");
+    await expect(page.getByRole("main")).toMatchAriaSnapshot(`
+      - main:
+        - text: "Demoutgave: Dette er en demoside for å teste ut ny funksjonalitet. Den skal ikke brukes med ekte virksomheter."
+        - button "Gå til oversikt"
+        - button "Vis QR-kode"
+        - heading "Partssamarbeid" [level=1]
+        - button "Start"
+        - list:
+          - listitem: Partssamarbeid er samarbeidet mellom leder, tillitsvalgt og verneombud.
+          - listitem: Et velfungerende partssamarbeid verdsetter og utnytter hverandres kompetanse og ansvarsområder
+          - listitem: Samarbeidet er viktig for å oppnå godt arbeidsmiljø, lavt sykefravær og sikre høy produktivitet.
+    `);
+  });
+
   test("test av axe", async ({ page }) => {
     await page.goto(
       `http://localhost:2222/${spørreundersøkelseId}/vert/tema/${førsteTemaId}`,

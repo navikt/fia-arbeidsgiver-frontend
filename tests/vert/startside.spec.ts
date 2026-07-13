@@ -50,6 +50,23 @@ test.describe("Vert/startside", () => {
     await expect(page).toHaveScreenshot({ fullPage: true });
   });
 
+  test("Sjekker at accessibility-tree er i orden", async ({ page }) => {
+    await expect(page.locator("h1")).toContainText(
+      "Velkommen, Fisk og flesk AS",
+    );
+    await expect(page.getByRole("main")).toMatchAriaSnapshot(`
+      - main:
+        - text: "Demoutgave: Dette er en demoside for å teste ut ny funksjonalitet. Den skal ikke brukes med ekte virksomheter. Psst! Har du med mobiltelefonen din?"
+        - img
+        - heading "Velkommen, Fisk og flesk AS" [level=1]
+        - button "Start behovsvurderingen"
+        - paragraph: "Inkluderende arbeidsliv handler om å:"
+        - paragraph: samarbeide for en mer inkluderende arbeidsplass
+        - paragraph: jobbe systematisk med sykefraværsarbeid
+        - paragraph: jobbe forebyggende med arbeidsmiljø
+    `);
+  });
+
   test("test av axe", async ({ page }) => {
     await expect(page.locator("h1")).toContainText(
       "Velkommen, Fisk og flesk AS",

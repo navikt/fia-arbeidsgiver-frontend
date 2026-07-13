@@ -96,6 +96,22 @@ test.describe("Deltaker/bli med", () => {
     await expect(page).toHaveScreenshot({ fullPage: true });
   });
 
+  test("Sjekker at accessibility-tree er i orden", async ({ page }) => {
+    await expect(page.getByRole("heading")).toContainText("Velkommen!");
+    await expect(page.getByRole("main")).toMatchAriaSnapshot(`
+      - main:
+        - heading "Velkommen!" [level=1]
+        - paragraph: Trykk på knappen for å bli med
+        - button "Bli med!":
+          - paragraph: Bli med!
+        - paragraph:
+          - text: Nav bruker IP adressen din under spørreundersøkelsen, men den vil ikke bli lagret. Les mer i vår
+          - link "personvernerklæring":
+            - /url: https://www.nav.no/personvernerklaering
+          - text: .
+    `);
+  });
+
   test("test av axe", async ({ page }) => {
     let accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
