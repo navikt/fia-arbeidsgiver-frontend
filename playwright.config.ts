@@ -26,6 +26,11 @@ const deltakerTests = [/deltaker\//, /deltakerFixture\.spec\.ts/];
 // standard, arm64 via `./scripts/e2e.sh --arm`).
 const arch = process.env.E2E_ARCH ?? "amd64";
 
+// Når appen allerede er bygget (f.eks. i CI der `.next` deles som artefakt fra
+// build-jobben), settes E2E_SKIP_BUILD slik at webServer bare starter appen i
+// stedet for å bygge den på nytt.
+const skipBuild = !!process.env.E2E_SKIP_BUILD;
+
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
@@ -77,7 +82,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: [
     {
-      command: "pnpm build && pnpm start",
+      command: skipBuild ? "pnpm start" : "pnpm build && pnpm start",
       url: "http://localhost:3000",
       reuseExistingServer: true,
       stderr: "pipe",

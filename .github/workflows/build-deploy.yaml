@@ -10,9 +10,41 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+      - name: Setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: https://npm.pkg.github.com
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+      - name: Build
+        run: pnpm build
+      - name: Upload build output
+        uses: actions/upload-artifact@v7
+        with:
+          name: next-build
+          path: |
+            .next
+            !.next/cache
+          retention-days: 1
+          if-no-files-found: error
+
   tests:
     name: Test and lint
     runs-on: ubuntu-latest
+    needs: build
     permissions:
       id-token: write
     timeout-minutes: 20
@@ -35,11 +67,18 @@ jobs:
         run: pnpm lint
       - name: Run testing-library tests
         run: pnpm test
+      - name: Download build output
+        uses: actions/download-artifact@v7
+        with:
+          name: next-build
+          path: .next
       - name: Run Playwright tests
         run: ./scripts/e2e.sh
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
           PLAYWRIGHT_WORKERS: 2
+          E2E_SKIP_BUILD: "1"
+          E2E_NEXT: ./.next
       - name: Upload test report
         if: always()
         uses: actions/upload-artifact@v7
@@ -49,33 +88,22 @@ jobs:
           retention-days: 7
           overwrite: true
 
-  build:
+  package:
     permissions:
       id-token: write
-    name: build
+    name: Package image
     runs-on: ubuntu-latest
     needs: tests
-    timeout-minutes: 15
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-      - name: Setup node
-        uses: actions/setup-node@v6
+      - name: Download build output
+        uses: actions/download-artifact@v7
         with:
-          node-version: 24
-          registry-url: https://npm.pkg.github.com
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
-      - uses: pnpm/action-setup@v6
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-      - name: Build
-        run: pnpm build
+          name: next-build
+          path: .next
       - name: Push to Google Artifact Registry
-        if: ${{ github.actor != 'dependabot[bot]' }}
         uses: nais/docker-build-push@v0
         id: docker-push
         with:
@@ -90,7 +118,7 @@ jobs:
       matrix:
         cluster: [ dev, prod ]
     name: Deploy to ${{ matrix.cluster }}
-    needs: build
+    needs: package
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -102,13 +130,13 @@ jobs:
           CLUSTER: ${{ matrix.cluster }}-gcp
           RESOURCE: .nais/nais.yaml
           VARS: .nais/${{ matrix.cluster }}.yaml
-          IMAGE: ${{ needs.build.outputs.image }}
+          IMAGE: ${{ needs.package.outputs.image }}
 
   deploy-dev:
     permissions:
       id-token: write
     name: Deploy app to dev
-    needs: build
+    needs: package
     if: github.ref == 'refs/heads/aksel-v8'
     runs-on: ubuntu-latest
     steps:
@@ -119,14 +147,14 @@ jobs:
           CLUSTER: dev-gcp
           RESOURCE: .nais/nais.yaml
           VARS: .nais/dev.yaml
-          VAR: image=${{ needs.build.outputs.image }}
+          VAR: image=${{ needs.package.outputs.image }}
 
   trivy-scan:
     if: ${{ github.ref == 'refs/heads/main' && github.actor != 'dependabot[bot]' }}
     env:
       TRIVY_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-db
     name: Scanner docker image med Trivy
-    needs: build
+    needs: package
     permissions:
       contents: read # to write sarif
       security-events: write # push sarif to github security
@@ -135,5 +163,5 @@ jobs:
     steps:
       - uses: navikt/pia-actions/trivy-scan@v1 # https://github.com/navikt/pia-actions/tree/main/trivy-scan
         with:
-          image: ${{ needs.build.outputs.image }}
+          image: ${{ needs.package.outputs.image }}
           team: pia

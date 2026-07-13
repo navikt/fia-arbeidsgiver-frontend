@@ -90,6 +90,10 @@ services:
       PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
       NODE_AUTH_TOKEN: ${NODE_AUTH_TOKEN:-}
       E2E_UPDATE: ${E2E_UPDATE:-}
+      # Når appen allerede er bygget (CI deler `.next` som artefakt via
+      # E2E_NEXT under), setter denne playwright sin webServer til å bare
+      # starte appen i stedet for å bygge på nytt. Tom lokalt -> bygg som før.
+      E2E_SKIP_BUILD: ${E2E_SKIP_BUILD:-}
       # Velger hvilket sett baseline-skjermbilder som brukes (amd64/arm64).
       # Settes av scripts/e2e.sh sammen med E2E_PLATFORM.
       E2E_ARCH: ${E2E_ARCH:-amd64}
@@ -109,8 +113,13 @@ services:
       - .:/work
       # Egne volumer for amd64-avhengigheter og build – skygger vertens
       # (arm64) node_modules/.next og gir cache mellom kjøringer.
+      #
+      # E2E_NEXT lar CI overstyre .next-volumet med et bind mot vertens
+      # ferdigbygde `.next` (delt som artefakt fra build-jobben), slik at
+      # containeren gjenbruker det bygget i stedet for å bygge på nytt.
+      # Standard er det navngitte volumet, som beholder lokal arch-isolasjon.
       - e2e_node_modules:/work/node_modules
-      - e2e_next:/work/.next
+      - ${E2E_NEXT:-e2e_next}:/work/.next
       - e2e_pnpm:/root/.local/share/pnpm
     command: ["bash", "/work/scripts/run-e2e-in-container.sh"]
 
