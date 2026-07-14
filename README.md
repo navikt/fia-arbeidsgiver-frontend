@@ -48,3 +48,18 @@ Først startes wonderwall med `docker-compose up -d`. Så startes frontend med `
 Å kjøre med run.sh er "enklere" men kan føre til noen problemer. Du vil kunne ende opp med prosesser som fremdeles kjører etter at du har avsluttet.
 Du kan avslutte prosessene som kjører i bakgrunnen med `./run.sh -ke`.
 Det vil også være vanskeligere å se logg fra de forskjellige prosessene.
+
+## Testing
+
+- Enhetstester (Jest): `pnpm test`
+- E2E-tester (Playwright): `./scripts/e2e.sh`
+
+E2E-testene kjøres i et pinnet Playwright-image (`docker-compose.e2e.yaml`) så rendering matcher CI pikselvis. Skjermbilder lagres per arkitektur i `tests/__snapshots__/<arch>/`.
+
+```shell
+./scripts/e2e.sh            # kjør mot amd64-baseline (som CI)
+./scripts/e2e.sh --arm      # kjør på native arm64 (raskt på Apple Silicon)
+./scripts/e2e.sh --update   # oppdater baseline for gjeldende arkitektur (--all for begge)
+```
+
+CI bruker amd64-baseline, så oppdater og commit amd64-bildene når du endrer noe som påvirker utseendet. Testene kjøres også i CI via `.github/workflows/build-deploy.yaml`.
