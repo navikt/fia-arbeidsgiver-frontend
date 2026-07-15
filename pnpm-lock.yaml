@@ -15,14 +15,14 @@ importers:
         specifier: ^2.7.0
         version: 2.7.1
       '@navikt/aksel-icons':
-        specifier: 8.13.0
-        version: 8.13.0
+        specifier: 8.15.0
+        version: 8.15.0
       '@navikt/ds-css':
-        specifier: 8.13.0
-        version: 8.13.0
+        specifier: 8.15.0
+        version: 8.15.0
       '@navikt/ds-react':
-        specifier: 8.13.0
-        version: 8.13.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+        specifier: 8.15.0
+        version: 8.15.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@navikt/next-logger':
         specifier: ^5.0.0
         version: 5.0.0(next@16.2.9(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.60.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(pino@10.3.1)
@@ -1296,21 +1296,21 @@ packages:
       '@emnapi/core': ^1.7.1
       '@emnapi/runtime': ^1.7.1
 
-  '@navikt/aksel-icons@8.13.0':
-    resolution: {integrity: sha512-z2r80EAuKX6W1XUSaBjAvQCAyyjir41XCmXPlmnvvNqOINfV8RFf2LYUx2+FwCqVfuPOdh7sdPLUtzwMl7QNmQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.13.0/155c31917736d4283d4637a221133f3d032f6f95}
+  '@navikt/aksel-icons@8.15.0':
+    resolution: {integrity: sha512-+A/jWvZaMWkuG0SiG2GdJK0rlLTi/EIccV/3ax+y2hI9CmIqDzyUR9yflr24Q9wy2xwKY212kfrphSnVy1Zgiw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.15.0/c8e11e3fe44d081727f36ec526b05f36859b8c4e}
 
-  '@navikt/ds-css@8.13.0':
-    resolution: {integrity: sha512-EAUiycmU4tCWYJ8eSO6G9m3slAYOXANX/dYluDlHxsBptEGUTyj8RRvrWhUVxqbrZJaZWCzLy05bpDIQlv425g==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.13.0/6bd01f71ef525d0c170d5dd690e078d763eea421}
+  '@navikt/ds-css@8.15.0':
+    resolution: {integrity: sha512-eRrXG4qZ90M/SLp40URG81TWDXP7RTAYec5QdYMfJ/P55ahXBFI1fm2EyjWDGpEldGBOEdr/wPq57m6x01gcnA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.15.0/7241ddaf993ca7e42a23cdcfd6cb716c9105bb6e}
 
-  '@navikt/ds-react@8.13.0':
-    resolution: {integrity: sha512-U0ooqlmgjHTJNdOKFwGzO20VfxpNfLLwRwniyFFYV2IUeiUG1KvI92g0K3qdwrIkh3b89Epir75fT+s5rhhgNA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.13.0/4c072e71aff60aa41563b67b81cd7bb17b6727bb}
+  '@navikt/ds-react@8.15.0':
+    resolution: {integrity: sha512-eArtTiUnPIlFMsuLdUUtyF4m5GtpiKzCNKBQXuSJ0glNRPROUYP4wXdGwGknYnhG+R/JIbjbf9u69laIRPxfNA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.15.0/b28729a9b637f8853bdb1239c4fa4d3f992d3e35}
     peerDependencies:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
 
-  '@navikt/ds-tokens@8.13.0':
-    resolution: {integrity: sha512-rtdyubAcoP4f8onbtghjjCyL5UlOLvz9eK53bR7CJbUUTEGovebgoUwB6S10LFGj3BktFe7m91Vu6vtsCpmEZw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.13.0/63a58bf567e0a95c1ced6a3d7356de06c19a2457}
+  '@navikt/ds-tokens@8.15.0':
+    resolution: {integrity: sha512-i76uLUIONOWc/G7kzPHQwNCR65bKBVulYbua6tyVmtlAhJyEPjC2vNyeeOq1bE4QcccPNQz9rBKydmXOVvJYtw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.15.0/96c20d8f453f8be770e5e1a9e9ce4888e50e4348}
 
   '@navikt/next-logger@5.0.0':
     resolution: {integrity: sha512-VQ2VM/k5uDYnb7BYG3ITJZgMZq8B3TECOnhdvNOQeltJyy8+KQzGqLsrYajKPWuUiPuLjYFk0HbU2W22onB9mQ==, tarball: https://npm.pkg.github.com/download/@navikt/next-logger/5.0.0/510dccac519d1227515e4c8a8268570d90305b3e}
@@ -4774,8 +4774,8 @@ packages:
     resolution: {integrity: sha512-eNRKgb3z66Yp3D2CixVujOUvXLFUTij/zVnV8KRyvFdQwpz7I5DS8UfRkTeLzb64u+dkzDSdelE24izu+zSSUg==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  tabbable@6.4.0:
-    resolution: {integrity: sha512-05PUHKSNE8ou2dwIxTngl4EzcnsCDZGJ/iCLtDflR/SHB/ny14rXc+qU5P4mG9JkusiV7EivzY9Mhm55AzAvCg==}
+  tabbable@6.5.0:
+    resolution: {integrity: sha512-wieBHXygIm7OyQOu5hQlkk62/WyCFYGlWg7L6/ZCUZwx0o398Zkn4pVmMyfYhfMG8kGrj/Krt8eIk6UKC6VzwA==}
 
   tdigest@0.1.2:
     resolution: {integrity: sha512-+G0LLgjjo9BZX2MfdvPfH+MKLCrxlXSYec5DaPYP1fe6Iyhf0/fSmJ0bFiZ1F8BT6cGXl2LpltQptzjXKWEkKA==}
@@ -6129,7 +6129,7 @@ snapshots:
       '@floating-ui/utils': 0.2.11
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
-      tabbable: 6.4.0
+      tabbable: 6.5.0
 
   '@floating-ui/utils@0.2.11': {}
 
@@ -6629,23 +6629,23 @@ snapshots:
       '@tybys/wasm-util': 0.10.2
     optional: true
 
-  '@navikt/aksel-icons@8.13.0': {}
+  '@navikt/aksel-icons@8.15.0': {}
 
-  '@navikt/ds-css@8.13.0': {}
+  '@navikt/ds-css@8.15.0': {}
 
-  '@navikt/ds-react@8.13.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
+  '@navikt/ds-react@8.15.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
       '@floating-ui/react': 0.27.19(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@floating-ui/react-dom': 2.1.8(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@navikt/aksel-icons': 8.13.0
-      '@navikt/ds-tokens': 8.13.0
+      '@navikt/aksel-icons': 8.15.0
+      '@navikt/ds-tokens': 8.15.0
       '@types/react': 19.2.17
       date-fns: 4.4.0
       react: 19.2.7
       react-day-picker: 9.14.0(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
-  '@navikt/ds-tokens@8.13.0': {}
+  '@navikt/ds-tokens@8.15.0': {}
 
   '@navikt/next-logger@5.0.0(next@16.2.9(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.60.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(pino@10.3.1)':
     dependencies:
@@ -8107,7 +8107,7 @@ snapshots:
       '@next/eslint-plugin-next': 16.2.9
       eslint: 10.6.0
       eslint-import-resolver-node: 0.3.10
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.63.0(eslint@10.6.0)(typescript@6.0.3))(eslint@10.6.0))(eslint@10.6.0)
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@10.6.0)
       eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.63.0(eslint@10.6.0)(typescript@6.0.3))(eslint-import-resolver-typescript@3.10.1)(eslint@10.6.0)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@10.6.0)
       eslint-plugin-react: 7.37.5(eslint@10.6.0)
@@ -8134,7 +8134,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.63.0(eslint@10.6.0)(typescript@6.0.3))(eslint@10.6.0))(eslint@10.6.0):
+  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@10.6.0):
     dependencies:
       '@nolyfill/is-core-module': 1.0.39
       debug: 4.4.3
@@ -8149,14 +8149,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.13.0(@typescript-eslint/parser@8.63.0(eslint@10.6.0)(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.63.0(eslint@10.6.0)(typescript@6.0.3))(eslint@10.6.0))(eslint@10.6.0))(eslint@10.6.0):
+  eslint-module-utils@2.13.0(@typescript-eslint/parser@8.63.0(eslint@10.6.0)(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1)(eslint@10.6.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
       '@typescript-eslint/parser': 8.63.0(eslint@10.6.0)(typescript@6.0.3)
       eslint: 10.6.0
       eslint-import-resolver-node: 0.3.10
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.63.0(eslint@10.6.0)(typescript@6.0.3))(eslint@10.6.0))(eslint@10.6.0)
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@10.6.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -8171,7 +8171,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 10.6.0
       eslint-import-resolver-node: 0.3.10
-      eslint-module-utils: 2.13.0(@typescript-eslint/parser@8.63.0(eslint@10.6.0)(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.63.0(eslint@10.6.0)(typescript@6.0.3))(eslint@10.6.0))(eslint@10.6.0))(eslint@10.6.0)
+      eslint-module-utils: 2.13.0(@typescript-eslint/parser@8.63.0(eslint@10.6.0)(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1)(eslint@10.6.0)
       hasown: 2.0.4
       is-core-module: 2.16.2
       is-glob: 4.0.3
@@ -10689,7 +10689,7 @@ snapshots:
     dependencies:
       '@pkgr/core': 0.3.6
 
-  tabbable@6.4.0: {}
+  tabbable@6.5.0: {}
 
   tdigest@0.1.2:
     dependencies:
