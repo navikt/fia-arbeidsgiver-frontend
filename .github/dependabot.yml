@@ -30,9 +30,11 @@ updates:
       - "dependencies"
       - "npm"
     groups:
-      "@navikt*":
+      "aksel":
         patterns:
-          - "@navikt/*"
+          - "@navikt/aksel-icons"
+          - "@navikt/ds-css"
+          - "@navikt/ds-react"
       "@grafana*":
         patterns:
           - "@grafana/*"
