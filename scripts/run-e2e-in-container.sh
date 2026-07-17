@@ -12,7 +12,7 @@ if [[ -n "${NODE_AUTH_TOKEN:-}" ]]; then
 fi
 
 corepack enable
-corepack prepare pnpm@11.6.0 --activate
+corepack prepare pnpm@11.13.1 --activate
 
 echo "==> Installerer avhengigheter (linux/amd64)"
 pnpm install --frozen-lockfile
