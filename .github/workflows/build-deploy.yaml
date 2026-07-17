@@ -10,9 +10,52 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build:
+    name: Build and package
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+      - name: Setup node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          registry-url: https://npm.pkg.github.com
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+      - name: Build
+        run: pnpm build
+      - name: Upload build output
+        uses: actions/upload-artifact@v7
+        with:
+          name: next-build
+          path: |
+            .next
+            !.next/cache
+          retention-days: 1
+          if-no-files-found: error
+          include-hidden-files: true
+      - name: Push to Google Artifact Registry
+        if: ${{ github.actor != 'dependabot[bot]' }}
+        uses: nais/docker-build-push@v0
+        id: docker-push
+        with:
+          team: pia
+    outputs:
+      image: ${{ steps.docker-push.outputs.image }}
+
   tests:
     name: Test and lint
     runs-on: ubuntu-latest
+    needs: build
     permissions:
       id-token: write
     timeout-minutes: 20
@@ -35,29 +78,18 @@ jobs:
         run: pnpm lint
       - name: Run testing-library tests
         run: pnpm test
-      - name: Put host.docker.internal i hosts
-        run: sudo echo "127.0.0.1 host.docker.internal" | sudo tee -a /etc/hosts
-      - run: pnpm exec playwright install --with-deps
-      - name: Set up cache
-        id: cache
-        uses: actions/cache/restore@v6
+      - name: Download build output
+        uses: actions/download-artifact@v7
         with:
-          key: cache/${{github.repository}}/${{vars.PLAYWRIGHT_CACHE_VERSION}}/${{github.ref}}
-          restore-keys: cache/${{github.repository}}/${{vars.PLAYWRIGHT_CACHE_VERSION}}/refs/heads/main
-          path: .test/**
-      - name: Initialize playwright snapshots
-        if: ${{ steps.cache.outputs.cache-matched-key == '' }}
-        run: pnpm exec playwright test --update-snapshots --reporter html
-      - name: Save cache
-        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-        uses: actions/cache/save@v6
-        with:
-          key: cache/${{github.repository}}/${{vars.PLAYWRIGHT_CACHE_VERSION}}/${{github.ref}}
-          path: .test/**
-      - name: Run playwright tests
-        continue-on-error: true
-        id: playwright-step
-        run: pnpm exec playwright test
+          name: next-build
+          path: .next
+      - name: Run Playwright tests
+        run: ./scripts/e2e.sh
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+          PLAYWRIGHT_WORKERS: 2
+          E2E_SKIP_BUILD: "1"
+          E2E_NEXT: ./.next
       - name: Upload test report
         if: always()
         uses: actions/upload-artifact@v7
@@ -66,43 +98,6 @@ jobs:
           path: .test/spec/results/
           retention-days: 7
           overwrite: true
-      - name: Fail if playwright tests failed
-        if: ${{steps.playwright-step.outcome != 'success'}}
-        run: exit 1
-
-  build:
-    permissions:
-      id-token: write
-    name: build
-    runs-on: ubuntu-latest
-    needs: tests
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v7
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-      - name: Setup node
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          registry-url: https://npm.pkg.github.com
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
-      - uses: pnpm/action-setup@v6
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-      - name: Build
-        run: pnpm build
-      - name: Push to Google Artifact Registry
-        if: ${{ github.actor != 'dependabot[bot]' }}
-        uses: nais/docker-build-push@v0
-        id: docker-push
-        with:
-          team: pia
-    outputs:
-      image: ${{ steps.docker-push.outputs.image }}
 
   deploy:
     permissions:
@@ -111,7 +106,7 @@ jobs:
       matrix:
         cluster: [ dev, prod ]
     name: Deploy to ${{ matrix.cluster }}
-    needs: build
+    needs: [ build, tests ]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -129,8 +124,8 @@ jobs:
     permissions:
       id-token: write
     name: Deploy app to dev
-    needs: build
-    if: github.ref == 'refs/heads/aksel-v8'
+    needs: [ build, tests ]
+    if: github.ref == 'refs/heads/screenshot-i-repo'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -147,7 +142,7 @@ jobs:
     env:
       TRIVY_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-db
     name: Scanner docker image med Trivy
-    needs: build
+    needs: [ build, tests ]
     permissions:
       contents: read # to write sarif
       security-events: write # push sarif to github security

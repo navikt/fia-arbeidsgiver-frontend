@@ -14,9 +14,11 @@ export default function Headerlinje({
       align="center"
       className={headerlinjeStyles.headerlinje}
     >
-      <Heading size="large" className={headerlinjeStyles.headertekst}>
-        {tittel}
-      </Heading>
+      {tittel && (
+        <Heading size="large" className={headerlinjeStyles.headertekst}>
+          {tittel}
+        </Heading>
+      )}
       {children}
     </HStack>
   );

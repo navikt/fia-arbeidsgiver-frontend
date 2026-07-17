@@ -76,6 +76,162 @@ test.describe("Vert/delresultatside", () => {
     ).toBeVisible({ timeout: 60000 });
   });
 
+  test("Sjekker at accessibility-tree er i orden", async ({ page }) => {
+    await gåTilResultater(page);
+    await expect(page.locator("body")).toContainText("Gå til oversikt");
+    await expect(page.getByRole("main")).toMatchAriaSnapshot(`
+      - main:
+        - text: "Demoutgave: Dette er en demoside for å teste ut ny funksjonalitet. Den skal ikke brukes med ekte virksomheter."
+        - button "Gå til oversikt"
+        - button "Vis QR-kode"
+        - heading "Partssamarbeid" [level=1]
+        - button "Gå til neste tema"
+        - radiogroup "Hvis du bruker skjermleser, bør du velge tabell":
+          - radio "Graf" [checked]
+          - radio "Tabell"
+        - paragraph: Utvikle partssamarbeidet
+        - table "Hvordan opplever du at partssamarbeidet har utviklet seg i løpet av samarbeidsperioden?":
+          - rowgroup:
+            - row "Svar Antall svar Prosent":
+              - columnheader "Svar"
+              - columnheader "Antall svar"
+              - columnheader "Prosent"
+          - rowgroup:
+            - row /Svært bra 1 \\d+\\.\\d+%/:
+              - cell "Svært bra"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Bra 1 \\d+\\.\\d+%/:
+              - cell "Bra"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Dårlig 1 \\d+\\.\\d+%/:
+              - cell "Dårlig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Svært dårlig 1 \\d+\\.\\d+%/:
+              - cell "Svært dårlig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Vet ikke 1 \\d+\\.\\d+%/:
+              - cell "Vet ikke"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+        - paragraph: Utvikle partssamarbeidet
+        - table "Som leder, tillitsvalgt eller verneombud har jeg fått en bedre forståelse av min rolle og mine ansvarsområder i partssamarbeidet":
+          - rowgroup:
+            - row "Svar Antall svar Prosent":
+              - columnheader "Svar"
+              - columnheader "Antall svar"
+              - columnheader "Prosent"
+          - rowgroup:
+            - row /Enig 1 \\d+\\.\\d+%/:
+              - cell "Enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt enig 1 \\d+\\.\\d+%/:
+              - cell "Litt enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt uenig 1 \\d+\\.\\d+%/:
+              - cell "Litt uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Uenig 1 \\d+\\.\\d+%/:
+              - cell "Uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Vet ikke 1 \\d+\\.\\d+%/:
+              - cell "Vet ikke"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+        - paragraph: Utvikle partssamarbeidet
+        - table "Vi har opparbeidet oss nødvendig kompetanse for å forebygge og håndtere sykefraværet vårt":
+          - rowgroup:
+            - row "Svar Antall svar Prosent":
+              - columnheader "Svar"
+              - columnheader "Antall svar"
+              - columnheader "Prosent"
+          - rowgroup:
+            - row /Enig 1 \\d+\\.\\d+%/:
+              - cell "Enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt enig 1 \\d+\\.\\d+%/:
+              - cell "Litt enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt uenig 1 \\d+\\.\\d+%/:
+              - cell "Litt uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Uenig 1 \\d+\\.\\d+%/:
+              - cell "Uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Vet ikke 1 \\d+\\.\\d+%/:
+              - cell "Vet ikke"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+        - paragraph: Veien videre
+        - table "Vi har laget konkrete planer for hvordan vi i partssamarbeidet skal jobbe fremover":
+          - rowgroup:
+            - row "Svar Antall svar Prosent":
+              - columnheader "Svar"
+              - columnheader "Antall svar"
+              - columnheader "Prosent"
+          - rowgroup:
+            - row /Enig 1 \\d+\\.\\d+%/:
+              - cell "Enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt enig 1 \\d+\\.\\d+%/:
+              - cell "Litt enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt uenig 1 \\d+\\.\\d+%/:
+              - cell "Litt uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Uenig 1 \\d+\\.\\d+%/:
+              - cell "Uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Vet ikke 1 \\d+\\.\\d+%/:
+              - cell "Vet ikke"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+        - paragraph: Veien videre
+        - table "Jeg opplever at vi er motiverte for å samarbeide videre om sykefravær og arbeidsmiljø":
+          - rowgroup:
+            - row "Svar Antall svar Prosent":
+              - columnheader "Svar"
+              - columnheader "Antall svar"
+              - columnheader "Prosent"
+          - rowgroup:
+            - row /Enig 1 \\d+\\.\\d+%/:
+              - cell "Enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt enig 1 \\d+\\.\\d+%/:
+              - cell "Litt enig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Litt uenig 1 \\d+\\.\\d+%/:
+              - cell "Litt uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Uenig 1 \\d+\\.\\d+%/:
+              - cell "Uenig"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+            - row /Vet ikke 1 \\d+\\.\\d+%/:
+              - cell "Vet ikke"
+              - cell "1"
+              - cell /\\d+\\.\\d+%/
+    `);
+  });
+
   test("test av axe", async ({ page }) => {
     await gåTilResultater(page);
     await expect(page.locator("body")).toContainText("Gå til oversikt"); //Vent på at siden er lastet.

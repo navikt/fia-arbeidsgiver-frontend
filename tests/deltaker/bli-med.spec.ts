@@ -8,7 +8,8 @@ const test = base.extend({
     );
     await page.getByPlaceholder("Enter any user/subject").click();
     await page.getByPlaceholder("Enter any user/subject").fill("asdf");
-    await page.getByPlaceholder("Enter any user/subject").press("Enter");
+    await page.getByRole("button", { name: "Sign-in" }).click();
+    await page.waitForURL(/\/deltaker/);
     await use(page);
   },
 });
@@ -88,6 +89,27 @@ test.describe("Deltaker/bli med", () => {
       { status: 303 },
       "Noe gikk galt med henting av neste spørsmål.",
     );
+  });
+
+  test("Screenshot av innhold likner", async ({ page }) => {
+    await expect(page.getByRole("heading")).toContainText("Velkommen!");
+    await expect(page).toHaveScreenshot({ fullPage: true });
+  });
+
+  test("Sjekker at accessibility-tree er i orden", async ({ page }) => {
+    await expect(page.getByRole("heading")).toContainText("Velkommen!");
+    await expect(page.getByRole("main")).toMatchAriaSnapshot(`
+      - main:
+        - heading "Velkommen!" [level=1]
+        - paragraph: Trykk på knappen for å bli med
+        - button "Bli med!":
+          - paragraph: Bli med!
+        - paragraph:
+          - text: Nav bruker IP adressen din under spørreundersøkelsen, men den vil ikke bli lagret. Les mer i vår
+          - link "personvernerklæring":
+            - /url: https://www.nav.no/personvernerklaering
+          - text: .
+    `);
   });
 
   test("test av axe", async ({ page }) => {
