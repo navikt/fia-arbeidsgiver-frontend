@@ -37,8 +37,8 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
-    "@babel/preset-env": "^7.29.5",
-    "@babel/preset-typescript": "^7.28.5",
+    "@babel/preset-env": "^8.0.2",
+    "@babel/preset-typescript": "^8.0.1",
     "@eslint/compat": "^2.1.0",
     "@eslint/js": "^10.0.1",
     "@happy-dom/global-registrator": "^20.10.6",
