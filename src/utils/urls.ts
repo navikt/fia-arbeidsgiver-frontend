@@ -87,7 +87,7 @@ const API_DELTAKER_SVAR_URL = (
     sporreundersokelseId,
   )}/tema/${temaId}/sporsmal/${sporsmalId}/svar`;
 
-module.exports = {
+export {
   API_DELTAKER_BLI_MED_URL,
   API_DELTAKER_UNDERSØKELSE_URL,
   API_DELTAKER_SPØRSMÅL_URL,

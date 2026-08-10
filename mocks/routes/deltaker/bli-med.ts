@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_DELTAKER_BLI_MED_URL } = require("@/utils/urls");
+import { API_DELTAKER_BLI_MED_URL } from "../../../src/utils/urls";
 
 const dummyBliMed = {
   spørreundersøkelseId: "e2f863df-309e-4314-9c7e-c584237fd90a",

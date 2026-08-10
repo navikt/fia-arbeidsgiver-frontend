@@ -1,10 +1,5 @@
-const {
-  førsteLedigeSpørsmål,
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-} = require("@/utils/dummydata");
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_DELTAKER_UNDERSØKELSE_URL } = require("@/utils/urls");
+import { førsteLedigeSpørsmål } from "../../../src/utils/dummydata";
+import { API_DELTAKER_UNDERSØKELSE_URL } from "../../../src/utils/urls";
 
 const identifiserbartsporsmalRoutes = [
   {

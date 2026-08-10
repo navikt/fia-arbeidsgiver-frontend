@@ -72,17 +72,12 @@ updates:
         patterns:
           - "@playwright/*"
           - "@axe-core/playwright"
-      "babel*":
-        patterns:
-          - "@babel/*"
-          - "babel-*"
       "highcharts*":
         patterns:
           - "highcharts"
           - "highcharts-react-official"
       "mocking*":
         patterns:
-          - "@mocks-server/*"
           - "@happy-dom/*"
       "build-tools*":
         patterns:
