@@ -130,7 +130,7 @@ jobs:
       id-token: write
     name: Deploy app to dev
     needs: build
-    if: github.ref == 'refs/heads/aksel-v8'
+    if: github.ref == 'refs/heads/erstatt-mocks-server'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
