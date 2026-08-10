@@ -1,13 +1,10 @@
-const {
+import { Request, Response } from "express";
+import {
   partssamarbeidResultat,
   sykefraværsarbeidResultat,
   arbeidsmiljøResultat,
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-} = require("@/utils/dummydata");
-import { Request, Response } from "express";
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_VERT_TEMARESULTAT_URL } = require("@/utils/urls");
+} from "../../../src/utils/dummydata";
+import { API_VERT_TEMARESULTAT_URL } from "../../../src/utils/urls";
 
 const listeOverTemaResultatRoutes = [
   {

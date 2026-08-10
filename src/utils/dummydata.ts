@@ -1572,7 +1572,7 @@ const alleSpørsmål = [
   arbeidsmiljøDeltaker16,
 ];
 
-module.exports = {
+export {
   spørreundersøkelseId,
   partssamarbeidResultat,
   sykefraværsarbeidResultat,

@@ -1,12 +1,9 @@
-const {
+import { Request, Response } from "express";
+import {
   partssamarbeid,
   helSpørreundersøkelse,
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-} = require("@/utils/dummydata");
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_VERT_TEMAOVERSIKT_URL } = require("@/utils/urls");
-import { Request, Response } from "express";
+} from "../../../src/utils/dummydata";
+import { API_VERT_TEMAOVERSIKT_URL } from "../../../src/utils/urls";
 
 const listeOverTemaRoutes = [
   {

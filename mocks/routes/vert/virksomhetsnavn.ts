@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_VERT_VIRKSOMHETSNAVN_URL } = require("@/utils/urls");
+import { API_VERT_VIRKSOMHETSNAVN_URL } from "../../../src/utils/urls";
 
 const virksomhetsnavnRoutes = [
   {
