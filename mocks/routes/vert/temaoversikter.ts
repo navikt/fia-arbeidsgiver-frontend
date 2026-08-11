@@ -1,13 +1,9 @@
 import { Request, Response } from "express";
-import { TemaDto } from "@/app/_types/TemaDto";
+import { helSpørreundersøkelse } from "../../../src/utils/dummydata";
+import { API_VERT_TEMAOVERSIKTER_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { helSpørreundersøkelse } = require("@/utils/dummydata");
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_VERT_TEMAOVERSIKTER_URL } = require("@/utils/urls");
-
-const listeOverTemaRoutes = [
+const listeOverTemaRoutes: MockRoute[] = [
   {
     id: "vert-temaoversikt",
     url: API_VERT_TEMAOVERSIKTER_URL(),
@@ -79,7 +75,7 @@ function generateTemaMiddleware(temastatuser: { [key: number]: string }) {
   return (req: Request, res: Response) => {
     res.status(200);
     res.send(
-      helSpørreundersøkelse.map((tema: TemaDto) => ({
+      helSpørreundersøkelse.map((tema) => ({
         ...tema,
         status: temastatuser[tema.id],
       })),

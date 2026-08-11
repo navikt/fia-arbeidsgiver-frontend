@@ -1,7 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_VERT_AVSLUTT_TEMA_URL } = require("@/utils/urls");
+import { API_VERT_AVSLUTT_TEMA_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-const bliMedRoutes = [
+const bliMedRoutes: MockRoute[] = [
   {
     id: "vert-avslutt-tema",
     url: API_VERT_AVSLUTT_TEMA_URL(),

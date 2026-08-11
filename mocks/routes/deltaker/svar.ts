@@ -1,7 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_DELTAKER_SVAR_URL } = require("@/utils/urls");
+import { API_DELTAKER_SVAR_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-const svarRoutes = [
+const svarRoutes: MockRoute[] = [
   {
     id: "deltaker-svar",
     url: API_DELTAKER_SVAR_URL(),

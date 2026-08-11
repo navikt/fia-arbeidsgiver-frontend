@@ -1,7 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_VERT_ANTALL_FULLFORT_URL } = require("@/utils/urls");
+import { API_VERT_ANTALL_FULLFORT_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-const antallFullfortRoutes = [
+const antallFullfortRoutes: MockRoute[] = [
   {
     id: "vert-antall-fullfort",
     url: API_VERT_ANTALL_FULLFORT_URL(),

@@ -1,15 +1,13 @@
-const {
+import { Request, Response } from "express";
+import {
   partssamarbeidResultat,
   sykefraværsarbeidResultat,
   arbeidsmiljøResultat,
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-} = require("@/utils/dummydata");
-import { Request, Response } from "express";
+} from "../../../src/utils/dummydata";
+import { API_VERT_TEMARESULTAT_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_VERT_TEMARESULTAT_URL } = require("@/utils/urls");
-
-const listeOverTemaResultatRoutes = [
+const listeOverTemaResultatRoutes: MockRoute[] = [
   {
     id: "vert-temaresultat",
     url: API_VERT_TEMARESULTAT_URL(),

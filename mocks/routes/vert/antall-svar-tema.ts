@@ -1,7 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_VERT_ANTALL_SVAR_TEMA_URL } = require("@/utils/urls");
+import { API_VERT_ANTALL_SVAR_TEMA_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-const antallSvarTemaRoutes = [
+const antallSvarTemaRoutes: MockRoute[] = [
   {
     id: "vert-antall-svar-tema",
     url: API_VERT_ANTALL_SVAR_TEMA_URL(),

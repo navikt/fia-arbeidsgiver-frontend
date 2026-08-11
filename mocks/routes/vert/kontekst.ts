@@ -1,7 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_VERT_KONTEKST_URL } = require("@/utils/urls");
+import { API_VERT_KONTEKST_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-const kontekstRoutes = [
+const kontekstRoutes: MockRoute[] = [
   {
     id: "vert-kontekst",
     url: API_VERT_KONTEKST_URL(),

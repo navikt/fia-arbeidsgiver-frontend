@@ -1,14 +1,12 @@
-const {
+import { Request, Response } from "express";
+import {
   partssamarbeid,
   helSpørreundersøkelse,
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-} = require("@/utils/dummydata");
+} from "../../../src/utils/dummydata";
+import { API_VERT_TEMAOVERSIKT_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { API_VERT_TEMAOVERSIKT_URL } = require("@/utils/urls");
-import { Request, Response } from "express";
-
-const listeOverTemaRoutes = [
+const listeOverTemaRoutes: MockRoute[] = [
   {
     id: "vert-temaoversikt-for-ett-tema",
     url: API_VERT_TEMAOVERSIKT_URL(),

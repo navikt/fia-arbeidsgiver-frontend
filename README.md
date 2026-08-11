@@ -63,3 +63,40 @@ E2E-testene kjøres i et pinnet Playwright-image (`docker-compose.e2e.yaml`) så
 ```
 
 CI bruker amd64-baseline, så oppdater og commit amd64-bildene når du endrer noe som påvirker utseendet. Testene kjøres også i CI via `.github/workflows/build-deploy.yaml`.
+## Mocks
+
+`pnpm mocks` starter en enkel Express-server (`mocks/server.ts`) på port 3100, som mocker backend-API-et frontend snakker med.
+
+Rutene ligger i `mocks/routes/deltaker` og `mocks/routes/vert`. Hver rute har en `id`, en `url`, en HTTP-`method` og en liste med `variants`. Hver variant har en egen `id` og beskriver et mulig svar (f.eks. `success`, `feil-i-uuid`, `ukjent-spørreundersøkelse`). Som standard returnerer serveren varianten med `id: "success"` for hver rute.
+
+### Admin-side i nettleser
+
+Du kan også bytte variant fra en enkel nettside: [http://localhost:3100/\_\_mock/admin](http://localhost:3100/__mock/admin) viser alle ruter med en nedtrekksmeny for hver, der du kan velge hvilken variant ruten skal returnere.
+
+### Bytte hvilken variant som returneres
+
+Du kan bytte hvilken variant en rute skal returnere mens mock-serveren kjører, uten å restarte den.
+
+List opp alle ruter og se hvilken variant som er aktiv:
+
+```shell
+curl http://localhost:3100/__mock/routes
+```
+
+Bytt aktiv variant for en rute:
+
+```shell
+curl -X PUT http://localhost:3100/__mock/<routeId>/<variantId>
+```
+
+For eksempel, for å få `vert-virksomhetsnavn`-ruten til å returnere feilvarianten `feil-i-uuid`:
+
+```shell
+curl -X PUT http://localhost:3100/__mock/vert-virksomhetsnavn/feil-i-uuid
+```
+
+Bytt tilbake til standardvarianten igjen:
+
+```shell
+curl -X PUT http://localhost:3100/__mock/vert-virksomhetsnavn/success
+```
