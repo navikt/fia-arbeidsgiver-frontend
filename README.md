@@ -55,6 +55,11 @@ Det vil også være vanskeligere å se logg fra de forskjellige prosessene.
 
 Rutene ligger i `mocks/routes/deltaker` og `mocks/routes/vert`. Hver rute har en `id`, en `url`, en HTTP-`method` og en liste med `variants`. Hver variant har en egen `id` og beskriver et mulig svar (f.eks. `success`, `feil-i-uuid`, `ukjent-spørreundersøkelse`). Som standard returnerer serveren varianten med `id: "success"` for hver rute.
 
+### Admin-side i nettleser
+
+Du kan også bytte variant fra en enkel nettside: [http://localhost:3100/__mock/admin](http://localhost:3100/__mock/admin) viser alle ruter med en nedtrekksmeny for hver, der du kan velge hvilken variant ruten skal returnere.
+
+
 ### Bytte hvilken variant som returneres
 
 Du kan bytte hvilken variant en rute skal returnere mens mock-serveren kjører, uten å restarte den.

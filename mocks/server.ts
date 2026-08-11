@@ -92,6 +92,8 @@ expressServer.get("/__mock/routes", (_req, res) => {
   res.json(
     routes.map((route) => ({
       id: route.id,
+      method: route.method,
+      url: route.url,
       activeVariantId: activeVariantIds.get(route.id),
       variantIds: route.variants.map((v) => v.id),
     })),
@@ -115,7 +117,93 @@ expressServer.put("/__mock/:routeId/:variantId", (req, res) => {
   res.sendStatus(200);
 });
 
+// Enkel nettleser-UI for å se og bytte aktiv variant per rute: http://localhost:3100/__mock/admin
+expressServer.get("/__mock/admin", (_req, res) => {
+  res.type("html").send(`<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8" />
+<title>Mock-server admin</title>
+<style>
+  body { font-family: sans-serif; margin: 2rem; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+  th { background: #eee; }
+  #status { margin-top: 1rem; }
+</style>
+</head>
+<body>
+<h1>Mock-server admin</h1>
+<div id="status"></div>
+<table>
+  <thead>
+    <tr><th>Rute-id</th><th>Metode</th><th>URL</th><th>Variant</th></tr>
+  </thead>
+  <tbody id="routes"></tbody>
+</table>
+<script>
+  const statusEl = document.getElementById("status");
+
+  async function loadRoutes() {
+    const res = await fetch("/__mock/routes");
+    const routes = await res.json();
+    const tbody = document.getElementById("routes");
+    tbody.innerHTML = "";
+    for (const route of routes) {
+      const tr = document.createElement("tr");
+
+      const idTd = document.createElement("td");
+      idTd.textContent = route.id;
+      tr.appendChild(idTd);
+
+      const methodTd = document.createElement("td");
+      methodTd.textContent = route.method;
+      tr.appendChild(methodTd);
+
+      const urlTd = document.createElement("td");
+      urlTd.textContent = route.url;
+      tr.appendChild(urlTd);
+
+      const variantTd = document.createElement("td");
+      if (route.variantIds.length === 1) {
+        variantTd.textContent = route.variantIds[0];
+      } else {
+        const select = document.createElement("select");
+        select.setAttribute("aria-label", \`Variant for \${route.id}\`);
+        for (const variantId of route.variantIds) {
+          const option = document.createElement("option");
+          option.value = variantId;
+          option.textContent = variantId;
+          option.selected = variantId === route.activeVariantId;
+          select.appendChild(option);
+        }
+        select.addEventListener("change", () => setVariant(route.id, select.value));
+        variantTd.appendChild(select);
+      }
+      tr.appendChild(variantTd);
+
+      tbody.appendChild(tr);
+    }
+  }
+
+  async function setVariant(routeId, variantId) {
+    const res = await fetch(\`/__mock/\${routeId}/\${variantId}\`, { method: "PUT" });
+    if (res.ok) {
+      statusEl.textContent = \`Byttet "\${routeId}" til variant "\${variantId}"\`;
+    } else {
+      statusEl.textContent = \`Klarte ikke å bytte "\${routeId}" til "\${variantId}": \${await res.text()}\`;
+    }
+  }
+
+  loadRoutes();
+</script>
+</body>
+</html>`);
+});
+
 const PORT = 3100;
 expressServer.listen(PORT, () => {
-  console.log(`Mock-server kjører på http://localhost:${PORT}`);
+  console.log(
+    `Mock-server kjører på http://localhost:${PORT}\nAdmin interface: http://localhost:${PORT}/__mock/admin`,
+  );
 });
