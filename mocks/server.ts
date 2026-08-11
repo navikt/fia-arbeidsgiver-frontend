@@ -104,12 +104,13 @@ expressServer.put("/__mock/:routeId/:variantId", (req, res) => {
   const { routeId, variantId } = req.params;
   const route = routes.find((r) => r.id === routeId);
   if (route === undefined) {
-    res.status(404).send(`Fant ingen rute med id "${routeId}"`);
+    res.status(404).type("text").send(`Fant ingen rute med id "${routeId}"`);
     return;
   }
   if (route.variants.find((v) => v.id === variantId) === undefined) {
     res
       .status(404)
+      .type("text")
       .send(`Fant ingen variant med id "${variantId}" for rute "${routeId}"`);
     return;
   }
@@ -165,21 +166,16 @@ expressServer.get("/__mock/admin", (_req, res) => {
       tr.appendChild(urlTd);
 
       const variantTd = document.createElement("td");
-      if (route.variantIds.length === 1) {
-        variantTd.textContent = route.variantIds[0];
-      } else {
-        const select = document.createElement("select");
-        select.setAttribute("aria-label", \`Variant for \${route.id}\`);
-        for (const variantId of route.variantIds) {
-          const option = document.createElement("option");
-          option.value = variantId;
-          option.textContent = variantId;
-          option.selected = variantId === route.activeVariantId;
-          select.appendChild(option);
-        }
-        select.addEventListener("change", () => setVariant(route.id, select.value));
-        variantTd.appendChild(select);
+      const select = document.createElement("select");
+      for (const variantId of route.variantIds) {
+        const option = document.createElement("option");
+        option.value = variantId;
+        option.textContent = variantId;
+        option.selected = variantId === route.activeVariantId;
+        select.appendChild(option);
       }
+      select.addEventListener("change", () => setVariant(route.id, select.value));
+      variantTd.appendChild(select);
       tr.appendChild(variantTd);
 
       tbody.appendChild(tr);
