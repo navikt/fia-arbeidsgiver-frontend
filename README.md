@@ -57,8 +57,7 @@ Rutene ligger i `mocks/routes/deltaker` og `mocks/routes/vert`. Hver rute har en
 
 ### Admin-side i nettleser
 
-Du kan også bytte variant fra en enkel nettside: [http://localhost:3100/__mock/admin](http://localhost:3100/__mock/admin) viser alle ruter med en nedtrekksmeny for hver, der du kan velge hvilken variant ruten skal returnere.
-
+Du kan også bytte variant fra en enkel nettside: [http://localhost:3100/\_\_mock/admin](http://localhost:3100/__mock/admin) viser alle ruter med en nedtrekksmeny for hver, der du kan velge hvilken variant ruten skal returnere.
 
 ### Bytte hvilken variant som returneres
 
