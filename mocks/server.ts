@@ -104,14 +104,13 @@ expressServer.put("/__mock/:routeId/:variantId", (req, res) => {
   const { routeId, variantId } = req.params;
   const route = routes.find((r) => r.id === routeId);
   if (route === undefined) {
-    res.status(404).type("text").send(`Fant ingen rute med id "${routeId}"`);
+    res.status(404).json({ error: `Fant ingen rute med id "${routeId}"` });
     return;
   }
   if (route.variants.find((v) => v.id === variantId) === undefined) {
-    res
-      .status(404)
-      .type("text")
-      .send(`Fant ingen variant med id "${variantId}" for rute "${routeId}"`);
+    res.status(404).json({
+      error: `Fant ingen variant med id "${variantId}" for rute "${routeId}"`,
+    });
     return;
   }
   activeVariantIds.set(routeId, variantId);
@@ -187,7 +186,8 @@ expressServer.get("/__mock/admin", (_req, res) => {
     if (res.ok) {
       statusEl.textContent = \`Byttet "\${routeId}" til variant "\${variantId}"\`;
     } else {
-      statusEl.textContent = \`Klarte ikke å bytte "\${routeId}" til "\${variantId}": \${await res.text()}\`;
+      const { error } = await res.json();
+      statusEl.textContent = \`Klarte ikke å bytte "\${routeId}" til "\${variantId}": \${error}\`;
     }
   }
 
