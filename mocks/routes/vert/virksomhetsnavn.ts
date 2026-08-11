@@ -1,6 +1,7 @@
 import { API_VERT_VIRKSOMHETSNAVN_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-const virksomhetsnavnRoutes = [
+const virksomhetsnavnRoutes: MockRoute[] = [
   {
     id: "vert-virksomhetsnavn",
     url: API_VERT_VIRKSOMHETSNAVN_URL(),

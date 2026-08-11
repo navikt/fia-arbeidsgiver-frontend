@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 
+import { MockRoute, Variant } from "./types";
 import bliMedRoutes from "./routes/deltaker/bli-med";
 import identifiserbartsporsmalRoutes from "./routes/deltaker/identifiserbartsporsmal";
 import sporsmalOgSvarRoutes from "./routes/deltaker/sporsmal-og-svar";
@@ -15,23 +16,6 @@ import temaoversikterRoutes from "./routes/vert/temaoversikter";
 import temaresultatRoutes from "./routes/vert/temaresultat";
 import virksomhetsnavnRoutes from "./routes/vert/virksomhetsnavn";
 import åpneTemaRoutes from "./routes/vert/åpne-tema";
-
-type Variant = {
-  id: string;
-  type: string;
-  options: {
-    status?: number;
-    body?: unknown;
-    middleware?: (req: Request, res: Response) => void;
-  };
-};
-
-type MockRoute = {
-  id: string;
-  url: string;
-  method: string;
-  variants: Variant[];
-};
 
 const routes: MockRoute[] = [
   ...bliMedRoutes,
@@ -51,9 +35,9 @@ const routes: MockRoute[] = [
   ...åpneTemaRoutes,
 ];
 
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const expressServer = express();
+expressServer.use(express.json());
+expressServer.use(express.urlencoded({ extended: true }));
 
 function handleVariant(variant: Variant, req: Request, res: Response) {
   switch (variant.type) {
@@ -83,15 +67,15 @@ for (const route of routes) {
     handleVariant(variant, req, res);
 
   if (route.method === "GET") {
-    app.get(route.url, handler);
+    expressServer.get(route.url, handler);
   } else if (route.method === "POST") {
-    app.post(route.url, handler);
+    expressServer.post(route.url, handler);
   } else {
     throw new Error(`Ukjent metode "${route.method}" for rute ${route.id}`);
   }
 }
 
 const PORT = 3100;
-app.listen(PORT, () => {
+expressServer.listen(PORT, () => {
   console.log(`Mock-server kjører på http://localhost:${PORT}`);
 });

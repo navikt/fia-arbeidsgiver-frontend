@@ -1,6 +1,7 @@
 import { API_VERT_ANTALL_SVAR_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-const antallSvarRoutes = [
+const antallSvarRoutes: MockRoute[] = [
   {
     id: "vert-antall-svar",
     url: API_VERT_ANTALL_SVAR_URL(),

@@ -1,6 +1,7 @@
 import { API_VERT_ÅPNE_TEMA_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-const åpneTemaRoutes = [
+const åpneTemaRoutes: MockRoute[] = [
   {
     id: "vert-åpne-tema",
     url: API_VERT_ÅPNE_TEMA_URL(),

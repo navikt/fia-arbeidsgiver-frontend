@@ -5,8 +5,9 @@ import {
   arbeidsmiljøResultat,
 } from "../../../src/utils/dummydata";
 import { API_VERT_TEMARESULTAT_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-const listeOverTemaResultatRoutes = [
+const listeOverTemaResultatRoutes: MockRoute[] = [
   {
     id: "vert-temaresultat",
     url: API_VERT_TEMARESULTAT_URL(),

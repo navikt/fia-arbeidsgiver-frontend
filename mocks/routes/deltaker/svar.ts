@@ -1,6 +1,7 @@
 import { API_DELTAKER_SVAR_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-const svarRoutes = [
+const svarRoutes: MockRoute[] = [
   {
     id: "deltaker-svar",
     url: API_DELTAKER_SVAR_URL(),

@@ -1,7 +1,8 @@
 import { førsteLedigeSpørsmål } from "../../../src/utils/dummydata";
 import { API_DELTAKER_UNDERSØKELSE_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-const identifiserbartsporsmalRoutes = [
+const identifiserbartsporsmalRoutes: MockRoute[] = [
   {
     id: "deltaker-identifiserbartsporsmal",
     url: API_DELTAKER_UNDERSØKELSE_URL(),
