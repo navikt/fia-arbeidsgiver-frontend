@@ -1,6 +1,7 @@
 import { API_VERT_ANTALL_DELTAKERE_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-const antallDeltakereRoutes = [
+const antallDeltakereRoutes: MockRoute[] = [
   {
     id: "vert-antall-deltakere",
     url: API_VERT_ANTALL_DELTAKERE_URL(),

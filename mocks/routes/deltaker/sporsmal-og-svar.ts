@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import { API_DELTAKER_SPØRSMÅL_URL } from "../../../src/utils/urls";
 import { alleSpørsmål } from "../../../src/utils/dummydata";
+import { MockRoute } from "../../types";
 
-const sporsmalOgSvarRoutes = [
+const sporsmalOgSvarRoutes: MockRoute[] = [
   {
     id: "deltaker-sporsmal-og-svar",
     url: API_DELTAKER_SPØRSMÅL_URL(),

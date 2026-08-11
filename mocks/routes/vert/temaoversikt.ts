@@ -4,8 +4,9 @@ import {
   helSpørreundersøkelse,
 } from "../../../src/utils/dummydata";
 import { API_VERT_TEMAOVERSIKT_URL } from "../../../src/utils/urls";
+import { MockRoute } from "../../types";
 
-const listeOverTemaRoutes = [
+const listeOverTemaRoutes: MockRoute[] = [
   {
     id: "vert-temaoversikt-for-ett-tema",
     url: API_VERT_TEMAOVERSIKT_URL(),
