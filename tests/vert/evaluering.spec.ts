@@ -78,6 +78,51 @@ test.describe("Vert/evaluering", () => {
     await expect(page).toHaveScreenshot({ fullPage: true });
   });
 
+  test("Sjekker at accessibility-tree er i orden", async ({ page }) => {
+    await expect(page.getByRole("main")).toMatchAriaSnapshot(`
+      - main:
+        - text: "Demoutgave: Dette er en demoside for å teste ut ny funksjonalitet. Den skal ikke brukes med ekte virksomheter."
+        - dialog "Samarbeidsplan":
+          - button "Lukk":
+            - img "Lukk"
+          - heading "Samarbeidsplan" [level=1]
+          - heading "Partssamarbeid" [level=2]
+          - heading "Utvikle partssamarbeidet" [level=3]
+          - list /\\d+\\.\\d+\\.\\d+ til \\d+\\.\\d+\\.\\d+/:
+            - listitem: "/Utvikle partssamarbeidet: PLANLAGT: fra \\\\d+\\\\.\\\\d+\\\\.\\\\d+ til \\\\d+\\\\.\\\\d+\\\\.\\\\d+/"
+          - text: Innhold Varighet Status
+          - button /Utvikle partssamarbeidet \\d+\\. nov\\. \\d+ - \\d+\\. des\\. \\d+ Planlagt/
+          - heading "Sykefraværsarbeid" [level=2]
+          - heading "Oppfølgingssamtaler" [level=3]
+          - list /\\d+\\.\\d+\\.\\d+ til \\d+\\.\\d+\\.\\d+/:
+            - listitem: "/Oppfølgingssamtaler: PLANLAGT: fra \\\\d+\\\\.\\\\d+\\\\.\\\\d+ til \\\\d+\\\\.\\\\d+\\\\.\\\\d+/"
+          - heading "Tilretteleggings- og medvirkningsplikt" [level=3]
+          - list /\\d+\\.\\d+\\.\\d+ til \\d+\\.\\d+\\.\\d+/:
+            - listitem: "/Tilretteleggings- og medvirkningsplikt: PLANLAGT: fra \\\\d+\\\\.\\\\d+\\\\.\\\\d+ til \\\\d+\\\\.\\\\d+\\\\.\\\\d+/"
+          - text: Innhold Varighet Status
+          - button /Oppfølgingssamtaler \\d+\\. nov\\. \\d+ - \\d+\\. des\\. \\d+ Planlagt/
+          - button /Tilretteleggings- og medvirkningsplikt \\d+\\. nov\\. \\d+ - \\d+\\. des\\. \\d+ Planlagt/
+          - heading "Arbeidsmiljø" [level=2]
+          - heading "Oppfølging av arbeidsmiljøundersøkelser" [level=3]
+          - list /\\d+\\.\\d+\\.\\d+ til \\d+\\.\\d+\\.\\d+/:
+            - listitem: "/Oppfølging av arbeidsmiljøundersøkelser: PLANLAGT: fra \\\\d+\\\\.\\\\d+\\\\.\\\\d+ til \\\\d+\\\\.\\\\d+\\\\.\\\\d+/"
+          - text: Innhold Varighet Status
+          - button /Oppfølging av arbeidsmiljøundersøkelser \\d+\\. nov\\. \\d+ - \\d+\\. des\\. \\d+ Planlagt/
+        - button "Vis"
+        - button "Resultater Fullfør og vis alle resultatene":
+          - img "Resultater"
+          - text: ""
+        - img "Deltakere som har svart"
+        - text: /\\d+\\/\\d+/
+        - heading "Partssamarbeid" [level=1]
+        - button "Start"
+        - heading "Sykefraværsarbeid" [level=1]
+        - button "Start" [disabled]
+        - heading "Arbeidsmiljø" [level=1]
+        - button "Start" [disabled]
+    `);
+  });
+
   test("test av axe", async ({ page }) => {
     const accessibilityScanResults = await new AxeBuilder({
       page: page as Page,

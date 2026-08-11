@@ -79,6 +79,31 @@ test.describe("Vert/oversiktside", () => {
     ).toBeVisible();
   });
 
+  test("Screenshot av innhold likner", async ({ page }) => {
+    await expect(page.getByRole("main")).toContainText("Start");
+    await expect(page).toHaveScreenshot({ fullPage: true });
+  });
+
+  test("Sjekker at accessibility-tree er i orden", async ({ page }) => {
+    await expect(page.getByRole("main")).toContainText("Start");
+    await expect(page.getByRole("main")).toMatchAriaSnapshot(`
+      - main:
+        - text: "Demoutgave: Dette er en demoside for å teste ut ny funksjonalitet. Den skal ikke brukes med ekte virksomheter."
+        - button "Vis QR-kode"
+        - button "Resultater Fullfør og vis alle resultatene":
+          - img "Resultater"
+          - text: ""
+        - img "Deltakere som har svart"
+        - text: /\\d+\\/\\d+/
+        - heading "Partssamarbeid" [level=1]
+        - button "Start"
+        - heading "Sykefraværsarbeid" [level=1]
+        - button "Start" [disabled]
+        - heading "Arbeidsmiljø" [level=1]
+        - button "Start" [disabled]
+    `);
+  });
+
   test("test av axe", async ({ page }) => {
     const accessibilityScanResults = await new AxeBuilder({
       page: page as Page,

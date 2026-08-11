@@ -5,9 +5,11 @@ import styles from "./resultatgraf.module.css";
 export default function TekstligResultatvisning({
   spørsmål,
   farge,
+  somSkjermleseralternativ = false,
 }: {
   spørsmål: SpørsmålResultatDto;
   farge: string;
+  somSkjermleseralternativ?: boolean;
 }) {
   const totaltAntallSvar = spørsmål.svarListe.reduce(
     (sum, svar) => sum + svar.antallSvar,
@@ -17,16 +19,27 @@ export default function TekstligResultatvisning({
   if (totaltAntallSvar === 0) {
     return (
       <div className={styles.tekstvisning}>
-        <h4 style={{ color: farge }}>{spørsmål.tekst}</h4>
-        Ikke nok svar mottatt.
+        {somSkjermleseralternativ ? (
+          <p>{spørsmål.tekst}: Ikke nok svar mottatt.</p>
+        ) : (
+          <>
+            <h4 style={{ color: farge }}>{spørsmål.tekst}</h4>
+            Ikke nok svar mottatt.
+          </>
+        )}
       </div>
     );
   }
 
   return (
     <div className={styles.tekstvisning}>
-      <h4 style={{ color: farge }}>{spørsmål.tekst}</h4>
-      <Table size="small">
+      {!somSkjermleseralternativ && (
+        <h4 style={{ color: farge }}>{spørsmål.tekst}</h4>
+      )}
+      <Table
+        size="small"
+        aria-label={somSkjermleseralternativ ? spørsmål.tekst : undefined}
+      >
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Svar</Table.HeaderCell>

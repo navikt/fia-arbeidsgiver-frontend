@@ -6,7 +6,7 @@ export const vertTest = base.extend<object>({
     await page.goto("http://localhost:2222");
     await page.getByPlaceholder("Enter any user/subject").click();
     await page.getByPlaceholder("Enter any user/subject").fill("asdf");
-    await page.getByPlaceholder("Enter any user/subject").press("Enter");
+    await page.getByRole("button", { name: "Sign-in" }).click();
 
     await page.goto("http://localhost:2222");
 
@@ -24,7 +24,7 @@ export const deltakerTest = base.extend<object>({
     );
     await page.getByPlaceholder("Enter any user/subject").click();
     await page.getByPlaceholder("Enter any user/subject").fill("asdf");
-    await page.getByPlaceholder("Enter any user/subject").press("Enter");
+    await page.getByRole("button", { name: "Sign-in" }).click();
 
     await page.waitForLoadState("domcontentloaded");
     await page.goto(

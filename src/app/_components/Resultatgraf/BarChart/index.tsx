@@ -34,6 +34,7 @@ export default function BarChart({
       options={options}
       constructorType={"chart"}
       ref={chartComponentRef}
+      containerProps={{ "aria-hidden": true }}
     />
   );
 }
