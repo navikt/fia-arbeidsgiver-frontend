@@ -125,7 +125,7 @@ jobs:
       id-token: write
     name: Deploy app to dev
     needs: [ build, tests ]
-    if: github.ref == 'refs/heads/screenshot-i-repo'
+    if: github.ref == 'refs/heads/dependabot/npm_and_yarn/navikt/oasis-4.1.4'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
