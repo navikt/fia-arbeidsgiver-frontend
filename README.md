@@ -63,6 +63,7 @@ E2E-testene kjøres i et pinnet Playwright-image (`docker-compose.e2e.yaml`) så
 ```
 
 CI bruker amd64-baseline, så oppdater og commit amd64-bildene når du endrer noe som påvirker utseendet. Testene kjøres også i CI via `.github/workflows/build-deploy.yaml`.
+
 ## Mocks
 
 `pnpm mocks` starter en enkel Express-server (`mocks/server.ts`) på port 3100, som mocker backend-API-et frontend snakker med.

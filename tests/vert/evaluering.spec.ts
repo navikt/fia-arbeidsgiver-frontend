@@ -1,7 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
 import { test as base } from "@playwright/test";
-import { Page } from "playwright-core";
 import kontekstRoutes from "../../mocks/routes/vert/kontekst";
 
 // Må override, da den i playwrighUtils.ts er satt til å hoppe forbi denne siden.
@@ -124,9 +123,7 @@ test.describe("Vert/evaluering", () => {
   });
 
   test("test av axe", async ({ page }) => {
-    const accessibilityScanResults = await new AxeBuilder({
-      page: page as Page,
-    }).analyze();
+    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
     expect(accessibilityScanResults.violations).toEqual([]);
   });

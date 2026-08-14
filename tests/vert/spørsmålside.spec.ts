@@ -1,7 +1,6 @@
 import { vertTest as test } from "@/utils/playwrightUtils";
 import AxeBuilder from "@axe-core/playwright";
 import { expect } from "@playwright/test";
-import { Page } from "playwright-core";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 // @ts-ignore
 import { partssamarbeid, spørreundersøkelseId } from "@/utils/dummydata";
@@ -83,9 +82,7 @@ test.describe("Vert/spørsmålside", () => {
     await page.goto(
       `http://localhost:2222/${spørreundersøkelseId}/vert/tema/${førsteTemaId}`,
     );
-    const accessibilityScanResults = await new AxeBuilder({
-      page: page as Page,
-    }).analyze();
+    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
     expect(accessibilityScanResults.violations).toEqual([]);
   });
