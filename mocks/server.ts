@@ -197,22 +197,32 @@ expressServer.get("/__mock/admin", (_req, res) => {
 </html>`);
 });
 
-// Texas-mock — brukes av oasis 4.x for token-exchange i e2e-miljø.
+// Texas-mock — brukes av oasis 4.x for token-exchange i lokal utvikling og e2e.
 // oasis kaller decodeJwt(access_token) for å lese exp-claimet til token-cachen,
 // så access_token må være en gyldig JWT-struktur (header.payload.signature).
 function mockJwt(sub: string): string {
-  const header = Buffer.from(JSON.stringify({ alg: "none", typ: "JWT" })).toString("base64url");
+  const header = Buffer.from(
+    JSON.stringify({ alg: "none", typ: "JWT" }),
+  ).toString("base64url");
   const payload = Buffer.from(
     JSON.stringify({ sub, exp: Math.floor(Date.now() / 1000) + 3600 }),
   ).toString("base64url");
   return `${header}.${payload}.mock`;
 }
 
+function mockTokenResponse(sub: string) {
+  return {
+    access_token: mockJwt(sub),
+    expires_in: 3600,
+    token_type: "Bearer",
+  };
+}
+
 expressServer.post("/texas/token/exchange", (_req, res) => {
-  res.json({ access_token: mockJwt("mock-obo") });
+  res.json(mockTokenResponse("mock-obo"));
 });
 expressServer.post("/texas/token/m2m", (_req, res) => {
-  res.json({ access_token: mockJwt("mock-m2m") });
+  res.json(mockTokenResponse("mock-m2m"));
 });
 expressServer.post("/texas/token/introspect", (_req, res) => {
   res.json({ active: true });
