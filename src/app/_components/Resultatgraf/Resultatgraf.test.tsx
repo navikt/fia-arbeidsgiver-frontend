@@ -10,12 +10,13 @@ describe("Resultatgraf", () => {
           spørsmålId: "a1",
           tekst: "Hva er din favorittfarge?",
           svarListe: [
-            { svarId: "b1", tekst: "QWER", antallSvar: 10 },
-            { svarId: "b2", tekst: "ASDF", antallSvar: 20 },
-            { svarId: "b3", tekst: "ZXCV", antallSvar: 10 },
-            { svarId: "b4", tekst: "ÆØÅ", antallSvar: 10 },
+            { id: "b1", tekst: "QWER", antallSvar: 10 },
+            { id: "b2", tekst: "ASDF", antallSvar: 20 },
+            { id: "b3", tekst: "ZXCV", antallSvar: 10 },
+            { id: "b4", tekst: "ÆØÅ", antallSvar: 10 },
           ],
           flervalg: false,
+          kategori: "Utvikle partssamarbeidet",
         }}
       />,
     );
@@ -35,11 +36,12 @@ describe("Resultatgraf", () => {
           spørsmålId: "a1",
           tekst: "Hva er din favorittfarge?",
           svarListe: farger.map((farge, index) => ({
-            svarId: `b${index + 1}`,
+            id: `b${index + 1}`,
             tekst: farge.bakgrunn,
             antallSvar: index + 1,
           })),
           flervalg: false,
+          kategori: "Utvikle partssamarbeidet",
         }}
         farger={farger}
         barTestIds={farger.map((_, index) => `bar-${index}`)}
