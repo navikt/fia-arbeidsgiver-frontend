@@ -1,22 +1,16 @@
-// Texas-mock for lokal utvikling.
-// Aktiveres kun i Node.js-runtime under development — aldri i prod eller e2e.
-// Samme mønster som oasis sin egen example-app:
-// https://github.com/navikt/oasis/blob/main/example-app/instrumentation.ts
+// Peker Texas-endepunktene mot mock-serveren (`pnpm mocks`) i lokal utvikling.
+// Aktiveres kun i Node.js-runtime under development — aldri i prod eller e2e,
+// der endepunktene settes av Nais / docker-compose.e2e.yaml.
 export async function register() {
   if (
     process.env.NEXT_RUNTIME === "nodejs" &&
     process.env.NODE_ENV === "development"
   ) {
-    process.env.NAIS_TOKEN_INTROSPECTION_ENDPOINT =
-      "http://texas-local/api/v1/introspect";
-    process.env.NAIS_TOKEN_EXCHANGE_ENDPOINT =
-      "http://texas-local/api/v1/token/exchange";
-    process.env.NAIS_TOKEN_ENDPOINT =
-      "http://texas-local/api/v1/token";
+    const texas = "http://127.0.0.1:3100/texas";
+    process.env.NAIS_TOKEN_INTROSPECTION_ENDPOINT = `${texas}/token/introspect`;
+    process.env.NAIS_TOKEN_EXCHANGE_ENDPOINT = `${texas}/token/exchange`;
+    process.env.NAIS_TOKEN_ENDPOINT = `${texas}/token/m2m`;
 
-    const { server } = await import("./mocks/texas");
-    server.listen({ onUnhandledRequest: "bypass" });
-
-    console.log("[dev] Texas mock aktivert");
+    console.log("[dev] Texas-endepunkter peker mot mock-serveren på 3100");
   }
 }
