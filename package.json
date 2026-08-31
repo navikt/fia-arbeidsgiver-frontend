@@ -36,11 +36,11 @@
     "swr": "^2.4.1"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.11.3",
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/compat": "^2.1.0",
     "@eslint/js": "^10.0.1",
     "@happy-dom/global-registrator": "^20.10.6",
-    "@playwright/test": "^1.60.0",
+    "@playwright/test": "^1.62.1",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.2",
