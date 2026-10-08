@@ -70,22 +70,18 @@
 }
 
 .boksContainer {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: 1fr 1fr;
-  justify-items: stretch;
   width: 100%;
   padding-bottom: 4rem;
 }
 
 .temaboks {
-  grid-column: span 1;
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
 .flervalgTemaboks {
-  grid-column: span 2;
+  /* Hele raden, uansett antall kolonner (1 / -1 = første til siste linje) */
+  grid-column: 1 / -1;
 }
 
 .loaderWrapper {
@@ -113,7 +109,8 @@
 }
 
 .grafTabellBryterWrapper {
-  grid-column: span 2;
+  /* Hele raden, uansett antall kolonner (1 / -1 = første til siste linje) */
+  grid-column: 1 / -1;
 }
 
 .grafTabellBryter > div {
