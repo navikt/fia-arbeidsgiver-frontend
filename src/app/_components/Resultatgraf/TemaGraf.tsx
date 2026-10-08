@@ -1,6 +1,6 @@
 "use client";
 
-import { Alert, BodyShort, Box, ToggleGroup } from "@navikt/ds-react";
+import { Alert, BodyShort, Box, HGrid, ToggleGroup } from "@navikt/ds-react";
 import resultatgrafStyle from "./resultatgraf.module.css";
 import { useTemaResultat } from "@/app/_api_hooks/vert/useTemaresultater";
 import { SpørsmålResultatDto } from "@/app/_types/SpørsmålResultatDto";
@@ -30,7 +30,11 @@ export default function TemaGraf({
     );
   }
   return (
-    <div className={resultatgrafStyle.boksContainer}>
+    <HGrid
+      columns={{ xs: 1, md: 2 }}
+      gap="space-32"
+      className={resultatgrafStyle.boksContainer}
+    >
       {!skjulToggleGroup && (
         <div className={resultatgrafStyle.grafTabellBryterWrapper}>
           <ToggleGroup
@@ -53,7 +57,7 @@ export default function TemaGraf({
           <Box
             key={index}
             borderRadius="12"
-            padding="space-48"
+            padding={{ xs: "space-16", md: "space-48" }}
             background="default"
             className={`${resultatgrafStyle.temaboks} ${trengerEkstraBredde(tema, spørsmål, index) ? resultatgrafStyle.flervalgTemaboks : ""}`}
           >
@@ -86,7 +90,7 @@ export default function TemaGraf({
           </Box>
         );
       })}
-    </div>
+    </HGrid>
   );
 }
 
