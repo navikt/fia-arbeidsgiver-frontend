@@ -96,6 +96,13 @@
   margin-top: 1rem;
 }
 
+.flervalgCaption {
+  font-size: var(--ax-font-size-small);
+  color: var(--ax-text-neutral-subtle);
+  text-align: left;
+  padding: 0;
+}
+
 .skjermleserOnly {
   position: absolute;
   width: 1px;
