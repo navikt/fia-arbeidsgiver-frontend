@@ -40,6 +40,11 @@ export default function TekstligResultatvisning({
         size="small"
         aria-label={somSkjermleseralternativ ? spørsmål.tekst : undefined}
       >
+        {spørsmål.flervalg && (
+          <caption className={styles.flervalgCaption}>
+            (flere valg er mulig)
+          </caption>
+        )}
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Svar</Table.HeaderCell>
