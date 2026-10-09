@@ -96,11 +96,15 @@
   margin-top: 1rem;
 }
 
+.flervalgSpørsmål {
+  margin-bottom: var(--ax-space-4);
+}
+
 .flervalgCaption {
   font-size: var(--ax-font-size-small);
   color: var(--ax-text-neutral-subtle);
   text-align: left;
-  padding: 0;
+  padding: 0 0 var(--ax-space-8);
 }
 
 .skjermleserOnly {

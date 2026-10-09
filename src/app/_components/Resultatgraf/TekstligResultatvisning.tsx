@@ -34,7 +34,12 @@ export default function TekstligResultatvisning({
   return (
     <div className={styles.tekstvisning}>
       {!somSkjermleseralternativ && (
-        <h4 style={{ color: farge }}>{spørsmål.tekst}</h4>
+        <h4
+          className={spørsmål.flervalg ? styles.flervalgSpørsmål : undefined}
+          style={{ color: farge }}
+        >
+          {spørsmål.tekst}
+        </h4>
       )}
       <Table
         size="small"
