@@ -17,3 +17,5 @@ minimumReleaseAge: 10080 # 7 dager
 
 minimumReleaseAgeExclude:
   - "@navikt/*"
+  - "baseline-browser-mapping"
+  - "caniuse-lite"
