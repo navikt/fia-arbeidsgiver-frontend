@@ -67,7 +67,7 @@ services:
     restart: unless-stopped
 
   playwright:
-    image: mcr.microsoft.com/playwright:v1.60.0-noble
+    image: mcr.microsoft.com/playwright:v1.64.1-noble
     # Standard er linux/amd64 for at skjermbildene skal matche CI pikselvis.
     # Kan overstyres til native arkitektur for raskere kjøring på Apple Silicon
     # via `./scripts/e2e.sh --fast` (setter E2E_PLATFORM=linux/arm64). I fast-
