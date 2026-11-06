@@ -1,4 +1,4 @@
-FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:22-slim@sha256:807930713aaecdcfb2fb5fdf7e0692eddb354248c85bbe55fe39a50955114c8c
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:22-slim@sha256:31c67ccfc47c31b7f5ca1ecc3a06f6099ca15e5086539a5ae373b25ff1efcd16
 
 ENV PORT=3000 \
     NODE_ENV=production \
