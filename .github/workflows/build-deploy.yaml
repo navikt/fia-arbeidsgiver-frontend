@@ -45,7 +45,7 @@ jobs:
           include-hidden-files: true
       - name: Push to Google Artifact Registry
         if: ${{ github.actor != 'dependabot[bot]' }}
-        uses: nais/docker-build-push@v0
+        uses: nais/docker-build-push@v1
         id: docker-push
         with:
           team: pia
